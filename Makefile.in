@@ -11,6 +11,7 @@ incdir = @includedir@
 LIBTOOL = @LIBTOOL@
 CC = @CC@
 INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
 
 WFLAGS = -Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses
 CFLAGS = @CFLAGS@ $(WFLAGS)
@@ -28,7 +29,7 @@ install: libuninameslist.la
 	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(libdir)/libuninameslist.la
 	$(LIBTOOL) --finish $(libdir)
 	mkdir -p $(incdir)
-	$(INSTALL) nameslist.h $(incdir)/uninameslist.h
+	$(INSTALL_DATA) nameslist.h $(incdir)/uninameslist.h
 
 clean:
 	-rm -f *.lo *.o
