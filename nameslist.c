@@ -1352,11 +1352,12 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0234 */ { "LATIN SMALL LETTER L WITH CURL",NULL},
 /* 0235 */ { "LATIN SMALL LETTER N WITH CURL",NULL},
 /* 0236 */ { "LATIN SMALL LETTER T WITH CURL",NULL},
-/* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	* uppercase is 004A\n"
+/* 0237 */ { "LATIN SMALL LETTER DOTLESS J"," * pending ISO approval\n"
+	"	* uppercase is 004A\n"
 	"	x (latin small letter j - 006A)"},
-/* 0238 */ { NULL,NULL},
-/* 0239 */ { NULL,NULL},
-/* 023A */ { NULL,NULL},
+/* 0238 */ { "LATIN SMALL LETTER DB DIGRAPH","	* pending ISO approval"},
+/* 0239 */ { "LATIN SMALL LETTER QP DIGRAPH","	* pending ISO approval"},
+/* 023A */ { "LATIN SMALL LETTER C WITH STROKE","	* pending ISO approval"},
 /* 023B */ { NULL,NULL},
 /* 023C */ { NULL,NULL},
 /* 023D */ { NULL,NULL},
@@ -1914,10 +1915,10 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0356 */ { "COMBINING RIGHT ARROWHEAD AND UP ARROWHEAD BELOW",NULL},
 /* 0357 */ { "COMBINING RIGHT HALF RING ABOVE",NULL},
 /* 0358 */ { NULL,NULL},
-/* 0359 */ { NULL,NULL},
-/* 035A */ { NULL,NULL},
-/* 035B */ { NULL,NULL},
-/* 035C */ { NULL,NULL},
+/* 0359 */ { "COMBINING ASTERISK BELOW","	* pending ISO approval"},
+/* 035A */ { "COMBINING DOUBLE RING BELOW","	* pending ISO approval"},
+/* 035B */ { "COMBINING ZIGZAG ABOVE","	* pending ISO approval"},
+/* 035C */ { "COMBINING DOUBLE BREVE BELOW","	* pending ISO approval"},
 /* 035D */ { "COMBINING DOUBLE BREVE",NULL},
 /* 035E */ { "COMBINING DOUBLE MACRON",NULL},
 /* 035F */ { "COMBINING DOUBLE MACRON BELOW",NULL},
@@ -2126,10 +2127,10 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 03F9 */ { "GREEK CAPITAL LUNATE SIGMA SYMBOL","	# 03A3 greek capital letter sigma"},
 /* 03FA */ { "GREEK CAPITAL LETTER SAN",NULL},
 /* 03FB */ { "GREEK SMALL LETTER SAN",NULL},
-/* 03FC */ { NULL,NULL},
-/* 03FD */ { NULL,NULL},
-/* 03FE */ { NULL,NULL},
-/* 03FF */ { NULL,NULL}
+/* 03FC */ { "GREEK RHO WITH STROKE SYMBOL","	* pending ISO approval"},
+/* 03FD */ { "REVERSED GREEK CAPITAL LUNATE SIGMA SYMBOL","	* pending ISO approval"},
+/* 03FE */ { "DOTTED GREEK CAPITAL LUNATE SIGMA SYMBOL","	* pending ISO approval"},
+/* 03FF */ { "REVERSED DOTTED GREEK CAPITAL LUNATE SIGMA SYMBOL","	* pending ISO approval"}
 };
 
 static const struct unicode_nameannot una_00_04[] = {
@@ -2415,8 +2416,8 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04F3 */ { "CYRILLIC SMALL LETTER U WITH DOUBLE ACUTE","	: 0443 030B"},
 /* 04F4 */ { "CYRILLIC CAPITAL LETTER CHE WITH DIAERESIS","	: 0427 0308"},
 /* 04F5 */ { "CYRILLIC SMALL LETTER CHE WITH DIAERESIS","	: 0447 0308"},
-/* 04F6 */ { NULL,NULL},
-/* 04F7 */ { NULL,NULL},
+/* 04F6 */ { "CYRILLIC CAPITAL LETTER GHE WITH DESCENDER","	* pending ISO approval"},
+/* 04F7 */ { "CYRILLIC SMALL LETTER GHE WITH DESCENDER","	* pending ISO approval"},
 /* 04F8 */ { "CYRILLIC CAPITAL LETTER YERU WITH DIAERESIS","	: 042B 0308"},
 /* 04F9 */ { "CYRILLIC SMALL LETTER YERU WITH DIAERESIS","	: 044B 0308"},
 /* 04FA */ { NULL,NULL},
@@ -2717,7 +2718,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 0608 */ { NULL,NULL},
 /* 0609 */ { NULL,NULL},
 /* 060A */ { NULL,NULL},
-/* 060B */ { NULL,NULL},
+/* 060B */ { "AFGHANI SIGN","	* pending ISO approval"},
 /* 060C */ { "ARABIC COMMA","	* also used with Thaana and Syriac in modern text\n"
 	"	x (comma - 002C)"},
 /* 060D */ { "ARABIC DATE SEPARATOR",NULL},
@@ -2739,7 +2740,7 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	x (semicolon - 003B)"},
 /* 061C */ { NULL,NULL},
 /* 061D */ { NULL,NULL},
-/* 061E */ { NULL,NULL},
+/* 061E */ { "ARABIC TRIPLE DOT PUNCTUATION MARK","	* pending ISO approval"},
 /* 061F */ { "ARABIC QUESTION MARK","	* also used with Thaana and Syriac in modern text\n"
 	"	x (question mark - 003F)"},
 /* 0620 */ { NULL,NULL},
@@ -2805,12 +2806,12 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 0657 */ { "ARABIC INVERTED DAMMA",NULL},
 /* 0658 */ { "ARABIC MARK NOON GHUNNA","	* Kashmiri and Baluchi\n"
 	"	* indicates nasalization in Urdu"},
-/* 0659 */ { NULL,NULL},
-/* 065A */ { NULL,NULL},
-/* 065B */ { NULL,NULL},
-/* 065C */ { NULL,NULL},
-/* 065D */ { NULL,NULL},
-/* 065E */ { NULL,NULL},
+/* 0659 */ { "ARABIC ZWARAKAY","	* pending ISO approval"},
+/* 065A */ { "ARABIC VOWEL SIGN SMALL V ABOVE",NULL},
+/* 065B */ { "ARABIC VOWEL SIGN INVERTED SMALL V ABOVE",NULL},
+/* 065C */ { "ARABIC VOWEL SIGN DOT BELOW",NULL},
+/* 065D */ { "ARABIC REVERSED DAMMA","	* pending ISO approval"},
+/* 065E */ { "ARABIC FATHA WITH TWO DOTS","	* pending ISO approval"},
 /* 065F */ { NULL,NULL},
 /* 0660 */ { "ARABIC-INDIC DIGIT ZERO",NULL},
 /* 0661 */ { "ARABIC-INDIC DIGIT ONE",NULL},
@@ -3082,7 +3083,7 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 074D */ { "SYRIAC LETTER SOGDIAN ZHAIN",NULL},
 /* 074E */ { "SYRIAC LETTER SOGDIAN KHAPH",NULL},
 /* 074F */ { "SYRIAC LETTER SOGDIAN FE",NULL},
-/* 0750 */ { NULL,NULL},
+/* 0750 */ { NULL,NULL}, /* 0750..0769 Extended Arabic letters for West African, pending ISO approval*/
 /* 0751 */ { NULL,NULL},
 /* 0752 */ { NULL,NULL},
 /* 0753 */ { NULL,NULL},
@@ -3108,10 +3109,10 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 0767 */ { NULL,NULL},
 /* 0768 */ { NULL,NULL},
 /* 0769 */ { NULL,NULL},
-/* 076A */ { NULL,NULL},
-/* 076B */ { NULL,NULL},
-/* 076C */ { NULL,NULL},
-/* 076D */ { NULL,NULL},
+/* 076A */ { "ARABIC LETTER LAM WITH BAR","	* pending ISO approval"},
+/* 076B */ { "ARABIC LETTER REH WITH TWO DOTS VERTICALLY ABOVE","	* pending ISO approval"},
+/* 076C */ { "ARABIC LETTER REH WITH HAMZA ABOVE","	* pending ISO approval"},
+/* 076D */ { "ARABIC LETTER SEEN WITH TWO DOTS VERTICALLY ABOVE","	* pending ISO approval"},
 /* 076E */ { NULL,NULL},
 /* 076F */ { NULL,NULL},
 /* 0770 */ { NULL,NULL},
@@ -3393,7 +3394,7 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 097A */ { NULL,NULL},
 /* 097B */ { NULL,NULL},
 /* 097C */ { NULL,NULL},
-/* 097D */ { NULL,NULL},
+/* 097D */ { "DEVANAGARI GLOTTAL STOP","	* pending ISO approval"},
 /* 097E */ { NULL,NULL},
 /* 097F */ { NULL,NULL},
 /* 0980 */ { NULL,NULL},
@@ -3973,7 +3974,7 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BB3 */ { "TAMIL LETTER LLA",NULL},
 /* 0BB4 */ { "TAMIL LETTER LLLA",NULL},
 /* 0BB5 */ { "TAMIL LETTER VA",NULL},
-/* 0BB6 */ { NULL,NULL},
+/* 0BB6 */ { "TAMIL LETTER SHA","	* pending ISO approval"},
 /* 0BB7 */ { "TAMIL LETTER SSA",NULL},
 /* 0BB8 */ { "TAMIL LETTER SA",NULL},
 /* 0BB9 */ { "TAMIL LETTER HA",NULL},
@@ -4021,7 +4022,7 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BE3 */ { NULL,NULL},
 /* 0BE4 */ { NULL,NULL},
 /* 0BE5 */ { NULL,NULL},
-/* 0BE6 */ { NULL,"	x (digit zero - 0030)"},
+/* 0BE6 */ { "TAMIL DIGIT ZERO","	x (digit zero - 0030)"},
 /* 0BE7 */ { "TAMIL DIGIT ONE",NULL},
 /* 0BE8 */ { "TAMIL DIGIT TWO",NULL},
 /* 0BE9 */ { "TAMIL DIGIT THREE",NULL},
@@ -5374,10 +5375,10 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 10F6 */ { "GEORGIAN LETTER FI",NULL},
 /* 10F7 */ { "GEORGIAN LETTER YN",NULL},
 /* 10F8 */ { "GEORGIAN LETTER ELIFI",NULL},
-/* 10F9 */ { NULL,NULL},
-/* 10FA */ { NULL,NULL},
+/* 10F9 */ { "GEORGIAN LETTER TURNED GAN","	* pending ISO approval"},
+/* 10FA */ { "GEORGIAN LETTER AIN","	* pending ISO approval"},
 /* 10FB */ { "GEORGIAN PARAGRAPH SEPARATOR",NULL},
-/* 10FC */ { NULL,NULL},
+/* 10FC */ { "MODIFIER LETTER GEORGIAN NAR","	* pending ISO approval"},
 /* 10FD */ { NULL,NULL},
 /* 10FE */ { NULL,NULL},
 /* 10FF */ { NULL,NULL}
@@ -7626,7 +7627,7 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 197D */ { NULL,NULL},
 /* 197E */ { NULL,NULL},
 /* 197F */ { NULL,NULL},
-/* 1980 */ { NULL,NULL},
+/* 1980 */ { NULL,NULL}, /* 1980..19DF Tai Lue, pending ISO approval */
 /* 1981 */ { NULL,NULL},
 /* 1982 */ { NULL,NULL},
 /* 1983 */ { NULL,NULL},
@@ -7756,6 +7757,8 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19FF */ { "KHMER SYMBOL DAP-PRAM ROC",NULL}
 };
 
+/* 1A00..1A1F Buginese, pending ISO approval */
+
 static const struct unicode_nameannot una_00_1D[] = {
 /* 1D00 */ { "LATIN LETTER SMALL CAPITAL A",NULL},
 /* 1D01 */ { "LATIN LETTER SMALL CAPITAL AE",NULL},
@@ -7866,7 +7869,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D69 */ { "GREEK SUBSCRIPT SMALL LETTER PHI","	# <sub> 03C6"},
 /* 1D6A */ { "GREEK SUBSCRIPT SMALL LETTER CHI","	# <sub> 03C7"},
 /* 1D6B */ { "LATIN SMALL LETTER UE",NULL},
-/* 1D6C */ { NULL,NULL},
+/* 1D6C */ { NULL,NULL}, /* 1D6C..1D76 Phonetic symbols with middle tilde, pending ISO approval */
 /* 1D6D */ { NULL,NULL},
 /* 1D6E */ { NULL,NULL},
 /* 1D6F */ { NULL,NULL},
@@ -7877,16 +7880,16 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D74 */ { NULL,NULL},
 /* 1D75 */ { NULL,NULL},
 /* 1D76 */ { NULL,NULL},
-/* 1D77 */ { NULL,NULL},
-/* 1D78 */ { NULL,NULL},
-/* 1D79 */ { NULL,NULL},
-/* 1D7A */ { NULL,NULL},
-/* 1D7B */ { NULL,NULL},
+/* 1D77 */ { "LATIN SMALL LETTER TURNED G","	* pending ISO approval"},
+/* 1D78 */ { "MODIFIER LETTER CYRILLIC EN","	* pending ISO approval"},
+/* 1D79 */ { "LATIN SMALL LETTER INSULAR G","	* pending ISO approval"},
+/* 1D7A */ { "LATIN SMALL LETTER TH WITH STRIKETHROUGH","	* pending ISO approval"},
+/* 1D7B */ { NULL,NULL}, /* 1D7B..1D7F Phonetic symbols with stroke, pending ISO approval */
 /* 1D7C */ { NULL,NULL},
 /* 1D7D */ { NULL,NULL},
 /* 1D7E */ { NULL,NULL},
 /* 1D7F */ { NULL,NULL},
-/* 1D80 */ { NULL,NULL},
+/* 1D80 */ { NULL,NULL}, /* 1D80..1D8E Phonetic symbols with palatal hook, pending ISO approval */
 /* 1D81 */ { NULL,NULL},
 /* 1D82 */ { NULL,NULL},
 /* 1D83 */ { NULL,NULL},
@@ -7901,7 +7904,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D8C */ { NULL,NULL},
 /* 1D8D */ { NULL,NULL},
 /* 1D8E */ { NULL,NULL},
-/* 1D8F */ { NULL,NULL},
+/* 1D8F */ { NULL,NULL}, /* 1D8F..1D9A Phonetic symbols with retroflex hook, pending ISO approval */
 /* 1D90 */ { NULL,NULL},
 /* 1D91 */ { NULL,NULL},
 /* 1D92 */ { NULL,NULL},
@@ -7913,7 +7916,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D98 */ { NULL,NULL},
 /* 1D99 */ { NULL,NULL},
 /* 1D9A */ { NULL,NULL},
-/* 1D9B */ { NULL,NULL},
+/* 1D9B */ { NULL,NULL}, /* 1D9B..1DBF Phonetic modifier letters, pending ISO approval */
 /* 1D9C */ { NULL,NULL},
 /* 1D9D */ { NULL,NULL},
 /* 1D9E */ { NULL,NULL},
@@ -7950,9 +7953,9 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DBD */ { NULL,NULL},
 /* 1DBE */ { NULL,NULL},
 /* 1DBF */ { NULL,NULL},
-/* 1DC0 */ { NULL,NULL},
-/* 1DC1 */ { NULL,NULL},
-/* 1DC2 */ { NULL,NULL},
+/* 1DC0 */ { "COMBINING DOTTED GRAVE ACCENT","	* pending ISO approval"},
+/* 1DC1 */ { "COMBINING DOTTED ACCUTE ACCENT","	* pending ISO approval"},
+/* 1DC2 */ { "COMBINING SNAKE BELOW","	* pending ISO approval"},
 /* 1DC3 */ { NULL,NULL},
 /* 1DC4 */ { NULL,NULL},
 /* 1DC5 */ { NULL,NULL},
@@ -8753,16 +8756,16 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (arabic percent sign - 066A)"},
 /* 2053 */ { "SWUNG DASH",NULL},
 /* 2054 */ { "INVERTED UNDERTIE",NULL},
-/* 2055 */ { NULL,NULL},
-/* 2056 */ { NULL,NULL},
+/* 2055 */ { "FLOWER PUNCTUATION MARK","	* pending ISO approval"},
+/* 2056 */ { "THREE DOT PUNCTUATION","	* pending ISO approval"},
 /* 2057 */ { "QUADRUPLE PRIME","	# 2032 2032 2032 2032"},
-/* 2058 */ { NULL,NULL},
-/* 2059 */ { NULL,NULL},
-/* 205A */ { NULL,NULL},
-/* 205B */ { NULL,NULL},
-/* 205C */ { NULL,NULL},
-/* 205D */ { NULL,NULL},
-/* 205E */ { NULL,NULL},
+/* 2058 */ { "FOUR DOT PUNCTUATION","	* pending ISO approval"},
+/* 2059 */ { "FIVE DOT PUNCTUATION","	* pending ISO approval"},
+/* 205A */ { "TWO DOT PUNCTUATION","	* pending ISO approval"},
+/* 205B */ { "FOUR DOT MARK","	* pending ISO approval"},
+/* 205C */ { "DOTTED CROSS","	* pending ISO approval"},
+/* 205D */ { "TRICOLON","	* pending ISO approval"},
+/* 205E */ { "VERTICAL FOUR DOTS","	* pending ISO approval"},
 /* 205F */ { "MEDIUM MATHEMATICAL SPACE","	= MMSP\n"
 	"	* four-eighteenths of an em\n"
 	"	# 0020 space"},
@@ -8863,8 +8866,8 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20B1 */ { "PESO SIGN","	* Philippines\n"
 	"	* the Mexican peso is indicated with the dollar sign\n"
 	"	x (peseta sign - 20A7)"},
-/* 20B2 */ { NULL,NULL},
-/* 20B3 */ { NULL,NULL},
+/* 20B2 */ { "GUARANI SIGN","	* pending ISO approval"},
+/* 20B3 */ { "AUSTRAL SIGN","	* pending ISO approval"},
 /* 20B4 */ { NULL,NULL},
 /* 20B5 */ { NULL,NULL},
 /* 20B6 */ { NULL,NULL},
@@ -8927,7 +8930,7 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	* extends the full width of the base character\n"
 	"	x (combining bridge above - 0346)"},
 /* 20EA */ { "COMBINING LEFTWARDS ARROW OVERLAY","	x (leftwards arrow - 2190)"},
-/* 20EB */ { NULL,NULL},
+/* 20EB */ { "COMBINING LONG DOUBLE SOLIDUS OVERLAY","	* pending ISO approval"},
 /* 20EC */ { NULL,NULL},
 /* 20ED */ { NULL,NULL},
 /* 20EE */ { NULL,NULL},
@@ -9058,7 +9061,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 213A */ { "ROTATED CAPITAL Q","	* a binding signature mark"},
 /* 213B */ { "FACSIMILE SIGN","	x (telephone sign - 2121)\n"
 	"	# 0046 0041 0058"},
-/* 213C */ { NULL,NULL},
+/* 213C */ { "DOUBLE-STRUCK SMALL PI","	* pending ISO approval"},
 /* 213D */ { "DOUBLE-STRUCK SMALL GAMMA","	# <font> 03B3 greek small letter gamma"},
 /* 213E */ { "DOUBLE-STRUCK CAPITAL GAMMA","	# <font> 0393 greek capital letter gamma"},
 /* 213F */ { "DOUBLE-STRUCK CAPITAL PI","	# <font> 03A0 greek capital letter pi"},
@@ -9080,7 +9083,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 214A */ { "PROPERTY LINE",NULL},
 /* 214B */ { "TURNED AMPERSAND","	* used in linear logic\n"
 	"	x (ampersand - 0026)"},
-/* 214C */ { NULL,NULL},
+/* 214C */ { "PER SIGN","	* pending ISO approval"},
 /* 214D */ { NULL,NULL},
 /* 214E */ { NULL,NULL},
 /* 214F */ { NULL,NULL},
@@ -9848,7 +9851,7 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23CF */ { "EJECT SYMBOL","	* UI symbol to eject media"},
 /* 23D0 */ { "VERTICAL LINE EXTENSION","	* used for extension of arrows\n"
 	"	x (horizontal line extension - 23AF)"},
-/* 23D1 */ { NULL,NULL},
+/* 23D1 */ { NULL,NULL}, /* 23D1..23D9 Metrical symbols, pending ISO approval */
 /* 23D2 */ { NULL,NULL},
 /* 23D3 */ { NULL,NULL},
 /* 23D4 */ { NULL,NULL},
@@ -10471,7 +10474,7 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (hourglass - 231B)"},
 /* 2616 */ { "WHITE SHOGI PIECE",NULL},
 /* 2617 */ { "BLACK SHOGI PIECE",NULL},
-/* 2618 */ { NULL,NULL},
+/* 2618 */ { "SHAMROCK","	* pending ISO approval"},
 /* 2619 */ { "REVERSED ROTATED FLORAL HEART BULLET","	* a binding signature mark\n"
 	"	x (rotated floral heart bullet - 2767)"},
 /* 261A */ { "BLACK LEFT POINTING INDEX",NULL},
@@ -10578,8 +10581,8 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 267B */ { "BLACK UNIVERSAL RECYCLING SYMBOL",NULL},
 /* 267C */ { "RECYCLED PAPER SYMBOL","	* used to indicate 100% recycled paper content"},
 /* 267D */ { "PARTIALLY-RECYCLED PAPER SYMBOL","	* percentage of recycled paper content indicated in overlay or next to this symbol"},
-/* 267E */ { NULL,NULL},
-/* 267F */ { NULL,NULL},
+/* 267E */ { "PERMANENT PAPER SIGN","	* pending ISO approval"},
+/* 267F */ { "WHEELCHAIR SYMBOL","	* pending ISO approval"},
 /* 2680 */ { "DIE FACE-1",NULL},
 /* 2681 */ { "DIE FACE-2",NULL},
 /* 2682 */ { "DIE FACE-3",NULL},
@@ -10598,23 +10601,23 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 268F */ { "DIGRAM FOR GREATER YIN",NULL},
 /* 2690 */ { "WHITE FLAG",NULL},
 /* 2691 */ { "BLACK FLAG",NULL},
-/* 2692 */ { NULL,NULL},
-/* 2693 */ { NULL,NULL},
-/* 2694 */ { NULL,NULL},
-/* 2695 */ { NULL,NULL},
-/* 2696 */ { NULL,NULL},
-/* 2697 */ { NULL,NULL},
-/* 2698 */ { NULL,NULL},
-/* 2699 */ { NULL,NULL},
-/* 269A */ { NULL,NULL},
-/* 269B */ { NULL,NULL},
-/* 269C */ { NULL,NULL},
+/* 2692 */ { "HAMMER AND PICK","	* pending ISO approval"},
+/* 2693 */ { "ANCHOR","	* pending ISO approval"},
+/* 2694 */ { "CROSSED SWORDS","	* pending ISO approval"},
+/* 2695 */ { "ROD OF AESCLEPIUS","	* pending ISO approval"},
+/* 2696 */ { "SCALES","	* pending ISO approval"},
+/* 2697 */ { "ALEMBIC","	* pending ISO approval"},
+/* 2698 */ { "FLOWER","	* pending ISO approval"},
+/* 2699 */ { "GEAR","	* pending ISO approval"},
+/* 269A */ { "STAFF OF HERMES","	* pending ISO approval"},
+/* 269B */ { "ATOM SYMBOL","	* pending ISO approval"},
+/* 269C */ { "FLEUR-DE-LIS","	* pending ISO approval"},
 /* 269D */ { NULL,NULL},
 /* 269E */ { NULL,NULL},
 /* 269F */ { NULL,NULL},
 /* 26A0 */ { "WARNING SIGN",NULL},
 /* 26A1 */ { "HIGH VOLTAGE SIGN",NULL},
-/* 26A2 */ { NULL,NULL},
+/* 26A2 */ { NULL,NULL}, /* 26A2..26A9 Gender symbols, pending ISO approval */
 /* 26A3 */ { NULL,NULL},
 /* 26A4 */ { NULL,NULL},
 /* 26A5 */ { NULL,NULL},
@@ -10622,9 +10625,9 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26A7 */ { NULL,NULL},
 /* 26A8 */ { NULL,NULL},
 /* 26A9 */ { NULL,NULL},
-/* 26AA */ { NULL,NULL},
-/* 26AB */ { NULL,NULL},
-/* 26AC */ { NULL,NULL},
+/* 26AA */ { "MEDIUM WHITE CIRCLE","	* pending ISO approval"},
+/* 26AB */ { "MEDIUM BLACK CIRCLE","	* pending ISO approval"},
+/* 26AC */ { "MEDIUM SMALL CIRCLE","	* pending ISO approval"},
 /* 26AD */ { NULL,NULL},
 /* 26AE */ { NULL,NULL},
 /* 26AF */ { NULL,NULL},
@@ -10905,13 +10908,13 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 27BD */ { "HEAVY WEDGE-TAILED RIGHTWARDS ARROW",NULL},
 /* 27BE */ { "OPEN-OUTLINED RIGHTWARDS ARROW",NULL},
 /* 27BF */ { NULL,NULL},
-/* 27C0 */ { NULL,NULL},
-/* 27C1 */ { NULL,NULL},
-/* 27C2 */ { NULL,NULL},
-/* 27C3 */ { NULL,NULL},
-/* 27C4 */ { NULL,NULL},
-/* 27C5 */ { NULL,NULL},
-/* 27C6 */ { NULL,NULL},
+/* 27C0 */ { "THREE DIMENSIONAL ANGLE","	* pending ISO approval"},
+/* 27C1 */ { "WHITE TRIANGLE CONTAINING SMALL WHITE TRIANGLE","	* pending ISO approval"},
+/* 27C2 */ { "PERPENDICULAR","	* pending ISO approval"},
+/* 27C3 */ { "OPEN SUPERSET","	* pending ISO approval"},
+/* 27C4 */ { "OPEN SUBSET","	* pending ISO approval"},
+/* 27C5 */ { "LEFT S-SHAPED BAG DELIMITER","	* pending ISO approval"},
+/* 27C6 */ { "RIGHT S-SHAPED BAG DELIMITER","	* pending ISO approval"},
 /* 27C7 */ { NULL,NULL},
 /* 27C8 */ { NULL,NULL},
 /* 27C9 */ { NULL,NULL},
@@ -11838,12 +11841,12 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B0B */ { "SOUTH WEST BLACK ARROW",NULL},
 /* 2B0C */ { "LEFT RIGHT BLACK ARROW",NULL},
 /* 2B0D */ { "UP DOWN BLACK ARROW",NULL},
-/* 2B0E */ { NULL,NULL},
-/* 2B0F */ { NULL,NULL},
-/* 2B10 */ { NULL,NULL},
-/* 2B11 */ { NULL,NULL},
-/* 2B12 */ { NULL,NULL},
-/* 2B13 */ { NULL,NULL},
+/* 2B0E */ { "RIGHTWARDS ARROW WITH TIP DOWNWARDS","	* pending ISO approval"},
+/* 2B0F */ { "RIGHTWARDS ARROW WITH TIP UPWARDS","	* pending ISO approval"},
+/* 2B10 */ { "LEFTWARDS ARROW WITH TIP DOWNWARDS","	* pending ISO approval"},
+/* 2B11 */ { "LEFTWARDS ARROW WITH TIP UPWARDS","	* pending ISO approval"},
+/* 2B12 */ { "SQUARE WITH TOP HALF BLACK","	* pending ISO approval"},
+/* 2B13 */ { "SQUARE WITH BOTTOM HALF BLACK","	* pending ISO approval"},
 /* 2B14 */ { NULL,NULL},
 /* 2B15 */ { NULL,NULL},
 /* 2B16 */ { NULL,NULL},
@@ -12082,8 +12085,14 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2BFF */ { NULL,NULL}
 };
 
+/* 2C00..2C5E Glagolitic, pending ISO approval */
+
+/* 2C80..2CCF Coptic, pending ISO approval */
+
+/* 2D00..2D25 Nuskhuri (small letters for Khutsuri Georgian), pending ISO approval */
+
 static const struct unicode_nameannot una_00_2E[] = {
-/* 2E00 */ { NULL,NULL},
+/* 2E00 */ { NULL,NULL}, /* 2E00..2E0C New Testament punctuation, pending ISO approval */
 /* 2E01 */ { NULL,NULL},
 /* 2E02 */ { NULL,NULL},
 /* 2E03 */ { NULL,NULL},
@@ -12096,8 +12105,8 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E0A */ { NULL,NULL},
 /* 2E0B */ { NULL,NULL},
 /* 2E0C */ { NULL,NULL},
-/* 2E0D */ { NULL,NULL},
-/* 2E0E */ { NULL,NULL},
+/* 2E0D */ { "RAISED SMALL DIAGONAL LOWER LEFT TO UPPER RIGHT","	* pending ISO approval"},
+/* 2E0E */ { NULL,NULL}, /* 2E0E..2E16 Ancient Greek textual symbols, pending ISO approval */
 /* 2E0F */ { NULL,NULL},
 /* 2E10 */ { NULL,NULL},
 /* 2E11 */ { NULL,NULL},
@@ -12106,7 +12115,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E14 */ { NULL,NULL},
 /* 2E15 */ { NULL,NULL},
 /* 2E16 */ { NULL,NULL},
-/* 2E17 */ { NULL,NULL},
+/* 2E17 */ { "DOUBLE OBLIQUE HYPHEN","	* pending ISO approval"},
 /* 2E18 */ { NULL,NULL},
 /* 2E19 */ { NULL,NULL},
 /* 2E1A */ { NULL,NULL},
@@ -15369,6 +15378,10 @@ static const struct unicode_nameannot una_00_A4[] = {
 /* A4FF */ { NULL,NULL}
 };
 
+/* A800..A82B Syloti Nagri, pending ISO approval */
+
+/* A840..A873 Phags-pa, pending ISO approval */
+
 static const struct unicode_nameannot una_00_F9[] = {
 /* F900 */ { "CJK COMPATIBILITY IDEOGRAPH-F900","	: 8C48"},
 /* F901 */ { "CJK COMPATIBILITY IDEOGRAPH-F901","	: 66F4"},
@@ -17521,7 +17534,7 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 1013D */ { "AEGEAN LIQUID MEASURE FIRST SUBUNIT",NULL},
 /* 1013E */ { "AEGEAN MEASURE SECOND SUBUNIT",NULL},
 /* 1013F */ { "AEGEAN MEASURE THIRD SUBUNIT",NULL},
-/* 10140 */ { NULL,NULL},
+/* 10140 */ { NULL,NULL}, /* 10140..10174 Ancient Greek acrophonic numerals, pending ISO approval */
 /* 10141 */ { NULL,NULL},
 /* 10142 */ { NULL,NULL},
 /* 10143 */ { NULL,NULL},
@@ -17574,7 +17587,7 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 10172 */ { NULL,NULL},
 /* 10173 */ { NULL,NULL},
 /* 10174 */ { NULL,NULL},
-/* 10175 */ { NULL,NULL},
+/* 10175 */ { NULL,NULL}, /* 10175..10189 Ancient Greek papyrological numerals, pending ISO approval */
 /* 10176 */ { NULL,NULL},
 /* 10177 */ { NULL,NULL},
 /* 10178 */ { NULL,NULL},
@@ -17595,7 +17608,7 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 10187 */ { NULL,NULL},
 /* 10188 */ { NULL,NULL},
 /* 10189 */ { NULL,NULL},
-/* 1018A */ { NULL,NULL},
+/* 1018A */ { "GREEK ZERO SIGN","	* pending ISO approval"},
 /* 1018B */ { NULL,NULL},
 /* 1018C */ { NULL,NULL},
 /* 1018D */ { NULL,NULL},
@@ -17876,7 +17889,7 @@ static const struct unicode_nameannot una_01_03[] = {
 /* 1039D */ { "UGARITIC LETTER SSU",NULL},
 /* 1039E */ { NULL,NULL},
 /* 1039F */ { "UGARITIC WORD DIVIDER",NULL},
-/* 103A0 */ { NULL,NULL},
+/* 103A0 */ { NULL,NULL}, /* 103A0..103D5 Old Persian, pending ISO approval */
 /* 103A1 */ { NULL,NULL},
 /* 103A2 */ { NULL,NULL},
 /* 103A3 */ { NULL,NULL},
@@ -18492,6 +18505,12 @@ static const struct unicode_nameannot una_01_08[] = {
 /* 108FF */ { NULL,NULL}
 };
 
+/* 10A00..10A5F Kharosthi, pending ISO approval */
+
+/* 12000..12371 Sumero-Akkadian Cuneiform, pending ISO approval */
+
+/* 12380..123F3 Cuneiform Numbers, pending ISO approval */
+
 static const struct unicode_nameannot una_01_D0[] = {
 /* 1D000 */ { "BYZANTINE MUSICAL SYMBOL PSILI",NULL},
 /* 1D001 */ { "BYZANTINE MUSICAL SYMBOL DASEIA",NULL},
@@ -19009,6 +19028,8 @@ static const struct unicode_nameannot una_01_D1[] = {
 /* 1D1FE */ { NULL,NULL},
 /* 1D1FF */ { NULL,NULL}
 };
+
+/* 1D200..1D24F Ancient Greek Musical Notation, pending ISO approval */
 
 static const struct unicode_nameannot una_01_D3[] = {
 /* 1D300 */ { "MONOGRAM FOR EARTH",NULL},
@@ -19955,8 +19976,8 @@ static const struct unicode_nameannot una_01_D6[] = {
 /* 1D6A1 */ { "MATHEMATICAL MONOSPACE SMALL X","	# <font> 0078 latin small letter x"},
 /* 1D6A2 */ { "MATHEMATICAL MONOSPACE SMALL Y","	# <font> 0079 latin small letter y"},
 /* 1D6A3 */ { "MATHEMATICAL MONOSPACE SMALL Z","	# <font> 007A latin small letter z"},
-/* 1D6A4 */ { NULL,NULL},
-/* 1D6A5 */ { NULL,NULL},
+/* 1D6A4 */ { "MATHEMATICAL ITALIC SMALL DOTLESS I","	* pending ISO approval"},
+/* 1D6A5 */ { "MATHEMATICAL ITALIC SMALL DOTLESS J","	* pending ISO approval"},
 /* 1D6A6 */ { NULL,NULL},
 /* 1D6A7 */ { NULL,NULL},
 /* 1D6A8 */ { "MATHEMATICAL BOLD CAPITAL ALPHA","	# <font> 0391 greek capital letter alpha"},
