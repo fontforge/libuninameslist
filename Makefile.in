@@ -1,0 +1,46 @@
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+top_builddir = .
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+libdir = @libdir@
+incdir = @includedir@
+
+LIBTOOL = @LIBTOOL@
+CC = @CC@
+INSTALL = @INSTALL@
+
+WFLAGS = -Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses
+CFLAGS = @CFLAGS@ $(WFLAGS)
+
+libuninameslist.la: nameslist.lo
+	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist.la nameslist.lo \
+	    -rpath $(libdir)
+
+%.lo: %.c
+	$(LIBTOOL) $(CC) $(CFLAGS) -c $<
+
+install: libuninameslist.la
+# You may need to be root to do the install
+	mkdir -p $(libdir)
+	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(libdir)/libuninameslist.la
+	$(LIBTOOL) --finish $(libdir)
+	mkdir -p $(incdir)
+	$(INSTALL) nameslist.h $(incdir)/uninameslist.h
+
+clean:
+	-rm -f *.lo *.o
+
+distclean cleaner:
+	-rm -f *.lo *.o libuninameslist.la Makefile
+
+
+#nameslist.c: buildnameslist NamesList.txt
+#	buildnameslist
+
+buildnameslist: buildnameslist.c
+
+NamesList.txt:
+	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt

@@ -1,0 +1,6 @@
+#!/bin/csh
+csh -c "rm -f *.{c,h,1,ui} *~ *.gz *.tgz outs"
+foreach file ( ~/libuninameslist/*.[ch1] )
+ ln $file
+end
+rm demac.c
