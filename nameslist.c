@@ -1352,7 +1352,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0234 */ { "LATIN SMALL LETTER L WITH CURL",NULL},
 /* 0235 */ { "LATIN SMALL LETTER N WITH CURL",NULL},
 /* 0236 */ { "LATIN SMALL LETTER T WITH CURL",NULL},
-/* 0237 */ { NULL,NULL},
+/* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	* uppercase is 004A\n"
+	"	x (latin small letter j - 006A)"},
 /* 0238 */ { NULL,NULL},
 /* 0239 */ { NULL,NULL},
 /* 023A */ { NULL,NULL},
