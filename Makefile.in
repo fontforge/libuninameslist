@@ -8,6 +8,10 @@ bindir = @bindir@
 libdir = @libdir@
 incdir = @includedir@
 
+UN_VERSION=0
+UN_REVISION=1
+UN_AGE=0
+
 LIBTOOL = @LIBTOOL@
 CC = @CC@
 INSTALL = @INSTALL@
@@ -18,7 +22,8 @@ CFLAGS = @CFLAGS@ $(WFLAGS)
 
 libuninameslist.la: nameslist.lo
 	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist.la nameslist.lo \
-	    -rpath $(libdir)
+	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
+
 
 %.lo: %.c
 	$(LIBTOOL) $(CC) $(CFLAGS) -c $<
