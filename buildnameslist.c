@@ -8,9 +8,10 @@
 /*  name of the character, the other the annotations for each character */
 /* Outputs nameslist.c containing these two sparse arrays */
 
-static char *uninames[17*65536];
-static char *uniannot[17*65536];
-static struct block { int start, end; char *name; struct block *next;} *head=NULL, *final=NULL;
+static char *uninames[2][17*65536];
+static char *uniannot[2][17*65536];
+static struct block { int start, end; char *name; struct block *next;}
+	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
 static char *myfgets(char *buf,int bsize,FILE *file) {
     /* NamesList.txt uses CR as a line seperator */
@@ -39,73 +40,77 @@ static void ReadNamesList(void) {
     int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
     struct block *cur;
+    int i;
+    static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms-4.0.0.txt", NULL };
 
-    nl = fopen( "NamesList.txt","r" );
-    if ( nl==NULL ) {
-	fprintf( stderr, "Cannot find NamesList.txt. Please copy it from\n\thttp://www.unicode.org/Public/UNIDATA/NamesList.txt\n" );
+    for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
+	nl = fopen( nameslistfiles[i],"r" );
+	if ( nl==NULL ) {
+	    fprintf( stderr, "Cannot find %s. Please copy it from\n\thttp://www.unicode.org/Public/UNIDATA/NamesList.txt\n", nameslistfiles[i] );
 exit( 1 );
-    }
-    while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
-	if ( buffer[0]=='@' ) {
-	    a_char = -1;
-	    if ( buffer[1]=='@' && buffer[2]=='\t' ) {
-		first = strtol(buffer+3,&end,16);
-		if ( *end=='\t' ) {
-		    namestart = end+1;
-		    for ( pt=namestart; *pt!='\0' && *pt!='\t' ; ++pt );
-		    if ( *pt=='\t' ) {
-			*pt = '\0';
-			last = strtol(pt+1,&end,16);
-			if ( last>first ) {
-			    cur = malloc(sizeof(struct block));
-			    cur->start = first;
-			    cur->end = last;
-			    cur->name = strdup(namestart);
-			    if ( final==NULL )
-				head = cur;
-			    else
-				final->next = cur;
-			    final = cur;
+	}
+	while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
+	    if ( buffer[0]=='@' ) {
+		a_char = -1;
+		if ( buffer[1]=='@' && buffer[2]=='\t' ) {
+		    first = strtol(buffer+3,&end,16);
+		    if ( *end=='\t' ) {
+			namestart = end+1;
+			for ( pt=namestart; *pt!='\0' && *pt!='\t' ; ++pt );
+			if ( *pt=='\t' ) {
+			    *pt = '\0';
+			    last = strtol(pt+1,&end,16);
+			    if ( last>first ) {
+				cur = malloc(sizeof(struct block));
+				cur->start = first;
+				cur->end = last;
+				cur->name = strdup(namestart);
+				if ( final[i]==NULL )
+				    head[i] = cur;
+				else
+				    final[i]->next = cur;
+				final[i] = cur;
+			    }
 			}
 		    }
 		}
-	    }
-    continue;
-	} else if ( buffer[0]==';' ) {
-	    /* comment, ignore */
-    continue;
-	} else if ( isdigit(buffer[0]) || (buffer[0]>='A' && buffer[0]<='F') ) {
-	    a_char = strtol(buffer,&end,16);
-	    if ( *end!='\t' )
-    continue;
-	    else if ( end[1]=='<' )
-    continue;
-	    namestart = end+1;
-	    for ( pt=namestart; *pt && *pt!='\r' && *pt!='\n' && *pt!='\t' && *pt!=';' ; ++pt );
-	    *pt = '\0';
-	    if ( a_char>=0 && a_char<sizeof(uninames)/sizeof(uninames[0]) )
-		uninames[a_char] = strdup(namestart);
-	} else if ( a_char==-1 ) {
-    continue;
-	} else if ( buffer[0]=='\t' && buffer[1]==';' ) {
-    continue;		/* comment */
-	} else if ( a_char>=0 && a_char<sizeof(uniannot)/sizeof(uniannot[0]) ) {
-	    for ( pt=buffer; *pt && *pt!='\r' && *pt!='\n' ; ++pt );
-	    if ( *pt=='\r' ) *pt='\n';
-	    if ( uniannot[a_char]==NULL )
-		uniannot[a_char] = strdup(buffer);
-	    else {
-		temp = realloc(uniannot[a_char],strlen(uniannot[a_char])+strlen(buffer)+1);
-		if ( temp==NULL ) {
-		    fprintf( stderr, "Out of memory\n" );
-exit(1);
+	continue;
+	    } else if ( buffer[0]==';' ) {
+		/* comment, ignore */
+	continue;
+	    } else if ( isdigit(buffer[0]) || (buffer[0]>='A' && buffer[0]<='F') ) {
+		a_char = strtol(buffer,&end,16);
+		if ( *end!='\t' )
+	continue;
+		else if ( end[1]=='<' )
+	continue;
+		namestart = end+1;
+		for ( pt=namestart; *pt && *pt!='\r' && *pt!='\n' && *pt!='\t' && *pt!=';' ; ++pt );
+		*pt = '\0';
+		if ( a_char>=0 && a_char<sizeof(uninames[0])/sizeof(uninames[0][0]) )
+		    uninames[i][a_char] = strdup(namestart);
+	    } else if ( a_char==-1 ) {
+	continue;
+	    } else if ( buffer[0]=='\t' && buffer[1]==';' ) {
+	continue;		/* comment */
+	    } else if ( a_char>=0 && a_char<sizeof(uniannot[0])/sizeof(uniannot[0][0]) ) {
+		for ( pt=buffer; *pt && *pt!='\r' && *pt!='\n' ; ++pt );
+		if ( *pt=='\r' ) *pt='\n';
+		if ( uniannot[i][a_char]==NULL )
+		    uniannot[i][a_char] = strdup(buffer);
+		else {
+		    temp = realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer)+1);
+		    if ( temp==NULL ) {
+			fprintf( stderr, "Out of memory\n" );
+    exit(1);
+		    }
+		    strcat(temp,buffer);
+		    uniannot[i][a_char] = temp;
 		}
-		strcat(temp,buffer);
-		uniannot[a_char] = temp;
 	    }
 	}
+	fclose(nl);
     }
-    fclose(nl);
 }
 
 static void dumpstring(char *str,FILE *out) {
@@ -126,7 +131,7 @@ static void dumpstring(char *str,FILE *out) {
     } while ( *str );
 }
 
-static void dumpinit(FILE *out, FILE *header) {
+static void dumpinit(FILE *out, FILE *header, int is_fr) {
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
@@ -140,8 +145,13 @@ static void dumpinit(FILE *out, FILE *header) {
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL },\n" );
-    fprintf( out, "\t{ NULL, \"\t* the value ?FFFE is guaranteed not to be a Unicode character at all\" },\n" );
-    fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );
+    if ( is_fr ) {
+	fprintf( out, "\t{ NULL, \"\t* on est assuré que la valeur ?FFFE n'est en aucune façon un caractère Unicode\" },\n" );
+	fprintf( out, "\t{ NULL, \"\t* on est assuré que la valeur ?FFFF n'est en aucune façon un caractère Unicode\" },\n" );
+    } else {
+	fprintf( out, "\t{ NULL, \"\t* the value ?FFFE is guaranteed not to be a Unicode character at all\" },\n" );
+	fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );
+    }
     fprintf( out, "};\n\n" );
     fprintf( out, "static const struct unicode_nameannot * const nullnullarray[] = {\n" );
     for ( i=0; i<256/8 ; ++i )
@@ -155,7 +165,7 @@ static void dumpinit(FILE *out, FILE *header) {
     fprintf( header, "struct unicode_nameannot {\n    const char *name, *annot;\n};\n\n" );
 }
 
-static void dumpend(FILE *out, FILE *header) {
+static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "\n/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n" );
     fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
@@ -166,13 +176,13 @@ static void dumpend(FILE *out, FILE *header) {
     fprintf( header, "\n#endif\n" );
 }
 
-static void dumpblock(FILE *out, FILE *header ) {
+static void dumpblock(FILE *out, FILE *header, int is_fr ) {
     int bcnt;
     struct block *block;
     int i, maxa, maxn;
 
     fprintf( out, "const struct unicode_block UnicodeBlock[] = {\n" );
-    for ( block = head, bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
+    for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
 	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", block->start, block->end,
 		block->name, block->next!=NULL ? "," : "" );
     }
@@ -180,27 +190,27 @@ static void dumpblock(FILE *out, FILE *header ) {
     fprintf( header, "extern const struct unicode_block UnicodeBlock[%d];\n", bcnt );
 
     maxn = maxa = 0;
-    for ( i=0; i<sizeof(uniannot)/sizeof(uniannot[0]); ++i ) {
-	if ( uninames[i]!=NULL && maxn<strlen(uninames[i])) maxn = strlen(uninames[i]);
-	if ( uniannot[i]!=NULL && maxa<strlen(uniannot[i])) maxa = strlen(uniannot[i]);
+    for ( i=0; i<sizeof(uniannot[is_fr])/sizeof(uniannot[0][is_fr]); ++i ) {
+	if ( uninames[is_fr][i]!=NULL && maxn<strlen(uninames[is_fr][i])) maxn = strlen(uninames[is_fr][i]);
+	if ( uniannot[is_fr][i]!=NULL && maxa<strlen(uniannot[is_fr][i])) maxa = strlen(uniannot[is_fr][i]);
     }
     fprintf( header, "\n#define UNICODE_NAME_MAX\t%d\n", maxn );
     fprintf( header, "#define UNICODE_ANNOT_MAX\t%d\n", maxa );
 }
 
-static void dumparrays(FILE *out, FILE *header ) {
+static void dumparrays(FILE *out, FILE *header, int is_fr ) {
     int i,j,k, t;
     char *prefix = "una";
 
-    for ( i=0; i<sizeof(uniannot)/(sizeof(uniannot[0])*65536); ++i ) {	/* For each plane */
+    for ( i=0; i<sizeof(uniannot[0])/(sizeof(uniannot[0][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
-	    if ( uninames[(i<<16)+t]!=NULL || uniannot[(i<<16)+t]!=NULL )
+	    if ( uninames[is_fr][(i<<16)+t]!=NULL || uniannot[is_fr][(i<<16)+t]!=NULL )
 	break;
 	if ( t==0xFFFE )
     continue;		/* Empty plane */
 	for ( j=0; j<256; ++j ) {
 	    for ( t=0; t<256; ++t ) {
-		if ( uninames[(i<<16) + (j<<8) + t]!=NULL || uniannot[(i<<16) + (j<<8) + t]!=NULL )
+		if ( uninames[is_fr][(i<<16) + (j<<8) + t]!=NULL || uniannot[is_fr][(i<<16) + (j<<8) + t]!=NULL )
 	    break;
 		else if ( j==0xff && t==0xfe -1 )
 	    break;
@@ -210,31 +220,31 @@ static void dumparrays(FILE *out, FILE *header ) {
 	    fprintf( out, "static const struct unicode_nameannot %s_%02X_%02X[] = {\n", prefix, i, j );
 	    for ( k=0; k<256; ++k ) {
 		fprintf( out, "/* %04X */ { ", (i<<16) + (j<<8) + k );
-		if ( uninames[(i<<16) + (j<<8) + k]==NULL )
+		if ( uninames[is_fr][(i<<16) + (j<<8) + k]==NULL )
 		    fprintf( out, "NULL" );
 		else
-		    dumpstring(uninames[(i<<16) + (j<<8) + k],out);
+		    dumpstring(uninames[is_fr][(i<<16) + (j<<8) + k],out);
 		putc(',',out);
-		if ( uniannot[(i<<16) + (j<<8) + k]==NULL )
+		if ( uniannot[is_fr][(i<<16) + (j<<8) + k]==NULL )
 		    fprintf( out, "NULL" );
 		else
-		    dumpstring(uniannot[(i<<16) + (j<<8) + k],out);
+		    dumpstring(uniannot[is_fr][(i<<16) + (j<<8) + k],out);
 		fprintf( out, "}%s\n", k!=255?",":"" );
 	    }
 	    fprintf( out, "};\n\n" );
 	}
     }
 
-    for ( i=0; i<sizeof(uniannot)/(sizeof(uniannot[0])*65536); ++i ) {	/* For each plane */
+    for ( i=0; i<sizeof(uniannot[is_fr])/(sizeof(uniannot[is_fr][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
-	    if ( uninames[(i<<16)+t]!=NULL || uniannot[(i<<16)+t]!=NULL )
+	    if ( uninames[is_fr][(i<<16)+t]!=NULL || uniannot[is_fr][(i<<16)+t]!=NULL )
 	break;
 	if ( t==0xFFFE )
     continue;		/* Empty plane */
 	fprintf( out, "static const struct unicode_nameannot * const %s_%02X[] = {\n", prefix, i );
 	for ( j=0; j<256; ++j ) {
 	    for ( t=0; t<256; ++t ) {
-		if ( uninames[(i<<16) + (j<<8) + t]!=NULL || uniannot[(i<<16) + (j<<8) + t]!=NULL )
+		if ( uninames[is_fr][(i<<16) + (j<<8) + t]!=NULL || uniannot[is_fr][(i<<16) + (j<<8) + t]!=NULL )
 	    break;
 		else if ( j==0xff && t==0xfe -1 )
 	    break;
@@ -252,9 +262,9 @@ static void dumparrays(FILE *out, FILE *header ) {
     fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];\n" );
 
     fprintf( out, "const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {\n" );
-    for ( i=0; i<sizeof(uniannot)/(sizeof(uniannot[0])*65536); ++i ) {	/* For each plane */
+    for ( i=0; i<sizeof(uniannot[is_fr])/(sizeof(uniannot[is_fr][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
-	    if ( uninames[(i<<16)+t]!=NULL || uniannot[(i<<16)+t]!=NULL )
+	    if ( uninames[is_fr][(i<<16)+t]!=NULL || uniannot[is_fr][(i<<16)+t]!=NULL )
 	break;
 	if ( t==0xFFFE )
 	    fprintf( out, "\tnullnullarray,\n" );
@@ -269,9 +279,9 @@ static void dumparrays(FILE *out, FILE *header ) {
     fprintf( out, "};\n\n" );
 }
 
-static void dump(void) {
-    FILE *out = fopen("nameslist.c","w");
-    FILE *header = fopen("nameslist.h","w");
+static void dump(int is_fr) {
+    FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
+    FILE *header = fopen( is_fr ? "/dev/null": "nameslist.h","w");
 
     if ( out==NULL ) {
 	fprintf( stderr, "Cannot open output file\n" );
@@ -283,15 +293,16 @@ exit( 1 );
 exit( 1 );
     }
 
-    dumpinit(out,header);
-    dumpblock(out,header);
-    dumparrays( out, header );
-    dumpend(out,header);
+    dumpinit(out,header,is_fr);
+    dumpblock(out,header,is_fr);
+    dumparrays( out, header,is_fr );
+    dumpend(out,header,is_fr);
     fclose(out);
 }
 
 int main( int argc, char **argv) {
     ReadNamesList();
-    dump();
+    dump(0/*english*/);
+    dump(1/*french*/);
 return( 0 );
 }

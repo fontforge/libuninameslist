@@ -20,8 +20,14 @@ INSTALL_DATA = @INSTALL_DATA@
 WFLAGS = -Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses
 CFLAGS = @CFLAGS@ $(WFLAGS)
 
+both: libuninameslist.la libuninameslist-fr.la
+
 libuninameslist.la: nameslist.lo
 	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist.la nameslist.lo \
+	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
+
+libuninameslist-fr.la: nameslist-fr.lo
+	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist-fr.la nameslist-fr.lo \
 	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
 
 
@@ -43,10 +49,13 @@ distclean cleaner:
 	-rm -f *.lo *.o libuninameslist.la Makefile
 
 
-#nameslist.c: buildnameslist NamesList.txt
+#nameslist.c nameslist-fr.c: buildnameslist NamesList.txt ListeDesNoms-4.0.0.txt
 #	buildnameslist
 
 buildnameslist: buildnameslist.c
 
 NamesList.txt:
 	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt
+
+ListeDesNoms-4.0.0.txt
+	wget http://cooptel.qc.ca/~pandries/ListeDesNoms-4.0.0.txt
