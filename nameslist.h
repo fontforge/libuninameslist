@@ -13,7 +13,7 @@ struct unicode_nameannot {
 extern const struct unicode_block UnicodeBlock[139];
 
 #define UNICODE_NAME_MAX	94
-#define UNICODE_ANNOT_MAX	371
+#define UNICODE_ANNOT_MAX	360
 extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
 /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */

@@ -19,8 +19,14 @@ static char *myfgets(char *buf,int bsize,FILE *file) {
 
     for ( pt=buf ; pt<end && (ch=getc(file))!=EOF && ch!='\n' && ch!='\r'; )
 	*pt++ = ch;
-    if ( ch=='\n' || ch=='\r' )
+    if ( ch=='\n' || ch=='\r' ) {
 	*pt++='\n';
+	if ( ch=='\r' ) {
+	    ch=getc(file);
+	    if ( ch!='\n' )
+		ungetc(ch,file);
+	}
+    }
     if ( pt==buf && ch==EOF )
 return( NULL );
     *pt = '\0';
