@@ -34,19 +34,20 @@ libuninameslist-fr.la: nameslist-fr.lo
 %.lo: %.c
 	$(LIBTOOL) $(CC) $(CFLAGS) -c $<
 
-install: libuninameslist.la
+install: both
 # You may need to be root to do the install
 	mkdir -p $(libdir)
 	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(libdir)/libuninameslist.la
+	$(LIBTOOL) $(INSTALL) -c libuninameslist-fr.la $(libdir)/libuninameslist-fr.la
 	$(LIBTOOL) --finish $(libdir)
 	mkdir -p $(incdir)
 	$(INSTALL_DATA) nameslist.h $(incdir)/uninameslist.h
 
 clean:
-	-rm -f *.lo *.o
+	-rm -f *.lo *.o *.la
 
 distclean cleaner:
-	-rm -f *.lo *.o libuninameslist.la Makefile
+	-rm -f *.lo *.o *.la libuninameslist.la Makefile
 
 
 #nameslist.c nameslist-fr.c: buildnameslist NamesList.txt ListeDesNoms-4.0.0.txt
@@ -57,5 +58,5 @@ buildnameslist: buildnameslist.c
 NamesList.txt:
 	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt
 
-ListeDesNoms-4.0.0.txt
+ListeDesNoms-4.0.0.txt:
 	wget http://cooptel.qc.ca/~pandries/ListeDesNoms-4.0.0.txt
