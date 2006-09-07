@@ -175,6 +175,9 @@ static const struct unicode_nameannot * const nullnullarray[] = {
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray2
 };
 
+#ifdef __Cygwin
+__declspec(dllexport)	/* Need this for cygwin to get shared libs */
+#endif /* __Cygwin */
 const struct unicode_block UnicodeBlock[] = {
 	{ 0x0, 0x7f, "C0 Controls and Basic Latin (Basic Latin)" },
 	{ 0x80, 0xff, "C1 Controls and Latin-1 Supplement (Latin-1 Supplement)" },
@@ -192,6 +195,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x700, 0x74f, "Syriac" },
 	{ 0x750, 0x77f, "Arabic Supplement" },
 	{ 0x780, 0x7bf, "Thaana" },
+	{ 0x7c0, 0x7ff, "NKo" },
 	{ 0x900, 0x97f, "Devanagari" },
 	{ 0x980, 0x9ff, "Bengali" },
 	{ 0xa00, 0xa7f, "Gurmukhi" },
@@ -225,6 +229,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1980, 0x19df, "New Tai Lue" },
 	{ 0x19e0, 0x19ff, "Khmer Symbols" },
 	{ 0x1a00, 0x1a1f, "Buginese" },
+	{ 0x1b00, 0x1b7f, "Balinese" },
 	{ 0x1d00, 0x1d7f, "Phonetic Extensions" },
 	{ 0x1d80, 0x1dbf, "Phonetic Extensions Supplement" },
 	{ 0x1dc0, 0x1dff, "Combining Diacritical Marks Supplement" },
@@ -255,6 +260,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x2a00, 0x2aff, "Supplemental Mathematical Operators" },
 	{ 0x2b00, 0x2bff, "Miscellaneous Symbols and Arrows" },
 	{ 0x2c00, 0x2c5f, "Glagolitic" },
+	{ 0x2c60, 0x2c7f, "Latin Extended-C" },
 	{ 0x2c80, 0x2cff, "Coptic" },
 	{ 0x2d00, 0x2d2f, "Georgian Supplement" },
 	{ 0x2d30, 0x2d7f, "Tifinagh" },
@@ -280,7 +286,9 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0xa000, 0xa48f, "Yi Syllables" },
 	{ 0xa490, 0xa4cf, "Yi Radicals" },
 	{ 0xa700, 0xa71f, "Modifier Tone Letters" },
+	{ 0xa720, 0xa7ff, "Latin Extended-D" },
 	{ 0xa800, 0xa82f, "Syloti Nagri" },
+	{ 0xa840, 0xa87f, "Phags-pa" },
 	{ 0xac00, 0xd7a3, "Hangul Syllables" },
 	{ 0xd800, 0xdb7f, "High Surrogates" },
 	{ 0xdb80, 0xdbff, "High Private Use Surrogates" },
@@ -309,11 +317,15 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x10450, 0x1047f, "Shavian" },
 	{ 0x10480, 0x104af, "Osmanya" },
 	{ 0x10800, 0x1083f, "Cypriot Syllabary" },
+	{ 0x10900, 0x1091f, "Phoenician" },
 	{ 0x10a00, 0x10a5f, "Kharoshthi" },
+	{ 0x12000, 0x123ff, "Cuneiform" },
+	{ 0x12400, 0x1247f, "Cuneiform Numbers and Punctuation" },
 	{ 0x1d000, 0x1d0ff, "Byzantine Musical Symbols" },
 	{ 0x1d100, 0x1d1ff, "Musical Symbols" },
 	{ 0x1d200, 0x1d24f, "Ancient Greek Musical Notation" },
 	{ 0x1d300, 0x1d35f, "Tai Xuan Jing Symbols" },
+	{ 0x1d360, 0x1d37f, "Counting Rod Numerals" },
 	{ 0x1d400, 0x1d7ff, "Mathematical Alphanumeric Symbols" },
 	{ 0x1ff80, 0x1ffff, "Unassigned" },
 	{ 0x20000, 0x2a6d6, "CJK Unified Ideographs Extension B" },
@@ -400,17 +412,19 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (double prime - 2033)\n"
 	"	x (ditto mark - 3003)"},
 /* 0023 */ { "NUMBER SIGN","	= pound sign, hash, crosshatch, octothorpe\n"
+	"	x (l b bar symbol - 2114)\n"
 	"	x (music sharp sign - 266F)"},
 /* 0024 */ { "DOLLAR SIGN","	= milreis, escudo\n"
 	"	* glyph may have one or two vertical bars\n"
-	"	* other currency symbol characters: 20A0-20AF\n"
+	"	* other currency symbol characters: 20A0-20B5\n"
 	"	x (currency sign - 00A4)"},
 /* 0025 */ { "PERCENT SIGN","	x (arabic percent sign - 066A)\n"
 	"	x (per mille sign - 2030)\n"
 	"	x (per ten thousand sign - 2031)\n"
 	"	x (commercial minus sign - 2052)"},
-/* 0026 */ { "AMPERSAND",NULL},
-/* 0027 */ { "APOSTROPHE","	= APOSTROPHE-QUOTE\n"
+/* 0026 */ { "AMPERSAND","	x (tironian sign et - 204A)\n"
+	"	x (turned ampersand - 214B)"},
+/* 0027 */ { "APOSTROPHE","	= apostrophe-quote (1.0)\n"
 	"	= APL quote\n"
 	"	* neutral (vertical) glyph with mixed usage\n"
 	"	* 2019 is preferred for apostrophe\n"
@@ -420,8 +434,8 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (modifier letter vertical line - 02C8)\n"
 	"	x (combining acute accent - 0301)\n"
 	"	x (prime - 2032)"},
-/* 0028 */ { "LEFT PARENTHESIS","	= OPENING PARENTHESIS"},
-/* 0029 */ { "RIGHT PARENTHESIS","	= CLOSING PARENTHESIS\n"
+/* 0028 */ { "LEFT PARENTHESIS","	= opening parenthesis (1.0)"},
+/* 0029 */ { "RIGHT PARENTHESIS","	= closing parenthesis (1.0)\n"
 	"	* see discussion on semantics of paired bracketing characters"},
 /* 002A */ { "ASTERISK","	= star (on phone keypads)\n"
 	"	x (arabic five pointed star - 066D)\n"
@@ -440,13 +454,11 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (figure dash - 2012)\n"
 	"	x (en dash - 2013)\n"
 	"	x (minus sign - 2212)"},
-/* 002E */ { "FULL STOP","	= PERIOD\n"
-	"	= dot, decimal point\n"
+/* 002E */ { "FULL STOP","	= period, dot, decimal point\n"
 	"	* may be rendered as a raised decimal point in old style numbers\n"
 	"	x (arabic full stop - 06D4)\n"
 	"	x (ideographic full stop - 3002)"},
-/* 002F */ { "SOLIDUS","	= SLASH\n"
-	"	= virgule, shilling (British)\n"
+/* 002F */ { "SOLIDUS","	= slash, virgule\n"
 	"	x (latin letter dental click - 01C0)\n"
 	"	x (combining long solidus overlay - 0338)\n"
 	"	x (fraction slash - 2044)\n"
@@ -485,7 +497,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (interrobang - 203D)\n"
 	"	x (question exclamation mark - 2048)\n"
 	"	x (exclamation question mark - 2049)"},
-/* 0040 */ { "COMMERCIAL AT","	= Klammeraffe (common, humorous slang German name)"},
+/* 0040 */ { "COMMERCIAL AT","	= at sign"},
 /* 0041 */ { "LATIN CAPITAL LETTER A",NULL},
 /* 0042 */ { "LATIN CAPITAL LETTER B","	x (script capital b - 212C)"},
 /* 0043 */ { "LATIN CAPITAL LETTER C","	x (double-struck capital c - 2102)\n"
@@ -495,7 +507,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (script capital e - 2130)"},
 /* 0046 */ { "LATIN CAPITAL LETTER F","	x (script capital f - 2131)\n"
 	"	x (turned capital f - 2132)"},
-/* 0047 */ { "LATIN CAPITAL LETTER G","	* invented circa 300 BCE by Spurius Carvilius Ruga, who added a stroke to the letter C"},
+/* 0047 */ { "LATIN CAPITAL LETTER G",NULL},
 /* 0048 */ { "LATIN CAPITAL LETTER H","	x (script capital h - 210B)\n"
 	"	x (black-letter capital h - 210C)\n"
 	"	x (double-struck capital h - 210D)"},
@@ -526,18 +538,19 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 0059 */ { "LATIN CAPITAL LETTER Y",NULL},
 /* 005A */ { "LATIN CAPITAL LETTER Z","	x (double-struck capital z - 2124)\n"
 	"	x (black-letter capital z - 2128)"},
-/* 005B */ { "LEFT SQUARE BRACKET","	= OPENING SQUARE BRACKET\n"
-	"	* other bracket characters: 3008-301B"},
-/* 005C */ { "REVERSE SOLIDUS","	= BACKSLASH\n"
+/* 005B */ { "LEFT SQUARE BRACKET","	= opening square bracket (1.0)\n"
+	"	* other bracket characters: 27E6-27EB, 2983-2998, 3008-301B"},
+/* 005C */ { "REVERSE SOLIDUS","	= backslash\n"
 	"	x (combining reverse solidus overlay - 20E5)\n"
 	"	x (set minus - 2216)"},
-/* 005D */ { "RIGHT SQUARE BRACKET","	= CLOSING SQUARE BRACKET"},
+/* 005D */ { "RIGHT SQUARE BRACKET","	= closing square bracket (1.0)"},
 /* 005E */ { "CIRCUMFLEX ACCENT","	* this is a spacing character\n"
 	"	x (modifier letter up arrowhead - 02C4)\n"
 	"	x (modifier letter circumflex accent - 02C6)\n"
 	"	x (combining circumflex accent - 0302)\n"
+	"	x (caret - 2038)\n"
 	"	x (up arrowhead - 2303)"},
-/* 005F */ { "LOW LINE","	= SPACING UNDERSCORE\n"
+/* 005F */ { "LOW LINE","	= spacing underscore (1.0)\n"
 	"	* this is a spacing character\n"
 	"	x (modifier letter low macron - 02CD)\n"
 	"	x (combining macron below - 0331)\n"
@@ -559,10 +572,13 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 0068 */ { "LATIN SMALL LETTER H","	x (cyrillic small letter shha - 04BB)\n"
 	"	x (planck constant - 210E)"},
 /* 0069 */ { "LATIN SMALL LETTER I","	* Turkish and Azerbaijani use 0130 for uppercase\n"
-	"	x (latin small letter dotless i - 0131)"},
-/* 006A */ { "LATIN SMALL LETTER J",NULL},
+	"	x (latin small letter dotless i - 0131)\n"
+	"	x (mathematical italic small dotless i - 1D6A4)"},
+/* 006A */ { "LATIN SMALL LETTER J","	x (latin small letter dotless j - 0237)\n"
+	"	x (mathematical italic small dotless j - 1D6A5)"},
 /* 006B */ { "LATIN SMALL LETTER K",NULL},
-/* 006C */ { "LATIN SMALL LETTER L","	x (script small l - 2113)"},
+/* 006C */ { "LATIN SMALL LETTER L","	x (script small l - 2113)\n"
+	"	x (mathematical script small l - 1D4C1)"},
 /* 006D */ { "LATIN SMALL LETTER M",NULL},
 /* 006E */ { "LATIN SMALL LETTER N","	x (superscript latin small letter n - 207F)"},
 /* 006F */ { "LATIN SMALL LETTER O","	x (script small o - 2134)"},
@@ -577,16 +593,16 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 0078 */ { "LATIN SMALL LETTER X",NULL},
 /* 0079 */ { "LATIN SMALL LETTER Y",NULL},
 /* 007A */ { "LATIN SMALL LETTER Z","	x (latin small letter z with stroke - 01B6)"},
-/* 007B */ { "LEFT CURLY BRACKET","	= OPENING CURLY BRACKET\n"
-	"	= opening brace"},
-/* 007C */ { "VERTICAL LINE","	= VERTICAL BAR\n"
+/* 007B */ { "LEFT CURLY BRACKET","	= opening curly bracket (1.0)\n"
+	"	= left brace"},
+/* 007C */ { "VERTICAL LINE","	= vertical bar\n"
 	"	* used in pairs to indicate absolute value\n"
 	"	x (latin letter dental click - 01C0)\n"
 	"	x (hebrew punctuation paseq - 05C0)\n"
 	"	x (divides - 2223)\n"
 	"	x (light vertical bar - 2758)"},
-/* 007D */ { "RIGHT CURLY BRACKET","	= CLOSING CURLY BRACKET\n"
-	"	= closing brace"},
+/* 007D */ { "RIGHT CURLY BRACKET","	= closing curly bracket (1.0)\n"
+	"	= right brace"},
 /* 007E */ { "TILDE","	* this is a spacing character\n"
 	"	x (small tilde - 02DC)\n"
 	"	x (combining tilde - 0303)\n"
@@ -596,9 +612,11 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 007F */ { NULL,"	= DELETE"},
 /* 0080 */ { NULL,NULL},
 /* 0081 */ { NULL,NULL},
-/* 0082 */ { NULL,"	= BREAK PERMITTED HERE"},
-/* 0083 */ { NULL,"	= NO BREAK HERE"},
-/* 0084 */ { NULL,NULL},
+/* 0082 */ { NULL,"	= BREAK PERMITTED HERE\n"
+	"	x (zero width space - 200B)"},
+/* 0083 */ { NULL,"	= NO BREAK HERE\n"
+	"	x (word joiner - 2060)"},
+/* 0084 */ { NULL,"	* formerly known as INDEX"},
 /* 0085 */ { NULL,"	= NEXT LINE (NEL)"},
 /* 0086 */ { NULL,"	= START OF SELECTED AREA"},
 /* 0087 */ { NULL,"	= END OF SELECTED AREA"},
@@ -626,7 +644,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 009D */ { NULL,"	= OPERATING SYSTEM COMMAND"},
 /* 009E */ { NULL,"	= PRIVACY MESSAGE"},
 /* 009F */ { NULL,"	= APPLICATION PROGRAM COMMAND"},
-/* 00A0 */ { "NO-BREAK SPACE","	= NBSP\n"
+/* 00A0 */ { "NO-BREAK SPACE","	* commonly abbreviated as NBSP\n"
 	"	x (space - 0020)\n"
 	"	x (figure space - 2007)\n"
 	"	x (narrow no-break space - 202F)\n"
@@ -638,30 +656,31 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00A2 */ { "CENT SIGN",NULL},
 /* 00A3 */ { "POUND SIGN","	= pound sterling, Irish punt, Italian lira, Turkish lira, etc.\n"
 	"	x (lira sign - 20A4)"},
-/* 00A4 */ { "CURRENCY SIGN","	* other currency symbol characters: 20A0-20AF\n"
+/* 00A4 */ { "CURRENCY SIGN","	* other currency symbol characters: 20A0-20B5\n"
 	"	x (dollar sign - 0024)"},
 /* 00A5 */ { "YEN SIGN","	= yuan sign\n"
 	"	* glyph may have one or two crossbars"},
-/* 00A6 */ { "BROKEN BAR","	= BROKEN VERTICAL BAR\n"
+/* 00A6 */ { "BROKEN BAR","	= broken vertical bar (1.0)\n"
 	"	= parted rule (in typography)"},
 /* 00A7 */ { "SECTION SIGN","	* paragraph sign in some European usage"},
 /* 00A8 */ { "DIAERESIS","	* this is a spacing character\n"
 	"	x (combining diaeresis - 0308)\n"
 	"	# 0020 0308"},
-/* 00A9 */ { "COPYRIGHT SIGN","	x (sound recording copyright - 2117)"},
+/* 00A9 */ { "COPYRIGHT SIGN","	x (sound recording copyright - 2117)\n"
+	"	x (circled latin capital letter c - 24B8)"},
 /* 00AA */ { "FEMININE ORDINAL INDICATOR","	* Spanish\n"
 	"	# <super> 0061"},
-/* 00AB */ { "LEFT-POINTING DOUBLE ANGLE QUOTATION MARK *","	= LEFT POINTING GUILLEMET\n"
+/* 00AB */ { "LEFT-POINTING DOUBLE ANGLE QUOTATION MARK *","	= left guillemet\n"
 	"	= chevrons (in typography)\n"
 	"	* usually opening, sometimes closing\n"
 	"	x (much less-than - 226A)\n"
 	"	x (left double angle bracket - 300A)"},
 /* 00AC */ { "NOT SIGN","	= angled dash (in typography)\n"
 	"	x (reversed not sign - 2310)"},
-/* 00AD */ { "SOFT HYPHEN","	= SHY\n"
-	"	= discretionary hyphen\n"
-	"	x (mongolian todo soft hyphen - 1806)"},
-/* 00AE */ { "REGISTERED SIGN","	= REGISTERED TRADE MARK SIGN"},
+/* 00AD */ { "SOFT HYPHEN","	= discretionary hyphen\n"
+	"	* commonly abbreviated as SHY"},
+/* 00AE */ { "REGISTERED SIGN","	= registered trade mark sign (1.0)\n"
+	"	x (circled latin capital letter r - 24C7)"},
 /* 00AF */ { "MACRON","	= overline, APL overbar\n"
 	"	* this is a spacing character\n"
 	"	x (modifier letter macron - 02C9)\n"
@@ -688,7 +707,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (prime - 2032)\n"
 	"	# 0020 0301"},
 /* 00B5 */ { "MICRO SIGN","	# 03BC greek small letter mu"},
-/* 00B6 */ { "PILCROW SIGN","	= PARAGRAPH SIGN\n"
+/* 00B6 */ { "PILCROW SIGN","	= paragraph sign\n"
 	"	* section sign in some European usage\n"
 	"	x (reversed pilcrow sign - 204B)\n"
 	"	x (curved stem paragraph sign ornament - 2761)"},
@@ -711,7 +730,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	# <super> 0031"},
 /* 00BA */ { "MASCULINE ORDINAL INDICATOR","	* Spanish\n"
 	"	# <super> 006F"},
-/* 00BB */ { "RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK *","	= RIGHT POINTING GUILLEMET\n"
+/* 00BB */ { "RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK *","	= right guillemet\n"
 	"	* usually closing, sometimes opening\n"
 	"	x (much greater-than - 226B)\n"
 	"	x (right double angle bracket - 300B)"},
@@ -732,7 +751,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00C4 */ { "LATIN CAPITAL LETTER A WITH DIAERESIS","	: 0041 0308"},
 /* 00C5 */ { "LATIN CAPITAL LETTER A WITH RING ABOVE","	x (angstrom sign - 212B)\n"
 	"	: 0041 030A"},
-/* 00C6 */ { "LATIN CAPITAL LETTER AE (ash) *","	= LATIN CAPITAL LIGATURE AE"},
+/* 00C6 */ { "LATIN CAPITAL LETTER AE (ash) *","	= latin capital ligature ae (1.0)"},
 /* 00C7 */ { "LATIN CAPITAL LETTER C WITH CEDILLA","	: 0043 0327"},
 /* 00C8 */ { "LATIN CAPITAL LETTER E WITH GRAVE","	: 0045 0300"},
 /* 00C9 */ { "LATIN CAPITAL LETTER E WITH ACUTE","	: 0045 0301"},
@@ -752,7 +771,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00D5 */ { "LATIN CAPITAL LETTER O WITH TILDE","	: 004F 0303"},
 /* 00D6 */ { "LATIN CAPITAL LETTER O WITH DIAERESIS","	: 004F 0308"},
 /* 00D7 */ { "MULTIPLICATION SIGN","	= z notation Cartesian product"},
-/* 00D8 */ { "LATIN CAPITAL LETTER O WITH STROKE","	= LATIN CAPITAL LETTER O SLASH\n"
+/* 00D8 */ { "LATIN CAPITAL LETTER O WITH STROKE","	= o slash\n"
 	"	x (empty set - 2205)"},
 /* 00D9 */ { "LATIN CAPITAL LETTER U WITH GRAVE","	: 0055 0300"},
 /* 00DA */ { "LATIN CAPITAL LETTER U WITH ACUTE","	: 0055 0301"},
@@ -773,7 +792,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00E4 */ { "LATIN SMALL LETTER A WITH DIAERESIS","	: 0061 0308"},
 /* 00E5 */ { "LATIN SMALL LETTER A WITH RING ABOVE","	* Danish, Norwegian, Swedish, Walloon\n"
 	"	: 0061 030A"},
-/* 00E6 */ { "LATIN SMALL LETTER AE (ash) *","	= LATIN SMALL LIGATURE AE\n"
+/* 00E6 */ { "LATIN SMALL LETTER AE (ash) *","	= latin small ligature ae (1.0)\n"
 	"	= ash (from Old English æsc)\n"
 	"	* Danish, Norwegian, Icelandic, Faroese, Old English, French, IPA\n"
 	"	x (latin small ligature oe - 0153)\n"
@@ -801,7 +820,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00F6 */ { "LATIN SMALL LETTER O WITH DIAERESIS","	: 006F 0308"},
 /* 00F7 */ { "DIVISION SIGN","	x (division slash - 2215)\n"
 	"	x (divides - 2223)"},
-/* 00F8 */ { "LATIN SMALL LETTER O WITH STROKE","	= LATIN SMALL LETTER O SLASH\n"
+/* 00F8 */ { "LATIN SMALL LETTER O WITH STROKE","	= o slash\n"
 	"	* Danish, Norwegian, Faroese, IPA"},
 /* 00F9 */ { "LATIN SMALL LETTER U WITH GRAVE","	* French, Italian\n"
 	"	: 0075 0300"},
@@ -901,7 +920,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 012E */ { "LATIN CAPITAL LETTER I WITH OGONEK","	: 0049 0328"},
 /* 012F */ { "LATIN SMALL LETTER I WITH OGONEK","	* Lithuanian, ...\n"
 	"	: 0069 0328"},
-/* 0130 */ { "LATIN CAPITAL LETTER I WITH DOT ABOVE","	= LATIN CAPITAL LETTER I DOT\n"
+/* 0130 */ { "LATIN CAPITAL LETTER I WITH DOT ABOVE","	= i dot\n"
 	"	* Turkish, Azerbaijani\n"
 	"	* lowercase is 0069\n"
 	"	x (latin capital letter i - 0049)\n"
@@ -932,9 +951,10 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006C 030C"},
 /* 013F */ { "LATIN CAPITAL LETTER L WITH MIDDLE DOT","	* some fonts show the middle dot inside the L, but the preferred form has the dot following the L\n"
 	"	# 004C 00B7"},
-/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	* Catalan\n"
+/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	* Catalan legacy compatibility character for ISO 6937\n"
+	"	* preferred representation for Catalan: 006C 00B7\n"
 	"	# 006C 00B7"},
-/* 0141 */ { "LATIN CAPITAL LETTER L WITH STROKE",NULL},
+/* 0141 */ { "LATIN CAPITAL LETTER L WITH STROKE","	x (latin capital letter l with bar - 023D)"},
 /* 0142 */ { "LATIN SMALL LETTER L WITH STROKE","	* Polish, ...\n"
 	"	x (latin small letter l with bar - 019A)"},
 /* 0143 */ { "LATIN CAPITAL LETTER N WITH ACUTE","	: 004E 0301"},
@@ -946,9 +966,10 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0147 */ { "LATIN CAPITAL LETTER N WITH CARON","	: 004E 030C"},
 /* 0148 */ { "LATIN SMALL LETTER N WITH CARON","	* Czech, Slovak\n"
 	"	: 006E 030C"},
-/* 0149 */ { "LATIN SMALL LETTER N PRECEDED BY APOSTROPHE","	= LATIN SMALL LETTER APOSTROPHE N\n"
+/* 0149 */ { "LATIN SMALL LETTER N PRECEDED BY APOSTROPHE","	= latin small letter apostrophe n (1.0)\n"
 	"	* Afrikaans\n"
-	"	* this is not actually a single letter\n"
+	"	* legacy compatibility character for ISO/IEC 6937\n"
+	"	* uppercase is 02BC 004E\n"
 	"	# 02BC 006E"},
 /* 014A */ { "LATIN CAPITAL LETTER ENG (Sami)","	* glyph may also have appearance of large form of the small letter"},
 /* 014B */ { "LATIN SMALL LETTER ENG (Sami)","	* Sami, Mende, IPA, ..."},
@@ -962,8 +983,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0151 */ { "LATIN SMALL LETTER O WITH DOUBLE ACUTE","	* Hungarian\n"
 	"	: 006F 030B"},
 /* 0152 */ { "LATIN CAPITAL LIGATURE OE",NULL},
-/* 0153 */ { "LATIN SMALL LIGATURE OE","	= LATIN SMALL LETTER O E\n"
-	"	= ethel (from Old English eðel)\n"
+/* 0153 */ { "LATIN SMALL LIGATURE OE","	= ethel (from Old English eðel)\n"
 	"	* French, IPA, Old Icelandic, Old English, ...\n"
 	"	x (latin small letter ae - 00E6)\n"
 	"	x (latin letter small capital oe - 0276)"},
@@ -971,7 +991,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0155 */ { "LATIN SMALL LETTER R WITH ACUTE","	* Slovak, ...\n"
 	"	: 0072 0301"},
 /* 0156 */ { "LATIN CAPITAL LETTER R WITH CEDILLA","	: 0052 0327"},
-/* 0157 */ { "LATIN SMALL LETTER R WITH CEDILLA","	* Latvian\n"
+/* 0157 */ { "LATIN SMALL LETTER R WITH CEDILLA","	* Livonian\n"
 	"	: 0072 0327"},
 /* 0158 */ { "LATIN CAPITAL LETTER R WITH CARON","	: 0052 030C"},
 /* 0159 */ { "LATIN SMALL LETTER R WITH CARON","	* Czech, ...\n"
@@ -1046,16 +1066,17 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0180 */ { "LATIN SMALL LETTER B WITH STROKE","	* Americanist and Indo-Europeanist usage for phonetic beta\n"
 	"	* Americanist orthographies use an alternate glyph with the stroke through the bowl\n"
 	"	* Old Saxon\n"
+	"	* uppercase is 0243\n"
 	"	x (greek small letter beta - 03B2)\n"
 	"	x (blank symbol - 2422)"},
 /* 0181 */ { "LATIN CAPITAL LETTER B WITH HOOK","	* Zulu, Pan-Nigerian alphabet\n"
 	"	x (latin small letter b with hook - 0253)"},
 /* 0182 */ { "LATIN CAPITAL LETTER B WITH TOPBAR",NULL},
-/* 0183 */ { "LATIN SMALL LETTER B WITH TOPBAR","	* Zhuang\n"
+/* 0183 */ { "LATIN SMALL LETTER B WITH TOPBAR","	* Zhuang (old orthography)\n"
 	"	* former Soviet minority language scripts\n"
 	"	x (cyrillic capital letter be - 0411)"},
 /* 0184 */ { "LATIN CAPITAL LETTER TONE SIX",NULL},
-/* 0185 */ { "LATIN SMALL LETTER TONE SIX","	* Zhuang\n"
+/* 0185 */ { "LATIN SMALL LETTER TONE SIX","	* Zhuang (old orthography)\n"
 	"	* Zhuang tone three is Cyrillic ze\n"
 	"	* Zhuang tone four is Cyrillic che\n"
 	"	x (latin small letter tone two - 01A8)\n"
@@ -1075,25 +1096,26 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 018A */ { "LATIN CAPITAL LETTER D WITH HOOK","	* Pan-Nigerian alphabet\n"
 	"	x (latin small letter d with hook - 0257)"},
 /* 018B */ { "LATIN CAPITAL LETTER D WITH TOPBAR",NULL},
-/* 018C */ { "LATIN SMALL LETTER D WITH TOPBAR","	* former-Soviet minority language scripts"},
+/* 018C */ { "LATIN SMALL LETTER D WITH TOPBAR","	* former-Soviet minority language scripts\n"
+	"	* Zhuang (old orthography)"},
 /* 018D */ { "LATIN SMALL LETTER TURNED DELTA","	= reversed Polish-hook o\n"
 	"	* archaic phonetic for labialized alveolar fricative\n"
 	"	* recommended spellings 007A 02B7 or 007A 032B"},
-/* 018E */ { "LATIN CAPITAL LETTER REVERSED E","	= LATIN CAPITAL LETTER TURNED E\n"
+/* 018E */ { "LATIN CAPITAL LETTER REVERSED E","	= turned e\n"
 	"	* Pan-Nigerian alphabet\n"
 	"	* lowercase is 01DD"},
 /* 018F */ { "LATIN CAPITAL LETTER SCHWA","	* Azerbaijani, ...\n"
 	"	x (latin small letter schwa - 0259)\n"
 	"	x (cyrillic capital letter schwa - 04D8)"},
-/* 0190 */ { "LATIN CAPITAL LETTER OPEN E","	= LATIN CAPITAL LETTER EPSILON\n"
+/* 0190 */ { "LATIN CAPITAL LETTER OPEN E","	= epsilon\n"
 	"	* African\n"
 	"	x (latin small letter open e - 025B)\n"
 	"	x (euler constant - 2107)"},
 /* 0191 */ { "LATIN CAPITAL LETTER F WITH HOOK","	* African"},
-/* 0192 */ { "LATIN SMALL LETTER F WITH HOOK","	= LATIN SMALL LETTER SCRIPT F\n"
+/* 0192 */ { "LATIN SMALL LETTER F WITH HOOK","	= script f\n"
 	"	= Florin currency symbol (Netherlands)\n"
 	"	= function symbol\n"
-	"	= abbreviation convention for folder"},
+	"	* used as abbreviation convention for folder"},
 /* 0193 */ { "LATIN CAPITAL LETTER G WITH HOOK","	* African\n"
 	"	x (latin small letter g with hook - 0260)"},
 /* 0194 */ { "LATIN CAPITAL LETTER GAMMA","	* African\n"
@@ -1110,10 +1132,11 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0199 */ { "LATIN SMALL LETTER K WITH HOOK","	* Hausa, Pan-Nigerian alphabet"},
 /* 019A */ { "LATIN SMALL LETTER L WITH BAR","	= barred l\n"
 	"	* Americanist phonetic usage for 026C\n"
-	"	x (latin small letter l with stroke - 0142)"},
+	"	x (latin small letter l with stroke - 0142)\n"
+	"	x (latin capital letter l with bar - 023D)"},
 /* 019B */ { "LATIN SMALL LETTER LAMBDA WITH STROKE","	= barred lambda, lambda bar\n"
 	"	* Americanist phonetic usage"},
-/* 019C */ { "LATIN CAPITAL LETTER TURNED M","	* Zhuang\n"
+/* 019C */ { "LATIN CAPITAL LETTER TURNED M","	* Zhuang (old orthography)\n"
 	"	x (latin small letter turned m - 026F)"},
 /* 019D */ { "LATIN CAPITAL LETTER N WITH LEFT HOOK","	* African\n"
 	"	x (latin small letter n with left hook - 0272)"},
@@ -1128,8 +1151,8 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01A0 */ { "LATIN CAPITAL LETTER O WITH HORN","	: 004F 031B"},
 /* 01A1 */ { "LATIN SMALL LETTER O WITH HORN","	* Vietnamese\n"
 	"	: 006F 031B"},
-/* 01A2 */ { "LATIN CAPITAL LETTER OI (gha)",NULL},
-/* 01A3 */ { "LATIN SMALL LETTER OI (gha)","	= gha\n"
+/* 01A2 */ { "LATIN CAPITAL LETTER OI (gha)","	% LATIN CAPITAL LETTER GHA"},
+/* 01A3 */ { "LATIN SMALL LETTER OI (gha)","	% LATIN SMALL LETTER GHA\n"
 	"	* Pan-Turkic Latin alphabets"},
 /* 01A4 */ { "LATIN CAPITAL LETTER P WITH HOOK",NULL},
 /* 01A5 */ { "LATIN SMALL LETTER P WITH HOOK","	* African"},
@@ -1137,7 +1160,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* from German Standard DIN 31624 and ISO 5246-2\n"
 	"	* lowercase is 0280"},
 /* 01A7 */ { "LATIN CAPITAL LETTER TONE TWO",NULL},
-/* 01A8 */ { "LATIN SMALL LETTER TONE TWO","	* Zhuang\n"
+/* 01A8 */ { "LATIN SMALL LETTER TONE TWO","	* Zhuang (old orthography)\n"
 	"	* typographically a reversed S\n"
 	"	x (latin small letter tone six - 0185)"},
 /* 01A9 */ { "LATIN CAPITAL LETTER ESH","	* African\n"
@@ -1159,10 +1182,10 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* typographically based on turned capital Greek omega\n"
 	"	x (latin small letter upsilon - 028A)\n"
 	"	x (inverted ohm sign - 2127)"},
-/* 01B2 */ { "LATIN CAPITAL LETTER V WITH HOOK","	= LATIN CAPITAL LETTER SCRIPT V\n"
+/* 01B2 */ { "LATIN CAPITAL LETTER V WITH HOOK","	= script v\n"
 	"	* African\n"
 	"	x (latin small letter v with hook - 028B)"},
-/* 01B3 */ { "LATIN CAPITAL LETTER Y WITH HOOK","	* a glyph variant with hook at the right also occurs"},
+/* 01B3 */ { "LATIN CAPITAL LETTER Y WITH HOOK","	* a glyph variant with hook at the left also occurs"},
 /* 01B4 */ { "LATIN SMALL LETTER Y WITH HOOK","	* Bini, Esoko, and other Edo languages in West Africa"},
 /* 01B5 */ { "LATIN CAPITAL LETTER Z WITH STROKE",NULL},
 /* 01B6 */ { "LATIN SMALL LETTER Z WITH STROKE","	= barred z, z bar\n"
@@ -1185,7 +1208,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01BB */ { "LATIN LETTER TWO WITH STROKE","	* archaic phonetic for [dz] affricate\n"
 	"	* recommended spellings 0292 or 0064 007A"},
 /* 01BC */ { "LATIN CAPITAL LETTER TONE FIVE",NULL},
-/* 01BD */ { "LATIN SMALL LETTER TONE FIVE","	* Zhuang\n"
+/* 01BD */ { "LATIN SMALL LETTER TONE FIVE","	* Zhuang (old orthography)\n"
 	"	x (latin small letter tone six - 0185)"},
 /* 01BE */ { "LATIN LETTER INVERTED GLOTTAL STOP WITH STROKE","	* archaic phonetic for [ts] affricate\n"
 	"	* recommended spelling 0074 0073\n"
@@ -1210,7 +1233,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01C2 */ { "LATIN LETTER ALVEOLAR CLICK","	= double-barred pipe\n"
 	"	* Khoisan tradition\n"
 	"	x (not equal to - 2260)"},
-/* 01C3 */ { "LATIN LETTER RETROFLEX CLICK","	= LATIN LETTER EXCLAMATION MARK\n"
+/* 01C3 */ { "LATIN LETTER RETROFLEX CLICK","	= latin letter exclamation mark (1.0)\n"
 	"	* Khoisan tradition\n"
 	"	* \"q\" in Zulu orthography\n"
 	"	x (exclamation mark - 0021)\n"
@@ -1340,6 +1363,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 021C */ { "LATIN CAPITAL LETTER YOGH","	x (latin capital letter ezh - 01B7)"},
 /* 021D */ { "LATIN SMALL LETTER YOGH","	* Middle English, Scots\n"
 	"	x (latin small letter ezh - 0292)\n"
+	"	x (latin small letter insular g - 1D79)\n"
 	"	x (ounce sign - 2125)"},
 /* 021E */ { "LATIN CAPITAL LETTER H WITH CARON","	: 0048 030C"},
 /* 021F */ { "LATIN SMALL LETTER H WITH CARON","	* Finnish Romany\n"
@@ -1358,19 +1382,15 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0228 */ { "LATIN CAPITAL LETTER E WITH CEDILLA","	: 0045 0327"},
 /* 0229 */ { "LATIN SMALL LETTER E WITH CEDILLA","	: 0065 0327"},
 /* 022A */ { "LATIN CAPITAL LETTER O WITH DIAERESIS AND MACRON","	: 00D6 0304"},
-/* 022B */ { "LATIN SMALL LETTER O WITH DIAERESIS AND MACRON","	* Livonian\n"
-	"	: 00F6 0304"},
+/* 022B */ { "LATIN SMALL LETTER O WITH DIAERESIS AND MACRON","	: 00F6 0304"},
 /* 022C */ { "LATIN CAPITAL LETTER O WITH TILDE AND MACRON","	: 00D5 0304"},
-/* 022D */ { "LATIN SMALL LETTER O WITH TILDE AND MACRON","	* Livonian\n"
-	"	: 00F5 0304"},
+/* 022D */ { "LATIN SMALL LETTER O WITH TILDE AND MACRON","	: 00F5 0304"},
 /* 022E */ { "LATIN CAPITAL LETTER O WITH DOT ABOVE","	: 004F 0307"},
-/* 022F */ { "LATIN SMALL LETTER O WITH DOT ABOVE","	* Livonian\n"
-	"	: 006F 0307"},
+/* 022F */ { "LATIN SMALL LETTER O WITH DOT ABOVE","	: 006F 0307"},
 /* 0230 */ { "LATIN CAPITAL LETTER O WITH DOT ABOVE AND MACRON","	: 022E 0304"},
-/* 0231 */ { "LATIN SMALL LETTER O WITH DOT ABOVE AND MACRON","	* Livonian\n"
-	"	: 022F 0304"},
+/* 0231 */ { "LATIN SMALL LETTER O WITH DOT ABOVE AND MACRON","	: 022F 0304"},
 /* 0232 */ { "LATIN CAPITAL LETTER Y WITH MACRON","	: 0059 0304"},
-/* 0233 */ { "LATIN SMALL LETTER Y WITH MACRON","	* Livonian, Cornish\n"
+/* 0233 */ { "LATIN SMALL LETTER Y WITH MACRON","	* also Cornish\n"
 	"	: 0079 0304"},
 /* 0234 */ { "LATIN SMALL LETTER L WITH CURL",NULL},
 /* 0235 */ { "LATIN SMALL LETTER N WITH CURL",NULL},
@@ -1378,30 +1398,35 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	x (mathematical italic small dotless j - 1D6A5)"},
 /* 0238 */ { "LATIN SMALL LETTER DB DIGRAPH","	* used in Africanist linguistics"},
 /* 0239 */ { "LATIN SMALL LETTER QP DIGRAPH","	* used in Africanist linguistics"},
-/* 023A */ { "LATIN CAPITAL LETTER A WITH STROKE","	* Sencoten"},
+/* 023A */ { "LATIN CAPITAL LETTER A WITH STROKE","	* Sencoten\n"
+	"	* lowercase is 2C65"},
 /* 023B */ { "LATIN CAPITAL LETTER C WITH STROKE","	* Sencoten"},
 /* 023C */ { "LATIN SMALL LETTER C WITH STROKE","	* used in Americanist linguistics"},
-/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* Sencoten"},
-/* 023E */ { "LATIN CAPITAL LETTER T WITH DIAGONAL STROKE","	* Sencoten"},
+/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* Sencoten\n"
+	"	* lowercase is 019A"},
+/* 023E */ { "LATIN CAPITAL LETTER T WITH DIAGONAL STROKE","	* Sencoten\n"
+	"	* lowercase is 2C66"},
 /* 023F */ { "LATIN SMALL LETTER S WITH SWASH TAIL",NULL},
 /* 0240 */ { "LATIN SMALL LETTER Z WITH SWASH TAIL",NULL},
-/* 0241 */ { "LATIN CAPITAL LETTER GLOTTAL STOP","	* lowercase is 0294"},
-/* 0242 */ { "LATIN SMALL LETTER GLOTTAL STOP",NULL},
-/* 0243 */ { NULL,NULL},
-/* 0244 */ { NULL,NULL},
-/* 0245 */ { NULL,NULL},
-/* 0246 */ { NULL,NULL},
-/* 0247 */ { NULL,NULL},
-/* 0248 */ { NULL,NULL},
-/* 0249 */ { NULL,NULL},
-/* 024A */ { NULL,NULL},
-/* 024B */ { NULL,NULL},
-/* 024C */ { NULL,NULL},
-/* 024D */ { NULL,NULL},
-/* 024E */ { NULL,NULL},
-/* 024F */ { NULL,NULL},
+/* 0241 */ { "LATIN CAPITAL LETTER GLOTTAL STOP",NULL},
+/* 0242 */ { "LATIN SMALL LETTER GLOTTAL STOP","	* casing use in Chipewyan, Dogrib, Slavey (Canadian aboriginal orthographies)\n"
+	"	x (latin letter glottal stop - 0294)\n"
+	"	x (modifier letter glottal stop - 02C0)"},
+/* 0243 */ { "LATIN CAPITAL LETTER B WITH STROKE","	* lowercase is 0180"},
+/* 0244 */ { "LATIN CAPITAL LETTER U BAR","	* lowercase is 0289"},
+/* 0245 */ { "LATIN CAPITAL LETTER TURNED V","	* lowercase is 028C"},
+/* 0246 */ { "LATIN CAPITAL LETTER E WITH STROKE",NULL},
+/* 0247 */ { "LATIN SMALL LETTER E WITH STROKE",NULL},
+/* 0248 */ { "LATIN CAPITAL LETTER J WITH STROKE",NULL},
+/* 0249 */ { "LATIN SMALL LETTER J WITH STROKE",NULL},
+/* 024A */ { "LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL",NULL},
+/* 024B */ { "LATIN SMALL LETTER Q WITH HOOK TAIL",NULL},
+/* 024C */ { "LATIN CAPITAL LETTER R WITH STROKE",NULL},
+/* 024D */ { "LATIN SMALL LETTER R WITH STROKE",NULL},
+/* 024E */ { "LATIN CAPITAL LETTER Y WITH STROKE",NULL},
+/* 024F */ { "LATIN SMALL LETTER Y WITH STROKE",NULL},
 /* 0250 */ { "LATIN SMALL LETTER TURNED A","	* low central unrounded vowel"},
-/* 0251 */ { "LATIN SMALL LETTER ALPHA","	= LATIN SMALL LETTER SCRIPT A\n"
+/* 0251 */ { "LATIN SMALL LETTER ALPHA","	= latin small letter script a (1.0)\n"
 	"	* low back unrounded vowel\n"
 	"	x (greek small letter alpha - 03B1)"},
 /* 0252 */ { "LATIN SMALL LETTER TURNED ALPHA","	* low back rounded vowel"},
@@ -1414,7 +1439,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0255 */ { "LATIN SMALL LETTER C WITH CURL","	* voiceless alveolo-palatal laminal fricative\n"
 	"	* used in transcription of Mandarin Chinese\n"
 	"	* sound spelled with 015B in Polish"},
-/* 0256 */ { "LATIN SMALL LETTER D WITH TAIL","	= LATIN SMALL LETTER D RETROFLEX HOOK\n"
+/* 0256 */ { "LATIN SMALL LETTER D WITH TAIL","	= d retroflex hook\n"
 	"	* voiced retroflex stop\n"
 	"	x (latin capital letter african d - 0189)"},
 /* 0257 */ { "LATIN SMALL LETTER D WITH HOOK","	* implosive dental or alveolar stop\n"
@@ -1427,13 +1452,13 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin small letter turned e - 01DD)\n"
 	"	x (cyrillic small letter schwa - 04D9)"},
 /* 025A */ { "LATIN SMALL LETTER SCHWA WITH HOOK","	* rhotacized schwa"},
-/* 025B */ { "LATIN SMALL LETTER OPEN E","	= LATIN SMALL LETTER EPSILON\n"
+/* 025B */ { "LATIN SMALL LETTER OPEN E","	= epsilon\n"
 	"	* lower-mid front unrounded vowel\n"
 	"	x (latin capital letter open e - 0190)\n"
 	"	x (greek small letter epsilon - 03B5)"},
 /* 025C */ { "LATIN SMALL LETTER REVERSED OPEN E","	* lower-mid central unrounded vowel"},
 /* 025D */ { "LATIN SMALL LETTER REVERSED OPEN E WITH HOOK","	* rhotacized lower-mid central vowel"},
-/* 025E */ { "LATIN SMALL LETTER CLOSED REVERSED OPEN E","	= LATIN SMALL LETTER CLOSED REVERSED EPSILON\n"
+/* 025E */ { "LATIN SMALL LETTER CLOSED REVERSED OPEN E","	= closed reversed epsilon\n"
 	"	* lower-mid central rounded vowel"},
 /* 025F */ { "LATIN SMALL LETTER DOTLESS J WITH STROKE","	* voiced palatal stop\n"
 	"	* typographically a turned f, but better thought of as a form of j\n"
@@ -1447,7 +1472,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0263 */ { "LATIN SMALL LETTER GAMMA","	* voiced velar fricative\n"
 	"	x (latin capital letter gamma - 0194)\n"
 	"	x (greek small letter gamma - 03B3)"},
-/* 0264 */ { "LATIN SMALL LETTER RAMS HORN","	= LATIN SMALL LETTER BABY GAMMA\n"
+/* 0264 */ { "LATIN SMALL LETTER RAMS HORN","	= latin small letter baby gamma (1.0)\n"
 	"	* upper-mid back unrounded vowel"},
 /* 0265 */ { "LATIN SMALL LETTER TURNED H","	* voiced rounded palatal approximant"},
 /* 0266 */ { "LATIN SMALL LETTER H WITH HOOK","	* breathy-voiced glottal fricative\n"
@@ -1461,7 +1486,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 026A */ { "LATIN LETTER SMALL CAPITAL I","	* semi-high front unrounded vowel\n"
 	"	* preferred IPA alternate for 0269\n"
 	"	x (latin capital letter i with stroke - 0197)"},
-/* 026B */ { "LATIN SMALL LETTER L WITH MIDDLE TILDE","	* velarized voiced alveolar lateral approximant"},
+/* 026B */ { "LATIN SMALL LETTER L WITH MIDDLE TILDE","	* velarized voiced alveolar lateral approximant\n"
+	"	* uppercase is 2C62"},
 /* 026C */ { "LATIN SMALL LETTER L WITH BELT","	* voiceless alveolar lateral fricative"},
 /* 026D */ { "LATIN SMALL LETTER L WITH RETROFLEX HOOK","	* voiced retroflex lateral"},
 /* 026E */ { "LATIN SMALL LETTER LEZH","	* voiced lateral fricative\n"
@@ -1491,7 +1517,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 027B */ { "LATIN SMALL LETTER TURNED R WITH HOOK","	* voiced retroflex approximant\n"
 	"	x (modifier letter small turned r with hook - 02B5)"},
 /* 027C */ { "LATIN SMALL LETTER R WITH LONG LEG","	* voiced strident apico-alveolar trill"},
-/* 027D */ { "LATIN SMALL LETTER R WITH TAIL","	* voiced retroflex flap"},
+/* 027D */ { "LATIN SMALL LETTER R WITH TAIL","	* voiced retroflex flap\n"
+	"	* uppercase is 2C64"},
 /* 027E */ { "LATIN SMALL LETTER R WITH FISHHOOK","	* voiced alveolar flap or tap"},
 /* 027F */ { "LATIN SMALL LETTER REVERSED R WITH FISHHOOK","	= long leg turned iota (a misnomer)\n"
 	"	* apical dental vowel\n"
@@ -1518,17 +1545,19 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin letter dental click - 01C0)"},
 /* 0288 */ { "LATIN SMALL LETTER T WITH RETROFLEX HOOK","	* voiceless retroflex stop\n"
 	"	x (latin capital letter t with retroflex hook - 01AE)"},
-/* 0289 */ { "LATIN SMALL LETTER U BAR","	* high central rounded vowel"},
+/* 0289 */ { "LATIN SMALL LETTER U BAR","	* high central rounded vowel\n"
+	"	* uppercase is 0244"},
 /* 028A */ { "LATIN SMALL LETTER UPSILON","	* semi-high back rounded vowel\n"
 	"	* preferred IPA alternate to 0277\n"
 	"	x (latin capital letter upsilon - 01B1)\n"
 	"	x (greek small letter upsilon - 03C5)"},
-/* 028B */ { "LATIN SMALL LETTER V WITH HOOK","	= LATIN SMALL LETTER SCRIPT V\n"
+/* 028B */ { "LATIN SMALL LETTER V WITH HOOK","	= latin small letter script v (1.0)\n"
 	"	* voiced labiodental approximant\n"
 	"	x (latin capital letter v with hook - 01B2)\n"
 	"	x (greek small letter upsilon - 03C5)"},
 /* 028C */ { "LATIN SMALL LETTER TURNED V","	= caret, wedge\n"
 	"	* lower-mid back unrounded vowel\n"
+	"	* uppercase is 0245\n"
 	"	x (greek capital letter lamda - 039B)\n"
 	"	x (caret - 2038)\n"
 	"	x (logical and - 2227)"},
@@ -1547,9 +1576,11 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (cyrillic small letter abkhasian dze - 04E1)\n"
 	"	x (ounce sign - 2125)"},
 /* 0293 */ { "LATIN SMALL LETTER EZH WITH CURL","	* palatalized voiced postalveolar fricative"},
-/* 0294 */ { "LATIN LETTER GLOTTAL STOP","	* uppercase is 0241\n"
+/* 0294 */ { "LATIN LETTER GLOTTAL STOP","	* this is a caseless letter\n"
+	"	* used in IPA, other phonetic notations, and those orthographies which use a caseless glottal stop\n"
+	"	x (latin capital letter glottal stop - 0241)\n"
 	"	x (modifier letter glottal stop - 02C0)"},
-/* 0295 */ { "LATIN LETTER PHARYNGEAL VOICED FRICATIVE","	= LATIN LETTER REVERSED GLOTTAL STOP\n"
+/* 0295 */ { "LATIN LETTER PHARYNGEAL VOICED FRICATIVE","	= reversed glottal stop\n"
 	"	* voiced pharyngeal fricative\n"
 	"	* ain\n"
 	"	x (latin small letter ezh reversed - 01B9)\n"
@@ -1559,10 +1590,10 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0297 */ { "LATIN LETTER STRETCHED C","	* palatal (or alveolar) click\n"
 	"	x (latin letter retroflex click - 01C3)\n"
 	"	x (complement - 2201)"},
-/* 0298 */ { "LATIN LETTER BILABIAL CLICK","	= LATIN LETTER BULLSEYE\n"
+/* 0298 */ { "LATIN LETTER BILABIAL CLICK","	= bullseye\n"
 	"	x (circled dot operator - 2299)"},
 /* 0299 */ { "LATIN LETTER SMALL CAPITAL B","	* bilabial trill"},
-/* 029A */ { "LATIN SMALL LETTER CLOSED OPEN E","	= LATIN SMALL LETTER CLOSED EPSILON\n"
+/* 029A */ { "LATIN SMALL LETTER CLOSED OPEN E","	= closed epsilon\n"
 	"	* lower-mid front rounded vowel\n"
 	"	* non-IPA alternate for the preferred 0153"},
 /* 029B */ { "LATIN LETTER SMALL CAPITAL G WITH HOOK","	* voiced uvular implosive"},
@@ -1623,7 +1654,9 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (combining double acute accent - 030B)\n"
 	"	x (double prime - 2033)"},
 /* 02BB */ { "MODIFIER LETTER TURNED COMMA","	* typographical alternate for 02BD or 02BF\n"
+	"	* used in Hawai`ian orthography as `okina (glottal stop)\n"
 	"	x (combining turned comma above - 0312)\n"
+	"	x (nko low tone apostrophe - 07F5)\n"
 	"	x (left single quotation mark - 2018)"},
 /* 02BC */ { "MODIFIER LETTER APOSTROPHE","	= apostrophe\n"
 	"	* glottal stop, glottalization, ejective\n"
@@ -1634,6 +1667,7 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (combining comma above - 0313)\n"
 	"	x (combining comma above right - 0315)\n"
 	"	x (armenian apostrophe - 055A)\n"
+	"	x (nko high tone apostrophe - 07F4)\n"
 	"	x (right single quotation mark - 2019)"},
 /* 02BD */ { "MODIFIER LETTER REVERSED COMMA","	* weak aspiration\n"
 	"	* spacing clone of Greek rough breathing mark\n"
@@ -1862,6 +1896,7 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0324 */ { "COMBINING DIAERESIS BELOW","	* IPA: breathy-voice or murmur\n"
 	"	x (modifier letter small h with hook - 02B1)"},
 /* 0325 */ { "COMBINING RING BELOW","	* IPA: voiceless\n"
+	"	* vocalic (in Latin transliteration of Indic sonorants)\n"
 	"	* Madurese"},
 /* 0326 */ { "COMBINING COMMA BELOW","	* Romanian, Latvian, Livonian"},
 /* 0327 */ { "COMBINING CEDILLA","	* French, Turkish, Azerbaijani\n"
@@ -1904,15 +1939,13 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 033E */ { "COMBINING VERTICAL TILDE","	* Cyrillic palatalization\n"
 	"	x (combining cyrillic palatalization - 0484)"},
 /* 033F */ { "COMBINING DOUBLE OVERLINE",NULL},
-/* 0340 */ { "COMBINING GRAVE TONE MARK (Vietnamese)","	* kerns left or right of circumflex over vowels\n"
-	"	: 0300 combining grave accent"},
-/* 0341 */ { "COMBINING ACUTE TONE MARK (Vietnamese)","	* kerns right of circumflex over vowels\n"
-	"	: 0301 combining acute accent"},
+/* 0340 */ { "COMBINING GRAVE TONE MARK (Vietnamese)","	: 0300 combining grave accent"},
+/* 0341 */ { "COMBINING ACUTE TONE MARK (Vietnamese)","	: 0301 combining acute accent"},
 /* 0342 */ { "COMBINING GREEK PERISPOMENI",NULL},
 /* 0343 */ { "COMBINING GREEK KORONIS","	: 0313 combining comma above"},
 /* 0344 */ { "COMBINING GREEK DIALYTIKA TONOS","	* use of this character is discouraged\n"
 	"	: 0308 0301"},
-/* 0345 */ { "COMBINING GREEK YPOGEGRAMMENI","	= GREEK NON-SPACING IOTA BELOW\n"
+/* 0345 */ { "COMBINING GREEK YPOGEGRAMMENI","	= greek non-spacing iota below (1.0)\n"
 	"	= iota subscript\n"
 	"	* note special casing issues\n"
 	"	x (greek ypogegrammeni - 037A)\n"
@@ -1927,9 +1960,9 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 034C */ { "COMBINING ALMOST EQUAL TO ABOVE","	* IPA: velopharyngeal friction"},
 /* 034D */ { "COMBINING LEFT RIGHT ARROW BELOW","	* IPA: labial spreading"},
 /* 034E */ { "COMBINING UPWARDS ARROW BELOW","	* IPA: whistled articulation"},
-/* 034F */ { "COMBINING GRAPHEME JOINER","	= CGJ\n"
+/* 034F */ { "COMBINING GRAPHEME JOINER","	* commonly abbreviated as CGJ\n"
 	"	* has no visible glyph\n"
-	"	* indicates that adjoining characters are to be treated as a graphemic unit"},
+	"	* the name of this character is misleading; it does not actually join graphemes"},
 /* 0350 */ { "COMBINING RIGHT ARROWHEAD ABOVE",NULL},
 /* 0351 */ { "COMBINING LEFT HALF RING ABOVE",NULL},
 /* 0352 */ { "COMBINING FERMATA",NULL},
@@ -1939,7 +1972,7 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0356 */ { "COMBINING RIGHT ARROWHEAD AND UP ARROWHEAD BELOW",NULL},
 /* 0357 */ { "COMBINING RIGHT HALF RING ABOVE",NULL},
 /* 0358 */ { "COMBINING DOT ABOVE RIGHT","	* Latin transliterations of the Southern Min dialects of Chinese"},
-/* 0359 */ { "COMBINING ASTERISK BELOW",NULL},
+/* 0359 */ { "COMBINING ASTERISK BELOW","	x (low asterisk - 204E)"},
 /* 035A */ { "COMBINING DOUBLE RING BELOW","	* Kharoshthi transliteration"},
 /* 035B */ { "COMBINING ZIGZAG ABOVE","	* Latin abbreviation, Lithuanian phonetics and mediaevalist transcriptions"},
 /* 035C */ { "COMBINING DOUBLE BREVE BELOW","	= ligature tie below, papyrological hyphen\n"
@@ -1965,10 +1998,10 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 036D */ { "COMBINING LATIN SMALL LETTER T",NULL},
 /* 036E */ { "COMBINING LATIN SMALL LETTER V",NULL},
 /* 036F */ { "COMBINING LATIN SMALL LETTER X",NULL},
-/* 0370 */ { "GREEK CAPITAL LETTER HETA",NULL},
-/* 0371 */ { "GREEK SMALL LETTER HETA",NULL},
-/* 0372 */ { "GREEK CAPITAL LETTER ARCHAIC SAMPI",NULL},
-/* 0373 */ { "GREEK SMALL LETTER ARCHAIC SAMPI",NULL},
+/* 0370 */ { NULL,NULL},
+/* 0371 */ { NULL,NULL},
+/* 0372 */ { NULL,NULL},
+/* 0373 */ { NULL,NULL},
 /* 0374 */ { "GREEK NUMERAL SIGN (Dexia keraia)","	= dexia keraia\n"
 	"	* indicates numeric use of letters\n"
 	"	x (modifier letter acute accent - 02CA)\n"
@@ -1976,8 +2009,8 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0375 */ { "GREEK LOWER NUMERAL SIGN (Aristeri keraia)","	= aristeri keraia\n"
 	"	* indicates numeric use of letters\n"
 	"	x (modifier letter low acute accent - 02CF)"},
-/* 0376 */ { "GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA",NULL},
-/* 0377 */ { "GREEK SMALL LETTER PAMPHYLIAN DIGAMMA",NULL},
+/* 0376 */ { NULL,NULL},
+/* 0377 */ { NULL,NULL},
 /* 0378 */ { NULL,NULL},
 /* 0379 */ { NULL,NULL},
 /* 037A */ { "GREEK YPOGEGRAMMENI","	= iota subscript\n"
@@ -2015,7 +2048,8 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0390 */ { "GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS","	: 03CA 0301"},
 /* 0391 */ { "GREEK CAPITAL LETTER ALPHA",NULL},
 /* 0392 */ { "GREEK CAPITAL LETTER BETA",NULL},
-/* 0393 */ { "GREEK CAPITAL LETTER GAMMA","	= gamma function"},
+/* 0393 */ { "GREEK CAPITAL LETTER GAMMA","	= gamma function\n"
+	"	x (double-struck capital gamma - 213E)"},
 /* 0394 */ { "GREEK CAPITAL LETTER DELTA","	x (increment - 2206)"},
 /* 0395 */ { "GREEK CAPITAL LETTER EPSILON",NULL},
 /* 0396 */ { "GREEK CAPITAL LETTER ZETA",NULL},
@@ -2028,7 +2062,8 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 039D */ { "GREEK CAPITAL LETTER NU",NULL},
 /* 039E */ { "GREEK CAPITAL LETTER XI",NULL},
 /* 039F */ { "GREEK CAPITAL LETTER OMICRON",NULL},
-/* 03A0 */ { "GREEK CAPITAL LETTER PI","	x (n-ary product - 220F)"},
+/* 03A0 */ { "GREEK CAPITAL LETTER PI","	x (double-struck capital pi - 213F)\n"
+	"	x (n-ary product - 220F)"},
 /* 03A1 */ { "GREEK CAPITAL LETTER RHO",NULL},
 /* 03A2 */ { NULL,NULL},
 /* 03A3 */ { "GREEK CAPITAL LETTER SIGMA","	x (latin capital letter esh - 01A9)\n"
@@ -2051,7 +2086,8 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	x (proportional to - 221D)"},
 /* 03B2 */ { "GREEK SMALL LETTER BETA","	x (latin small letter sharp s - 00DF)\n"
 	"	x (latin small letter b with stroke - 0180)"},
-/* 03B3 */ { "GREEK SMALL LETTER GAMMA","	x (latin small letter gamma - 0263)"},
+/* 03B3 */ { "GREEK SMALL LETTER GAMMA","	x (latin small letter gamma - 0263)\n"
+	"	x (double-struck small gamma - 213D)"},
 /* 03B4 */ { "GREEK SMALL LETTER DELTA",NULL},
 /* 03B5 */ { "GREEK SMALL LETTER EPSILON","	x (latin small letter open e - 025B)"},
 /* 03B6 */ { "GREEK SMALL LETTER ZETA",NULL},
@@ -2088,21 +2124,18 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 03CD */ { "GREEK SMALL LETTER UPSILON WITH TONOS","	: 03C5 0301"},
 /* 03CE */ { "GREEK SMALL LETTER OMEGA WITH TONOS","	: 03C9 0301"},
 /* 03CF */ { NULL,NULL},
-/* 03D0 */ { "GREEK BETA SYMBOL","	= GREEK SMALL LETTER CURLED BETA\n"
+/* 03D0 */ { "GREEK BETA SYMBOL","	= curled beta\n"
 	"	# 03B2 greek small letter beta"},
-/* 03D1 */ { "GREEK THETA SYMBOL","	= GREEK SMALL LETTER SCRIPT THETA\n"
+/* 03D1 */ { "GREEK THETA SYMBOL","	= script theta\n"
 	"	* used as a technical symbol\n"
 	"	# 03B8 greek small letter theta"},
-/* 03D2 */ { "GREEK UPSILON WITH HOOK SYMBOL","	= GREEK CAPITAL LETTER UPSILON HOOK\n"
-	"	# 03A5 greek capital letter upsilon"},
-/* 03D3 */ { "GREEK UPSILON WITH ACUTE AND HOOK SYMBOL","	= GREEK CAPITAL LETTER UPSILON HOOK TONOS\n"
-	"	: 03D2 0301"},
-/* 03D4 */ { "GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL","	= GREEK CAPITAL LETTER UPSILON HOOK DIAERESIS\n"
-	"	: 03D2 0308"},
+/* 03D2 */ { "GREEK UPSILON WITH HOOK SYMBOL","	# 03A5 greek capital letter upsilon"},
+/* 03D3 */ { "GREEK UPSILON WITH ACUTE AND HOOK SYMBOL","	: 03D2 0301"},
+/* 03D4 */ { "GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL","	: 03D2 0308"},
 /* 03D5 */ { "GREEK PHI SYMBOL","	* used as a technical symbol, with a stroked glyph\n"
 	"	* maps to \"phi1\" symbol entities\n"
 	"	# 03C6 greek small letter phi"},
-/* 03D6 */ { "GREEK PI SYMBOL","	= GREEK SMALL LETTER OMEGA PI\n"
+/* 03D6 */ { "GREEK PI SYMBOL","	= omega pi\n"
 	"	* used as a technical symbol\n"
 	"	* a variant of pi, looking like omega\n"
 	"	# 03C0 greek small letter pi"},
@@ -2134,13 +2167,13 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 03ED */ { "COPTIC SMALL LETTER SHIMA",NULL},
 /* 03EE */ { "COPTIC CAPITAL LETTER DEI",NULL},
 /* 03EF */ { "COPTIC SMALL LETTER DEI",NULL},
-/* 03F0 */ { "GREEK KAPPA SYMBOL","	= GREEK SMALL LETTER SCRIPT KAPPA\n"
+/* 03F0 */ { "GREEK KAPPA SYMBOL","	= script kappa\n"
 	"	* used as technical symbol\n"
 	"	# 03BA greek small letter kappa"},
-/* 03F1 */ { "GREEK RHO SYMBOL","	= GREEK SMALL LETTER TAILED RHO\n"
+/* 03F1 */ { "GREEK RHO SYMBOL","	= tailed rho\n"
 	"	* used as technical symbol\n"
 	"	# 03C1 greek small letter rho"},
-/* 03F2 */ { "GREEK LUNATE SIGMA SYMBOL","	= GREEK SMALL LETTER LUNATE SIGMA\n"
+/* 03F2 */ { "GREEK LUNATE SIGMA SYMBOL","	= greek small letter lunate sigma (1.0)\n"
 	"	# 03C2 greek small letter final sigma"},
 /* 03F3 */ { "GREEK LETTER YOT",NULL},
 /* 03F4 */ { "GREEK CAPITAL THETA SYMBOL","	x (cyrillic capital letter fita - 0472)\n"
@@ -2272,7 +2305,7 @@ static const struct unicode_nameannot una_00_04[] = {
 	"	x (planck constant over two pi - 210F)"},
 /* 045C */ { "CYRILLIC SMALL LETTER KJE","	* Macedonian\n"
 	"	: 043A 0301"},
-/* 045D */ { "CYRILLIC SMALL LETTER I WITH GRAVE","	* Macedonian\n"
+/* 045D */ { "CYRILLIC SMALL LETTER I WITH GRAVE","	* Macedonian, Bulgarian\n"
 	"	: 0438 0300"},
 /* 045E */ { "CYRILLIC SMALL LETTER SHORT U (Byelorussian)","	* Byelorussian, Uzbek\n"
 	"	: 0443 0306"},
@@ -2303,13 +2336,13 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0475 */ { "CYRILLIC SMALL LETTER IZHITSA",NULL},
 /* 0476 */ { "CYRILLIC CAPITAL LETTER IZHITSA WITH DOUBLE GRAVE ACCENT","	: 0474 030F"},
 /* 0477 */ { "CYRILLIC SMALL LETTER IZHITSA WITH DOUBLE GRAVE ACCENT","	: 0475 030F"},
-/* 0478 */ { "CYRILLIC CAPITAL LETTER UK","	* basic Old Cyrillic uk is unified with CYRILLIC LETTER U\n"
+/* 0478 */ { "CYRILLIC CAPITAL LETTER UK","	* basic Old Cyrillic uk is unified with cyrillic letter u\n"
 	"	x (cyrillic capital letter u - 0423)"},
 /* 0479 */ { "CYRILLIC SMALL LETTER UK",NULL},
 /* 047A */ { "CYRILLIC CAPITAL LETTER ROUND OMEGA",NULL},
 /* 047B */ { "CYRILLIC SMALL LETTER ROUND OMEGA",NULL},
 /* 047C */ { "CYRILLIC CAPITAL LETTER OMEGA WITH TITLO",NULL},
-/* 047D */ { "CYRILLIC SMALL LETTER OMEGA WITH TITLO",NULL},
+/* 047D */ { "CYRILLIC SMALL LETTER OMEGA WITH TITLO","	* the exact identity of these broad omegas is unclear and may require revision of glyphs"},
 /* 047E */ { "CYRILLIC CAPITAL LETTER OT",NULL},
 /* 047F */ { "CYRILLIC SMALL LETTER OT",NULL},
 /* 0480 */ { "CYRILLIC CAPITAL LETTER KOPPA",NULL},
@@ -2320,7 +2353,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0485 */ { "COMBINING CYRILLIC DASIA PNEUMATA","	x (combining reversed comma above - 0314)"},
 /* 0486 */ { "COMBINING CYRILLIC PSILI PNEUMATA","	x (combining comma above - 0313)"},
 /* 0487 */ { NULL,NULL},
-/* 0488 */ { "COMBINING CYRILLIC HUNDRED THOUSANDS SIGN",NULL},
+/* 0488 */ { "COMBINING CYRILLIC HUNDRED THOUSANDS SIGN","	* use 20DD for ten thousands sign"},
 /* 0489 */ { "COMBINING CYRILLIC MILLIONS SIGN",NULL},
 /* 048A */ { "CYRILLIC CAPITAL LETTER SHORT I WITH TAIL",NULL},
 /* 048B */ { "CYRILLIC SMALL LETTER SHORT I WITH TAIL","	* Kildin Sami"},
@@ -2339,7 +2372,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0497 */ { "CYRILLIC SMALL LETTER ZHE WITH DESCENDER","	* Tatar, ..."},
 /* 0498 */ { "CYRILLIC CAPITAL LETTER ZE WITH DESCENDER",NULL},
 /* 0499 */ { "CYRILLIC SMALL LETTER ZE WITH DESCENDER","	* Bashkir\n"
-	"	* reversed ogonek form of the descender is preferred"},
+	"	* letterforms with right hooks are preferred, although occasional variants with left hooks occur"},
 /* 049A */ { "CYRILLIC CAPITAL LETTER KA WITH DESCENDER",NULL},
 /* 049B */ { "CYRILLIC SMALL LETTER KA WITH DESCENDER","	* Abkhasian, Tajik, ..."},
 /* 049C */ { "CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE",NULL},
@@ -2359,7 +2392,8 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04A9 */ { "CYRILLIC SMALL LETTER ABKHASIAN HA",NULL},
 /* 04AA */ { "CYRILLIC CAPITAL LETTER ES WITH DESCENDER",NULL},
 /* 04AB */ { "CYRILLIC SMALL LETTER ES WITH DESCENDER","	* Bashkir, Chuvash\n"
-	"	* reversed ogonek form of the descender is preferred"},
+	"	* letterforms with right hooks are preferred, although occasional variants with left hooks occur\n"
+	"	* in Chuvashia, letterforms identical to or similar in form to 00E7 regularly occur"},
 /* 04AC */ { "CYRILLIC CAPITAL LETTER TE WITH DESCENDER",NULL},
 /* 04AD */ { "CYRILLIC SMALL LETTER TE WITH DESCENDER","	* Abkhasian"},
 /* 04AE */ { "CYRILLIC CAPITAL LETTER STRAIGHT U",NULL},
@@ -2386,7 +2420,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04BE */ { "CYRILLIC CAPITAL LETTER ABKHASIAN CHE WITH DESCENDER",NULL},
 /* 04BF */ { "CYRILLIC SMALL LETTER ABKHASIAN CHE WITH DESCENDER","	* ogonek form preferred"},
 /* 04C0 */ { "CYRILLIC LETTER PALOCHKA","	* aspiration sign in many Caucasian languages\n"
-	"	* has no \"lowercase form\", i.e. is case-invariant\n"
+	"	* is usually not cased, but the formal lowercase is 04CF\n"
 	"	x (latin capital letter i - 0049)\n"
 	"	x (cyrillic capital letter byelorussian-ukrainian i - 0406)"},
 /* 04C1 */ { "CYRILLIC CAPITAL LETTER ZHE WITH BREVE","	: 0416 0306"},
@@ -2475,9 +2509,9 @@ static const struct unicode_nameannot una_00_05[] = {
 /* 050E */ { "CYRILLIC CAPITAL LETTER KOMI TJE",NULL},
 /* 050F */ { "CYRILLIC SMALL LETTER KOMI TJE",NULL},
 /* 0510 */ { "CYRILLIC CAPITAL LETTER REVERSED ZE",NULL},
-/* 0511 */ { "CYRILLIC SMALL LETTER REVERSED ZE",NULL},
+/* 0511 */ { "CYRILLIC SMALL LETTER REVERSED ZE","	* Enets, Khanty"},
 /* 0512 */ { "CYRILLIC CAPITAL LETTER EL WITH HOOK",NULL},
-/* 0513 */ { "CYRILLIC  SMALL LETTER EL WITH HOOK",NULL},
+/* 0513 */ { "CYRILLIC SMALL LETTER EL WITH HOOK","	* Chukchi, Itelmen, Khanty"},
 /* 0514 */ { NULL,NULL},
 /* 0515 */ { NULL,NULL},
 /* 0516 */ { NULL,NULL},
@@ -2550,7 +2584,7 @@ static const struct unicode_nameannot una_00_05[] = {
 /* 0559 */ { "ARMENIAN MODIFIER LETTER LEFT HALF RING","	x (modifier letter reversed comma - 02BD)\n"
 	"	x (modifier letter left half ring - 02BF)\n"
 	"	x (combining reversed comma above - 0314)"},
-/* 055A */ { "ARMENIAN APOSTROPHE","	= ARMENIAN MODIFIER LETTER RIGHT HALF RING\n"
+/* 055A */ { "ARMENIAN APOSTROPHE","	= armenian modifier letter right half ring (1.0)\n"
 	"	x (modifier letter apostrophe - 02BC)\n"
 	"	x (modifier letter right half ring - 02BE)\n"
 	"	x (combining comma above - 0313)"},
@@ -2830,6 +2864,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 0651 */ { "ARABIC SHADDA",NULL},
 /* 0652 */ { "ARABIC SUKUN","	* marks absence of a vowel after the base consonant\n"
 	"	* used in some Korans to mark a long vowel as ignored\n"
+	"	* can have a variety of shapes, including a circular one and a shape that looks like '06E1'\n"
 	"	x (arabic small high dotless head of khah - 06E1)"},
 /* 0653 */ { "ARABIC MADDAH ABOVE",NULL},
 /* 0654 */ { "ARABIC HAMZA ABOVE",NULL},
@@ -2884,7 +2919,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 067E */ { "ARABIC LETTER PEH","	* Persian, Urdu, ..."},
 /* 067F */ { "ARABIC LETTER TEHEH","	* Sindhi"},
 /* 0680 */ { "ARABIC LETTER BEHEH","	* Sindhi"},
-/* 0681 */ { "ARABIC LETTER HAH WITH HAMZA ABOVE","	* Pashto letter \"zhe\""},
+/* 0681 */ { "ARABIC LETTER HAH WITH HAMZA ABOVE","	* Pashto letter \"dze\""},
 /* 0682 */ { "ARABIC LETTER HAH WITH TWO DOTS VERTICAL ABOVE","	* not used in modern Pashto"},
 /* 0683 */ { "ARABIC LETTER NYEH","	* Sindhi"},
 /* 0684 */ { "ARABIC LETTER DYEH","	* Sindhi"},
@@ -2897,7 +2932,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 068B */ { "ARABIC LETTER DAL WITH DOT BELOW AND SMALL TAH","	* Lahnda"},
 /* 068C */ { "ARABIC LETTER DAHAL","	* Sindhi"},
 /* 068D */ { "ARABIC LETTER DDAHAL","	* Sindhi"},
-/* 068E */ { "ARABIC LETTER DUL","	* older shape for DUL, now obsolete in Sindhi"},
+/* 068E */ { "ARABIC LETTER DUL","	* older shape for DUL, now obsolete in Sindhi\n"
+	"	* Burushaski"},
 /* 068F */ { "ARABIC LETTER DAL WITH THREE DOTS ABOVE DOWNWARDS","	* Sindhi\n"
 	"	* current shape used for DUL"},
 /* 0690 */ { "ARABIC LETTER DAL WITH FOUR DOTS ABOVE","	* old Urdu, not in current use"},
@@ -2914,7 +2950,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 069B */ { "ARABIC LETTER SEEN WITH THREE DOTS BELOW",NULL},
 /* 069C */ { "ARABIC LETTER SEEN WITH THREE DOTS BELOW AND THREE DOTS ABOVE","	* Moroccan Arabic"},
 /* 069D */ { "ARABIC LETTER SAD WITH TWO DOTS BELOW","	* Turkic"},
-/* 069E */ { "ARABIC LETTER SAD WITH THREE DOTS ABOVE","	* Berber"},
+/* 069E */ { "ARABIC LETTER SAD WITH THREE DOTS ABOVE","	* Berber, Burushaski"},
 /* 069F */ { "ARABIC LETTER TAH WITH THREE DOTS ABOVE","	* old Hausa"},
 /* 06A0 */ { "ARABIC LETTER AIN WITH THREE DOTS ABOVE","	* old Malay"},
 /* 06A1 */ { "ARABIC LETTER DOTLESS FEH","	* Adighe"},
@@ -2951,7 +2987,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06BE */ { "ARABIC LETTER HEH DOACHASHMEE","	* Urdu\n"
 	"	* forms aspirate digraphs"},
 /* 06BF */ { "ARABIC LETTER TCHEH WITH DOT ABOVE",NULL},
-/* 06C0 */ { "ARABIC LETTER HEH WITH YEH ABOVE","	= ARABIC LETTER HAMZAH ON HA\n"
+/* 06C0 */ { "ARABIC LETTER HEH WITH YEH ABOVE","	= arabic letter hamzah on ha (1.0)\n"
 	"	= izafet\n"
 	"	* Urdu\n"
 	"	* actually a ligature, not an independent letter\n"
@@ -2994,9 +3030,10 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06DC */ { "ARABIC SMALL HIGH SEEN",NULL},
 /* 06DD */ { "ARABIC END OF AYAH",NULL},
 /* 06DE */ { "ARABIC START OF RUB EL HIZB",NULL},
-/* 06DF */ { "ARABIC SMALL HIGH ROUNDED ZERO",NULL},
+/* 06DF */ { "ARABIC SMALL HIGH ROUNDED ZERO","	* smaller than the typical circular shape used for 0652"},
 /* 06E0 */ { "ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO",NULL},
 /* 06E1 */ { "ARABIC SMALL HIGH DOTLESS HEAD OF KHAH","	= Arabic jazm\n"
+	"	* presentation form of 0652, using font technology to select the variant is preferred\n"
 	"	* used in some Korans to mark absence of a vowel\n"
 	"	x (arabic sukun - 0652)"},
 /* 06E2 */ { "ARABIC SMALL HIGH MEEM ISOLATED FORM",NULL},
@@ -3006,7 +3043,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06E6 */ { "ARABIC SMALL YEH",NULL},
 /* 06E7 */ { "ARABIC SMALL HIGH YEH",NULL},
 /* 06E8 */ { "ARABIC SMALL HIGH NOON",NULL},
-/* 06E9 */ { "ARABIC PLACE OF SAJDAH",NULL},
+/* 06E9 */ { "ARABIC PLACE OF SAJDAH","	* there is a range of acceptable glyphs for this character"},
 /* 06EA */ { "ARABIC EMPTY CENTRE LOW STOP",NULL},
 /* 06EB */ { "ARABIC EMPTY CENTRE HIGH STOP",NULL},
 /* 06EC */ { "ARABIC ROUNDED HIGH STOP WITH FILLED CENTRE",NULL},
@@ -3136,7 +3173,7 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 0761 */ { "ARABIC LETTER FEH WITH THREE DOTS POINTING UPWARDS BELOW",NULL},
 /* 0762 */ { "ARABIC LETTER KEHEH WITH DOT ABOVE","	* old Malay, preferred to 06AC\n"
 	"	x (arabic letter kaf with dot above - 06AC)"},
-/* 0763 */ { "ARABIC LETTER KEHEH WITH THREE DOTS ABOVE","	* Moroccan Arabic, Amazigh\n"
+/* 0763 */ { "ARABIC LETTER KEHEH WITH THREE DOTS ABOVE","	* Moroccan Arabic, Amazigh, Burushaski\n"
 	"	x (arabic letter ng - 06AD)"},
 /* 0764 */ { "ARABIC LETTER KEHEH WITH THREE DOTS POINTING UPWARDS BELOW",NULL},
 /* 0765 */ { "ARABIC LETTER MEEM WITH DOT ABOVE",NULL},
@@ -3230,65 +3267,66 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 07BD */ { NULL,NULL},
 /* 07BE */ { NULL,NULL},
 /* 07BF */ { NULL,NULL},
-/* 07C0 */ { NULL,NULL},
-/* 07C1 */ { NULL,NULL},
-/* 07C2 */ { NULL,NULL},
-/* 07C3 */ { NULL,NULL},
-/* 07C4 */ { NULL,NULL},
-/* 07C5 */ { NULL,NULL},
-/* 07C6 */ { NULL,NULL},
-/* 07C7 */ { NULL,NULL},
-/* 07C8 */ { NULL,NULL},
-/* 07C9 */ { NULL,NULL},
-/* 07CA */ { NULL,NULL},
-/* 07CB */ { NULL,NULL},
-/* 07CC */ { NULL,NULL},
-/* 07CD */ { NULL,NULL},
-/* 07CE */ { NULL,NULL},
-/* 07CF */ { NULL,NULL},
-/* 07D0 */ { NULL,NULL},
-/* 07D1 */ { NULL,NULL},
-/* 07D2 */ { NULL,NULL},
-/* 07D3 */ { NULL,NULL},
-/* 07D4 */ { NULL,NULL},
-/* 07D5 */ { NULL,NULL},
-/* 07D6 */ { NULL,NULL},
-/* 07D7 */ { NULL,NULL},
-/* 07D8 */ { NULL,NULL},
-/* 07D9 */ { NULL,NULL},
-/* 07DA */ { NULL,NULL},
-/* 07DB */ { NULL,NULL},
-/* 07DC */ { NULL,NULL},
-/* 07DD */ { NULL,NULL},
-/* 07DE */ { NULL,NULL},
-/* 07DF */ { NULL,NULL},
-/* 07E0 */ { NULL,NULL},
-/* 07E1 */ { NULL,NULL},
-/* 07E2 */ { NULL,NULL},
-/* 07E3 */ { NULL,NULL},
-/* 07E4 */ { NULL,NULL},
-/* 07E5 */ { NULL,NULL},
-/* 07E6 */ { NULL,NULL},
-/* 07E7 */ { NULL,NULL},
-/* 07E8 */ { NULL,NULL},
-/* 07E9 */ { NULL,NULL},
-/* 07EA */ { NULL,NULL},
-/* 07EB */ { NULL,NULL},
-/* 07EC */ { NULL,NULL},
-/* 07ED */ { NULL,NULL},
-/* 07EE */ { NULL,NULL},
-/* 07EF */ { NULL,NULL},
-/* 07F0 */ { NULL,NULL},
-/* 07F1 */ { NULL,NULL},
-/* 07F2 */ { NULL,NULL},
-/* 07F3 */ { NULL,NULL},
-/* 07F4 */ { NULL,NULL},
-/* 07F5 */ { NULL,NULL},
-/* 07F6 */ { NULL,NULL},
-/* 07F7 */ { NULL,NULL},
-/* 07F8 */ { NULL,NULL},
-/* 07F9 */ { NULL,NULL},
-/* 07FA */ { NULL,NULL},
+/* 07C0 */ { "NKO DIGIT ZERO",NULL},
+/* 07C1 */ { "NKO DIGIT ONE",NULL},
+/* 07C2 */ { "NKO DIGIT TWO",NULL},
+/* 07C3 */ { "NKO DIGIT THREE",NULL},
+/* 07C4 */ { "NKO DIGIT FOUR",NULL},
+/* 07C5 */ { "NKO DIGIT FIVE",NULL},
+/* 07C6 */ { "NKO DIGIT SIX",NULL},
+/* 07C7 */ { "NKO DIGIT SEVEN",NULL},
+/* 07C8 */ { "NKO DIGIT EIGHT",NULL},
+/* 07C9 */ { "NKO DIGIT NINE",NULL},
+/* 07CA */ { "NKO LETTER A",NULL},
+/* 07CB */ { "NKO LETTER EE",NULL},
+/* 07CC */ { "NKO LETTER I",NULL},
+/* 07CD */ { "NKO LETTER E",NULL},
+/* 07CE */ { "NKO LETTER U",NULL},
+/* 07CF */ { "NKO LETTER OO",NULL},
+/* 07D0 */ { "NKO LETTER O",NULL},
+/* 07D1 */ { "NKO LETTER DAGBASINNA",NULL},
+/* 07D2 */ { "NKO LETTER N",NULL},
+/* 07D3 */ { "NKO LETTER BA",NULL},
+/* 07D4 */ { "NKO LETTER PA",NULL},
+/* 07D5 */ { "NKO LETTER TA",NULL},
+/* 07D6 */ { "NKO LETTER JA",NULL},
+/* 07D7 */ { "NKO LETTER CHA",NULL},
+/* 07D8 */ { "NKO LETTER DA",NULL},
+/* 07D9 */ { "NKO LETTER RA",NULL},
+/* 07DA */ { "NKO LETTER RRA",NULL},
+/* 07DB */ { "NKO LETTER SA",NULL},
+/* 07DC */ { "NKO LETTER GBA",NULL},
+/* 07DD */ { "NKO LETTER FA",NULL},
+/* 07DE */ { "NKO LETTER KA",NULL},
+/* 07DF */ { "NKO LETTER LA",NULL},
+/* 07E0 */ { "NKO LETTER NA WOLOSO",NULL},
+/* 07E1 */ { "NKO LETTER MA",NULL},
+/* 07E2 */ { "NKO LETTER NYA",NULL},
+/* 07E3 */ { "NKO LETTER NA",NULL},
+/* 07E4 */ { "NKO LETTER HA",NULL},
+/* 07E5 */ { "NKO LETTER WA",NULL},
+/* 07E6 */ { "NKO LETTER YA",NULL},
+/* 07E7 */ { "NKO LETTER NYA WOLOSO",NULL},
+/* 07E8 */ { "NKO LETTER JONA JA",NULL},
+/* 07E9 */ { "NKO LETTER JONA CHA",NULL},
+/* 07EA */ { "NKO LETTER JONA RA","	x (nko letter ra - 07D9)"},
+/* 07EB */ { "NKO COMBINING SHORT HIGH TONE","	x (combining macron - 0304)"},
+/* 07EC */ { "NKO COMBINING SHORT LOW TONE","	x (combining tilde - 0303)"},
+/* 07ED */ { "NKO COMBINING SHORT RISING TONE","	x (combining dot above - 0307)"},
+/* 07EE */ { "NKO COMBINING LONG DESCENDING TONE","	x (combining circumflex accent - 0302)"},
+/* 07EF */ { "NKO COMBINING LONG HIGH TONE",NULL},
+/* 07F0 */ { "NKO COMBINING LONG LOW TONE",NULL},
+/* 07F1 */ { "NKO COMBINING LONG RISING TONE",NULL},
+/* 07F2 */ { "NKO COMBINING NASALIZATION MARK","	x (combining dot below - 0323)"},
+/* 07F3 */ { "NKO COMBINING DOUBLE DOT ABOVE","	x (combining diaeresis - 0308)"},
+/* 07F4 */ { "NKO HIGH TONE APOSTROPHE","	x (modifier letter apostrophe - 02BC)"},
+/* 07F5 */ { "NKO LOW TONE APOSTROPHE","	x (modifier letter turned comma - 02BB)"},
+/* 07F6 */ { "NKO SYMBOL OO DENNEN",NULL},
+/* 07F7 */ { "NKO SYMBOL GBAKURUNEN",NULL},
+/* 07F8 */ { "NKO COMMA",NULL},
+/* 07F9 */ { "NKO EXCLAMATION MARK",NULL},
+/* 07FA */ { "NKO LAJANYALAN","	x (low line - 005F)\n"
+	"	x (arabic tatweel - 0640)"},
 /* 07FB */ { NULL,NULL},
 /* 07FC */ { NULL,NULL},
 /* 07FD */ { NULL,NULL},
@@ -3533,8 +3571,8 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 09E1 */ { "BENGALI LETTER VOCALIC LL",NULL},
 /* 09E2 */ { "BENGALI VOWEL SIGN VOCALIC L",NULL},
 /* 09E3 */ { "BENGALI VOWEL SIGN VOCALIC LL",NULL},
-/* 09E4 */ { NULL,NULL},
-/* 09E5 */ { NULL,NULL},
+/* 09E4 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 09E5 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 09E6 */ { "BENGALI DIGIT ZERO",NULL},
 /* 09E7 */ { "BENGALI DIGIT ONE",NULL},
 /* 09E8 */ { "BENGALI DIGIT TWO",NULL},
@@ -3546,7 +3584,7 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 09EE */ { "BENGALI DIGIT EIGHT",NULL},
 /* 09EF */ { "BENGALI DIGIT NINE",NULL},
 /* 09F0 */ { "BENGALI LETTER RA WITH MIDDLE DIAGONAL (Assamese)","	* Assamese"},
-/* 09F1 */ { "BENGALI LETTER RA WITH LOWER DIAGONAL (Assamese)","	= BENGALI LETTER VA WITH LOWER DIAGONAL\n"
+/* 09F1 */ { "BENGALI LETTER RA WITH LOWER DIAGONAL (Assamese)","	= bengali letter va with lower diagonal (1.0)\n"
 	"	* Assamese"},
 /* 09F2 */ { "BENGALI RUPEE MARK",NULL},
 /* 09F3 */ { "BENGALI RUPEE SIGN",NULL},
@@ -3570,7 +3608,7 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0A02 */ { "GURMUKHI SIGN BINDI",NULL},
 /* 0A03 */ { "GURMUKHI SIGN VISARGA",NULL},
 /* 0A04 */ { NULL,NULL},
-/* 0A05 */ { "GURMUKHI LETTER A",NULL},
+/* 0A05 */ { "GURMUKHI LETTER A","	= aira"},
 /* 0A06 */ { "GURMUKHI LETTER AA",NULL},
 /* 0A07 */ { "GURMUKHI LETTER I",NULL},
 /* 0A08 */ { "GURMUKHI LETTER II",NULL},
@@ -3625,23 +3663,25 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0A39 */ { "GURMUKHI LETTER HA",NULL},
 /* 0A3A */ { NULL,NULL},
 /* 0A3B */ { NULL,NULL},
-/* 0A3C */ { "GURMUKHI SIGN NUKTA","	* for extending the alphabet to new letters"},
+/* 0A3C */ { "GURMUKHI SIGN NUKTA","	= pairin bindi\n"
+	"	* for extending the alphabet to new letters"},
 /* 0A3D */ { NULL,NULL},
-/* 0A3E */ { "GURMUKHI VOWEL SIGN AA",NULL},
-/* 0A3F */ { "GURMUKHI VOWEL SIGN I","	* stands to the left of the consonant"},
-/* 0A40 */ { "GURMUKHI VOWEL SIGN II",NULL},
-/* 0A41 */ { "GURMUKHI VOWEL SIGN U",NULL},
-/* 0A42 */ { "GURMUKHI VOWEL SIGN UU",NULL},
+/* 0A3E */ { "GURMUKHI VOWEL SIGN AA","	= kanna"},
+/* 0A3F */ { "GURMUKHI VOWEL SIGN I","	= sihari\n"
+	"	* stands to the left of the consonant"},
+/* 0A40 */ { "GURMUKHI VOWEL SIGN II","	= bihari"},
+/* 0A41 */ { "GURMUKHI VOWEL SIGN U","	= aunkar"},
+/* 0A42 */ { "GURMUKHI VOWEL SIGN UU","	= dulainkar"},
 /* 0A43 */ { NULL,NULL},
 /* 0A44 */ { NULL,NULL},
 /* 0A45 */ { NULL,NULL},
 /* 0A46 */ { NULL,NULL},
-/* 0A47 */ { "GURMUKHI VOWEL SIGN EE",NULL},
-/* 0A48 */ { "GURMUKHI VOWEL SIGN AI",NULL},
+/* 0A47 */ { "GURMUKHI VOWEL SIGN EE","	= lanvan"},
+/* 0A48 */ { "GURMUKHI VOWEL SIGN AI","	= dulanvan"},
 /* 0A49 */ { NULL,NULL},
 /* 0A4A */ { NULL,NULL},
-/* 0A4B */ { "GURMUKHI VOWEL SIGN OO",NULL},
-/* 0A4C */ { "GURMUKHI VOWEL SIGN AU",NULL},
+/* 0A4B */ { "GURMUKHI VOWEL SIGN OO","	= hora"},
+/* 0A4C */ { "GURMUKHI VOWEL SIGN AU","	= kanaura"},
 /* 0A4D */ { "GURMUKHI SIGN VIRAMA",NULL},
 /* 0A4E */ { NULL,NULL},
 /* 0A4F */ { NULL,NULL},
@@ -3665,8 +3705,8 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0A61 */ { NULL,NULL},
 /* 0A62 */ { NULL,NULL},
 /* 0A63 */ { NULL,NULL},
-/* 0A64 */ { NULL,NULL},
-/* 0A65 */ { NULL,NULL},
+/* 0A64 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0A65 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0A66 */ { "GURMUKHI DIGIT ZERO",NULL},
 /* 0A67 */ { "GURMUKHI DIGIT ONE",NULL},
 /* 0A68 */ { "GURMUKHI DIGIT TWO",NULL},
@@ -3793,8 +3833,8 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0AE1 */ { "GUJARATI LETTER VOCALIC LL",NULL},
 /* 0AE2 */ { "GUJARATI VOWEL SIGN VOCALIC L",NULL},
 /* 0AE3 */ { "GUJARATI VOWEL SIGN VOCALIC LL",NULL},
-/* 0AE4 */ { NULL,NULL},
-/* 0AE5 */ { NULL,NULL},
+/* 0AE4 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0AE5 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0AE6 */ { "GUJARATI DIGIT ZERO",NULL},
 /* 0AE7 */ { "GUJARATI DIGIT ONE",NULL},
 /* 0AE8 */ { "GUJARATI DIGIT TWO",NULL},
@@ -3927,8 +3967,8 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0B61 */ { "ORIYA LETTER VOCALIC LL",NULL},
 /* 0B62 */ { NULL,NULL},
 /* 0B63 */ { NULL,NULL},
-/* 0B64 */ { NULL,NULL},
-/* 0B65 */ { NULL,NULL},
+/* 0B64 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0B65 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0B66 */ { "ORIYA DIGIT ZERO",NULL},
 /* 0B67 */ { "ORIYA DIGIT ONE",NULL},
 /* 0B68 */ { "ORIYA DIGIT TWO",NULL},
@@ -4056,8 +4096,8 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BE1 */ { NULL,NULL},
 /* 0BE2 */ { NULL,NULL},
 /* 0BE3 */ { NULL,NULL},
-/* 0BE4 */ { NULL,NULL},
-/* 0BE5 */ { NULL,NULL},
+/* 0BE4 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0BE5 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0BE6 */ { "TAMIL DIGIT ZERO",NULL},
 /* 0BE7 */ { "TAMIL DIGIT ONE",NULL},
 /* 0BE8 */ { "TAMIL DIGIT TWO",NULL},
@@ -4187,8 +4227,8 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0C61 */ { "TELUGU LETTER VOCALIC LL",NULL},
 /* 0C62 */ { NULL,NULL},
 /* 0C63 */ { NULL,NULL},
-/* 0C64 */ { NULL,NULL},
-/* 0C65 */ { NULL,NULL},
+/* 0C64 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0C65 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0C66 */ { "TELUGU DIGIT ZERO",NULL},
 /* 0C67 */ { "TELUGU DIGIT ONE",NULL},
 /* 0C68 */ { "TELUGU DIGIT TWO",NULL},
@@ -4309,15 +4349,16 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0CDB */ { NULL,NULL},
 /* 0CDC */ { NULL,NULL},
 /* 0CDD */ { NULL,NULL},
-/* 0CDE */ { "KANNADA LETTER FA","	* obsolete historic letter\n"
+/* 0CDE */ { "KANNADA LETTER FA","	% KANNADA LETTER LLLA\n"
+	"	* obsolete historic letter\n"
 	"	* name is a mistake for LLLA"},
 /* 0CDF */ { NULL,NULL},
 /* 0CE0 */ { "KANNADA LETTER VOCALIC RR",NULL},
 /* 0CE1 */ { "KANNADA LETTER VOCALIC LL",NULL},
 /* 0CE2 */ { "KANNADA VOWEL SIGN VOCALIC L",NULL},
 /* 0CE3 */ { "KANNADA VOWEL SIGN VOCALIC LL",NULL},
-/* 0CE4 */ { NULL,NULL},
-/* 0CE5 */ { NULL,NULL},
+/* 0CE4 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0CE5 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0CE6 */ { "KANNADA DIGIT ZERO",NULL},
 /* 0CE7 */ { "KANNADA DIGIT ONE",NULL},
 /* 0CE8 */ { "KANNADA DIGIT TWO",NULL},
@@ -4423,7 +4464,9 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D49 */ { NULL,NULL},
 /* 0D4A */ { "MALAYALAM VOWEL SIGN O","	: 0D46 0D3E"},
 /* 0D4B */ { "MALAYALAM VOWEL SIGN OO","	: 0D47 0D3E"},
-/* 0D4C */ { "MALAYALAM VOWEL SIGN AU","	: 0D46 0D57"},
+/* 0D4C */ { "MALAYALAM VOWEL SIGN AU","	* archaic form of the /au/ dependent vowel\n"
+	"	x (malayalam au length mark - 0D57)\n"
+	"	: 0D46 0D57"},
 /* 0D4D */ { "MALAYALAM SIGN VIRAMA","	= chandrakkala (the preferred name)\n"
 	"	= vowel half-u"},
 /* 0D4E */ { NULL,NULL},
@@ -4435,7 +4478,8 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D54 */ { NULL,NULL},
 /* 0D55 */ { NULL,NULL},
 /* 0D56 */ { NULL,NULL},
-/* 0D57 */ { "MALAYALAM AU LENGTH MARK","	* only a representation of the right half of 0D4C"},
+/* 0D57 */ { "MALAYALAM AU LENGTH MARK","	* used alone to write the /au/ dependent vowel in modern texts\n"
+	"	x (malayalam vowel sign au - 0D4C)"},
 /* 0D58 */ { NULL,NULL},
 /* 0D59 */ { NULL,NULL},
 /* 0D5A */ { NULL,NULL},
@@ -4448,8 +4492,8 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D61 */ { "MALAYALAM LETTER VOCALIC LL",NULL},
 /* 0D62 */ { NULL,NULL},
 /* 0D63 */ { NULL,NULL},
-/* 0D64 */ { NULL,NULL},
-/* 0D65 */ { NULL,NULL},
+/* 0D64 */ { NULL,"	x (devanagari danda - 0964)"},
+/* 0D65 */ { NULL,"	x (devanagari double danda - 0965)"},
 /* 0D66 */ { "MALAYALAM DIGIT ZERO",NULL},
 /* 0D67 */ { "MALAYALAM DIGIT ONE",NULL},
 /* 0D68 */ { "MALAYALAM DIGIT TWO",NULL},
@@ -4460,12 +4504,12 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D6D */ { "MALAYALAM DIGIT SEVEN",NULL},
 /* 0D6E */ { "MALAYALAM DIGIT EIGHT",NULL},
 /* 0D6F */ { "MALAYALAM DIGIT NINE",NULL},
-/* 0D70 */ { "MALAYALAM NUMBER TEN",NULL},
-/* 0D71 */ { "MALAYALAM NUMBER ONE HUNDRED",NULL},
-/* 0D72 */ { "MALAYALAM NUMBER ONE THOUSAND",NULL},
-/* 0D73 */ { "MALAYALAM NUMBER ONE QUARTER",NULL},
-/* 0D74 */ { "MALAYALAM NUMBER ONE HALF",NULL},
-/* 0D75 */ { "MALAYALAM NUMBER THREE QUARTERS",NULL},
+/* 0D70 */ { NULL,NULL},
+/* 0D71 */ { NULL,NULL},
+/* 0D72 */ { NULL,NULL},
+/* 0D73 */ { NULL,NULL},
+/* 0D74 */ { NULL,NULL},
+/* 0D75 */ { NULL,NULL},
 /* 0D76 */ { NULL,NULL},
 /* 0D77 */ { NULL,NULL},
 /* 0D78 */ { NULL,NULL},
@@ -4752,52 +4796,59 @@ static const struct unicode_nameannot una_00_0E[] = {
 /* 0E7E */ { NULL,NULL},
 /* 0E7F */ { NULL,NULL},
 /* 0E80 */ { NULL,NULL},
-/* 0E81 */ { "LAO LETTER KO",NULL},
-/* 0E82 */ { "LAO LETTER KHO SUNG",NULL},
+/* 0E81 */ { "LAO LETTER KO","	= ko kay"},
+/* 0E82 */ { "LAO LETTER KHO SUNG","	= kho khay"},
 /* 0E83 */ { NULL,NULL},
-/* 0E84 */ { "LAO LETTER KHO TAM",NULL},
+/* 0E84 */ { "LAO LETTER KHO TAM","	= kho khuay"},
 /* 0E85 */ { NULL,NULL},
 /* 0E86 */ { NULL,NULL},
-/* 0E87 */ { "LAO LETTER NGO",NULL},
-/* 0E88 */ { "LAO LETTER CO",NULL},
+/* 0E87 */ { "LAO LETTER NGO","	= ngo ngu, ngo ngua"},
+/* 0E88 */ { "LAO LETTER CO","	= co cok, co cua"},
 /* 0E89 */ { NULL,NULL},
-/* 0E8A */ { "LAO LETTER SO TAM",NULL},
+/* 0E8A */ { "LAO LETTER SO TAM","	= so sang"},
 /* 0E8B */ { NULL,NULL},
 /* 0E8C */ { NULL,NULL},
-/* 0E8D */ { "LAO LETTER NYO",NULL},
+/* 0E8D */ { "LAO LETTER NYO","	= nyo nyung"},
 /* 0E8E */ { NULL,NULL},
 /* 0E8F */ { NULL,NULL},
 /* 0E90 */ { NULL,NULL},
 /* 0E91 */ { NULL,NULL},
 /* 0E92 */ { NULL,NULL},
 /* 0E93 */ { NULL,NULL},
-/* 0E94 */ { "LAO LETTER DO",NULL},
-/* 0E95 */ { "LAO LETTER TO",NULL},
-/* 0E96 */ { "LAO LETTER THO SUNG",NULL},
-/* 0E97 */ { "LAO LETTER THO TAM",NULL},
+/* 0E94 */ { "LAO LETTER DO","	= do dek"},
+/* 0E95 */ { "LAO LETTER TO","	= to ta"},
+/* 0E96 */ { "LAO LETTER THO SUNG","	= tho thong"},
+/* 0E97 */ { "LAO LETTER THO TAM","	= tho thung"},
 /* 0E98 */ { NULL,NULL},
-/* 0E99 */ { "LAO LETTER NO",NULL},
-/* 0E9A */ { "LAO LETTER BO",NULL},
-/* 0E9B */ { "LAO LETTER PO",NULL},
-/* 0E9C */ { "LAO LETTER PHO SUNG",NULL},
-/* 0E9D */ { "LAO LETTER FO TAM",NULL},
-/* 0E9E */ { "LAO LETTER PHO TAM",NULL},
-/* 0E9F */ { "LAO LETTER FO SUNG",NULL},
+/* 0E99 */ { "LAO LETTER NO","	= no nok"},
+/* 0E9A */ { "LAO LETTER BO","	= bo be, bo bet"},
+/* 0E9B */ { "LAO LETTER PO","	= po pa"},
+/* 0E9C */ { "LAO LETTER PHO SUNG","	= pho pheng"},
+/* 0E9D */ { "LAO LETTER FO TAM","	% LAO LETTER FO FON\n"
+	"	= fo fa\n"
+	"	* name is a mistake for fo sung"},
+/* 0E9E */ { "LAO LETTER PHO TAM","	= pho phu"},
+/* 0E9F */ { "LAO LETTER FO SUNG","	% LAO LETTER FO FAY\n"
+	"	* name is a mistake for fo tam"},
 /* 0EA0 */ { NULL,NULL},
-/* 0EA1 */ { "LAO LETTER MO",NULL},
-/* 0EA2 */ { "LAO LETTER YO",NULL},
-/* 0EA3 */ { "LAO LETTER LO LING",NULL},
+/* 0EA1 */ { "LAO LETTER MO","	= mo mew, mo ma"},
+/* 0EA2 */ { "LAO LETTER YO","	= yo ya"},
+/* 0EA3 */ { "LAO LETTER LO LING","	% LAO LETTER RO\n"
+	"	= ro rot\n"
+	"	* name is a mistake, lo ling is the mnemonic for 0EA5"},
 /* 0EA4 */ { NULL,NULL},
-/* 0EA5 */ { "LAO LETTER LO LOOT",NULL},
+/* 0EA5 */ { "LAO LETTER LO LOOT","	% LAO LETTER LO\n"
+	"	= lo ling\n"
+	"	* name is a mistake, lo loot is the mnemonic for 0EA3"},
 /* 0EA6 */ { NULL,NULL},
-/* 0EA7 */ { "LAO LETTER WO",NULL},
+/* 0EA7 */ { "LAO LETTER WO","	= wo wi"},
 /* 0EA8 */ { NULL,NULL},
 /* 0EA9 */ { NULL,NULL},
-/* 0EAA */ { "LAO LETTER SO SUNG",NULL},
-/* 0EAB */ { "LAO LETTER HO SUNG",NULL},
+/* 0EAA */ { "LAO LETTER SO SUNG","	= so sya"},
+/* 0EAB */ { "LAO LETTER HO SUNG","	= ho hay, ho han"},
 /* 0EAC */ { NULL,NULL},
-/* 0EAD */ { "LAO LETTER O",NULL},
-/* 0EAE */ { "LAO LETTER HO TAM",NULL},
+/* 0EAD */ { "LAO LETTER O","	= o o"},
+/* 0EAE */ { "LAO LETTER HO TAM","	= ho hya, ho hyan"},
 /* 0EAF */ { "LAO ELLIPSIS",NULL},
 /* 0EB0 */ { "LAO VOWEL SIGN A",NULL},
 /* 0EB1 */ { "LAO VOWEL SIGN MAI KAN","	* vowel shortener"},
@@ -4810,16 +4861,16 @@ static const struct unicode_nameannot una_00_0E[] = {
 /* 0EB8 */ { "LAO VOWEL SIGN U",NULL},
 /* 0EB9 */ { "LAO VOWEL SIGN UU",NULL},
 /* 0EBA */ { NULL,NULL},
-/* 0EBB */ { "LAO VOWEL SIGN MAI KON",NULL},
+/* 0EBB */ { "LAO VOWEL SIGN MAI KON","	= mai kong"},
 /* 0EBC */ { "LAO SEMIVOWEL SIGN LO",NULL},
-/* 0EBD */ { "LAO SEMIVOWEL SIGN NYO",NULL},
+/* 0EBD */ { "LAO SEMIVOWEL SIGN NYO","	= nyo fyang"},
 /* 0EBE */ { NULL,NULL},
 /* 0EBF */ { NULL,NULL},
 /* 0EC0 */ { "LAO VOWEL SIGN E",NULL},
 /* 0EC1 */ { "LAO VOWEL SIGN EI",NULL},
 /* 0EC2 */ { "LAO VOWEL SIGN O",NULL},
-/* 0EC3 */ { "LAO VOWEL SIGN AY",NULL},
-/* 0EC4 */ { "LAO VOWEL SIGN AI",NULL},
+/* 0EC3 */ { "LAO VOWEL SIGN AY","	= mai muan"},
+/* 0EC4 */ { "LAO VOWEL SIGN AI","	= mai may"},
 /* 0EC5 */ { NULL,NULL},
 /* 0EC6 */ { "LAO KO LA","	* repetition"},
 /* 0EC7 */ { NULL,NULL},
@@ -4828,7 +4879,7 @@ static const struct unicode_nameannot una_00_0E[] = {
 /* 0ECA */ { "LAO TONE MAI TI",NULL},
 /* 0ECB */ { "LAO TONE MAI CATAWA",NULL},
 /* 0ECC */ { "LAO CANCELLATION MARK",NULL},
-/* 0ECD */ { "LAO NIGGAHITA","	* final nasal"},
+/* 0ECD */ { "LAO NIGGAHITA","	* final nasal or long o vowel"},
 /* 0ECE */ { NULL,NULL},
 /* 0ECF */ { NULL,NULL},
 /* 0ED0 */ { "LAO DIGIT ZERO",NULL},
@@ -5111,7 +5162,8 @@ static const struct unicode_nameannot una_00_0F[] = {
 /* 0FCD */ { NULL,NULL},
 /* 0FCE */ { NULL,NULL},
 /* 0FCF */ { "TIBETAN SIGN RDEL NAG GSUM (dena sum)",NULL},
-/* 0FD0 */ { "TIBETAN MARK BSKA- SHOG GI MGO RGYAN (ka shog gi go gyen)","	* used in Bhutan"},
+/* 0FD0 */ { "TIBETAN MARK BSKA- SHOG GI MGO RGYAN (ka shog gi go gyen)","	% TIBETAN MARK BKA- SHOG GI MGO RGYAN\n"
+	"	* used in Bhutan"},
 /* 0FD1 */ { "TIBETAN MARK MNYAM YIG GI MGO RGYAN (nyam yig gi go gyen)","	* used in Bhutan"},
 /* 0FD2 */ { NULL,NULL},
 /* 0FD3 */ { NULL,NULL},
@@ -7291,10 +7343,10 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 1808 */ { "MONGOLIAN MANCHU COMMA",NULL},
 /* 1809 */ { "MONGOLIAN MANCHU FULL STOP",NULL},
 /* 180A */ { "MONGOLIAN NIRUGU",NULL},
-/* 180B */ { "MONGOLIAN FREE VARIATION SELECTOR ONE","	= FVS1"},
-/* 180C */ { "MONGOLIAN FREE VARIATION SELECTOR TWO","	= FVS2"},
-/* 180D */ { "MONGOLIAN FREE VARIATION SELECTOR THREE","	= FVS3"},
-/* 180E */ { "MONGOLIAN VOWEL SEPARATOR","	= MVS"},
+/* 180B */ { "MONGOLIAN FREE VARIATION SELECTOR ONE","	* abbreviated FVS1"},
+/* 180C */ { "MONGOLIAN FREE VARIATION SELECTOR TWO","	* abbreviated FVS2"},
+/* 180D */ { "MONGOLIAN FREE VARIATION SELECTOR THREE","	* abbreviated FVS3"},
+/* 180E */ { "MONGOLIAN VOWEL SEPARATOR","	* abbreviated MVS"},
 /* 180F */ { NULL,NULL},
 /* 1810 */ { "MONGOLIAN DIGIT ZERO",NULL},
 /* 1811 */ { "MONGOLIAN DIGIT ONE",NULL},
@@ -8056,6 +8108,278 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1AFF */ { NULL,NULL}
 };
 
+static const struct unicode_nameannot una_00_1B[] = {
+/* 1B00 */ { "BALINESE SIGN ULU RICEM (ardhacandra)","	= ardhacandra"},
+/* 1B01 */ { "BALINESE SIGN ULU CANDRA (candrabindu)","	= candrabindu"},
+/* 1B02 */ { "BALINESE SIGN CECEK (anusvara)","	= anusvara"},
+/* 1B03 */ { "BALINESE SIGN SURANG (repha)","	= repha"},
+/* 1B04 */ { "BALINESE SIGN BISAH (visarga)","	= visarga"},
+/* 1B05 */ { "BALINESE LETTER AKARA (a)","	= a"},
+/* 1B06 */ { "BALINESE LETTER AKARA TEDUNG (aa)","	= aa\n"
+	"	: 1B05 1B35"},
+/* 1B07 */ { "BALINESE LETTER IKARA (i)","	= i"},
+/* 1B08 */ { "BALINESE LETTER IKARA TEDUNG (ii)","	= ii\n"
+	"	: 1B07 1B35"},
+/* 1B09 */ { "BALINESE LETTER UKARA (u)","	= u"},
+/* 1B0A */ { "BALINESE LETTER UKARA TEDUNG (uu)","	= uu\n"
+	"	: 1B09 1B35"},
+/* 1B0B */ { "BALINESE LETTER RA REPA (vocalic r)","	= vocalic r"},
+/* 1B0C */ { "BALINESE LETTER RA REPA TEDUNG (vocalic rr)","	= vocalic rr\n"
+	"	: 1B0B 1B35"},
+/* 1B0D */ { "BALINESE LETTER LA LENGA (vocalic l)","	= vocalic l"},
+/* 1B0E */ { "BALINESE LETTER LA LENGA TEDUNG (vocalic ll)","	= vocalic ll\n"
+	"	: 1B0D 1B35"},
+/* 1B0F */ { "BALINESE LETTER EKARA (e)","	= e"},
+/* 1B10 */ { "BALINESE LETTER AIKARA (ai)","	= ai"},
+/* 1B11 */ { "BALINESE LETTER OKARA (o)","	= o"},
+/* 1B12 */ { "BALINESE LETTER OKARA TEDUNG (au)","	= au\n"
+	"	: 1B11 1B35"},
+/* 1B13 */ { "BALINESE LETTER KA",NULL},
+/* 1B14 */ { "BALINESE LETTER KA MAHAPRANA (kha)","	= kha"},
+/* 1B15 */ { "BALINESE LETTER GA",NULL},
+/* 1B16 */ { "BALINESE LETTER GA GORA (gha)","	= gha"},
+/* 1B17 */ { "BALINESE LETTER NGA",NULL},
+/* 1B18 */ { "BALINESE LETTER CA",NULL},
+/* 1B19 */ { "BALINESE LETTER CA LACA (cha)","	= cha"},
+/* 1B1A */ { "BALINESE LETTER JA",NULL},
+/* 1B1B */ { "BALINESE LETTER JA JERA (jha)","	= jha"},
+/* 1B1C */ { "BALINESE LETTER NYA",NULL},
+/* 1B1D */ { "BALINESE LETTER TA LATIK (tta)","	= tta"},
+/* 1B1E */ { "BALINESE LETTER TA MURDA MAHAPRANA (ttha)","	= ttha"},
+/* 1B1F */ { "BALINESE LETTER DA MURDA ALPAPRANA (dda)","	= dda"},
+/* 1B20 */ { "BALINESE LETTER DA MURDA MAHAPRANA (ddha)","	= ddha"},
+/* 1B21 */ { "BALINESE LETTER NA RAMBAT (nna)","	= nna"},
+/* 1B22 */ { "BALINESE LETTER TA",NULL},
+/* 1B23 */ { "BALINESE LETTER TA TAWA (tha)","	= tha"},
+/* 1B24 */ { "BALINESE LETTER DA",NULL},
+/* 1B25 */ { "BALINESE LETTER DA MADU (dha)","	= dha"},
+/* 1B26 */ { "BALINESE LETTER NA",NULL},
+/* 1B27 */ { "BALINESE LETTER PA",NULL},
+/* 1B28 */ { "BALINESE LETTER PA KAPAL (pha)","	= pha"},
+/* 1B29 */ { "BALINESE LETTER BA",NULL},
+/* 1B2A */ { "BALINESE LETTER BA KEMBANG (bha)","	= bha"},
+/* 1B2B */ { "BALINESE LETTER MA",NULL},
+/* 1B2C */ { "BALINESE LETTER YA",NULL},
+/* 1B2D */ { "BALINESE LETTER RA",NULL},
+/* 1B2E */ { "BALINESE LETTER LA",NULL},
+/* 1B2F */ { "BALINESE LETTER WA",NULL},
+/* 1B30 */ { "BALINESE LETTER SA SAGA (sha)","	= sha"},
+/* 1B31 */ { "BALINESE LETTER SA SAPA (ssa)","	= ssa"},
+/* 1B32 */ { "BALINESE LETTER SA",NULL},
+/* 1B33 */ { "BALINESE LETTER HA",NULL},
+/* 1B34 */ { "BALINESE SIGN REREKAN (nukta)","	= nukta"},
+/* 1B35 */ { "BALINESE VOWEL SIGN TEDUNG (aa)","	= aa"},
+/* 1B36 */ { "BALINESE VOWEL SIGN ULU (i)","	= i"},
+/* 1B37 */ { "BALINESE VOWEL SIGN ULU SARI (ii)","	= ii"},
+/* 1B38 */ { "BALINESE VOWEL SIGN SUKU (u)","	= u"},
+/* 1B39 */ { "BALINESE VOWEL SIGN SUKU ILUT (uu)","	= uu"},
+/* 1B3A */ { "BALINESE VOWEL SIGN RA REPA (vocalic r)","	= vocalic r"},
+/* 1B3B */ { "BALINESE VOWEL SIGN RA REPA TEDUNG (vocalic rr)","	= vocalic rr\n"
+	"	: 1B3A 1B35"},
+/* 1B3C */ { "BALINESE VOWEL SIGN LA LENGA (vocalic l)","	= vocalic l"},
+/* 1B3D */ { "BALINESE VOWEL SIGN LA LENGA TEDUNG (vocalic ll)","	= vocalic ll\n"
+	"	: 1B3C 1B35"},
+/* 1B3E */ { "BALINESE VOWEL SIGN TALING (e)","	= e"},
+/* 1B3F */ { "BALINESE VOWEL SIGN TALING REPA (ai)","	= ai"},
+/* 1B40 */ { "BALINESE VOWEL SIGN TALING TEDUNG (o)","	= o\n"
+	"	: 1B3E 1B35"},
+/* 1B41 */ { "BALINESE VOWEL SIGN TALING REPA TEDUNG (au)","	= au\n"
+	"	: 1B3F 1B35"},
+/* 1B42 */ { "BALINESE VOWEL SIGN PEPET (ae)","	= ae"},
+/* 1B43 */ { "BALINESE VOWEL SIGN PEPET TEDUNG (oe)","	= oe\n"
+	"	: 1B42 1B35"},
+/* 1B44 */ { "BALINESE ADEG ADEG (virama)","	= virama"},
+/* 1B45 */ { "BALINESE LETTER KAF SASAK",NULL},
+/* 1B46 */ { "BALINESE LETTER KHOT SASAK",NULL},
+/* 1B47 */ { "BALINESE LETTER TZIR SASAK",NULL},
+/* 1B48 */ { "BALINESE LETTER EF SASAK",NULL},
+/* 1B49 */ { "BALINESE LETTER VE SASAK",NULL},
+/* 1B4A */ { "BALINESE LETTER ZAL SASAK",NULL},
+/* 1B4B */ { "BALINESE LETTER ASYURA SASAK",NULL},
+/* 1B4C */ { NULL,NULL},
+/* 1B4D */ { NULL,NULL},
+/* 1B4E */ { NULL,NULL},
+/* 1B4F */ { NULL,NULL},
+/* 1B50 */ { "BALINESE DIGIT ZERO",NULL},
+/* 1B51 */ { "BALINESE DIGIT ONE",NULL},
+/* 1B52 */ { "BALINESE DIGIT TWO",NULL},
+/* 1B53 */ { "BALINESE DIGIT THREE",NULL},
+/* 1B54 */ { "BALINESE DIGIT FOUR",NULL},
+/* 1B55 */ { "BALINESE DIGIT FIVE",NULL},
+/* 1B56 */ { "BALINESE DIGIT SIX",NULL},
+/* 1B57 */ { "BALINESE DIGIT SEVEN",NULL},
+/* 1B58 */ { "BALINESE DIGIT EIGHT",NULL},
+/* 1B59 */ { "BALINESE DIGIT NINE",NULL},
+/* 1B5A */ { "BALINESE PANTI (section)","	= section"},
+/* 1B5B */ { "BALINESE PAMADA (honorific section)","	= honorific section"},
+/* 1B5C */ { "BALINESE WINDU (punctuation ring)","	= punctuation ring"},
+/* 1B5D */ { "BALINESE CARIK PAMUNGKAH (colon)","	= colon"},
+/* 1B5E */ { "BALINESE CARIK SIKI (danda)","	= danda\n"
+	"	x (devanagari danda - 0964)"},
+/* 1B5F */ { "BALINESE CARIK PAREREN (double danda)","	= double danda\n"
+	"	x (devanagari double danda - 0965)"},
+/* 1B60 */ { "BALINESE PAMENENG (line-breaking hyphen)","	= line-breaking hyphen"},
+/* 1B61 */ { "BALINESE MUSICAL SYMBOL DONG",NULL},
+/* 1B62 */ { "BALINESE MUSICAL SYMBOL DENG",NULL},
+/* 1B63 */ { "BALINESE MUSICAL SYMBOL DUNG",NULL},
+/* 1B64 */ { "BALINESE MUSICAL SYMBOL DANG",NULL},
+/* 1B65 */ { "BALINESE MUSICAL SYMBOL DANG SURANG",NULL},
+/* 1B66 */ { "BALINESE MUSICAL SYMBOL DING",NULL},
+/* 1B67 */ { "BALINESE MUSICAL SYMBOL DAENG",NULL},
+/* 1B68 */ { "BALINESE MUSICAL SYMBOL DEUNG",NULL},
+/* 1B69 */ { "BALINESE MUSICAL SYMBOL DAING",NULL},
+/* 1B6A */ { "BALINESE MUSICAL SYMBOL DANG GEDE",NULL},
+/* 1B6B */ { "BALINESE MUSICAL SYMBOL COMBINING TEGEH",NULL},
+/* 1B6C */ { "BALINESE MUSICAL SYMBOL COMBINING ENDEP",NULL},
+/* 1B6D */ { "BALINESE MUSICAL SYMBOL COMBINING KEMPUL",NULL},
+/* 1B6E */ { "BALINESE MUSICAL SYMBOL COMBINING KEMPLI",NULL},
+/* 1B6F */ { "BALINESE MUSICAL SYMBOL COMBINING JEGOGAN",NULL},
+/* 1B70 */ { "BALINESE MUSICAL SYMBOL COMBINING KEMPUL WITH JEGOGAN",NULL},
+/* 1B71 */ { "BALINESE MUSICAL SYMBOL COMBINING KEMPLI WITH JEGOGAN",NULL},
+/* 1B72 */ { "BALINESE MUSICAL SYMBOL COMBINING BENDE",NULL},
+/* 1B73 */ { "BALINESE MUSICAL SYMBOL COMBINING GONG",NULL},
+/* 1B74 */ { "BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DUG",NULL},
+/* 1B75 */ { "BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DAG",NULL},
+/* 1B76 */ { "BALINESE MUSICAL SYMBOL RIGHT-HAND CLOSED TUK",NULL},
+/* 1B77 */ { "BALINESE MUSICAL SYMBOL RIGHT-HAND CLOSED TAK",NULL},
+/* 1B78 */ { "BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PANG",NULL},
+/* 1B79 */ { "BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PUNG",NULL},
+/* 1B7A */ { "BALINESE MUSICAL SYMBOL LEFT-HAND CLOSED PLAK",NULL},
+/* 1B7B */ { "BALINESE MUSICAL SYMBOL LEFT-HAND CLOSED PLUK",NULL},
+/* 1B7C */ { "BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING",NULL},
+/* 1B7D */ { NULL,NULL},
+/* 1B7E */ { NULL,NULL},
+/* 1B7F */ { NULL,NULL},
+/* 1B80 */ { NULL,NULL},
+/* 1B81 */ { NULL,NULL},
+/* 1B82 */ { NULL,NULL},
+/* 1B83 */ { NULL,NULL},
+/* 1B84 */ { NULL,NULL},
+/* 1B85 */ { NULL,NULL},
+/* 1B86 */ { NULL,NULL},
+/* 1B87 */ { NULL,NULL},
+/* 1B88 */ { NULL,NULL},
+/* 1B89 */ { NULL,NULL},
+/* 1B8A */ { NULL,NULL},
+/* 1B8B */ { NULL,NULL},
+/* 1B8C */ { NULL,NULL},
+/* 1B8D */ { NULL,NULL},
+/* 1B8E */ { NULL,NULL},
+/* 1B8F */ { NULL,NULL},
+/* 1B90 */ { NULL,NULL},
+/* 1B91 */ { NULL,NULL},
+/* 1B92 */ { NULL,NULL},
+/* 1B93 */ { NULL,NULL},
+/* 1B94 */ { NULL,NULL},
+/* 1B95 */ { NULL,NULL},
+/* 1B96 */ { NULL,NULL},
+/* 1B97 */ { NULL,NULL},
+/* 1B98 */ { NULL,NULL},
+/* 1B99 */ { NULL,NULL},
+/* 1B9A */ { NULL,NULL},
+/* 1B9B */ { NULL,NULL},
+/* 1B9C */ { NULL,NULL},
+/* 1B9D */ { NULL,NULL},
+/* 1B9E */ { NULL,NULL},
+/* 1B9F */ { NULL,NULL},
+/* 1BA0 */ { NULL,NULL},
+/* 1BA1 */ { NULL,NULL},
+/* 1BA2 */ { NULL,NULL},
+/* 1BA3 */ { NULL,NULL},
+/* 1BA4 */ { NULL,NULL},
+/* 1BA5 */ { NULL,NULL},
+/* 1BA6 */ { NULL,NULL},
+/* 1BA7 */ { NULL,NULL},
+/* 1BA8 */ { NULL,NULL},
+/* 1BA9 */ { NULL,NULL},
+/* 1BAA */ { NULL,NULL},
+/* 1BAB */ { NULL,NULL},
+/* 1BAC */ { NULL,NULL},
+/* 1BAD */ { NULL,NULL},
+/* 1BAE */ { NULL,NULL},
+/* 1BAF */ { NULL,NULL},
+/* 1BB0 */ { NULL,NULL},
+/* 1BB1 */ { NULL,NULL},
+/* 1BB2 */ { NULL,NULL},
+/* 1BB3 */ { NULL,NULL},
+/* 1BB4 */ { NULL,NULL},
+/* 1BB5 */ { NULL,NULL},
+/* 1BB6 */ { NULL,NULL},
+/* 1BB7 */ { NULL,NULL},
+/* 1BB8 */ { NULL,NULL},
+/* 1BB9 */ { NULL,NULL},
+/* 1BBA */ { NULL,NULL},
+/* 1BBB */ { NULL,NULL},
+/* 1BBC */ { NULL,NULL},
+/* 1BBD */ { NULL,NULL},
+/* 1BBE */ { NULL,NULL},
+/* 1BBF */ { NULL,NULL},
+/* 1BC0 */ { NULL,NULL},
+/* 1BC1 */ { NULL,NULL},
+/* 1BC2 */ { NULL,NULL},
+/* 1BC3 */ { NULL,NULL},
+/* 1BC4 */ { NULL,NULL},
+/* 1BC5 */ { NULL,NULL},
+/* 1BC6 */ { NULL,NULL},
+/* 1BC7 */ { NULL,NULL},
+/* 1BC8 */ { NULL,NULL},
+/* 1BC9 */ { NULL,NULL},
+/* 1BCA */ { NULL,NULL},
+/* 1BCB */ { NULL,NULL},
+/* 1BCC */ { NULL,NULL},
+/* 1BCD */ { NULL,NULL},
+/* 1BCE */ { NULL,NULL},
+/* 1BCF */ { NULL,NULL},
+/* 1BD0 */ { NULL,NULL},
+/* 1BD1 */ { NULL,NULL},
+/* 1BD2 */ { NULL,NULL},
+/* 1BD3 */ { NULL,NULL},
+/* 1BD4 */ { NULL,NULL},
+/* 1BD5 */ { NULL,NULL},
+/* 1BD6 */ { NULL,NULL},
+/* 1BD7 */ { NULL,NULL},
+/* 1BD8 */ { NULL,NULL},
+/* 1BD9 */ { NULL,NULL},
+/* 1BDA */ { NULL,NULL},
+/* 1BDB */ { NULL,NULL},
+/* 1BDC */ { NULL,NULL},
+/* 1BDD */ { NULL,NULL},
+/* 1BDE */ { NULL,NULL},
+/* 1BDF */ { NULL,NULL},
+/* 1BE0 */ { NULL,NULL},
+/* 1BE1 */ { NULL,NULL},
+/* 1BE2 */ { NULL,NULL},
+/* 1BE3 */ { NULL,NULL},
+/* 1BE4 */ { NULL,NULL},
+/* 1BE5 */ { NULL,NULL},
+/* 1BE6 */ { NULL,NULL},
+/* 1BE7 */ { NULL,NULL},
+/* 1BE8 */ { NULL,NULL},
+/* 1BE9 */ { NULL,NULL},
+/* 1BEA */ { NULL,NULL},
+/* 1BEB */ { NULL,NULL},
+/* 1BEC */ { NULL,NULL},
+/* 1BED */ { NULL,NULL},
+/* 1BEE */ { NULL,NULL},
+/* 1BEF */ { NULL,NULL},
+/* 1BF0 */ { NULL,NULL},
+/* 1BF1 */ { NULL,NULL},
+/* 1BF2 */ { NULL,NULL},
+/* 1BF3 */ { NULL,NULL},
+/* 1BF4 */ { NULL,NULL},
+/* 1BF5 */ { NULL,NULL},
+/* 1BF6 */ { NULL,NULL},
+/* 1BF7 */ { NULL,NULL},
+/* 1BF8 */ { NULL,NULL},
+/* 1BF9 */ { NULL,NULL},
+/* 1BFA */ { NULL,NULL},
+/* 1BFB */ { NULL,NULL},
+/* 1BFC */ { NULL,NULL},
+/* 1BFD */ { NULL,NULL},
+/* 1BFE */ { NULL,NULL},
+/* 1BFF */ { NULL,NULL}
+};
+
 static const struct unicode_nameannot una_00_1D[] = {
 /* 1D00 */ { "LATIN LETTER SMALL CAPITAL A",NULL},
 /* 1D01 */ { "LATIN LETTER SMALL CAPITAL AE",NULL},
@@ -8183,13 +8507,15 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D78 */ { "MODIFIER LETTER CYRILLIC EN","	# <super> 043D"},
 /* 1D79 */ { "LATIN SMALL LETTER INSULAR G","	* older Irish phonetic notation\n"
 	"	x (latin small letter g - 0067)\n"
+	"	x (latin small letter yogh - 021D)\n"
 	"	x (latin small letter script g - 0261)\n"
 	"	x (latin small letter gamma - 0263)"},
 /* 1D7A */ { "LATIN SMALL LETTER TH WITH STRIKETHROUGH","	* American dictionary usage\n"
 	"	x (greek small letter theta - 03B8)"},
 /* 1D7B */ { "LATIN SMALL CAPITAL LETTER I WITH STROKE","	* used with different meanings by Americanists and Oxford dictionaries"},
 /* 1D7C */ { "LATIN SMALL LETTER IOTA WITH STROKE","	* used by Russianists"},
-/* 1D7D */ { "LATIN SMALL LETTER P WITH STROKE","	* used by Americanists"},
+/* 1D7D */ { "LATIN SMALL LETTER P WITH STROKE","	* used by Americanists\n"
+	"	* uppercase is 2C63"},
 /* 1D7E */ { "LATIN SMALL CAPITAL LETTER U WITH STROKE","	* used by Americanists"},
 /* 1D7F */ { "LATIN SMALL LETTER UPSILON WITH STROKE","	* used by Americanists and Oxford dictionaries"},
 /* 1D80 */ { "LATIN SMALL LETTER B WITH PALATAL HOOK",NULL},
@@ -8320,8 +8646,8 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DFB */ { NULL,NULL},
 /* 1DFC */ { NULL,NULL},
 /* 1DFD */ { NULL,NULL},
-/* 1DFE */ { NULL,NULL},
-/* 1DFF */ { NULL,NULL}
+/* 1DFE */ { "COMBINING LEFT ARROWHEAD ABOVE",NULL},
+/* 1DFF */ { "COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW",NULL}
 };
 
 static const struct unicode_nameannot una_00_1E[] = {
@@ -8389,6 +8715,8 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E35 */ { "LATIN SMALL LETTER K WITH LINE BELOW","	: 006B 0331"},
 /* 1E36 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW","	: 004C 0323"},
 /* 1E37 */ { "LATIN SMALL LETTER L WITH DOT BELOW","	* Indic transliteration\n"
+	"	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
+	"	x (combining ring below - 0325)\n"
 	"	: 006C 0323"},
 /* 1E38 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW AND MACRON","	: 1E36 0304"},
 /* 1E39 */ { "LATIN SMALL LETTER L WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
@@ -8434,6 +8762,8 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E59 */ { "LATIN SMALL LETTER R WITH DOT ABOVE","	: 0072 0307"},
 /* 1E5A */ { "LATIN CAPITAL LETTER R WITH DOT BELOW","	: 0052 0323"},
 /* 1E5B */ { "LATIN SMALL LETTER R WITH DOT BELOW","	* Indic transliteration\n"
+	"	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
+	"	x (combining ring below - 0325)\n"
 	"	: 0072 0323"},
 /* 1E5C */ { "LATIN CAPITAL LETTER R WITH DOT BELOW AND MACRON","	: 1E5A 0304"},
 /* 1E5D */ { "LATIN SMALL LETTER R WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
@@ -8902,12 +9232,12 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 200A */ { "HAIR SPACE","	* thinner than a thin space\n"
 	"	* in traditional typography, the thinnest space available\n"
 	"	# 0020 space"},
-/* 200B */ { "ZERO WIDTH SPACE","	= ZWSP\n"
+/* 200B */ { "ZERO WIDTH SPACE","	* commonly abbreviated ZWSP\n"
 	"	* this character is intended for line break control; it has no width, but its presence between two characters does not prevent increased letter spacing in justification"},
-/* 200C */ { "ZERO WIDTH NON-JOINER","	= ZWNJ"},
-/* 200D */ { "ZERO WIDTH JOINER","	= ZWJ"},
-/* 200E */ { "LEFT-TO-RIGHT MARK","	= LRM"},
-/* 200F */ { "RIGHT-TO-LEFT MARK","	= RLM"},
+/* 200C */ { "ZERO WIDTH NON-JOINER","	* commonly abbreviated ZWNJ"},
+/* 200D */ { "ZERO WIDTH JOINER","	* commonly abbreviated ZWJ"},
+/* 200E */ { "LEFT-TO-RIGHT MARK","	* commonly abbreviated LRM"},
+/* 200F */ { "RIGHT-TO-LEFT MARK","	* commonly abbreviated RLM"},
 /* 2010 */ { "HYPHEN","	x (hyphen-minus - 002D)\n"
 	"	x (soft hyphen - 00AD)"},
 /* 2011 */ { "NON-BREAKING HYPHEN","	x (hyphen-minus - 002D)\n"
@@ -8917,7 +9247,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 2013 */ { "EN DASH",NULL},
 /* 2014 */ { "EM DASH","	* may be used in pairs to offset parenthetical text\n"
 	"	x (katakana-hiragana prolonged sound mark - 30FC)"},
-/* 2015 */ { "HORIZONTAL BAR","	= QUOTATION DASH\n"
+/* 2015 */ { "HORIZONTAL BAR","	= quotation dash\n"
 	"	* long dash introducing quoted text"},
 /* 2016 */ { "DOUBLE VERTICAL LINE","	* used in pairs to indicate norm of a matrix\n"
 	"	x (combining double vertical stroke overlay - 20E6)\n"
@@ -8926,36 +9256,36 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (low line - 005F)\n"
 	"	x (combining double low line - 0333)\n"
 	"	# 0020 0333"},
-/* 2018 */ { "LEFT SINGLE QUOTATION MARK","	= SINGLE TURNED COMMA QUOTATION MARK\n"
-	"	* this is the preferred glyph (as opposed to 201B)\n"
+/* 2018 */ { "LEFT SINGLE QUOTATION MARK","	= single turned comma quotation mark\n"
+	"	* this is the preferred character (as opposed to 201B)\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (modifier letter turned comma - 02BB)\n"
 	"	x (heavy single turned comma quotation mark ornament - 275B)"},
-/* 2019 */ { "RIGHT SINGLE QUOTATION MARK","	= SINGLE COMMA QUOTATION MARK\n"
+/* 2019 */ { "RIGHT SINGLE QUOTATION MARK","	= single comma quotation mark\n"
 	"	* this is the preferred character to use for apostrophe\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (modifier letter apostrophe - 02BC)\n"
 	"	x (heavy single comma quotation mark ornament - 275C)"},
-/* 201A */ { "SINGLE LOW-9 QUOTATION MARK","	= LOW SINGLE COMMA QUOTATION MARK\n"
+/* 201A */ { "SINGLE LOW-9 QUOTATION MARK","	= low single comma quotation mark\n"
 	"	* used as opening single quotation mark in some languages"},
-/* 201B */ { "SINGLE HIGH-REVERSED-9 QUOTATION MARK","	= SINGLE REVERSED COMMA QUOTATION MARK\n"
-	"	* glyph variant of 2018\n"
+/* 201B */ { "SINGLE HIGH-REVERSED-9 QUOTATION MARK","	= single reversed comma quotation mark\n"
+	"	* has same semantic as 2018, but differs in appearance\n"
 	"	x (modifier letter reversed comma - 02BD)"},
-/* 201C */ { "LEFT DOUBLE QUOTATION MARK","	= DOUBLE TURNED COMMA QUOTATION MARK\n"
-	"	* this is the preferred glyph (as opposed to 201F)\n"
+/* 201C */ { "LEFT DOUBLE QUOTATION MARK","	= double turned comma quotation mark\n"
+	"	* this is the preferred character (as opposed to 201F)\n"
 	"	x (quotation mark - 0022)\n"
 	"	x (heavy double turned comma quotation mark ornament - 275D)\n"
 	"	x (reversed double prime quotation mark - 301D)"},
-/* 201D */ { "RIGHT DOUBLE QUOTATION MARK","	= DOUBLE COMMA QUOTATION MARK\n"
+/* 201D */ { "RIGHT DOUBLE QUOTATION MARK","	= double comma quotation mark\n"
 	"	x (quotation mark - 0022)\n"
 	"	x (double prime - 2033)\n"
 	"	x (heavy double comma quotation mark ornament - 275E)\n"
 	"	x (double prime quotation mark - 301E)"},
-/* 201E */ { "DOUBLE LOW-9 QUOTATION MARK","	= LOW DOUBLE COMMA QUOTATION MARK\n"
+/* 201E */ { "DOUBLE LOW-9 QUOTATION MARK","	= low double comma quotation mark\n"
 	"	* used as opening double quotation mark in some languages\n"
 	"	x (low double prime quotation mark - 301F)"},
-/* 201F */ { "DOUBLE HIGH-REVERSED-9 QUOTATION MARK","	= DOUBLE REVERSED COMMA QUOTATION MARK\n"
-	"	* glyph variant of 201C"},
+/* 201F */ { "DOUBLE HIGH-REVERSED-9 QUOTATION MARK","	= double reversed comma quotation mark\n"
+	"	* has same semantic as 201C, but differs in appearance"},
 /* 2020 */ { "DAGGER","	= obelisk, obelus, long cross"},
 /* 2021 */ { "DOUBLE DAGGER","	= diesis, double obelisk"},
 /* 2022 */ { "BULLET","	= black small circle\n"
@@ -8979,12 +9309,12 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 2027 */ { "HYPHENATION POINT",NULL},
 /* 2028 */ { "LINE SEPARATOR","	* may be used to represent this semantic unambiguously"},
 /* 2029 */ { "PARAGRAPH SEPARATOR","	* may be used to represent this semantic unambiguously"},
-/* 202A */ { "LEFT-TO-RIGHT EMBEDDING","	= LRE"},
-/* 202B */ { "RIGHT-TO-LEFT EMBEDDING","	= RLE"},
-/* 202C */ { "POP DIRECTIONAL FORMATTING","	= PDF"},
-/* 202D */ { "LEFT-TO-RIGHT OVERRIDE","	= LRO"},
-/* 202E */ { "RIGHT-TO-LEFT OVERRIDE","	= RLO"},
-/* 202F */ { "NARROW NO-BREAK SPACE","	= NNBSP\n"
+/* 202A */ { "LEFT-TO-RIGHT EMBEDDING","	* commonly abbreviated LRE"},
+/* 202B */ { "RIGHT-TO-LEFT EMBEDDING","	* commonly abbreviated RLE"},
+/* 202C */ { "POP DIRECTIONAL FORMATTING","	* commonly abbreviated PDF"},
+/* 202D */ { "LEFT-TO-RIGHT OVERRIDE","	* commonly abbreviated LRO"},
+/* 202E */ { "RIGHT-TO-LEFT OVERRIDE","	* commonly abbreviated RLO"},
+/* 202F */ { "NARROW NO-BREAK SPACE","	* commonly abbreviated NNBSP\n"
 	"	x (no-break space - 00A0)\n"
 	"	# <noBreak> 0020"},
 /* 2030 */ { "PER MILLE SIGN","	= permille, per thousand\n"
@@ -9011,24 +9341,25 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	# 2035 2035"},
 /* 2037 */ { "REVERSED TRIPLE PRIME","	# 2035 2035 2035"},
 /* 2038 */ { "CARET","	x (up arrowhead - 2303)"},
-/* 2039 */ { "SINGLE LEFT-POINTING ANGLE QUOTATION MARK","	= LEFT POINTING SINGLE GUILLEMET\n"
+/* 2039 */ { "SINGLE LEFT-POINTING ANGLE QUOTATION MARK","	= left pointing single guillemet\n"
 	"	* usually opening, sometimes closing\n"
 	"	x (less-than sign - 003C)\n"
 	"	x (left-pointing angle bracket - 2329)\n"
 	"	x (left angle bracket - 3008)"},
-/* 203A */ { "SINGLE RIGHT-POINTING ANGLE QUOTATION MARK","	= RIGHT POINTING SINGLE GUILLEMET\n"
+/* 203A */ { "SINGLE RIGHT-POINTING ANGLE QUOTATION MARK","	= right pointing single guillemet\n"
 	"	* usually closing, sometimes opening\n"
 	"	x (greater-than sign - 003E)\n"
 	"	x (right-pointing angle bracket - 232A)\n"
 	"	x (right angle bracket - 3009)"},
 /* 203B */ { "REFERENCE MARK","	= Japanese kome\n"
 	"	= Urdu paragraph separator\n"
-	"	x (tibetan ku ru kha bzhi mig can - 0FBF)"},
+	"	x (tibetan ku ru kha bzhi mig can - 0FBF)\n"
+	"	x (cjk unified ideograph-200AD - 200AD)"},
 /* 203C */ { "DOUBLE EXCLAMATION MARK","	x (exclamation mark - 0021)\n"
 	"	# 0021 0021"},
 /* 203D */ { "INTERROBANG","	x (exclamation mark - 0021)\n"
 	"	x (question mark - 003F)"},
-/* 203E */ { "OVERLINE","	= SPACING OVERSCORE\n"
+/* 203E */ { "OVERLINE","	= spacing overscore\n"
 	"	# 0020 0305"},
 /* 203F */ { "UNDERTIE (Enotikon)","	= Greek enotikon\n"
 	"	x (smile - 2323)"},
@@ -9047,11 +9378,13 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 2047 */ { "DOUBLE QUESTION MARK","	# 003F 003F"},
 /* 2048 */ { "QUESTION EXCLAMATION MARK","	# 003F 0021"},
 /* 2049 */ { "EXCLAMATION QUESTION MARK","	# 0021 003F"},
-/* 204A */ { "TIRONIAN SIGN ET","	* Irish Gaelic, ..."},
+/* 204A */ { "TIRONIAN SIGN ET","	* Irish Gaelic, Old English, ...\n"
+	"	x (ampersand - 0026)"},
 /* 204B */ { "REVERSED PILCROW SIGN","	x (pilcrow sign - 00B6)"},
 /* 204C */ { "BLACK LEFTWARDS BULLET",NULL},
 /* 204D */ { "BLACK RIGHTWARDS BULLET",NULL},
-/* 204E */ { "LOW ASTERISK","	x (asterisk - 002A)"},
+/* 204E */ { "LOW ASTERISK","	x (asterisk - 002A)\n"
+	"	x (combining asterisk below - 0359)"},
 /* 204F */ { "REVERSED SEMICOLON","	x (semicolon - 003B)"},
 /* 2050 */ { "CLOSE UP","	* editing mark"},
 /* 2051 */ { "TWO ASTERISKS ALIGNED VERTICALLY",NULL},
@@ -9069,7 +9402,9 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 2056 */ { "THREE DOT PUNCTUATION",NULL},
 /* 2057 */ { "QUADRUPLE PRIME","	# 2032 2032 2032 2032"},
 /* 2058 */ { "FOUR DOT PUNCTUATION",NULL},
-/* 2059 */ { "FIVE DOT PUNCTUATION","	= Greek pentonkion"},
+/* 2059 */ { "FIVE DOT PUNCTUATION","	= Greek pentonkion\n"
+	"	= quincunx\n"
+	"	x (die face-5 - 2684)"},
 /* 205A */ { "TWO DOT PUNCTUATION","	* historically used to indicate the end of a sentence or change of speaker\n"
 	"	* extends from baseline to cap height\n"
 	"	x (presentation form for vertical two dot leader - FE30)\n"
@@ -9083,10 +9418,10 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (presentation form for vertical horizontal ellipsis - FE19)"},
 /* 205E */ { "VERTICAL FOUR DOTS","	* used in dictionaries to indicate legal but undesirable word break\n"
 	"	* glyph extends the whole height of the line"},
-/* 205F */ { "MEDIUM MATHEMATICAL SPACE","	= MMSP\n"
+/* 205F */ { "MEDIUM MATHEMATICAL SPACE","	* abbreviated MMSP\n"
 	"	* four-eighteenths of an em\n"
 	"	# 0020 space"},
-/* 2060 */ { "WORD JOINER","	= WJ\n"
+/* 2060 */ { "WORD JOINER","	* commonly abbreviated WJ\n"
 	"	* a zero width non-breaking space (only)\n"
 	"	* intended for disambiguation of functions for byte order mark\n"
 	"	x (zero width no-break space - FEFF)"},
@@ -9231,6 +9566,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20DB */ { "COMBINING THREE DOTS ABOVE","	= third derivative"},
 /* 20DC */ { "COMBINING FOUR DOTS ABOVE","	= fourth derivative"},
 /* 20DD */ { "COMBINING ENCLOSING CIRCLE","	= JIS composition circle\n"
+	"	= Cyrillic combining ten thousands sign\n"
 	"	x (white circle - 25CB)\n"
 	"	x (large circle - 25EF)\n"
 	"	x (ideographic number zero - 3007)"},
@@ -9276,7 +9612,8 @@ static const struct unicode_nameannot una_00_20[] = {
 
 static const struct unicode_nameannot una_00_21[] = {
 /* 2100 */ { "ACCOUNT OF","	# 0061 002F 0063"},
-/* 2101 */ { "ADDRESSED TO THE SUBJECT","	# 0061 002F 0073"},
+/* 2101 */ { "ADDRESSED TO THE SUBJECT","	x (aktieselskab - 214D)\n"
+	"	# 0061 002F 0073"},
 /* 2102 */ { "DOUBLE-STRUCK CAPITAL C","	= the set of complex numbers\n"
 	"	# <font> 0043 latin capital letter c"},
 /* 2103 */ { "DEGREE CELSIUS","	= degrees Centigrade\n"
@@ -9295,7 +9632,9 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 210C */ { "BLACK-LETTER CAPITAL H","	= Hilbert space\n"
 	"	# <font> 0048 latin capital letter h"},
 /* 210D */ { "DOUBLE-STRUCK CAPITAL H","	# <font> 0048 latin capital letter h"},
-/* 210E */ { "PLANCK CONSTANT","	# <font> 0068 latin small letter h"},
+/* 210E */ { "PLANCK CONSTANT","	= height, specific enthalpy, ...\n"
+	"	* simply a mathematical italic h; this character's name results from legacy usage\n"
+	"	# <font> 0068 latin small letter h"},
 /* 210F */ { "PLANCK CONSTANT OVER TWO PI","	x (cyrillic small letter tshe - 045B)\n"
 	"	# <font> 0127 latin small letter h with stroke"},
 /* 2110 */ { "SCRIPT CAPITAL I","	# <font> 0049 latin capital letter i"},
@@ -9309,13 +9648,15 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	* the SI recommended symbol for liter is 006C\n"
 	"	x (mathematical script small l - 1D4C1)\n"
 	"	# <font> 006C latin small letter l"},
-/* 2114 */ { "L B BAR SYMBOL","	= pounds"},
+/* 2114 */ { "L B BAR SYMBOL","	= pounds\n"
+	"	x (number sign - 0023)"},
 /* 2115 */ { "DOUBLE-STRUCK CAPITAL N","	= natural number\n"
 	"	# <font> 004E latin capital letter n"},
 /* 2116 */ { "NUMERO SIGN","	# 004E 006F"},
 /* 2117 */ { "SOUND RECORDING COPYRIGHT","	= published\n"
 	"	= phonorecord sign\n"
-	"	x (copyright sign - 00A9)"},
+	"	x (copyright sign - 00A9)\n"
+	"	x (circled latin capital letter p - 24C5)"},
 /* 2118 */ { "SCRIPT CAPITAL P","	= Weierstrass elliptic function\n"
 	"	* actually this has the form of a lowercase calligraphic p, despite its name"},
 /* 2119 */ { "DOUBLE-STRUCK CAPITAL P","	# <font> 0050 latin capital letter p"},
@@ -9332,6 +9673,8 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 211F */ { "RESPONSE",NULL},
 /* 2120 */ { "SERVICE MARK","	# <super> 0053 004D"},
 /* 2121 */ { "TELEPHONE SIGN","	* typical forms for this symbol may use lower case, small caps or superscripted letter shapes\n"
+	"	x (black telephone - 260E)\n"
+	"	x (telephone location sign - 2706)\n"
 	"	# 0054 0045 004C"},
 /* 2122 */ { "TRADE MARK SIGN","	# <super> 0054 004D"},
 /* 2123 */ { "VERSICLE",NULL},
@@ -9341,7 +9684,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 2126 */ { "OHM SIGN","	* SI unit of resistance, named after G. S. Ohm, German physicist\n"
 	"	* preferred representation is 03A9\n"
 	"	: 03A9 greek capital letter omega"},
-/* 2127 */ { "INVERTED OHM SIGN","	= MHO\n"
+/* 2127 */ { "INVERTED OHM SIGN","	= mho\n"
 	"	* archaic unit of conductance (= the SI unit siemens)\n"
 	"	* typographically a turned greek capital letter omega\n"
 	"	x (latin capital letter upsilon - 01B1)\n"
@@ -9365,9 +9708,12 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	# <font> 0045 latin capital letter e"},
 /* 2131 */ { "SCRIPT CAPITAL F","	= Fourier transform\n"
 	"	# <font> 0046 latin capital letter f"},
-/* 2132 */ { "TURNED CAPITAL F","	x (latin capital letter f - 0046)"},
+/* 2132 */ { "TURNED CAPITAL F","	= Claudian digamma inversum\n"
+	"	* lowercase is 214E\n"
+	"	x (latin capital letter f - 0046)\n"
+	"	x (greek letter digamma - 03DC)"},
 /* 2133 */ { "SCRIPT CAPITAL M","	= M-matrix (physics)\n"
-	"	= German Mark (not the current Deutsche Mark)\n"
+	"	= German Mark currency symbol, before WWII\n"
 	"	# <font> 004D latin capital letter m"},
 /* 2134 */ { "SCRIPT SMALL O","	= order, of inferior order to\n"
 	"	# <font> 006F latin small letter o"},
@@ -9408,8 +9754,9 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 214B */ { "TURNED AMPERSAND","	* used in linear logic\n"
 	"	x (ampersand - 0026)"},
 /* 214C */ { "PER SIGN","	* abbreviates the word 'per'"},
-/* 214D */ { "AKTIESELSKAB",NULL},
-/* 214E */ { "TURNED SMALL F",NULL},
+/* 214D */ { "AKTIESELSKAB","	x (addressed to the subject - 2101)"},
+/* 214E */ { "TURNED SMALL F","	* uppercase is 2132\n"
+	"	x (greek small letter digamma - 03DD)"},
 /* 214F */ { NULL,NULL},
 /* 2150 */ { NULL,NULL},
 /* 2151 */ { NULL,NULL},
@@ -9463,8 +9810,11 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 2181 */ { "ROMAN NUMERAL FIVE THOUSAND",NULL},
 /* 2182 */ { "ROMAN NUMERAL TEN THOUSAND",NULL},
 /* 2183 */ { "ROMAN NUMERAL REVERSED ONE HUNDRED","	= apostrophic C\n"
-	"	* used in combination with C and I to form large numbers"},
-/* 2184 */ { "LATIN SMALL LETTER REVERSED C",NULL},
+	"	= Claudian antisigma\n"
+	"	* used in combination with C and I to form large numbers\n"
+	"	* lowercase is 2184\n"
+	"	x (greek capital reversed lunate sigma symbol - 03FD)"},
+/* 2184 */ { "LATIN SMALL LETTER REVERSED C","	x (greek small reversed lunate sigma symbol - 037B)"},
 /* 2185 */ { NULL,NULL},
 /* 2186 */ { NULL,NULL},
 /* 2187 */ { NULL,NULL},
@@ -9611,6 +9961,7 @@ static const struct unicode_nameannot una_00_22[] = {
 	"	x (diameter sign - 2300)"},
 /* 2206 */ { "INCREMENT","	= Laplace operator\n"
 	"	= forward difference\n"
+	"	= symmetric difference of sets\n"
 	"	x (greek capital letter delta - 0394)\n"
 	"	x (white up-pointing triangle - 25B3)"},
 /* 2207 */ { "NABLA","	= backward difference\n"
@@ -9624,14 +9975,15 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 220B */ { "CONTAINS AS MEMBER","	= such that"},
 /* 220C */ { "DOES NOT CONTAIN AS MEMBER","	: 220B 0338"},
 /* 220D */ { "SMALL CONTAINS AS MEMBER","	x (greek reversed lunate epsilon symbol - 03F6)"},
-/* 220E */ { "END OF PROOF","	= Q.E.D.\n"
+/* 220E */ { "END OF PROOF","	= q.e.d.\n"
 	"	x (triangular bullet - 2023)\n"
 	"	x (black vertical rectangle - 25AE)"},
 /* 220F */ { "N-ARY PRODUCT","	= product sign\n"
 	"	x (greek capital letter pi - 03A0)"},
 /* 2210 */ { "N-ARY COPRODUCT","	= coproduct sign"},
 /* 2211 */ { "N-ARY SUMMATION","	= summation sign\n"
-	"	x (greek capital letter sigma - 03A3)"},
+	"	x (greek capital letter sigma - 03A3)\n"
+	"	x (double-struck n-ary summation - 2140)"},
 /* 2212 */ { "MINUS SIGN","	x (hyphen-minus - 002D)"},
 /* 2213 */ { "MINUS-OR-PLUS SIGN","	x (plus-minus sign - 00B1)"},
 /* 2214 */ { "DOT PLUS",NULL},
@@ -9689,7 +10041,7 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 2235 */ { "BECAUSE",NULL},
 /* 2236 */ { "RATIO","	x (colon - 003A)"},
 /* 2237 */ { "PROPORTION",NULL},
-/* 2238 */ { "DOT MINUS","	= symmetric difference"},
+/* 2238 */ { "DOT MINUS","	= saturating subtraction"},
 /* 2239 */ { "EXCESS",NULL},
 /* 223A */ { "GEOMETRIC PROPORTION",NULL},
 /* 223B */ { "HOMOTHETIC","	x (tilde operator with rising dots - 2A6B)"},
@@ -9827,7 +10179,8 @@ static const struct unicode_nameannot una_00_22[] = {
 	"	= reducible"},
 /* 22A3 */ { "LEFT TACK","	= reverse turnstile\n"
 	"	= non-theorem, does not yield"},
-/* 22A4 */ { "DOWN TACK","	= top"},
+/* 22A4 */ { "DOWN TACK","	= top\n"
+	"	x (raised interpolation marker - 2E06)"},
 /* 22A5 */ { "UP TACK","	= base, bottom\n"
 	"	x (perpendicular - 27C2)"},
 /* 22A6 */ { "ASSERTION","	= reduces to"},
@@ -9968,11 +10321,13 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2315 */ { "TELEPHONE RECORDER",NULL},
 /* 2316 */ { "POSITION INDICATOR",NULL},
 /* 2317 */ { "VIEWDATA SQUARE","	x (equal and parallel to - 22D5)"},
-/* 2318 */ { "PLACE OF INTEREST SIGN","	= COMMAND KEY"},
+/* 2318 */ { "PLACE OF INTEREST SIGN","	= command key (1.0)"},
 /* 2319 */ { "TURNED NOT SIGN","	= line marker"},
 /* 231A */ { "WATCH",NULL},
 /* 231B */ { "HOURGLASS",NULL},
-/* 231C */ { "TOP LEFT CORNER","	* set of four \"quine\" corners, for quincuncial arrangement"},
+/* 231C */ { "TOP LEFT CORNER","	* set of four \"quine\" corners, for quincuncial arrangement\n"
+	"	* these are also used in mathematics in upper and lower pairs\n"
+	"	x (right angle substitution marker - 2E00)"},
 /* 231D */ { "TOP RIGHT CORNER",NULL},
 /* 231E */ { "BOTTOM LEFT CORNER",NULL},
 /* 231F */ { "BOTTOM RIGHT CORNER",NULL},
@@ -9980,10 +10335,10 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2321 */ { "BOTTOM HALF INTEGRAL",NULL},
 /* 2322 */ { "FROWN","	x (character tie - 2040)"},
 /* 2323 */ { "SMILE","	x (undertie - 203F)"},
-/* 2324 */ { "UP ARROWHEAD BETWEEN TWO HORIZONTAL BARS","	= ENTER KEY"},
+/* 2324 */ { "UP ARROWHEAD BETWEEN TWO HORIZONTAL BARS","	= enter key"},
 /* 2325 */ { "OPTION KEY",NULL},
-/* 2326 */ { "ERASE TO THE RIGHT","	= DELETE TO THE RIGHT KEY"},
-/* 2327 */ { "X IN A RECTANGLE BOX","	= CLEAR KEY"},
+/* 2326 */ { "ERASE TO THE RIGHT","	= delete to the right key"},
+/* 2327 */ { "X IN A RECTANGLE BOX","	= clear key"},
 /* 2328 */ { "KEYBOARD",NULL},
 /* 2329 */ { "LEFT-POINTING ANGLE BRACKET","	x (less-than sign - 003C)\n"
 	"	x (single left-pointing angle quotation mark - 2039)\n"
@@ -9993,7 +10348,7 @@ static const struct unicode_nameannot una_00_23[] = {
 	"	x (single right-pointing angle quotation mark - 203A)\n"
 	"	x (mathematical right angle bracket - 27E9)\n"
 	"	: 3009 right angle bracket"},
-/* 232B */ { "ERASE TO THE LEFT","	= DELETE TO THE LEFT KEY"},
+/* 232B */ { "ERASE TO THE LEFT","	= delete to the left key"},
 /* 232C */ { "BENZENE RING",NULL},
 /* 232D */ { "CYLINDRICITY",NULL},
 /* 232E */ { "ALL AROUND-PROFILE",NULL},
@@ -10150,7 +10505,7 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23B3 */ { "SUMMATION BOTTOM",NULL},
 /* 23B4 */ { "TOP SQUARE BRACKET","	x (presentation form for vertical left square bracket - FE47)"},
 /* 23B5 */ { "BOTTOM SQUARE BRACKET","	x (presentation form for vertical right square bracket - FE48)"},
-/* 23B6 */ { "BOTTOM SQUARE BRACKET OVER TOP SQUARE BRACKET",NULL},
+/* 23B6 */ { "BOTTOM SQUARE BRACKET OVER TOP SQUARE BRACKET","	* only used for terminal emulation"},
 /* 23B7 */ { "RADICAL SYMBOL BOTTOM",NULL},
 /* 23B8 */ { "LEFT VERTICAL BOX LINE",NULL},
 /* 23B9 */ { "RIGHT VERTICAL BOX LINE",NULL},
@@ -10192,18 +10547,18 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23D9 */ { "METRICAL PENTASEME","	x (combining greek musical pentaseme - 1D244)"},
 /* 23DA */ { "EARTH GROUND",NULL},
 /* 23DB */ { "FUSE",NULL},
-/* 23DC */ { "TOP PARENTHESIS",NULL},
-/* 23DD */ { "BOTTOM PARENTHESIS",NULL},
-/* 23DE */ { "TOP CURLY BRACKET",NULL},
-/* 23DF */ { "BOTTOM CURLY BRACKET",NULL},
-/* 23E0 */ { "TOP TORTOISE SHELL BRACKET",NULL},
-/* 23E1 */ { NULL,NULL},
-/* 23E2 */ { NULL,NULL},
-/* 23E3 */ { NULL,NULL},
-/* 23E4 */ { NULL,NULL},
-/* 23E5 */ { NULL,NULL},
-/* 23E6 */ { NULL,NULL},
-/* 23E7 */ { NULL,NULL},
+/* 23DC */ { "TOP PARENTHESIS (mathematical use)","	x (presentation form for vertical left parenthesis - FE35)"},
+/* 23DD */ { "BOTTOM PARENTHESIS (mathematical use)","	x (presentation form for vertical right parenthesis - FE36)"},
+/* 23DE */ { "TOP CURLY BRACKET (mathematical use)","	x (presentation form for vertical left curly bracket - FE37)"},
+/* 23DF */ { "BOTTOM CURLY BRACKET (mathematical use)","	x (presentation form for vertical right curly bracket - FE38)"},
+/* 23E0 */ { "TOP TORTOISE SHELL BRACKET (mathematical use)","	x (presentation form for vertical left tortoise shell bracket - FE39)"},
+/* 23E1 */ { "BOTTOM TORTOISE SHELL BRACKET (mathematical use)","	x (presentation form for vertical right tortoise shell bracket - FE3A)"},
+/* 23E2 */ { "WHITE TRAPEZIUM",NULL},
+/* 23E3 */ { "BENZENE RING WITH CIRCLE",NULL},
+/* 23E4 */ { "STRAIGHTNESS",NULL},
+/* 23E5 */ { "FLATNESS",NULL},
+/* 23E6 */ { "AC CURRENT",NULL},
+/* 23E7 */ { "ELECTRICAL INTERSECTION",NULL},
 /* 23E8 */ { NULL,NULL},
 /* 23E9 */ { NULL,NULL},
 /* 23EA */ { NULL,NULL},
@@ -10419,7 +10774,8 @@ static const struct unicode_nameannot una_00_24[] = {
 /* 24B5 */ { "PARENTHESIZED LATIN SMALL LETTER Z","	# 0028 007A 0029"},
 /* 24B6 */ { "CIRCLED LATIN CAPITAL LETTER A","	# <circle> 0041"},
 /* 24B7 */ { "CIRCLED LATIN CAPITAL LETTER B","	# <circle> 0042"},
-/* 24B8 */ { "CIRCLED LATIN CAPITAL LETTER C","	# <circle> 0043"},
+/* 24B8 */ { "CIRCLED LATIN CAPITAL LETTER C","	x (copyright sign - 00A9)\n"
+	"	# <circle> 0043"},
 /* 24B9 */ { "CIRCLED LATIN CAPITAL LETTER D","	# <circle> 0044"},
 /* 24BA */ { "CIRCLED LATIN CAPITAL LETTER E","	# <circle> 0045"},
 /* 24BB */ { "CIRCLED LATIN CAPITAL LETTER F","	# <circle> 0046"},
@@ -10432,9 +10788,11 @@ static const struct unicode_nameannot una_00_24[] = {
 /* 24C2 */ { "CIRCLED LATIN CAPITAL LETTER M","	# <circle> 004D"},
 /* 24C3 */ { "CIRCLED LATIN CAPITAL LETTER N","	# <circle> 004E"},
 /* 24C4 */ { "CIRCLED LATIN CAPITAL LETTER O","	# <circle> 004F"},
-/* 24C5 */ { "CIRCLED LATIN CAPITAL LETTER P","	# <circle> 0050"},
+/* 24C5 */ { "CIRCLED LATIN CAPITAL LETTER P","	x (sound recording copyright - 2117)\n"
+	"	# <circle> 0050"},
 /* 24C6 */ { "CIRCLED LATIN CAPITAL LETTER Q","	# <circle> 0051"},
-/* 24C7 */ { "CIRCLED LATIN CAPITAL LETTER R","	# <circle> 0052"},
+/* 24C7 */ { "CIRCLED LATIN CAPITAL LETTER R","	x (registered sign - 00AE)\n"
+	"	# <circle> 0052"},
 /* 24C8 */ { "CIRCLED LATIN CAPITAL LETTER S","	# <circle> 0053"},
 /* 24C9 */ { "CIRCLED LATIN CAPITAL LETTER T","	# <circle> 0054"},
 /* 24CA */ { "CIRCLED LATIN CAPITAL LETTER U","	# <circle> 0055"},
@@ -10793,7 +11151,8 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 260B */ { "DESCENDING NODE",NULL},
 /* 260C */ { "CONJUNCTION",NULL},
 /* 260D */ { "OPPOSITION",NULL},
-/* 260E */ { "BLACK TELEPHONE",NULL},
+/* 260E */ { "BLACK TELEPHONE","	x (telephone sign - 2121)\n"
+	"	x (telephone location sign - 2706)"},
 /* 260F */ { "WHITE TELEPHONE",NULL},
 /* 2610 */ { "BALLOT BOX","	x (white square - 25A1)"},
 /* 2611 */ { "BALLOT BOX WITH CHECK",NULL},
@@ -10828,7 +11187,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 2628 */ { "CROSS OF LORRAINE",NULL},
 /* 2629 */ { "CROSS OF JERUSALEM",NULL},
 /* 262A */ { "STAR AND CRESCENT",NULL},
-/* 262B */ { "FARSI SYMBOL","	= SYMBOL OF IRAN"},
+/* 262B */ { "FARSI SYMBOL","	= symbol of iran (1.0)"},
 /* 262C */ { "ADI SHAKTI","	= Gurmukhi khanda"},
 /* 262D */ { "HAMMER AND SICKLE",NULL},
 /* 262E */ { "PEACE SYMBOL",NULL},
@@ -10886,7 +11245,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 2661 */ { "WHITE HEART SUIT",NULL},
 /* 2662 */ { "WHITE DIAMOND SUIT","	x (white diamond - 25C7)\n"
 	"	x (lozenge - 25CA)"},
-/* 2663 */ { "BLACK CLUB SUIT","	= shamrock"},
+/* 2663 */ { "BLACK CLUB SUIT","	x (shamrock - 2618)"},
 /* 2664 */ { "WHITE SPADE SUIT",NULL},
 /* 2665 */ { "BLACK HEART SUIT","	= valentine\n"
 	"	x (heavy black heart - 2764)"},
@@ -10980,7 +11339,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26B0 */ { "COFFIN","	= buried (genealogy)\n"
 	"	x (white rectangle - 25AD)"},
 /* 26B1 */ { "FUNERAL URN","	= cremated (genealogy)"},
-/* 26B2 */ { NULL,NULL},
+/* 26B2 */ { "NEUTER",NULL},
 /* 26B3 */ { NULL,NULL},
 /* 26B4 */ { NULL,NULL},
 /* 26B5 */ { NULL,NULL},
@@ -11067,7 +11426,7 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 2703 */ { "LOWER BLADE SCISSORS",NULL},
 /* 2704 */ { "WHITE SCISSORS",NULL},
 /* 2705 */ { NULL,"	x (black telephone - 260E)"},
-/* 2706 */ { "TELEPHONE LOCATION SIGN",NULL},
+/* 2706 */ { "TELEPHONE LOCATION SIGN","	x (telephone sign - 2121)"},
 /* 2707 */ { "TAPE DRIVE",NULL},
 /* 2708 */ { "AIRPLANE",NULL},
 /* 2709 */ { "ENVELOPE",NULL},
@@ -11264,10 +11623,11 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 27C4 */ { "OPEN SUPERSET",NULL},
 /* 27C5 */ { "LEFT S-SHAPED BAG DELIMITER",NULL},
 /* 27C6 */ { "RIGHT S-SHAPED BAG DELIMITER",NULL},
-/* 27C7 */ { NULL,NULL},
-/* 27C8 */ { NULL,NULL},
-/* 27C9 */ { NULL,NULL},
-/* 27CA */ { NULL,NULL},
+/* 27C7 */ { "OR WITH DOT INSIDE",NULL},
+/* 27C8 */ { "REVERSE SOLIDUS PRECEDING SUBSET",NULL},
+/* 27C9 */ { "SUPERSET PRECEDING SOLIDUS",NULL},
+/* 27CA */ { "VERTICAL BAR WITH HORIZONTAL STROKE","	x (parallel with horizontal stroke - 2AF2)\n"
+	"	x (triple vertical bar with horizontal stroke - 2AF5)"},
 /* 27CB */ { NULL,NULL},
 /* 27CC */ { NULL,NULL},
 /* 27CD */ { NULL,NULL},
@@ -11345,7 +11705,7 @@ static const struct unicode_nameannot una_00_27[] = {
 };
 
 static const struct unicode_nameannot una_00_28[] = {
-/* 2800 */ { "BRAILLE PATTERN BLANK",NULL},
+/* 2800 */ { "BRAILLE PATTERN BLANK","	* while this character is imaged as a fixed-width blank in many fonts, it does not act as a space"},
 /* 2801 */ { "BRAILLE PATTERN DOTS-1",NULL},
 /* 2802 */ { "BRAILLE PATTERN DOTS-2",NULL},
 /* 2803 */ { "BRAILLE PATTERN DOTS-12",NULL},
@@ -12155,11 +12515,12 @@ static const struct unicode_nameannot una_00_2A[] = {
 /* 2AF0 */ { "VERTICAL LINE WITH CIRCLE BELOW",NULL},
 /* 2AF1 */ { "DOWN TACK WITH CIRCLE BELOW","	= necessarily satisfies\n"
 	"	x (up tack with circle above - 27DF)"},
-/* 2AF2 */ { "PARALLEL WITH HORIZONTAL STROKE","	x (not parallel to - 2226)"},
+/* 2AF2 */ { "PARALLEL WITH HORIZONTAL STROKE","	x (not parallel to - 2226)\n"
+	"	x (vertical bar with horizontal stroke - 27CA)"},
 /* 2AF3 */ { "PARALLEL WITH TILDE OPERATOR",NULL},
 /* 2AF4 */ { "TRIPLE VERTICAL BAR BINARY RELATION","	= interleave\n"
 	"	x (triple vertical bar delimiter - 2980)"},
-/* 2AF5 */ { "TRIPLE VERTICAL BAR WITH HORIZONTAL STROKE",NULL},
+/* 2AF5 */ { "TRIPLE VERTICAL BAR WITH HORIZONTAL STROKE","	x (vertical bar with horizontal stroke - 27CA)"},
 /* 2AF6 */ { "TRIPLE COLON OPERATOR","	* logic\n"
 	"	x (tricolon - 205D)\n"
 	"	x (vertical ellipsis - 22EE)"},
@@ -12197,22 +12558,22 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B11 */ { "LEFTWARDS ARROW WITH TIP UPWARDS",NULL},
 /* 2B12 */ { "SQUARE WITH TOP HALF BLACK","	x (square with left half black - 25E7)"},
 /* 2B13 */ { "SQUARE WITH BOTTOM HALF BLACK",NULL},
-/* 2B14 */ { NULL,NULL},
-/* 2B15 */ { NULL,NULL},
-/* 2B16 */ { NULL,NULL},
-/* 2B17 */ { NULL,NULL},
-/* 2B18 */ { NULL,NULL},
-/* 2B19 */ { NULL,NULL},
-/* 2B1A */ { NULL,NULL},
+/* 2B14 */ { "SQUARE WITH UPPER RIGHT DIAGONAL HALF BLACK",NULL},
+/* 2B15 */ { "SQUARE WITH LOWER LEFT DIAGONAL HALF BLACK",NULL},
+/* 2B16 */ { "DIAMOND WITH LEFT HALF BLACK",NULL},
+/* 2B17 */ { "DIAMOND WITH RIGHT HALF BLACK",NULL},
+/* 2B18 */ { "DIAMOND WITH TOP HALF BLACK",NULL},
+/* 2B19 */ { "DIAMOND WITH BOTTOM HALF BLACK",NULL},
+/* 2B1A */ { "DOTTED SQUARE",NULL},
 /* 2B1B */ { NULL,NULL},
 /* 2B1C */ { NULL,NULL},
 /* 2B1D */ { NULL,NULL},
 /* 2B1E */ { NULL,NULL},
 /* 2B1F */ { NULL,NULL},
-/* 2B20 */ { NULL,NULL},
-/* 2B21 */ { NULL,NULL},
-/* 2B22 */ { NULL,NULL},
-/* 2B23 */ { NULL,NULL},
+/* 2B20 */ { "WHITE PENTAGON",NULL},
+/* 2B21 */ { "WHITE HEXAGON",NULL},
+/* 2B22 */ { "BLACK HEXAGON",NULL},
+/* 2B23 */ { "HORIZONTAL BLACK HEXAGON",NULL},
 /* 2B24 */ { NULL,NULL},
 /* 2B25 */ { NULL,NULL},
 /* 2B26 */ { NULL,NULL},
@@ -12532,19 +12893,19 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2C5D */ { "GLAGOLITIC SMALL LETTER TROKUTASTI A",NULL},
 /* 2C5E */ { "GLAGOLITIC SMALL LETTER LATINATE MYSLITE",NULL},
 /* 2C5F */ { NULL,NULL},
-/* 2C60 */ { NULL,NULL},
-/* 2C61 */ { NULL,NULL},
-/* 2C62 */ { NULL,NULL},
-/* 2C63 */ { NULL,NULL},
-/* 2C64 */ { NULL,NULL},
-/* 2C65 */ { NULL,NULL},
-/* 2C66 */ { NULL,NULL},
-/* 2C67 */ { NULL,NULL},
-/* 2C68 */ { NULL,NULL},
-/* 2C69 */ { NULL,NULL},
-/* 2C6A */ { NULL,NULL},
-/* 2C6B */ { NULL,NULL},
-/* 2C6C */ { NULL,NULL},
+/* 2C60 */ { "LATIN CAPITAL LETTER L WITH DOUBLE BAR",NULL},
+/* 2C61 */ { "LATIN SMALL LETTER L WITH DOUBLE BAR",NULL},
+/* 2C62 */ { "LATIN CAPITAL LETTER L WITH MIDDLE TILDE","	* lowercase is 026B"},
+/* 2C63 */ { "LATIN CAPITAL LETTER P WITH STROKE","	* lowercase is 1D7D"},
+/* 2C64 */ { "LATIN CAPITAL LETTER R WITH TAIL","	* lowercase is 027D"},
+/* 2C65 */ { "LATIN SMALL LETTER A WITH STROKE","	* uppercase is 023A"},
+/* 2C66 */ { "LATIN SMALL LETTER T WITH DIAGONAL STROKE","	* uppercase is 023E"},
+/* 2C67 */ { "LATIN CAPITAL LETTER H WITH DESCENDER",NULL},
+/* 2C68 */ { "LATIN SMALL LETTER H WITH DESCENDER",NULL},
+/* 2C69 */ { "LATIN CAPITAL LETTER K WITH DESCENDER",NULL},
+/* 2C6A */ { "LATIN SMALL LETTER K WITH DESCENDER",NULL},
+/* 2C6B */ { "LATIN CAPITAL LETTER Z WITH DESCENDER",NULL},
+/* 2C6C */ { "LATIN SMALL LETTER Z WITH DESCENDER",NULL},
 /* 2C6D */ { NULL,NULL},
 /* 2C6E */ { NULL,NULL},
 /* 2C6F */ { NULL,NULL},
@@ -12552,10 +12913,11 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2C71 */ { NULL,NULL},
 /* 2C72 */ { NULL,NULL},
 /* 2C73 */ { NULL,NULL},
-/* 2C74 */ { NULL,NULL},
-/* 2C75 */ { NULL,NULL},
-/* 2C76 */ { NULL,NULL},
-/* 2C77 */ { NULL,NULL},
+/* 2C74 */ { "LATIN SMALL LETTER V WITH CURL",NULL},
+/* 2C75 */ { "LATIN CAPITAL LETTER HALF H","	x (turned capital f - 2132)\n"
+	"	x (roman numeral reversed one hundred - 2183)"},
+/* 2C76 */ { "LATIN SMALL LETTER HALF H",NULL},
+/* 2C77 */ { "LATIN SMALL LETTER TAILLESS PHI","	* medium rounded o"},
 /* 2C78 */ { NULL,NULL},
 /* 2C79 */ { NULL,NULL},
 /* 2C7A */ { NULL,NULL},
@@ -12955,13 +13317,13 @@ static const struct unicode_nameannot una_00_2D[] = {
 };
 
 static const struct unicode_nameannot una_00_2E[] = {
-/* 2E00 */ { "RIGHT ANGLE SUBSTITUTION MARKER",NULL},
+/* 2E00 */ { "RIGHT ANGLE SUBSTITUTION MARKER","	x (top left corner - 231C)"},
 /* 2E01 */ { "RIGHT ANGLE DOTTED SUBSTITUTION MARKER",NULL},
 /* 2E02 */ { "LEFT SUBSTITUTION BRACKET",NULL},
 /* 2E03 */ { "RIGHT SUBSTITUTION BRACKET",NULL},
 /* 2E04 */ { "LEFT DOTTED SUBSTITUTION BRACKET",NULL},
 /* 2E05 */ { "RIGHT DOTTED SUBSTITUTION BRACKET",NULL},
-/* 2E06 */ { "RAISED INTERPOLATION MARKER",NULL},
+/* 2E06 */ { "RAISED INTERPOLATION MARKER","	x (down tack - 22A4)"},
 /* 2E07 */ { "RAISED DOTTED INTERPOLATION MARKER",NULL},
 /* 2E08 */ { "DOTTED TRANSPOSITION MARKER",NULL},
 /* 2E09 */ { "LEFT TRANSPOSITION BRACKET",NULL},
@@ -12976,8 +13338,8 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E12 */ { "HYPODIASTOLE",NULL},
 /* 2E13 */ { "DOTTED OBELOS","	* glyph variants may look like '00F7' or '2238'\n"
 	"	x (commercial minus sign - 2052)"},
-/* 2E14 */ { "DOWNWARDS ANCORA",NULL},
-/* 2E15 */ { "UPWARDS ANCORA",NULL},
+/* 2E14 */ { "DOWNWARDS ANCORA","	* contrary to its formal name this symbol points upwards"},
+/* 2E15 */ { "UPWARDS ANCORA","	* contrary to its formal name this symbol points downwards"},
 /* 2E16 */ { "DOTTED RIGHT-POINTING ANGLE","	= diple periestigmene"},
 /* 2E17 */ { "DOUBLE OBLIQUE HYPHEN","	* used in ancient Near-Eastern linguistics\n"
 	"	* hyphen in Fraktur text uses 002D or 2010, but with a '2E17' glyph in Fraktur fonts\n"
@@ -13901,7 +14263,7 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 3161 */ { "HANGUL LETTER EU","	# 1173 hangul jungseong eu"},
 /* 3162 */ { "HANGUL LETTER YI","	# 1174 hangul jungseong yi"},
 /* 3163 */ { "HANGUL LETTER I","	# 1175 hangul jungseong i"},
-/* 3164 */ { "HANGUL FILLER","	= HANGUL CAE OM\n"
+/* 3164 */ { "HANGUL FILLER","	= cae om\n"
 	"	# 1160 hangul jungseong filler"},
 /* 3165 */ { "HANGUL LETTER SSANGNIEUN","	# 1114 hangul choseong ssangnieun"},
 /* 3166 */ { "HANGUL LETTER NIEUN-TIKEUT","	# 1115 hangul choseong nieun-tikeut"},
@@ -13948,8 +14310,8 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 318D */ { "HANGUL LETTER ARAEA","	# 119E hangul jungseong araea"},
 /* 318E */ { "HANGUL LETTER ARAEAE","	# 11A1 hangul jungseong araea-i"},
 /* 318F */ { NULL,NULL},
-/* 3190 */ { "IDEOGRAPHIC ANNOTATION LINKING MARK (Kanbun Tateten)","	= KANBUN TATETEN"},
-/* 3191 */ { "IDEOGRAPHIC ANNOTATION REVERSE MARK (Kaeriten)","	= KAERITEN RE"},
+/* 3190 */ { "IDEOGRAPHIC ANNOTATION LINKING MARK (Kanbun Tateten)","	= tateten"},
+/* 3191 */ { "IDEOGRAPHIC ANNOTATION REVERSE MARK (Kaeriten)","	= kaeriten re"},
 /* 3192 */ { "IDEOGRAPHIC ANNOTATION ONE MARK (Kaeriten)","	# <super> 4E00"},
 /* 3193 */ { "IDEOGRAPHIC ANNOTATION TWO MARK (Kaeriten)","	# <super> 4E8C"},
 /* 3194 */ { "IDEOGRAPHIC ANNOTATION THREE MARK (Kaeriten)","	# <super> 4E09"},
@@ -14977,7 +15339,8 @@ static const struct unicode_nameannot una_00_A0[] = {
 /* A012 */ { "YI SYLLABLE OP",NULL},
 /* A013 */ { "YI SYLLABLE EX",NULL},
 /* A014 */ { "YI SYLLABLE E",NULL},
-/* A015 */ { "YI SYLLABLE WU",NULL},
+/* A015 */ { "YI SYLLABLE WU","	% YI SYLLABLE ITERATION MARK\n"
+	"	* name is a misnomer"},
 /* A016 */ { "YI SYLLABLE BIT",NULL},
 /* A017 */ { "YI SYLLABLE BIX",NULL},
 /* A018 */ { "YI SYLLABLE BI",NULL},
@@ -16136,8 +16499,8 @@ static const struct unicode_nameannot una_00_A4[] = {
 /* A48D */ { NULL,NULL},
 /* A48E */ { NULL,NULL},
 /* A48F */ { NULL,NULL},
-/* A490 */ { "YI RADICAL QOT",NULL},
-/* A491 */ { "YI RADICAL LI",NULL},
+/* A490 */ { "YI RADICAL QOT","	x (yi syllable qot - A408)"},
+/* A491 */ { "YI RADICAL LI","	x (yi syllable li - A1B9)"},
 /* A492 */ { "YI RADICAL KIT",NULL},
 /* A493 */ { "YI RADICAL NYIP",NULL},
 /* A494 */ { "YI RADICAL CYP",NULL},
@@ -16274,17 +16637,17 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A714 */ { "MODIFIER LETTER MID LEFT-STEM TONE BAR",NULL},
 /* A715 */ { "MODIFIER LETTER LOW LEFT-STEM TONE BAR",NULL},
 /* A716 */ { "MODIFIER LETTER EXTRA-LOW LEFT-STEM TONE BAR",NULL},
-/* A717 */ { NULL,NULL},
-/* A718 */ { NULL,NULL},
-/* A719 */ { NULL,NULL},
-/* A71A */ { NULL,NULL},
+/* A717 */ { "MODIFIER LETTER DOT VERTICAL BAR",NULL},
+/* A718 */ { "MODIFIER LETTER DOT SLASH",NULL},
+/* A719 */ { "MODIFIER LETTER DOT HORIZONTAL BAR",NULL},
+/* A71A */ { "MODIFIER LETTER LOWER RIGHT CORNER ANGLE",NULL},
 /* A71B */ { NULL,NULL},
 /* A71C */ { NULL,NULL},
 /* A71D */ { NULL,NULL},
 /* A71E */ { NULL,NULL},
 /* A71F */ { NULL,NULL},
-/* A720 */ { NULL,NULL},
-/* A721 */ { NULL,NULL},
+/* A720 */ { "MODIFIER LETTER STRESS AND HIGH TONE",NULL},
+/* A721 */ { "MODIFIER LETTER STRESS AND LOW TONE",NULL},
 /* A722 */ { NULL,NULL},
 /* A723 */ { NULL,NULL},
 /* A724 */ { NULL,NULL},
@@ -16574,62 +16937,100 @@ static const struct unicode_nameannot una_00_A8[] = {
 /* A83D */ { NULL,NULL},
 /* A83E */ { NULL,NULL},
 /* A83F */ { NULL,NULL},
-/* A840 */ { NULL,NULL},
-/* A841 */ { NULL,NULL},
-/* A842 */ { NULL,NULL},
-/* A843 */ { NULL,NULL},
-/* A844 */ { NULL,NULL},
-/* A845 */ { NULL,NULL},
-/* A846 */ { NULL,NULL},
-/* A847 */ { NULL,NULL},
-/* A848 */ { NULL,NULL},
-/* A849 */ { NULL,NULL},
-/* A84A */ { NULL,NULL},
-/* A84B */ { NULL,NULL},
-/* A84C */ { NULL,NULL},
-/* A84D */ { NULL,NULL},
-/* A84E */ { NULL,NULL},
-/* A84F */ { NULL,NULL},
-/* A850 */ { NULL,NULL},
-/* A851 */ { NULL,NULL},
-/* A852 */ { NULL,NULL},
-/* A853 */ { NULL,NULL},
-/* A854 */ { NULL,NULL},
-/* A855 */ { NULL,NULL},
-/* A856 */ { NULL,NULL},
-/* A857 */ { NULL,NULL},
-/* A858 */ { NULL,NULL},
-/* A859 */ { NULL,NULL},
-/* A85A */ { NULL,NULL},
-/* A85B */ { NULL,NULL},
-/* A85C */ { NULL,NULL},
-/* A85D */ { NULL,NULL},
-/* A85E */ { NULL,NULL},
-/* A85F */ { NULL,NULL},
-/* A860 */ { NULL,NULL},
-/* A861 */ { NULL,NULL},
-/* A862 */ { NULL,NULL},
-/* A863 */ { NULL,NULL},
-/* A864 */ { NULL,NULL},
-/* A865 */ { NULL,NULL},
-/* A866 */ { NULL,NULL},
-/* A867 */ { NULL,NULL},
-/* A868 */ { NULL,NULL},
-/* A869 */ { NULL,NULL},
-/* A86A */ { NULL,NULL},
-/* A86B */ { NULL,NULL},
-/* A86C */ { NULL,NULL},
-/* A86D */ { NULL,NULL},
-/* A86E */ { NULL,NULL},
-/* A86F */ { NULL,NULL},
-/* A870 */ { NULL,NULL},
-/* A871 */ { NULL,NULL},
-/* A872 */ { NULL,NULL},
-/* A873 */ { NULL,NULL},
-/* A874 */ { NULL,NULL},
-/* A875 */ { NULL,NULL},
-/* A876 */ { NULL,NULL},
-/* A877 */ { NULL,NULL},
+/* A840 */ { "PHAGS-PA LETTER KA","	* Mongolian, Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter ka - 0F40)"},
+/* A841 */ { "PHAGS-PA LETTER KHA","	x (tibetan letter kha - 0F41)"},
+/* A842 */ { "PHAGS-PA LETTER GA","	x (tibetan letter ga - 0F42)"},
+/* A843 */ { "PHAGS-PA LETTER NGA","	* Mongolian, Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter nga - 0F44)"},
+/* A844 */ { "PHAGS-PA LETTER CA","	* Chinese, Tibetan\n"
+	"	x (tibetan letter ca - 0F45)"},
+/* A845 */ { "PHAGS-PA LETTER CHA","	* Mongolian, Chinese, Uighur, Tibetan\n"
+	"	x (tibetan letter cha - 0F46)"},
+/* A846 */ { "PHAGS-PA LETTER JA","	* Mongolian, Chinese, Uighur, Tibetan\n"
+	"	x (tibetan letter ja - 0F47)"},
+/* A847 */ { "PHAGS-PA LETTER NYA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter nya - 0F49)"},
+/* A848 */ { "PHAGS-PA LETTER TA","	* Mongolian, Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter ta - 0F4F)"},
+/* A849 */ { "PHAGS-PA LETTER THA","	x (tibetan letter tha - 0F50)"},
+/* A84A */ { "PHAGS-PA LETTER DA","	x (tibetan letter da - 0F51)"},
+/* A84B */ { "PHAGS-PA LETTER NA","	x (tibetan letter na - 0F53)"},
+/* A84C */ { "PHAGS-PA LETTER PA","	* Mongolian, Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter pa - 0F54)"},
+/* A84D */ { "PHAGS-PA LETTER PHA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter pha - 0F55)"},
+/* A84E */ { "PHAGS-PA LETTER BA","	x (tibetan letter ba - 0F56)"},
+/* A84F */ { "PHAGS-PA LETTER MA","	x (tibetan letter ma - 0F58)"},
+/* A850 */ { "PHAGS-PA LETTER TSA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter tsa - 0F59)"},
+/* A851 */ { "PHAGS-PA LETTER TSHA","	* Mongolian, Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter tsha - 0F5A)"},
+/* A852 */ { "PHAGS-PA LETTER DZA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan letter dza - 0F5B)"},
+/* A853 */ { "PHAGS-PA LETTER WA","	x (tibetan letter wa - 0F5D)"},
+/* A854 */ { "PHAGS-PA LETTER ZHA","	* Chinese, Tibetan\n"
+	"	x (tibetan letter zha - 0F5E)"},
+/* A855 */ { "PHAGS-PA LETTER ZA","	* Mongolian, Chinese, Tibetan\n"
+	"	x (tibetan letter za - 0F5F)"},
+/* A856 */ { "PHAGS-PA LETTER SMALL A","	x (tibetan letter -a - 0F60)"},
+/* A857 */ { "PHAGS-PA LETTER YA","	x (tibetan letter ya - 0F61)"},
+/* A858 */ { "PHAGS-PA LETTER RA","	* Mongolian, Uighur, Tibetan, Sanskrit\n"
+	"	x (tibetan letter ra - 0F62)"},
+/* A859 */ { "PHAGS-PA LETTER LA","	x (tibetan letter la - 0F63)"},
+/* A85A */ { "PHAGS-PA LETTER SHA","	x (tibetan letter sha - 0F64)"},
+/* A85B */ { "PHAGS-PA LETTER SA","	x (tibetan letter sa - 0F66)"},
+/* A85C */ { "PHAGS-PA LETTER HA","	x (tibetan letter ha - 0F67)"},
+/* A85D */ { "PHAGS-PA LETTER A","	x (tibetan letter a - 0F68)"},
+/* A85E */ { "PHAGS-PA LETTER I","	x (tibetan vowel sign i - 0F72)"},
+/* A85F */ { "PHAGS-PA LETTER U","	x (tibetan vowel sign u - 0F74)"},
+/* A860 */ { "PHAGS-PA LETTER E","	x (tibetan vowel sign e - 0F7A)"},
+/* A861 */ { "PHAGS-PA LETTER O","	x (tibetan vowel sign o - 0F7C)"},
+/* A862 */ { "PHAGS-PA LETTER QA","	* Mongolian, Uighur"},
+/* A863 */ { "PHAGS-PA LETTER XA","	* Mongolian, Chinese"},
+/* A864 */ { "PHAGS-PA LETTER FA","	* Chinese, Uighur\n"
+	"	x (phags-pa letter ha - A85C)"},
+/* A865 */ { "PHAGS-PA LETTER GGA","	* language usage unknown\n"
+	"	* created by reversal of A862"},
+/* A866 */ { "PHAGS-PA LETTER EE","	* Mongolian, Chinese, Uighur"},
+/* A867 */ { "PHAGS-PA SUBJOINED LETTER WA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan subjoined letter wa - 0FAD)"},
+/* A868 */ { "PHAGS-PA SUBJOINED LETTER YA","	* Chinese, Tibetan, Sanskrit\n"
+	"	x (tibetan subjoined letter ya - 0FB1)"},
+/* A869 */ { "PHAGS-PA LETTER TTA","	* Sanskrit\n"
+	"	x (tibetan letter tta - 0F4A)"},
+/* A86A */ { "PHAGS-PA LETTER TTHA","	* Sanskrit\n"
+	"	x (tibetan letter ttha - 0F4B)"},
+/* A86B */ { "PHAGS-PA LETTER DDA","	* Sanskrit\n"
+	"	x (tibetan letter dda - 0F4C)"},
+/* A86C */ { "PHAGS-PA LETTER NNA","	* Sanskrit\n"
+	"	x (tibetan letter nna - 0F4E)"},
+/* A86D */ { "PHAGS-PA LETTER ALTERNATE YA","	* Chinese\n"
+	"	x (phags-pa letter ya - A857)"},
+/* A86E */ { "PHAGS-PA LETTER VOICELESS SHA","	* Chinese\n"
+	"	x (phags-pa letter sha - A85A)"},
+/* A86F */ { "PHAGS-PA LETTER VOICED HA","	* Chinese\n"
+	"	x (phags-pa letter ha - A85C)"},
+/* A870 */ { "PHAGS-PA LETTER ASPIRATED FA","	* Chinese\n"
+	"	x (phags-pa letter fa - A864)"},
+/* A871 */ { "PHAGS-PA SUBJOINED LETTER RA","	* Tibetan, Sanskrit\n"
+	"	x (tibetan subjoined letter ra - 0FB2)"},
+/* A872 */ { "PHAGS-PA SUPERFIXED LETTER RA","	* Tibetan\n"
+	"	x (tibetan letter ra - 0F62)"},
+/* A873 */ { "PHAGS-PA LETTER CANDRABINDU","	* Sanskrit\n"
+	"	x (tibetan sign sna ldan - 0F83)\n"
+	"	x (tibetan sign rjes su nga ro - 0F7E)\n"
+	"	x (mongolian letter ali gali anusvara one - 1880)"},
+/* A874 */ { "PHAGS-PA SINGLE HEAD MARK","	* Tibetan\n"
+	"	* marks beginning of text\n"
+	"	x (tibetan mark initial yig mgo mdun ma - 0F04)\n"
+	"	x (mongolian birga - 1800)"},
+/* A875 */ { "PHAGS-PA DOUBLE HEAD MARK","	* Tibetan\n"
+	"	* marks beginning of text"},
+/* A876 */ { "PHAGS-PA MARK SHAD","	* Tibetan\n"
+	"	x (tibetan mark shad - 0F0D)"},
+/* A877 */ { "PHAGS-PA MARK DOUBLE SHAD","	* Tibetan\n"
+	"	x (tibetan mark nyis shad - 0F0E)"},
 /* A878 */ { NULL,NULL},
 /* A879 */ { NULL,NULL},
 /* A87A */ { NULL,NULL},
@@ -18097,7 +18498,9 @@ static const struct unicode_nameannot una_00_FE[] = {
 /* FE16 */ { "PRESENTATION FORM FOR VERTICAL QUESTION MARK","	x (small question mark - FE56)\n"
 	"	# <vertical> 003F"},
 /* FE17 */ { "PRESENTATION FORM FOR VERTICAL LEFT WHITE LENTICULAR BRACKET","	# <vertical> 3016"},
-/* FE18 */ { "PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET","	# <vertical> 3017"},
+/* FE18 */ { "PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET","	% PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET\n"
+	"	* misspelling of \"BRACKET\" in character name is a known defect\n"
+	"	# <vertical> 3017"},
 /* FE19 */ { "PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS","	x (vertical ellipsis - 22EE)\n"
 	"	# <vertical> 2026"},
 /* FE1A */ { NULL,NULL},
@@ -18127,12 +18530,18 @@ static const struct unicode_nameannot una_00_FE[] = {
 /* FE32 */ { "PRESENTATION FORM FOR VERTICAL EN DASH","	# <vertical> 2013"},
 /* FE33 */ { "PRESENTATION FORM FOR VERTICAL LOW LINE","	# <vertical> 005F"},
 /* FE34 */ { "PRESENTATION FORM FOR VERTICAL WAVY LOW LINE","	# <vertical> 005F"},
-/* FE35 */ { "PRESENTATION FORM FOR VERTICAL LEFT PARENTHESIS","	# <vertical> 0028"},
-/* FE36 */ { "PRESENTATION FORM FOR VERTICAL RIGHT PARENTHESIS","	# <vertical> 0029"},
-/* FE37 */ { "PRESENTATION FORM FOR VERTICAL LEFT CURLY BRACKET","	# <vertical> 007B"},
-/* FE38 */ { "PRESENTATION FORM FOR VERTICAL RIGHT CURLY BRACKET","	# <vertical> 007D"},
-/* FE39 */ { "PRESENTATION FORM FOR VERTICAL LEFT TORTOISE SHELL BRACKET","	# <vertical> 3014"},
-/* FE3A */ { "PRESENTATION FORM FOR VERTICAL RIGHT TORTOISE SHELL BRACKET","	# <vertical> 3015"},
+/* FE35 */ { "PRESENTATION FORM FOR VERTICAL LEFT PARENTHESIS","	x (top parenthesis - 23DC)\n"
+	"	# <vertical> 0028"},
+/* FE36 */ { "PRESENTATION FORM FOR VERTICAL RIGHT PARENTHESIS","	x (bottom parenthesis - 23DD)\n"
+	"	# <vertical> 0029"},
+/* FE37 */ { "PRESENTATION FORM FOR VERTICAL LEFT CURLY BRACKET","	x (top curly bracket - 23DE)\n"
+	"	# <vertical> 007B"},
+/* FE38 */ { "PRESENTATION FORM FOR VERTICAL RIGHT CURLY BRACKET","	x (bottom curly bracket - 23DF)\n"
+	"	# <vertical> 007D"},
+/* FE39 */ { "PRESENTATION FORM FOR VERTICAL LEFT TORTOISE SHELL BRACKET","	x (top tortoise shell bracket - 23E0)\n"
+	"	# <vertical> 3014"},
+/* FE3A */ { "PRESENTATION FORM FOR VERTICAL RIGHT TORTOISE SHELL BRACKET","	x (bottom tortoise shell bracket - 23E1)\n"
+	"	# <vertical> 3015"},
 /* FE3B */ { "PRESENTATION FORM FOR VERTICAL LEFT BLACK LENTICULAR BRACKET","	# <vertical> 3010"},
 /* FE3C */ { "PRESENTATION FORM FOR VERTICAL RIGHT BLACK LENTICULAR BRACKET","	# <vertical> 3011"},
 /* FE3D */ { "PRESENTATION FORM FOR VERTICAL LEFT DOUBLE ANGLE BRACKET","	# <vertical> 300A"},
@@ -18159,7 +18568,7 @@ static const struct unicode_nameannot una_00_FE[] = {
 /* FE50 */ { "SMALL COMMA","	x (presentation form for vertical comma - FE10)\n"
 	"	# <small> 002C"},
 /* FE51 */ { "SMALL IDEOGRAPHIC COMMA","	x (presentation form for vertical ideographic comma - FE11)\n"
-	"	x (black sesame dot - FE45)\n"
+	"	x (sesame dot - FE45)\n"
 	"	# <small> 3001"},
 /* FE52 */ { "SMALL FULL STOP","	# <small> 002E"},
 /* FE53 */ { NULL,NULL},
@@ -18167,10 +18576,8 @@ static const struct unicode_nameannot una_00_FE[] = {
 	"	# <small> 003B"},
 /* FE55 */ { "SMALL COLON","	x (presentation form for vertical colon - FE13)\n"
 	"	# <small> 003A"},
-/* FE56 */ { "SMALL QUESTION MARK","	x (presentation form for vertical question mark - FE16)\n"
-	"	# <small> 003F"},
-/* FE57 */ { "SMALL EXCLAMATION MARK","	x (presentation form for vertical exclamation mark - FE15)\n"
-	"	# <small> 0021"},
+/* FE56 */ { "SMALL QUESTION MARK","	# <small> 003F"},
+/* FE57 */ { "SMALL EXCLAMATION MARK","	# <small> 0021"},
 /* FE58 */ { "SMALL EM DASH","	# <small> 2014"},
 /* FE59 */ { "SMALL LEFT PARENTHESIS","	# <small> 0028"},
 /* FE5A */ { "SMALL RIGHT PARENTHESIS","	# <small> 0029"},
@@ -19907,6 +20314,265 @@ static const struct unicode_nameannot una_01_08[] = {
 /* 108FF */ { NULL,NULL}
 };
 
+static const struct unicode_nameannot una_01_09[] = {
+/* 10900 */ { "PHOENICIAN LETTER ALF","	x (hebrew letter alef - 05D0)"},
+/* 10901 */ { "PHOENICIAN LETTER BET","	x (hebrew letter bet - 05D1)"},
+/* 10902 */ { "PHOENICIAN LETTER GAML","	x (hebrew letter gimel - 05D2)"},
+/* 10903 */ { "PHOENICIAN LETTER DELT","	x (hebrew letter dalet - 05D3)"},
+/* 10904 */ { "PHOENICIAN LETTER HE","	x (hebrew letter he - 05D4)"},
+/* 10905 */ { "PHOENICIAN LETTER WAU","	x (hebrew letter vav - 05D5)"},
+/* 10906 */ { "PHOENICIAN LETTER ZAI","	x (hebrew letter zayin - 05D6)"},
+/* 10907 */ { "PHOENICIAN LETTER HET","	x (hebrew letter het - 05D7)"},
+/* 10908 */ { "PHOENICIAN LETTER TET","	x (hebrew letter tet - 05D8)"},
+/* 10909 */ { "PHOENICIAN LETTER YOD","	x (hebrew letter yod - 05D9)"},
+/* 1090A */ { "PHOENICIAN LETTER KAF","	x (hebrew letter kaf - 05DB)"},
+/* 1090B */ { "PHOENICIAN LETTER LAMD","	x (hebrew letter lamed - 05DC)"},
+/* 1090C */ { "PHOENICIAN LETTER MEM","	x (hebrew letter mem - 05DE)"},
+/* 1090D */ { "PHOENICIAN LETTER NUN","	x (hebrew letter nun - 05E0)"},
+/* 1090E */ { "PHOENICIAN LETTER SEMK","	x (hebrew letter samekh - 05E1)"},
+/* 1090F */ { "PHOENICIAN LETTER AIN","	x (hebrew letter ayin - 05E2)"},
+/* 10910 */ { "PHOENICIAN LETTER PE","	x (hebrew letter pe - 05E4)"},
+/* 10911 */ { "PHOENICIAN LETTER SADE","	x (hebrew letter tsadi - 05E6)"},
+/* 10912 */ { "PHOENICIAN LETTER QOF","	x (hebrew letter qof - 05E7)"},
+/* 10913 */ { "PHOENICIAN LETTER ROSH","	x (hebrew letter resh - 05E8)"},
+/* 10914 */ { "PHOENICIAN LETTER SHIN","	x (hebrew letter shin - 05E9)"},
+/* 10915 */ { "PHOENICIAN LETTER TAU","	x (hebrew letter tav - 05EA)"},
+/* 10916 */ { "PHOENICIAN NUMBER ONE",NULL},
+/* 10917 */ { "PHOENICIAN NUMBER TEN",NULL},
+/* 10918 */ { "PHOENICIAN NUMBER TWENTY",NULL},
+/* 10919 */ { "PHOENICIAN NUMBER ONE HUNDRED",NULL},
+/* 1091A */ { NULL,NULL},
+/* 1091B */ { NULL,NULL},
+/* 1091C */ { NULL,NULL},
+/* 1091D */ { NULL,NULL},
+/* 1091E */ { NULL,NULL},
+/* 1091F */ { "PHOENICIAN WORD SEPARATOR","	x (middle dot - 00B7)"},
+/* 10920 */ { NULL,NULL},
+/* 10921 */ { NULL,NULL},
+/* 10922 */ { NULL,NULL},
+/* 10923 */ { NULL,NULL},
+/* 10924 */ { NULL,NULL},
+/* 10925 */ { NULL,NULL},
+/* 10926 */ { NULL,NULL},
+/* 10927 */ { NULL,NULL},
+/* 10928 */ { NULL,NULL},
+/* 10929 */ { NULL,NULL},
+/* 1092A */ { NULL,NULL},
+/* 1092B */ { NULL,NULL},
+/* 1092C */ { NULL,NULL},
+/* 1092D */ { NULL,NULL},
+/* 1092E */ { NULL,NULL},
+/* 1092F */ { NULL,NULL},
+/* 10930 */ { NULL,NULL},
+/* 10931 */ { NULL,NULL},
+/* 10932 */ { NULL,NULL},
+/* 10933 */ { NULL,NULL},
+/* 10934 */ { NULL,NULL},
+/* 10935 */ { NULL,NULL},
+/* 10936 */ { NULL,NULL},
+/* 10937 */ { NULL,NULL},
+/* 10938 */ { NULL,NULL},
+/* 10939 */ { NULL,NULL},
+/* 1093A */ { NULL,NULL},
+/* 1093B */ { NULL,NULL},
+/* 1093C */ { NULL,NULL},
+/* 1093D */ { NULL,NULL},
+/* 1093E */ { NULL,NULL},
+/* 1093F */ { NULL,NULL},
+/* 10940 */ { NULL,NULL},
+/* 10941 */ { NULL,NULL},
+/* 10942 */ { NULL,NULL},
+/* 10943 */ { NULL,NULL},
+/* 10944 */ { NULL,NULL},
+/* 10945 */ { NULL,NULL},
+/* 10946 */ { NULL,NULL},
+/* 10947 */ { NULL,NULL},
+/* 10948 */ { NULL,NULL},
+/* 10949 */ { NULL,NULL},
+/* 1094A */ { NULL,NULL},
+/* 1094B */ { NULL,NULL},
+/* 1094C */ { NULL,NULL},
+/* 1094D */ { NULL,NULL},
+/* 1094E */ { NULL,NULL},
+/* 1094F */ { NULL,NULL},
+/* 10950 */ { NULL,NULL},
+/* 10951 */ { NULL,NULL},
+/* 10952 */ { NULL,NULL},
+/* 10953 */ { NULL,NULL},
+/* 10954 */ { NULL,NULL},
+/* 10955 */ { NULL,NULL},
+/* 10956 */ { NULL,NULL},
+/* 10957 */ { NULL,NULL},
+/* 10958 */ { NULL,NULL},
+/* 10959 */ { NULL,NULL},
+/* 1095A */ { NULL,NULL},
+/* 1095B */ { NULL,NULL},
+/* 1095C */ { NULL,NULL},
+/* 1095D */ { NULL,NULL},
+/* 1095E */ { NULL,NULL},
+/* 1095F */ { NULL,NULL},
+/* 10960 */ { NULL,NULL},
+/* 10961 */ { NULL,NULL},
+/* 10962 */ { NULL,NULL},
+/* 10963 */ { NULL,NULL},
+/* 10964 */ { NULL,NULL},
+/* 10965 */ { NULL,NULL},
+/* 10966 */ { NULL,NULL},
+/* 10967 */ { NULL,NULL},
+/* 10968 */ { NULL,NULL},
+/* 10969 */ { NULL,NULL},
+/* 1096A */ { NULL,NULL},
+/* 1096B */ { NULL,NULL},
+/* 1096C */ { NULL,NULL},
+/* 1096D */ { NULL,NULL},
+/* 1096E */ { NULL,NULL},
+/* 1096F */ { NULL,NULL},
+/* 10970 */ { NULL,NULL},
+/* 10971 */ { NULL,NULL},
+/* 10972 */ { NULL,NULL},
+/* 10973 */ { NULL,NULL},
+/* 10974 */ { NULL,NULL},
+/* 10975 */ { NULL,NULL},
+/* 10976 */ { NULL,NULL},
+/* 10977 */ { NULL,NULL},
+/* 10978 */ { NULL,NULL},
+/* 10979 */ { NULL,NULL},
+/* 1097A */ { NULL,NULL},
+/* 1097B */ { NULL,NULL},
+/* 1097C */ { NULL,NULL},
+/* 1097D */ { NULL,NULL},
+/* 1097E */ { NULL,NULL},
+/* 1097F */ { NULL,NULL},
+/* 10980 */ { NULL,NULL},
+/* 10981 */ { NULL,NULL},
+/* 10982 */ { NULL,NULL},
+/* 10983 */ { NULL,NULL},
+/* 10984 */ { NULL,NULL},
+/* 10985 */ { NULL,NULL},
+/* 10986 */ { NULL,NULL},
+/* 10987 */ { NULL,NULL},
+/* 10988 */ { NULL,NULL},
+/* 10989 */ { NULL,NULL},
+/* 1098A */ { NULL,NULL},
+/* 1098B */ { NULL,NULL},
+/* 1098C */ { NULL,NULL},
+/* 1098D */ { NULL,NULL},
+/* 1098E */ { NULL,NULL},
+/* 1098F */ { NULL,NULL},
+/* 10990 */ { NULL,NULL},
+/* 10991 */ { NULL,NULL},
+/* 10992 */ { NULL,NULL},
+/* 10993 */ { NULL,NULL},
+/* 10994 */ { NULL,NULL},
+/* 10995 */ { NULL,NULL},
+/* 10996 */ { NULL,NULL},
+/* 10997 */ { NULL,NULL},
+/* 10998 */ { NULL,NULL},
+/* 10999 */ { NULL,NULL},
+/* 1099A */ { NULL,NULL},
+/* 1099B */ { NULL,NULL},
+/* 1099C */ { NULL,NULL},
+/* 1099D */ { NULL,NULL},
+/* 1099E */ { NULL,NULL},
+/* 1099F */ { NULL,NULL},
+/* 109A0 */ { NULL,NULL},
+/* 109A1 */ { NULL,NULL},
+/* 109A2 */ { NULL,NULL},
+/* 109A3 */ { NULL,NULL},
+/* 109A4 */ { NULL,NULL},
+/* 109A5 */ { NULL,NULL},
+/* 109A6 */ { NULL,NULL},
+/* 109A7 */ { NULL,NULL},
+/* 109A8 */ { NULL,NULL},
+/* 109A9 */ { NULL,NULL},
+/* 109AA */ { NULL,NULL},
+/* 109AB */ { NULL,NULL},
+/* 109AC */ { NULL,NULL},
+/* 109AD */ { NULL,NULL},
+/* 109AE */ { NULL,NULL},
+/* 109AF */ { NULL,NULL},
+/* 109B0 */ { NULL,NULL},
+/* 109B1 */ { NULL,NULL},
+/* 109B2 */ { NULL,NULL},
+/* 109B3 */ { NULL,NULL},
+/* 109B4 */ { NULL,NULL},
+/* 109B5 */ { NULL,NULL},
+/* 109B6 */ { NULL,NULL},
+/* 109B7 */ { NULL,NULL},
+/* 109B8 */ { NULL,NULL},
+/* 109B9 */ { NULL,NULL},
+/* 109BA */ { NULL,NULL},
+/* 109BB */ { NULL,NULL},
+/* 109BC */ { NULL,NULL},
+/* 109BD */ { NULL,NULL},
+/* 109BE */ { NULL,NULL},
+/* 109BF */ { NULL,NULL},
+/* 109C0 */ { NULL,NULL},
+/* 109C1 */ { NULL,NULL},
+/* 109C2 */ { NULL,NULL},
+/* 109C3 */ { NULL,NULL},
+/* 109C4 */ { NULL,NULL},
+/* 109C5 */ { NULL,NULL},
+/* 109C6 */ { NULL,NULL},
+/* 109C7 */ { NULL,NULL},
+/* 109C8 */ { NULL,NULL},
+/* 109C9 */ { NULL,NULL},
+/* 109CA */ { NULL,NULL},
+/* 109CB */ { NULL,NULL},
+/* 109CC */ { NULL,NULL},
+/* 109CD */ { NULL,NULL},
+/* 109CE */ { NULL,NULL},
+/* 109CF */ { NULL,NULL},
+/* 109D0 */ { NULL,NULL},
+/* 109D1 */ { NULL,NULL},
+/* 109D2 */ { NULL,NULL},
+/* 109D3 */ { NULL,NULL},
+/* 109D4 */ { NULL,NULL},
+/* 109D5 */ { NULL,NULL},
+/* 109D6 */ { NULL,NULL},
+/* 109D7 */ { NULL,NULL},
+/* 109D8 */ { NULL,NULL},
+/* 109D9 */ { NULL,NULL},
+/* 109DA */ { NULL,NULL},
+/* 109DB */ { NULL,NULL},
+/* 109DC */ { NULL,NULL},
+/* 109DD */ { NULL,NULL},
+/* 109DE */ { NULL,NULL},
+/* 109DF */ { NULL,NULL},
+/* 109E0 */ { NULL,NULL},
+/* 109E1 */ { NULL,NULL},
+/* 109E2 */ { NULL,NULL},
+/* 109E3 */ { NULL,NULL},
+/* 109E4 */ { NULL,NULL},
+/* 109E5 */ { NULL,NULL},
+/* 109E6 */ { NULL,NULL},
+/* 109E7 */ { NULL,NULL},
+/* 109E8 */ { NULL,NULL},
+/* 109E9 */ { NULL,NULL},
+/* 109EA */ { NULL,NULL},
+/* 109EB */ { NULL,NULL},
+/* 109EC */ { NULL,NULL},
+/* 109ED */ { NULL,NULL},
+/* 109EE */ { NULL,NULL},
+/* 109EF */ { NULL,NULL},
+/* 109F0 */ { NULL,NULL},
+/* 109F1 */ { NULL,NULL},
+/* 109F2 */ { NULL,NULL},
+/* 109F3 */ { NULL,NULL},
+/* 109F4 */ { NULL,NULL},
+/* 109F5 */ { NULL,NULL},
+/* 109F6 */ { NULL,NULL},
+/* 109F7 */ { NULL,NULL},
+/* 109F8 */ { NULL,NULL},
+/* 109F9 */ { NULL,NULL},
+/* 109FA */ { NULL,NULL},
+/* 109FB */ { NULL,NULL},
+/* 109FC */ { NULL,NULL},
+/* 109FD */ { NULL,NULL},
+/* 109FE */ { NULL,NULL},
+/* 109FF */ { NULL,NULL}
+};
+
 static const struct unicode_nameannot una_01_0A[] = {
 /* 10A00 */ { "KHAROSHTHI LETTER A",NULL},
 /* 10A01 */ { "KHAROSHTHI VOWEL SIGN I",NULL},
@@ -19972,7 +20638,8 @@ static const struct unicode_nameannot una_01_0A[] = {
 /* 10A3D */ { NULL,NULL},
 /* 10A3E */ { NULL,NULL},
 /* 10A3F */ { "KHAROSHTHI VIRAMA","	= halant\n"
-	"	* suppresses inherent vowel"},
+	"	* suppresses inherent vowel\n"
+	"	* shape shown is arbitrary and is not visibly rendered"},
 /* 10A40 */ { "KHAROSHTHI DIGIT ONE",NULL},
 /* 10A41 */ { "KHAROSHTHI DIGIT TWO",NULL},
 /* 10A42 */ { "KHAROSHTHI DIGIT THREE",NULL},
@@ -20167,6 +20834,1302 @@ static const struct unicode_nameannot una_01_0A[] = {
 /* 10AFF */ { NULL,NULL}
 };
 
+static const struct unicode_nameannot una_01_20[] = {
+/* 12000 */ { "CUNEIFORM SIGN A",NULL},
+/* 12001 */ { "CUNEIFORM SIGN A TIMES A",NULL},
+/* 12002 */ { "CUNEIFORM SIGN A TIMES BAD",NULL},
+/* 12003 */ { "CUNEIFORM SIGN A TIMES GAN2 TENU",NULL},
+/* 12004 */ { "CUNEIFORM SIGN A TIMES HA",NULL},
+/* 12005 */ { "CUNEIFORM SIGN A TIMES IGI",NULL},
+/* 12006 */ { "CUNEIFORM SIGN A TIMES LAGAR GUNU",NULL},
+/* 12007 */ { "CUNEIFORM SIGN A TIMES MUSH",NULL},
+/* 12008 */ { "CUNEIFORM SIGN A TIMES SAG",NULL},
+/* 12009 */ { "CUNEIFORM SIGN A2",NULL},
+/* 1200A */ { "CUNEIFORM SIGN AB",NULL},
+/* 1200B */ { "CUNEIFORM SIGN AB TIMES ASH2",NULL},
+/* 1200C */ { "CUNEIFORM SIGN AB TIMES DUN3 GUNU",NULL},
+/* 1200D */ { "CUNEIFORM SIGN AB TIMES GAL",NULL},
+/* 1200E */ { "CUNEIFORM SIGN AB TIMES GAN2 TENU",NULL},
+/* 1200F */ { "CUNEIFORM SIGN AB TIMES HA",NULL},
+/* 12010 */ { "CUNEIFORM SIGN AB TIMES IGI GUNU",NULL},
+/* 12011 */ { "CUNEIFORM SIGN AB TIMES IMIN",NULL},
+/* 12012 */ { "CUNEIFORM SIGN AB TIMES LAGAB",NULL},
+/* 12013 */ { "CUNEIFORM SIGN AB TIMES SHESH",NULL},
+/* 12014 */ { "CUNEIFORM SIGN AB TIMES U PLUS U PLUS U",NULL},
+/* 12015 */ { "CUNEIFORM SIGN AB GUNU",NULL},
+/* 12016 */ { "CUNEIFORM SIGN AB2",NULL},
+/* 12017 */ { "CUNEIFORM SIGN AB2 TIMES BALAG",NULL},
+/* 12018 */ { "CUNEIFORM SIGN AB2 TIMES GAN2 TENU",NULL},
+/* 12019 */ { "CUNEIFORM SIGN AB2 TIMES ME PLUS EN",NULL},
+/* 1201A */ { "CUNEIFORM SIGN AB2 TIMES SHA3",NULL},
+/* 1201B */ { "CUNEIFORM SIGN AB2 TIMES TAK4",NULL},
+/* 1201C */ { "CUNEIFORM SIGN AD",NULL},
+/* 1201D */ { "CUNEIFORM SIGN AK",NULL},
+/* 1201E */ { "CUNEIFORM SIGN AK TIMES ERIN2",NULL},
+/* 1201F */ { "CUNEIFORM SIGN AK TIMES SHITA PLUS GISH",NULL},
+/* 12020 */ { "CUNEIFORM SIGN AL",NULL},
+/* 12021 */ { "CUNEIFORM SIGN AL TIMES AL",NULL},
+/* 12022 */ { "CUNEIFORM SIGN AL TIMES DIM2",NULL},
+/* 12023 */ { "CUNEIFORM SIGN AL TIMES GISH",NULL},
+/* 12024 */ { "CUNEIFORM SIGN AL TIMES HA",NULL},
+/* 12025 */ { "CUNEIFORM SIGN AL TIMES KAD3",NULL},
+/* 12026 */ { "CUNEIFORM SIGN AL TIMES KI",NULL},
+/* 12027 */ { "CUNEIFORM SIGN AL TIMES SHE",NULL},
+/* 12028 */ { "CUNEIFORM SIGN AL TIMES USH",NULL},
+/* 12029 */ { "CUNEIFORM SIGN ALAN",NULL},
+/* 1202A */ { "CUNEIFORM SIGN ALEPH",NULL},
+/* 1202B */ { "CUNEIFORM SIGN AMAR",NULL},
+/* 1202C */ { "CUNEIFORM SIGN AMAR TIMES SHE",NULL},
+/* 1202D */ { "CUNEIFORM SIGN AN",NULL},
+/* 1202E */ { "CUNEIFORM SIGN AN OVER AN",NULL},
+/* 1202F */ { "CUNEIFORM SIGN AN THREE TIMES",NULL},
+/* 12030 */ { "CUNEIFORM SIGN AN PLUS NAGA OPPOSING AN PLUS NAGA",NULL},
+/* 12031 */ { "CUNEIFORM SIGN AN PLUS NAGA SQUARED",NULL},
+/* 12032 */ { "CUNEIFORM SIGN ANSHE",NULL},
+/* 12033 */ { "CUNEIFORM SIGN APIN",NULL},
+/* 12034 */ { "CUNEIFORM SIGN ARAD",NULL},
+/* 12035 */ { "CUNEIFORM SIGN ARAD TIMES KUR",NULL},
+/* 12036 */ { "CUNEIFORM SIGN ARKAB",NULL},
+/* 12037 */ { "CUNEIFORM SIGN ASAL2",NULL},
+/* 12038 */ { "CUNEIFORM SIGN ASH",NULL},
+/* 12039 */ { "CUNEIFORM SIGN ASH ZIDA TENU",NULL},
+/* 1203A */ { "CUNEIFORM SIGN ASH KABA TENU",NULL},
+/* 1203B */ { "CUNEIFORM SIGN ASH OVER ASH TUG2 OVER TUG2 TUG2 OVER TUG2 PAP",NULL},
+/* 1203C */ { "CUNEIFORM SIGN ASH OVER ASH OVER ASH",NULL},
+/* 1203D */ { "CUNEIFORM SIGN ASH OVER ASH OVER ASH CROSSING ASH OVER ASH OVER ASH",NULL},
+/* 1203E */ { "CUNEIFORM SIGN ASH2",NULL},
+/* 1203F */ { "CUNEIFORM SIGN ASHGAB",NULL},
+/* 12040 */ { "CUNEIFORM SIGN BA",NULL},
+/* 12041 */ { "CUNEIFORM SIGN BAD",NULL},
+/* 12042 */ { "CUNEIFORM SIGN BAG3",NULL},
+/* 12043 */ { "CUNEIFORM SIGN BAHAR2",NULL},
+/* 12044 */ { "CUNEIFORM SIGN BAL",NULL},
+/* 12045 */ { "CUNEIFORM SIGN BAL OVER BAL",NULL},
+/* 12046 */ { "CUNEIFORM SIGN BALAG",NULL},
+/* 12047 */ { "CUNEIFORM SIGN BAR",NULL},
+/* 12048 */ { "CUNEIFORM SIGN BARA2",NULL},
+/* 12049 */ { "CUNEIFORM SIGN BI",NULL},
+/* 1204A */ { "CUNEIFORM SIGN BI TIMES A",NULL},
+/* 1204B */ { "CUNEIFORM SIGN BI TIMES GAR",NULL},
+/* 1204C */ { "CUNEIFORM SIGN BI TIMES IGI GUNU",NULL},
+/* 1204D */ { "CUNEIFORM SIGN BU",NULL},
+/* 1204E */ { "CUNEIFORM SIGN BU OVER BU AB",NULL},
+/* 1204F */ { "CUNEIFORM SIGN BU OVER BU UN",NULL},
+/* 12050 */ { "CUNEIFORM SIGN BU CROSSING BU",NULL},
+/* 12051 */ { "CUNEIFORM SIGN BULUG",NULL},
+/* 12052 */ { "CUNEIFORM SIGN BULUG OVER BULUG",NULL},
+/* 12053 */ { "CUNEIFORM SIGN BUR",NULL},
+/* 12054 */ { "CUNEIFORM SIGN BUR2",NULL},
+/* 12055 */ { "CUNEIFORM SIGN DA",NULL},
+/* 12056 */ { "CUNEIFORM SIGN DAG",NULL},
+/* 12057 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES A PLUS MASH",NULL},
+/* 12058 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES AMAR",NULL},
+/* 12059 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES BALAG",NULL},
+/* 1205A */ { "CUNEIFORM SIGN DAG KISIM5 TIMES BI",NULL},
+/* 1205B */ { "CUNEIFORM SIGN DAG KISIM5 TIMES GA",NULL},
+/* 1205C */ { "CUNEIFORM SIGN DAG KISIM5 TIMES GA PLUS MASH",NULL},
+/* 1205D */ { "CUNEIFORM SIGN DAG KISIM5 TIMES GI",NULL},
+/* 1205E */ { "CUNEIFORM SIGN DAG KISIM5 TIMES GIR2",NULL},
+/* 1205F */ { "CUNEIFORM SIGN DAG KISIM5 TIMES GUD",NULL},
+/* 12060 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES HA",NULL},
+/* 12061 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES IR",NULL},
+/* 12062 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES IR PLUS LU",NULL},
+/* 12063 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES KAK",NULL},
+/* 12064 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES LA",NULL},
+/* 12065 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES LU",NULL},
+/* 12066 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES LU PLUS MASH2",NULL},
+/* 12067 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES LUM",NULL},
+/* 12068 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES NE",NULL},
+/* 12069 */ { "CUNEIFORM SIGN DAG KISIM5 TIMES PAP PLUS PAP",NULL},
+/* 1206A */ { "CUNEIFORM SIGN DAG KISIM5 TIMES SI",NULL},
+/* 1206B */ { "CUNEIFORM SIGN DAG KISIM5 TIMES TAK4",NULL},
+/* 1206C */ { "CUNEIFORM SIGN DAG KISIM5 TIMES U2 PLUS GIR2",NULL},
+/* 1206D */ { "CUNEIFORM SIGN DAG KISIM5 TIMES USH",NULL},
+/* 1206E */ { "CUNEIFORM SIGN DAM",NULL},
+/* 1206F */ { "CUNEIFORM SIGN DAR",NULL},
+/* 12070 */ { "CUNEIFORM SIGN DARA3",NULL},
+/* 12071 */ { "CUNEIFORM SIGN DARA4",NULL},
+/* 12072 */ { "CUNEIFORM SIGN DI",NULL},
+/* 12073 */ { "CUNEIFORM SIGN DIB",NULL},
+/* 12074 */ { "CUNEIFORM SIGN DIM",NULL},
+/* 12075 */ { "CUNEIFORM SIGN DIM TIMES SHE",NULL},
+/* 12076 */ { "CUNEIFORM SIGN DIM2",NULL},
+/* 12077 */ { "CUNEIFORM SIGN DIN",NULL},
+/* 12078 */ { "CUNEIFORM SIGN DIN KASKAL U GUNU DISH",NULL},
+/* 12079 */ { "CUNEIFORM SIGN DISH",NULL},
+/* 1207A */ { "CUNEIFORM SIGN DU",NULL},
+/* 1207B */ { "CUNEIFORM SIGN DU OVER DU",NULL},
+/* 1207C */ { "CUNEIFORM SIGN DU GUNU",NULL},
+/* 1207D */ { "CUNEIFORM SIGN DU SHESHIG",NULL},
+/* 1207E */ { "CUNEIFORM SIGN DUB",NULL},
+/* 1207F */ { "CUNEIFORM SIGN DUB TIMES ESH2",NULL},
+/* 12080 */ { "CUNEIFORM SIGN DUB2",NULL},
+/* 12081 */ { "CUNEIFORM SIGN DUG",NULL},
+/* 12082 */ { "CUNEIFORM SIGN DUGUD",NULL},
+/* 12083 */ { "CUNEIFORM SIGN DUH",NULL},
+/* 12084 */ { "CUNEIFORM SIGN DUN",NULL},
+/* 12085 */ { "CUNEIFORM SIGN DUN3",NULL},
+/* 12086 */ { "CUNEIFORM SIGN DUN3 GUNU",NULL},
+/* 12087 */ { "CUNEIFORM SIGN DUN3 GUNU GUNU",NULL},
+/* 12088 */ { "CUNEIFORM SIGN DUN4",NULL},
+/* 12089 */ { "CUNEIFORM SIGN DUR2",NULL},
+/* 1208A */ { "CUNEIFORM SIGN E",NULL},
+/* 1208B */ { "CUNEIFORM SIGN E TIMES PAP",NULL},
+/* 1208C */ { "CUNEIFORM SIGN E OVER E NUN OVER NUN",NULL},
+/* 1208D */ { "CUNEIFORM SIGN E2",NULL},
+/* 1208E */ { "CUNEIFORM SIGN E2 TIMES A PLUS HA PLUS DA",NULL},
+/* 1208F */ { "CUNEIFORM SIGN E2 TIMES GAR",NULL},
+/* 12090 */ { "CUNEIFORM SIGN E2 TIMES MI",NULL},
+/* 12091 */ { "CUNEIFORM SIGN E2 TIMES SAL",NULL},
+/* 12092 */ { "CUNEIFORM SIGN E2 TIMES SHE",NULL},
+/* 12093 */ { "CUNEIFORM SIGN E2 TIMES U",NULL},
+/* 12094 */ { "CUNEIFORM SIGN EDIN",NULL},
+/* 12095 */ { "CUNEIFORM SIGN EGIR",NULL},
+/* 12096 */ { "CUNEIFORM SIGN EL",NULL},
+/* 12097 */ { "CUNEIFORM SIGN EN",NULL},
+/* 12098 */ { "CUNEIFORM SIGN EN TIMES GAN2",NULL},
+/* 12099 */ { "CUNEIFORM SIGN EN TIMES GAN2 TENU",NULL},
+/* 1209A */ { "CUNEIFORM SIGN EN TIMES ME",NULL},
+/* 1209B */ { "CUNEIFORM SIGN EN CROSSING EN",NULL},
+/* 1209C */ { "CUNEIFORM SIGN EN OPPOSING EN",NULL},
+/* 1209D */ { "CUNEIFORM SIGN EN SQUARED",NULL},
+/* 1209E */ { "CUNEIFORM SIGN EREN",NULL},
+/* 1209F */ { "CUNEIFORM SIGN ERIN2",NULL},
+/* 120A0 */ { "CUNEIFORM SIGN ESH2",NULL},
+/* 120A1 */ { "CUNEIFORM SIGN EZEN",NULL},
+/* 120A2 */ { "CUNEIFORM SIGN EZEN TIMES A",NULL},
+/* 120A3 */ { "CUNEIFORM SIGN EZEN TIMES A PLUS LAL",NULL},
+/* 120A4 */ { "CUNEIFORM SIGN EZEN TIMES A PLUS LAL TIMES LAL",NULL},
+/* 120A5 */ { "CUNEIFORM SIGN EZEN TIMES AN",NULL},
+/* 120A6 */ { "CUNEIFORM SIGN EZEN TIMES BAD",NULL},
+/* 120A7 */ { "CUNEIFORM SIGN EZEN TIMES DUN3 GUNU",NULL},
+/* 120A8 */ { "CUNEIFORM SIGN EZEN TIMES DUN3 GUNU GUNU",NULL},
+/* 120A9 */ { "CUNEIFORM SIGN EZEN TIMES HA",NULL},
+/* 120AA */ { "CUNEIFORM SIGN EZEN TIMES HA GUNU",NULL},
+/* 120AB */ { "CUNEIFORM SIGN EZEN TIMES IGI GUNU",NULL},
+/* 120AC */ { "CUNEIFORM SIGN EZEN TIMES KASKAL",NULL},
+/* 120AD */ { "CUNEIFORM SIGN EZEN TIMES KASKAL SQUARED",NULL},
+/* 120AE */ { "CUNEIFORM SIGN EZEN TIMES KU3",NULL},
+/* 120AF */ { "CUNEIFORM SIGN EZEN TIMES LA",NULL},
+/* 120B0 */ { "CUNEIFORM SIGN EZEN TIMES LAL TIMES LAL",NULL},
+/* 120B1 */ { "CUNEIFORM SIGN EZEN TIMES LI",NULL},
+/* 120B2 */ { "CUNEIFORM SIGN EZEN TIMES LU",NULL},
+/* 120B3 */ { "CUNEIFORM SIGN EZEN TIMES U2",NULL},
+/* 120B4 */ { "CUNEIFORM SIGN EZEN TIMES UD",NULL},
+/* 120B5 */ { "CUNEIFORM SIGN GA",NULL},
+/* 120B6 */ { "CUNEIFORM SIGN GA GUNU",NULL},
+/* 120B7 */ { "CUNEIFORM SIGN GA2",NULL},
+/* 120B8 */ { "CUNEIFORM SIGN GA2 TIMES A PLUS DA PLUS HA",NULL},
+/* 120B9 */ { "CUNEIFORM SIGN GA2 TIMES A PLUS HA",NULL},
+/* 120BA */ { "CUNEIFORM SIGN GA2 TIMES A PLUS IGI",NULL},
+/* 120BB */ { "CUNEIFORM SIGN GA2 TIMES AB2 TENU PLUS TAB",NULL},
+/* 120BC */ { "CUNEIFORM SIGN GA2 TIMES AN",NULL},
+/* 120BD */ { "CUNEIFORM SIGN GA2 TIMES ASH",NULL},
+/* 120BE */ { "CUNEIFORM SIGN GA2 TIMES ASH2 PLUS GAL",NULL},
+/* 120BF */ { "CUNEIFORM SIGN GA2 TIMES BAD",NULL},
+/* 120C0 */ { "CUNEIFORM SIGN GA2 TIMES BAR PLUS RA",NULL},
+/* 120C1 */ { "CUNEIFORM SIGN GA2 TIMES BUR",NULL},
+/* 120C2 */ { "CUNEIFORM SIGN GA2 TIMES BUR PLUS RA",NULL},
+/* 120C3 */ { "CUNEIFORM SIGN GA2 TIMES DA",NULL},
+/* 120C4 */ { "CUNEIFORM SIGN GA2 TIMES DI",NULL},
+/* 120C5 */ { "CUNEIFORM SIGN GA2 TIMES DIM TIMES SHE",NULL},
+/* 120C6 */ { "CUNEIFORM SIGN GA2 TIMES DUB",NULL},
+/* 120C7 */ { "CUNEIFORM SIGN GA2 TIMES EL",NULL},
+/* 120C8 */ { "CUNEIFORM SIGN GA2 TIMES EL PLUS LA",NULL},
+/* 120C9 */ { "CUNEIFORM SIGN GA2 TIMES EN",NULL},
+/* 120CA */ { "CUNEIFORM SIGN GA2 TIMES EN TIMES GAN2 TENU",NULL},
+/* 120CB */ { "CUNEIFORM SIGN GA2 TIMES GAN2 TENU",NULL},
+/* 120CC */ { "CUNEIFORM SIGN GA2 TIMES GAR",NULL},
+/* 120CD */ { "CUNEIFORM SIGN GA2 TIMES GI",NULL},
+/* 120CE */ { "CUNEIFORM SIGN GA2 TIMES GI4",NULL},
+/* 120CF */ { "CUNEIFORM SIGN GA2 TIMES GI4 PLUS A",NULL},
+/* 120D0 */ { "CUNEIFORM SIGN GA2 TIMES GIR2 PLUS SU",NULL},
+/* 120D1 */ { "CUNEIFORM SIGN GA2 TIMES HA PLUS LU PLUS ESH2",NULL},
+/* 120D2 */ { "CUNEIFORM SIGN GA2 TIMES HAL",NULL},
+/* 120D3 */ { "CUNEIFORM SIGN GA2 TIMES HAL PLUS LA",NULL},
+/* 120D4 */ { "CUNEIFORM SIGN GA2 TIMES HI PLUS LI",NULL},
+/* 120D5 */ { "CUNEIFORM SIGN GA2 TIMES HUB2",NULL},
+/* 120D6 */ { "CUNEIFORM SIGN GA2 TIMES IGI GUNU",NULL},
+/* 120D7 */ { "CUNEIFORM SIGN GA2 TIMES ISH PLUS HU PLUS ASH",NULL},
+/* 120D8 */ { "CUNEIFORM SIGN GA2 TIMES KAK",NULL},
+/* 120D9 */ { "CUNEIFORM SIGN GA2 TIMES KASKAL",NULL},
+/* 120DA */ { "CUNEIFORM SIGN GA2 TIMES KID",NULL},
+/* 120DB */ { "CUNEIFORM SIGN GA2 TIMES KID PLUS LAL",NULL},
+/* 120DC */ { "CUNEIFORM SIGN GA2 TIMES KU3 PLUS AN",NULL},
+/* 120DD */ { "CUNEIFORM SIGN GA2 TIMES LA",NULL},
+/* 120DE */ { "CUNEIFORM SIGN GA2 TIMES ME PLUS EN",NULL},
+/* 120DF */ { "CUNEIFORM SIGN GA2 TIMES MI",NULL},
+/* 120E0 */ { "CUNEIFORM SIGN GA2 TIMES NUN",NULL},
+/* 120E1 */ { "CUNEIFORM SIGN GA2 TIMES NUN OVER NUN",NULL},
+/* 120E2 */ { "CUNEIFORM SIGN GA2 TIMES PA",NULL},
+/* 120E3 */ { "CUNEIFORM SIGN GA2 TIMES SAL",NULL},
+/* 120E4 */ { "CUNEIFORM SIGN GA2 TIMES SAR",NULL},
+/* 120E5 */ { "CUNEIFORM SIGN GA2 TIMES SHE",NULL},
+/* 120E6 */ { "CUNEIFORM SIGN GA2 TIMES SHE PLUS TUR",NULL},
+/* 120E7 */ { "CUNEIFORM SIGN GA2 TIMES SHID",NULL},
+/* 120E8 */ { "CUNEIFORM SIGN GA2 TIMES SUM",NULL},
+/* 120E9 */ { "CUNEIFORM SIGN GA2 TIMES TAK4",NULL},
+/* 120EA */ { "CUNEIFORM SIGN GA2 TIMES U",NULL},
+/* 120EB */ { "CUNEIFORM SIGN GA2 TIMES UD",NULL},
+/* 120EC */ { "CUNEIFORM SIGN GA2 TIMES UD PLUS DU",NULL},
+/* 120ED */ { "CUNEIFORM SIGN GA2 OVER GA2",NULL},
+/* 120EE */ { "CUNEIFORM SIGN GABA",NULL},
+/* 120EF */ { "CUNEIFORM SIGN GABA CROSSING GABA",NULL},
+/* 120F0 */ { "CUNEIFORM SIGN GAD",NULL},
+/* 120F1 */ { "CUNEIFORM SIGN GAD OVER GAD GAR OVER GAR",NULL},
+/* 120F2 */ { "CUNEIFORM SIGN GAL",NULL},
+/* 120F3 */ { "CUNEIFORM SIGN GAL GAD OVER GAD GAR OVER GAR",NULL},
+/* 120F4 */ { "CUNEIFORM SIGN GALAM",NULL},
+/* 120F5 */ { "CUNEIFORM SIGN GAM",NULL},
+/* 120F6 */ { "CUNEIFORM SIGN GAN",NULL},
+/* 120F7 */ { "CUNEIFORM SIGN GAN2",NULL},
+/* 120F8 */ { "CUNEIFORM SIGN GAN2 TENU",NULL},
+/* 120F9 */ { "CUNEIFORM SIGN GAN2 OVER GAN2",NULL},
+/* 120FA */ { "CUNEIFORM SIGN GAN2 CROSSING GAN2",NULL},
+/* 120FB */ { "CUNEIFORM SIGN GAR",NULL},
+/* 120FC */ { "CUNEIFORM SIGN GAR3",NULL},
+/* 120FD */ { "CUNEIFORM SIGN GASHAN",NULL},
+/* 120FE */ { "CUNEIFORM SIGN GESHTIN",NULL},
+/* 120FF */ { "CUNEIFORM SIGN GESHTIN TIMES KUR",NULL}
+};
+
+static const struct unicode_nameannot una_01_21[] = {
+/* 12100 */ { "CUNEIFORM SIGN GI",NULL},
+/* 12101 */ { "CUNEIFORM SIGN GI TIMES E",NULL},
+/* 12102 */ { "CUNEIFORM SIGN GI TIMES U",NULL},
+/* 12103 */ { "CUNEIFORM SIGN GI CROSSING GI",NULL},
+/* 12104 */ { "CUNEIFORM SIGN GI4",NULL},
+/* 12105 */ { "CUNEIFORM SIGN GI4 OVER GI4",NULL},
+/* 12106 */ { "CUNEIFORM SIGN GI4 CROSSING GI4",NULL},
+/* 12107 */ { "CUNEIFORM SIGN GIDIM",NULL},
+/* 12108 */ { "CUNEIFORM SIGN GIR2",NULL},
+/* 12109 */ { "CUNEIFORM SIGN GIR2 GUNU",NULL},
+/* 1210A */ { "CUNEIFORM SIGN GIR3",NULL},
+/* 1210B */ { "CUNEIFORM SIGN GIR3 TIMES A PLUS IGI",NULL},
+/* 1210C */ { "CUNEIFORM SIGN GIR3 TIMES GAN2 TENU",NULL},
+/* 1210D */ { "CUNEIFORM SIGN GIR3 TIMES IGI",NULL},
+/* 1210E */ { "CUNEIFORM SIGN GIR3 TIMES LU PLUS IGI",NULL},
+/* 1210F */ { "CUNEIFORM SIGN GIR3 TIMES PA",NULL},
+/* 12110 */ { "CUNEIFORM SIGN GISAL",NULL},
+/* 12111 */ { "CUNEIFORM SIGN GISH",NULL},
+/* 12112 */ { "CUNEIFORM SIGN GISH CROSSING GISH",NULL},
+/* 12113 */ { "CUNEIFORM SIGN GISH TIMES BAD",NULL},
+/* 12114 */ { "CUNEIFORM SIGN GISH TIMES TAK4",NULL},
+/* 12115 */ { "CUNEIFORM SIGN GISH TENU",NULL},
+/* 12116 */ { "CUNEIFORM SIGN GU",NULL},
+/* 12117 */ { "CUNEIFORM SIGN GU CROSSING GU",NULL},
+/* 12118 */ { "CUNEIFORM SIGN GU2",NULL},
+/* 12119 */ { "CUNEIFORM SIGN GU2 TIMES KAK",NULL},
+/* 1211A */ { "CUNEIFORM SIGN GU2 TIMES KAK TIMES IGI GUNU",NULL},
+/* 1211B */ { "CUNEIFORM SIGN GU2 TIMES NUN",NULL},
+/* 1211C */ { "CUNEIFORM SIGN GU2 TIMES SAL PLUS TUG2",NULL},
+/* 1211D */ { "CUNEIFORM SIGN GU2 GUNU",NULL},
+/* 1211E */ { "CUNEIFORM SIGN GUD",NULL},
+/* 1211F */ { "CUNEIFORM SIGN GUD TIMES A PLUS KUR",NULL},
+/* 12120 */ { "CUNEIFORM SIGN GUD TIMES KUR",NULL},
+/* 12121 */ { "CUNEIFORM SIGN GUD OVER GUD LUGAL",NULL},
+/* 12122 */ { "CUNEIFORM SIGN GUL",NULL},
+/* 12123 */ { "CUNEIFORM SIGN GUM",NULL},
+/* 12124 */ { "CUNEIFORM SIGN GUM TIMES SHE",NULL},
+/* 12125 */ { "CUNEIFORM SIGN GUR",NULL},
+/* 12126 */ { "CUNEIFORM SIGN GUR7",NULL},
+/* 12127 */ { "CUNEIFORM SIGN GURUN",NULL},
+/* 12128 */ { "CUNEIFORM SIGN GURUSH",NULL},
+/* 12129 */ { "CUNEIFORM SIGN HA",NULL},
+/* 1212A */ { "CUNEIFORM SIGN HA TENU",NULL},
+/* 1212B */ { "CUNEIFORM SIGN HA GUNU",NULL},
+/* 1212C */ { "CUNEIFORM SIGN HAL",NULL},
+/* 1212D */ { "CUNEIFORM SIGN HI",NULL},
+/* 1212E */ { "CUNEIFORM SIGN HI TIMES ASH",NULL},
+/* 1212F */ { "CUNEIFORM SIGN HI TIMES ASH2",NULL},
+/* 12130 */ { "CUNEIFORM SIGN HI TIMES BAD",NULL},
+/* 12131 */ { "CUNEIFORM SIGN HI TIMES DISH",NULL},
+/* 12132 */ { "CUNEIFORM SIGN HI TIMES GAD",NULL},
+/* 12133 */ { "CUNEIFORM SIGN HI TIMES KIN",NULL},
+/* 12134 */ { "CUNEIFORM SIGN HI TIMES NUN",NULL},
+/* 12135 */ { "CUNEIFORM SIGN HI TIMES SHE",NULL},
+/* 12136 */ { "CUNEIFORM SIGN HI TIMES U",NULL},
+/* 12137 */ { "CUNEIFORM SIGN HU",NULL},
+/* 12138 */ { "CUNEIFORM SIGN HUB2",NULL},
+/* 12139 */ { "CUNEIFORM SIGN HUB2 TIMES AN",NULL},
+/* 1213A */ { "CUNEIFORM SIGN HUB2 TIMES HAL",NULL},
+/* 1213B */ { "CUNEIFORM SIGN HUB2 TIMES KASKAL",NULL},
+/* 1213C */ { "CUNEIFORM SIGN HUB2 TIMES LISH",NULL},
+/* 1213D */ { "CUNEIFORM SIGN HUB2 TIMES UD",NULL},
+/* 1213E */ { "CUNEIFORM SIGN HUL2",NULL},
+/* 1213F */ { "CUNEIFORM SIGN I",NULL},
+/* 12140 */ { "CUNEIFORM SIGN I A",NULL},
+/* 12141 */ { "CUNEIFORM SIGN IB",NULL},
+/* 12142 */ { "CUNEIFORM SIGN IDIM",NULL},
+/* 12143 */ { "CUNEIFORM SIGN IDIM OVER IDIM BUR",NULL},
+/* 12144 */ { "CUNEIFORM SIGN IDIM OVER IDIM SQUARED",NULL},
+/* 12145 */ { "CUNEIFORM SIGN IG",NULL},
+/* 12146 */ { "CUNEIFORM SIGN IGI",NULL},
+/* 12147 */ { "CUNEIFORM SIGN IGI DIB",NULL},
+/* 12148 */ { "CUNEIFORM SIGN IGI RI",NULL},
+/* 12149 */ { "CUNEIFORM SIGN IGI OVER IGI SHIR OVER SHIR UD OVER UD",NULL},
+/* 1214A */ { "CUNEIFORM SIGN IGI GUNU",NULL},
+/* 1214B */ { "CUNEIFORM SIGN IL",NULL},
+/* 1214C */ { "CUNEIFORM SIGN IL TIMES GAN2 TENU",NULL},
+/* 1214D */ { "CUNEIFORM SIGN IL2",NULL},
+/* 1214E */ { "CUNEIFORM SIGN IM",NULL},
+/* 1214F */ { "CUNEIFORM SIGN IM TIMES TAK4",NULL},
+/* 12150 */ { "CUNEIFORM SIGN IM CROSSING IM",NULL},
+/* 12151 */ { "CUNEIFORM SIGN IM OPPOSING IM",NULL},
+/* 12152 */ { "CUNEIFORM SIGN IM SQUARED",NULL},
+/* 12153 */ { "CUNEIFORM SIGN IMIN",NULL},
+/* 12154 */ { "CUNEIFORM SIGN IN",NULL},
+/* 12155 */ { "CUNEIFORM SIGN IR",NULL},
+/* 12156 */ { "CUNEIFORM SIGN ISH",NULL},
+/* 12157 */ { "CUNEIFORM SIGN KA",NULL},
+/* 12158 */ { "CUNEIFORM SIGN KA TIMES A",NULL},
+/* 12159 */ { "CUNEIFORM SIGN KA TIMES AD",NULL},
+/* 1215A */ { "CUNEIFORM SIGN KA TIMES AD PLUS KU3",NULL},
+/* 1215B */ { "CUNEIFORM SIGN KA TIMES ASH2",NULL},
+/* 1215C */ { "CUNEIFORM SIGN KA TIMES BAD",NULL},
+/* 1215D */ { "CUNEIFORM SIGN KA TIMES BALAG",NULL},
+/* 1215E */ { "CUNEIFORM SIGN KA TIMES BAR",NULL},
+/* 1215F */ { "CUNEIFORM SIGN KA TIMES BI",NULL},
+/* 12160 */ { "CUNEIFORM SIGN KA TIMES ERIN2",NULL},
+/* 12161 */ { "CUNEIFORM SIGN KA TIMES ESH2",NULL},
+/* 12162 */ { "CUNEIFORM SIGN KA TIMES GA",NULL},
+/* 12163 */ { "CUNEIFORM SIGN KA TIMES GAL",NULL},
+/* 12164 */ { "CUNEIFORM SIGN KA TIMES GAN2 TENU",NULL},
+/* 12165 */ { "CUNEIFORM SIGN KA TIMES GAR",NULL},
+/* 12166 */ { "CUNEIFORM SIGN KA TIMES GAR PLUS SHA3 PLUS A",NULL},
+/* 12167 */ { "CUNEIFORM SIGN KA TIMES GI",NULL},
+/* 12168 */ { "CUNEIFORM SIGN KA TIMES GIR2",NULL},
+/* 12169 */ { "CUNEIFORM SIGN KA TIMES GISH PLUS SAR",NULL},
+/* 1216A */ { "CUNEIFORM SIGN KA TIMES GISH CROSSING GISH",NULL},
+/* 1216B */ { "CUNEIFORM SIGN KA TIMES GU",NULL},
+/* 1216C */ { "CUNEIFORM SIGN KA TIMES GUR7",NULL},
+/* 1216D */ { "CUNEIFORM SIGN KA TIMES IGI",NULL},
+/* 1216E */ { "CUNEIFORM SIGN KA TIMES IM",NULL},
+/* 1216F */ { "CUNEIFORM SIGN KA TIMES KAK",NULL},
+/* 12170 */ { "CUNEIFORM SIGN KA TIMES KI",NULL},
+/* 12171 */ { "CUNEIFORM SIGN KA TIMES KID",NULL},
+/* 12172 */ { "CUNEIFORM SIGN KA TIMES LI",NULL},
+/* 12173 */ { "CUNEIFORM SIGN KA TIMES LU",NULL},
+/* 12174 */ { "CUNEIFORM SIGN KA TIMES ME",NULL},
+/* 12175 */ { "CUNEIFORM SIGN KA TIMES ME PLUS DU",NULL},
+/* 12176 */ { "CUNEIFORM SIGN KA TIMES ME PLUS GI",NULL},
+/* 12177 */ { "CUNEIFORM SIGN KA TIMES ME PLUS TE",NULL},
+/* 12178 */ { "CUNEIFORM SIGN KA TIMES MI",NULL},
+/* 12179 */ { "CUNEIFORM SIGN KA TIMES MI PLUS NUNUZ",NULL},
+/* 1217A */ { "CUNEIFORM SIGN KA TIMES NE",NULL},
+/* 1217B */ { "CUNEIFORM SIGN KA TIMES NUN",NULL},
+/* 1217C */ { "CUNEIFORM SIGN KA TIMES PI",NULL},
+/* 1217D */ { "CUNEIFORM SIGN KA TIMES RU",NULL},
+/* 1217E */ { "CUNEIFORM SIGN KA TIMES SA",NULL},
+/* 1217F */ { "CUNEIFORM SIGN KA TIMES SAR",NULL},
+/* 12180 */ { "CUNEIFORM SIGN KA TIMES SHA",NULL},
+/* 12181 */ { "CUNEIFORM SIGN KA TIMES SHE",NULL},
+/* 12182 */ { "CUNEIFORM SIGN KA TIMES SHID",NULL},
+/* 12183 */ { "CUNEIFORM SIGN KA TIMES SHU",NULL},
+/* 12184 */ { "CUNEIFORM SIGN KA TIMES SIG",NULL},
+/* 12185 */ { "CUNEIFORM SIGN KA TIMES SUHUR",NULL},
+/* 12186 */ { "CUNEIFORM SIGN KA TIMES TAR",NULL},
+/* 12187 */ { "CUNEIFORM SIGN KA TIMES U",NULL},
+/* 12188 */ { "CUNEIFORM SIGN KA TIMES U2",NULL},
+/* 12189 */ { "CUNEIFORM SIGN KA TIMES UD",NULL},
+/* 1218A */ { "CUNEIFORM SIGN KA TIMES UMUM TIMES PA",NULL},
+/* 1218B */ { "CUNEIFORM SIGN KA TIMES USH",NULL},
+/* 1218C */ { "CUNEIFORM SIGN KA TIMES ZI",NULL},
+/* 1218D */ { "CUNEIFORM SIGN KA2",NULL},
+/* 1218E */ { "CUNEIFORM SIGN KA2 CROSSING KA2",NULL},
+/* 1218F */ { "CUNEIFORM SIGN KAB",NULL},
+/* 12190 */ { "CUNEIFORM SIGN KAD2",NULL},
+/* 12191 */ { "CUNEIFORM SIGN KAD3",NULL},
+/* 12192 */ { "CUNEIFORM SIGN KAD4",NULL},
+/* 12193 */ { "CUNEIFORM SIGN KAD5",NULL},
+/* 12194 */ { "CUNEIFORM SIGN KAD5 OVER KAD5",NULL},
+/* 12195 */ { "CUNEIFORM SIGN KAK",NULL},
+/* 12196 */ { "CUNEIFORM SIGN KAK TIMES IGI GUNU",NULL},
+/* 12197 */ { "CUNEIFORM SIGN KAL",NULL},
+/* 12198 */ { "CUNEIFORM SIGN KAL TIMES BAD",NULL},
+/* 12199 */ { "CUNEIFORM SIGN KAL CROSSING KAL",NULL},
+/* 1219A */ { "CUNEIFORM SIGN KAM2",NULL},
+/* 1219B */ { "CUNEIFORM SIGN KAM4",NULL},
+/* 1219C */ { "CUNEIFORM SIGN KASKAL",NULL},
+/* 1219D */ { "CUNEIFORM SIGN KASKAL LAGAB TIMES U OVER LAGAB TIMES U",NULL},
+/* 1219E */ { "CUNEIFORM SIGN KASKAL OVER KASKAL LAGAB TIMES U OVER LAGAB TIMES U",NULL},
+/* 1219F */ { "CUNEIFORM SIGN KESH2",NULL},
+/* 121A0 */ { "CUNEIFORM SIGN KI",NULL},
+/* 121A1 */ { "CUNEIFORM SIGN KI TIMES BAD",NULL},
+/* 121A2 */ { "CUNEIFORM SIGN KI TIMES U",NULL},
+/* 121A3 */ { "CUNEIFORM SIGN KI TIMES UD",NULL},
+/* 121A4 */ { "CUNEIFORM SIGN KID",NULL},
+/* 121A5 */ { "CUNEIFORM SIGN KIN",NULL},
+/* 121A6 */ { "CUNEIFORM SIGN KISAL",NULL},
+/* 121A7 */ { "CUNEIFORM SIGN KISH",NULL},
+/* 121A8 */ { "CUNEIFORM SIGN KISIM5",NULL},
+/* 121A9 */ { "CUNEIFORM SIGN KISIM5 OVER KISIM5",NULL},
+/* 121AA */ { "CUNEIFORM SIGN KU",NULL},
+/* 121AB */ { "CUNEIFORM SIGN KU OVER HI TIMES ASH2 KU OVER HI TIMES ASH2",NULL},
+/* 121AC */ { "CUNEIFORM SIGN KU3",NULL},
+/* 121AD */ { "CUNEIFORM SIGN KU4",NULL},
+/* 121AE */ { "CUNEIFORM SIGN KU4 VARIANT FORM",NULL},
+/* 121AF */ { "CUNEIFORM SIGN KU7",NULL},
+/* 121B0 */ { "CUNEIFORM SIGN KUL",NULL},
+/* 121B1 */ { "CUNEIFORM SIGN KUL GUNU",NULL},
+/* 121B2 */ { "CUNEIFORM SIGN KUN",NULL},
+/* 121B3 */ { "CUNEIFORM SIGN KUR",NULL},
+/* 121B4 */ { "CUNEIFORM SIGN KUR OPPOSING KUR",NULL},
+/* 121B5 */ { "CUNEIFORM SIGN KUSHU2",NULL},
+/* 121B6 */ { "CUNEIFORM SIGN KWU318",NULL},
+/* 121B7 */ { "CUNEIFORM SIGN LA",NULL},
+/* 121B8 */ { "CUNEIFORM SIGN LAGAB",NULL},
+/* 121B9 */ { "CUNEIFORM SIGN LAGAB TIMES A",NULL},
+/* 121BA */ { "CUNEIFORM SIGN LAGAB TIMES A PLUS DA PLUS HA",NULL},
+/* 121BB */ { "CUNEIFORM SIGN LAGAB TIMES A PLUS GAR",NULL},
+/* 121BC */ { "CUNEIFORM SIGN LAGAB TIMES A PLUS LAL",NULL},
+/* 121BD */ { "CUNEIFORM SIGN LAGAB TIMES AL",NULL},
+/* 121BE */ { "CUNEIFORM SIGN LAGAB TIMES AN",NULL},
+/* 121BF */ { "CUNEIFORM SIGN LAGAB TIMES ASH ZIDA TENU",NULL},
+/* 121C0 */ { "CUNEIFORM SIGN LAGAB TIMES BAD",NULL},
+/* 121C1 */ { "CUNEIFORM SIGN LAGAB TIMES BI",NULL},
+/* 121C2 */ { "CUNEIFORM SIGN LAGAB TIMES DAR",NULL},
+/* 121C3 */ { "CUNEIFORM SIGN LAGAB TIMES EN",NULL},
+/* 121C4 */ { "CUNEIFORM SIGN LAGAB TIMES GA",NULL},
+/* 121C5 */ { "CUNEIFORM SIGN LAGAB TIMES GAR",NULL},
+/* 121C6 */ { "CUNEIFORM SIGN LAGAB TIMES GUD",NULL},
+/* 121C7 */ { "CUNEIFORM SIGN LAGAB TIMES GUD PLUS GUD",NULL},
+/* 121C8 */ { "CUNEIFORM SIGN LAGAB TIMES HA",NULL},
+/* 121C9 */ { "CUNEIFORM SIGN LAGAB TIMES HAL",NULL},
+/* 121CA */ { "CUNEIFORM SIGN LAGAB TIMES HI TIMES NUN",NULL},
+/* 121CB */ { "CUNEIFORM SIGN LAGAB TIMES IGI GUNU",NULL},
+/* 121CC */ { "CUNEIFORM SIGN LAGAB TIMES IM",NULL},
+/* 121CD */ { "CUNEIFORM SIGN LAGAB TIMES IM PLUS HA",NULL},
+/* 121CE */ { "CUNEIFORM SIGN LAGAB TIMES IM PLUS LU",NULL},
+/* 121CF */ { "CUNEIFORM SIGN LAGAB TIMES KI",NULL},
+/* 121D0 */ { "CUNEIFORM SIGN LAGAB TIMES KIN",NULL},
+/* 121D1 */ { "CUNEIFORM SIGN LAGAB TIMES KU3",NULL},
+/* 121D2 */ { "CUNEIFORM SIGN LAGAB TIMES KUL",NULL},
+/* 121D3 */ { "CUNEIFORM SIGN LAGAB TIMES KUL PLUS HI PLUS A",NULL},
+/* 121D4 */ { "CUNEIFORM SIGN LAGAB TIMES LAGAB",NULL},
+/* 121D5 */ { "CUNEIFORM SIGN LAGAB TIMES LISH",NULL},
+/* 121D6 */ { "CUNEIFORM SIGN LAGAB TIMES LU",NULL},
+/* 121D7 */ { "CUNEIFORM SIGN LAGAB TIMES LUL",NULL},
+/* 121D8 */ { "CUNEIFORM SIGN LAGAB TIMES ME",NULL},
+/* 121D9 */ { "CUNEIFORM SIGN LAGAB TIMES ME PLUS EN",NULL},
+/* 121DA */ { "CUNEIFORM SIGN LAGAB TIMES MUSH",NULL},
+/* 121DB */ { "CUNEIFORM SIGN LAGAB TIMES NE",NULL},
+/* 121DC */ { "CUNEIFORM SIGN LAGAB TIMES SHE PLUS SUM",NULL},
+/* 121DD */ { "CUNEIFORM SIGN LAGAB TIMES SHITA PLUS GISH PLUS ERIN2",NULL},
+/* 121DE */ { "CUNEIFORM SIGN LAGAB TIMES SHITA PLUS GISH TENU",NULL},
+/* 121DF */ { "CUNEIFORM SIGN LAGAB TIMES SHU2",NULL},
+/* 121E0 */ { "CUNEIFORM SIGN LAGAB TIMES SHU2 PLUS SHU2",NULL},
+/* 121E1 */ { "CUNEIFORM SIGN LAGAB TIMES SUM",NULL},
+/* 121E2 */ { "CUNEIFORM SIGN LAGAB TIMES TAG",NULL},
+/* 121E3 */ { "CUNEIFORM SIGN LAGAB TIMES TAK4",NULL},
+/* 121E4 */ { "CUNEIFORM SIGN LAGAB TIMES TE PLUS A PLUS SU PLUS NA",NULL},
+/* 121E5 */ { "CUNEIFORM SIGN LAGAB TIMES U",NULL},
+/* 121E6 */ { "CUNEIFORM SIGN LAGAB TIMES U PLUS A",NULL},
+/* 121E7 */ { "CUNEIFORM SIGN LAGAB TIMES U PLUS U PLUS U",NULL},
+/* 121E8 */ { "CUNEIFORM SIGN LAGAB TIMES U2 PLUS ASH",NULL},
+/* 121E9 */ { "CUNEIFORM SIGN LAGAB TIMES UD",NULL},
+/* 121EA */ { "CUNEIFORM SIGN LAGAB TIMES USH",NULL},
+/* 121EB */ { "CUNEIFORM SIGN LAGAB SQUARED",NULL},
+/* 121EC */ { "CUNEIFORM SIGN LAGAR",NULL},
+/* 121ED */ { "CUNEIFORM SIGN LAGAR TIMES SHE",NULL},
+/* 121EE */ { "CUNEIFORM SIGN LAGAR TIMES SHE PLUS SUM",NULL},
+/* 121EF */ { "CUNEIFORM SIGN LAGAR GUNU",NULL},
+/* 121F0 */ { "CUNEIFORM SIGN LAGAR GUNU OVER LAGAR GUNU SHE",NULL},
+/* 121F1 */ { "CUNEIFORM SIGN LAHSHU",NULL},
+/* 121F2 */ { "CUNEIFORM SIGN LAL",NULL},
+/* 121F3 */ { "CUNEIFORM SIGN LAL TIMES LAL",NULL},
+/* 121F4 */ { "CUNEIFORM SIGN LAM",NULL},
+/* 121F5 */ { "CUNEIFORM SIGN LAM TIMES KUR",NULL},
+/* 121F6 */ { "CUNEIFORM SIGN LAM TIMES KUR PLUS RU",NULL},
+/* 121F7 */ { "CUNEIFORM SIGN LI",NULL},
+/* 121F8 */ { "CUNEIFORM SIGN LIL",NULL},
+/* 121F9 */ { "CUNEIFORM SIGN LIMMU2",NULL},
+/* 121FA */ { "CUNEIFORM SIGN LISH",NULL},
+/* 121FB */ { "CUNEIFORM SIGN LU",NULL},
+/* 121FC */ { "CUNEIFORM SIGN LU TIMES BAD",NULL},
+/* 121FD */ { "CUNEIFORM SIGN LU2",NULL},
+/* 121FE */ { "CUNEIFORM SIGN LU2 TIMES AL",NULL},
+/* 121FF */ { "CUNEIFORM SIGN LU2 TIMES BAD",NULL}
+};
+
+static const struct unicode_nameannot una_01_22[] = {
+/* 12200 */ { "CUNEIFORM SIGN LU2 TIMES ESH2",NULL},
+/* 12201 */ { "CUNEIFORM SIGN LU2 TIMES ESH2 TENU",NULL},
+/* 12202 */ { "CUNEIFORM SIGN LU2 TIMES GAN2 TENU",NULL},
+/* 12203 */ { "CUNEIFORM SIGN LU2 TIMES HI TIMES BAD",NULL},
+/* 12204 */ { "CUNEIFORM SIGN LU2 TIMES IM",NULL},
+/* 12205 */ { "CUNEIFORM SIGN LU2 TIMES KAD2",NULL},
+/* 12206 */ { "CUNEIFORM SIGN LU2 TIMES KAD3",NULL},
+/* 12207 */ { "CUNEIFORM SIGN LU2 TIMES KAD3 PLUS ASH",NULL},
+/* 12208 */ { "CUNEIFORM SIGN LU2 TIMES KI",NULL},
+/* 12209 */ { "CUNEIFORM SIGN LU2 TIMES LA PLUS ASH",NULL},
+/* 1220A */ { "CUNEIFORM SIGN LU2 TIMES LAGAB",NULL},
+/* 1220B */ { "CUNEIFORM SIGN LU2 TIMES ME PLUS EN",NULL},
+/* 1220C */ { "CUNEIFORM SIGN LU2 TIMES NE",NULL},
+/* 1220D */ { "CUNEIFORM SIGN LU2 TIMES NU",NULL},
+/* 1220E */ { "CUNEIFORM SIGN LU2 TIMES SI PLUS ASH",NULL},
+/* 1220F */ { "CUNEIFORM SIGN LU2 TIMES SIK2 PLUS BU",NULL},
+/* 12210 */ { "CUNEIFORM SIGN LU2 TIMES TUG2",NULL},
+/* 12211 */ { "CUNEIFORM SIGN LU2 TENU",NULL},
+/* 12212 */ { "CUNEIFORM SIGN LU2 CROSSING LU2",NULL},
+/* 12213 */ { "CUNEIFORM SIGN LU2 OPPOSING LU2",NULL},
+/* 12214 */ { "CUNEIFORM SIGN LU2 SQUARED",NULL},
+/* 12215 */ { "CUNEIFORM SIGN LU2 SHESHIG",NULL},
+/* 12216 */ { "CUNEIFORM SIGN LU3",NULL},
+/* 12217 */ { "CUNEIFORM SIGN LUGAL",NULL},
+/* 12218 */ { "CUNEIFORM SIGN LUGAL OVER LUGAL",NULL},
+/* 12219 */ { "CUNEIFORM SIGN LUGAL OPPOSING LUGAL",NULL},
+/* 1221A */ { "CUNEIFORM SIGN LUGAL SHESHIG",NULL},
+/* 1221B */ { "CUNEIFORM SIGN LUH",NULL},
+/* 1221C */ { "CUNEIFORM SIGN LUL",NULL},
+/* 1221D */ { "CUNEIFORM SIGN LUM",NULL},
+/* 1221E */ { "CUNEIFORM SIGN LUM OVER LUM",NULL},
+/* 1221F */ { "CUNEIFORM SIGN LUM OVER LUM GAR OVER GAR",NULL},
+/* 12220 */ { "CUNEIFORM SIGN MA",NULL},
+/* 12221 */ { "CUNEIFORM SIGN MA TIMES TAK4",NULL},
+/* 12222 */ { "CUNEIFORM SIGN MA GUNU",NULL},
+/* 12223 */ { "CUNEIFORM SIGN MA2",NULL},
+/* 12224 */ { "CUNEIFORM SIGN MAH",NULL},
+/* 12225 */ { "CUNEIFORM SIGN MAR",NULL},
+/* 12226 */ { "CUNEIFORM SIGN MASH",NULL},
+/* 12227 */ { "CUNEIFORM SIGN MASH2",NULL},
+/* 12228 */ { "CUNEIFORM SIGN ME",NULL},
+/* 12229 */ { "CUNEIFORM SIGN MES",NULL},
+/* 1222A */ { "CUNEIFORM SIGN MI",NULL},
+/* 1222B */ { "CUNEIFORM SIGN MIN",NULL},
+/* 1222C */ { "CUNEIFORM SIGN MU",NULL},
+/* 1222D */ { "CUNEIFORM SIGN MU OVER MU",NULL},
+/* 1222E */ { "CUNEIFORM SIGN MUG",NULL},
+/* 1222F */ { "CUNEIFORM SIGN MUG GUNU",NULL},
+/* 12230 */ { "CUNEIFORM SIGN MUNSUB",NULL},
+/* 12231 */ { "CUNEIFORM SIGN MURGU2",NULL},
+/* 12232 */ { "CUNEIFORM SIGN MUSH",NULL},
+/* 12233 */ { "CUNEIFORM SIGN MUSH TIMES A",NULL},
+/* 12234 */ { "CUNEIFORM SIGN MUSH TIMES KUR",NULL},
+/* 12235 */ { "CUNEIFORM SIGN MUSH TIMES ZA",NULL},
+/* 12236 */ { "CUNEIFORM SIGN MUSH OVER MUSH",NULL},
+/* 12237 */ { "CUNEIFORM SIGN MUSH OVER MUSH TIMES A PLUS NA",NULL},
+/* 12238 */ { "CUNEIFORM SIGN MUSH CROSSING MUSH",NULL},
+/* 12239 */ { "CUNEIFORM SIGN MUSH3",NULL},
+/* 1223A */ { "CUNEIFORM SIGN MUSH3 TIMES A",NULL},
+/* 1223B */ { "CUNEIFORM SIGN MUSH3 TIMES A PLUS DI",NULL},
+/* 1223C */ { "CUNEIFORM SIGN MUSH3 TIMES DI",NULL},
+/* 1223D */ { "CUNEIFORM SIGN MUSH3 GUNU",NULL},
+/* 1223E */ { "CUNEIFORM SIGN NA",NULL},
+/* 1223F */ { "CUNEIFORM SIGN NA2",NULL},
+/* 12240 */ { "CUNEIFORM SIGN NAGA",NULL},
+/* 12241 */ { "CUNEIFORM SIGN NAGA INVERTED",NULL},
+/* 12242 */ { "CUNEIFORM SIGN NAGA TIMES SHU TENU",NULL},
+/* 12243 */ { "CUNEIFORM SIGN NAGA OPPOSING NAGA",NULL},
+/* 12244 */ { "CUNEIFORM SIGN NAGAR",NULL},
+/* 12245 */ { "CUNEIFORM SIGN NAM NUTILLU",NULL},
+/* 12246 */ { "CUNEIFORM SIGN NAM",NULL},
+/* 12247 */ { "CUNEIFORM SIGN NAM2",NULL},
+/* 12248 */ { "CUNEIFORM SIGN NE",NULL},
+/* 12249 */ { "CUNEIFORM SIGN NE TIMES A",NULL},
+/* 1224A */ { "CUNEIFORM SIGN NE TIMES UD",NULL},
+/* 1224B */ { "CUNEIFORM SIGN NE SHESHIG",NULL},
+/* 1224C */ { "CUNEIFORM SIGN NI",NULL},
+/* 1224D */ { "CUNEIFORM SIGN NI TIMES E",NULL},
+/* 1224E */ { "CUNEIFORM SIGN NI2",NULL},
+/* 1224F */ { "CUNEIFORM SIGN NIM",NULL},
+/* 12250 */ { "CUNEIFORM SIGN NIM TIMES GAN2 TENU",NULL},
+/* 12251 */ { "CUNEIFORM SIGN NIM TIMES GAR PLUS GAN2 TENU",NULL},
+/* 12252 */ { "CUNEIFORM SIGN NINDA2",NULL},
+/* 12253 */ { "CUNEIFORM SIGN NINDA2 TIMES AN",NULL},
+/* 12254 */ { "CUNEIFORM SIGN NINDA2 TIMES ASH",NULL},
+/* 12255 */ { "CUNEIFORM SIGN NINDA2 TIMES ASH PLUS ASH",NULL},
+/* 12256 */ { "CUNEIFORM SIGN NINDA2 TIMES GUD",NULL},
+/* 12257 */ { "CUNEIFORM SIGN NINDA2 TIMES ME PLUS GAN2 TENU",NULL},
+/* 12258 */ { "CUNEIFORM SIGN NINDA2 TIMES NE",NULL},
+/* 12259 */ { "CUNEIFORM SIGN NINDA2 TIMES NUN",NULL},
+/* 1225A */ { "CUNEIFORM SIGN NINDA2 TIMES SHE",NULL},
+/* 1225B */ { "CUNEIFORM SIGN NINDA2 TIMES SHE PLUS A AN",NULL},
+/* 1225C */ { "CUNEIFORM SIGN NINDA2 TIMES SHE PLUS ASH",NULL},
+/* 1225D */ { "CUNEIFORM SIGN NINDA2 TIMES SHE PLUS ASH PLUS ASH",NULL},
+/* 1225E */ { "CUNEIFORM SIGN NINDA2 TIMES U2 PLUS ASH",NULL},
+/* 1225F */ { "CUNEIFORM SIGN NINDA2 TIMES USH",NULL},
+/* 12260 */ { "CUNEIFORM SIGN NISAG",NULL},
+/* 12261 */ { "CUNEIFORM SIGN NU",NULL},
+/* 12262 */ { "CUNEIFORM SIGN NU11",NULL},
+/* 12263 */ { "CUNEIFORM SIGN NUN",NULL},
+/* 12264 */ { "CUNEIFORM SIGN NUN LAGAR TIMES GAR",NULL},
+/* 12265 */ { "CUNEIFORM SIGN NUN LAGAR TIMES MASH",NULL},
+/* 12266 */ { "CUNEIFORM SIGN NUN LAGAR TIMES SAL",NULL},
+/* 12267 */ { "CUNEIFORM SIGN NUN LAGAR TIMES SAL OVER NUN LAGAR TIMES SAL",NULL},
+/* 12268 */ { "CUNEIFORM SIGN NUN LAGAR TIMES USH",NULL},
+/* 12269 */ { "CUNEIFORM SIGN NUN TENU",NULL},
+/* 1226A */ { "CUNEIFORM SIGN NUN OVER NUN",NULL},
+/* 1226B */ { "CUNEIFORM SIGN NUN CROSSING NUN",NULL},
+/* 1226C */ { "CUNEIFORM SIGN NUN CROSSING NUN LAGAR OVER LAGAR",NULL},
+/* 1226D */ { "CUNEIFORM SIGN NUNUZ",NULL},
+/* 1226E */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES ASHGAB",NULL},
+/* 1226F */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES BI",NULL},
+/* 12270 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES DUG",NULL},
+/* 12271 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES GUD",NULL},
+/* 12272 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES IGI GUNU",NULL},
+/* 12273 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES KAD3",NULL},
+/* 12274 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES LA",NULL},
+/* 12275 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES NE",NULL},
+/* 12276 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES SILA3",NULL},
+/* 12277 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES U2",NULL},
+/* 12278 */ { "CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI",NULL},
+/* 12279 */ { "CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI U",NULL},
+/* 1227A */ { "CUNEIFORM SIGN PA",NULL},
+/* 1227B */ { "CUNEIFORM SIGN PAD",NULL},
+/* 1227C */ { "CUNEIFORM SIGN PAN",NULL},
+/* 1227D */ { "CUNEIFORM SIGN PAP",NULL},
+/* 1227E */ { "CUNEIFORM SIGN PESH2",NULL},
+/* 1227F */ { "CUNEIFORM SIGN PI",NULL},
+/* 12280 */ { "CUNEIFORM SIGN PI TIMES A",NULL},
+/* 12281 */ { "CUNEIFORM SIGN PI TIMES AB",NULL},
+/* 12282 */ { "CUNEIFORM SIGN PI TIMES BI",NULL},
+/* 12283 */ { "CUNEIFORM SIGN PI TIMES BU",NULL},
+/* 12284 */ { "CUNEIFORM SIGN PI TIMES E",NULL},
+/* 12285 */ { "CUNEIFORM SIGN PI TIMES I",NULL},
+/* 12286 */ { "CUNEIFORM SIGN PI TIMES IB",NULL},
+/* 12287 */ { "CUNEIFORM SIGN PI TIMES U",NULL},
+/* 12288 */ { "CUNEIFORM SIGN PI TIMES U2",NULL},
+/* 12289 */ { "CUNEIFORM SIGN PI CROSSING PI",NULL},
+/* 1228A */ { "CUNEIFORM SIGN PIRIG",NULL},
+/* 1228B */ { "CUNEIFORM SIGN PIRIG TIMES KAL",NULL},
+/* 1228C */ { "CUNEIFORM SIGN PIRIG TIMES UD",NULL},
+/* 1228D */ { "CUNEIFORM SIGN PIRIG TIMES ZA",NULL},
+/* 1228E */ { "CUNEIFORM SIGN PIRIG OPPOSING PIRIG",NULL},
+/* 1228F */ { "CUNEIFORM SIGN RA",NULL},
+/* 12290 */ { "CUNEIFORM SIGN RAB",NULL},
+/* 12291 */ { "CUNEIFORM SIGN RI",NULL},
+/* 12292 */ { "CUNEIFORM SIGN RU",NULL},
+/* 12293 */ { "CUNEIFORM SIGN SA",NULL},
+/* 12294 */ { "CUNEIFORM SIGN SAG NUTILLU",NULL},
+/* 12295 */ { "CUNEIFORM SIGN SAG",NULL},
+/* 12296 */ { "CUNEIFORM SIGN SAG TIMES A",NULL},
+/* 12297 */ { "CUNEIFORM SIGN SAG TIMES DU",NULL},
+/* 12298 */ { "CUNEIFORM SIGN SAG TIMES DUB",NULL},
+/* 12299 */ { "CUNEIFORM SIGN SAG TIMES HA",NULL},
+/* 1229A */ { "CUNEIFORM SIGN SAG TIMES KAK",NULL},
+/* 1229B */ { "CUNEIFORM SIGN SAG TIMES KUR",NULL},
+/* 1229C */ { "CUNEIFORM SIGN SAG TIMES LUM",NULL},
+/* 1229D */ { "CUNEIFORM SIGN SAG TIMES MI",NULL},
+/* 1229E */ { "CUNEIFORM SIGN SAG TIMES NUN",NULL},
+/* 1229F */ { "CUNEIFORM SIGN SAG TIMES SAL",NULL},
+/* 122A0 */ { "CUNEIFORM SIGN SAG TIMES SHID",NULL},
+/* 122A1 */ { "CUNEIFORM SIGN SAG TIMES TAB",NULL},
+/* 122A2 */ { "CUNEIFORM SIGN SAG TIMES U2",NULL},
+/* 122A3 */ { "CUNEIFORM SIGN SAG TIMES UB",NULL},
+/* 122A4 */ { "CUNEIFORM SIGN SAG TIMES UM",NULL},
+/* 122A5 */ { "CUNEIFORM SIGN SAG TIMES UR",NULL},
+/* 122A6 */ { "CUNEIFORM SIGN SAG TIMES USH",NULL},
+/* 122A7 */ { "CUNEIFORM SIGN SAG OVER SAG",NULL},
+/* 122A8 */ { "CUNEIFORM SIGN SAG GUNU",NULL},
+/* 122A9 */ { "CUNEIFORM SIGN SAL",NULL},
+/* 122AA */ { "CUNEIFORM SIGN SAL LAGAB TIMES ASH2",NULL},
+/* 122AB */ { "CUNEIFORM SIGN SANGA2",NULL},
+/* 122AC */ { "CUNEIFORM SIGN SAR",NULL},
+/* 122AD */ { "CUNEIFORM SIGN SHA",NULL},
+/* 122AE */ { "CUNEIFORM SIGN SHA3",NULL},
+/* 122AF */ { "CUNEIFORM SIGN SHA3 TIMES A",NULL},
+/* 122B0 */ { "CUNEIFORM SIGN SHA3 TIMES BAD",NULL},
+/* 122B1 */ { "CUNEIFORM SIGN SHA3 TIMES GISH",NULL},
+/* 122B2 */ { "CUNEIFORM SIGN SHA3 TIMES NE",NULL},
+/* 122B3 */ { "CUNEIFORM SIGN SHA3 TIMES SHU2",NULL},
+/* 122B4 */ { "CUNEIFORM SIGN SHA3 TIMES TUR",NULL},
+/* 122B5 */ { "CUNEIFORM SIGN SHA3 TIMES U",NULL},
+/* 122B6 */ { "CUNEIFORM SIGN SHA3 TIMES U PLUS A",NULL},
+/* 122B7 */ { "CUNEIFORM SIGN SHA6",NULL},
+/* 122B8 */ { "CUNEIFORM SIGN SHAB6",NULL},
+/* 122B9 */ { "CUNEIFORM SIGN SHAR2","	* formed by making a circular indentation with the end of the stylus"},
+/* 122BA */ { "CUNEIFORM SIGN SHE",NULL},
+/* 122BB */ { "CUNEIFORM SIGN SHE HU",NULL},
+/* 122BC */ { "CUNEIFORM SIGN SHE OVER SHE GAD OVER GAD GAR OVER GAR",NULL},
+/* 122BD */ { "CUNEIFORM SIGN SHE OVER SHE TAB OVER TAB GAR OVER GAR",NULL},
+/* 122BE */ { "CUNEIFORM SIGN SHEG9",NULL},
+/* 122BF */ { "CUNEIFORM SIGN SHEN",NULL},
+/* 122C0 */ { "CUNEIFORM SIGN SHESH",NULL},
+/* 122C1 */ { "CUNEIFORM SIGN SHESH2",NULL},
+/* 122C2 */ { "CUNEIFORM SIGN SHESHLAM",NULL},
+/* 122C3 */ { "CUNEIFORM SIGN SHID",NULL},
+/* 122C4 */ { "CUNEIFORM SIGN SHID TIMES A",NULL},
+/* 122C5 */ { "CUNEIFORM SIGN SHID TIMES IM",NULL},
+/* 122C6 */ { "CUNEIFORM SIGN SHIM",NULL},
+/* 122C7 */ { "CUNEIFORM SIGN SHIM TIMES A",NULL},
+/* 122C8 */ { "CUNEIFORM SIGN SHIM TIMES BAL",NULL},
+/* 122C9 */ { "CUNEIFORM SIGN SHIM TIMES BULUG",NULL},
+/* 122CA */ { "CUNEIFORM SIGN SHIM TIMES DIN",NULL},
+/* 122CB */ { "CUNEIFORM SIGN SHIM TIMES GAR",NULL},
+/* 122CC */ { "CUNEIFORM SIGN SHIM TIMES IGI",NULL},
+/* 122CD */ { "CUNEIFORM SIGN SHIM TIMES IGI GUNU",NULL},
+/* 122CE */ { "CUNEIFORM SIGN SHIM TIMES KUSHU2",NULL},
+/* 122CF */ { "CUNEIFORM SIGN SHIM TIMES LUL",NULL},
+/* 122D0 */ { "CUNEIFORM SIGN SHIM TIMES MUG",NULL},
+/* 122D1 */ { "CUNEIFORM SIGN SHIM TIMES SAL",NULL},
+/* 122D2 */ { "CUNEIFORM SIGN SHINIG",NULL},
+/* 122D3 */ { "CUNEIFORM SIGN SHIR",NULL},
+/* 122D4 */ { "CUNEIFORM SIGN SHIR TENU",NULL},
+/* 122D5 */ { "CUNEIFORM SIGN SHIR OVER SHIR BUR OVER BUR",NULL},
+/* 122D6 */ { "CUNEIFORM SIGN SHITA",NULL},
+/* 122D7 */ { "CUNEIFORM SIGN SHU",NULL},
+/* 122D8 */ { "CUNEIFORM SIGN SHU OVER INVERTED SHU",NULL},
+/* 122D9 */ { "CUNEIFORM SIGN SHU2",NULL},
+/* 122DA */ { "CUNEIFORM SIGN SHUBUR",NULL},
+/* 122DB */ { "CUNEIFORM SIGN SI",NULL},
+/* 122DC */ { "CUNEIFORM SIGN SI GUNU",NULL},
+/* 122DD */ { "CUNEIFORM SIGN SIG",NULL},
+/* 122DE */ { "CUNEIFORM SIGN SIG4",NULL},
+/* 122DF */ { "CUNEIFORM SIGN SIG4 OVER SIG4 SHU2",NULL},
+/* 122E0 */ { "CUNEIFORM SIGN SIK2",NULL},
+/* 122E1 */ { "CUNEIFORM SIGN SILA3",NULL},
+/* 122E2 */ { "CUNEIFORM SIGN SU",NULL},
+/* 122E3 */ { "CUNEIFORM SIGN SU OVER SU",NULL},
+/* 122E4 */ { "CUNEIFORM SIGN SUD",NULL},
+/* 122E5 */ { "CUNEIFORM SIGN SUD2",NULL},
+/* 122E6 */ { "CUNEIFORM SIGN SUHUR",NULL},
+/* 122E7 */ { "CUNEIFORM SIGN SUM",NULL},
+/* 122E8 */ { "CUNEIFORM SIGN SUMASH",NULL},
+/* 122E9 */ { "CUNEIFORM SIGN SUR",NULL},
+/* 122EA */ { "CUNEIFORM SIGN SUR9",NULL},
+/* 122EB */ { "CUNEIFORM SIGN TA",NULL},
+/* 122EC */ { "CUNEIFORM SIGN TA ASTERISK",NULL},
+/* 122ED */ { "CUNEIFORM SIGN TA TIMES HI",NULL},
+/* 122EE */ { "CUNEIFORM SIGN TA TIMES MI",NULL},
+/* 122EF */ { "CUNEIFORM SIGN TA GUNU",NULL},
+/* 122F0 */ { "CUNEIFORM SIGN TAB",NULL},
+/* 122F1 */ { "CUNEIFORM SIGN TAB OVER TAB NI OVER NI DISH OVER DISH",NULL},
+/* 122F2 */ { "CUNEIFORM SIGN TAB SQUARED",NULL},
+/* 122F3 */ { "CUNEIFORM SIGN TAG",NULL},
+/* 122F4 */ { "CUNEIFORM SIGN TAG TIMES BI",NULL},
+/* 122F5 */ { "CUNEIFORM SIGN TAG TIMES GUD",NULL},
+/* 122F6 */ { "CUNEIFORM SIGN TAG TIMES SHE",NULL},
+/* 122F7 */ { "CUNEIFORM SIGN TAG TIMES SHU",NULL},
+/* 122F8 */ { "CUNEIFORM SIGN TAG TIMES TUG2",NULL},
+/* 122F9 */ { "CUNEIFORM SIGN TAG TIMES UD",NULL},
+/* 122FA */ { "CUNEIFORM SIGN TAK4",NULL},
+/* 122FB */ { "CUNEIFORM SIGN TAR",NULL},
+/* 122FC */ { "CUNEIFORM SIGN TE",NULL},
+/* 122FD */ { "CUNEIFORM SIGN TE GUNU",NULL},
+/* 122FE */ { "CUNEIFORM SIGN TI",NULL},
+/* 122FF */ { "CUNEIFORM SIGN TI TENU",NULL}
+};
+
+static const struct unicode_nameannot una_01_23[] = {
+/* 12300 */ { "CUNEIFORM SIGN TIL",NULL},
+/* 12301 */ { "CUNEIFORM SIGN TIR",NULL},
+/* 12302 */ { "CUNEIFORM SIGN TIR TIMES TAK4",NULL},
+/* 12303 */ { "CUNEIFORM SIGN TIR OVER TIR",NULL},
+/* 12304 */ { "CUNEIFORM SIGN TIR OVER TIR GAD OVER GAD GAR OVER GAR",NULL},
+/* 12305 */ { "CUNEIFORM SIGN TU",NULL},
+/* 12306 */ { "CUNEIFORM SIGN TUG2",NULL},
+/* 12307 */ { "CUNEIFORM SIGN TUK",NULL},
+/* 12308 */ { "CUNEIFORM SIGN TUM",NULL},
+/* 12309 */ { "CUNEIFORM SIGN TUR",NULL},
+/* 1230A */ { "CUNEIFORM SIGN TUR OVER TUR ZA OVER ZA",NULL},
+/* 1230B */ { "CUNEIFORM SIGN U",NULL},
+/* 1230C */ { "CUNEIFORM SIGN U GUD",NULL},
+/* 1230D */ { "CUNEIFORM SIGN U U U",NULL},
+/* 1230E */ { "CUNEIFORM SIGN U OVER U PA OVER PA GAR OVER GAR",NULL},
+/* 1230F */ { "CUNEIFORM SIGN U OVER U SUR OVER SUR",NULL},
+/* 12310 */ { "CUNEIFORM SIGN U OVER U U REVERSED OVER U REVERSED",NULL},
+/* 12311 */ { "CUNEIFORM SIGN U2",NULL},
+/* 12312 */ { "CUNEIFORM SIGN UB",NULL},
+/* 12313 */ { "CUNEIFORM SIGN UD",NULL},
+/* 12314 */ { "CUNEIFORM SIGN UD KUSHU2",NULL},
+/* 12315 */ { "CUNEIFORM SIGN UD TIMES BAD",NULL},
+/* 12316 */ { "CUNEIFORM SIGN UD TIMES MI",NULL},
+/* 12317 */ { "CUNEIFORM SIGN UD TIMES U PLUS U PLUS U",NULL},
+/* 12318 */ { "CUNEIFORM SIGN UD TIMES U PLUS U PLUS U GUNU",NULL},
+/* 12319 */ { "CUNEIFORM SIGN UD GUNU",NULL},
+/* 1231A */ { "CUNEIFORM SIGN UD SHESHIG",NULL},
+/* 1231B */ { "CUNEIFORM SIGN UD SHESHIG TIMES BAD",NULL},
+/* 1231C */ { "CUNEIFORM SIGN UDUG",NULL},
+/* 1231D */ { "CUNEIFORM SIGN UM",NULL},
+/* 1231E */ { "CUNEIFORM SIGN UM TIMES LAGAB",NULL},
+/* 1231F */ { "CUNEIFORM SIGN UM TIMES ME PLUS DA",NULL},
+/* 12320 */ { "CUNEIFORM SIGN UM TIMES SHA3",NULL},
+/* 12321 */ { "CUNEIFORM SIGN UM TIMES U",NULL},
+/* 12322 */ { "CUNEIFORM SIGN UMBIN",NULL},
+/* 12323 */ { "CUNEIFORM SIGN UMUM",NULL},
+/* 12324 */ { "CUNEIFORM SIGN UMUM TIMES KASKAL",NULL},
+/* 12325 */ { "CUNEIFORM SIGN UMUM TIMES PA",NULL},
+/* 12326 */ { "CUNEIFORM SIGN UN",NULL},
+/* 12327 */ { "CUNEIFORM SIGN UN GUNU",NULL},
+/* 12328 */ { "CUNEIFORM SIGN UR",NULL},
+/* 12329 */ { "CUNEIFORM SIGN UR CROSSING UR",NULL},
+/* 1232A */ { "CUNEIFORM SIGN UR SHESHIG",NULL},
+/* 1232B */ { "CUNEIFORM SIGN UR2",NULL},
+/* 1232C */ { "CUNEIFORM SIGN UR2 TIMES A PLUS HA",NULL},
+/* 1232D */ { "CUNEIFORM SIGN UR2 TIMES A PLUS NA",NULL},
+/* 1232E */ { "CUNEIFORM SIGN UR2 TIMES AL",NULL},
+/* 1232F */ { "CUNEIFORM SIGN UR2 TIMES HA",NULL},
+/* 12330 */ { "CUNEIFORM SIGN UR2 TIMES NUN",NULL},
+/* 12331 */ { "CUNEIFORM SIGN UR2 TIMES U2",NULL},
+/* 12332 */ { "CUNEIFORM SIGN UR2 TIMES U2 PLUS ASH",NULL},
+/* 12333 */ { "CUNEIFORM SIGN UR2 TIMES U2 PLUS BI",NULL},
+/* 12334 */ { "CUNEIFORM SIGN UR4",NULL},
+/* 12335 */ { "CUNEIFORM SIGN URI",NULL},
+/* 12336 */ { "CUNEIFORM SIGN URI3",NULL},
+/* 12337 */ { "CUNEIFORM SIGN URU",NULL},
+/* 12338 */ { "CUNEIFORM SIGN URU TIMES A",NULL},
+/* 12339 */ { "CUNEIFORM SIGN URU TIMES ASHGAB",NULL},
+/* 1233A */ { "CUNEIFORM SIGN URU TIMES BAR",NULL},
+/* 1233B */ { "CUNEIFORM SIGN URU TIMES DUN",NULL},
+/* 1233C */ { "CUNEIFORM SIGN URU TIMES GA",NULL},
+/* 1233D */ { "CUNEIFORM SIGN URU TIMES GAL",NULL},
+/* 1233E */ { "CUNEIFORM SIGN URU TIMES GAN2 TENU",NULL},
+/* 1233F */ { "CUNEIFORM SIGN URU TIMES GAR",NULL},
+/* 12340 */ { "CUNEIFORM SIGN URU TIMES GU",NULL},
+/* 12341 */ { "CUNEIFORM SIGN URU TIMES HA",NULL},
+/* 12342 */ { "CUNEIFORM SIGN URU TIMES IGI",NULL},
+/* 12343 */ { "CUNEIFORM SIGN URU TIMES IM",NULL},
+/* 12344 */ { "CUNEIFORM SIGN URU TIMES ISH",NULL},
+/* 12345 */ { "CUNEIFORM SIGN URU TIMES KI",NULL},
+/* 12346 */ { "CUNEIFORM SIGN URU TIMES LUM",NULL},
+/* 12347 */ { "CUNEIFORM SIGN URU TIMES MIN",NULL},
+/* 12348 */ { "CUNEIFORM SIGN URU TIMES PA",NULL},
+/* 12349 */ { "CUNEIFORM SIGN URU TIMES SHE",NULL},
+/* 1234A */ { "CUNEIFORM SIGN URU TIMES SIG4",NULL},
+/* 1234B */ { "CUNEIFORM SIGN URU TIMES TU",NULL},
+/* 1234C */ { "CUNEIFORM SIGN URU TIMES U PLUS GUD",NULL},
+/* 1234D */ { "CUNEIFORM SIGN URU TIMES UD",NULL},
+/* 1234E */ { "CUNEIFORM SIGN URU TIMES URUDA",NULL},
+/* 1234F */ { "CUNEIFORM SIGN URUDA",NULL},
+/* 12350 */ { "CUNEIFORM SIGN URUDA TIMES U",NULL},
+/* 12351 */ { "CUNEIFORM SIGN USH",NULL},
+/* 12352 */ { "CUNEIFORM SIGN USH TIMES A",NULL},
+/* 12353 */ { "CUNEIFORM SIGN USH TIMES KU",NULL},
+/* 12354 */ { "CUNEIFORM SIGN USH TIMES KUR",NULL},
+/* 12355 */ { "CUNEIFORM SIGN USH TIMES TAK4",NULL},
+/* 12356 */ { "CUNEIFORM SIGN USHX",NULL},
+/* 12357 */ { "CUNEIFORM SIGN USH2",NULL},
+/* 12358 */ { "CUNEIFORM SIGN USHUMX",NULL},
+/* 12359 */ { "CUNEIFORM SIGN UTUKI",NULL},
+/* 1235A */ { "CUNEIFORM SIGN UZ3",NULL},
+/* 1235B */ { "CUNEIFORM SIGN UZ3 TIMES KASKAL",NULL},
+/* 1235C */ { "CUNEIFORM SIGN UZU",NULL},
+/* 1235D */ { "CUNEIFORM SIGN ZA",NULL},
+/* 1235E */ { "CUNEIFORM SIGN ZA TENU",NULL},
+/* 1235F */ { "CUNEIFORM SIGN ZA SQUARED TIMES KUR",NULL},
+/* 12360 */ { "CUNEIFORM SIGN ZAG",NULL},
+/* 12361 */ { "CUNEIFORM SIGN ZAMX",NULL},
+/* 12362 */ { "CUNEIFORM SIGN ZE2",NULL},
+/* 12363 */ { "CUNEIFORM SIGN ZI",NULL},
+/* 12364 */ { "CUNEIFORM SIGN ZI OVER ZI",NULL},
+/* 12365 */ { "CUNEIFORM SIGN ZI3",NULL},
+/* 12366 */ { "CUNEIFORM SIGN ZIB",NULL},
+/* 12367 */ { "CUNEIFORM SIGN ZIB KABA TENU",NULL},
+/* 12368 */ { "CUNEIFORM SIGN ZIG",NULL},
+/* 12369 */ { "CUNEIFORM SIGN ZIZ2",NULL},
+/* 1236A */ { "CUNEIFORM SIGN ZU",NULL},
+/* 1236B */ { "CUNEIFORM SIGN ZU5",NULL},
+/* 1236C */ { "CUNEIFORM SIGN ZU5 TIMES A",NULL},
+/* 1236D */ { "CUNEIFORM SIGN ZUBUR",NULL},
+/* 1236E */ { "CUNEIFORM SIGN ZUM",NULL},
+/* 1236F */ { NULL,NULL},
+/* 12370 */ { NULL,NULL},
+/* 12371 */ { NULL,NULL},
+/* 12372 */ { NULL,NULL},
+/* 12373 */ { NULL,NULL},
+/* 12374 */ { NULL,NULL},
+/* 12375 */ { NULL,NULL},
+/* 12376 */ { NULL,NULL},
+/* 12377 */ { NULL,NULL},
+/* 12378 */ { NULL,NULL},
+/* 12379 */ { NULL,NULL},
+/* 1237A */ { NULL,NULL},
+/* 1237B */ { NULL,NULL},
+/* 1237C */ { NULL,NULL},
+/* 1237D */ { NULL,NULL},
+/* 1237E */ { NULL,NULL},
+/* 1237F */ { NULL,NULL},
+/* 12380 */ { NULL,NULL},
+/* 12381 */ { NULL,NULL},
+/* 12382 */ { NULL,NULL},
+/* 12383 */ { NULL,NULL},
+/* 12384 */ { NULL,NULL},
+/* 12385 */ { NULL,NULL},
+/* 12386 */ { NULL,NULL},
+/* 12387 */ { NULL,NULL},
+/* 12388 */ { NULL,NULL},
+/* 12389 */ { NULL,NULL},
+/* 1238A */ { NULL,NULL},
+/* 1238B */ { NULL,NULL},
+/* 1238C */ { NULL,NULL},
+/* 1238D */ { NULL,NULL},
+/* 1238E */ { NULL,NULL},
+/* 1238F */ { NULL,NULL},
+/* 12390 */ { NULL,NULL},
+/* 12391 */ { NULL,NULL},
+/* 12392 */ { NULL,NULL},
+/* 12393 */ { NULL,NULL},
+/* 12394 */ { NULL,NULL},
+/* 12395 */ { NULL,NULL},
+/* 12396 */ { NULL,NULL},
+/* 12397 */ { NULL,NULL},
+/* 12398 */ { NULL,NULL},
+/* 12399 */ { NULL,NULL},
+/* 1239A */ { NULL,NULL},
+/* 1239B */ { NULL,NULL},
+/* 1239C */ { NULL,NULL},
+/* 1239D */ { NULL,NULL},
+/* 1239E */ { NULL,NULL},
+/* 1239F */ { NULL,NULL},
+/* 123A0 */ { NULL,NULL},
+/* 123A1 */ { NULL,NULL},
+/* 123A2 */ { NULL,NULL},
+/* 123A3 */ { NULL,NULL},
+/* 123A4 */ { NULL,NULL},
+/* 123A5 */ { NULL,NULL},
+/* 123A6 */ { NULL,NULL},
+/* 123A7 */ { NULL,NULL},
+/* 123A8 */ { NULL,NULL},
+/* 123A9 */ { NULL,NULL},
+/* 123AA */ { NULL,NULL},
+/* 123AB */ { NULL,NULL},
+/* 123AC */ { NULL,NULL},
+/* 123AD */ { NULL,NULL},
+/* 123AE */ { NULL,NULL},
+/* 123AF */ { NULL,NULL},
+/* 123B0 */ { NULL,NULL},
+/* 123B1 */ { NULL,NULL},
+/* 123B2 */ { NULL,NULL},
+/* 123B3 */ { NULL,NULL},
+/* 123B4 */ { NULL,NULL},
+/* 123B5 */ { NULL,NULL},
+/* 123B6 */ { NULL,NULL},
+/* 123B7 */ { NULL,NULL},
+/* 123B8 */ { NULL,NULL},
+/* 123B9 */ { NULL,NULL},
+/* 123BA */ { NULL,NULL},
+/* 123BB */ { NULL,NULL},
+/* 123BC */ { NULL,NULL},
+/* 123BD */ { NULL,NULL},
+/* 123BE */ { NULL,NULL},
+/* 123BF */ { NULL,NULL},
+/* 123C0 */ { NULL,NULL},
+/* 123C1 */ { NULL,NULL},
+/* 123C2 */ { NULL,NULL},
+/* 123C3 */ { NULL,NULL},
+/* 123C4 */ { NULL,NULL},
+/* 123C5 */ { NULL,NULL},
+/* 123C6 */ { NULL,NULL},
+/* 123C7 */ { NULL,NULL},
+/* 123C8 */ { NULL,NULL},
+/* 123C9 */ { NULL,NULL},
+/* 123CA */ { NULL,NULL},
+/* 123CB */ { NULL,NULL},
+/* 123CC */ { NULL,NULL},
+/* 123CD */ { NULL,NULL},
+/* 123CE */ { NULL,NULL},
+/* 123CF */ { NULL,NULL},
+/* 123D0 */ { NULL,NULL},
+/* 123D1 */ { NULL,NULL},
+/* 123D2 */ { NULL,NULL},
+/* 123D3 */ { NULL,NULL},
+/* 123D4 */ { NULL,NULL},
+/* 123D5 */ { NULL,NULL},
+/* 123D6 */ { NULL,NULL},
+/* 123D7 */ { NULL,NULL},
+/* 123D8 */ { NULL,NULL},
+/* 123D9 */ { NULL,NULL},
+/* 123DA */ { NULL,NULL},
+/* 123DB */ { NULL,NULL},
+/* 123DC */ { NULL,NULL},
+/* 123DD */ { NULL,NULL},
+/* 123DE */ { NULL,NULL},
+/* 123DF */ { NULL,NULL},
+/* 123E0 */ { NULL,NULL},
+/* 123E1 */ { NULL,NULL},
+/* 123E2 */ { NULL,NULL},
+/* 123E3 */ { NULL,NULL},
+/* 123E4 */ { NULL,NULL},
+/* 123E5 */ { NULL,NULL},
+/* 123E6 */ { NULL,NULL},
+/* 123E7 */ { NULL,NULL},
+/* 123E8 */ { NULL,NULL},
+/* 123E9 */ { NULL,NULL},
+/* 123EA */ { NULL,NULL},
+/* 123EB */ { NULL,NULL},
+/* 123EC */ { NULL,NULL},
+/* 123ED */ { NULL,NULL},
+/* 123EE */ { NULL,NULL},
+/* 123EF */ { NULL,NULL},
+/* 123F0 */ { NULL,NULL},
+/* 123F1 */ { NULL,NULL},
+/* 123F2 */ { NULL,NULL},
+/* 123F3 */ { NULL,NULL},
+/* 123F4 */ { NULL,NULL},
+/* 123F5 */ { NULL,NULL},
+/* 123F6 */ { NULL,NULL},
+/* 123F7 */ { NULL,NULL},
+/* 123F8 */ { NULL,NULL},
+/* 123F9 */ { NULL,NULL},
+/* 123FA */ { NULL,NULL},
+/* 123FB */ { NULL,NULL},
+/* 123FC */ { NULL,NULL},
+/* 123FD */ { NULL,NULL},
+/* 123FE */ { NULL,NULL},
+/* 123FF */ { NULL,NULL}
+};
+
+static const struct unicode_nameannot una_01_24[] = {
+/* 12400 */ { "CUNEIFORM NUMERIC SIGN TWO ASH",NULL},
+/* 12401 */ { "CUNEIFORM NUMERIC SIGN THREE ASH",NULL},
+/* 12402 */ { "CUNEIFORM NUMERIC SIGN FOUR ASH",NULL},
+/* 12403 */ { "CUNEIFORM NUMERIC SIGN FIVE ASH",NULL},
+/* 12404 */ { "CUNEIFORM NUMERIC SIGN SIX ASH",NULL},
+/* 12405 */ { "CUNEIFORM NUMERIC SIGN SEVEN ASH",NULL},
+/* 12406 */ { "CUNEIFORM NUMERIC SIGN EIGHT ASH",NULL},
+/* 12407 */ { "CUNEIFORM NUMERIC SIGN NINE ASH",NULL},
+/* 12408 */ { "CUNEIFORM NUMERIC SIGN THREE DISH",NULL},
+/* 12409 */ { "CUNEIFORM NUMERIC SIGN FOUR DISH",NULL},
+/* 1240A */ { "CUNEIFORM NUMERIC SIGN FIVE DISH",NULL},
+/* 1240B */ { "CUNEIFORM NUMERIC SIGN SIX DISH",NULL},
+/* 1240C */ { "CUNEIFORM NUMERIC SIGN SEVEN DISH",NULL},
+/* 1240D */ { "CUNEIFORM NUMERIC SIGN EIGHT DISH",NULL},
+/* 1240E */ { "CUNEIFORM NUMERIC SIGN NINE DISH",NULL},
+/* 1240F */ { "CUNEIFORM NUMERIC SIGN FOUR U",NULL},
+/* 12410 */ { "CUNEIFORM NUMERIC SIGN FIVE U",NULL},
+/* 12411 */ { "CUNEIFORM NUMERIC SIGN SIX U",NULL},
+/* 12412 */ { "CUNEIFORM NUMERIC SIGN SEVEN U",NULL},
+/* 12413 */ { "CUNEIFORM NUMERIC SIGN EIGHT U",NULL},
+/* 12414 */ { "CUNEIFORM NUMERIC SIGN NINE U",NULL},
+/* 12415 */ { "CUNEIFORM NUMERIC SIGN ONE GESH2",NULL},
+/* 12416 */ { "CUNEIFORM NUMERIC SIGN TWO GESH2",NULL},
+/* 12417 */ { "CUNEIFORM NUMERIC SIGN THREE GESH2",NULL},
+/* 12418 */ { "CUNEIFORM NUMERIC SIGN FOUR GESH2",NULL},
+/* 12419 */ { "CUNEIFORM NUMERIC SIGN FIVE GESH2",NULL},
+/* 1241A */ { "CUNEIFORM NUMERIC SIGN SIX GESH2",NULL},
+/* 1241B */ { "CUNEIFORM NUMERIC SIGN SEVEN GESH2",NULL},
+/* 1241C */ { "CUNEIFORM NUMERIC SIGN EIGHT GESH2",NULL},
+/* 1241D */ { "CUNEIFORM NUMERIC SIGN NINE GESH2",NULL},
+/* 1241E */ { "CUNEIFORM NUMERIC SIGN ONE GESHU",NULL},
+/* 1241F */ { "CUNEIFORM NUMERIC SIGN TWO GESHU",NULL},
+/* 12420 */ { "CUNEIFORM NUMERIC SIGN THREE GESHU",NULL},
+/* 12421 */ { "CUNEIFORM NUMERIC SIGN FOUR GESHU",NULL},
+/* 12422 */ { "CUNEIFORM NUMERIC SIGN FIVE GESHU",NULL},
+/* 12423 */ { "CUNEIFORM NUMERIC SIGN TWO SHAR2",NULL},
+/* 12424 */ { "CUNEIFORM NUMERIC SIGN THREE SHAR2",NULL},
+/* 12425 */ { "CUNEIFORM NUMERIC SIGN THREE SHAR2 VARIANT FORM",NULL},
+/* 12426 */ { "CUNEIFORM NUMERIC SIGN FOUR SHAR2",NULL},
+/* 12427 */ { "CUNEIFORM NUMERIC SIGN FIVE SHAR2",NULL},
+/* 12428 */ { "CUNEIFORM NUMERIC SIGN SIX SHAR2",NULL},
+/* 12429 */ { "CUNEIFORM NUMERIC SIGN SEVEN SHAR2",NULL},
+/* 1242A */ { "CUNEIFORM NUMERIC SIGN EIGHT SHAR2",NULL},
+/* 1242B */ { "CUNEIFORM NUMERIC SIGN NINE SHAR2",NULL},
+/* 1242C */ { "CUNEIFORM NUMERIC SIGN ONE SHARU",NULL},
+/* 1242D */ { "CUNEIFORM NUMERIC SIGN TWO SHARU",NULL},
+/* 1242E */ { "CUNEIFORM NUMERIC SIGN THREE SHARU",NULL},
+/* 1242F */ { "CUNEIFORM NUMERIC SIGN THREE SHARU VARIANT FORM",NULL},
+/* 12430 */ { "CUNEIFORM NUMERIC SIGN FOUR SHARU",NULL},
+/* 12431 */ { "CUNEIFORM NUMERIC SIGN FIVE SHARU",NULL},
+/* 12432 */ { "CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS DISH",NULL},
+/* 12433 */ { "CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS MIN",NULL},
+/* 12434 */ { "CUNEIFORM NUMERIC SIGN ONE BURU",NULL},
+/* 12435 */ { "CUNEIFORM NUMERIC SIGN TWO BURU",NULL},
+/* 12436 */ { "CUNEIFORM NUMERIC SIGN THREE BURU",NULL},
+/* 12437 */ { "CUNEIFORM NUMERIC SIGN THREE BURU VARIANT FORM",NULL},
+/* 12438 */ { "CUNEIFORM NUMERIC SIGN FOUR BURU",NULL},
+/* 12439 */ { "CUNEIFORM NUMERIC SIGN FIVE BURU",NULL},
+/* 1243A */ { "CUNEIFORM NUMERIC SIGN THREE VARIANT FORM ESH16",NULL},
+/* 1243B */ { "CUNEIFORM NUMERIC SIGN THREE VARIANT FORM ESH21",NULL},
+/* 1243C */ { "CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU",NULL},
+/* 1243D */ { "CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU4",NULL},
+/* 1243E */ { "CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU A",NULL},
+/* 1243F */ { "CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU B",NULL},
+/* 12440 */ { "CUNEIFORM NUMERIC SIGN SIX VARIANT FORM ASH9",NULL},
+/* 12441 */ { "CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN3",NULL},
+/* 12442 */ { "CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN A",NULL},
+/* 12443 */ { "CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN B",NULL},
+/* 12444 */ { "CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU",NULL},
+/* 12445 */ { "CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU3",NULL},
+/* 12446 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU",NULL},
+/* 12447 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU3",NULL},
+/* 12448 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU4",NULL},
+/* 12449 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A",NULL},
+/* 1244A */ { "CUNEIFORM NUMERIC SIGN TWO ASH TENU",NULL},
+/* 1244B */ { "CUNEIFORM NUMERIC SIGN THREE ASH TENU",NULL},
+/* 1244C */ { "CUNEIFORM NUMERIC SIGN FOUR ASH TENU",NULL},
+/* 1244D */ { "CUNEIFORM NUMERIC SIGN FIVE ASH TENU",NULL},
+/* 1244E */ { "CUNEIFORM NUMERIC SIGN SIX ASH TENU",NULL},
+/* 1244F */ { "CUNEIFORM NUMERIC SIGN ONE BAN2",NULL},
+/* 12450 */ { "CUNEIFORM NUMERIC SIGN TWO BAN2",NULL},
+/* 12451 */ { "CUNEIFORM NUMERIC SIGN THREE BAN2",NULL},
+/* 12452 */ { "CUNEIFORM NUMERIC SIGN FOUR BAN2",NULL},
+/* 12453 */ { "CUNEIFORM NUMERIC SIGN FOUR BAN2 VARIANT FORM",NULL},
+/* 12454 */ { "CUNEIFORM NUMERIC SIGN FIVE BAN2",NULL},
+/* 12455 */ { "CUNEIFORM NUMERIC SIGN FIVE BAN2 VARIANT FORM",NULL},
+/* 12456 */ { "CUNEIFORM NUMERIC SIGN NIGIDAMIN",NULL},
+/* 12457 */ { "CUNEIFORM NUMERIC SIGN NIGIDAESH",NULL},
+/* 12458 */ { "CUNEIFORM NUMERIC SIGN ONE ESHE3",NULL},
+/* 12459 */ { "CUNEIFORM NUMERIC SIGN TWO ESHE3",NULL},
+/* 1245A */ { "CUNEIFORM NUMERIC SIGN ONE THIRD DISH",NULL},
+/* 1245B */ { "CUNEIFORM NUMERIC SIGN TWO THIRDS DISH",NULL},
+/* 1245C */ { "CUNEIFORM NUMERIC SIGN FIVE SIXTHS DISH",NULL},
+/* 1245D */ { "CUNEIFORM NUMERIC SIGN ONE THIRD VARIANT FORM A",NULL},
+/* 1245E */ { "CUNEIFORM NUMERIC SIGN TWO THIRDS VARIANT FORM A",NULL},
+/* 1245F */ { "CUNEIFORM NUMERIC SIGN ONE EIGHTH ASH",NULL},
+/* 12460 */ { "CUNEIFORM NUMERIC SIGN ONE QUARTER ASH",NULL},
+/* 12461 */ { "CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE SIXTH",NULL},
+/* 12462 */ { "CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER",NULL},
+/* 12463 */ { NULL,NULL},
+/* 12464 */ { NULL,NULL},
+/* 12465 */ { NULL,NULL},
+/* 12466 */ { NULL,NULL},
+/* 12467 */ { NULL,NULL},
+/* 12468 */ { NULL,NULL},
+/* 12469 */ { NULL,NULL},
+/* 1246A */ { NULL,NULL},
+/* 1246B */ { NULL,NULL},
+/* 1246C */ { NULL,NULL},
+/* 1246D */ { NULL,NULL},
+/* 1246E */ { NULL,NULL},
+/* 1246F */ { NULL,NULL},
+/* 12470 */ { "CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER","	x (ugaritic word divider - 1039F)\n"
+	"	x (old persian word divider - 103D0)"},
+/* 12471 */ { "CUNEIFORM PUNCTUATION SIGN VERTICAL COLON",NULL},
+/* 12472 */ { "CUNEIFORM PUNCTUATION SIGN DIAGONAL COLON",NULL},
+/* 12473 */ { "CUNEIFORM PUNCTUATION SIGN DIAGONAL TRICOLON",NULL},
+/* 12474 */ { NULL,NULL},
+/* 12475 */ { NULL,NULL},
+/* 12476 */ { NULL,NULL},
+/* 12477 */ { NULL,NULL},
+/* 12478 */ { NULL,NULL},
+/* 12479 */ { NULL,NULL},
+/* 1247A */ { NULL,NULL},
+/* 1247B */ { NULL,NULL},
+/* 1247C */ { NULL,NULL},
+/* 1247D */ { NULL,NULL},
+/* 1247E */ { NULL,NULL},
+/* 1247F */ { NULL,NULL},
+/* 12480 */ { NULL,NULL},
+/* 12481 */ { NULL,NULL},
+/* 12482 */ { NULL,NULL},
+/* 12483 */ { NULL,NULL},
+/* 12484 */ { NULL,NULL},
+/* 12485 */ { NULL,NULL},
+/* 12486 */ { NULL,NULL},
+/* 12487 */ { NULL,NULL},
+/* 12488 */ { NULL,NULL},
+/* 12489 */ { NULL,NULL},
+/* 1248A */ { NULL,NULL},
+/* 1248B */ { NULL,NULL},
+/* 1248C */ { NULL,NULL},
+/* 1248D */ { NULL,NULL},
+/* 1248E */ { NULL,NULL},
+/* 1248F */ { NULL,NULL},
+/* 12490 */ { NULL,NULL},
+/* 12491 */ { NULL,NULL},
+/* 12492 */ { NULL,NULL},
+/* 12493 */ { NULL,NULL},
+/* 12494 */ { NULL,NULL},
+/* 12495 */ { NULL,NULL},
+/* 12496 */ { NULL,NULL},
+/* 12497 */ { NULL,NULL},
+/* 12498 */ { NULL,NULL},
+/* 12499 */ { NULL,NULL},
+/* 1249A */ { NULL,NULL},
+/* 1249B */ { NULL,NULL},
+/* 1249C */ { NULL,NULL},
+/* 1249D */ { NULL,NULL},
+/* 1249E */ { NULL,NULL},
+/* 1249F */ { NULL,NULL},
+/* 124A0 */ { NULL,NULL},
+/* 124A1 */ { NULL,NULL},
+/* 124A2 */ { NULL,NULL},
+/* 124A3 */ { NULL,NULL},
+/* 124A4 */ { NULL,NULL},
+/* 124A5 */ { NULL,NULL},
+/* 124A6 */ { NULL,NULL},
+/* 124A7 */ { NULL,NULL},
+/* 124A8 */ { NULL,NULL},
+/* 124A9 */ { NULL,NULL},
+/* 124AA */ { NULL,NULL},
+/* 124AB */ { NULL,NULL},
+/* 124AC */ { NULL,NULL},
+/* 124AD */ { NULL,NULL},
+/* 124AE */ { NULL,NULL},
+/* 124AF */ { NULL,NULL},
+/* 124B0 */ { NULL,NULL},
+/* 124B1 */ { NULL,NULL},
+/* 124B2 */ { NULL,NULL},
+/* 124B3 */ { NULL,NULL},
+/* 124B4 */ { NULL,NULL},
+/* 124B5 */ { NULL,NULL},
+/* 124B6 */ { NULL,NULL},
+/* 124B7 */ { NULL,NULL},
+/* 124B8 */ { NULL,NULL},
+/* 124B9 */ { NULL,NULL},
+/* 124BA */ { NULL,NULL},
+/* 124BB */ { NULL,NULL},
+/* 124BC */ { NULL,NULL},
+/* 124BD */ { NULL,NULL},
+/* 124BE */ { NULL,NULL},
+/* 124BF */ { NULL,NULL},
+/* 124C0 */ { NULL,NULL},
+/* 124C1 */ { NULL,NULL},
+/* 124C2 */ { NULL,NULL},
+/* 124C3 */ { NULL,NULL},
+/* 124C4 */ { NULL,NULL},
+/* 124C5 */ { NULL,NULL},
+/* 124C6 */ { NULL,NULL},
+/* 124C7 */ { NULL,NULL},
+/* 124C8 */ { NULL,NULL},
+/* 124C9 */ { NULL,NULL},
+/* 124CA */ { NULL,NULL},
+/* 124CB */ { NULL,NULL},
+/* 124CC */ { NULL,NULL},
+/* 124CD */ { NULL,NULL},
+/* 124CE */ { NULL,NULL},
+/* 124CF */ { NULL,NULL},
+/* 124D0 */ { NULL,NULL},
+/* 124D1 */ { NULL,NULL},
+/* 124D2 */ { NULL,NULL},
+/* 124D3 */ { NULL,NULL},
+/* 124D4 */ { NULL,NULL},
+/* 124D5 */ { NULL,NULL},
+/* 124D6 */ { NULL,NULL},
+/* 124D7 */ { NULL,NULL},
+/* 124D8 */ { NULL,NULL},
+/* 124D9 */ { NULL,NULL},
+/* 124DA */ { NULL,NULL},
+/* 124DB */ { NULL,NULL},
+/* 124DC */ { NULL,NULL},
+/* 124DD */ { NULL,NULL},
+/* 124DE */ { NULL,NULL},
+/* 124DF */ { NULL,NULL},
+/* 124E0 */ { NULL,NULL},
+/* 124E1 */ { NULL,NULL},
+/* 124E2 */ { NULL,NULL},
+/* 124E3 */ { NULL,NULL},
+/* 124E4 */ { NULL,NULL},
+/* 124E5 */ { NULL,NULL},
+/* 124E6 */ { NULL,NULL},
+/* 124E7 */ { NULL,NULL},
+/* 124E8 */ { NULL,NULL},
+/* 124E9 */ { NULL,NULL},
+/* 124EA */ { NULL,NULL},
+/* 124EB */ { NULL,NULL},
+/* 124EC */ { NULL,NULL},
+/* 124ED */ { NULL,NULL},
+/* 124EE */ { NULL,NULL},
+/* 124EF */ { NULL,NULL},
+/* 124F0 */ { NULL,NULL},
+/* 124F1 */ { NULL,NULL},
+/* 124F2 */ { NULL,NULL},
+/* 124F3 */ { NULL,NULL},
+/* 124F4 */ { NULL,NULL},
+/* 124F5 */ { NULL,NULL},
+/* 124F6 */ { NULL,NULL},
+/* 124F7 */ { NULL,NULL},
+/* 124F8 */ { NULL,NULL},
+/* 124F9 */ { NULL,NULL},
+/* 124FA */ { NULL,NULL},
+/* 124FB */ { NULL,NULL},
+/* 124FC */ { NULL,NULL},
+/* 124FD */ { NULL,NULL},
+/* 124FE */ { NULL,NULL},
+/* 124FF */ { NULL,NULL}
+};
+
 static const struct unicode_nameannot una_01_D0[] = {
 /* 1D000 */ { "BYZANTINE MUSICAL SYMBOL PSILI",NULL},
 /* 1D001 */ { "BYZANTINE MUSICAL SYMBOL DASEIA",NULL},
@@ -20320,8 +22283,8 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D095 */ { "BYZANTINE MUSICAL SYMBOL DIGORGON PARESTIGMENON DEXIA",NULL},
 /* 1D096 */ { "BYZANTINE MUSICAL SYMBOL TRIGORGON",NULL},
 /* 1D097 */ { "BYZANTINE MUSICAL SYMBOL ARGON",NULL},
-/* 1D098 */ { "BYZANTINE MUSICAL SYMBOL IMIDIARGON",NULL},
-/* 1D099 */ { "BYZANTINE MUSICAL SYMBOL DIARGON",NULL},
+/* 1D098 */ { "BYZANTINE MUSICAL SYMBOL IMIDIARGON","	* called diargon by some authorities"},
+/* 1D099 */ { "BYZANTINE MUSICAL SYMBOL DIARGON","	* called triargon by some authorities"},
 /* 1D09A */ { "BYZANTINE MUSICAL SYMBOL AGOGI POLI ARGI",NULL},
 /* 1D09B */ { "BYZANTINE MUSICAL SYMBOL AGOGI ARGOTERI",NULL},
 /* 1D09C */ { "BYZANTINE MUSICAL SYMBOL AGOGI ARGI",NULL},
@@ -20348,8 +22311,10 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0B1 */ { "BYZANTINE MUSICAL SYMBOL MARTYRIA VARYS ICHOS",NULL},
 /* 1D0B2 */ { "BYZANTINE MUSICAL SYMBOL MARTYRIA PROTOVARYS ICHOS",NULL},
 /* 1D0B3 */ { "BYZANTINE MUSICAL SYMBOL MARTYRIA PLAGIOS TETARTOS ICHOS",NULL},
-/* 1D0B4 */ { "BYZANTINE MUSICAL SYMBOL GORTHMIKON N APLOUN",NULL},
-/* 1D0B5 */ { "BYZANTINE MUSICAL SYMBOL GORTHMIKON N DIPLOUN",NULL},
+/* 1D0B4 */ { "BYZANTINE MUSICAL SYMBOL GORTHMIKON N APLOUN","	* used in intonation formulas instead of nu, before phonemes a, i, o, u\n"
+	"	x (greek small letter nu - 03BD)"},
+/* 1D0B5 */ { "BYZANTINE MUSICAL SYMBOL GORTHMIKON N DIPLOUN","	* used in intonation formulas instead of nu, before phoneme e\n"
+	"	x (greek small letter nu - 03BD)"},
 /* 1D0B6 */ { "BYZANTINE MUSICAL SYMBOL ENARXIS KAI FTHORA VOU",NULL},
 /* 1D0B7 */ { "BYZANTINE MUSICAL SYMBOL IMIFONON",NULL},
 /* 1D0B8 */ { "BYZANTINE MUSICAL SYMBOL IMIFTHORON",NULL},
@@ -20365,7 +22330,8 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0C2 */ { "BYZANTINE MUSICAL SYMBOL FTHORA DIATONIKI NI ANO",NULL},
 /* 1D0C3 */ { "BYZANTINE MUSICAL SYMBOL FTHORA MALAKON CHROMA DIFONIAS",NULL},
 /* 1D0C4 */ { "BYZANTINE MUSICAL SYMBOL FTHORA MALAKON CHROMA MONOFONIAS",NULL},
-/* 1D0C5 */ { "BYZANTINE MUSICAL SYMBOL FHTORA SKLIRON CHROMA VASIS","	* misspelling of \"FTHORA\" in character name is a known defect"},
+/* 1D0C5 */ { "BYZANTINE MUSICAL SYMBOL FHTORA SKLIRON CHROMA VASIS","	% BYZANTINE MUSICAL SYMBOL FTHORA SKLIRON CHROMA VASIS\n"
+	"	* misspelling of \"FTHORA\" in character name is a known defect"},
 /* 1D0C6 */ { "BYZANTINE MUSICAL SYMBOL FTHORA SKLIRON CHROMA SYNAFI",NULL},
 /* 1D0C7 */ { "BYZANTINE MUSICAL SYMBOL FTHORA NENANO",NULL},
 /* 1D0C8 */ { "BYZANTINE MUSICAL SYMBOL CHROA ZYGOS",NULL},
@@ -20386,8 +22352,8 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0D7 */ { "BYZANTINE MUSICAL SYMBOL YFESIS TRIGRAMMOS OKTO DODEKATA",NULL},
 /* 1D0D8 */ { "BYZANTINE MUSICAL SYMBOL GENIKI DIESIS",NULL},
 /* 1D0D9 */ { "BYZANTINE MUSICAL SYMBOL GENIKI YFESIS",NULL},
-/* 1D0DA */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI APLI MIKRI",NULL},
-/* 1D0DB */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI APLI MEGALI",NULL},
+/* 1D0DA */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI APLI MIKRI","	x (musical symbol short barline - 1D105)"},
+/* 1D0DB */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI APLI MEGALI","	x (musical symbol single barline - 1D100)"},
 /* 1D0DC */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI DIPLI",NULL},
 /* 1D0DD */ { "BYZANTINE MUSICAL SYMBOL DIASTOLI THESEOS",NULL},
 /* 1D0DE */ { "BYZANTINE MUSICAL SYMBOL SIMANSIS THESEOS",NULL},
@@ -20399,8 +22365,8 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0E4 */ { "BYZANTINE MUSICAL SYMBOL SIMANSIS ARSEOS TRISIMOU",NULL},
 /* 1D0E5 */ { "BYZANTINE MUSICAL SYMBOL SIMANSIS ARSEOS TETRASIMOU",NULL},
 /* 1D0E6 */ { "BYZANTINE MUSICAL SYMBOL DIGRAMMA GG",NULL},
-/* 1D0E7 */ { "BYZANTINE MUSICAL SYMBOL DIFTOGGOS OU",NULL},
-/* 1D0E8 */ { "BYZANTINE MUSICAL SYMBOL STIGMA",NULL},
+/* 1D0E7 */ { "BYZANTINE MUSICAL SYMBOL DIFTOGGOS OU","	x (latin small letter ou - 0223)"},
+/* 1D0E8 */ { "BYZANTINE MUSICAL SYMBOL STIGMA","	x (greek small letter stigma - 03DB)"},
 /* 1D0E9 */ { "BYZANTINE MUSICAL SYMBOL ARKTIKO PA",NULL},
 /* 1D0EA */ { "BYZANTINE MUSICAL SYMBOL ARKTIKO VOU",NULL},
 /* 1D0EB */ { "BYZANTINE MUSICAL SYMBOL ARKTIKO GA",NULL},
@@ -20485,10 +22451,10 @@ static const struct unicode_nameannot una_01_D1[] = {
 /* 1D137 */ { "MUSICAL SYMBOL OTTAVA BASSA",NULL},
 /* 1D138 */ { "MUSICAL SYMBOL QUINDICESIMA ALTA",NULL},
 /* 1D139 */ { "MUSICAL SYMBOL QUINDICESIMA BASSA",NULL},
-/* 1D13A */ { "MUSICAL SYMBOL MULTI REST",NULL},
-/* 1D13B */ { "MUSICAL SYMBOL WHOLE REST",NULL},
-/* 1D13C */ { "MUSICAL SYMBOL HALF REST",NULL},
-/* 1D13D */ { "MUSICAL SYMBOL QUARTER REST",NULL},
+/* 1D13A */ { "MUSICAL SYMBOL MULTI REST","	= double whole-rest, breve rest"},
+/* 1D13B */ { "MUSICAL SYMBOL WHOLE REST","	= semibreve rest"},
+/* 1D13C */ { "MUSICAL SYMBOL HALF REST","	= minim rest"},
+/* 1D13D */ { "MUSICAL SYMBOL QUARTER REST","	= crochet rest"},
 /* 1D13E */ { "MUSICAL SYMBOL EIGHTH REST",NULL},
 /* 1D13F */ { "MUSICAL SYMBOL SIXTEENTH REST",NULL},
 /* 1D140 */ { "MUSICAL SYMBOL THIRTY-SECOND REST",NULL},
@@ -20738,7 +22704,7 @@ static const struct unicode_nameannot una_01_D2[] = {
 	"	* vocal second sharp of a´\n"
 	"	* instrumental first sharp of d"},
 /* 1D21D */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-1","	* instrumental E"},
-/* 1D21E */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-2","	* instrumental first sharp of e"},
+/* 1D21E */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-2","	* instrumental first sharp of E"},
 /* 1D21F */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-4","	* instrumental F"},
 /* 1D220 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-5","	* instrumental first sharp of F"},
 /* 1D221 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-7","	* instrumental G"},
@@ -20969,12 +22935,15 @@ static const struct unicode_nameannot una_01_D2[] = {
 };
 
 static const struct unicode_nameannot una_01_D3[] = {
-/* 1D300 */ { "MONOGRAM FOR EARTH",NULL},
-/* 1D301 */ { "DIGRAM FOR HEAVENLY EARTH",NULL},
-/* 1D302 */ { "DIGRAM FOR HUMAN EARTH",NULL},
-/* 1D303 */ { "DIGRAM FOR EARTHLY HEAVEN",NULL},
-/* 1D304 */ { "DIGRAM FOR EARTHLY HUMAN",NULL},
-/* 1D305 */ { "DIGRAM FOR EARTH",NULL},
+/* 1D300 */ { "MONOGRAM FOR EARTH (ren) *","	= ren\n"
+	"	* usually associated with human (Chinese ren), rather than earth\n"
+	"	x (monogram for yang - 268A)\n"
+	"	x (monogram for yin - 268B)"},
+/* 1D301 */ { "DIGRAM FOR HEAVENLY EARTH (tian ren) *","	= tian ren"},
+/* 1D302 */ { "DIGRAM FOR HUMAN EARTH (di ren) *","	= di ren"},
+/* 1D303 */ { "DIGRAM FOR EARTHLY HEAVEN (ren tian) *","	= ren tian"},
+/* 1D304 */ { "DIGRAM FOR EARTHLY HUMAN (ren di) *","	= ren di"},
+/* 1D305 */ { "DIGRAM FOR EARTH (ren ren) *","	= ren ren"},
 /* 1D306 */ { "TETRAGRAM FOR CENTRE",NULL},
 /* 1D307 */ { "TETRAGRAM FOR FULL CIRCLE",NULL},
 /* 1D308 */ { "TETRAGRAM FOR MIRED",NULL},
@@ -21065,24 +23034,24 @@ static const struct unicode_nameannot una_01_D3[] = {
 /* 1D35D */ { NULL,NULL},
 /* 1D35E */ { NULL,NULL},
 /* 1D35F */ { NULL,NULL},
-/* 1D360 */ { NULL,NULL},
-/* 1D361 */ { NULL,NULL},
-/* 1D362 */ { NULL,NULL},
-/* 1D363 */ { NULL,NULL},
-/* 1D364 */ { NULL,NULL},
-/* 1D365 */ { NULL,NULL},
-/* 1D366 */ { NULL,NULL},
-/* 1D367 */ { NULL,NULL},
-/* 1D368 */ { NULL,NULL},
-/* 1D369 */ { NULL,NULL},
-/* 1D36A */ { NULL,NULL},
-/* 1D36B */ { NULL,NULL},
-/* 1D36C */ { NULL,NULL},
-/* 1D36D */ { NULL,NULL},
-/* 1D36E */ { NULL,NULL},
-/* 1D36F */ { NULL,NULL},
-/* 1D370 */ { NULL,NULL},
-/* 1D371 */ { NULL,NULL},
+/* 1D360 */ { "COUNTING ROD UNIT DIGIT ONE",NULL},
+/* 1D361 */ { "COUNTING ROD UNIT DIGIT TWO",NULL},
+/* 1D362 */ { "COUNTING ROD UNIT DIGIT THREE",NULL},
+/* 1D363 */ { "COUNTING ROD UNIT DIGIT FOUR",NULL},
+/* 1D364 */ { "COUNTING ROD UNIT DIGIT FIVE",NULL},
+/* 1D365 */ { "COUNTING ROD UNIT DIGIT SIX",NULL},
+/* 1D366 */ { "COUNTING ROD UNIT DIGIT SEVEN",NULL},
+/* 1D367 */ { "COUNTING ROD UNIT DIGIT EIGHT",NULL},
+/* 1D368 */ { "COUNTING ROD UNIT DIGIT NINE",NULL},
+/* 1D369 */ { "COUNTING ROD TENS DIGIT ONE",NULL},
+/* 1D36A */ { "COUNTING ROD TENS DIGIT TWO",NULL},
+/* 1D36B */ { "COUNTING ROD TENS DIGIT THREE",NULL},
+/* 1D36C */ { "COUNTING ROD TENS DIGIT FOUR",NULL},
+/* 1D36D */ { "COUNTING ROD TENS DIGIT FIVE",NULL},
+/* 1D36E */ { "COUNTING ROD TENS DIGIT SIX",NULL},
+/* 1D36F */ { "COUNTING ROD TENS DIGIT SEVEN",NULL},
+/* 1D370 */ { "COUNTING ROD TENS DIGIT EIGHT",NULL},
+/* 1D371 */ { "COUNTING ROD TENS DIGIT NINE",NULL},
 /* 1D372 */ { NULL,NULL},
 /* 1D373 */ { NULL,NULL},
 /* 1D374 */ { NULL,NULL},
@@ -22217,8 +24186,8 @@ static const struct unicode_nameannot una_01_D7[] = {
 /* 1D7C7 */ { "MATHEMATICAL SANS-SERIF BOLD ITALIC PHI SYMBOL","	# <font> 03D5 greek phi symbol"},
 /* 1D7C8 */ { "MATHEMATICAL SANS-SERIF BOLD ITALIC RHO SYMBOL","	# <font> 03F1 greek rho symbol"},
 /* 1D7C9 */ { "MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL","	# <font> 03D6 greek pi symbol"},
-/* 1D7CA */ { NULL,NULL},
-/* 1D7CB */ { NULL,NULL},
+/* 1D7CA */ { "MATHEMATICAL BOLD CAPITAL DIGAMMA","	# <font> 03DC greek letter digamma"},
+/* 1D7CB */ { "MATHEMATICAL BOLD SMALL DIGAMMA","	# <font> 03DD greek small letter digamma"},
 /* 1D7CC */ { NULL,NULL},
 /* 1D7CD */ { NULL,NULL},
 /* 1D7CE */ { "MATHEMATICAL BOLD DIGIT ZERO","	# <font> 0030 digit zero"},
@@ -23607,7 +25576,7 @@ static const struct unicode_nameannot * const una_00[] = {
 	una_00_18,
 	una_00_19,
 	una_00_1A,
-	nullarray,
+	una_00_1B,
 	nullarray,
 	una_00_1D,
 	una_00_1E,
@@ -23848,7 +25817,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	nullarray,
 	una_01_08,
-	nullarray,
+	una_01_09,
 	una_01_0A,
 	nullarray,
 	nullarray,
@@ -23871,11 +25840,11 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	nullarray,
 	nullarray,
-	nullarray,
-	nullarray,
-	nullarray,
-	nullarray,
-	nullarray,
+	una_01_20,
+	una_01_21,
+	una_01_22,
+	una_01_23,
+	una_01_24,
 	nullarray,
 	nullarray,
 	nullarray,
@@ -24615,6 +26584,9 @@ static const struct unicode_nameannot * const una_0E[] = {
 	nullarray2
 };
 
+#ifdef __Cygwin
+__declspec(dllexport)	/* Need this for cygwin to get shared libs */
+#endif /* __Cygwin */
 const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {
 	una_00,
 	una_01,
