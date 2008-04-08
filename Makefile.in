@@ -23,16 +23,16 @@ CFLAGS = @CFLAGS@ $(WFLAGS)
 both: libuninameslist.la libuninameslist-fr.la
 
 libuninameslist.la: nameslist.lo
-	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist.la nameslist.lo \
+	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) -o libuninameslist.la nameslist.lo \
 	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
 
 libuninameslist-fr.la: nameslist-fr.lo
-	$(LIBTOOL) $(CC) $(CFLAGS) -o libuninameslist-fr.la nameslist-fr.lo \
+	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) -o libuninameslist-fr.la nameslist-fr.lo \
 	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
 
 
 %.lo: %.c
-	$(LIBTOOL) $(CC) $(CFLAGS) -c $<
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) -c $<
 
 install: both
 # You may need to be root to do the install

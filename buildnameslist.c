@@ -41,7 +41,7 @@ static void ReadNamesList(void) {
     char *end, *namestart, *pt, *temp;
     struct block *cur;
     int i;
-    static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms-4.0.0.txt", NULL };
+    static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
 
     for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
 	nl = fopen( nameslistfiles[i],"r" );
@@ -181,6 +181,9 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
     struct block *block;
     int i, maxa, maxn;
 
+    fprintf( out, "#ifdef __Cygwin\n" );
+    fprintf( out, "__declspec(dllexport)\t/* Need this for cygwin to get shared libs */\n" );
+    fprintf( out, "#endif /* __Cygwin */\n" );
     fprintf( out, "const struct unicode_block UnicodeBlock[] = {\n" );
     for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
 	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", block->start, block->end,
@@ -261,6 +264,9 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
 		
     fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];\n" );
 
+    fprintf( out, "#ifdef __Cygwin\n" );
+    fprintf( out, "__declspec(dllexport)\t/* Need this for cygwin to get shared libs */\n" );
+    fprintf( out, "#endif /* __Cygwin */\n" );
     fprintf( out, "const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {\n" );
     for ( i=0; i<sizeof(uniannot[is_fr])/(sizeof(uniannot[is_fr][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
