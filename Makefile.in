@@ -9,7 +9,7 @@ libdir = @libdir@
 incdir = @includedir@
 
 UN_VERSION=0
-UN_REVISION=1
+UN_REVISION=2
 UN_AGE=0
 
 LIBTOOL = @LIBTOOL@
@@ -19,15 +19,16 @@ INSTALL_DATA = @INSTALL_DATA@
 
 WFLAGS = -Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses
 CFLAGS = @CFLAGS@ $(WFLAGS)
+LDFLAGS = @LDFLAGS@
 
 both: libuninameslist.la libuninameslist-fr.la
 
 libuninameslist.la: nameslist.lo
-	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) -o libuninameslist.la nameslist.lo \
+	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) @LDFLAGS@ -o libuninameslist.la nameslist.lo \
 	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
 
 libuninameslist-fr.la: nameslist-fr.lo
-	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) -o libuninameslist-fr.la nameslist-fr.lo \
+	$(LIBTOOL) --mode=link $(CC) -no-undefined $(CFLAGS) @LDFLAGS@ -o libuninameslist-fr.la nameslist-fr.lo \
 	    -rpath $(libdir) -version-info $(UN_VERSION):$(UN_REVISION):$(UN_AGE)
 
 
@@ -36,12 +37,12 @@ libuninameslist-fr.la: nameslist-fr.lo
 
 install: both
 # You may need to be root to do the install
-	mkdir -p $(libdir)
-	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(libdir)/libuninameslist.la
-	$(LIBTOOL) $(INSTALL) -c libuninameslist-fr.la $(libdir)/libuninameslist-fr.la
-	$(LIBTOOL) --finish $(libdir)
-	mkdir -p $(incdir)
-	$(INSTALL_DATA) nameslist.h $(incdir)/uninameslist.h
+	mkdir -p $(DESTDIR)$(libdir)
+	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(DESTDIR)$(libdir)/libuninameslist.la
+	$(LIBTOOL) $(INSTALL) -c libuninameslist-fr.la $(DESTDIR)$(libdir)/libuninameslist-fr.la
+	$(LIBTOOL) --finish $(DESTDIR)$(libdir)
+	mkdir -p $(DESTDIR)$(incdir)
+	$(INSTALL_DATA) nameslist.h $(DESTDIR)$(incdir)/uninameslist.h
 
 clean:
 	-rm -f *.lo *.o *.la
