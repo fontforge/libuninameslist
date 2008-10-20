@@ -38,8 +38,8 @@ libuninameslist-fr.la: nameslist-fr.lo
 install: both
 # You may need to be root to do the install
 	mkdir -p $(DESTDIR)$(libdir)
-	$(LIBTOOL) $(INSTALL) -c libuninameslist.la $(DESTDIR)$(libdir)/libuninameslist.la
-	$(LIBTOOL) $(INSTALL) -c libuninameslist-fr.la $(DESTDIR)$(libdir)/libuninameslist-fr.la
+	$(LIBTOOL) --mode=install $(INSTALL) -c libuninameslist.la $(DESTDIR)$(libdir)/libuninameslist.la
+	$(LIBTOOL) --mode=install $(INSTALL) -c libuninameslist-fr.la $(DESTDIR)$(libdir)/libuninameslist-fr.la
 	$(LIBTOOL) --finish $(DESTDIR)$(libdir)
 	mkdir -p $(DESTDIR)$(incdir)
 	$(INSTALL_DATA) nameslist.h $(DESTDIR)$(incdir)/uninameslist.h

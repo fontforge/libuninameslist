@@ -146,8 +146,8 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL },\n" );
     if ( is_fr ) {
-	fprintf( out, "\t{ NULL, \"\t* on est assuré que la valeur ?FFFE n'est en aucune façon un caractère Unicode\" },\n" );
-	fprintf( out, "\t{ NULL, \"\t* on est assuré que la valeur ?FFFF n'est en aucune façon un caractère Unicode\" },\n" );
+	fprintf( out, "\t{ NULL, \"\t* on est assurÃ© que la valeur ?FFFE n'est en aucune faÃ§on un caractÃ¨re Unicode\" },\n" );
+	fprintf( out, "\t{ NULL, \"\t* on est assurÃ© que la valeur ?FFFF n'est en aucune faÃ§on un caractÃ¨re Unicode\" },\n" );
     } else {
 	fprintf( out, "\t{ NULL, \"\t* the value ?FFFE is guaranteed not to be a Unicode character at all\" },\n" );
 	fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );

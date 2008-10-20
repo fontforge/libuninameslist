@@ -135,8 +135,8 @@ static const struct unicode_nameannot nullarray2[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL },
-	{ NULL, "	* on est assuré que la valeur ?FFFE n'est en aucune façon un caractère Unicode" },
-	{ NULL, "	* on est assuré que la valeur ?FFFF n'est en aucune façon un caractère Unicode" },
+	{ NULL, "	* on est assurÃ© que la valeur ?FFFE n'est en aucune faÃ§on un caractÃ¨re Unicode" },
+	{ NULL, "	* on est assurÃ© que la valeur ?FFFF n'est en aucune faÃ§on un caractÃ¨re Unicode" },
 };
 
 static const struct unicode_nameannot * const nullnullarray[] = {
