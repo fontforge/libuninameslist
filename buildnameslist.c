@@ -41,7 +41,7 @@ static void ReadNamesList(void) {
     char *end, *namestart, *pt, *temp;
     struct block *cur;
     int i;
-    static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
+    static char *nameslistfiles[] = { "NamesList.txt", /*"ListeDesNoms.txt",*/ NULL };
 
     for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
 	nl = fopen( nameslistfiles[i],"r" );
@@ -309,6 +309,6 @@ exit( 1 );
 int main( int argc, char **argv) {
     ReadNamesList();
     dump(0/*english*/);
-    dump(1/*french*/);
+    //dump(1/*french*/);
 return( 0 );
 }
