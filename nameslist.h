@@ -10,7 +10,7 @@ struct unicode_nameannot {
     const char *name, *annot;
 };
 
-extern const struct unicode_block UnicodeBlock[211];
+extern const struct unicode_block UnicodeBlock[234];
 
 #define UNICODE_NAME_MAX	83
 #define UNICODE_ANNOT_MAX	462
