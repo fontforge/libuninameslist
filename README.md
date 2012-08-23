@@ -61,8 +61,8 @@ character. Etc.
 Installation and Build instructions
 -----------------------------------
 
-Download the source from
-[sourceforge](http://sourceforge.net/project/showfiles.php?group_id=71654).
+Download the source from the [downloads
+page](https://github.com/fontforge/libuninameslist/downloads).
 Then:
 
 >     $ tar xf libuninameslist*.tgz
