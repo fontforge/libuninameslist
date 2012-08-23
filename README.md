@@ -53,9 +53,10 @@ while the annotation string is:
 
 >     UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
 
-The both strings are in US ASCII, but the annotation string is intended to be
-modified slightly by the having any `*` characters which immediately follow a
-tab at the start of a line converted to a bullet character. Etc.
+The name string is in ASCII, while the annotation string is in UTF-8 and is
+also intended to be modified slightly by the having any `*` characters which
+immediately follow a tab at the start of a line converted to a bullet
+character. Etc.
 
 Installation and Build instructions
 -----------------------------------

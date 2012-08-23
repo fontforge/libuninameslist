@@ -875,7 +875,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00E5 */ { "LATIN SMALL LETTER A WITH RING ABOVE","	* Danish, Norwegian, Swedish, Walloon\n"
 	"	: 0061 030A"},
 /* 00E6 */ { "LATIN SMALL LETTER AE","	= latin small ligature ae (1.0)\n"
-	"	= ash (from Old English æsc)\n"
+	"	= ash (from Old English Ã¦sc)\n"
 	"	* Danish, Norwegian, Icelandic, Faroese, Old English, French, IPA\n"
 	"	x (latin small ligature oe - 0153)\n"
 	"	x (cyrillic small ligature a ie - 04D5)"},
@@ -1065,7 +1065,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0151 */ { "LATIN SMALL LETTER O WITH DOUBLE ACUTE","	* Hungarian\n"
 	"	: 006F 030B"},
 /* 0152 */ { "LATIN CAPITAL LIGATURE OE",NULL},
-/* 0153 */ { "LATIN SMALL LIGATURE OE","	= ethel (from Old English eðel)\n"
+/* 0153 */ { "LATIN SMALL LIGATURE OE","	= ethel (from Old English eÃ°el)\n"
 	"	* French, IPA, Old Icelandic, Old English, ...\n"
 	"	x (latin small letter ae - 00E6)\n"
 	"	x (latin letter small capital oe - 0276)"},
@@ -10003,7 +10003,7 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (vertical ellipsis - 22EE)\n"
 	"	x (presentation form for vertical horizontal ellipsis - FE19)\n"
 	"	# 002E 002E 002E"},
-/* 2027 */ { "HYPHENATION POINT","	* visible symbol used to indicate correct positions for word breaking, as in dic·tion·ar·ies"},
+/* 2027 */ { "HYPHENATION POINT","	* visible symbol used to indicate correct positions for word breaking, as in dicÂ·tionÂ·arÂ·ies"},
 /* 2028 */ { "LINE SEPARATOR","	* may be used to represent this semantic unambiguously"},
 /* 2029 */ { "PARAGRAPH SEPARATOR","	* may be used to represent this semantic unambiguously"},
 /* 202A */ { "LEFT-TO-RIGHT EMBEDDING","	* commonly abbreviated LRE"},
@@ -10092,7 +10092,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 204F */ { "REVERSED SEMICOLON","	x (semicolon - 003B)"},
 /* 2050 */ { "CLOSE UP","	* editing mark"},
 /* 2051 */ { "TWO ASTERISKS ALIGNED VERTICALLY",NULL},
-/* 2052 */ { "COMMERCIAL MINUS SIGN","	= abzüglich (German), med avdrag av (Swedish), piska (Swedish, \"whip\")\n"
+/* 2052 */ { "COMMERCIAL MINUS SIGN","	= abzÃ¼glich (German), med avdrag av (Swedish), piska (Swedish, \"whip\")\n"
 	"	* a common glyph variant and fallback representation looks like ./.\n"
 	"	* may also be used as a dingbat to indicate correctness\n"
 	"	* used in Finno-Ugric Phonetic Alphabet to indicate a related borrowed form with different sound\n"
@@ -10219,7 +10219,7 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (euro-currency sign - 20A0)"},
 /* 20AD */ { "KIP SIGN","	* Laos"},
 /* 20AE */ { "TUGRIK SIGN","	* Mongolia\n"
-	"	* also transliterated as tugrug, tugric, tugrog, togrog, tögrög"},
+	"	* also transliterated as tugrug, tugric, tugrog, togrog, tÃ¶grÃ¶g"},
 /* 20AF */ { "DRACHMA SIGN","	* Greece"},
 /* 20B0 */ { "GERMAN PENNY SIGN",NULL},
 /* 20B1 */ { "PESO SIGN","	* Philippines\n"
@@ -10411,7 +10411,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 2129 */ { "TURNED GREEK SMALL LETTER IOTA","	* unique element fulfilling a description (logic)\n"
 	"	x (greek small letter iota - 03B9)"},
 /* 212A */ { "KELVIN SIGN","	: 004B latin capital letter k"},
-/* 212B */ { "ANGSTROM SIGN","	* non SI length unit (=0.1 nm) named after A. J. Ångström, Swedish physicist\n"
+/* 212B */ { "ANGSTROM SIGN","	* non SI length unit (=0.1 nm) named after A. J. Ã…ngstrÃ¶m, Swedish physicist\n"
 	"	* preferred representation is 00C5\n"
 	"	: 00C5 latin capital letter a with ring above"},
 /* 212C */ { "SCRIPT CAPITAL B","	= Bernoulli function\n"
@@ -12281,7 +12281,7 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 271D */ { "LATIN CROSS",NULL},
 /* 271E */ { "SHADOWED WHITE LATIN CROSS",NULL},
 /* 271F */ { "OUTLINED LATIN CROSS",NULL},
-/* 2720 */ { "MALTESE CROSS","	* Historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée."},
+/* 2720 */ { "MALTESE CROSS","	* Historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross FormÃ©e."},
 /* 2721 */ { "STAR OF DAVID","	x (six pointed star with middle dot - 1F52F)"},
 /* 2722 */ { "FOUR TEARDROP-SPOKED ASTERISK",NULL},
 /* 2723 */ { "FOUR BALLOON-SPOKED ASTERISK",NULL},
@@ -18046,10 +18046,10 @@ static const struct unicode_nameannot una_00_A6[] = {
 /* A6E5 */ { "BAMUM LETTER KI",NULL},
 /* A6E6 */ { "BAMUM LETTER MO","	* also used for digit one"},
 /* A6E7 */ { "BAMUM LETTER MBAA","	* also used for digit two"},
-/* A6E8 */ { "BAMUM LETTER TET","	* tèt\n"
+/* A6E8 */ { "BAMUM LETTER TET","	* tÃ¨t\n"
 	"	* also used for digit three"},
 /* A6E9 */ { "BAMUM LETTER KPA","	* also used for digit four"},
-/* A6EA */ { "BAMUM LETTER TEN","	* tèn\n"
+/* A6EA */ { "BAMUM LETTER TEN","	* tÃ¨n\n"
 	"	* also used for digit five"},
 /* A6EB */ { "BAMUM LETTER NTUU","	* also used for digit six"},
 /* A6EC */ { "BAMUM LETTER SAMBA","	* also used for digit seven"},
@@ -29702,7 +29702,7 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D207 */ { "GREEK VOCAL NOTATION SYMBOL-8","	* vocal first sharp of G"},
 /* 1D208 */ { "GREEK VOCAL NOTATION SYMBOL-9","	= Greek instrumental notation symbol-44\n"
 	"	* vocal second sharp of G\n"
-	"	* instrumental first sharp of e´"},
+	"	* instrumental first sharp of eÂ´"},
 /* 1D209 */ { "GREEK VOCAL NOTATION SYMBOL-10","	* vocal A\n"
 	"	* this is a modification of 039F and is therefore not the same as 03D8"},
 /* 1D20A */ { "GREEK VOCAL NOTATION SYMBOL-11","	* vocal first sharp of A"},
@@ -29710,7 +29710,7 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D20C */ { "GREEK VOCAL NOTATION SYMBOL-13","	* vocal B"},
 /* 1D20D */ { "GREEK VOCAL NOTATION SYMBOL-14","	= Greek instrumental notation symbol-41\n"
 	"	* vocal first sharp of B\n"
-	"	* instrumental first sharp of d´\n"
+	"	* instrumental first sharp of dÂ´\n"
 	"	x (latin capital letter v - 0056)"},
 /* 1D20E */ { "GREEK VOCAL NOTATION SYMBOL-15","	= Greek instrumental notation symbol-35\n"
 	"	* vocal second sharp of B\n"
@@ -29731,12 +29731,12 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D216 */ { "GREEK VOCAL NOTATION SYMBOL-23","	* vocal first sharp of e\n"
 	"	* this is a modification of 0392 and is therefore not the same as 0052"},
 /* 1D217 */ { "GREEK VOCAL NOTATION SYMBOL-24","	* vocal second sharp of e"},
-/* 1D218 */ { "GREEK VOCAL NOTATION SYMBOL-50","	* vocal first sharp of g´"},
-/* 1D219 */ { "GREEK VOCAL NOTATION SYMBOL-51","	* vocal second sharp of g´"},
-/* 1D21A */ { "GREEK VOCAL NOTATION SYMBOL-52","	* vocal a´"},
-/* 1D21B */ { "GREEK VOCAL NOTATION SYMBOL-53","	* vocal first sharp of a´"},
+/* 1D218 */ { "GREEK VOCAL NOTATION SYMBOL-50","	* vocal first sharp of gÂ´"},
+/* 1D219 */ { "GREEK VOCAL NOTATION SYMBOL-51","	* vocal second sharp of gÂ´"},
+/* 1D21A */ { "GREEK VOCAL NOTATION SYMBOL-52","	* vocal aÂ´"},
+/* 1D21B */ { "GREEK VOCAL NOTATION SYMBOL-53","	* vocal first sharp of aÂ´"},
 /* 1D21C */ { "GREEK VOCAL NOTATION SYMBOL-54","	= Greek instrumental notation symbol-20\n"
-	"	* vocal second sharp of a´\n"
+	"	* vocal second sharp of aÂ´\n"
 	"	* instrumental first sharp of d"},
 /* 1D21D */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-1","	* instrumental E"},
 /* 1D21E */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-2","	* instrumental first sharp of E"},
@@ -29760,23 +29760,23 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D230 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-30","	* instrumental second sharp of g"},
 /* 1D231 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-32","	* instrumental first sharp of a"},
 /* 1D232 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-36","	* instrumental second sharp of b"},
-/* 1D233 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-37","	* instrumental c´"},
-/* 1D234 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-38","	* instrumental first sharp of c´"},
-/* 1D235 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-39","	* instrumental second sharp of c´"},
-/* 1D236 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-40","	* instrumental d´"},
-/* 1D237 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-42","	* instrumental second sharp of d´"},
-/* 1D238 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-43","	* instrumental e´"},
-/* 1D239 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-45","	* instrumental second sharp of e´"},
-/* 1D23A */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-47","	* instrumental first sharp of f´\n"
+/* 1D233 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-37","	* instrumental cÂ´"},
+/* 1D234 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-38","	* instrumental first sharp of cÂ´"},
+/* 1D235 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-39","	* instrumental second sharp of cÂ´"},
+/* 1D236 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-40","	* instrumental dÂ´"},
+/* 1D237 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-42","	* instrumental second sharp of dÂ´"},
+/* 1D238 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-43","	* instrumental eÂ´"},
+/* 1D239 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-45","	* instrumental second sharp of eÂ´"},
+/* 1D23A */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-47","	* instrumental first sharp of fÂ´\n"
 	"	* similar but not identical to 002F"},
-/* 1D23B */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-48","	* instrumental second sharp of f´\n"
+/* 1D23B */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-48","	* instrumental second sharp of fÂ´\n"
 	"	* similar but not identical to 005C"},
-/* 1D23C */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-49","	* instrumental g´"},
-/* 1D23D */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-50","	* instrumental first sharp of g´"},
-/* 1D23E */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-51","	* instrumental second sharp of g´"},
-/* 1D23F */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-52","	* instrumental a´"},
-/* 1D240 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-53","	* instrumental first sharp of a´"},
-/* 1D241 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-54","	* instrumental second sharp of a´"},
+/* 1D23C */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-49","	* instrumental gÂ´"},
+/* 1D23D */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-50","	* instrumental first sharp of gÂ´"},
+/* 1D23E */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-51","	* instrumental second sharp of gÂ´"},
+/* 1D23F */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-52","	* instrumental aÂ´"},
+/* 1D240 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-53","	* instrumental first sharp of aÂ´"},
+/* 1D241 */ { "GREEK INSTRUMENTAL NOTATION SYMBOL-54","	* instrumental second sharp of aÂ´"},
 /* 1D242 */ { "COMBINING GREEK MUSICAL TRISEME","	x (metrical triseme - 23D7)"},
 /* 1D243 */ { "COMBINING GREEK MUSICAL TETRASEME","	x (metrical tetraseme - 23D8)"},
 /* 1D244 */ { "COMBINING GREEK MUSICAL PENTASEME","	x (metrical pentaseme - 23D9)"},
@@ -31767,9 +31767,9 @@ static const struct unicode_nameannot una_01_F0[] = {
 	"	= page of swords"},
 /* 1F0AC */ { "PLAYING CARD KNIGHT OF SPADES","	= chevalier, Ober, Ritter, cavall, cavaliere\n"
 	"	= knight of swords"},
-/* 1F0AD */ { "PLAYING CARD QUEEN OF SPADES","	= dame, Dame, Königin, regina\n"
+/* 1F0AD */ { "PLAYING CARD QUEEN OF SPADES","	= dame, Dame, KÃ¶nigin, regina\n"
 	"	= queen of swords"},
-/* 1F0AE */ { "PLAYING CARD KING OF SPADES","	= roi, König, re\n"
+/* 1F0AE */ { "PLAYING CARD KING OF SPADES","	= roi, KÃ¶nig, re\n"
 	"	= king of swords"},
 /* 1F0AF */ { NULL,NULL},
 /* 1F0B0 */ { NULL,NULL},
@@ -31976,7 +31976,7 @@ static const struct unicode_nameannot una_01_F1[] = {
 /* 1F15E */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER O",NULL},
 /* 1F15F */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER P","	= parking space (ARIB STD B24)"},
 /* 1F160 */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER Q",NULL},
-/* 1F161 */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER R","	= Raststätte (rest stop)"},
+/* 1F161 */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER R","	= RaststÃ¤tte (rest stop)"},
 /* 1F162 */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER S","	= Stadtbahn (metropolitan railway)"},
 /* 1F163 */ { "NEGATIVE CIRCLED LATIN CAPITAL LETTER T","	= Tankstelle (petrol station)\n"
 	"	x (fuel pump - 26FD)"},
@@ -31991,7 +31991,7 @@ static const struct unicode_nameannot una_01_F1[] = {
 	"	* used in Canada\n"
 	"	x (trade mark sign - 2122)\n"
 	"	# <super> 004D 0043"},
-/* 1F16B */ { "RAISED MD SIGN","	= marque déposée\n"
+/* 1F16B */ { "RAISED MD SIGN","	= marque dÃ©posÃ©e\n"
 	"	* used in Canada\n"
 	"	x (registered sign - 00AE)\n"
 	"	# <super> 004D 0044"},
