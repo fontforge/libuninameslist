@@ -3,7 +3,7 @@ libuninameslist – A Library of Unicode annotation data
 
 -   [Description](#description)
 -   [Installation and Build instructions](#installation-and-build-instructions)
--   [Changelog](http://libuninameslist.sourceforge.net/changelog.html)
+-   [Changelog](https://raw.github.com/fontforge/libuninameslist/master/ChangeLog)
 -   [License](https://raw.github.com/fontforge/libuninameslist/master/LICENSE)
 -   [See Also](#see-also)
 
