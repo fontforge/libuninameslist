@@ -59,6 +59,6 @@ buildnameslist: buildnameslist.c
 NamesList.txt:
 	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt
 
-ListeDesNoms-4.0.0.txt:
+ListeDesNoms.txt:
 #	wget http://cooptel.qc.ca/~pandries/ListeDesNoms-4.0.0.txt
-	wget http://hapax.qc.ca/ListeDesNoms-5.0.0.txt
+	wget http://hapax.qc.ca/ListeDesNoms-5.0.0.txt -O ListeDesNoms.txt
