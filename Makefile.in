@@ -57,8 +57,7 @@ distclean cleaner:
 buildnameslist: buildnameslist.c
 
 NamesList.txt:
-	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt -O NamesList.latin1
-	iconv -f latin1 NamesList.latin1 -o NamesList.txt
+	wget http://www.unicode.org/Public/UNIDATA/NamesList.txt -O NamesList.txt
 
 ListeDesNoms.txt:
 #	wget http://cooptel.qc.ca/~pandries/ListeDesNoms-4.0.0.txt

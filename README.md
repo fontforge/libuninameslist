@@ -10,9 +10,8 @@ libuninameslist – A Library of Unicode annotation data
 Description
 -----------
 
-**NOTE: This program is no longer maintained, and has been rewritten as 
-libunicodenames, available at https://bitbucket.org/sortsmill/libunicodenames
-and FontForge depends on that library instead, now.**
+This program is updated for Nameslist.txt ver6.2 and ListeDesNoms.txt ver 5.0,
+and is available at http://sourceforge.net/projects/libuninameslist/files/
 
 The Unicode consortium provides [a file containing annotations on many unicode
 characters.](http://www.unicode.org/Public/UNIDATA/NamesList.html) This library
@@ -80,6 +79,6 @@ Then:
 See Also
 --------
 
--   [LibUnicodeNames](https://bitbucket.org/sortsmill/libunicodenames)
+-   [LibUnicodeNames](https://github.com/fontforge/libuninameslist.git)
 -   [FontForge](http://fontforge.org/)
 -   [UMap](http://umap.sf.net/)

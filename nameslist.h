@@ -1,13 +1,15 @@
 #ifndef _NAMESLIST_H
 # define _NAMESLIST_H
 
+/* This file was generated using the program 'buildnameslist.c' */
+
 struct unicode_block {
-    int start, end;
-    const char *name;
+	int start, end;
+	const char *name;
 };
 
 struct unicode_nameannot {
-    const char *name, *annot;
+	const char *name, *annot;
 };
 
 extern const struct unicode_block UnicodeBlock[234];
@@ -24,5 +26,13 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 /*  : should be replaced by an equivalent U+224D */
 /*  # should be replaced by an approximate U+2245 */
 /*  = should remain itself */
+
+/* Return a pointer to the name for this unicode value */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_name(unsigned long uni);
+
+/* Return a pointer to the annotations for this unicode value */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_annot(unsigned long uni);
 
 #endif
