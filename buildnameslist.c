@@ -136,6 +136,22 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
     fprintf( out, "#include <stdio.h>\n" );
     fprintf( out, "#include \"nameslist.h\"\n\n" );
+
+    fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
+
+    fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
+    fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
+    fprintf( out, "\tconst char *pt=NULL;\n\n" );
+    fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+    fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
+    fprintf( out, "\treturn( pt );\n}\n\n" );
+    fprintf( out, "/* Retrieve a pointer to additional details of a Unicode codepoint. */\n" );
+    fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
+    fprintf( out, "\tconst char *pt=NULL;\n\n" );
+    fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+    fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
+    fprintf( out, "\treturn( pt );\n}\n\n" );
+
     fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
@@ -161,8 +177,9 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
     fprintf( header, "#ifndef _NAMESLIST_H\n" );
     fprintf( header, "# define _NAMESLIST_H\n\n" );
-    fprintf( header, "struct unicode_block {\n    int start, end;\n    const char *name;\n};\n\n" );
-    fprintf( header, "struct unicode_nameannot {\n    const char *name, *annot;\n};\n\n" );
+    fprintf( header, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
+    fprintf( header, "struct unicode_block {\n\tint start, end;\n\tconst char *name;\n};\n\n" );
+    fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n\n" );
 }
 
 static void dumpend(FILE *out, FILE *header, int is_fr) {
@@ -172,8 +189,15 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "/*  x should be replaced by a right arrow U+2192 */\n" );
     fprintf( header, "/*  : should be replaced by an equivalent U+224D */\n" );
     fprintf( header, "/*  # should be replaced by an approximate U+2245 */\n" );
-    fprintf( header, "/*  = should remain itself */\n" );
-    fprintf( header, "\n#endif\n" );
+    fprintf( header, "/*  = should remain itself */\n\n" );
+    fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n");
+    fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
+    fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n");
+    fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
+
+    fprintf( header, "#endif\n" );
 }
 
 static void dumpblock(FILE *out, FILE *header, int is_fr ) {
