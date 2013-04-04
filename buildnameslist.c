@@ -8,17 +8,19 @@
 /*  name of the character, the other the annotations for each character */
 /* Outputs nameslist.c containing these two sparse arrays */
 
+/* 2=={English=0, French=1} */
 static char *uninames[2][17*65536];
 static char *uniannot[2][17*65536];
 static struct block { int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
+
 
 static char *myfgets(char *buf,int bsize,FILE *file) {
     /* NamesList.txt uses CR as a line separator */
     int ch;
     char *pt, *end = buf+bsize-2;
 
-    for ( pt=buf ; pt<end && (ch=getc(file))!=EOF && ch!='\n' && ch!='\r'; )
+    for ( pt=buf; pt<end && (ch=getc(file))!=EOF && ch!='\n' && ch!='\r'; )
 	*pt++ = ch;
     if ( ch=='\n' || ch=='\r' ) {
 	*pt++='\n';
@@ -162,18 +164,21 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
-    fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
-    fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
-    fprintf( out, "\tconst char *pt=NULL;\n\n" );
-    fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
-    fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
-    fprintf( out, "\treturn( pt );\n}\n\n" );
-    fprintf( out, "/* Retrieve a pointer to additional details of a Unicode codepoint. */\n" );
-    fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
-    fprintf( out, "\tconst char *pt=NULL;\n\n" );
-    fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
-    fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
-    fprintf( out, "\treturn( pt );\n}\n\n" );
+    if ( is_fr==0 ) {
+	/* default Nameslist.txt language=EN file holds these additional functions */
+	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
+	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
+	fprintf( out, "\tconst char *pt=NULL;\n\n" );
+	fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
+	fprintf( out, "\treturn( pt );\n}\n\n" );
+	fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
+	fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
+	fprintf( out, "\tconst char *pt=NULL;\n\n" );
+	fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
+	fprintf( out, "\treturn( pt );\n}\n\n" );
+    }
 
     fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
     for ( i=0; i<256/4 ; ++i )

@@ -3,24 +3,6 @@
 
 /* This file was generated using the program 'buildnameslist.c' */
 
-/* Retrieve a pointer to the name of a Unicode codepoint. */
-const char *uniNamesList_name(unsigned long uni) {
-	const char *pt=NULL;
-
-	if (uni>=0 && uni<0x110000)
-		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;
-	return( pt );
-}
-
-/* Retrieve a pointer to additional details of a Unicode codepoint. */
-const char *uniNamesList_annot(unsigned long uni) {
-	const char *pt=NULL;
-
-	if (uni>=0 && uni<0x110000)
-		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
-	return( pt );
-}
-
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },

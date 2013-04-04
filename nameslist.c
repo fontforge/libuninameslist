@@ -12,7 +12,7 @@ const char *uniNamesList_name(unsigned long uni) {
 	return( pt );
 }
 
-/* Retrieve a pointer to additional details of a Unicode codepoint. */
+/* Retrieve a pointer to annotation details of a Unicode codepoint. */
 const char *uniNamesList_annot(unsigned long uni) {
 	const char *pt=NULL;
 
