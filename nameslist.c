@@ -1070,7 +1070,9 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006C 030C"},
 /* 013F */ { "LATIN CAPITAL LETTER L WITH MIDDLE DOT","	* some fonts show the middle dot inside the L, but the preferred form has the dot following the L\n"
 	"	# 004C 00B7"},
-/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	# 006C 00B7"},
+/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	# 006C 00B7\n"
+	"	* Catalan legacy compatibility character for ISO/IEC 6937\n"
+	"	* preferred representation for Catalan: 006C 00B7"},
 /* 0141 */ { "LATIN CAPITAL LETTER L WITH STROKE","	x (latin capital letter l with bar - 023D)"},
 /* 0142 */ { "LATIN SMALL LETTER L WITH STROKE","	* Polish, ...\n"
 	"	x (latin small letter l with bar - 019A)"},
@@ -1086,7 +1088,9 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0149 */ { "LATIN SMALL LETTER N PRECEDED BY APOSTROPHE","	= latin small letter apostrophe n (1.0)\n"
 	"	* this character is deprecated and its use is strongly discouraged\n"
 	"	* Afrikaans\n"
-	"	# 02BC 006E"},
+	"	# 02BC 006E\n"
+	"	* legacy compatibility character for ISO/IEC 6937\n"
+	"	* uppercase is 02BC 004E"},
 /* 014A */ { "LATIN CAPITAL LETTER ENG","	* glyph may also have appearance of large form of the small letter"},
 /* 014B */ { "LATIN SMALL LETTER ENG","	= engma, angma\n"
 	"	* Sami, Mende, IPA, ..."},
@@ -1272,7 +1276,9 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* Pan-Turkic Latin alphabets"},
 /* 01A4 */ { "LATIN CAPITAL LETTER P WITH HOOK",NULL},
 /* 01A5 */ { "LATIN SMALL LETTER P WITH HOOK","	* African"},
-/* 01A6 */ { "LATIN LETTER YR","	* Old Norse"},
+/* 01A6 */ { "LATIN LETTER YR","	* Old Norse\n"
+	"		* from German Standard DIN 31624 and ISO 5426-2\n"
+	"	* lowercase is 0280"},
 /* 01A7 */ { "LATIN CAPITAL LETTER TONE TWO",NULL},
 /* 01A8 */ { "LATIN SMALL LETTER TONE TWO","	* Zhuang (old orthography)\n"
 	"	* typographically a reversed S\n"
@@ -1603,8 +1609,13 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* \"sj\" in some Swedish dialects"},
 /* 0268 */ { "LATIN SMALL LETTER I WITH STROKE","	= barred i, i bar\n"
 	"	* high central unrounded vowel\n"
-	"	* uppercase is 0197"},
-/* 0269 */ { "LATIN SMALL LETTER IOTA","	* semi-high front unrounded vowel"},
+	"	* uppercase is 0197\n"
+	"		* ISO 6438 gives lowercase of 0197 as 026A, not 0268"},
+/* 0269 */ { "LATIN SMALL LETTER IOTA","	* semi-high front unrounded vowel\n"
+	"		* obsoleted by IPA in 1989\n"
+	"	* preferred use is 026A latin letter small capital i\n"
+	"	* uppercase is 0196\n"
+	"	x (greek small letter iota - 03B9)"},
 /* 026A */ { "LATIN LETTER SMALL CAPITAL I","	* semi-high front unrounded vowel\n"
 	"	* preferred IPA alternate for 0269\n"
 	"	* uppercase is 0197"},
@@ -1631,7 +1642,9 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (cyrillic small letter barred o - 04E9)"},
 /* 0276 */ { "LATIN LETTER SMALL CAPITAL OE","	* low front rounded vowel\n"
 	"	x (latin small ligature oe - 0153)"},
-/* 0277 */ { "LATIN SMALL LETTER CLOSED OMEGA","	* semi-high back rounded vowel"},
+/* 0277 */ { "LATIN SMALL LETTER CLOSED OMEGA","	* semi-high back rounded vowel\n"
+	"		* obsoleted by IPA in 1989\n"
+	"	* preferred use is 028A latin small letter upsilon"},
 /* 0278 */ { "LATIN SMALL LETTER PHI","	* voiceless bilabial fricative\n"
 	"	x (greek small letter phi - 03C6)"},
 /* 0279 */ { "LATIN SMALL LETTER TURNED R","	* voiced alveolar approximant\n"
@@ -1639,7 +1652,11 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 027A */ { "LATIN SMALL LETTER TURNED R WITH LONG LEG","	* voiced lateral flap"},
 /* 027B */ { "LATIN SMALL LETTER TURNED R WITH HOOK","	* voiced retroflex approximant\n"
 	"	x (modifier letter small turned r with hook - 02B5)"},
-/* 027C */ { "LATIN SMALL LETTER R WITH LONG LEG","	* voiced strident apico-alveolar trill"},
+/* 027C */ { "LATIN SMALL LETTER R WITH LONG LEG","	* voiced strident apico-alveolar trill\n"
+	"		* obsoleted by IPA in 1989\n"
+	"	* sound spelled with 0159 in Czech\n"
+	"	* preferred phonetic representation for Czech is 0072 031D\n"
+	"	* in current use in Gaelic types (as glyph variant of 0072)"},
 /* 027D */ { "LATIN SMALL LETTER R WITH TAIL","	* voiced retroflex flap\n"
 	"	* uppercase is 2C64"},
 /* 027E */ { "LATIN SMALL LETTER R WITH FISHHOOK","	* voiced alveolar flap or tap"},
@@ -1725,7 +1742,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 029B */ { "LATIN LETTER SMALL CAPITAL G WITH HOOK","	* voiced uvular implosive"},
 /* 029C */ { "LATIN LETTER SMALL CAPITAL H","	* voiceless epiglottal fricative"},
 /* 029D */ { "LATIN SMALL LETTER J WITH CROSSED-TAIL","	* voiced palatal fricative"},
-/* 029E */ { "LATIN SMALL LETTER TURNED K","	* proposed for velar click"},
+/* 029E */ { "LATIN SMALL LETTER TURNED K","	* proposed for velar click\n"
+	"		* withdrawn by IPA in 1970"},
 /* 029F */ { "LATIN LETTER SMALL CAPITAL L","	* velar lateral approximant"},
 /* 02A0 */ { "LATIN SMALL LETTER Q WITH HOOK","	* voiceless uvular implosive"},
 /* 02A1 */ { "LATIN LETTER GLOTTAL STOP WITH STROKE","	* voiced epiglottal stop"},
@@ -1964,7 +1982,9 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	= Greek vrachy\n"
 	"	x (breve - 02D8)\n"
 	"	x (combining cyrillic kavyka - A67C)"},
-/* 0307 */ { "COMBINING DOT ABOVE","	= derivative (Newtonian notation)"},
+/* 0307 */ { "COMBINING DOT ABOVE","	= derivative (Newtonian notation)\n"
+	"		* IPA (withdrawn in 1976): palatalization\n"
+	"	x (dot above - 02D9)"},
 /* 0308 */ { "COMBINING DIAERESIS","	= double dot above, umlaut\n"
 	"	= Greek dialytika\n"
 	"	= double derivative\n"
@@ -8346,7 +8366,8 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19DD */ { NULL,NULL},
 /* 19DE */ { "NEW TAI LUE SIGN LAE","	* conjunction: and"},
 /* 19DF */ { "NEW TAI LUE SIGN LAEV","	* perfective"},
-/* 19E0 */ { "KHMER SYMBOL PATHAMASAT","	* represents the first Ashadha (eighth month of the lunar calendar)"},
+/* 19E0 */ { "KHMER SYMBOL PATHAMASAT","	* represents the first Ashadha (eighth month of the lunar calendar)\n"
+	"		The following fifteen characters represent the first through the fifteenth waxing days, respectively."},
 /* 19E1 */ { "KHMER SYMBOL MUOY KOET",NULL},
 /* 19E2 */ { "KHMER SYMBOL PII KOET",NULL},
 /* 19E3 */ { "KHMER SYMBOL BEI KOET",NULL},
@@ -8362,7 +8383,8 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19ED */ { "KHMER SYMBOL DAP-BEI KOET",NULL},
 /* 19EE */ { "KHMER SYMBOL DAP-BUON KOET",NULL},
 /* 19EF */ { "KHMER SYMBOL DAP-PRAM KOET",NULL},
-/* 19F0 */ { "KHMER SYMBOL TUTEYASAT","	* represents the second Ashadha in the lunar calendar during the Adhikameas leap year"},
+/* 19F0 */ { "KHMER SYMBOL TUTEYASAT","	* represents the second Ashadha in the lunar calendar during the Adhikameas leap year\n"
+	"		The following fifteen characters represent the first through the fifteenth waning days, respectively."},
 /* 19F1 */ { "KHMER SYMBOL MUOY ROC",NULL},
 /* 19F2 */ { "KHMER SYMBOL PII ROC",NULL},
 /* 19F3 */ { "KHMER SYMBOL BEI ROC",NULL},
@@ -9528,7 +9550,9 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E35 */ { "LATIN SMALL LETTER K WITH LINE BELOW","	: 006B 0331"},
 /* 1E36 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW","	: 004C 0323"},
 /* 1E37 */ { "LATIN SMALL LETTER L WITH DOT BELOW","	* Indic transliteration\n"
-	"	: 006C 0323"},
+	"	: 006C 0323\n"
+	"		* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
+	"	x (combining ring below - 0325)"},
 /* 1E38 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW AND MACRON","	: 1E36 0304"},
 /* 1E39 */ { "LATIN SMALL LETTER L WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
 	"	: 1E37 0304"},
@@ -9573,7 +9597,9 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E59 */ { "LATIN SMALL LETTER R WITH DOT ABOVE","	: 0072 0307"},
 /* 1E5A */ { "LATIN CAPITAL LETTER R WITH DOT BELOW","	: 0052 0323"},
 /* 1E5B */ { "LATIN SMALL LETTER R WITH DOT BELOW","	* Indic transliteration\n"
-	"	: 0072 0323"},
+	"	: 0072 0323\n"
+	"		* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
+	"	x (combining ring below - 0325)"},
 /* 1E5C */ { "LATIN CAPITAL LETTER R WITH DOT BELOW AND MACRON","	: 1E5A 0304"},
 /* 1E5D */ { "LATIN SMALL LETTER R WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
 	"	: 1E5B 0304"},
@@ -11178,7 +11204,8 @@ static const struct unicode_nameannot una_00_22[] = {
 
 static const struct unicode_nameannot una_00_23[] = {
 /* 2300 */ { "DIAMETER SIGN","	x (empty set - 2205)"},
-/* 2301 */ { "ELECTRIC ARROW",NULL},
+/* 2301 */ { "ELECTRIC ARROW","		* from ISO 2047\n"
+	"	* symbol for End of Transmission"},
 /* 2302 */ { "HOUSE",NULL},
 /* 2303 */ { "UP ARROWHEAD","	x (circumflex accent - 005E)\n"
 	"	x (modifier letter up arrowhead - 02C4)\n"
@@ -11280,7 +11307,9 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2347 */ { "APL FUNCTIONAL SYMBOL QUAD LEFTWARDS ARROW",NULL},
 /* 2348 */ { "APL FUNCTIONAL SYMBOL QUAD RIGHTWARDS ARROW",NULL},
 /* 2349 */ { "APL FUNCTIONAL SYMBOL CIRCLE BACKSLASH","	x (reversed empty set - 29B0)"},
-/* 234A */ { "APL FUNCTIONAL SYMBOL DOWN TACK UNDERBAR","	= up tack underbar"},
+/* 234A */ { "APL FUNCTIONAL SYMBOL DOWN TACK UNDERBAR","	= up tack underbar\n"
+	"		* preferred naming for APL tack symbols now follows the London Convention in ISO/IEC 13751:2000 (APL Extended)\n"
+	"	x (up tack - 22A5)"},
 /* 234B */ { "APL FUNCTIONAL SYMBOL DELTA STILE",NULL},
 /* 234C */ { "APL FUNCTIONAL SYMBOL QUAD DOWN CARET",NULL},
 /* 234D */ { "APL FUNCTIONAL SYMBOL QUAD DELTA",NULL},
@@ -11334,11 +11363,15 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2378 */ { "APL FUNCTIONAL SYMBOL IOTA UNDERBAR",NULL},
 /* 2379 */ { "APL FUNCTIONAL SYMBOL OMEGA UNDERBAR",NULL},
 /* 237A */ { "APL FUNCTIONAL SYMBOL ALPHA",NULL},
-/* 237B */ { "NOT CHECK MARK",NULL},
+/* 237B */ { "NOT CHECK MARK","		* from ISO 2047\n"
+	"	* symbol for Negative Acknowledge"},
 /* 237C */ { "RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW",NULL},
-/* 237D */ { "SHOULDERED OPEN BOX",NULL},
-/* 237E */ { "BELL SYMBOL",NULL},
-/* 237F */ { "VERTICAL LINE WITH MIDDLE DOT",NULL},
+/* 237D */ { "SHOULDERED OPEN BOX","		* from ISO 9995-7\n"
+	"	* keyboard symbol for No Break Space\n"
+	"	x (open box - 2423)"},
+/* 237E */ { "BELL SYMBOL","		* from ISO 2047"},
+/* 237F */ { "VERTICAL LINE WITH MIDDLE DOT","		* from ISO 2047\n"
+	"	* symbol for End of Medium"},
 /* 2380 */ { "INSERTION SYMBOL",NULL},
 /* 2381 */ { "CONTINUOUS UNDERLINE SYMBOL",NULL},
 /* 2382 */ { "DISCONTINUOUS UNDERLINE SYMBOL",NULL},
@@ -11518,8 +11551,10 @@ static const struct unicode_nameannot una_00_24[] = {
 /* 2423 */ { "OPEN BOX","	* graphic for space\n"
 	"	x (counterbore - 2334)"},
 /* 2424 */ { "SYMBOL FOR NEWLINE",NULL},
-/* 2425 */ { "SYMBOL FOR DELETE FORM TWO",NULL},
-/* 2426 */ { "SYMBOL FOR SUBSTITUTE FORM TWO",NULL},
+/* 2425 */ { "SYMBOL FOR DELETE FORM TWO","		* from ISO 9995-7\n"
+	"	* keyboard symbol for undoable delete"},
+/* 2426 */ { "SYMBOL FOR SUBSTITUTE FORM TWO","		* from ISO 2047\n"
+	"	x (arabic question mark - 061F)"},
 /* 2427 */ { NULL,NULL},
 /* 2428 */ { NULL,NULL},
 /* 2429 */ { NULL,NULL},
@@ -15096,7 +15131,9 @@ static const struct unicode_nameannot una_00_30[] = {
 	"	x (mathematical left white square bracket - 27E6)"},
 /* 301B */ { "RIGHT WHITE SQUARE BRACKET","	= right abstract syntax bracket\n"
 	"	x (mathematical right white square bracket - 27E7)"},
-/* 301C */ { "WAVE DASH",NULL},
+/* 301C */ { "WAVE DASH","		* This character was encoded to match JIS C 6226-1978 1-33 \"wave dash\". The JIS standards and some industry practice disagree in mapping.\n"
+	"	x (wavy dash - 3030)\n"
+	"	x (fullwidth tilde - FF5E)"},
 /* 301D */ { "REVERSED DOUBLE PRIME QUOTATION MARK","	* sometimes depicted as double prime quotation mark\n"
 	"	x (left double quotation mark - 201C)\n"
 	"	x (reversed double prime - 2036)"},
@@ -28959,7 +28996,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F24 */ { "MIAO LETTER NGHA",NULL},
 /* 16F25 */ { "MIAO LETTER ARCHAIC NGA","	* used in Pollard's early orthography "},
 /* 16F26 */ { "MIAO LETTER HA",NULL},
-/* 16F27 */ { "MIAO LETTER XA",NULL},
+/* 16F27 */ { "MIAO LETTER XA","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F28 */ { "MIAO LETTER GHA",NULL},
 /* 16F29 */ { "MIAO LETTER GHHA",NULL},
 /* 16F2A */ { "MIAO LETTER TSSA",NULL},
@@ -28970,7 +29007,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F2F */ { "MIAO LETTER DZHA",NULL},
 /* 16F30 */ { "MIAO LETTER YI TSHA","	* used for tsha in Dry Yi"},
 /* 16F31 */ { "MIAO LETTER YI DZHA","	* used in Hei Yi"},
-/* 16F32 */ { "MIAO LETTER REFORMED TSHA",NULL},
+/* 16F32 */ { "MIAO LETTER REFORMED TSHA","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F33 */ { "MIAO LETTER SHA",NULL},
 /* 16F34 */ { "MIAO LETTER SSA",NULL},
 /* 16F35 */ { "MIAO LETTER ZHA","	* used in Black Yi "},
@@ -29002,8 +29039,8 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F4F */ { NULL,NULL},
 /* 16F50 */ { "MIAO LETTER NASALIZATION",NULL},
 /* 16F51 */ { "MIAO SIGN ASPIRATION",NULL},
-/* 16F52 */ { "MIAO SIGN REFORMED VOICING",NULL},
-/* 16F53 */ { "MIAO SIGN REFORMED ASPIRATION",NULL},
+/* 16F52 */ { "MIAO SIGN REFORMED VOICING","	* archaic character used in a post-1949 reformed orthography"},
+/* 16F53 */ { "MIAO SIGN REFORMED ASPIRATION","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F54 */ { "MIAO VOWEL SIGN A",NULL},
 /* 16F55 */ { "MIAO VOWEL SIGN AA","	* used in Eastern Lisu "},
 /* 16F56 */ { "MIAO VOWEL SIGN AHH","	* used in Gan Yi"},

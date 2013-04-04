@@ -14,7 +14,7 @@ static struct block { int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
 static char *myfgets(char *buf,int bsize,FILE *file) {
-    /* NamesList.txt uses CR as a line seperator */
+    /* NamesList.txt uses CR as a line separator */
     int ch;
     char *pt, *end = buf+bsize-2;
 
@@ -51,8 +51,30 @@ exit( 1 );
 	}
 	while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
 	    if ( buffer[0]=='@' ) {
+		if ( buffer[1]=='+' && buffer[2]=='\t' ) {
+		    /* This is a Notice_line, @+ */
+		    if ( a_char>=0 && a_char<sizeof(uniannot[0])/sizeof(uniannot[0][0]) ) {
+			for ( pt=buffer; *pt && *pt!='\r' && *pt!='\n' ; ++pt );
+			if ( *pt=='\r' ) *pt='\n';
+			if ( uniannot[i][a_char]==NULL )
+			    uniannot[i][a_char] = strdup(buffer+2);
+			else {
+			    temp = realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer+2)+1);
+			    if ( temp==NULL ) {
+				fprintf( stderr, "Out of memory\n" );
+    exit(1);
+			    }
+			    strcat(temp,buffer+2);
+			    uniannot[i][a_char] = temp;
+			}
+	continue;
+		    } else {
+		    ;
+		    }
+		}
 		a_char = -1;
 		if ( buffer[1]=='@' && buffer[2]=='\t' ) {
+		    /* This is a Block_Header {first...last}, @@ */
 		    first = strtol(buffer+3,&end,16);
 		    if ( *end=='\t' ) {
 			namestart = end+1;
@@ -61,6 +83,7 @@ exit( 1 );
 			    *pt = '\0';
 			    last = strtol(pt+1,&end,16);
 			    if ( last>first ) {
+				/* found a block, record info */
 				cur = malloc(sizeof(struct block));
 				cur->start = first;
 				cur->end = last;

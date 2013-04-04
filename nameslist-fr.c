@@ -1550,7 +1550,11 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0268 */ { "LETTRE MINUSCULE LATINE I BARRÉ","	= i barre\n"
 	"	* voyelle haute centrale étirée\n"
 	"	* ISO 6438 donne 026A et non 0268 comme minuscule de 0197"},
-/* 0269 */ { "LETTRE MINUSCULE LATINE IOTA","	* voyelle haute relâchée antérieure étirée"},
+/* 0269 */ { "LETTRE MINUSCULE LATINE IOTA","	* voyelle haute relâchée antérieure étirée\n"
+	"		* rendue désuète par l'API en 1989\n"
+	"	* l'API recommande 026A LETTRE LATINE PETITE CAPITALE I\n"
+	"	x (lettre majuscule latine iota - 0196)\n"
+	"	x (lettre minuscule grecque iota - 03B9)"},
 /* 026A */ { "LETTRE LATINE PETITE CAPITALE I","	* voyelle haute relâchée antérieure étirée\n"
 	"	* forme recommandée par l'API en lieu et place de 0269\n"
 	"	x (lettre majuscule latine i barré - 0197)"},
@@ -1585,7 +1589,9 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (lettre minuscule cyrillique o barré - 04E9)"},
 /* 0276 */ { "LETTRE LATINE PETITE CAPITALE OE","	* voyelle basse antérieure arrondie\n"
 	"	x (digramme soudé minuscule latin oe - 0153)"},
-/* 0277 */ { "LETTRE MINUSCULE LATINE OMÉGA FERMÉ","	* voyelle semi-haute postérieure arrondie"},
+/* 0277 */ { "LETTRE MINUSCULE LATINE OMÉGA FERMÉ","	* voyelle semi-haute postérieure arrondie\n"
+	"		* rendue désuète par l'API en 1989\n"
+	"	* l'API recommande 028A lettre minuscule latine upsilon"},
 /* 0278 */ { "LETTRE MINUSCULE LATINE PHI","	* fricative bilabiale sourde\n"
 	"	* « w » allemand dans « Schwester »\n"
 	"	x (lettre minuscule grecque phi - 03C6)"},
@@ -1595,7 +1601,11 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 027A */ { "LETTRE MINUSCULE LATINE R PROLONGÉ CULBUTÉ","	* vibrante battue latérale sonore"},
 /* 027B */ { "LETTRE MINUSCULE LATINE R CROSSE CULBUTÉ","	* approximante rétroflexe sonore\n"
 	"	x (lettre modificative minuscule r crosse culbuté - 02B5)"},
-/* 027C */ { "LETTRE MINUSCULE LATINE R PROLONGÉ","	* vibrante fricative apico-alvéolaire"},
+/* 027C */ { "LETTRE MINUSCULE LATINE R PROLONGÉ","	* vibrante fricative apico-alvéolaire\n"
+	"		* rendue désuète par l'API en 1989\n"
+	"	* correspond au 0159 tchèque\n"
+	"	* l'API recommande 0072 031D pour représenter le son tchèque\n"
+	"	* utilisé comme caractère gaélique (une variante de glyphe de 0072)"},
 /* 027D */ { "LETTRE MINUSCULE LATINE R HAMEÇON RÉTROFLEXE","	* vibrante battue rétroflexe sonore\n"
 	"	* sa majuscule est 2C64"},
 /* 027E */ { "LETTRE MINUSCULE LATINE R SANS OBIT","	= r en hameçon\n"
@@ -1681,7 +1691,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 029B */ { "LETTRE LATINE PETITE CAPITALE G CROSSE","	* implosive uvulaire sonore"},
 /* 029C */ { "LETTRE LATINE PETITE CAPITALE H","	* fricative épiglottale sourde"},
 /* 029D */ { "LETTRE MINUSCULE LATINE J QUEUE CROISÉE","	* fricative palatale sonore"},
-/* 029E */ { "LETTRE MINUSCULE LATINE K CULBUTÉ","	* proposée pour le clic vélaire"},
+/* 029E */ { "LETTRE MINUSCULE LATINE K CULBUTÉ","	* proposée pour le clic vélaire\n"
+	"		*  retirée par l'API en 1970"},
 /* 029F */ { "LETTRE LATINE PETITE CAPITALE L","	* approximante latérale vélaire"},
 /* 02A0 */ { "LETTRE MINUSCULE LATINE Q CROSSE","	* implosive uvulaire sourde"},
 /* 02A1 */ { "LETTRE LATINE COUP DE GLOTTE BARRÉ","	* occlusive épiglottale sonore"},
@@ -1926,7 +1937,9 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	= brève grec, brakhus grec\n"
 	"	x (brève - 02D8)"},
 /* 0307 */ { "DIACRITIQUE POINT EN CHEF","	= dérivée (notation newtonienne)\n"
-	"	* syriaque"},
+	"	* syriaque\n"
+	"		* API (retirée en 1976): palatalisation\n"
+	"	x (point en chef - 02D9)"},
 /* 0308 */ { "DIACRITIQUE TRÉMA (tréma)","	= double point en chef, tréma\n"
 	"	= tréma grec\n"
 	"	= dérivée double\n"
@@ -7992,7 +8005,8 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19DD */ { NULL,NULL},
 /* 19DE */ { "SIGNE NOUVEAU TAÏ LÜ LÊ","	* conjonction: et"},
 /* 19DF */ { "SIGNE NOUVEAU TAÏ LÜ LÊV","	* accompli, perfectif"},
-/* 19E0 */ { "SYMBOLE KHMER PATHAMASAT","	* représente le premier août des années bissextiles"},
+/* 19E0 */ { "SYMBOLE KHMER PATHAMASAT","	* représente le premier août des années bissextiles\n"
+	"	Les quinze caractères suivants représentent les quinze jours de lune croissante."},
 /* 19E1 */ { "SYMBOLE KHMER PREMIÈRE LUNE CROISSANTE","	= mouei khneut"},
 /* 19E2 */ { "SYMBOLE KHMER DEUXIÈME LUNE CROISSANTE","	= pii khneut"},
 /* 19E3 */ { "SYMBOLE KHMER TROISIÈME LUNE CROISSANTE","	= bèi khneut"},
@@ -8008,7 +8022,8 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19ED */ { "SYMBOLE KHMER TREIZIÈME LUNE CROISSANTE","	= dâp-bèi khneut"},
 /* 19EE */ { "SYMBOLE KHMER QUATORZIÈME LUNE CROISSANTE","	= dâp-buen khneut"},
 /* 19EF */ { "SYMBOLE KHMER QUINZIÈME LUNE CROISSANTE","	= dâp-pram khneut"},
-/* 19F0 */ { "SYMBOLE KHMER TUTEYASAT","	* représente le deux août des années bissextiles"},
+/* 19F0 */ { "SYMBOLE KHMER TUTEYASAT","	* représente le deux août des années bissextiles\n"
+	"	Les quinze caractères suivants représentent les quinze jours de lune décroissante"},
 /* 19F1 */ { "SYMBOLE KHMER PREMIÈRE LUNE DÉCROISSANTE","	= mouei rootch"},
 /* 19F2 */ { "SYMBOLE KHMER DEUXIÈME LUNE DÉCROISSANTE","	= pii rootch"},
 /* 19F3 */ { "SYMBOLE KHMER TROISIÈME LUNE DÉCROISSANTE","	= bèi rootch"},
@@ -14157,7 +14172,9 @@ static const struct unicode_nameannot una_00_30[] = {
 	"	x (crochet mathématique blanc gauche - 27E6)"},
 /* 301B */ { "CROCHET BLANC DROIT","	= crochet droit de syntaxe abstraite\n"
 	"	x (crochet mathématique blanc droit - 27E7)"},
-/* 301C */ { "TRAIT D'UNION EN ESSE",NULL},
+/* 301C */ { "TRAIT D'UNION EN ESSE","		* Ce caractère est repris afin de se conformer au « trait ondulé » de JIS C6226-1978 1-33. Les normes JIS et la pratique en usage dans l'industrie ne s'accordent pas sur le caractère correspondant.\n"
+	"	x (trait d'union ondulé - 3030)\n"
+	"	x (tilde pleine chasse - FF5E)"},
 /* 301D */ { "GUILLEMET DOUBLE PRIME RÉFLÉCHI","	* parfois représenté comme un guillemet double prime\n"
 	"	x (guillemet-apostrophe double culbuté - 201C)\n"
 	"	x (double prime réfléchi - 2036)"},
