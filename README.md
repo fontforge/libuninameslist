@@ -64,21 +64,20 @@ character. Etc.
 Installation and Build instructions
 -----------------------------------
 
-Download the source from the [downloads
-page](https://github.com/fontforge/libuninameslist/downloads).
-Then:
+Download the source from git:
 
->     $ tar xf libuninameslist*.tgz
->     $ gunzip libuninameslist*.tgz ; tar xf libuninameslist*.tar
->     $ cd libuninameslist
->     $ configure
->     $ make
->     $ su
->     # make install
+```bash
+$ git clone https://github.com/fontforge/libuninameslist.git;
+$ cd libuninameslist
+$ ./configure
+$ make
+$ sudo make install | su
+# make install
+```
 
 See Also
 --------
 
--   [LibUnicodeNames](https://github.com/fontforge/libuninameslist.git)
--   [FontForge](http://fontforge.org/)
--   [UMap](http://umap.sf.net/)
+-   [LibUnicodeNames](https://bitbucket.org/sortsmill/libunicodenames) - rewrite of this library, with Python module
+-   [FontForge](http://fontforge.org/) - font editor application that this library was made for
+-   [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard 
