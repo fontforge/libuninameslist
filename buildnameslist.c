@@ -14,6 +14,45 @@ static char *uniannot[2][17*65536];
 static struct block { int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
+static int printcopyright1(FILE *out) {
+/*Copyright notice for unicode NamesList.txt - 2013 */
+    fprintf( out, "\n/*\n");
+    fprintf( out, "The data contained in these arrays were derived from data contained in\n");
+    fprintf( out, "NamesList.txt which came from www.unicode.org. Below is th copyright\n");
+    fprintf( out, "notice for the information given:\n\n");
+    fprintf( out, "Copyright © 1991-2013 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
+    fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
+    fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
+    fprintf( out, "or Unicode software and any associated documentation (the \"Software\") to deal\n");
+    fprintf( out, "in the Data Files or Software without restriction, including without\n");
+    fprintf( out, "limitation the rights to use, copy, modify, merge, publish, distribute,\n");
+    fprintf( out, "and/or sell copies of the Data Files or Software, and to permit persons to\n");
+    fprintf( out, "whom the Data Files or Software are furnished to do so, provided that (a) the\n");
+    fprintf( out, "above copyright notice(s) and this permission notice appear with all copies\n");
+    fprintf( out, "of the Data Files or Software, (b) both the above copyright notice(s) and\n");
+    fprintf( out, "this permission notice appear in associated documentation, and (c) there is\n");
+    fprintf( out, "clear notice in each modified Data File or in the Software as well as in the\n");
+    fprintf( out, "documentation associated with the Data File(s) or Software that the data or\n");
+    fprintf( out, "software has been modified.\n\n");
+    fprintf( out, "THE DATA FILES AND SOFTWARE ARE PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY\n");
+    fprintf( out, "KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n");
+    fprintf( out, "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF\n");
+    fprintf( out, "THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS\n");
+    fprintf( out, "INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT\n");
+    fprintf( out, "OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF\n");
+    fprintf( out, "USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER\n");
+    fprintf( out, "TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE\n");
+    fprintf( out, "OF THE DATA FILES OR SOFTWARE.\n\n");
+    fprintf( out, "Except as contained in this notice, the name of a copyright holder shall not\n");
+    fprintf( out, "be used in advertising or otherwise to promote the sale, use or other dealings\n");
+    fprintf( out, "in these Data Files or Software without prior written authorization of the\n");
+    fprintf( out, "copyright holder.\n\n");
+    fprintf( out, "Unicode and the Unicode logo are trademarks of Unicode, Inc. in the United\n");
+    fprintf( out, "States and other countries. All third party trademarks referenced herein are\n");
+    fprintf( out, "the property of their respective owners.\n*/\n\n");
+    return( 0 );
+}
 
 static char *myfgets(char *buf,int bsize,FILE *file) {
     /* NamesList.txt uses CR as a line separator */
@@ -166,6 +205,7 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
     if ( is_fr==0 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
+	printcopyright1(out);
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
@@ -333,7 +373,7 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
 	fprintf( out, "\tnullnullarray%s\n", i!=0x20-1?",":"" );
 	++i;
     }
-    
+
     fprintf( out, "};\n\n" );
 }
 
