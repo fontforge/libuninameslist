@@ -32,4 +32,4 @@ NamesList.txt:
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeDesNoms-5.0.0.txt" -O ListeDesNoms.txt
 
-CLEANFILES = NamesList.txt ListeDesNoms.txt buildnameslist
+CLEANFILES = NamesList.txt ListeDesNoms.txt buildnameslist buildnameslist.h
