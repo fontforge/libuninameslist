@@ -6,7 +6,7 @@
 
 /*
 The data contained in these arrays were derived from data contained in
-NamesList.txt which came from www.unicode.org. Below is th copyright
+NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
 Copyright © 1991-2013 Unicode, Inc. All rights reserved.
@@ -61,6 +61,11 @@ const char *uniNamesList_annot(unsigned long uni) {
 	if (uni>=0 && uni<0x110000)
 		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
 	return( pt );
+}
+
+/* Retrieve Nameslist.txt version number. */
+const char *uniNamesList_NamesListVersion(void) {
+	return( "Nameslist-Version: 6.2" );
 }
 
 static const struct unicode_nameannot nullarray[] = {

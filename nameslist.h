@@ -35,4 +35,8 @@ const char *uniNamesList_name(unsigned long uni);
 /* This value points to a constant string inside the library */
 const char *uniNamesList_annot(unsigned long uni);
 
+/* Return a pointer to the Nameslist.txt version number. */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_NamesListVersion(void);
+
 #endif

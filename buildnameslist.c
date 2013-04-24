@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "buildnameslist.h"
+
 /* Reads from NamesList.txt which must be present in the current directory */
 /* Builds two arrays of strings for each unicode character. One contains the */
 /*  name of the character, the other the annotations for each character */
@@ -18,7 +20,7 @@ static int printcopyright1(FILE *out) {
 /*Copyright notice for unicode NamesList.txt - 2013 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
-    fprintf( out, "NamesList.txt which came from www.unicode.org. Below is th copyright\n");
+    fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
     fprintf( out, "Copyright © 1991-2013 Unicode, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
@@ -218,6 +220,9 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
+	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
+	fprintf( out, "const char *uniNamesList_NamesListVersion(void) {\n" );
+	fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", NL_VERSION );
     }
 
     fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
@@ -264,7 +269,9 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
     fprintf( header, "/* This value points to a constant string inside the library */\n");
     fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
-
+    fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n");
+    fprintf( header, "/* This value points to a constant string inside the library */\n");
+    fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
     fprintf( header, "#endif\n" );
 }
 

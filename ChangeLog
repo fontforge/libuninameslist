@@ -1,3 +1,8 @@
+- 23-Apr-2013
+    * Convert build system to autotools method (configure.ac, Makefile.am)
+    * Create README. Add function to report NamesList Version (6.2).
+    * Prep files for a distribution tar ball - version 0.3.20130423
+
 - 19-Feb-2013
     * Unicode 6.3 (Nameslist.txt remains at 6.2, French remains at 5.0)
 
