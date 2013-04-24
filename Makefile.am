@@ -24,6 +24,8 @@ EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt
 
+include_HEADERS = nameslist.h
+
 NamesList.txt:
 	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
 
