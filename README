@@ -35,6 +35,8 @@ If you need the older libuninameslist-fr library then you will need to enable
 building it since the current default is to not build it since this library
 appears not to be maintained any longer (last version found was 5.0).
 	configure --enable-oldfrenchlib
+(Also note, that due to it being an older version, you will want to make use
+of "nameslist-fr.h" since some information and dimensions are different)
 
 The build process can be summarized quickly like this:
 
@@ -62,7 +64,7 @@ from www.unicode.org which will then be used to build a new namelist.c file.
 
 Let's say the next version of NamesList is version 6.2.
 1) Update configure.ac with the new timestamp:
-	uninameslist_package_stamp "20130423"	<-"YYYYMMDD" format
+	uninameslist_package_stamp "20130428"	<-"YYYYMMDD" format
 2) Update configure.ac with the new NamesList version:
 	uninameslist_nameslist_ver "6.2"
 3) Increment the point release, was 0.2, now becomes 0.3. NOTE: This minor
@@ -85,4 +87,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2013-apr-23, by Joe Da Silva <digital@joescat.com>
+	2013-apr-28, by Joe Da Silva <digital@joescat.com>

@@ -17,7 +17,7 @@ libuninameslist_la.$(OBJEXT): uninameslist.h
 if WANTLIBOFR
 libuninameslist_fr_la_LDFLAGS = -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
-libuninameslist_fr_la.$(OBJEXT): uninameslist.h
+libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h
 endif
 
 EXTRA_PROGRAMS = buildnameslist
@@ -25,6 +25,9 @@ buildnameslist_SOURCES = buildnameslist.c
 nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt
 
 include_HEADERS = nameslist.h
+if WANTLIBOFR
+include_HEADERS += nameslist-fr.h
+endif
 
 NamesList.txt:
 	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt

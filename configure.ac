@@ -1,9 +1,9 @@
 # -*- Autoconf -*-
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.63])
+AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
-m4_define([uninameslist_package_stamp], "20130423")
+m4_define([uninameslist_package_stamp], "20130428")
 m4_define([uninameslist_nameslist_ver], "6.2")
 #-------------------------------------------
 # Making point releases:
@@ -42,6 +42,9 @@ AC_CONFIG_SRCDIR([buildnameslist.c])
 AM_INIT_AUTOMAKE([$uninameslist_package_name],[$uninameslist_version])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
+LT_INIT
+AC_SUBST(LIBTOOL_DEPS)
+
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
@@ -50,8 +53,6 @@ AC_PROG_MAKE_SET
 AC_PROG_SED
 AC_PATH_PROGS([WGET],[wget],[wget])
 
-AC_PROG_LIBTOOL
-AC_SUBST(LIBTOOL_DEPS)
 #-------------------------------------------
 # Indicate this is a release build and that
 # dependancies for changes between Makefile.am
@@ -84,7 +85,18 @@ esac
 # Pass variables to MAKEFILE.AM
 AC_SUBST(UN_VERSION,$uninameslist_info)
 AC_SUBST(FR_VERSION,$oldfr_info)
-AC_SUBST(WCFLAGS,"-Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses")
+#-------------------------------------------
+# Check for and add usable compiler warnings
+AC_LANG_PUSH([C])
+AC_SUBST([WCFLAGS],[])
+AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS+=" -Wall"])
+AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS+=" -Wextra"])
+AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS+=" -Wcast-align"])
+AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS+=" -Wbad-function-cast"])
+AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS+=" -Wc++-compat"])
+AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS+=" -Wmissing-prototypes"])
+AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS+=" -Wunused"])
+AC_LANG_POP
 #-------------------------------------------
 echo 'const char NL_VERSION[[]] = uninameslist_nameslist_ver;' > buildnameslist.h
 #-------------------------------------------

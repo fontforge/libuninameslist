@@ -201,7 +201,10 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
-    fprintf( out, "#include \"nameslist.h\"\n\n" );
+    if ( is_fr==0 )
+	fprintf( out, "#include \"nameslist.h\"\n\n" );
+    else
+	fprintf( out, "#include \"nameslist-fr.h\"\n\n" );
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
@@ -211,13 +214,13 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+	fprintf( out, "\tif (uni<0x110000)\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif (uni>=0 && uni<0x110000)\n" );
+	fprintf( out, "\tif (uni<0x110000)\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
@@ -248,8 +251,14 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
     fprintf( out, "\tnullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray2\n" );
     fprintf( out, "};\n\n" );
 
-    fprintf( header, "#ifndef _NAMESLIST_H\n" );
-    fprintf( header, "# define _NAMESLIST_H\n\n" );
+    if ( is_fr==1 ) {
+	/* default Nameslist.txt language=EN file holds these additional functions */
+	fprintf( header, "#ifndef _NAMESLIST_FR_H\n" );
+	fprintf( header, "# define _NAMESLIST_FR_H\n\n" );
+    } else {
+	fprintf( header, "#ifndef _NAMESLIST_H\n" );
+	fprintf( header, "# define _NAMESLIST_H\n\n" );
+    }
     fprintf( header, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
     fprintf( header, "struct unicode_block {\n\tint start, end;\n\tconst char *name;\n};\n\n" );
     fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n\n" );
@@ -263,15 +272,18 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "/*  : should be replaced by an equivalent U+224D */\n" );
     fprintf( header, "/*  # should be replaced by an approximate U+2245 */\n" );
     fprintf( header, "/*  = should remain itself */\n\n" );
-    fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
-    fprintf( header, "/* This value points to a constant string inside the library */\n");
-    fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
-    fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
-    fprintf( header, "/* This value points to a constant string inside the library */\n");
-    fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
-    fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n");
-    fprintf( header, "/* This value points to a constant string inside the library */\n");
-    fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
+    if ( is_fr==0 ) {
+	/* default Nameslist.txt language=EN file holds these additional functions */
+	fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
+	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
+	fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
+	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
+	fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n");
+	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
+    }
     fprintf( header, "#endif\n" );
 }
 
@@ -386,7 +398,7 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
 
 static void dump(int is_fr) {
     FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
-    FILE *header = fopen( is_fr ? "/dev/null": "nameslist.h","w");
+    FILE *header = fopen( is_fr ? "nameslist-fr.h": "nameslist.h","w");
 
     if ( out==NULL ) {
 	fprintf( stderr, "Cannot open output file\n" );

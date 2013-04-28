@@ -49,7 +49,7 @@ the property of their respective owners.
 const char *uniNamesList_name(unsigned long uni) {
 	const char *pt=NULL;
 
-	if (uni>=0 && uni<0x110000)
+	if (uni<0x110000)
 		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;
 	return( pt );
 }
@@ -58,7 +58,7 @@ const char *uniNamesList_name(unsigned long uni) {
 const char *uniNamesList_annot(unsigned long uni) {
 	const char *pt=NULL;
 
-	if (uni>=0 && uni<0x110000)
+	if (uni<0x110000)
 		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
 	return( pt );
 }
