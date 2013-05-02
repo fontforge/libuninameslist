@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "nameslist-fr.h"
+#include "uninameslist-fr.h"
 
 /* This file was generated using the program 'buildnameslist.c' */
 

@@ -64,7 +64,7 @@ from www.unicode.org which will then be used to build a new namelist.c file.
 
 Let's say the next version of NamesList is version 6.2.
 1) Update configure.ac with the new timestamp:
-	uninameslist_package_stamp "20130428"	<-"YYYYMMDD" format
+	uninameslist_package_stamp "20130501"	<-"YYYYMMDD" format
 2) Update configure.ac with the new NamesList version:
 	uninameslist_nameslist_ver "6.2"
 3) Increment the point release, was 0.2, now becomes 0.3. NOTE: This minor
@@ -87,4 +87,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2013-apr-28, by Joe Da Silva <digital@joescat.com>
+	2013-may-01, by Joe Da Silva

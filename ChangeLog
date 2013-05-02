@@ -1,3 +1,11 @@
+- 01-May-2013
+    * Makefile.am problems in changing nameslist.h to uninameslist.h, and
+      nameslist-fr.h to uninameslist-fr.h, therefore renamed those files.
+    * Removed several files that can be built during autoreconf and automake
+      steps to building a tar.gz package.
+    * Added additional check for -enable-oldfrenchlib to "make distcheck"
+    * This will be tagged as version 0.3
+
 - 28-Apr-2013
     * Seperate namelist.h and namelist-fr.h due to different versions.
     * Clarify README to indicated differences between both libraries.
@@ -5,6 +13,7 @@
 	"pkg-config support and fix for bug 1307144 - ID: 3402865"
 	"Please update autoconf - ID: 3608906",
     * http://sourceforge.net/projects/libuninameslist/ not being maintained.
+
 - 23-Apr-2013
     * Convert build system to autotools method (configure.ac, Makefile.am)
     * Create README. Add function to report NamesList Version (6.2).

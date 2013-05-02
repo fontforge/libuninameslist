@@ -202,9 +202,9 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
     fprintf( out, "#include <stdio.h>\n" );
     if ( is_fr==0 )
-	fprintf( out, "#include \"nameslist.h\"\n\n" );
+	fprintf( out, "#include \"uninameslist.h\"\n\n" );
     else
-	fprintf( out, "#include \"nameslist-fr.h\"\n\n" );
+	fprintf( out, "#include \"uninameslist-fr.h\"\n\n" );
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
@@ -398,7 +398,7 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
 
 static void dump(int is_fr) {
     FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
-    FILE *header = fopen( is_fr ? "nameslist-fr.h": "nameslist.h","w");
+    FILE *header = fopen( is_fr ? "uninameslist-fr.h": "uninameslist.h","w");
 
     if ( out==NULL ) {
 	fprintf( stderr, "Cannot open output file\n" );

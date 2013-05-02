@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
-m4_define([uninameslist_package_stamp], "20130428")
+m4_define([uninameslist_package_stamp], "20130501")
 m4_define([uninameslist_nameslist_ver], "6.2")
 #-------------------------------------------
 # Making point releases:
