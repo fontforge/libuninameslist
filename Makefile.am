@@ -1,7 +1,5 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
-SHELL = /bin/sh
-
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 AM_CFLAGS = $(WCFLAGS)
