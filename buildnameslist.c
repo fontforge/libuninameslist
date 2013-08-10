@@ -266,7 +266,7 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 
 static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "\n/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n" );
-    fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a */\n" );
+    fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a: */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
     fprintf( header, "/*  x should be replaced by a right arrow U+2192 */\n" );
     fprintf( header, "/*  : should be replaced by an equivalent U+224D */\n" );
@@ -275,13 +275,13 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
     if ( is_fr==0 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
 	fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
 	fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
-	fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n");
-	fprintf( header, "/* This value points to a constant string inside the library */\n");
+	fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n" );
+	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
     }
     fprintf( header, "#endif\n" );
@@ -301,6 +301,10 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
 		block->name, block->next!=NULL ? "," : "" );
     }
     fprintf( out, "};\n\n" );
+    fprintf( header, "/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[%d] */\n", bcnt );
+    fprintf( header, "/* because newer version of NamesList.txt can have more blocks than before. */\n" );
+    fprintf( header, "/* To allow for future use of libuninameslist without changing your program */\n" );
+    fprintf( header, "/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */\n" );
     fprintf( header, "extern const struct unicode_block UnicodeBlock[%d];\n", bcnt );
 
     maxn = maxa = 0;
@@ -308,7 +312,9 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
 	if ( uninames[is_fr][i]!=NULL && maxn<strlen(uninames[is_fr][i])) maxn = strlen(uninames[is_fr][i]);
 	if ( uniannot[is_fr][i]!=NULL && maxa<strlen(uniannot[is_fr][i])) maxa = strlen(uniannot[is_fr][i]);
     }
-    fprintf( header, "\n#define UNICODE_NAME_MAX\t%d\n", maxn );
+    fprintf( header, "\n/* NOTE: These 2 constants are correct for this version of libuninameslist, */\n" );
+    fprintf( header, "/* but can change for later versions of NamesList (use as an example guide) */\n" );
+    fprintf( header, "#define UNICODE_NAME_MAX\t%d\n", maxn );
     fprintf( header, "#define UNICODE_ANNOT_MAX\t%d\n", maxa );
 }
 

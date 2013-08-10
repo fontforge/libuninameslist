@@ -12,15 +12,21 @@ struct unicode_nameannot {
 	const char *name, *annot;
 };
 
+/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[168] */
+/* because newer version of NamesList.txt can have more blocks than before. */
+/* To allow for future use of libuninameslist without changing your program */
+/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
 extern const struct unicode_block UnicodeBlock[168];
 
+/* NOTE: These 2 constants are correct for this version of libuninameslist, */
+/* but can change for later versions of NamesList (use as an example guide) */
 #define UNICODE_NAME_MAX	104
 #define UNICODE_ANNOT_MAX	509
 extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
 /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
 
-/* At the beginning of lines (after a tab) within the annotation string, a */
+/* At the beginning of lines (after a tab) within the annotation string, a: */
 /*  * should be replaced by a bullet U+2022 */
 /*  x should be replaced by a right arrow U+2192 */
 /*  : should be replaced by an equivalent U+224D */
