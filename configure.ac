@@ -64,6 +64,13 @@ AC_PATH_PROGS([WGET],[wget],[wget])
 dnl AM_MAINTAINER_MODE([enable])
 
 #-------------------------------------------
+ Enable silent build rules by default, this
+# requires atleast Automake-1.11. Disable by
+# either passing --disable-silent-rules to
+# configure or passing V=1 to make
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])],[AC_SUBST([AM_DEFAULT_VERBOSITY],[1])])
+
+#-------------------------------------------
 # Include deprecated French library too?
 AC_ARG_ENABLE([oldfrenchlib],AS_HELP_STRING([--enable-oldfrenchlib],[This library may be useful for older programs. Currently at ListeDesNoms.txt version 5.0]),
   [case "${enableval}" in
@@ -72,6 +79,7 @@ AC_ARG_ENABLE([oldfrenchlib],AS_HELP_STRING([--enable-oldfrenchlib],[This librar
     *) AC_MSG_ERROR([bad value ${enableval} for --enable-oldfrenchlib]) ;;
    esac],[oldfrenchlib=false])
 AM_CONDITIONAL([WANTLIBOFR],[test x$oldfrenchlib = xtrue])
+
 #-------------------------------------------
 # Platform specific stuff
 AC_CANONICAL_HOST
