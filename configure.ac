@@ -39,7 +39,7 @@ m4_define([oldfr_info],
 AC_INIT([uninameslist],[uninameslist_version],[fontforge-devel@lists.sourceforge.net],
 	[uninameslist_package_name],[https://github.com/fontforge/libuninameslist])
 AC_CONFIG_SRCDIR([buildnameslist.c])
-AM_INIT_AUTOMAKE([$uninameslist_package_name],[$uninameslist_version])
+AM_INIT_AUTOMAKE([foreign -Wall])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
@@ -54,6 +54,11 @@ AC_PROG_SED
 AC_PATH_PROGS([WGET],[wget],[wget])
 
 #-------------------------------------------
+# automake 1.12 seems to require AM_PROG_AR,
+# but automake 1.11 doesn't recognize it.
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+
+#-------------------------------------------
 # Indicate this is a release build and that
 # dependancies for changes between Makefile.am
 # and Makefile.in should not be checked. This
@@ -64,7 +69,7 @@ AC_PATH_PROGS([WGET],[wget],[wget])
 dnl AM_MAINTAINER_MODE([enable])
 
 #-------------------------------------------
- Enable silent build rules by default, this
+# Enable silent build rules by default, this
 # requires atleast Automake-1.11. Disable by
 # either passing --disable-silent-rules to
 # configure or passing V=1 to make
