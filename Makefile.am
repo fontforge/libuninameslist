@@ -26,6 +26,7 @@ endif
 EXTRA_DIST = LICENSE README.md
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
+noinst_PROGRAMS = buildnameslist
 nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt
 
 include_HEADERS = uninameslist.h

@@ -96,13 +96,13 @@ exit( 1 );
 	    if ( buffer[0]=='@' ) {
 		if ( buffer[1]=='+' && buffer[2]=='\t' ) {
 		    /* This is a Notice_line, @+ */
-		    if ( a_char>=0 && a_char<sizeof(uniannot[0])/sizeof(uniannot[0][0]) ) {
+		    if ( a_char>=0 && a_char<(int)(sizeof(uniannot[0])/sizeof(uniannot[0][0])) ) {
 			for ( pt=buffer; *pt && *pt!='\r' && *pt!='\n' ; ++pt );
 			if ( *pt=='\r' ) *pt='\n';
 			if ( uniannot[i][a_char]==NULL )
 			    uniannot[i][a_char] = strdup(buffer+2);
 			else {
-			    temp = realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer+2)+1);
+			    temp = (char *)(realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer+2)+1));
 			    if ( temp==NULL ) {
 				fprintf( stderr, "Out of memory\n" );
     exit(1);
@@ -127,7 +127,7 @@ exit( 1 );
 			    last = strtol(pt+1,&end,16);
 			    if ( last>first ) {
 				/* found a block, record info */
-				cur = malloc(sizeof(struct block));
+				cur = (struct block *)(malloc(sizeof(struct block)));
 				cur->start = first;
 				cur->end = last;
 				cur->name = strdup(namestart);
@@ -153,19 +153,19 @@ exit( 1 );
 		namestart = end+1;
 		for ( pt=namestart; *pt && *pt!='\r' && *pt!='\n' && *pt!='\t' && *pt!=';' ; ++pt );
 		*pt = '\0';
-		if ( a_char>=0 && a_char<sizeof(uninames[0])/sizeof(uninames[0][0]) )
+		if ( a_char>=0 && a_char<(int)(sizeof(uninames[0])/sizeof(uninames[0][0])) )
 		    uninames[i][a_char] = strdup(namestart);
 	    } else if ( a_char==-1 ) {
 	continue;
 	    } else if ( buffer[0]=='\t' && buffer[1]==';' ) {
 	continue;		/* comment */
-	    } else if ( a_char>=0 && a_char<sizeof(uniannot[0])/sizeof(uniannot[0][0]) ) {
+	    } else if ( a_char>=0 && a_char<(int)(sizeof(uniannot[0])/sizeof(uniannot[0][0])) ) {
 		for ( pt=buffer; *pt && *pt!='\r' && *pt!='\n' ; ++pt );
 		if ( *pt=='\r' ) *pt='\n';
 		if ( uniannot[i][a_char]==NULL )
 		    uniannot[i][a_char] = strdup(buffer);
 		else {
-		    temp = realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer)+1);
+		    temp = (char *)(realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer)+1));
 		    if ( temp==NULL ) {
 			fprintf( stderr, "Out of memory\n" );
     exit(1);
@@ -290,7 +290,7 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
 static void dumpblock(FILE *out, FILE *header, int is_fr ) {
     int bcnt;
     struct block *block;
-    int i, maxa, maxn;
+    unsigned int i, maxa, maxn;
 
     fprintf( out, "#ifdef __Cygwin\n" );
     fprintf( out, "__declspec(dllexport)\t/* Need this for cygwin to get shared libs */\n" );
@@ -319,7 +319,8 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
 }
 
 static void dumparrays(FILE *out, FILE *header, int is_fr ) {
-    int i,j,k, t;
+    unsigned int i;
+    int j,k, t;
     char *prefix = "una";
 
     for ( i=0; i<sizeof(uniannot[0])/(sizeof(uniannot[0][0])*65536); ++i ) {	/* For each plane */
@@ -378,7 +379,7 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
 	}
 	fprintf( out, "};\n\n" );
     }
-		
+
     fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];\n" );
 
     fprintf( out, "#ifdef __Cygwin\n" );
