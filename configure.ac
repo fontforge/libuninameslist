@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
-m4_define([uninameslist_package_stamp], "20130501")
-m4_define([uninameslist_nameslist_ver], "6.2")
+m4_define([uninameslist_package_stamp], [20130501])
+m4_define([uninameslist_nameslist_ver], [6.2])
 #-------------------------------------------
 # Making point releases:
 #   uninameslist_major_version += 0;
@@ -18,20 +18,20 @@ m4_define([uninameslist_nameslist_ver], "6.2")
 #   uninameslist_major_version += 1;
 #   uninameslist_minor_version = 0;
 #
-m4_define([uninameslist_major_version], '0')
-m4_define([uninameslist_minor_version], '3')
+m4_define([uninameslist_major_version], [0])
+m4_define([uninameslist_minor_version], [3])
 m4_define([uninameslist_version],
           [uninameslist_major_version.uninameslist_minor_version.uninameslist_package_stamp])
 m4_define([uninameslist_info],
           [uninameslist_major_version:uninameslist_minor_version:0])
-m4_define([uninameslist_package_name], ["libuninameslist"])
+m4_define([uninameslist_package_name], [libuninameslist])
 
 #-------------------------------------------
 # These values below are kept for backwards compatibility with older programs
 # that may still be using the older French namesList. This is unnecessary to
 # increment unless ListeDesNoms.txt increases from version 5.0 (value=0.3.0).
-m4_define([oldfr_major_version], '0')
-m4_define([oldfr_minor_version], '3') dnl latest ListeDesNoms.txt = ver5.0
+m4_define([oldfr_major_version], [0])
+m4_define([oldfr_minor_version], [3]) dnl latest ListeDesNoms.txt = ver5.0
 m4_define([oldfr_info],
           [oldfr_major_version:oldfr_minor_version:0])
 
@@ -96,8 +96,8 @@ case "$host" in
 esac
 #-------------------------------------------
 # Pass variables to MAKEFILE.AM
-AC_SUBST(UN_VERSION,$uninameslist_info)
-AC_SUBST(FR_VERSION,$oldfr_info)
+AC_SUBST([UN_VERSION],[uninameslist_info])
+AC_SUBST([FR_VERSION],[oldfr_info])
 #-------------------------------------------
 # Check for and add usable compiler warnings
 AC_LANG_PUSH([C])
@@ -111,7 +111,7 @@ AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS+=" -Wmissing-prototypes"])
 AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS+=" -Wunused"])
 AC_LANG_POP
 #-------------------------------------------
-echo 'const char NL_VERSION[[]] = uninameslist_nameslist_ver;' > buildnameslist.h
+echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
 #-------------------------------------------
 AC_PROG_LIBTOOL
 
