@@ -68,6 +68,41 @@ const char *uniNamesList_NamesListVersion(void) {
 	return( "Nameslist-Version: 6.2" );
 }
 
+
+/* These functions are available in libuninameslist-0.4.20140501 and higher */
+
+/* Return number of blocks in this NamesList. */
+int uniNamesList_blockCount(void) {
+	return( UNICODE_BLOCK_MAX );
+}
+
+/* Return block number for this unicode value, -1 if unlisted unicode value */
+int uniNamesList_blockNumber(unsigned long uni) {
+	if (uni<0x110000) {
+		int i;
+		for (i=0; i<UNICODE_BLOCK_MAX; i++) {
+			if ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;
+			if ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );
+		}
+	}
+	return( -1 );
+}
+
+/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockStart(int uniBlock) {
+	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].start : -1) );
+}
+
+/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockEnd(int uniBlock) {
+	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].end : -1) );
+}
+
+/* Return a pointer to the blockname for this unicode block. */
+const char *uniNamesList_blockName(int uniBlock) {
+	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );
+}
+
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },

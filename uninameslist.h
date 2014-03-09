@@ -16,6 +16,7 @@ struct unicode_nameannot {
 /* because newer version of NamesList.txt can have more blocks than before. */
 /* To allow for future use of libuninameslist without changing your program */
 /* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
+#define UNICODE_BLOCK_MAX	234
 extern const struct unicode_block UnicodeBlock[234];
 
 /* NOTE: These 2 constants are correct for this version of libuninameslist, */
@@ -44,5 +45,24 @@ const char *uniNamesList_annot(unsigned long uni);
 /* Return a pointer to the Nameslist.txt version number. */
 /* This value points to a constant string inside the library */
 const char *uniNamesList_NamesListVersion(void);
+
+
+/* These functions are available in libuninameslist-0.4.20140501 and higher */
+
+/* Return number of blocks in this NamesList (Version 6.2). */
+int uniNamesList_blockCount(void);
+
+/* Return block number for this unicode value (-1 if bad unicode value) */
+int uniNamesList_blockNumber(unsigned long uni);
+
+/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockStart(int uniBlock);
+
+/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockEnd(int uniBlock);
+
+/* Return a pointer to the blockname for this unicode block. */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_blockName(int uniBlock);
 
 #endif

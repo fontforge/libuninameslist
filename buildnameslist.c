@@ -85,12 +85,16 @@ static void ReadNamesList(void) {
     struct block *cur;
     int i;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
+    static char *nameslistlocs[] = {
+	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
+	"http://hapax.qc.ca/ListeDesNoms-5.0.0.txt"
+    };
 
     for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
 	nl = fopen( nameslistfiles[i],"r" );
 	if ( nl==NULL ) {
-	    fprintf( stderr, "Cannot find %s. Please copy it from\n\thttp://www.unicode.org/Public/UNIDATA/NamesList.txt\n", nameslistfiles[i] );
-exit( 1 );
+	    fprintf( stderr, "Cannot find %s. Please copy it from\n\t%s\n", nameslistfiles[i], nameslistlocs[i] );
+    exit( 1 );
 	}
 	while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
 	    if ( buffer[0]=='@' ) {
@@ -211,6 +215,7 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
     if ( is_fr==0 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
 	printcopyright1(out);
+	/* Added functions available in libuninameslist version 0.3 and higher. */
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
@@ -226,6 +231,27 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
 	fprintf( out, "const char *uniNamesList_NamesListVersion(void) {\n" );
 	fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", NL_VERSION );
+	/* Added functions available in libuninameslist version 0.4 and higher. */
+	fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140501 and higher */\n\n" );
+	fprintf( out, "/* Return number of blocks in this NamesList. */\n" );
+	fprintf( out, "int uniNamesList_blockCount(void) {\n" );
+	fprintf( out, "\treturn( UNICODE_BLOCK_MAX );\n}\n\n" );
+	fprintf( out, "/* Return block number for this unicode value, -1 if unlisted unicode value */\n" );
+	fprintf( out, "int uniNamesList_blockNumber(unsigned long uni) {\n" );
+	fprintf( out, "\tif (uni<0x110000) {\n\t\tint i;\n" );
+	fprintf( out, "\t\tfor (i=0; i<UNICODE_BLOCK_MAX; i++) {\n" );
+	fprintf( out, "\t\t\tif ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;\n" );
+	fprintf( out, "\t\t\tif ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );\n" );
+	fprintf( out, "\t\t}\n\t}\n\treturn( -1 );\n}\n\n" );
+	fprintf( out, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
+	fprintf( out, "long uniNamesList_blockStart(int uniBlock) {\n" );
+	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].start : -1) );\n}\n\n" );
+	fprintf( out, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
+	fprintf( out, "long uniNamesList_blockEnd(int uniBlock) {\n" );
+	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].end : -1) );\n}\n\n" );
+	fprintf( out, "/* Return a pointer to the blockname for this unicode block. */\n" );
+	fprintf( out, "const char *uniNamesList_blockName(int uniBlock) {\n" );
+	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );\n}\n\n" );
     }
 
     fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
@@ -274,6 +300,8 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "/*  = should remain itself */\n\n" );
     if ( is_fr==0 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
+	/* Added functions available in libuninameslist version 0.3 and higher. */
+	/* Maintain this sequence for old-programs-binary-backwards-compatibility. */
 	fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
 	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
@@ -283,6 +311,19 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n" );
 	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
+	/* Added functions available in libuninameslist version 0.4 and higher. */
+	fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140501 and higher */\n\n" );
+	fprintf( header, "/* Return number of blocks in this NamesList (Version %s). */\n", NL_VERSION );
+	fprintf( header, "int uniNamesList_blockCount(void);\n\n" );
+	fprintf( header, "/* Return block number for this unicode value (-1 if bad unicode value) */\n" );
+	fprintf( header, "int uniNamesList_blockNumber(unsigned long uni);\n\n" );
+	fprintf( header, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
+	fprintf( header, "long uniNamesList_blockStart(int uniBlock);\n\n" );
+	fprintf( header, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
+	fprintf( header, "long uniNamesList_blockEnd(int uniBlock);\n\n" );
+	fprintf( header, "/* Return a pointer to the blockname for this unicode block. */\n" );
+	fprintf( header, "/* This value points to a constant string inside the library */\n" );
+	fprintf( header, "const char *uniNamesList_blockName(int uniBlock);\n\n" );
     }
     fprintf( header, "#endif\n" );
 }
@@ -305,6 +346,7 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
     fprintf( header, "/* because newer version of NamesList.txt can have more blocks than before. */\n" );
     fprintf( header, "/* To allow for future use of libuninameslist without changing your program */\n" );
     fprintf( header, "/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */\n" );
+    if ( is_fr==0 ) fprintf( header, "#define UNICODE_BLOCK_MAX\t%d\n", bcnt );
     fprintf( header, "extern const struct unicode_block UnicodeBlock[%d];\n", bcnt );
 
     maxn = maxa = 0;
