@@ -96,10 +96,6 @@ static void FreeArrays(void) {
 	    if ( head[i]->name!=NULL ) free(head[i]->name);
 	    temp=head[i]->next; free(head[i]); head[i]=temp;
 	}
-	while ( final[i]!=NULL ) {
-	    if ( final[i]->name!=NULL ) free(final[i]->name);
-	    temp=final[i]->next; free(final[i]); final[i]=temp;
-	}
     }
 }
 
@@ -483,19 +479,20 @@ static int dump(int is_fr) {
     FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
     if ( out==NULL ) {
 	fprintf( stderr, "Cannot open output file\n" );
-	return( 0 );
+	return( dumpOK );
     }
     FILE *header = fopen( is_fr ? "uninameslist-fr.h": "uninameslist.h","w");
     if ( header==NULL ) {
 	fprintf( stderr, "Cannot open output header file\n" );
 	fclose(out);
-	return( 0 );
+	return( dumpOK );
     }
 
     if ( dumpinit(out,header,is_fr) && dumpblock(out,header,is_fr) && \
-	 dumparrays(out,header,is_fr) && dumpend(out,header,is_fr) )
+	 dumparrays(out,header,is_fr) && dumpend(out,header,is_fr) && \
+	 fflush(out)==0 && fflush(header)==0 )
 	dumpOK=1;
-    fflush(out); fflush(header); fclose(out); fclose(header);
+    fclose(out); fclose(header);
     return( dumpOK );
 }
 
