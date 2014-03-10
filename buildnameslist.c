@@ -53,7 +53,7 @@ static int printcopyright1(FILE *out) {
     fprintf( out, "Unicode and the Unicode logo are trademarks of Unicode, Inc. in the United\n");
     fprintf( out, "States and other countries. All third party trademarks referenced herein are\n");
     fprintf( out, "the property of their respective owners.\n*/\n\n");
-    return( 0 );
+    return( 1 );
 }
 
 static char *myfgets(char *buf,int bsize,FILE *file) {
@@ -77,8 +77,34 @@ return( NULL );
 return( buf );
 }
 
-static void ReadNamesList(void) {
-    char buffer[200];
+static void InitArrays(void) {
+    int i,j;
+    for (i=0; i<2; i++)	for (j=0; j<17*65536; j++) {
+	uninames[i][j] = NULL; uniannot[i][j] = NULL;
+    }
+}
+
+static void FreeArrays(void) {
+    int i,j;
+    for (i=0; i<2; i++)	for (j=0; j<17*65536; j++) {
+	free(uninames[i][j]); free(uniannot[i][j]);
+    }
+
+    for (i=0; i<2; i++) {
+	struct block *temp;
+	while ( head[i]!=NULL ) {
+	    if ( head[i]->name!=NULL ) free(head[i]->name);
+	    temp=head[i]->next; free(head[i]); head[i]=temp;
+	}
+	while ( final[i]!=NULL ) {
+	    if ( final[i]->name!=NULL ) free(final[i]->name);
+	    temp=final[i]->next; free(final[i]); final[i]=temp;
+	}
+    }
+}
+
+static int ReadNamesList(void) {
+    char buffer[500];
     FILE *nl;
     int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
@@ -94,7 +120,7 @@ static void ReadNamesList(void) {
 	nl = fopen( nameslistfiles[i],"r" );
 	if ( nl==NULL ) {
 	    fprintf( stderr, "Cannot find %s. Please copy it from\n\t%s\n", nameslistfiles[i], nameslistlocs[i] );
-    exit( 1 );
+	    goto errorReadNamesListFO;
 	}
 	while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
 	    if ( buffer[0]=='@' ) {
@@ -107,10 +133,7 @@ static void ReadNamesList(void) {
 			    uniannot[i][a_char] = strdup(buffer+2);
 			else {
 			    temp = (char *)(realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer+2)+1));
-			    if ( temp==NULL ) {
-				fprintf( stderr, "Out of memory\n" );
-    exit(1);
-			    }
+			    if ( temp==NULL ) goto errorReadNamesList;
 			    strcat(temp,buffer+2);
 			    uniannot[i][a_char] = temp;
 			}
@@ -132,6 +155,7 @@ static void ReadNamesList(void) {
 			    if ( last>first ) {
 				/* found a block, record info */
 				cur = (struct block *)(malloc(sizeof(struct block)));
+				if ( cur==NULL ) goto errorReadNamesList;
 				cur->start = first;
 				cur->end = last;
 				cur->name = strdup(namestart);
@@ -170,10 +194,7 @@ static void ReadNamesList(void) {
 		    uniannot[i][a_char] = strdup(buffer);
 		else {
 		    temp = (char *)(realloc(uniannot[i][a_char],strlen(uniannot[i][a_char])+strlen(buffer)+1));
-		    if ( temp==NULL ) {
-			fprintf( stderr, "Out of memory\n" );
-    exit(1);
-		    }
+		    if ( temp==NULL ) goto errorReadNamesList;
 		    strcat(temp,buffer);
 		    uniannot[i][a_char] = temp;
 		}
@@ -181,6 +202,13 @@ static void ReadNamesList(void) {
 	}
 	fclose(nl);
     }
+    return( 1 );
+
+errorReadNamesList:
+    fprintf( stderr,"Out of memory\n" );
+    fclose(nl);
+errorReadNamesListFO:
+    return( 0 );
 }
 
 static void dumpstring(char *str,FILE *out) {
@@ -201,7 +229,7 @@ static void dumpstring(char *str,FILE *out) {
     } while ( *str );
 }
 
-static void dumpinit(FILE *out, FILE *header, int is_fr) {
+static int dumpinit(FILE *out, FILE *header, int is_fr) {
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
@@ -288,9 +316,10 @@ static void dumpinit(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
     fprintf( header, "struct unicode_block {\n\tint start, end;\n\tconst char *name;\n};\n\n" );
     fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n\n" );
+    return( 1 );
 }
 
-static void dumpend(FILE *out, FILE *header, int is_fr) {
+static int dumpend(FILE *out, FILE *header, int is_fr) {
     fprintf( header, "\n/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n" );
     fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a: */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
@@ -326,9 +355,10 @@ static void dumpend(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "const char *uniNamesList_blockName(int uniBlock);\n\n" );
     }
     fprintf( header, "#endif\n" );
+    return( 1 );
 }
 
-static void dumpblock(FILE *out, FILE *header, int is_fr ) {
+static int dumpblock(FILE *out, FILE *header, int is_fr ) {
     int bcnt;
     struct block *block;
     unsigned int i, maxa, maxn;
@@ -358,9 +388,10 @@ static void dumpblock(FILE *out, FILE *header, int is_fr ) {
     fprintf( header, "/* but can change for later versions of NamesList (use as an example guide) */\n" );
     fprintf( header, "#define UNICODE_NAME_MAX\t%d\n", maxn );
     fprintf( header, "#define UNICODE_ANNOT_MAX\t%d\n", maxa );
+    return( 1 );
 }
 
-static void dumparrays(FILE *out, FILE *header, int is_fr ) {
+static int dumparrays(FILE *out, FILE *header, int is_fr ) {
     unsigned int i;
     int j,k, t;
     char *prefix = "una";
@@ -443,32 +474,36 @@ static void dumparrays(FILE *out, FILE *header, int is_fr ) {
     }
 
     fprintf( out, "};\n\n" );
+    return( 1 );
 }
 
-static void dump(int is_fr) {
-    FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
-    FILE *header = fopen( is_fr ? "uninameslist-fr.h": "uninameslist.h","w");
+static int dump(int is_fr) {
+    int dumpOK=0;
 
+    FILE *out = fopen(is_fr ? "nameslist-fr.c":"nameslist.c","w");
     if ( out==NULL ) {
 	fprintf( stderr, "Cannot open output file\n" );
-exit( 1 );
+	return( 0 );
     }
+    FILE *header = fopen( is_fr ? "uninameslist-fr.h": "uninameslist.h","w");
     if ( header==NULL ) {
 	fprintf( stderr, "Cannot open output header file\n" );
 	fclose(out);
-exit( 1 );
+	return( 0 );
     }
 
-    dumpinit(out,header,is_fr);
-    dumpblock(out,header,is_fr);
-    dumparrays( out, header,is_fr );
-    dumpend(out,header,is_fr);
-    fclose(out);
+    if ( dumpinit(out,header,is_fr) && dumpblock(out,header,is_fr) && \
+	 dumparrays(out,header,is_fr) && dumpend(out,header,is_fr) )
+	dumpOK=1;
+    fflush(out); fflush(header); fclose(out); fclose(header);
+    return( dumpOK );
 }
 
 int main( int argc, char **argv) {
-    ReadNamesList();
-    dump(0/*english*/);
-    dump(1/*french*/);
-return( 0 );
+    int errCode=1;
+    InitArrays();
+    if ( ReadNamesList() && dump(0/*english*/) && dump(1/*french*/) )
+	errCode=0;
+    FreeArrays();
+    return( errCode );
 }
