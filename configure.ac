@@ -42,6 +42,12 @@ AC_CONFIG_SRCDIR([buildnameslist.c])
 AM_INIT_AUTOMAKE([foreign -Wall])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
+
+#-------------------------------------------
+# automake 1.12 seems to require AM_PROG_AR,
+# but automake 1.11 doesn't recognize it.
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+
 LT_INIT
 AC_SUBST(LIBTOOL_DEPS)
 
@@ -52,11 +58,6 @@ AC_PROG_MKDIR_P
 AC_PROG_MAKE_SET
 AC_PROG_SED
 AC_PATH_PROGS([WGET],[wget],[wget])
-
-#-------------------------------------------
-# automake 1.12 seems to require AM_PROG_AR,
-# but automake 1.11 doesn't recognize it.
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 #-------------------------------------------
 # Indicate this is a release build and that

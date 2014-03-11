@@ -79,14 +79,14 @@ return( buf );
 
 static void InitArrays(void) {
     int i,j;
-    for (i=0; i<2; i++)	for (j=0; j<17*65536; j++) {
+    for (i=0; i<2; i++) for (j=0; j<17*65536; j++) {
 	uninames[i][j] = NULL; uniannot[i][j] = NULL;
     }
 }
 
 static void FreeArrays(void) {
     int i,j;
-    for (i=0; i<2; i++)	for (j=0; j<17*65536; j++) {
+    for (i=0; i<2; i++) for (j=0; j<17*65536; j++) {
 	free(uninames[i][j]); free(uniannot[i][j]);
     }
 
