@@ -3,7 +3,7 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 AM_CFLAGS = $(WCFLAGS)
-AM_LDFLAGS = $(WCFLAGS) -no-undefined --mode=link
+AM_LDFLAGS = $(WCFLAGS) -no-undefined
 
 DISTCLEANFILES = libuninameslist.pc
 DISTCHECK_CONFIGURE_FLAGS = --enable-oldfrenchlib
