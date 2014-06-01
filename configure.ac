@@ -99,6 +99,8 @@ esac
 # Pass variables to MAKEFILE.AM
 AC_SUBST([UN_VERSION],[uninameslist_info])
 AC_SUBST([FR_VERSION],[oldfr_info])
+AC_SUBST([NL_VERSION],[uninameslist_nameslist_ver])
+
 #-------------------------------------------
 # Check for and add usable compiler warnings
 AC_LANG_PUSH([C])
