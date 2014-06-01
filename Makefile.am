@@ -34,6 +34,9 @@ if WANTLIBOFR
 include_HEADERS += uninameslist-fr.h
 endif
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libuninameslist.pc
+
 NamesList.txt:
 	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
 

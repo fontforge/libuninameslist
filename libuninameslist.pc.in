@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libuninameslist
 Description: Unicode Names and Annotations List Library
 Version: @VERSION@
-Libs: -L${libdir} -luninameslist
 Cflags: -I${includedir}
+Libs: -L${libdir} -luninameslist
 
