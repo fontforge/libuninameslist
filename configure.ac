@@ -4,7 +4,7 @@ AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
 m4_define([uninameslist_package_stamp], [20130501])
-m4_define([uninameslist_nameslist_ver], [6.2])
+m4_define([uninameslist_nameslist_ver], [7.0]) #This is 7.0_beta until April28th
 #-------------------------------------------
 # Making point releases:
 #   uninameslist_major_version += 0;

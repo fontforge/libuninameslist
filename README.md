@@ -10,7 +10,7 @@ libuninameslist – A Library of Unicode annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver6.2 and ListeDesNoms.txt ver 5.0.
+This program is updated for Nameslist.txt ver7.0 and ListeDesNoms.txt ver 5.0.
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
 Nameslist.txt
@@ -32,17 +32,17 @@ and an annotation. Either or both may be NULL. Both libraries also contain a
 >         int start, end;
 >         const char *name;
 >     };
->  
+>
 >     struct unicode_nameannot {
 >         const char *name, *annot;
 >     };
->   
+>
 >     extern const struct unicode_block UnicodeBlock[???];
->   
+>
 >     #define UNICODE_NAME_MAX    ???
 >     #define UNICODE_ANNOT_MAX   ???
 >     extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
->   
+>
 >     /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
 
 To keep both libraries slightly smaller, the beginning of lines starting with
@@ -106,4 +106,4 @@ See Also
 
 -   [LibUnicodeNames](https://bitbucket.org/sortsmill/libunicodenames) - rewrite of this library, with Python module
 -   [FontForge](http://fontforge.org/) - font editor application that this library was made for
--   [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard 
+-   [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard
