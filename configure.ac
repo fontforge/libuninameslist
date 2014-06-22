@@ -113,8 +113,13 @@ AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS+=" -Wc++-compat"])
 AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS+=" -Wmissing-prototypes"])
 AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS+=" -Wunused"])
 AC_LANG_POP
+
 #-------------------------------------------
+# Pass some definitions to buildnameslist.c
 echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
+AC_DEFINE([LU_VERSION_MJ],[uninameslist_major_version])
+AC_DEFINE([LU_VERSION_MN],[uninameslist_minor_version])
+
 #-------------------------------------------
 AC_PROG_LIBTOOL
 

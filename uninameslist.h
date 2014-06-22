@@ -49,6 +49,10 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* These functions are available in libuninameslist-0.4.20140501 and higher */
 
+/* Version information for this <uninameslist.h> include file */
+#define LIBUNINAMESLIST_MAJOR	0
+#define LIBUNINAMESLIST_MINOR	3
+
 /* Return number of blocks in this NamesList (Version 6.2). */
 int uniNamesList_blockCount(void);
 

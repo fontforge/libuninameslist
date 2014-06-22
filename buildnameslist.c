@@ -338,6 +338,9 @@ static int dumpend(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
 	/* Added functions available in libuninameslist version 0.4 and higher. */
 	fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140501 and higher */\n\n" );
+	fprintf( header, "/* Version information for this <uninameslist.h> include file */\n" );
+	fprintf( header, "#define LIBUNINAMESLIST_MAJOR\t%d\n", LU_VERSION_MJ );
+	fprintf( header, "#define LIBUNINAMESLIST_MINOR\t%d\n\n", LU_VERSION_MN );
 	fprintf( header, "/* Return number of blocks in this NamesList (Version %s). */\n", NL_VERSION );
 	fprintf( header, "int uniNamesList_blockCount(void);\n\n" );
 	fprintf( header, "/* Return block number for this unicode value (-1 if bad unicode value) */\n" );
@@ -496,7 +499,7 @@ static int dump(int is_fr) {
     return( dumpOK );
 }
 
-int main( int argc, char **argv) {
+int main(int argc, char **argv) {
     int errCode=1;
     InitArrays();
     if ( ReadNamesList() && dump(0/*english*/) && dump(1/*french*/) )
