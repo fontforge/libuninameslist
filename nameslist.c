@@ -65,7 +65,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 
 /* Retrieve Nameslist.txt version number. */
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 7.0" );
+	return( "Nameslist-Version: 6.2" );
 }
 
 
@@ -2672,6 +2672,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0485 */ { "COMBINING CYRILLIC DASIA PNEUMATA","	x (combining reversed comma above - 0314)"},
 /* 0486 */ { "COMBINING CYRILLIC PSILI PNEUMATA","	x (combining comma above - 0313)"},
 /* 0487 */ { "COMBINING CYRILLIC POKRYTIE","	* used only with letter titlos\n"
+	"	* also attested in Glagolitic\n"
 	"	x (combining inverted breve - 0311)\n"
 	"	x (combining cyrillic vzmet - A66F)"},
 /* 0488 */ { "COMBINING CYRILLIC HUNDRED THOUSANDS SIGN","	* use 20DD for ten thousands sign"},
@@ -3131,6 +3132,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 061A */ { "ARABIC SMALL KASRA","	* should not be confused with 0650 KASRA"},
 /* 061B */ { "ARABIC SEMICOLON","	* also used with Thaana and Syriac in modern text\n"
 	"	x (semicolon - 003B)\n"
+	"	x (reversed semicolon - 204F)\n"
 	"	x (turned semicolon - 2E35)"},
 /* 061C */ { "ARABIC LETTER MARK","	* commonly abbreviated ALM\n"
 	"	x (right-to-left mark - 200F)"},
@@ -3173,8 +3175,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 063E */ { "ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE",NULL},
 /* 063F */ { "ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE",NULL},
 /* 0640 */ { "ARABIC TATWEEL","	= kashida\n"
-	"	* inserted to stretch characters\n"
-	"	* also used with Syriac"},
+	"	* inserted to stretch characters or to carry tashkil with no base letter\n"
+	"	* also used with Mandaic, Manichaean, Psalter Pahlavi, and Syriac"},
 /* 0641 */ { "ARABIC LETTER FEH",NULL},
 /* 0642 */ { "ARABIC LETTER QAF",NULL},
 /* 0643 */ { "ARABIC LETTER KAF",NULL},
@@ -3183,13 +3185,14 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 0646 */ { "ARABIC LETTER NOON",NULL},
 /* 0647 */ { "ARABIC LETTER HEH",NULL},
 /* 0648 */ { "ARABIC LETTER WAW",NULL},
-/* 0649 */ { "ARABIC LETTER ALEF MAKSURA","	* represents YEH-shaped letter with no dots in any positional form\n"
+/* 0649 */ { "ARABIC LETTER ALEF MAKSURA","	* represents YEH-shaped dual-joining letter with no dots in any positional form\n"
 	"	* not intended for use in combination with 0654\n"
 	"	x (arabic letter yeh with hamza above - 0626)"},
 /* 064A */ { "ARABIC LETTER YEH","	* loses its dots when used in combination with 0654\n"
-	"	* retains its dots when used in combination with other combining marks"},
+	"	* retains its dots when used in combination with other combining marks\n"
+	"	x (arabic letter yeh with two dots below and hamza above - 08A8)"},
 /* 064B */ { "ARABIC FATHATAN",NULL},
-/* 064C */ { "ARABIC DAMMATAN",NULL},
+/* 064C */ { "ARABIC DAMMATAN","	* a common alternative form is written as two intertwined dammas, one of which is turned 180 degrees"},
 /* 064D */ { "ARABIC KASRATAN",NULL},
 /* 064E */ { "ARABIC FATHA",NULL},
 /* 064F */ { "ARABIC DAMMA",NULL},
@@ -3200,8 +3203,8 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	* can have a variety of shapes, including a circular one and a shape that looks like '06E1'\n"
 	"	x (arabic small high dotless head of khah - 06E1)"},
 /* 0653 */ { "ARABIC MADDAH ABOVE",NULL},
-/* 0654 */ { "ARABIC HAMZA ABOVE","	* not restricted to hamza semantics\n"
-	"	* may also occur as a diacritic forming new letters"},
+/* 0654 */ { "ARABIC HAMZA ABOVE","	* restricted to hamza and ezafe semantics\n"
+	"	* is not used as a diacritic to form new letters"},
 /* 0655 */ { "ARABIC HAMZA BELOW",NULL},
 /* 0656 */ { "ARABIC SUBSCRIPT ALEF",NULL},
 /* 0657 */ { "ARABIC INVERTED DAMMA","	= ulta pesh\n"
@@ -3212,7 +3215,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 065A */ { "ARABIC VOWEL SIGN SMALL V ABOVE","	* African languages"},
 /* 065B */ { "ARABIC VOWEL SIGN INVERTED SMALL V ABOVE","	* African languages"},
 /* 065C */ { "ARABIC VOWEL SIGN DOT BELOW","	* African languages"},
-/* 065D */ { "ARABIC REVERSED DAMMA","	* Ormuri, African languages"},
+/* 065D */ { "ARABIC REVERSED DAMMA","	* African languages"},
 /* 065E */ { "ARABIC FATHA WITH TWO DOTS","	* Kalami"},
 /* 065F */ { "ARABIC WAVY HAMZA BELOW","	* Kashmiri"},
 /* 0660 */ { "ARABIC-INDIC DIGIT ZERO",NULL},
@@ -3298,7 +3301,7 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	* Kurdish, Khwarazmian, early Persian"},
 /* 06A5 */ { "ARABIC LETTER FEH WITH THREE DOTS BELOW","	* North African Arabic for foreign words"},
 /* 06A6 */ { "ARABIC LETTER PEHEH","	* Sindhi"},
-/* 06A7 */ { "ARABIC LETTER QAF WITH DOT ABOVE","	* Maghrib Arabic"},
+/* 06A7 */ { "ARABIC LETTER QAF WITH DOT ABOVE","	* Maghrib Arabic, Uighur"},
 /* 06A8 */ { "ARABIC LETTER QAF WITH THREE DOTS ABOVE","	* Tunisian Arabic"},
 /* 06A9 */ { "ARABIC LETTER KEHEH","	* Persian, Urdu, ..."},
 /* 06AA */ { "ARABIC LETTER SWASH KAF","	* represents a letter distinct from Arabic KAF (0643) in Sindhi"},
@@ -3318,17 +3321,16 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06B7 */ { "ARABIC LETTER LAM WITH THREE DOTS ABOVE","	* Kurdish"},
 /* 06B8 */ { "ARABIC LETTER LAM WITH THREE DOTS BELOW",NULL},
 /* 06B9 */ { "ARABIC LETTER NOON WITH DOT BELOW",NULL},
-/* 06BA */ { "ARABIC LETTER NOON GHUNNA","	* Urdu\n"
-	"	* dotless in all contextual forms"},
+/* 06BA */ { "ARABIC LETTER NOON GHUNNA","	* Urdu, archaic Arabic\n"
+	"	* dotless in all four contextual forms"},
 /* 06BB */ { "ARABIC LETTER RNOON","	* Sindhi"},
 /* 06BC */ { "ARABIC LETTER NOON WITH RING","	* Pashto"},
 /* 06BD */ { "ARABIC LETTER NOON WITH THREE DOTS ABOVE","	* old Malay"},
-/* 06BE */ { "ARABIC LETTER HEH DOACHASHMEE","	* Urdu\n"
-	"	* forms aspirate digraphs"},
+/* 06BE */ { "ARABIC LETTER HEH DOACHASHMEE","	* forms aspirate digraphs in Urdu and other languages of South Asia\n"
+	"	* represents the glottal fricative /h/ in Uighur"},
 /* 06BF */ { "ARABIC LETTER TCHEH WITH DOT ABOVE",NULL},
 /* 06C0 */ { "ARABIC LETTER HEH WITH YEH ABOVE","	= arabic letter hamzah on ha (1.0)\n"
-	"	= izafet\n"
-	"	* Urdu\n"
+	"	* for ezafe, use 0654 over the language-appropriate base letter\n"
 	"	* actually a ligature, not an independent letter\n"
 	"	: 06D5 0654"},
 /* 06C1 */ { "ARABIC LETTER HEH GOAL","	* Urdu"},
@@ -3377,8 +3379,8 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	x (arabic sukun - 0652)"},
 /* 06E2 */ { "ARABIC SMALL HIGH MEEM ISOLATED FORM",NULL},
 /* 06E3 */ { "ARABIC SMALL LOW SEEN",NULL},
-/* 06E4 */ { "ARABIC SMALL HIGH MADDA",NULL},
-/* 06E5 */ { "ARABIC SMALL WAW",NULL},
+/* 06E4 */ { "ARABIC SMALL HIGH MADDA","	* typically used with 06E5, 06E6, 06E7, and 08F3"},
+/* 06E5 */ { "ARABIC SMALL WAW","	x (arabic small high waw - 08F3)"},
 /* 06E6 */ { "ARABIC SMALL YEH",NULL},
 /* 06E7 */ { "ARABIC SMALL HIGH YEH",NULL},
 /* 06E8 */ { "ARABIC SMALL HIGH NOON",NULL},
@@ -3950,11 +3952,13 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 090B */ { "DEVANAGARI LETTER VOCALIC R",NULL},
 /* 090C */ { "DEVANAGARI LETTER VOCALIC L",NULL},
 /* 090D */ { "DEVANAGARI LETTER CANDRA E",NULL},
-/* 090E */ { "DEVANAGARI LETTER SHORT E","	* for transcribing Dravidian short e"},
+/* 090E */ { "DEVANAGARI LETTER SHORT E","	* Kashmiri, Bihari languages\n"
+	"	* also used for transcribing Dravidian short e"},
 /* 090F */ { "DEVANAGARI LETTER E",NULL},
 /* 0910 */ { "DEVANAGARI LETTER AI",NULL},
 /* 0911 */ { "DEVANAGARI LETTER CANDRA O",NULL},
-/* 0912 */ { "DEVANAGARI LETTER SHORT O","	* for transcribing Dravidian short o"},
+/* 0912 */ { "DEVANAGARI LETTER SHORT O","	* Kashmiri, Bihari languages\n"
+	"	* also used for transcribing Dravidian short o"},
 /* 0913 */ { "DEVANAGARI LETTER O",NULL},
 /* 0914 */ { "DEVANAGARI LETTER AU",NULL},
 /* 0915 */ { "DEVANAGARI LETTER KA",NULL},
@@ -4010,18 +4014,20 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 0943 */ { "DEVANAGARI VOWEL SIGN VOCALIC R",NULL},
 /* 0944 */ { "DEVANAGARI VOWEL SIGN VOCALIC RR",NULL},
 /* 0945 */ { "DEVANAGARI VOWEL SIGN CANDRA E","	= candra"},
-/* 0946 */ { "DEVANAGARI VOWEL SIGN SHORT E","	* for transcribing Dravidian vowels"},
+/* 0946 */ { "DEVANAGARI VOWEL SIGN SHORT E","	* Kashmiri, Bihari languages\n"
+	"	* also used for transcribing Dravidian short e"},
 /* 0947 */ { "DEVANAGARI VOWEL SIGN E",NULL},
 /* 0948 */ { "DEVANAGARI VOWEL SIGN AI",NULL},
 /* 0949 */ { "DEVANAGARI VOWEL SIGN CANDRA O",NULL},
-/* 094A */ { "DEVANAGARI VOWEL SIGN SHORT O","	* for transcribing Dravidian vowels"},
+/* 094A */ { "DEVANAGARI VOWEL SIGN SHORT O","	* Kashmiri, Bihari languages\n"
+	"	* also used for transcribing Dravidian short o"},
 /* 094B */ { "DEVANAGARI VOWEL SIGN O",NULL},
 /* 094C */ { "DEVANAGARI VOWEL SIGN AU",NULL},
 /* 094D */ { "DEVANAGARI SIGN VIRAMA","	= halant (the preferred Hindi name)\n"
 	"	* suppresses inherent vowel"},
 /* 094E */ { "DEVANAGARI VOWEL SIGN PRISHTHAMATRA E","	* character has historic use only\n"
 	"	* combines with E to form AI, with AA to form O, and with O to form AU"},
-/* 094F */ { "DEVANAGARI VOWEL SIGN AW","	* Kashmiri"},
+/* 094F */ { "DEVANAGARI VOWEL SIGN AW","	* Kashmiri, Bihari languages"},
 /* 0950 */ { "DEVANAGARI OM","	x (om symbol - 1F549)"},
 /* 0951 */ { "DEVANAGARI STRESS SIGN UDATTA","	= Vedic tone svarita\n"
 	"	* mostly used for svarita, with rare use for udatta\n"
@@ -9637,7 +9643,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DFA */ { NULL,NULL},
 /* 1DFB */ { NULL,NULL},
 /* 1DFC */ { "COMBINING DOUBLE INVERTED BREVE BELOW",NULL},
-/* 1DFD */ { "COMBINING ALMOST EQUAL TO BELOW",NULL},
+/* 1DFD */ { "COMBINING ALMOST EQUAL TO BELOW","	* diacritic indicating a strident vowel in Khoisan languages"},
 /* 1DFE */ { "COMBINING LEFT ARROWHEAD ABOVE",NULL},
 /* 1DFF */ { "COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW",NULL}
 };
@@ -10404,7 +10410,9 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 204D */ { "BLACK RIGHTWARDS BULLET",NULL},
 /* 204E */ { "LOW ASTERISK","	x (asterisk - 002A)\n"
 	"	x (combining asterisk below - 0359)"},
-/* 204F */ { "REVERSED SEMICOLON","	x (semicolon - 003B)"},
+/* 204F */ { "REVERSED SEMICOLON","	* also used in Sindhi\n"
+	"	x (semicolon - 003B)\n"
+	"	x (arabic semicolon - 061B)"},
 /* 2050 */ { "CLOSE UP","	* editing mark\n"
 	"	x (modifier breve with inverted breve - AB5B)"},
 /* 2051 */ { "TWO ASTERISKS ALIGNED VERTICALLY",NULL},
@@ -14868,7 +14876,8 @@ static const struct unicode_nameannot una_00_2E[] = {
 	"	x (double oblique hyphen - 2E17)\n"
 	"	x (katakana-hiragana double hyphen - 30A0)\n"
 	"	x (modifier letter short equals sign - A78A)"},
-/* 2E41 */ { "REVERSED COMMA","	x (comma - 002C)\n"
+/* 2E41 */ { "REVERSED COMMA","	* also used in Sindhi\n"
+	"	x (comma - 002C)\n"
 	"	x (arabic comma - 060C)"},
 /* 2E42 */ { "DOUBLE LOW-REVERSED-9 QUOTATION MARK","	x (double low-9 quotation mark - 201E)"},
 /* 2E43 */ { NULL,NULL},
@@ -15695,7 +15704,7 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 3124 */ { "BOPOMOFO LETTER ANG",NULL},
 /* 3125 */ { "BOPOMOFO LETTER ENG",NULL},
 /* 3126 */ { "BOPOMOFO LETTER ER",NULL},
-/* 3127 */ { "BOPOMOFO LETTER I","	* the horizontal stroke form is considered a rendering variant"},
+/* 3127 */ { "BOPOMOFO LETTER I","	* the horizontal stroke form is considered a vertical variant"},
 /* 3128 */ { "BOPOMOFO LETTER U",NULL},
 /* 3129 */ { "BOPOMOFO LETTER IU",NULL},
 /* 312A */ { "BOPOMOFO LETTER V",NULL},
@@ -18510,7 +18519,7 @@ static const struct unicode_nameannot una_00_A6[] = {
 /* A66C */ { "CYRILLIC CAPITAL LETTER DOUBLE MONOCULAR O",NULL},
 /* A66D */ { "CYRILLIC SMALL LETTER DOUBLE MONOCULAR O","	* used in the dual of words based on the root for 'eye'"},
 /* A66E */ { "CYRILLIC LETTER MULTIOCULAR O","	* used in the epithet 'many-eyed'"},
-/* A66F */ { "COMBINING CYRILLIC VZMET","	* used with Cyrillic letters to indicate abbreviation\n"
+/* A66F */ { "COMBINING CYRILLIC VZMET","	* used with Cyrillic and Glagolitic letters to indicate abbreviation\n"
 	"	x (combining cyrillic titlo - 0483)\n"
 	"	x (combining cyrillic pokrytie - 0487)"},
 /* A670 */ { "COMBINING CYRILLIC TEN MILLIONS SIGN","	x (combining cyrillic millions sign - 0489)"},
@@ -37115,13 +37124,13 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F53E */ { "LOWER RIGHT SHADOWED WHITE CIRCLE","	= circle shadow down\n"
 	"	x (shadowed white circle - 274D)"},
 /* 1F53F */ { "UPPER RIGHT SHADOWED WHITE CIRCLE",NULL},
-/* 1F540 */ { "CIRCLED CROSS POMMEE","	* Orthodox typikon symbol for great feast service"},
-/* 1F541 */ { "CROSS POMMEE WITH HALF-CIRCLE BELOW","	* Orthodox typikon symbol for vigil service"},
-/* 1F542 */ { "CROSS POMMEE","	* Orthodox typikon symbol for Polyeleos\n"
+/* 1F540 */ { "CIRCLED CROSS POMMEE","	* Orthodox typicon symbol for great feast service"},
+/* 1F541 */ { "CROSS POMMEE WITH HALF-CIRCLE BELOW","	* Orthodox typicon symbol for vigil service"},
+/* 1F542 */ { "CROSS POMMEE","	* Orthodox typicon symbol for Polyeleos\n"
 	"	x (four teardrop-spoked asterisk - 2722)"},
-/* 1F543 */ { "NOTCHED LEFT SEMICIRCLE WITH THREE DOTS","	* Orthodox typikon symbol for lower rank feast"},
-/* 1F544 */ { "NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS","	* Orthodox typikon for lower rank feast"},
-/* 1F545 */ { "SYMBOL FOR MARKS CHAPTER","	* Orthodox typikon for difficult sections "},
+/* 1F543 */ { "NOTCHED LEFT SEMICIRCLE WITH THREE DOTS","	* Orthodox typicon symbol for lower rank feast"},
+/* 1F544 */ { "NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS","	* Orthodox typicon symbol for lower rank feast"},
+/* 1F545 */ { "SYMBOL FOR MARKS CHAPTER","	* Orthodox typicon symbol for difficult sections"},
 /* 1F546 */ { "WHITE LATIN CROSS","	= cross outline\n"
 	"	x (shadowed white latin cross - 271E)"},
 /* 1F547 */ { "HEAVY LATIN CROSS",NULL},
@@ -37599,7 +37608,7 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6E1 */ { "SHIELD","	= US road interstate highway"},
 /* 1F6E2 */ { "OIL DRUM","	= commodities"},
 /* 1F6E3 */ { "MOTORWAY",NULL},
-/* 1F6E4 */ { "RAILWAYS TRACK","	= railroad"},
+/* 1F6E4 */ { "RAILWAY TRACK","	= railroad"},
 /* 1F6E5 */ { "MOTOR BOAT","	= boat\n"
 	"	x (speedboat - 1F6A4)"},
 /* 1F6E6 */ { "UP-POINTING MILITARY AIRPLANE","	= military airport"},

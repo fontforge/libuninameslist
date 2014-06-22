@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
-m4_define([uninameslist_package_stamp], [20130501])
-m4_define([uninameslist_nameslist_ver], [7.0]) #This is 7.0_beta until April28th
+m4_define([uninameslist_package_stamp], [20130621])
+m4_define([uninameslist_nameslist_ver], [7.0]) #Preliminary before releasing version 0.4
 #-------------------------------------------
 # Making point releases:
 #   uninameslist_major_version += 0;
