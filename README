@@ -20,9 +20,14 @@ added, they will be added to the bottom of this list.
 1) const char *uniNamesList_name(unsigned long uni);
 2) const char *uniNamesList_annot(unsigned long uni);
 3) const char *uniNamesList_NamesListVersion(void);
+4) int uniNamesList_blockCount(void);
+5) int uniNamesList_blockNumber(unsigned long uni);
+6) long uniNamesList_blockStart(int uniBlock);
+7) long uniNamesList_blockEnd(int uniBlock);
+8) const char *uniNamesList_blockName(int uniBlock);
 
 For a better description of each function, check "nameslist.h", and you can
-see an example of how to use these funtions in Fontforge ~ 2013xxxx
+see an example of how to use these funtions in Fontforge ~ 2014xxxx
 
 Building and Installing LibUniNamesList
 ***************************************
@@ -30,13 +35,14 @@ Building and Installing LibUniNamesList
 Read the file INSTALLATION for details on building LibUniNamesList using this
 package. This package contains 2 libraries, but only 1 is built by default:
 	1) libuninameslist - holds NamesList.txt data from www.unicode.org
-	2) libuninameslist-fr - holds an older French 5.0 NamesList.txt
-If you need the older libuninameslist-fr library then you will need to enable
+	2) libuninameslist-fr - currently holds French 7.0 NamesList.txt
+If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is to not build it since this library
-appears not to be maintained any longer (last version found was 5.0).
-	configure --enable-oldfrenchlib
-(Also note, that due to it being an older version, you will want to make use
-of "nameslist-fr.h" since some information and dimensions are different)
+was not maintained for a while (prior version was still at 5.0 for a while).
+	configure --enable-frenchlib
+(Also note, that other libraries may not necessarily be at the same version,
+so you will want to make use of "nameslist-fr.h" since some information and
+dimensions are different)
 
 The build process can be summarized quickly like this:
 
@@ -62,29 +68,35 @@ This means every now and then, LibUniNamesList needs to be updated with new
 information. To do this, you will need to get the latest NamesList.txt file
 from www.unicode.org which will then be used to build a new namelist.c file.
 
-Let's say the next version of NamesList is version 6.2.
+Let's say the next version of NamesList is version 7.0.
 1) Update configure.ac with the new timestamp:
-	uninameslist_package_stamp "20130501"	<-"YYYYMMDD" format
+	uninameslist_package_stamp "20140731"	<-"YYYYMMDD" format
 2) Update configure.ac with the new NamesList version:
-	uninameslist_nameslist_ver "6.2"
-3) Increment the point release, was 0.2, now becomes 0.3. NOTE: This minor
+	uninameslist_nameslist_ver "7.0"
+3) Increment the point release, was 0.3, now becomes 0.4. NOTE: This minor
    point number may get large since LibUniNamesList is backwards compatible.
 	uninameslist_major_version '0'
-	uninameslist_minor_version '3'
-   (if a future update of ListeDesNoms.txt >5.0 appears, then update this;
-	oldfr_major_version '0'
-	oldfr_minor_version '2' )
+	uninameslist_minor_version '4'
+   (if a future update of ListeDesNoms.txt >7.0 appears, then update this;
+	fr_major_version '0'
+	fr_minor_version '4' )
 4) Update the config system, and create a versioned buildnameslist.h:
 	autoreconf -i -Wall
 	automake --foreign
 	./configure
-5) Build new updated {nameslist.c, nameslist.h, nameslist-fr.c} files.
-   You will need NamesList.txt and ListeDesNoms.txt in the same directory.
-	gcc -o buildnameslist buildnameslist.c
+5) Build the buildnameslist program:
+	make
+6) Import "NamesList.txt" and "ListeDesNoms.txt" into the same directory:
+	make NamesList.txt
+	make ListeDesNoms.txt
+7) Create new updated {nameslist*.c, uninameslist*.h} files:
 	./buildnameslist
+	make clean
+	make
+
 
 Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2013-may-01, by Joe Da Silva
+	2014-jul-31, by Joe Da Silva

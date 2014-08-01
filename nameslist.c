@@ -9,7 +9,7 @@ The data contained in these arrays were derived from data contained in
 NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
-Copyright © 1991-2013 Unicode, Inc. All rights reserved.
+Copyright © 1991-2014 Unicode, Inc. All rights reserved.
 Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Unicode data files and any associated documentation (the "Data Files")
@@ -65,11 +65,11 @@ const char *uniNamesList_annot(unsigned long uni) {
 
 /* Retrieve Nameslist.txt version number. */
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 6.2" );
+	return( "Nameslist-Version: 7.0" );
 }
 
 
-/* These functions are available in libuninameslist-0.4.20140501 and higher */
+/* These functions are available in libuninameslist-0.4.20140731 and higher */
 
 /* Return number of blocks in this NamesList. */
 int uniNamesList_blockCount(void) {

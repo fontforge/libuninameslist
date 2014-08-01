@@ -16,13 +16,15 @@ static char *uniannot[2][17*65536];
 static struct block { int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
+unsigned max_a, max_n;
+
 static int printcopyright1(FILE *out) {
-/*Copyright notice for unicode NamesList.txt - 2013 */
+/*Copyright notice for unicode NamesList.txt - 2014 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2013 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2014 Unicode, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
     fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
@@ -100,7 +102,7 @@ static void FreeArrays(void) {
 }
 
 static int ReadNamesList(void) {
-    char buffer[500];
+    char buffer[2000];
     FILE *nl;
     int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
@@ -109,7 +111,7 @@ static int ReadNamesList(void) {
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
 	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
-	"http://hapax.qc.ca/ListeDesNoms-5.0.0.txt"
+	"http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt (latin base char set)"
     };
 
     for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
@@ -226,6 +228,7 @@ static void dumpstring(char *str,FILE *out) {
 }
 
 static int dumpinit(FILE *out, FILE *header, int is_fr) {
+    /* is_fr => 0=english, 1=french */
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
@@ -256,7 +259,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "const char *uniNamesList_NamesListVersion(void) {\n" );
 	fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", NL_VERSION );
 	/* Added functions available in libuninameslist version 0.4 and higher. */
-	fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140501 and higher */\n\n" );
+	fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
 	fprintf( out, "/* Return number of blocks in this NamesList. */\n" );
 	fprintf( out, "int uniNamesList_blockCount(void) {\n" );
 	fprintf( out, "\treturn( UNICODE_BLOCK_MAX );\n}\n\n" );
@@ -337,7 +340,7 @@ static int dumpend(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
 	/* Added functions available in libuninameslist version 0.4 and higher. */
-	fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140501 and higher */\n\n" );
+	fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
 	fprintf( header, "/* Version information for this <uninameslist.h> include file */\n" );
 	fprintf( header, "#define LIBUNINAMESLIST_MAJOR\t%d\n", LU_VERSION_MJ );
 	fprintf( header, "#define LIBUNINAMESLIST_MINOR\t%d\n\n", LU_VERSION_MN );
@@ -352,6 +355,11 @@ static int dumpend(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "/* Return a pointer to the blockname for this unicode block. */\n" );
 	fprintf( header, "/* This value points to a constant string inside the library */\n" );
 	fprintf( header, "const char *uniNamesList_blockName(int uniBlock);\n\n" );
+    }
+    if ( is_fr==1 ) {
+	fprintf( header, "/* French NamesList (Version %s). */\n", NFR_VERSION );
+	fprintf( header, "#define LIBUNINAMESLIST_FR_MAJOR\t%d\n", LFR_VERSION_MJ );
+	fprintf( header, "#define LIBUNINAMESLIST_FR_MINOR\t%d\n\n", LFR_VERSION_MN );
     }
     fprintf( header, "#endif\n" );
     return( 1 );
@@ -383,10 +391,21 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
 	if ( uninames[is_fr][i]!=NULL && maxn<strlen(uninames[is_fr][i])) maxn = strlen(uninames[is_fr][i]);
 	if ( uniannot[is_fr][i]!=NULL && maxa<strlen(uniannot[is_fr][i])) maxa = strlen(uniannot[is_fr][i]);
     }
-    fprintf( header, "\n/* NOTE: These 2 constants are correct for this version of libuninameslist, */\n" );
+    if (maxn > max_n ) max_n = maxn;
+    if (maxa > max_a ) max_a = maxa;
+
+    fprintf( header, "\n/* NOTE: These %d constants are correct for this version of libuninameslist, */\n", is_fr ? 2: 4 );
     fprintf( header, "/* but can change for later versions of NamesList (use as an example guide) */\n" );
-    fprintf( header, "#define UNICODE_NAME_MAX\t%d\n", maxn );
-    fprintf( header, "#define UNICODE_ANNOT_MAX\t%d\n", maxa );
+    if ( is_fr==0 ) {
+	fprintf( header, "#define UNICODE_NAME_MAX\t%d\n", max_n );
+	fprintf( header, "#define UNICODE_ANNOT_MAX\t%d\n", max_a );
+	fprintf( header, "#define UNICODE_EN_NAME_MAX\t%d\n", maxn );
+	fprintf( header, "#define UNICODE_EN_ANNOT_MAX\t%d\n", maxa );
+    }
+    if ( is_fr==1 ) {
+	fprintf( header, "#define UNICODE_FR_NAME_MAX\t%d\n", maxn );
+	fprintf( header, "#define UNICODE_FR_ANNOT_MAX\t%d\n", maxa );
+    }
     return( 1 );
 }
 
@@ -502,7 +521,8 @@ static int dump(int is_fr) {
 int main(int argc, char **argv) {
     int errCode=1;
     InitArrays();
-    if ( ReadNamesList() && dump(0/*english*/) && dump(1/*french*/) )
+    max_a = max_n = 0;
+    if ( ReadNamesList() && dump(1/*french*/) && dump(0/*english*/) )
 	errCode=0;
     FreeArrays();
     return( errCode );

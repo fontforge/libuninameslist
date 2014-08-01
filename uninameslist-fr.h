@@ -12,16 +12,16 @@ struct unicode_nameannot {
 	const char *name, *annot;
 };
 
-/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[168] */
+/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[259] */
 /* because newer version of NamesList.txt can have more blocks than before. */
 /* To allow for future use of libuninameslist without changing your program */
 /* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
-extern const struct unicode_block UnicodeBlock[168];
+extern const struct unicode_block UnicodeBlock[259];
 
 /* NOTE: These 2 constants are correct for this version of libuninameslist, */
 /* but can change for later versions of NamesList (use as an example guide) */
-#define UNICODE_NAME_MAX	104
-#define UNICODE_ANNOT_MAX	509
+#define UNICODE_FR_NAME_MAX	105
+#define UNICODE_FR_ANNOT_MAX	509
 extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
 /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
@@ -32,5 +32,9 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 /*  : should be replaced by an equivalent U+224D */
 /*  # should be replaced by an approximate U+2245 */
 /*  = should remain itself */
+
+/* French NamesList (Version 7.0). */
+#define LIBUNINAMESLIST_FR_MAJOR	0
+#define LIBUNINAMESLIST_FR_MINOR	4
 
 #endif

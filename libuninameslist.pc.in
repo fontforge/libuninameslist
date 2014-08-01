@@ -7,6 +7,6 @@ Name: libuninameslist
 Description: Unicode Names and Annotations List Library (NamesList.txt=@NL_VERSION@)
 URL: https://github.com/fontforge/libuninameslist
 Version: @VERSION@
-Libs: -L${libdir} -luninameslist
+Libs: -L${libdir} @LIBUNINAMESLIST_PKGCONFIG_LIBS@
 Cflags: -I${includedir}
 

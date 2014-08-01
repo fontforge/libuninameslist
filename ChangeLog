@@ -1,3 +1,6 @@
+- 31-Jul-2014
+    * Version 0.4. Unicode 7.0. Updated French version to 7.0(2014-06-22).
+
 - 08-Mar-2014
     * Unicode 7.0_Beta (Nameslist.txt 7.0 for review, French stays at 5.0).
     * Added function for block {start, end, name, number} for version 0.4.
