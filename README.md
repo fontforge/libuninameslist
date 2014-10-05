@@ -1,5 +1,5 @@
-libuninameslist – A Library of Unicode annotation data
-======================================================
+libuninameslist – A Library of Unicode names and annotation data
+================================================================
 
 -   [Description](#description)
 -   [Installation and Build instructions](#installation-and-build-instructions)
@@ -10,18 +10,20 @@ libuninameslist – A Library of Unicode annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver7.0 and ListeDesNoms.txt ver 5.0.
+This program is updated for Nameslist.txt ver7.0 and ListeDesNoms.txt ver 7.0.
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
 Nameslist.txt
 The Unicode consortium provides [a file containing annotations on many unicode
 characters.](http://www.unicode.org/Public/UNIDATA/NamesList.html) This library
-contains a compiled version of this file so that programs can access these data
-easily.
+contains a compiled version of this file so that programs can access this data
+quickly and easily.
 
 ListeDesNoms.txt
-Is a seperate file which was translated from Nameslist.txt and currently outdated,
-but contained here for backwards compatibility with older programs that may use it.
+Is a seperate file which is translated from Nameslist.txt and was outdated for
+a period of time but is now recently updated by a group of developers who have
+updated it upto version 7.0. Contibutors to that file is listed in that file.
+
 
 These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
@@ -57,11 +59,16 @@ TAB can be expanded with UTF-8 character substitutions as defined below:
 
 With the default configure option chosen, this package will install one library
 file and one header file. The library file is 'libuninameslist', and the header
-is `<uninameslist.h>`. You can access to these three functions:
+is `<uninameslist.h>`. You can access these eight functions:
 
 >     const char *uniNamesList_name(unsigned long uni);
 >     const char *uniNamesList_annot(unsigned long uni);
 >     const char *uniNamesList_NamesListVersion(void);
+>     int uniNamesList_blockCount(void);
+>     int uniNamesList_blockNumber(unsigned long uni);
+>     long uniNamesList_blockStart(int uniBlock);
+>     long uniNamesList_blockEnd(int uniBlock);
+>     const char *uniNamesList_blockName(int uniBlock);
 
 and for backwards compatibility for older programs that still use it, there is:
 
@@ -77,19 +84,33 @@ immediately follow a tab at the start of a line converted to a bullet
 character. Etc.
 
 If you choose to install the second library as well, then you will need to
-use ./configure --enable-oldfrenchlib
-This library only uses the older method so that it does not need to be
-updated any further (latest library version now at 0.3). The header file
-for this library is `<uninameslist-fr.h>`
+use ./configure --enable-frenchlib
+This library only uses the older method at the moment since it is not decided
+yet if they should also have there own identical functions as the mainline
+Namelist.txt, or if it/they should be accessed through the mainline library
+by creating new additional functions 9 to n for accessing this/these other
+library/libraries.
+The header file the french library is `<uninameslist-fr.h>`
 
 Installation and Build instructions
 -----------------------------------
 
-Download the source from git:
+Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 
+```bash
+wget https://github.com/fontforge/libuninameslist/archive/0.4.20140731.tar.gz
+tar -xzf 0.4.20140731.tar.gz
+$ cd libuninameslist
+```
+
+or download the latest HEAD from github:
 ```bash
 $ git clone https://github.com/fontforge/libuninameslist.git;
 $ cd libuninameslist
+```
+
+Then build and install the library
+```bash
 $ autoreconf -i
 $ automake --foreign
 $ ./configure
@@ -99,7 +120,8 @@ $ sudo make install | su
 ```
 
 If you need to also include libuninameslist-fr, you will want to use:
-$ ./configure --enable-oldfrlib
+$ ./configure --help
+$ ./configure --enable-frenchlib
 
 See Also
 --------

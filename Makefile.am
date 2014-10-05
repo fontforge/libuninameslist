@@ -42,7 +42,7 @@ NamesList.txt:
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt" -O ListeDesNoms.latin1
-	iconv -f latin1 ListeDesNoms.latin -o ListeDesNoms.txt
+	iconv -f latin1 ListeDesNoms.latin1 -o ListeDesNoms.txt
 
 CLEANFILES = NamesList.txt ListeDesNoms.latin1 ListeDesNoms.txt buildnameslist buildnameslist.h
 

@@ -26,8 +26,8 @@ added, they will be added to the bottom of this list.
 7) long uniNamesList_blockEnd(int uniBlock);
 8) const char *uniNamesList_blockName(int uniBlock);
 
-For a better description of each function, check "nameslist.h", and you can
-see an example of how to use these funtions in Fontforge ~ 2014xxxx
+For a better description of each function, check "uninameslist.h", and you
+can see an example of how to use these funtions in Fontforge ~ 2014xxxx
 
 Building and Installing LibUniNamesList
 ***************************************
