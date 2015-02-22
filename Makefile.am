@@ -1,9 +1,11 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
-ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = -I m4 $(ACLOCAL_FLAGS)
 
 AM_CFLAGS = $(WCFLAGS)
 AM_LDFLAGS = $(WCFLAGS) -no-undefined
+
+LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
 DISTCLEANFILES = libuninameslist.pc
 DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib
@@ -36,6 +38,9 @@ endif
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libuninameslist.pc
+
+libtool: $(LIBTOOL_DEPS)
+	$(SHELL) ./config.status libtool
 
 NamesList.txt:
 	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt

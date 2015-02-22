@@ -50,7 +50,7 @@ AC_CONFIG_MACRO_DIR([m4])
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 LT_INIT
-AC_SUBST(LIBTOOL_DEPS)
+AC_SUBST([LIBTOOL_DEPS])
 
 AC_PROG_CC
 AC_PROG_INSTALL
@@ -105,16 +105,17 @@ AC_SUBST([NFR_VERSION],[uninameslist_fr_nameslist_ver])
 
 #-------------------------------------------
 # Check for and add usable compiler warnings
+WCFLAGS=""
 AC_LANG_PUSH([C])
-AC_SUBST([WCFLAGS],[])
-AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS+=" -Wall"])
-AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS+=" -Wextra"])
-AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS+=" -Wcast-align"])
-AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS+=" -Wbad-function-cast"])
-AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS+=" -Wc++-compat"])
-AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS+=" -Wmissing-prototypes"])
-AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS+=" -Wunused"])
+AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS="$WCFLAGS -Wall"])
+AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS="$WCFLAGS -Wextra"])
+AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS="$WCFLAGS -Wbad-function-cast"])
+AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS="$WCFLAGS -Wc++-compat"])
+AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-prototypes"])
+AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
 AC_LANG_POP
+AC_SUBST(WCFLAGS)
 
 #-------------------------------------------
 # Pass some definitions to buildnameslist.c

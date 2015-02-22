@@ -10,7 +10,8 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver7.0 and ListeDesNoms.txt ver 7.0.
+This program is updated for Nameslist.txt ver 7.0 and ListeDesNoms.txt ver 7.0.
+
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
 Nameslist.txt
@@ -21,8 +22,8 @@ quickly and easily.
 
 ListeDesNoms.txt
 Is a seperate file which is translated from Nameslist.txt and was outdated for
-a period of time but is now recently updated by a group of developers who have
-updated it upto version 7.0. Contibutors to that file is listed in that file.
+a period of time but was recently updated by a group of developers who have
+updated it up to version 7.0. Contibutors to that file are listed in that file.
 
 
 These libraries contain very large (sparse) arrays with one entry for each
@@ -112,11 +113,10 @@ $ cd libuninameslist
 Then build and install the library
 ```bash
 $ autoreconf -i
-$ automake --foreign
+$ automake
 $ ./configure
 $ make
-$ sudo make install | su
-# make install
+$ sudo make install
 ```
 
 If you need to also include libuninameslist-fr, you will want to use:
@@ -126,6 +126,5 @@ $ ./configure --enable-frenchlib
 See Also
 --------
 
--   [LibUnicodeNames](https://bitbucket.org/sortsmill/libunicodenames) - rewrite of this library, with Python module
--   [FontForge](http://fontforge.org/) - font editor application that this library was made for
+-   [FontForge](http://github.com/fontforge/fontforge/) - font editor application that this library was made for
 -   [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard
