@@ -19,12 +19,12 @@ static struct block { int start, end; char *name; struct block *next;}
 unsigned max_a, max_n;
 
 static int printcopyright1(FILE *out) {
-/*Copyright notice for unicode NamesList.txt - 2014 */
+/*Copyright notice for unicode NamesList.txt - 2015 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2014 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2015 Unicode, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
     fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
@@ -110,7 +110,7 @@ static int ReadNamesList(void) {
     int i;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
+	"http://www.unicode.org/Public/UNIDATA/NamesList-8.0.0d6.txt",
 	"http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt (latin base char set)"
     };
 

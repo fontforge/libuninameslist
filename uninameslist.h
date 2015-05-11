@@ -12,19 +12,19 @@ struct unicode_nameannot {
 	const char *name, *annot;
 };
 
-/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[266] */
+/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[276] */
 /* because newer version of NamesList.txt can have more blocks than before. */
 /* To allow for future use of libuninameslist without changing your program */
 /* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
-#define UNICODE_BLOCK_MAX	266
-extern const struct unicode_block UnicodeBlock[266];
+#define UNICODE_BLOCK_MAX	276
+extern const struct unicode_block UnicodeBlock[276];
 
 /* NOTE: These 4 constants are correct for this version of libuninameslist, */
 /* but can change for later versions of NamesList (use as an example guide) */
-#define UNICODE_NAME_MAX	105
-#define UNICODE_ANNOT_MAX	509
+#define UNICODE_NAME_MAX	104
+#define UNICODE_ANNOT_MAX	513
 #define UNICODE_EN_NAME_MAX	83
-#define UNICODE_EN_ANNOT_MAX	496
+#define UNICODE_EN_ANNOT_MAX	513
 extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
 /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
@@ -55,7 +55,7 @@ const char *uniNamesList_NamesListVersion(void);
 #define LIBUNINAMESLIST_MAJOR	0
 #define LIBUNINAMESLIST_MINOR	4
 
-/* Return number of blocks in this NamesList (Version 7.0). */
+/* Return number of blocks in this NamesList (Version 7.9). */
 int uniNamesList_blockCount(void);
 
 /* Return block number for this unicode value (-1 if bad unicode value) */
