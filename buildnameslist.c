@@ -5,6 +5,8 @@
 
 #include "buildnameslist.h"
 
+#define UNUSED_PARAMETER(x) ((void)x)
+
 /* Reads from NamesList.txt which must be present in the current directory */
 /* Builds two arrays of strings for each unicode character. One contains the */
 /*  name of the character, the other the annotations for each character */
@@ -64,7 +66,7 @@ static char *myfgets(char *buf,int bsize,FILE *file) {
     char *pt, *end = buf+bsize-2;
 
     for ( pt=buf; pt<end && (ch=getc(file))!=EOF && ch!='\n' && ch!='\r'; )
-	*pt++ = ch;
+	*pt++ = (char)(ch);
     if ( ch=='\n' || ch=='\r' ) {
 	*pt++='\n';
 	if ( ch=='\r' ) {
@@ -114,6 +116,7 @@ static int ReadNamesList(void) {
 	"http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt (latin base char set)"
     };
 
+    buffer[sizeof(buffer)-1]=0;
     for ( i=0; nameslistfiles[i]!=NULL; ++i ) {
 	nl = fopen( nameslistfiles[i],"r" );
 	if ( nl==NULL ) {
@@ -318,7 +321,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     return( 1 );
 }
 
-static int dumpend(FILE *out, FILE *header, int is_fr) {
+static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "\n/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n" );
     fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a: */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
@@ -410,8 +413,7 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
 }
 
 static int dumparrays(FILE *out, FILE *header, int is_fr ) {
-    unsigned int i;
-    int j,k, t;
+    unsigned int i,j,k,t;
     char *prefix = "una";
 
     for ( i=0; i<sizeof(uniannot[0])/(sizeof(uniannot[0][0])*65536); ++i ) {	/* For each plane */
@@ -511,7 +513,7 @@ static int dump(int is_fr) {
     }
 
     if ( dumpinit(out,header,is_fr) && dumpblock(out,header,is_fr) && \
-	 dumparrays(out,header,is_fr) && dumpend(out,header,is_fr) && \
+	 dumparrays(out,header,is_fr) && dumpend(header,is_fr) && \
 	 fflush(out)==0 && fflush(header)==0 )
 	dumpOK=1;
     fclose(out); fclose(header);
@@ -520,6 +522,9 @@ static int dump(int is_fr) {
 
 int main(int argc, char **argv) {
     int errCode=1;
+
+    UNUSED_PARAMETER(argc);
+    UNUSED_PARAMETER(argv);
     InitArrays();
     max_a = max_n = 0;
     if ( ReadNamesList() && dump(1/*french*/) && dump(0/*english*/) )
