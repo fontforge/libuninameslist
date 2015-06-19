@@ -97,25 +97,42 @@ case "$host" in
  ;;
 esac
 #-------------------------------------------
-# Pass variables to MAKEFILE.AM
-AC_SUBST([UN_VERSION],[uninameslist_info])
-AC_SUBST([FR_VERSION],[fr_info])
-AC_SUBST([NL_VERSION],[uninameslist_nameslist_ver])
-AC_SUBST([NFR_VERSION],[uninameslist_fr_nameslist_ver])
+# Compiler and Linker flags to override auto
+# detection and insertion. Use CFLAGS if you
+# want to add more in addition to autodetect
+AC_ARG_VAR([UN_CFLAGS],[C compiler flags for libuninameslist, overriding automatic detection])
+AC_ARG_VAR([UN_LIB],[Linker flags for libuninameslist, overriding automatic detection])
 
 #-------------------------------------------
 # Check for and add usable compiler warnings
+# Skip if using UNINAMESLIST_CFLAGS instead.
 WCFLAGS=""
-AC_LANG_PUSH([C])
-AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS="$WCFLAGS -Wall"])
-AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS="$WCFLAGS -Wextra"])
-AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
-AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS="$WCFLAGS -Wbad-function-cast"])
-AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS="$WCFLAGS -Wc++-compat"])
-AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-prototypes"])
-AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
-AC_LANG_POP
-AC_SUBST(WCFLAGS)
+if test x"${UN_CFLAGS}" = x; then
+   AC_LANG_PUSH([C])
+   AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS="$WCFLAGS -Wall"])
+   AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS="$WCFLAGS -Wextra"])
+   AX_CHECK_COMPILE_FLAG([-Wconversion],[WCFLAGS="$WCFLAGS -Wconversion"])
+   AX_CHECK_COMPILE_FLAG([-Wsign-conversion],[WCFLAGS="$WCFLAGS -Wsign-conversion"])
+   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+   AX_CHECK_COMPILE_FLAG([-Wformat=2],[WCFLAGS="$WCFLAGS -Wformat=2"])
+   AX_CHECK_COMPILE_FLAG([-Wformat-security],[WCFLAGS="$WCFLAGS -Wformat-security"])
+   AX_CHECK_COMPILE_FLAG([-fno-common],[WCFLAGS="$WCFLAGS -fno-common"])
+   AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS="$WCFLAGS -Wbad-function-cast"])
+   AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS="$WCFLAGS -Wc++-compat"])
+   AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-prototypes"])
+   AX_CHECK_COMPILE_FLAG([-Wmissing-declarations],[WCFLAGS="$WCFLAGS -Wmissing-declarations"])
+   AX_CHECK_COMPILE_FLAG([-Wstrict-prototypes],[WCFLAGS="$WCFLAGS -Wstrict-prototypes"])
+   AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
+#   AX_CHECK_COMPILE_FLAG([-fPIC],[WCFLAGS="$WCFLAGS -fPIC"])
+#   AX_CHECK_COMPILE_FLAG([-Wstrict-overflow],[WCFLAGS="$WCFLAGS -Wstrict-overflow"])
+#   AX_CHECK_COMPILE_FLAG([-Wpointer-arith],[WCFLAGS="$WCFLAGS -Wpointer-arith"])
+#   AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
+#   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+#   AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
+#   AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
+   AC_LANG_POP
+fi
+AC_SUBST([WCFLAGS])
 
 #-------------------------------------------
 # Pass some definitions to buildnameslist.c
@@ -135,6 +152,15 @@ dnl fi
 AC_SUBST([LIBUNINAMESLIST_PKGCONFIG_LIBS],["${uninameslist_libs}"])
 
 #-------------------------------------------
+# Pass variables to MAKEFILE.AM
+AC_SUBST([UN_VERSION],[uninameslist_info])
+AC_SUBST([FR_VERSION],[fr_info])
+AC_SUBST([NL_VERSION],[uninameslist_nameslist_ver])
+AC_SUBST([NFR_VERSION],[uninameslist_fr_nameslist_ver])
+AC_SUBST([UN_CFLAGS])
+AC_SUBST([UN_LIB])
+
+#-------------------------------------------
 AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES([
@@ -143,3 +169,18 @@ libuninameslist.pc
 ])
 
 AC_OUTPUT
+
+AC_MSG_NOTICE([
+
+Configuration:
+  Source code location	${srcdir}
+  Build code location	${builddir}
+  Destination prefix	${prefix}
+  Compiler		${CC}
+  Config auto options	"${WCFLAGS}"
+  Config CFLAGS		"${CFLAGS}"
+  Config LDFLAGS	"${LDFLAGS}"
+  Config UN_CFLAGS	"${UN_CFLAGS}"
+  Config UN_LIB		"${UN_LIB}"
+
+])
