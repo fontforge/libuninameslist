@@ -9,7 +9,7 @@ The data contained in these arrays were derived from data contained in
 NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
-Copyright © 1991-2014 Unicode, Inc. All rights reserved.
+Copyright © 1991-2015 Unicode, Inc. All rights reserved.
 Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Unicode data files and any associated documentation (the "Data Files")
@@ -65,7 +65,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 
 /* Retrieve Nameslist.txt version number. */
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 7.0" );
+	return( "Nameslist-Version: 8.0" );
 }
 
 
@@ -3772,7 +3772,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 0844 */ { "MANDAIC LETTER AH",NULL},
 /* 0845 */ { "MANDAIC LETTER USHENNA","	= u"},
 /* 0846 */ { "MANDAIC LETTER AZ",NULL},
-/* 0847 */ { "MANDAIC LETTER IT","	= pharyngeal hu"},
+/* 0847 */ { "MANDAIC LETTER IT",NULL},
 /* 0848 */ { "MANDAIC LETTER ATT",NULL},
 /* 0849 */ { "MANDAIC LETTER AKSA","	= i"},
 /* 084A */ { "MANDAIC LETTER AK",NULL},
@@ -4687,8 +4687,7 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BA7 */ { NULL,NULL},
 /* 0BA8 */ { "TAMIL LETTER NA",NULL},
 /* 0BA9 */ { "TAMIL LETTER NNNA",NULL},
-/* 0BAA */ { "TAMIL LETTER PA","	= maa\n"
-	"	* also denotes the fraction one twentieth"},
+/* 0BAA */ { "TAMIL LETTER PA","	* also denotes the fraction one twentieth"},
 /* 0BAB */ { NULL,NULL},
 /* 0BAC */ { NULL,NULL},
 /* 0BAD */ { NULL,NULL},
@@ -5093,7 +5092,7 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D2B */ { "MALAYALAM LETTER PHA",NULL},
 /* 0D2C */ { "MALAYALAM LETTER BA",NULL},
 /* 0D2D */ { "MALAYALAM LETTER BHA",NULL},
-/* 0D2E */ { "MALAYALAM LETTER MA","	* also used to denote the fraction one eightieth (kaani)"},
+/* 0D2E */ { "MALAYALAM LETTER MA",NULL},
 /* 0D2F */ { "MALAYALAM LETTER YA",NULL},
 /* 0D30 */ { "MALAYALAM LETTER RA",NULL},
 /* 0D31 */ { "MALAYALAM LETTER RRA",NULL},
@@ -5166,9 +5165,9 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D70 */ { "MALAYALAM NUMBER TEN",NULL},
 /* 0D71 */ { "MALAYALAM NUMBER ONE HUNDRED",NULL},
 /* 0D72 */ { "MALAYALAM NUMBER ONE THOUSAND",NULL},
-/* 0D73 */ { "MALAYALAM FRACTION ONE QUARTER","	= kaal"},
-/* 0D74 */ { "MALAYALAM FRACTION ONE HALF","	= ara"},
-/* 0D75 */ { "MALAYALAM FRACTION THREE QUARTERS","	= mukkaal"},
+/* 0D73 */ { "MALAYALAM FRACTION ONE QUARTER",NULL},
+/* 0D74 */ { "MALAYALAM FRACTION ONE HALF",NULL},
+/* 0D75 */ { "MALAYALAM FRACTION THREE QUARTERS",NULL},
 /* 0D76 */ { NULL,NULL},
 /* 0D77 */ { NULL,NULL},
 /* 0D78 */ { NULL,NULL},
@@ -12659,11 +12658,11 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (two men holding hands - 1F46C)"},
 /* 26A4 */ { "INTERLOCKED FEMALE AND MALE SIGN","	* a glyph variant has the two circles on the same line\n"
 	"	= bisexuality"},
-/* 26A5 */ { "MALE AND FEMALE SIGN","	= transgender\n"
+/* 26A5 */ { "MALE AND FEMALE SIGN","	= transgendered sexuality\n"
 	"	= hermaphrodite (in entomology)"},
-/* 26A6 */ { "MALE WITH STROKE SIGN","	= transgender\n"
+/* 26A6 */ { "MALE WITH STROKE SIGN","	= transgendered sexuality\n"
 	"	= alchemical symbol for iron or crocus of iron"},
-/* 26A7 */ { "MALE WITH STROKE AND MALE AND FEMALE SIGN","	= transgender"},
+/* 26A7 */ { "MALE WITH STROKE AND MALE AND FEMALE SIGN","	= transgendered sexuality"},
 /* 26A8 */ { "VERTICAL MALE WITH STROKE SIGN","	= alchemical symbol for iron"},
 /* 26A9 */ { "HORIZONTAL MALE WITH STROKE SIGN","	= alchemical symbol for iron"},
 /* 26AA */ { "MEDIUM WHITE CIRCLE","	= asexuality, sexless, genderless\n"
@@ -12729,8 +12728,7 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (hammer and pick - 2692)\n"
 	"	x (construction sign - 1F6A7)"},
 /* 26D0 */ { "CAR SLIDING","	= icy road"},
-/* 26D1 */ { "HELMET WITH WHITE CROSS","	= maintenance\n"
-	"	x (construction worker - 1F477)"},
+/* 26D1 */ { "HELMET WITH WHITE CROSS","	= maintenance"},
 /* 26D2 */ { "CIRCLED CROSSING LANES","	= road closed\n"
 	"	x (circled times - 2297)"},
 /* 26D3 */ { "CHAINS","	= tyre chains required"},
@@ -13623,8 +13621,7 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29B2 */ { "EMPTY SET WITH SMALL CIRCLE ABOVE",NULL},
 /* 29B3 */ { "EMPTY SET WITH RIGHT ARROW ABOVE",NULL},
 /* 29B4 */ { "EMPTY SET WITH LEFT ARROW ABOVE",NULL},
-/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	* used in superscripted form to mean standard state (chemistry)\n"
-	"	x (circled minus - 2296)"},
+/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	x (circled minus - 2296)"},
 /* 29B6 */ { "CIRCLED VERTICAL BAR","	x (alchemical symbol for nitre - 1F715)"},
 /* 29B7 */ { "CIRCLED PARALLEL",NULL},
 /* 29B8 */ { "CIRCLED REVERSE SOLIDUS",NULL},
@@ -19953,7 +19950,7 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB5D */ { "MODIFIER LETTER SMALL L WITH INVERTED LAZY S","	# <super> AB37"},
 /* AB5E */ { "MODIFIER LETTER SMALL L WITH MIDDLE TILDE","	# <super> 026B"},
 /* AB5F */ { "MODIFIER LETTER SMALL U WITH LEFT HOOK","	# <super> AB52"},
-/* AB60 */ { "LATIN SMALL LETTER SAKHA YAT","	x (cyrillic small letter yat - 0463)"},
+/* AB60 */ { "LATIN SMALL LETTER SAKHA YAT","	x (cyrillic small letter iotified a - A657)"},
 /* AB61 */ { "LATIN SMALL LETTER IOTIFIED E","	x (cyrillic small letter iotified e - 0465)"},
 /* AB62 */ { "LATIN SMALL LETTER OPEN OE","	x (latin small letter open o - 0254)"},
 /* AB63 */ { "LATIN SMALL LETTER UO",NULL},
@@ -37114,7 +37111,7 @@ static const struct unicode_nameannot una_01_DA[] = {
 /* 1DA88 */ { "SIGNWRITING FULL STOP",NULL},
 /* 1DA89 */ { "SIGNWRITING SEMICOLON",NULL},
 /* 1DA8A */ { "SIGNWRITING COLON",NULL},
-/* 1DA8B */ { "SIGNWRITING PARENTHESIS","	* is a closing parenthesis when used with 1DAA4 signwriting rotation modifier-5"},
+/* 1DA8B */ { "SIGNWRITING PARENTHESIS","	* is a closing parenthesis when used with 1DAA5 signwriting rotation modifier-5"},
 /* 1DA8C */ { NULL,NULL},
 /* 1DA8D */ { NULL,NULL},
 /* 1DA8E */ { NULL,NULL},
@@ -38909,7 +38906,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3AF */ { "DIRECT HIT","	= archery target, hitting the target\n"
 	"	x (bullseye - 25CE)"},
 /* 1F3B0 */ { "SLOT MACHINE",NULL},
-/* 1F3B1 */ { "BILLIARDS","	* sometimes depicted as just an 8-ball"},
+/* 1F3B1 */ { "BILLIARDS",NULL},
 /* 1F3B2 */ { "GAME DIE",NULL},
 /* 1F3B3 */ { "BOWLING",NULL},
 /* 1F3B4 */ { "FLOWER PLAYING CARDS","	= flower cards"},
@@ -38940,8 +38937,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3CA */ { "SWIMMER",NULL},
 /* 1F3CB */ { "WEIGHT LIFTER","	= health"},
 /* 1F3CC */ { "GOLFER",NULL},
-/* 1F3CD */ { "RACING MOTORCYCLE","	= motorcycle\n"
-	"	* may be depicted as an ordinary motorcycle, especially in emoji presentation"},
+/* 1F3CD */ { "RACING MOTORCYCLE","	= motorcycle"},
 /* 1F3CE */ { "RACING CAR","	= race car"},
 /* 1F3CF */ { "CRICKET BAT AND BALL",NULL},
 /* 1F3D0 */ { "VOLLEYBALL",NULL},
@@ -39133,28 +39129,27 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F46C */ { "TWO MEN HOLDING HANDS",NULL},
 /* 1F46D */ { "TWO WOMEN HOLDING HANDS",NULL},
 /* 1F46E */ { "POLICE OFFICER",NULL},
-/* 1F46F */ { "WOMAN WITH BUNNY EARS","	* most popularly depicted as two women dancing"},
+/* 1F46F */ { "WOMAN WITH BUNNY EARS",NULL},
 /* 1F470 */ { "BRIDE WITH VEIL",NULL},
 /* 1F471 */ { "PERSON WITH BLOND HAIR",NULL},
 /* 1F472 */ { "MAN WITH GUA PI MAO",NULL},
-/* 1F473 */ { "MAN WITH TURBAN","	* may be shown with or without a beard"},
+/* 1F473 */ { "MAN WITH TURBAN",NULL},
 /* 1F474 */ { "OLDER MAN",NULL},
 /* 1F475 */ { "OLDER WOMAN",NULL},
 /* 1F476 */ { "BABY",NULL},
-/* 1F477 */ { "CONSTRUCTION WORKER","	* the helmet may show a green cross, used as a safety reminder in Japan\n"
-	"	x (helmet with white cross - 26D1)"},
+/* 1F477 */ { "CONSTRUCTION WORKER",NULL},
 /* 1F478 */ { "PRINCESS",NULL},
 /* 1F479 */ { "JAPANESE OGRE",NULL},
 /* 1F47A */ { "JAPANESE GOBLIN",NULL},
 /* 1F47B */ { "GHOST",NULL},
 /* 1F47C */ { "BABY ANGEL",NULL},
 /* 1F47D */ { "EXTRATERRESTRIAL ALIEN",NULL},
-/* 1F47E */ { "ALIEN MONSTER","	x (robot face - 1F916)"},
-/* 1F47F */ { "IMP","	* commonly depicted as a frowning/angry version of 1F608 smiling face with horns"},
+/* 1F47E */ { "ALIEN MONSTER",NULL},
+/* 1F47F */ { "IMP",NULL},
 /* 1F480 */ { "SKULL",NULL},
-/* 1F481 */ { "INFORMATION DESK PERSON","	* often used to indicate \"sassy\" or \"carefree\""},
+/* 1F481 */ { "INFORMATION DESK PERSON",NULL},
 /* 1F482 */ { "GUARDSMAN",NULL},
-/* 1F483 */ { "DANCER","	* also used for \"let's party\""},
+/* 1F483 */ { "DANCER",NULL},
 /* 1F484 */ { "LIPSTICK",NULL},
 /* 1F485 */ { "NAIL POLISH","	= manicure, nail care"},
 /* 1F486 */ { "FACE MASSAGE",NULL},
@@ -39199,8 +39194,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4A7 */ { "DROPLET","	* represents a drop of sweat or drop of water\n"
 	"	x (black droplet - 1F322)"},
 /* 1F4A8 */ { "DASH SYMBOL","	= running dash, briffits"},
-/* 1F4A9 */ { "PILE OF POO","	= dog dirt\n"
-	"	* may be depicted with a friendly face"},
+/* 1F4A9 */ { "PILE OF POO","	= dog dirt"},
 /* 1F4AA */ { "FLEXED BICEPS","	= strong, muscled"},
 /* 1F4AB */ { "DIZZY SYMBOL","	= circling stars, squeans"},
 /* 1F4AC */ { "SPEECH BALLOON","	= comic book conversation bubble"},
@@ -39218,7 +39212,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4B7 */ { "BANKNOTE WITH POUND SIGN",NULL},
 /* 1F4B8 */ { "MONEY WITH WINGS",NULL},
 /* 1F4B9 */ { "CHART WITH UPWARDS TREND AND YEN SIGN",NULL},
-/* 1F4BA */ { "SEAT","	* intended to denote a reserved or ticketed seat, as for an airplane, train, or theater"},
+/* 1F4BA */ { "SEAT",NULL},
 /* 1F4BB */ { "PERSONAL COMPUTER","	x (old personal computer - 1F5B3)"},
 /* 1F4BC */ { "BRIEFCASE",NULL},
 /* 1F4BD */ { "MINIDISC",NULL},
@@ -39257,8 +39251,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4DB */ { "NAME BADGE",NULL},
 /* 1F4DC */ { "SCROLL",NULL},
 /* 1F4DD */ { "MEMO",NULL},
-/* 1F4DE */ { "TELEPHONE RECEIVER","	* commonly oriented rightwards, so that a face emoticon can be positioned to the right\n"
-	"	x (left hand telephone receiver - 1F57B)\n"
+/* 1F4DE */ { "TELEPHONE RECEIVER","	x (left hand telephone receiver - 1F57B)\n"
 	"	x (right hand telephone receiver - 1F57D)"},
 /* 1F4DF */ { "PAGER",NULL},
 /* 1F4E0 */ { "FAX MACHINE","	x (facsimile sign - 213B)\n"
@@ -39271,7 +39264,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4E4 */ { "OUTBOX TRAY",NULL},
 /* 1F4E5 */ { "INBOX TRAY",NULL},
 /* 1F4E6 */ { "PACKAGE","	x (wrapped present - 1F381)"},
-/* 1F4E7 */ { "E-MAIL SYMBOL","	* glyph may show an E instead of an @-sign\n"
+/* 1F4E7 */ { "E-MAIL SYMBOL","	* glyph may show an @-sign instead of an E\n"
 	"	x (envelope with lightning - 1F584)"},
 /* 1F4E8 */ { "INCOMING ENVELOPE","	x (envelope - 2709)"},
 /* 1F4E9 */ { "ENVELOPE WITH DOWNWARDS ARROW ABOVE","	* sending mail\n"
@@ -39335,8 +39328,7 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (symbol for bell - 2407)\n"
 	"	x (ringing bell - 1F56D)"},
 /* 1F515 */ { "BELL WITH CANCELLATION STROKE",NULL},
-/* 1F516 */ { "BOOKMARK","	* indicates a bookmark, not a price tag\n"
-	"	x (label - 1F3F7)"},
+/* 1F516 */ { "BOOKMARK","	x (label - 1F3F7)"},
 /* 1F517 */ { "LINK SYMBOL",NULL},
 /* 1F518 */ { "RADIO BUTTON","	x (circled dot operator - 2299)\n"
 	"	x (fisheye - 25C9)\n"
@@ -39404,7 +39396,7 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F54B */ { "KAABA",NULL},
 /* 1F54C */ { "MOSQUE",NULL},
 /* 1F54D */ { "SYNAGOGUE",NULL},
-/* 1F54E */ { "MENORAH WITH NINE BRANCHES","	= hanukiah"},
+/* 1F54E */ { "MENORAH WITH NINE BRANCHES",NULL},
 /* 1F54F */ { "BOWL OF HYGIEIA","	x (staff of aesculapius - 2695)"},
 /* 1F550 */ { "CLOCK FACE ONE OCLOCK","	x (watch - 231A)\n"
 	"	x (alarm clock - 23F0)"},
@@ -39632,11 +39624,11 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F605 */ { "SMILING FACE WITH OPEN MOUTH AND COLD SWEAT",NULL},
 /* 1F606 */ { "SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES",NULL},
 /* 1F607 */ { "SMILING FACE WITH HALO",NULL},
-/* 1F608 */ { "SMILING FACE WITH HORNS","	* commonly depicted as a (sinister) smiling version of 1F47F imp"},
+/* 1F608 */ { "SMILING FACE WITH HORNS",NULL},
 /* 1F609 */ { "WINKING FACE",NULL},
 /* 1F60A */ { "SMILING FACE WITH SMILING EYES",NULL},
 /* 1F60B */ { "FACE SAVOURING DELICIOUS FOOD",NULL},
-/* 1F60C */ { "RELIEVED FACE","	* indicates relief, not sleeping"},
+/* 1F60C */ { "RELIEVED FACE",NULL},
 /* 1F60D */ { "SMILING FACE WITH HEART-SHAPED EYES",NULL},
 /* 1F60E */ { "SMILING FACE WITH SUNGLASSES",NULL},
 /* 1F60F */ { "SMIRKING FACE",NULL},
@@ -39657,26 +39649,25 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F61E */ { "DISAPPOINTED FACE","	x (white frowning face - 2639)"},
 /* 1F61F */ { "WORRIED FACE",NULL},
 /* 1F620 */ { "ANGRY FACE",NULL},
-/* 1F621 */ { "POUTING FACE","	* intended to depict pouting rather than simply anger"},
+/* 1F621 */ { "POUTING FACE",NULL},
 /* 1F622 */ { "CRYING FACE",NULL},
 /* 1F623 */ { "PERSEVERING FACE",NULL},
-/* 1F624 */ { "FACE WITH LOOK OF TRIUMPH","	* indicates triumph, not anger"},
+/* 1F624 */ { "FACE WITH LOOK OF TRIUMPH",NULL},
 /* 1F625 */ { "DISAPPOINTED BUT RELIEVED FACE",NULL},
-/* 1F626 */ { "FROWNING FACE WITH OPEN MOUTH","	* frowning, not shocked or surprised"},
+/* 1F626 */ { "FROWNING FACE WITH OPEN MOUTH",NULL},
 /* 1F627 */ { "ANGUISHED FACE",NULL},
 /* 1F628 */ { "FEARFUL FACE",NULL},
 /* 1F629 */ { "WEARY FACE",NULL},
 /* 1F62A */ { "SLEEPY FACE",NULL},
 /* 1F62B */ { "TIRED FACE",NULL},
-/* 1F62C */ { "GRIMACING FACE","	* should not be depicted with zipper mouth\n"
-	"	x (zipper-mouth face - 1F910)"},
+/* 1F62C */ { "GRIMACING FACE",NULL},
 /* 1F62D */ { "LOUDLY CRYING FACE",NULL},
 /* 1F62E */ { "FACE WITH OPEN MOUTH",NULL},
 /* 1F62F */ { "HUSHED FACE",NULL},
 /* 1F630 */ { "FACE WITH OPEN MOUTH AND COLD SWEAT",NULL},
 /* 1F631 */ { "FACE SCREAMING IN FEAR",NULL},
 /* 1F632 */ { "ASTONISHED FACE",NULL},
-/* 1F633 */ { "FLUSHED FACE","	* embarrassed"},
+/* 1F633 */ { "FLUSHED FACE",NULL},
 /* 1F634 */ { "SLEEPING FACE",NULL},
 /* 1F635 */ { "DIZZY FACE",NULL},
 /* 1F636 */ { "FACE WITHOUT MOUTH","	* used for the South Wind in some Mahjong annotation\n"
@@ -39688,14 +39679,14 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F63B */ { "SMILING CAT FACE WITH HEART-SHAPED EYES",NULL},
 /* 1F63C */ { "CAT FACE WITH WRY SMILE",NULL},
 /* 1F63D */ { "KISSING CAT FACE WITH CLOSED EYES",NULL},
-/* 1F63E */ { "POUTING CAT FACE","	* intended to depict pouting rather than simply anger"},
+/* 1F63E */ { "POUTING CAT FACE",NULL},
 /* 1F63F */ { "CRYING CAT FACE",NULL},
-/* 1F640 */ { "WEARY CAT FACE","	* indicates tired, not horrified"},
+/* 1F640 */ { "WEARY CAT FACE",NULL},
 /* 1F641 */ { "SLIGHTLY FROWNING FACE","	x (white frowning face - 2639)"},
 /* 1F642 */ { "SLIGHTLY SMILING FACE","	x (white smiling face - 263A)"},
 /* 1F643 */ { "UPSIDE-DOWN FACE",NULL},
 /* 1F644 */ { "FACE WITH ROLLING EYES",NULL},
-/* 1F645 */ { "FACE WITH NO GOOD GESTURE","	* conveys \"no deal\" or \"not ok\", not anger; the inverse of 1F646 face with ok gesture"},
+/* 1F645 */ { "FACE WITH NO GOOD GESTURE",NULL},
 /* 1F646 */ { "FACE WITH OK GESTURE",NULL},
 /* 1F647 */ { "PERSON BOWING DEEPLY",NULL},
 /* 1F648 */ { "SEE-NO-EVIL MONKEY",NULL},
@@ -39704,9 +39695,9 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F64B */ { "HAPPY PERSON RAISING ONE HAND",NULL},
 /* 1F64C */ { "PERSON RAISING BOTH HANDS IN CELEBRATION","	= banzai!"},
 /* 1F64D */ { "PERSON FROWNING",NULL},
-/* 1F64E */ { "PERSON WITH POUTING FACE","	* intended to depict pouting rather than simply anger"},
+/* 1F64E */ { "PERSON WITH POUTING FACE",NULL},
 /* 1F64F */ { "PERSON WITH FOLDED HANDS","	* can indicate sorrow or regret\n"
-	"	* can also indicate pleading, praying, bowing, or thanking"},
+	"	* can indicate pleading"},
 /* 1F650 */ { "NORTH WEST POINTING LEAF",NULL},
 /* 1F651 */ { "SOUTH WEST POINTING LEAF",NULL},
 /* 1F652 */ { "NORTH EAST POINTING LEAF",NULL},
@@ -40475,7 +40466,7 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F913 */ { "NERD FACE",NULL},
 /* 1F914 */ { "THINKING FACE",NULL},
 /* 1F915 */ { "FACE WITH HEAD-BANDAGE",NULL},
-/* 1F916 */ { "ROBOT FACE","	x (alien monster - 1F47E)"},
+/* 1F916 */ { "ROBOT FACE",NULL},
 /* 1F917 */ { "HUGGING FACE",NULL},
 /* 1F918 */ { "SIGN OF THE HORNS",NULL},
 /* 1F919 */ { NULL,NULL},
@@ -41504,7 +41495,7 @@ static const struct unicode_nameannot una_02_FA[] = {
 
 static const struct unicode_nameannot una_0E_00[] = {
 /* E0000 */ { NULL,NULL},
-/* E0001 */ { "LANGUAGE TAG","	* This character is deprecated, and its use is strongly discouraged."},
+/* E0001 */ { "LANGUAGE TAG",NULL},
 /* E0002 */ { NULL,NULL},
 /* E0003 */ { NULL,NULL},
 /* E0004 */ { NULL,NULL},
@@ -41630,7 +41621,7 @@ static const struct unicode_nameannot una_0E_00[] = {
 /* E007C */ { "TAG VERTICAL LINE",NULL},
 /* E007D */ { "TAG RIGHT CURLY BRACKET",NULL},
 /* E007E */ { "TAG TILDE",NULL},
-/* E007F */ { "CANCEL TAG","	* This character is deprecated, and its use is strongly discouraged."},
+/* E007F */ { "CANCEL TAG",NULL},
 /* E0080 */ { NULL,NULL},
 /* E0081 */ { NULL,NULL},
 /* E0082 */ { NULL,NULL},

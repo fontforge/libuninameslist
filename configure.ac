@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp and Nameslist.txt version
-m4_define([uninameslist_package_stamp], [20150511])
-m4_define([uninameslist_nameslist_ver], [7.9]) #Nameslist.txt
+m4_define([uninameslist_package_stamp], [20150701])
+m4_define([uninameslist_nameslist_ver], [8.0]) #Nameslist.txt
 #-------------------------------------------
 # Making point releases:
 #   uninameslist_major_version += 0;
@@ -19,7 +19,7 @@ m4_define([uninameslist_nameslist_ver], [7.9]) #Nameslist.txt
 #   uninameslist_minor_version = 0;
 #
 m4_define([uninameslist_major_version], [0])
-m4_define([uninameslist_minor_version], [4])
+m4_define([uninameslist_minor_version], [5])
 m4_define([uninameslist_version],
           [uninameslist_major_version.uninameslist_minor_version.uninameslist_package_stamp])
 m4_define([uninameslist_info],
@@ -29,7 +29,7 @@ m4_define([uninameslist_package_name], [libuninameslist])
 #-------------------------------------------
 # These values below are kept for backwards compatibility with older programs
 # that may still be using the French namesList. This only increments if the
-# respective ListeDesNoms.txt increases. Recently was version 5.0 (value=0.3.0).
+# respective ListeDesNoms.txt increases. Recently was version 7.0 (value=0.4.0).
 m4_define([uninameslist_fr_nameslist_ver], [7.0]) #ListeDesNoms.txt
 m4_define([fr_major_version], [0])
 m4_define([fr_minor_version], [4]) dnl latest ListeDesNoms.txt = ver7.0
@@ -107,32 +107,40 @@ AC_ARG_VAR([UN_LIB],[Linker flags for libuninameslist, overriding automatic dete
 # Check for and add usable compiler warnings
 # Skip if using UNINAMESLIST_CFLAGS instead.
 WCFLAGS=""
-if test x"${UN_CFLAGS}" = x; then
-   AC_LANG_PUSH([C])
-   AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS="$WCFLAGS -Wall"])
-   AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS="$WCFLAGS -Wextra"])
-   AX_CHECK_COMPILE_FLAG([-Wconversion],[WCFLAGS="$WCFLAGS -Wconversion"])
-   AX_CHECK_COMPILE_FLAG([-Wsign-conversion],[WCFLAGS="$WCFLAGS -Wsign-conversion"])
-   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
-   AX_CHECK_COMPILE_FLAG([-Wformat=2],[WCFLAGS="$WCFLAGS -Wformat=2"])
-   AX_CHECK_COMPILE_FLAG([-Wformat-security],[WCFLAGS="$WCFLAGS -Wformat-security"])
-   AX_CHECK_COMPILE_FLAG([-fno-common],[WCFLAGS="$WCFLAGS -fno-common"])
-   AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS="$WCFLAGS -Wbad-function-cast"])
-   AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS="$WCFLAGS -Wc++-compat"])
-   AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-prototypes"])
-   AX_CHECK_COMPILE_FLAG([-Wmissing-declarations],[WCFLAGS="$WCFLAGS -Wmissing-declarations"])
-   AX_CHECK_COMPILE_FLAG([-Wstrict-prototypes],[WCFLAGS="$WCFLAGS -Wstrict-prototypes"])
-   AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
-#   AX_CHECK_COMPILE_FLAG([-fPIC],[WCFLAGS="$WCFLAGS -fPIC"])
-#   AX_CHECK_COMPILE_FLAG([-Wstrict-overflow],[WCFLAGS="$WCFLAGS -Wstrict-overflow"])
-#   AX_CHECK_COMPILE_FLAG([-Wpointer-arith],[WCFLAGS="$WCFLAGS -Wpointer-arith"])
-#   AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
-#   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
-#   AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
-#   AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
-   AC_LANG_POP
+AC_LANG_PUSH([C])
+AX_CHECK_COMPILE_FLAG([-Wall],[WCFLAGS="$WCFLAGS -Wall"])
+AX_CHECK_COMPILE_FLAG([-Wextra],[WCFLAGS="$WCFLAGS -Wextra"])
+AX_CHECK_COMPILE_FLAG([-Wconversion],[WCFLAGS="$WCFLAGS -Wconversion"])
+AX_CHECK_COMPILE_FLAG([-Wsign-conversion],[WCFLAGS="$WCFLAGS -Wsign-conversion"])
+AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+AX_CHECK_COMPILE_FLAG([-Wformat=2],[WCFLAGS="$WCFLAGS -Wformat=2"])
+AX_CHECK_COMPILE_FLAG([-Wformat-security],[WCFLAGS="$WCFLAGS -Wformat-security"])
+AX_CHECK_COMPILE_FLAG([-fno-common],[WCFLAGS="$WCFLAGS -fno-common"])
+AX_CHECK_COMPILE_FLAG([-Wbad-function-cast],[WCFLAGS="$WCFLAGS -Wbad-function-cast"])
+AX_CHECK_COMPILE_FLAG([-Wc++-compat],[WCFLAGS="$WCFLAGS -Wc++-compat"])
+AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-prototypes"])
+AX_CHECK_COMPILE_FLAG([-Wmissing-declarations],[WCFLAGS="$WCFLAGS -Wmissing-declarations"])
+AX_CHECK_COMPILE_FLAG([-Wstrict-prototypes],[WCFLAGS="$WCFLAGS -Wstrict-prototypes"])
+AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
+
+dnl currently for extra testing
+dnl   AX_CHECK_COMPILE_FLAG([-fPIC],[WCFLAGS="$WCFLAGS -fPIC"])
+dnl   AX_CHECK_COMPILE_FLAG([-Wstrict-overflow],[WCFLAGS="$WCFLAGS -Wstrict-overflow"])
+dnl   AX_CHECK_COMPILE_FLAG([-Wpointer-arith],[WCFLAGS="$WCFLAGS -Wpointer-arith"])
+dnl   AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
+dnl   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+dnl   AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
+dnl   AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
+AC_LANG_POP
+
+# Skip if replacing with UN_LIB instead.
+WUNLIB=""
+if test -z $UN_LIB ; then
+   WUNLIB="${WCFLAGS}"
 fi
-AC_SUBST([WCFLAGS])
+if test "${UN_CFLAGS}"x != x; then
+   WCFLAGS=""
+fi
 
 #-------------------------------------------
 # Pass some definitions to buildnameslist.c
@@ -159,6 +167,8 @@ AC_SUBST([NL_VERSION],[uninameslist_nameslist_ver])
 AC_SUBST([NFR_VERSION],[uninameslist_fr_nameslist_ver])
 AC_SUBST([UN_CFLAGS])
 AC_SUBST([UN_LIB])
+AC_SUBST([WCFLAGS])
+AC_SUBST([WUNLIB])
 
 #-------------------------------------------
 AC_PROG_LIBTOOL
@@ -177,7 +187,8 @@ Configuration:
   Build code location	${builddir}
   Destination prefix	${prefix}
   Compiler		${CC}
-  Config auto options	"${WCFLAGS}"
+  Config auto WCFLAGS	"${WCFLAGS}"
+  Config auto WUNLIB	"${WUNLIB}"
   Config CFLAGS		"${CFLAGS}"
   Config LDFLAGS	"${LDFLAGS}"
   Config UN_CFLAGS	"${UN_CFLAGS}"
