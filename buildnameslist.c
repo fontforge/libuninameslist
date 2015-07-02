@@ -7,9 +7,10 @@
 
 #define UNUSED_PARAMETER(x) ((void)x)
 
-/* Reads from NamesList.txt which must be present in the current directory */
-/* Builds two arrays of strings for each unicode character. One contains the */
-/*  name of the character, the other the annotations for each character */
+/* buildnameslist reads from NamesList.txt and ListeDesNoms.txt which */
+/* must be present in the current directory. Then, builds two arrays  */
+/* of strings for each unicode character. One array contains the name */
+/* of the character, the other holds annotations for each character.  */
 /* Outputs nameslist.c containing these two sparse arrays */
 
 /* 2=={English=0, French=1} */

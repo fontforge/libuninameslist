@@ -1,12 +1,15 @@
-- 31-Jul-2014
+- 2015-Jul-01
+    * Unicode 8.0, French version is 7.0(2014-06-22).
+
+- 2014-Jul-31
     * Version 0.4. Unicode 7.0. Updated French version to 7.0(2014-06-22).
 
-- 08-Mar-2014
+- 2014-Mar-08
     * Unicode 7.0_Beta (Nameslist.txt 7.0 for review, French stays at 5.0).
     * Added function for block {start, end, name, number} for version 0.4.
     * Cleaned up several warnings for program buildnameslist.
 
-- 01-May-2013
+- 2013-May-01
     * Makefile.am problems in changing nameslist.h to uninameslist.h, and
       nameslist-fr.h to uninameslist-fr.h, therefore renamed those files.
     * Removed several files that can be built during autoreconf and automake
@@ -14,7 +17,7 @@
     * Added additional check for -enable-oldfrenchlib to "make distcheck"
     * This will be tagged as version 0.3
 
-- 28-Apr-2013
+- 2013-Apr-28
     * Seperate namelist.h and namelist-fr.h due to different versions.
     * Clarify README to indicated differences between both libraries.
     * Closes bugs http://sourceforge.net "WFLAGS value - ID: 1307144",
@@ -22,35 +25,35 @@
 	"Please update autoconf - ID: 3608906",
     * http://sourceforge.net/projects/libuninameslist/ not being maintained.
 
-- 23-Apr-2013
+- 2013-Apr-23
     * Convert build system to autotools method (configure.ac, Makefile.am)
     * Create README. Add function to report NamesList Version (6.2).
     * Prep files for a distribution tar ball - version 0.3.20130423
 
-- 19-Feb-2013
+- 2013-Feb-19
     * Unicode 6.3 (Nameslist.txt remains at 6.2, French remains at 5.0)
 
-- 22-Aug-2012
+- 2012-Aug-22
     * Unicode 6.1
 
-- 31-Dec-2009
+- 2009-Dec-31
     * Unicode 5.2
 
-- 7-Apr-2008
+- 2008-Apr-07
     * Unicode 5.1
       (Also the French translation has been updated to 5.0).
 
-- 7-Sept-2006
+- 2006-Sep-07
     * Unicode 5.0
 
-- 12-Jul-2005
+- 2005-Jul-12
     * Unicode 4.1
 
-- 13-Jul-2003
+- 2003-Jul-13
     * Oops the format of the NamesList.txt file is slightly different and I was inserting too many newlines.
 
-- 10-Jul-2003
+- 2003-Jul-10
     * Upgrade to Unicode 4.0
 
-- 16-Jan-2003
+- 2003-Jan-16
     * Initial release
