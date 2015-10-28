@@ -107,8 +107,7 @@ static void FreeArrays(void) {
 static int ReadNamesList(void) {
     char buffer[2000];
     FILE *nl;
-    long int a_char = -1;
-    long int first, last;
+    long int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
     struct block *cur;
     int i;
