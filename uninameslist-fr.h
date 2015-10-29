@@ -3,6 +3,10 @@
 
 /* This file was generated using the program 'buildnameslist.c' */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct unicode_block {
 	int start, end;
 	const char *name;
@@ -37,4 +41,7 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 #define LIBUNINAMESLIST_FR_MAJOR	0
 #define LIBUNINAMESLIST_FR_MINOR	4
 
+#ifdef __cplusplus
+}
+#endif
 #endif

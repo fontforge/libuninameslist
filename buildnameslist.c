@@ -315,6 +315,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( header, "# define _NAMESLIST_H\n\n" );
     }
     fprintf( header, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
+    fprintf( header, "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n" );
     fprintf( header, "struct unicode_block {\n\tint start, end;\n\tconst char *name;\n};\n\n" );
     fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n\n" );
     return( 1 );
@@ -363,7 +364,7 @@ static int dumpend(FILE *header, int is_fr) {
 	fprintf( header, "#define LIBUNINAMESLIST_FR_MAJOR\t%d\n", LFR_VERSION_MJ );
 	fprintf( header, "#define LIBUNINAMESLIST_FR_MINOR\t%d\n\n", LFR_VERSION_MN );
     }
-    fprintf( header, "#endif\n" );
+    fprintf( header, "#ifdef __cplusplus\n}\n#endif\n#endif\n" );
     return( 1 );
 }
 
@@ -377,8 +378,8 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
     fprintf( out, "#endif /* __Cygwin */\n" );
     fprintf( out, "const struct unicode_block UnicodeBlock[] = {\n" );
     for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
-	fprintf( out, "\t{ 0x%lu, 0x%lu, \"%s\" }%s\n", block->start, block->end,
-		block->name, block->next!=NULL ? "," : "" );
+	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", (unsigned int)(block->start),
+		(unsigned int)(block->end), block->name, block->next!=NULL ? "," : "" );
     }
     fprintf( out, "};\n\n" );
     fprintf( header, "/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[%d] */\n", bcnt );

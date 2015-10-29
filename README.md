@@ -1,5 +1,6 @@
 libuninameslist – A Library of Unicode names and annotation data
 ================================================================
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
 
 -   [Description](#description)
 -   [Installation and Build instructions](#installation-and-build-instructions)

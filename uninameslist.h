@@ -3,6 +3,10 @@
 
 /* This file was generated using the program 'buildnameslist.c' */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct unicode_block {
 	int start, end;
 	const char *name;
@@ -71,4 +75,7 @@ long uniNamesList_blockEnd(int uniBlock);
 /* This value points to a constant string inside the library */
 const char *uniNamesList_blockName(int uniBlock);
 
+#ifdef __cplusplus
+}
+#endif
 #endif
