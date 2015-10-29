@@ -16,7 +16,7 @@
 /* 2=={English=0, French=1} */
 static char *uninames[2][17*65536];
 static char *uniannot[2][17*65536];
-static struct block { int start, end; char *name; struct block *next;}
+static struct block { long int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
 unsigned max_a, max_n;
@@ -107,7 +107,7 @@ static void FreeArrays(void) {
 static int ReadNamesList(void) {
     char buffer[2000];
     FILE *nl;
-    int a_char = -1, first, last;
+    long int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
     struct block *cur;
     int i;
@@ -214,11 +214,9 @@ errorReadNamesListFO:
 }
 
 static void dumpstring(char *str,FILE *out) {
-    char *start;
-
     do {
 	putc( '"', out);
-	for ( start=str; *str!='\n' && *str!='\0'; ++str ) {
+	for ( ; *str!='\n' && *str!='\0'; ++str ) {
 	    if ( *str=='"' || *str=='\\' )
 		putc('\\',out);
 	    putc(*str,out);
@@ -379,7 +377,7 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
     fprintf( out, "#endif /* __Cygwin */\n" );
     fprintf( out, "const struct unicode_block UnicodeBlock[] = {\n" );
     for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
-	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", block->start, block->end,
+	fprintf( out, "\t{ 0x%lu, 0x%lu, \"%s\" }%s\n", block->start, block->end,
 		block->name, block->next!=NULL ? "," : "" );
     }
     fprintf( out, "};\n\n" );
@@ -392,8 +390,8 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
 
     maxn = maxa = 0;
     for ( i=0; i<sizeof(uniannot[is_fr])/sizeof(uniannot[0][is_fr]); ++i ) {
-	if ( uninames[is_fr][i]!=NULL && maxn<strlen(uninames[is_fr][i])) maxn = strlen(uninames[is_fr][i]);
-	if ( uniannot[is_fr][i]!=NULL && maxa<strlen(uniannot[is_fr][i])) maxa = strlen(uniannot[is_fr][i]);
+	if ( uninames[is_fr][i]!=NULL && maxn<strlen(uninames[is_fr][i])) maxn = (unsigned int) strlen(uninames[is_fr][i]);
+	if ( uniannot[is_fr][i]!=NULL && maxa<strlen(uniannot[is_fr][i])) maxa = (unsigned int) strlen(uniannot[is_fr][i]);
     }
     if (maxn > max_n ) max_n = maxn;
     if (maxa > max_a ) max_a = maxa;
