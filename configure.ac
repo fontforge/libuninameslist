@@ -2,28 +2,42 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
-# PackageTimestamp and Nameslist.txt version
+# PackageTimestamp, major version, minor version, and Nameslist.txt version
 m4_define([uninameslist_package_stamp], [20150701])
+m4_define([uninameslist_major_version], [0])
+m4_define([uninameslist_minor_version], [6])
 m4_define([uninameslist_nameslist_ver], [8.0]) #Nameslist.txt
 #-------------------------------------------
-# Making point releases:
-#   uninameslist_major_version += 0;
-#   uninameslist_minor_version += 1; (namelist update or added function(s))
 #
-# If any new functions have been added:
-#   uninameslist_major_version += 0;
-#   uninameslist_minor_version += 1; (added function(s))
+# To update the libtool version, which should be set independently of the
+# library's major and minor version, execute the following steps.
 #
-# If backwards compatibility has been broken:
-#   uninameslist_major_version += 1;
-#   uninameslist_minor_version = 0;
+# 1. If the code has changed at all (e.g., a namelist update):
 #
-m4_define([uninameslist_major_version], [0])
-m4_define([uninameslist_minor_version], [5])
+#      uninameslist_revision += 1
+#
+# 2. If any interfaces have been added, removed, or changed (e.g., a new
+#    function has been added):
+#
+#      uninameslist_current += 1
+#      uninameslist_revision = 0
+#
+# 3. If any interfaces have been added:
+#
+#      uninameslist_age += 1
+#
+# 4. If any interfaces have been removed or changed (i.e., the backwards
+#    compatibility has been broken):
+#
+#      uninameslist_age = 0
+#
+m4_define([uninameslist_current], [1])
+m4_define([uninameslist_revision], [0])
+m4_define([uninameslist_age], [1])
 m4_define([uninameslist_version],
-          [uninameslist_major_version.uninameslist_minor_version.uninameslist_package_stamp])
+          [uninameslist_current.uninameslist_revision.uninameslist_age.uninameslist_package_stamp])
 m4_define([uninameslist_info],
-          [uninameslist_major_version:uninameslist_minor_version:0])
+          [uninameslist_current:uninameslist_revision:uninameslist_age])
 m4_define([uninameslist_package_name], [libuninameslist])
 
 #-------------------------------------------
