@@ -11,7 +11,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver 8.0 and ListeDesNoms.txt ver 7.0.
+This program is updated for Nameslist.txt ver 8.9 and ListeDesNoms.txt ver 7.0.
 
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
