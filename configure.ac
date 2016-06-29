@@ -3,10 +3,29 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.61])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
-m4_define([uninameslist_package_stamp], [20150701])
-m4_define([uninameslist_major_version], [0])
-m4_define([uninameslist_minor_version], [6])
-m4_define([uninameslist_nameslist_ver], [8.0]) #Nameslist.txt
+# Libraries have a "package" version of the form major.minor.micro.
+m4_define([uninameslist_package_stamp], [20160701]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [9]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
+m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
+# Libraries have a "libtool" version of the form current:revision:age.
+m4_define([uninameslist_current], [1])
+m4_define([uninameslist_revision],[0])
+m4_define([uninameslist_age],     [0])
+m4_define([uninameslist_libver],
+          [uninameslist_current:uninameslist_revision:uninameslist_age])
+
+# These values below are kept for backwards compatibility with older programs
+# that are using the French namesList. This increments with ListeDesNoms.txt.
+m4_define([fr_major_version], [7]) dnl latest ListeDesNoms.txt = ver7.0
+m4_define([fr_minor_version], [0])
+m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
+m4_define([uninameslist_fr_current], [1])
+m4_define([uninameslist_fr_revision],[0])
+m4_define([uninameslist_fr_age],     [0])
+m4_define([uninameslist_fr_libver],
+          [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])
+
 #-------------------------------------------
 #
 # To update the libtool version, which should be set independently of the
@@ -31,27 +50,10 @@ m4_define([uninameslist_nameslist_ver], [8.0]) #Nameslist.txt
 #
 #      uninameslist_age = 0
 #
-m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision], [0])
-m4_define([uninameslist_age], [1])
-m4_define([uninameslist_version],
-          [uninameslist_current.uninameslist_revision.uninameslist_age.uninameslist_package_stamp])
-m4_define([uninameslist_info],
-          [uninameslist_current:uninameslist_revision:uninameslist_age])
 m4_define([uninameslist_package_name], [libuninameslist])
 
 #-------------------------------------------
-# These values below are kept for backwards compatibility with older programs
-# that may still be using the French namesList. This only increments if the
-# respective ListeDesNoms.txt increases. Recently was version 7.0 (value=0.4.0).
-m4_define([uninameslist_fr_nameslist_ver], [7.0]) #ListeDesNoms.txt
-m4_define([fr_major_version], [0])
-m4_define([fr_minor_version], [4]) dnl latest ListeDesNoms.txt = ver7.0
-m4_define([fr_info],
-          [fr_major_version:fr_minor_version:0])
-
-#-------------------------------------------
-AC_INIT([uninameslist],[uninameslist_version],[fontforge-devel@lists.sourceforge.net],
+AC_INIT([uninameslist],[uninameslist_package_stamp],[fontforge-devel@lists.sourceforge.net],
 	[uninameslist_package_name],[https://github.com/fontforge/libuninameslist])
 AC_CONFIG_SRCDIR([buildnameslist.c])
 AM_INIT_AUTOMAKE([foreign -Wall])
@@ -93,7 +95,7 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])],[AC_SUBST([AM_DEFAULT_VERBOS
 
 #-------------------------------------------
 # Include deprecated French library too?
-AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may be useful for French programs. Currently at ListeDesNoms.txt version 7.0]),
+AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may be useful for French programs. Currently at ListeDesNoms.txt version ${uninameslist_fr_nameslist_ver}]),
   [case "${enableval}" in
     yes) frenchlib=true ;;
     no)  frenchlib=false ;;
@@ -160,10 +162,10 @@ fi
 # Pass some definitions to buildnameslist.c
 echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
 echo 'const char NFR_VERSION[[]] = "uninameslist_fr_nameslist_ver";' >> buildnameslist.h
-AC_DEFINE([LU_VERSION_MJ],[uninameslist_major_version])
-AC_DEFINE([LU_VERSION_MN],[uninameslist_minor_version])
-AC_DEFINE([LFR_VERSION_MJ],[fr_major_version])
-AC_DEFINE([LFR_VERSION_MN],[fr_minor_version])
+AC_DEFINE([LU_VERSION_MJ],[uninameslist_current])
+AC_DEFINE([LU_VERSION_MN],[uninameslist_revision])
+AC_DEFINE([LFR_VERSION_MJ],[uninameslist_fr_current])
+AC_DEFINE([LFR_VERSION_MN],[uninameslist_fr_revision])
 
 #-------------------------------------------
 # Pass variables to build libuninameslist.pc
@@ -175,8 +177,8 @@ AC_SUBST([LIBUNINAMESLIST_PKGCONFIG_LIBS],["${uninameslist_libs}"])
 
 #-------------------------------------------
 # Pass variables to MAKEFILE.AM
-AC_SUBST([UN_VERSION],[uninameslist_info])
-AC_SUBST([FR_VERSION],[fr_info])
+AC_SUBST([UN_VERSION],[uninameslist_libver])
+AC_SUBST([FR_VERSION],[uninameslist_fr_libver])
 AC_SUBST([NL_VERSION],[uninameslist_nameslist_ver])
 AC_SUBST([NFR_VERSION],[uninameslist_fr_nameslist_ver])
 AC_SUBST([UN_CFLAGS])

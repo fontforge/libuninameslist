@@ -96,9 +96,14 @@ Let's say the next version of NamesList is version 8.0.
 	make clean
 	make
 
+Added note: Going from Unicode 8.0 to 9.0, both of these libraries listed are
+now bumped to 1,0 since this can be seen as a large change due to the library
+compilation of the CRA being confused with Major Minor versioning.
+Backwards compatibility to accessing data still remains intact for programs
+that require access using older methods.
 
 Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2015-Jul-01, by Joe Da Silva
+	2016-Jul-01, by Joe Da Silva

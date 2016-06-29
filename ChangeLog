@@ -1,5 +1,14 @@
+- 2016-Jul-01
+    * Version 1.0, Unicode 9.0, French version is 7.0(2014-06-22).
+    * Corrected library to report correctly as next version up. This is
+      probably a significant change, therefore bumped both libraries to
+      start at 1.0 even though backwards compatibility remains the same,
+      otherwise would have become version_0.6 (and French version_0.4).
+    * Removed the excessively long package name, which you'll note as a
+      so-bump change with Fedora and also Debian in naming this package.
+
 - 2015-Jul-01
-    * Unicode 8.0, French version is 7.0(2014-06-22).
+    * Version 0.5. Unicode 8.0. French version is 7.0(2014-06-22).
 
 - 2014-Jul-31
     * Version 0.4. Unicode 7.0. Updated French version to 7.0(2014-06-22).

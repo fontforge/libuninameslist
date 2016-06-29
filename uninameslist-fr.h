@@ -38,8 +38,8 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 /*  = should remain itself */
 
 /* French NamesList (Version 7.0). */
-#define LIBUNINAMESLIST_FR_MAJOR	0
-#define LIBUNINAMESLIST_FR_MINOR	4
+#define LIBUNINAMESLIST_FR_MAJOR	1
+#define LIBUNINAMESLIST_FR_MINOR	0
 
 #ifdef __cplusplus
 }

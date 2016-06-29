@@ -9,7 +9,7 @@ The data contained in these arrays were derived from data contained in
 NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
-Copyright © 1991-2015 Unicode, Inc. All rights reserved.
+Copyright © 1991-2016 Unicode, Inc. All rights reserved.
 Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Unicode data files and any associated documentation (the "Data Files")
@@ -65,7 +65,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 
 /* Retrieve Nameslist.txt version number. */
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 8.0" );
+	return( "Nameslist-Version: 9.0" );
 }
 
 
@@ -342,6 +342,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1bc0, 0x1bff, "Batak" },
 	{ 0x1c00, 0x1c4f, "Lepcha" },
 	{ 0x1c50, 0x1c7f, "Ol Chiki" },
+	{ 0x1c80, 0x1c8f, "Cyrillic Extended-C" },
 	{ 0x1cc0, 0x1ccf, "Sundanese Supplement" },
 	{ 0x1cd0, 0x1cff, "Vedic Extensions" },
 	{ 0x1d00, 0x1d7f, "Phonetic Extensions" },
@@ -458,6 +459,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x10400, 0x1044f, "Deseret" },
 	{ 0x10450, 0x1047f, "Shavian" },
 	{ 0x10480, 0x104af, "Osmanya" },
+	{ 0x104b0, 0x104ff, "Osage" },
 	{ 0x10500, 0x1052f, "Elbasan" },
 	{ 0x10530, 0x1056f, "Caucasian Albanian" },
 	{ 0x10600, 0x1077f, "Linear A" },
@@ -492,13 +494,17 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x11280, 0x112af, "Multani" },
 	{ 0x112b0, 0x112ff, "Khudawadi" },
 	{ 0x11300, 0x1137f, "Grantha" },
+	{ 0x11400, 0x1147f, "Newa" },
 	{ 0x11480, 0x114df, "Tirhuta" },
 	{ 0x11580, 0x115ff, "Siddham" },
 	{ 0x11600, 0x1165f, "Modi" },
+	{ 0x11660, 0x1167f, "Mongolian Supplement" },
 	{ 0x11680, 0x116cf, "Takri" },
 	{ 0x11700, 0x1173f, "Ahom" },
 	{ 0x118a0, 0x118ff, "Warang Citi" },
 	{ 0x11ac0, 0x11aff, "Pau Cin Hau" },
+	{ 0x11c00, 0x11c6f, "Bhaiksuki" },
+	{ 0x11c70, 0x11cbf, "Marchen" },
 	{ 0x12000, 0x123ff, "Cuneiform" },
 	{ 0x12400, 0x1247f, "Cuneiform Numbers and Punctuation" },
 	{ 0x12480, 0x1254f, "Early Dynastic Cuneiform" },
@@ -509,6 +515,9 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x16ad0, 0x16aff, "Bassa Vah" },
 	{ 0x16b00, 0x16b8f, "Pahawh Hmong" },
 	{ 0x16f00, 0x16f9f, "Miao" },
+	{ 0x16fe0, 0x16fff, "Ideographic Symbols and Punctuation" },
+	{ 0x17000, 0x187ec, "Tangut" },
+	{ 0x18800, 0x18aff, "Tangut Components" },
 	{ 0x1b000, 0x1b0ff, "Kana Supplement" },
 	{ 0x1bc00, 0x1bc9f, "Duployan" },
 	{ 0x1bca0, 0x1bcaf, "Shorthand Format Controls" },
@@ -519,7 +528,9 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1d360, 0x1d37f, "Counting Rod Numerals" },
 	{ 0x1d400, 0x1d7ff, "Mathematical Alphanumeric Symbols" },
 	{ 0x1d800, 0x1daaf, "Sutton SignWriting" },
+	{ 0x1e000, 0x1e02f, "Glagolitic Supplement" },
 	{ 0x1e800, 0x1e8df, "Mende Kikakui" },
+	{ 0x1e900, 0x1e95f, "Adlam" },
 	{ 0x1ee00, 0x1eeff, "Arabic Mathematical Alphabetic Symbols" },
 	{ 0x1f000, 0x1f02f, "Mahjong Tiles" },
 	{ 0x1f030, 0x1f09f, "Domino Tiles" },
@@ -666,7 +677,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (low asterisk - 204E)\n"
 	"	x (asterisk operator - 2217)\n"
 	"	x (sextile - 26B9)\n"
-	"	x (heavy asterisk - 2731)"},
+	"	x (heavy asterisk - 2731)\n"
+	"	~ 002A FE0E text style\n"
+	"	~ 002A FE0F emoji style"},
 /* 002B */ { "PLUS SIGN","	x (heavy plus sign - 2795)"},
 /* 002C */ { "COMMA","	= decimal separator\n"
 	"	x (arabic comma - 060C)\n"
@@ -692,7 +705,8 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (combining long solidus overlay - 0338)\n"
 	"	x (fraction slash - 2044)\n"
 	"	x (division slash - 2215)"},
-/* 0030 */ { "DIGIT ZERO","	~ 0030 FE0E text style\n"
+/* 0030 */ { "DIGIT ZERO","	~ 0030 FE00 short diagonal stroke form\n"
+	"	~ 0030 FE0E text style\n"
 	"	~ 0030 FE0F emoji style"},
 /* 0031 */ { "DIGIT ONE","	~ 0031 FE0E text style\n"
 	"	~ 0031 FE0F emoji style"},
@@ -989,13 +1003,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	* usually closing, sometimes opening\n"
 	"	x (much greater-than - 226B)\n"
 	"	x (right double angle bracket - 300B)"},
-/* 00BC */ { "VULGAR FRACTION ONE QUARTER","	* bar may be horizontal or slanted\n"
-	"	* other fraction characters: 2153-215E\n"
-	"	# <fraction> 0031 2044 0034"},
-/* 00BD */ { "VULGAR FRACTION ONE HALF","	* bar may be horizontal or slanted\n"
-	"	# <fraction> 0031 2044 0032"},
-/* 00BE */ { "VULGAR FRACTION THREE QUARTERS","	* bar may be horizontal or slanted\n"
-	"	# <fraction> 0033 2044 0034"},
+/* 00BC */ { "VULGAR FRACTION ONE QUARTER","	# <fraction> 0031 2044 0034"},
+/* 00BD */ { "VULGAR FRACTION ONE HALF","	# <fraction> 0031 2044 0032"},
+/* 00BE */ { "VULGAR FRACTION THREE QUARTERS","	# <fraction> 0033 2044 0034"},
 /* 00BF */ { "INVERTED QUESTION MARK","	= turned question mark\n"
 	"	* Spanish\n"
 	"	x (question mark - 003F)\n"
@@ -1007,7 +1017,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00C4 */ { "LATIN CAPITAL LETTER A WITH DIAERESIS","	: 0041 0308"},
 /* 00C5 */ { "LATIN CAPITAL LETTER A WITH RING ABOVE","	x (angstrom sign - 212B)\n"
 	"	: 0041 030A"},
-/* 00C6 */ { "LATIN CAPITAL LETTER AE","	= latin capital ligature ae (1.0)"},
+/* 00C6 */ { "LATIN CAPITAL LETTER AE","	= latin capital ligature ae (1.1)"},
 /* 00C7 */ { "LATIN CAPITAL LETTER C WITH CEDILLA","	: 0043 0327"},
 /* 00C8 */ { "LATIN CAPITAL LETTER E WITH GRAVE","	: 0045 0300"},
 /* 00C9 */ { "LATIN CAPITAL LETTER E WITH ACUTE","	: 0045 0301"},
@@ -1017,7 +1027,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00CD */ { "LATIN CAPITAL LETTER I WITH ACUTE","	: 0049 0301"},
 /* 00CE */ { "LATIN CAPITAL LETTER I WITH CIRCUMFLEX","	: 0049 0302"},
 /* 00CF */ { "LATIN CAPITAL LETTER I WITH DIAERESIS","	: 0049 0308"},
-/* 00D0 */ { "LATIN CAPITAL LETTER ETH","	x (latin small letter eth - 00F0)\n"
+/* 00D0 */ { "LATIN CAPITAL LETTER ETH","	* lowercase is 00F0\n"
 	"	x (latin capital letter d with stroke - 0110)\n"
 	"	x (latin capital letter african d - 0189)"},
 /* 00D1 */ { "LATIN CAPITAL LETTER N WITH TILDE","	: 004E 0303"},
@@ -1039,9 +1049,9 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00DF */ { "LATIN SMALL LETTER SHARP S","	= Eszett\n"
 	"	* German\n"
 	"	* uppercase is \"SS\"\n"
+	"	* nonstandard uppercase is 1E9E\n"
 	"	* typographically the glyph for this character can be based on a ligature of 017F with either 0073 or with an old-style glyph for 007A (the latter similar in appearance to 0292). Both forms exist interchangeably today.\n"
-	"	x (greek small letter beta - 03B2)\n"
-	"	x (latin capital letter sharp s - 1E9E)"},
+	"	x (greek small letter beta - 03B2)"},
 /* 00E0 */ { "LATIN SMALL LETTER A WITH GRAVE","	: 0061 0300"},
 /* 00E1 */ { "LATIN SMALL LETTER A WITH ACUTE","	: 0061 0301"},
 /* 00E2 */ { "LATIN SMALL LETTER A WITH CIRCUMFLEX","	: 0061 0302"},
@@ -1050,7 +1060,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00E4 */ { "LATIN SMALL LETTER A WITH DIAERESIS","	: 0061 0308"},
 /* 00E5 */ { "LATIN SMALL LETTER A WITH RING ABOVE","	* Danish, Norwegian, Swedish, Walloon\n"
 	"	: 0061 030A"},
-/* 00E6 */ { "LATIN SMALL LETTER AE","	= latin small ligature ae (1.0)\n"
+/* 00E6 */ { "LATIN SMALL LETTER AE","	= latin small ligature ae (1.1)\n"
 	"	= ash (from Old English æsc)\n"
 	"	* Danish, Norwegian, Icelandic, Faroese, Old English, French, IPA\n"
 	"	x (latin small ligature oe - 0153)\n"
@@ -1066,7 +1076,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00EE */ { "LATIN SMALL LETTER I WITH CIRCUMFLEX","	: 0069 0302"},
 /* 00EF */ { "LATIN SMALL LETTER I WITH DIAERESIS","	: 0069 0308"},
 /* 00F0 */ { "LATIN SMALL LETTER ETH","	* Icelandic, Faroese, Old English, IPA\n"
-	"	x (latin capital letter eth - 00D0)\n"
+	"	* uppercase is 00D0\n"
 	"	x (greek small letter delta - 03B4)\n"
 	"	x (partial differential - 2202)"},
 /* 00F1 */ { "LATIN SMALL LETTER N WITH TILDE","	: 006E 0303"},
@@ -1099,7 +1109,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	* Runic letter borrowed into Latin script\n"
 	"	x (runic letter thurisaz thurs thorn - 16A6)"},
 /* 00FF */ { "LATIN SMALL LETTER Y WITH DIAERESIS","	* French, medieval Hungarian orthography\n"
-	"	x (latin capital letter y with diaeresis - 0178)\n"
+	"	* uppercase is 0178\n"
 	"	: 0079 0308"}
 };
 
@@ -1316,7 +1326,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0177 */ { "LATIN SMALL LETTER Y WITH CIRCUMFLEX","	* Welsh\n"
 	"	: 0079 0302"},
 /* 0178 */ { "LATIN CAPITAL LETTER Y WITH DIAERESIS","	* French, Igbo\n"
-	"	x (latin small letter y with diaeresis - 00FF)\n"
+	"	* lowercase is 00FF\n"
 	"	: 0059 0308"},
 /* 0179 */ { "LATIN CAPITAL LETTER Z WITH ACUTE","	: 005A 0301"},
 /* 017A */ { "LATIN SMALL LETTER Z WITH ACUTE","	* Polish, ...\n"
@@ -1667,18 +1677,19 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0235 */ { "LATIN SMALL LETTER N WITH CURL",NULL},
 /* 0236 */ { "LATIN SMALL LETTER T WITH CURL",NULL},
 /* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	x (mathematical italic small dotless j - 1D6A5)"},
-/* 0238 */ { "LATIN SMALL LETTER DB DIGRAPH","	* used in Africanist linguistics"},
-/* 0239 */ { "LATIN SMALL LETTER QP DIGRAPH","	* used in Africanist linguistics"},
-/* 023A */ { "LATIN CAPITAL LETTER A WITH STROKE","	* Sencoten\n"
-	"	* lowercase is 2C65"},
-/* 023B */ { "LATIN CAPITAL LETTER C WITH STROKE","	* Sencoten"},
-/* 023C */ { "LATIN SMALL LETTER C WITH STROKE","	* used in Americanist linguistics"},
-/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* Sencoten\n"
-	"	* lowercase is 019A"},
-/* 023E */ { "LATIN CAPITAL LETTER T WITH DIAGONAL STROKE","	* Sencoten\n"
-	"	* lowercase is 2C66"},
-/* 023F */ { "LATIN SMALL LETTER S WITH SWASH TAIL","	* uppercase is 2C7E"},
-/* 0240 */ { "LATIN SMALL LETTER Z WITH SWASH TAIL","	* uppercase is 2C7F"},
+/* 0238 */ { "LATIN SMALL LETTER DB DIGRAPH",NULL},
+/* 0239 */ { "LATIN SMALL LETTER QP DIGRAPH",NULL},
+/* 023A */ { "LATIN CAPITAL LETTER A WITH STROKE","	* lowercase is 2C65"},
+/* 023B */ { "LATIN CAPITAL LETTER C WITH STROKE",NULL},
+/* 023C */ { "LATIN SMALL LETTER C WITH STROKE","	* also used in Americanist linguistics"},
+/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* lowercase is 019A"},
+/* 023E */ { "LATIN CAPITAL LETTER T WITH DIAGONAL STROKE","	* lowercase is 2C66"},
+/* 023F */ { "LATIN SMALL LETTER S WITH SWASH TAIL","	* voiceless labio-alveolar fricative\n"
+	"	* uppercase is 2C7E\n"
+	"	x (latin small letter s with hook - 0282)"},
+/* 0240 */ { "LATIN SMALL LETTER Z WITH SWASH TAIL","	* voiced labio-alveolar fricative\n"
+	"	* uppercase is 2C7F\n"
+	"	x (latin small letter z with retroflex hook - 0290)"},
 /* 0241 */ { "LATIN CAPITAL LETTER GLOTTAL STOP",NULL},
 /* 0242 */ { "LATIN SMALL LETTER GLOTTAL STOP","	* casing use in Chipewyan, Dogrib, Slavey (Canadian aboriginal orthographies)\n"
 	"	x (latin letter glottal stop - 0294)\n"
@@ -1771,7 +1782,7 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (greek small letter iota - 03B9)"},
 /* 026A */ { "LATIN LETTER SMALL CAPITAL I","	* semi-high front unrounded vowel\n"
 	"	* preferred IPA alternate for 0269\n"
-	"	* uppercase is 0197"},
+	"	* uppercase is A7AE"},
 /* 026B */ { "LATIN SMALL LETTER L WITH MIDDLE TILDE","	* velarized voiced alveolar lateral approximant\n"
 	"	* uppercase is 2C62"},
 /* 026C */ { "LATIN SMALL LETTER L WITH BELT","	* voiceless alveolar lateral fricative\n"
@@ -2166,7 +2177,8 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	x (quotation mark - 0022)"},
 /* 030F */ { "COMBINING DOUBLE GRAVE ACCENT","	* Serbian and Croatian phonetics"},
 /* 0310 */ { "COMBINING CANDRABINDU","	x (devanagari sign candrabindu - 0901)"},
-/* 0311 */ { "COMBINING INVERTED BREVE","	x (combining cyrillic pokrytie - 0487)"},
+/* 0311 */ { "COMBINING INVERTED BREVE","	x (combining cyrillic palatalization - 0484)\n"
+	"	x (combining cyrillic pokrytie - 0487)"},
 /* 0312 */ { "COMBINING TURNED COMMA ABOVE","	= cedilla above\n"
 	"	* Latvian (but not used in decomposition)\n"
 	"	x (modifier letter turned comma - 02BB)"},
@@ -2357,7 +2369,8 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0384 */ { "GREEK TONOS","	x (acute accent - 00B4)\n"
 	"	x (combining vertical line above - 030D)\n"
 	"	# 0020 0301"},
-/* 0385 */ { "GREEK DIALYTIKA TONOS","	: 00A8 0301"},
+/* 0385 */ { "GREEK DIALYTIKA TONOS","	* compatibility decomposition (NFKD) is 0020 0308 0301\n"
+	"	: 00A8 0301"},
 /* 0386 */ { "GREEK CAPITAL LETTER ALPHA WITH TONOS","	: 0391 0301"},
 /* 0387 */ { "GREEK ANO TELEIA","	* functions in Greek like a semicolon\n"
 	"	* 00B7 is the preferred character\n"
@@ -2668,29 +2681,30 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0475 */ { "CYRILLIC SMALL LETTER IZHITSA",NULL},
 /* 0476 */ { "CYRILLIC CAPITAL LETTER IZHITSA WITH DOUBLE GRAVE ACCENT","	: 0474 030F"},
 /* 0477 */ { "CYRILLIC SMALL LETTER IZHITSA WITH DOUBLE GRAVE ACCENT","	: 0475 030F"},
-/* 0478 */ { "CYRILLIC CAPITAL LETTER UK","	* may be rendered as either monograph or digraph form\n"
-	"	* for \"digraph uk\" the preferred spelling is 041E 0443\n"
+/* 0478 */ { "CYRILLIC CAPITAL LETTER UK","	* for \"digraph onik\" the preferred spelling is 041E 0443\n"
 	"	* for \"monograph uk\" the preferred character is A64A\n"
 	"	x (cyrillic capital letter u - 0423)"},
-/* 0479 */ { "CYRILLIC SMALL LETTER UK","	* for \"digraph uk\" the preferred spelling is 043E 0443\n"
+/* 0479 */ { "CYRILLIC SMALL LETTER UK","	* for \"digraph onik\" the preferred spelling is 043E 0443\n"
 	"	* for \"monograph uk\" the preferred character is A64B"},
 /* 047A */ { "CYRILLIC CAPITAL LETTER ROUND OMEGA",NULL},
 /* 047B */ { "CYRILLIC SMALL LETTER ROUND OMEGA",NULL},
 /* 047C */ { "CYRILLIC CAPITAL LETTER OMEGA WITH TITLO","	= Cyrillic \"beautiful omega\"\n"
 	"	* despite its name, this character does not have a titlo, nor is it composed of an omega plus a diacritic\n"
 	"	x (cyrillic capital letter broad omega - A64C)"},
-/* 047D */ { "CYRILLIC SMALL LETTER OMEGA WITH TITLO",NULL},
+/* 047D */ { "CYRILLIC SMALL LETTER OMEGA WITH TITLO","	x (greek small letter omega with psili and perispomeni - 1F66)"},
 /* 047E */ { "CYRILLIC CAPITAL LETTER OT",NULL},
 /* 047F */ { "CYRILLIC SMALL LETTER OT",NULL},
 /* 0480 */ { "CYRILLIC CAPITAL LETTER KOPPA",NULL},
 /* 0481 */ { "CYRILLIC SMALL LETTER KOPPA",NULL},
 /* 0482 */ { "CYRILLIC THOUSANDS SIGN",NULL},
-/* 0483 */ { "COMBINING CYRILLIC TITLO","	* not used with letter titlos\n"
+/* 0483 */ { "COMBINING CYRILLIC TITLO","	* not used with titlo letters\n"
 	"	x (combining cyrillic vzmet - A66F)"},
-/* 0484 */ { "COMBINING CYRILLIC PALATALIZATION","	x (combining vertical tilde - 033E)"},
+/* 0484 */ { "COMBINING CYRILLIC PALATALIZATION","	* not used for kamora\n"
+	"	x (modifier letter apostrophe - 02BC)\n"
+	"	x (combining inverted breve - 0311)"},
 /* 0485 */ { "COMBINING CYRILLIC DASIA PNEUMATA","	x (combining reversed comma above - 0314)"},
 /* 0486 */ { "COMBINING CYRILLIC PSILI PNEUMATA","	x (combining comma above - 0313)"},
-/* 0487 */ { "COMBINING CYRILLIC POKRYTIE","	* used only with letter titlos\n"
+/* 0487 */ { "COMBINING CYRILLIC POKRYTIE","	* used only with titlo letters\n"
 	"	* also attested in Glagolitic\n"
 	"	x (combining inverted breve - 0311)\n"
 	"	x (combining cyrillic vzmet - A66F)"},
@@ -2726,6 +2740,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04A3 */ { "CYRILLIC SMALL LETTER EN WITH DESCENDER","	* Bashkir, ..."},
 /* 04A4 */ { "CYRILLIC CAPITAL LIGATURE EN GHE",NULL},
 /* 04A5 */ { "CYRILLIC SMALL LIGATURE EN GHE","	* Altay, Mari, Yakut\n"
+	"	* also used for soft en in Old Church Slavonic\n"
 	"	* this is not a decomposable ligature"},
 /* 04A6 */ { "CYRILLIC CAPITAL LETTER PE WITH MIDDLE HOOK",NULL},
 /* 04A7 */ { "CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK","	* older orthographies for Abkhasian"},
@@ -3441,7 +3456,8 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 0707 */ { "SYRIAC COLON SKEWED RIGHT","	* marks the end of a subdivision of the apodosis, or latter part of a Biblical verse"},
 /* 0708 */ { "SYRIAC SUPRALINEAR COLON SKEWED LEFT","	* marks a minor phrase division"},
 /* 0709 */ { "SYRIAC SUBLINEAR COLON SKEWED RIGHT","	% SYRIAC SUBLINEAR COLON SKEWED LEFT\n"
-	"	* marks the end of a real or rhetorical question"},
+	"	* marks the end of a real or rhetorical question\n"
+	"	* character name is a misnomer"},
 /* 070A */ { "SYRIAC CONTRACTION","	* a contraction mark, mostly used in East Syriac\n"
 	"	* placed at the end of an incomplete word"},
 /* 070B */ { "SYRIAC HARKLEAN OBELUS","	* marks the beginning of a phrase, word, or morpheme that has a marginal note\n"
@@ -3772,7 +3788,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 0844 */ { "MANDAIC LETTER AH",NULL},
 /* 0845 */ { "MANDAIC LETTER USHENNA","	= u"},
 /* 0846 */ { "MANDAIC LETTER AZ",NULL},
-/* 0847 */ { "MANDAIC LETTER IT",NULL},
+/* 0847 */ { "MANDAIC LETTER IT","	= pharyngeal hu"},
 /* 0848 */ { "MANDAIC LETTER ATT",NULL},
 /* 0849 */ { "MANDAIC LETTER AKSA","	= i"},
 /* 084A */ { "MANDAIC LETTER AK",NULL},
@@ -3883,20 +3899,26 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08AD */ { "ARABIC LETTER LOW ALEF","	* Bashkir, Tatar"},
 /* 08AE */ { "ARABIC LETTER DAL WITH THREE DOTS BELOW","	* Belarusian"},
 /* 08AF */ { "ARABIC LETTER SAD WITH THREE DOTS BELOW","	* Belarusian"},
-/* 08B0 */ { "ARABIC LETTER GAF WITH INVERTED STROKE","	* Crimean Tatar, Chechen, Lak "},
+/* 08B0 */ { "ARABIC LETTER GAF WITH INVERTED STROKE","	* Crimean Tatar, Chechen, Lak"},
 /* 08B1 */ { "ARABIC LETTER STRAIGHT WAW","	* Tatar"},
 /* 08B2 */ { "ARABIC LETTER ZAIN WITH INVERTED V ABOVE",NULL},
 /* 08B3 */ { "ARABIC LETTER AIN WITH THREE DOTS BELOW",NULL},
 /* 08B4 */ { "ARABIC LETTER KAF WITH DOT BELOW",NULL},
 /* 08B5 */ { NULL,NULL},
-/* 08B6 */ { NULL,NULL},
-/* 08B7 */ { NULL,NULL},
-/* 08B8 */ { NULL,NULL},
-/* 08B9 */ { NULL,NULL},
-/* 08BA */ { NULL,NULL},
-/* 08BB */ { NULL,NULL},
-/* 08BC */ { NULL,NULL},
-/* 08BD */ { NULL,NULL},
+/* 08B6 */ { "ARABIC LETTER BEH WITH SMALL MEEM ABOVE",NULL},
+/* 08B7 */ { "ARABIC LETTER PEH WITH SMALL MEEM ABOVE",NULL},
+/* 08B8 */ { "ARABIC LETTER TEH WITH SMALL TEH ABOVE",NULL},
+/* 08B9 */ { "ARABIC LETTER REH WITH SMALL NOON ABOVE",NULL},
+/* 08BA */ { "ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE",NULL},
+/* 08BB */ { "ARABIC LETTER AFRICAN FEH","	* initial and medial forms have one dot below\n"
+	"	x (arabic letter dotless feh - 06A1)\n"
+	"	x (arabic letter feh with dot moved below - 06A2)"},
+/* 08BC */ { "ARABIC LETTER AFRICAN QAF","	* initial and medial forms have one dot above\n"
+	"	x (arabic letter dotless qaf - 066F)\n"
+	"	x (arabic letter qaf with dot above - 06A7)"},
+/* 08BD */ { "ARABIC LETTER AFRICAN NOON","	* initial and medial forms have one dot above\n"
+	"	x (arabic letter noon ghunna - 06BA)\n"
+	"	x (arabic letter noon - 0646)"},
 /* 08BE */ { NULL,NULL},
 /* 08BF */ { NULL,NULL},
 /* 08C0 */ { NULL,NULL},
@@ -3919,21 +3941,21 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08D1 */ { NULL,NULL},
 /* 08D2 */ { NULL,NULL},
 /* 08D3 */ { NULL,NULL},
-/* 08D4 */ { NULL,NULL},
-/* 08D5 */ { NULL,NULL},
-/* 08D6 */ { NULL,NULL},
-/* 08D7 */ { NULL,NULL},
-/* 08D8 */ { NULL,NULL},
-/* 08D9 */ { NULL,NULL},
-/* 08DA */ { NULL,NULL},
-/* 08DB */ { NULL,NULL},
-/* 08DC */ { NULL,NULL},
-/* 08DD */ { NULL,NULL},
-/* 08DE */ { NULL,NULL},
-/* 08DF */ { NULL,NULL},
-/* 08E0 */ { NULL,NULL},
-/* 08E1 */ { NULL,NULL},
-/* 08E2 */ { NULL,NULL},
+/* 08D4 */ { "ARABIC SMALL HIGH WORD AR-RUB",NULL},
+/* 08D5 */ { "ARABIC SMALL HIGH SAD",NULL},
+/* 08D6 */ { "ARABIC SMALL HIGH AIN",NULL},
+/* 08D7 */ { "ARABIC SMALL HIGH QAF",NULL},
+/* 08D8 */ { "ARABIC SMALL HIGH NOON WITH KASRA",NULL},
+/* 08D9 */ { "ARABIC SMALL LOW NOON WITH KASRA",NULL},
+/* 08DA */ { "ARABIC SMALL HIGH WORD ATH-THALATHA",NULL},
+/* 08DB */ { "ARABIC SMALL HIGH WORD AS-SAJDA",NULL},
+/* 08DC */ { "ARABIC SMALL HIGH WORD AN-NISF",NULL},
+/* 08DD */ { "ARABIC SMALL HIGH WORD SAKTA",NULL},
+/* 08DE */ { "ARABIC SMALL HIGH WORD QIF",NULL},
+/* 08DF */ { "ARABIC SMALL HIGH WORD WAQFA",NULL},
+/* 08E0 */ { "ARABIC SMALL HIGH FOOTNOTE MARKER",NULL},
+/* 08E1 */ { "ARABIC SMALL HIGH SIGN SAFHA",NULL},
+/* 08E2 */ { "ARABIC DISPUTED END OF AYAH",NULL},
 /* 08E3 */ { "ARABIC TURNED DAMMA BELOW",NULL},
 /* 08E4 */ { "ARABIC CURLY FATHA",NULL},
 /* 08E5 */ { "ARABIC CURLY DAMMA",NULL},
@@ -4085,7 +4107,7 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 0964 */ { "DEVANAGARI DANDA","	= purna viram\n"
 	"	* phrase separator"},
 /* 0965 */ { "DEVANAGARI DOUBLE DANDA","	= deergh viram"},
-/* 0966 */ { "DEVANAGARI DIGIT ZERO",NULL},
+/* 0966 */ { "DEVANAGARI DIGIT ZERO","	* also used to represent an anusvara following digits indicating secondary svara-s in Samavedic texts"},
 /* 0967 */ { "DEVANAGARI DIGIT ONE",NULL},
 /* 0968 */ { "DEVANAGARI DIGIT TWO",NULL},
 /* 0969 */ { "DEVANAGARI DIGIT THREE",NULL},
@@ -4687,7 +4709,8 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BA7 */ { NULL,NULL},
 /* 0BA8 */ { "TAMIL LETTER NA",NULL},
 /* 0BA9 */ { "TAMIL LETTER NNNA",NULL},
-/* 0BAA */ { "TAMIL LETTER PA","	* also denotes the fraction one twentieth"},
+/* 0BAA */ { "TAMIL LETTER PA","	= maa\n"
+	"	* also denotes the fraction one twentieth"},
 /* 0BAB */ { NULL,NULL},
 /* 0BAC */ { NULL,NULL},
 /* 0BAD */ { NULL,NULL},
@@ -4913,7 +4936,7 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0C7D */ { "TELUGU FRACTION DIGIT TWO FOR EVEN POWERS OF FOUR",NULL},
 /* 0C7E */ { "TELUGU FRACTION DIGIT THREE FOR EVEN POWERS OF FOUR",NULL},
 /* 0C7F */ { "TELUGU SIGN TUUMU",NULL},
-/* 0C80 */ { NULL,NULL},
+/* 0C80 */ { "KANNADA SIGN SPACING CANDRABINDU",NULL},
 /* 0C81 */ { "KANNADA SIGN CANDRABINDU",NULL},
 /* 0C82 */ { "KANNADA SIGN ANUSVARA",NULL},
 /* 0C83 */ { "KANNADA SIGN VISARGA",NULL},
@@ -5048,7 +5071,7 @@ static const struct unicode_nameannot una_00_0C[] = {
 static const struct unicode_nameannot una_00_0D[] = {
 /* 0D00 */ { NULL,NULL},
 /* 0D01 */ { "MALAYALAM SIGN CANDRABINDU",NULL},
-/* 0D02 */ { "MALAYALAM SIGN ANUSVARA",NULL},
+/* 0D02 */ { "MALAYALAM SIGN ANUSVARA","	* used in Prakrit language texts to indicate gemination of the following consonant"},
 /* 0D03 */ { "MALAYALAM SIGN VISARGA",NULL},
 /* 0D04 */ { NULL,NULL},
 /* 0D05 */ { "MALAYALAM LETTER A",NULL},
@@ -5092,7 +5115,7 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D2B */ { "MALAYALAM LETTER PHA",NULL},
 /* 0D2C */ { "MALAYALAM LETTER BA",NULL},
 /* 0D2D */ { "MALAYALAM LETTER BHA",NULL},
-/* 0D2E */ { "MALAYALAM LETTER MA",NULL},
+/* 0D2E */ { "MALAYALAM LETTER MA","	* also used to denote the fraction one eightieth (kaani)"},
 /* 0D2F */ { "MALAYALAM LETTER YA",NULL},
 /* 0D30 */ { "MALAYALAM LETTER RA",NULL},
 /* 0D31 */ { "MALAYALAM LETTER RRA",NULL},
@@ -5128,23 +5151,23 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D4D */ { "MALAYALAM SIGN VIRAMA","	= candrakkala (the preferred name)\n"
 	"	= vowel half-u"},
 /* 0D4E */ { "MALAYALAM LETTER DOT REPH","	* not used in reformed modern Malayalam orthography"},
-/* 0D4F */ { NULL,NULL},
+/* 0D4F */ { "MALAYALAM SIGN PARA","	* used historically to measure rice"},
 /* 0D50 */ { NULL,NULL},
 /* 0D51 */ { NULL,NULL},
 /* 0D52 */ { NULL,NULL},
 /* 0D53 */ { NULL,NULL},
-/* 0D54 */ { NULL,NULL},
-/* 0D55 */ { NULL,NULL},
-/* 0D56 */ { NULL,NULL},
+/* 0D54 */ { "MALAYALAM LETTER CHILLU M",NULL},
+/* 0D55 */ { "MALAYALAM LETTER CHILLU Y",NULL},
+/* 0D56 */ { "MALAYALAM LETTER CHILLU LLL",NULL},
 /* 0D57 */ { "MALAYALAM AU LENGTH MARK","	* used alone to write the /au/ dependent vowel in modern texts\n"
 	"	x (malayalam vowel sign au - 0D4C)"},
-/* 0D58 */ { NULL,NULL},
-/* 0D59 */ { NULL,NULL},
-/* 0D5A */ { NULL,NULL},
-/* 0D5B */ { NULL,NULL},
-/* 0D5C */ { NULL,NULL},
-/* 0D5D */ { NULL,NULL},
-/* 0D5E */ { NULL,NULL},
+/* 0D58 */ { "MALAYALAM FRACTION ONE ONE-HUNDRED-AND-SIXTIETH","	= arakaani"},
+/* 0D59 */ { "MALAYALAM FRACTION ONE FORTIETH","	= aramaa"},
+/* 0D5A */ { "MALAYALAM FRACTION THREE EIGHTIETHS","	= muunnukaani"},
+/* 0D5B */ { "MALAYALAM FRACTION ONE TWENTIETH","	= orumaa"},
+/* 0D5C */ { "MALAYALAM FRACTION ONE TENTH","	= rantumaa"},
+/* 0D5D */ { "MALAYALAM FRACTION THREE TWENTIETHS","	= muunnumaa"},
+/* 0D5E */ { "MALAYALAM FRACTION ONE FIFTH","	= naalumaa"},
 /* 0D5F */ { "MALAYALAM LETTER ARCHAIC II",NULL},
 /* 0D60 */ { "MALAYALAM LETTER VOCALIC RR",NULL},
 /* 0D61 */ { "MALAYALAM LETTER VOCALIC LL",NULL},
@@ -5165,12 +5188,12 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0D70 */ { "MALAYALAM NUMBER TEN",NULL},
 /* 0D71 */ { "MALAYALAM NUMBER ONE HUNDRED",NULL},
 /* 0D72 */ { "MALAYALAM NUMBER ONE THOUSAND",NULL},
-/* 0D73 */ { "MALAYALAM FRACTION ONE QUARTER",NULL},
-/* 0D74 */ { "MALAYALAM FRACTION ONE HALF",NULL},
-/* 0D75 */ { "MALAYALAM FRACTION THREE QUARTERS",NULL},
-/* 0D76 */ { NULL,NULL},
-/* 0D77 */ { NULL,NULL},
-/* 0D78 */ { NULL,NULL},
+/* 0D73 */ { "MALAYALAM FRACTION ONE QUARTER","	= kaal"},
+/* 0D74 */ { "MALAYALAM FRACTION ONE HALF","	= ara"},
+/* 0D75 */ { "MALAYALAM FRACTION THREE QUARTERS","	= mukkaal"},
+/* 0D76 */ { "MALAYALAM FRACTION ONE SIXTEENTH","	= maakaani"},
+/* 0D77 */ { "MALAYALAM FRACTION ONE EIGHTH","	= arakkaal"},
+/* 0D78 */ { "MALAYALAM FRACTION THREE SIXTEENTHS","	= muntaani"},
 /* 0D79 */ { "MALAYALAM DATE MARK",NULL},
 /* 0D7A */ { "MALAYALAM LETTER CHILLU NN",NULL},
 /* 0D7B */ { "MALAYALAM LETTER CHILLU N",NULL},
@@ -5890,11 +5913,11 @@ static const struct unicode_nameannot una_00_0F[] = {
 };
 
 static const struct unicode_nameannot una_00_10[] = {
-/* 1000 */ { "MYANMAR LETTER KA",NULL},
+/* 1000 */ { "MYANMAR LETTER KA","	~ 1000 FE00 dotted form"},
 /* 1001 */ { "MYANMAR LETTER KHA",NULL},
-/* 1002 */ { "MYANMAR LETTER GA",NULL},
+/* 1002 */ { "MYANMAR LETTER GA","	~ 1002 FE00 dotted form"},
 /* 1003 */ { "MYANMAR LETTER GHA",NULL},
-/* 1004 */ { "MYANMAR LETTER NGA",NULL},
+/* 1004 */ { "MYANMAR LETTER NGA","	~ 1004 FE00 dotted form"},
 /* 1005 */ { "MYANMAR LETTER CA",NULL},
 /* 1006 */ { "MYANMAR LETTER CHA",NULL},
 /* 1007 */ { "MYANMAR LETTER JA",NULL},
@@ -5906,25 +5929,25 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 100D */ { "MYANMAR LETTER DDA",NULL},
 /* 100E */ { "MYANMAR LETTER DDHA",NULL},
 /* 100F */ { "MYANMAR LETTER NNA",NULL},
-/* 1010 */ { "MYANMAR LETTER TA",NULL},
-/* 1011 */ { "MYANMAR LETTER THA",NULL},
+/* 1010 */ { "MYANMAR LETTER TA","	~ 1010 FE00 dotted form"},
+/* 1011 */ { "MYANMAR LETTER THA","	~ 1011 FE00 dotted form"},
 /* 1012 */ { "MYANMAR LETTER DA",NULL},
 /* 1013 */ { "MYANMAR LETTER DHA",NULL},
 /* 1014 */ { "MYANMAR LETTER NA",NULL},
-/* 1015 */ { "MYANMAR LETTER PA",NULL},
+/* 1015 */ { "MYANMAR LETTER PA","	~ 1015 FE00 dotted form"},
 /* 1016 */ { "MYANMAR LETTER PHA",NULL},
 /* 1017 */ { "MYANMAR LETTER BA",NULL},
 /* 1018 */ { "MYANMAR LETTER BHA",NULL},
-/* 1019 */ { "MYANMAR LETTER MA",NULL},
-/* 101A */ { "MYANMAR LETTER YA",NULL},
+/* 1019 */ { "MYANMAR LETTER MA","	~ 1019 FE00 dotted form"},
+/* 101A */ { "MYANMAR LETTER YA","	~ 101A FE00 dotted form"},
 /* 101B */ { "MYANMAR LETTER RA",NULL},
-/* 101C */ { "MYANMAR LETTER LA",NULL},
-/* 101D */ { "MYANMAR LETTER WA",NULL},
+/* 101C */ { "MYANMAR LETTER LA","	~ 101C FE00 dotted form"},
+/* 101D */ { "MYANMAR LETTER WA","	~ 101D FE00 dotted form"},
 /* 101E */ { "MYANMAR LETTER SA",NULL},
 /* 101F */ { "MYANMAR LETTER HA",NULL},
 /* 1020 */ { "MYANMAR LETTER LLA",NULL},
 /* 1021 */ { "MYANMAR LETTER A","	* also represents the glottal stop as a consonant"},
-/* 1022 */ { "MYANMAR LETTER SHAN A",NULL},
+/* 1022 */ { "MYANMAR LETTER SHAN A","	~ 1022 FE00 dotted form"},
 /* 1023 */ { "MYANMAR LETTER I",NULL},
 /* 1024 */ { "MYANMAR LETTER II",NULL},
 /* 1025 */ { "MYANMAR LETTER U",NULL},
@@ -5939,7 +5962,8 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 102E */ { "MYANMAR VOWEL SIGN II",NULL},
 /* 102F */ { "MYANMAR VOWEL SIGN U",NULL},
 /* 1030 */ { "MYANMAR VOWEL SIGN UU",NULL},
-/* 1031 */ { "MYANMAR VOWEL SIGN E","	* stands to the left of the consonant"},
+/* 1031 */ { "MYANMAR VOWEL SIGN E","	* stands to the left of the consonant\n"
+	"	~ 1031 FE00 dotted form"},
 /* 1032 */ { "MYANMAR VOWEL SIGN AI",NULL},
 /* 1033 */ { "MYANMAR VOWEL SIGN MON II",NULL},
 /* 1034 */ { "MYANMAR VOWEL SIGN MON O",NULL},
@@ -6008,18 +6032,18 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 1072 */ { "MYANMAR VOWEL SIGN KAYAH OE",NULL},
 /* 1073 */ { "MYANMAR VOWEL SIGN KAYAH U",NULL},
 /* 1074 */ { "MYANMAR VOWEL SIGN KAYAH EE",NULL},
-/* 1075 */ { "MYANMAR LETTER SHAN KA",NULL},
+/* 1075 */ { "MYANMAR LETTER SHAN KA","	~ 1075 FE00 dotted form"},
 /* 1076 */ { "MYANMAR LETTER SHAN KHA",NULL},
 /* 1077 */ { "MYANMAR LETTER SHAN GA",NULL},
-/* 1078 */ { "MYANMAR LETTER SHAN CA",NULL},
+/* 1078 */ { "MYANMAR LETTER SHAN CA","	~ 1078 FE00 dotted form"},
 /* 1079 */ { "MYANMAR LETTER SHAN ZA",NULL},
-/* 107A */ { "MYANMAR LETTER SHAN NYA",NULL},
+/* 107A */ { "MYANMAR LETTER SHAN NYA","	~ 107A FE00 dotted form"},
 /* 107B */ { "MYANMAR LETTER SHAN DA",NULL},
 /* 107C */ { "MYANMAR LETTER SHAN NA",NULL},
 /* 107D */ { "MYANMAR LETTER SHAN PHA",NULL},
 /* 107E */ { "MYANMAR LETTER SHAN FA",NULL},
 /* 107F */ { "MYANMAR LETTER SHAN BA",NULL},
-/* 1080 */ { "MYANMAR LETTER SHAN THA",NULL},
+/* 1080 */ { "MYANMAR LETTER SHAN THA","	~ 1080 FE00 dotted form"},
 /* 1081 */ { "MYANMAR LETTER SHAN HA",NULL},
 /* 1082 */ { "MYANMAR CONSONANT SIGN SHAN MEDIAL WA",NULL},
 /* 1083 */ { "MYANMAR VOWEL SIGN SHAN AA",NULL},
@@ -6142,7 +6166,7 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 10F8 */ { "GEORGIAN LETTER ELIFI",NULL},
 /* 10F9 */ { "GEORGIAN LETTER TURNED GAN",NULL},
 /* 10FA */ { "GEORGIAN LETTER AIN",NULL},
-/* 10FB */ { "GEORGIAN PARAGRAPH SEPARATOR",NULL},
+/* 10FB */ { "GEORGIAN PARAGRAPH SEPARATOR","	x (three dot punctuation - 2056)"},
 /* 10FC */ { "MODIFIER LETTER GEORGIAN NAR","	# <super> 10DC"},
 /* 10FD */ { "GEORGIAN LETTER AEN",NULL},
 /* 10FE */ { "GEORGIAN LETTER HARD SIGN",NULL},
@@ -8048,46 +8072,81 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 181E */ { NULL,NULL},
 /* 181F */ { NULL,NULL},
 /* 1820 */ { "MONGOLIAN LETTER A","	x (cyrillic small letter a - 0430)\n"
+	"	~ 1820 ALT1 first form (initial)\n"
+	"	~ 1820 ALT1 first form (medial)\n"
+	"	~ 1820 ALT1 first form (final)\n"
 	"	~ 1820 180B second form (isolate)\n"
 	"	~ 1820 180B second form (medial)\n"
 	"	~ 1820 180B second form (final)\n"
 	"	~ 1820 180C third form (medial)"},
 /* 1821 */ { "MONGOLIAN LETTER E","	x (cyrillic small letter e - 044D)\n"
+	"	~ 1821 ALT1 first form (initial)\n"
+	"	~ 1821 ALT1 first form (medial)\n"
+	"	~ 1821 ALT1 first form (final)\n"
 	"	~ 1821 180B second form (initial)\n"
 	"	~ 1821 180B second form (final)"},
 /* 1822 */ { "MONGOLIAN LETTER I","	x (cyrillic small letter i - 0438)\n"
+	"	~ 1822 ALT1 first form (initial)\n"
+	"	~ 1822 ALT1 first form (medial)\n"
+	"	~ 1822 ALT1 first form (final)\n"
 	"	~ 1822 180B second form (medial)"},
 /* 1823 */ { "MONGOLIAN LETTER O","	x (cyrillic small letter o - 043E)\n"
+	"	~ 1823 ALT1 first form (initial)\n"
+	"	~ 1823 ALT1 first form (medial)\n"
+	"	~ 1823 ALT1 first form (final)\n"
 	"	~ 1823 180B second form (medial)\n"
 	"	~ 1823 180B second form (final)"},
 /* 1824 */ { "MONGOLIAN LETTER U","	x (cyrillic small letter u - 0443)\n"
+	"	~ 1824 ALT1 first form (isolate)\n"
+	"	~ 1824 ALT1 first form (initial)\n"
+	"	~ 1824 ALT1 first form (medial)\n"
+	"	~ 1824 ALT1 first form (final)\n"
 	"	~ 1824 180B second form (medial)"},
 /* 1825 */ { "MONGOLIAN LETTER OE","	x (cyrillic small letter barred o - 04E9)\n"
+	"	~ 1825 ALT1 first form (initial)\n"
+	"	~ 1825 ALT1 first form (medial)\n"
+	"	~ 1825 ALT1 first form (final)\n"
 	"	~ 1825 180B second form (medial)\n"
 	"	~ 1825 180B second form (final)\n"
 	"	~ 1825 180C third form (medial)"},
 /* 1826 */ { "MONGOLIAN LETTER UE","	x (cyrillic small letter straight u - 04AF)\n"
+	"	~ 1826 ALT1 first form (isolate)\n"
+	"	~ 1826 ALT1 first form (initial)\n"
+	"	~ 1826 ALT1 first form (medial)\n"
+	"	~ 1826 ALT1 first form (final)\n"
 	"	~ 1826 180B second form (isolate)\n"
 	"	~ 1826 180B second form (medial)\n"
 	"	~ 1826 180B second form (final)\n"
 	"	~ 1826 180C third form (medial)"},
 /* 1827 */ { "MONGOLIAN LETTER EE",NULL},
 /* 1828 */ { "MONGOLIAN LETTER NA","	x (cyrillic small letter en - 043D)\n"
+	"	~ 1828 ALT1 first form (initial)\n"
+	"	~ 1828 ALT1 first form (medial)\n"
+	"	~ 1828 ALT1 first form (final)\n"
 	"	~ 1828 180B second form (initial)\n"
 	"	~ 1828 180B second form (medial)\n"
 	"	~ 1828 180C third form (medial)\n"
 	"	~ 1828 180D separate form (medial)"},
 /* 1829 */ { "MONGOLIAN LETTER ANG",NULL},
 /* 182A */ { "MONGOLIAN LETTER BA","	x (cyrillic small letter be - 0431)\n"
+	"	~ 182A ALT1 first form (initial)\n"
+	"	~ 182A ALT1 first form (medial)\n"
+	"	~ 182A ALT1 first form (final)\n"
 	"	~ 182A 180B alternative form (final)"},
 /* 182B */ { "MONGOLIAN LETTER PA","	x (cyrillic small letter pe - 043F)"},
 /* 182C */ { "MONGOLIAN LETTER QA","	x (cyrillic small letter ha - 0445)\n"
+	"	~ 182C ALT1 first form (initial)\n"
+	"	~ 182C ALT1 first form (medial)\n"
+	"	~ 182C ALT1 first form (final)\n"
 	"	~ 182C 180B second form (initial)\n"
 	"	~ 182C 180B second form (medial)\n"
 	"	~ 182C 180B feminine second form (isolate)\n"
 	"	~ 182C 180C third form (medial)\n"
 	"	~ 182C 180D fourth form (medial)"},
 /* 182D */ { "MONGOLIAN LETTER GA","	x (cyrillic small letter ghe - 0433)\n"
+	"	~ 182D ALT1 first form (initial)\n"
+	"	~ 182D ALT1 first form (medial)\n"
+	"	~ 182D ALT1 first form (final)\n"
 	"	~ 182D 180B second form (initial)\n"
 	"	~ 182D 180B second form (medial)\n"
 	"	~ 182D 180B feminine form (final)\n"
@@ -8096,24 +8155,42 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 182E */ { "MONGOLIAN LETTER MA","	x (cyrillic small letter em - 043C)"},
 /* 182F */ { "MONGOLIAN LETTER LA","	x (cyrillic small letter el - 043B)"},
 /* 1830 */ { "MONGOLIAN LETTER SA","	x (cyrillic small letter es - 0441)\n"
+	"	~ 1830 ALT1 first form (initial)\n"
+	"	~ 1830 ALT1 first form (medial)\n"
+	"	~ 1830 ALT1 first form (final)\n"
 	"	~ 1830 180B second form (final)\n"
 	"	~ 1830 180C third form (final)"},
 /* 1831 */ { "MONGOLIAN LETTER SHA","	x (cyrillic small letter sha - 0448)"},
 /* 1832 */ { "MONGOLIAN LETTER TA","	x (cyrillic small letter te - 0442)\n"
+	"	~ 1832 ALT1 first form (initial)\n"
+	"	~ 1832 ALT1 first form (medial)\n"
+	"	~ 1832 ALT1 first form (final)\n"
 	"	~ 1832 180B second form (medial)"},
 /* 1833 */ { "MONGOLIAN LETTER DA","	x (cyrillic small letter de - 0434)\n"
+	"	~ 1833 ALT1 first form (initial)\n"
+	"	~ 1833 ALT1 first form (medial)\n"
+	"	~ 1833 ALT1 first form (final)\n"
 	"	~ 1833 180B second form (initial)\n"
 	"	~ 1833 180B second form (medial)\n"
 	"	~ 1833 180B second form (final)"},
 /* 1834 */ { "MONGOLIAN LETTER CHA","	x (cyrillic small letter che - 0447)"},
 /* 1835 */ { "MONGOLIAN LETTER JA","	x (cyrillic small letter zhe - 0436)\n"
+	"	~ 1835 ALT1 first form (initial)\n"
+	"	~ 1835 ALT1 first form (medial)\n"
+	"	~ 1835 ALT1 first form (final)\n"
 	"	~ 1835 180B second form (medial)"},
 /* 1836 */ { "MONGOLIAN LETTER YA","	x (cyrillic small letter short i - 0439)\n"
+	"	~ 1836 ALT1 first form (initial)\n"
+	"	~ 1836 ALT1 first form (medial)\n"
+	"	~ 1836 ALT1 first form (final)\n"
 	"	~ 1836 180B second form (initial)\n"
 	"	~ 1836 180B second form (medial)\n"
 	"	~ 1836 180C third form (medial)"},
 /* 1837 */ { "MONGOLIAN LETTER RA","	x (cyrillic small letter er - 0440)"},
 /* 1838 */ { "MONGOLIAN LETTER WA","	x (cyrillic small letter ve - 0432)\n"
+	"	~ 1838 ALT1 first form (initial)\n"
+	"	~ 1838 ALT1 first form (medial)\n"
+	"	~ 1838 ALT1 first form (final)\n"
 	"	~ 1838 180B second form (final)"},
 /* 1839 */ { "MONGOLIAN LETTER FA","	x (cyrillic small letter ef - 0444)"},
 /* 183A */ { "MONGOLIAN LETTER KA","	x (cyrillic small letter ha - 0445)"},
@@ -8126,22 +8203,46 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 1841 */ { "MONGOLIAN LETTER ZHI",NULL},
 /* 1842 */ { "MONGOLIAN LETTER CHI",NULL},
 /* 1843 */ { "MONGOLIAN LETTER TODO LONG VOWEL SIGN",NULL},
-/* 1844 */ { "MONGOLIAN LETTER TODO E","	~ 1844 180B second form (medial)"},
-/* 1845 */ { "MONGOLIAN LETTER TODO I","	~ 1845 180B second form (medial)"},
-/* 1846 */ { "MONGOLIAN LETTER TODO O","	~ 1846 180B second form (medial)"},
-/* 1847 */ { "MONGOLIAN LETTER TODO U","	~ 1847 180B second form (isolate)\n"
+/* 1844 */ { "MONGOLIAN LETTER TODO E","	~ 1844 ALT1 first form (initial)\n"
+	"	~ 1844 ALT1 first form (medial)\n"
+	"	~ 1844 ALT1 first form (final)\n"
+	"	~ 1844 180B second form (medial)"},
+/* 1845 */ { "MONGOLIAN LETTER TODO I","	~ 1845 ALT1 first form (initial)\n"
+	"	~ 1845 ALT1 first form (medial)\n"
+	"	~ 1845 ALT1 first form (final)\n"
+	"	~ 1845 180B second form (medial)"},
+/* 1846 */ { "MONGOLIAN LETTER TODO O","	~ 1846 ALT1 first form (initial)\n"
+	"	~ 1846 ALT1 first form (medial)\n"
+	"	~ 1846 ALT1 first form (final)\n"
+	"	~ 1846 180B second form (medial)"},
+/* 1847 */ { "MONGOLIAN LETTER TODO U","	~ 1847 ALT1 first form (initial)\n"
+	"	~ 1847 ALT1 first form (medial)\n"
+	"	~ 1847 ALT1 first form (final)\n"
+	"	~ 1847 180B second form (isolate)\n"
 	"	~ 1847 180B second form (medial)\n"
 	"	~ 1847 180B second form (final)\n"
 	"	~ 1847 180C third form (medial)"},
-/* 1848 */ { "MONGOLIAN LETTER TODO OE","	~ 1848 180B second form (medial)"},
-/* 1849 */ { "MONGOLIAN LETTER TODO UE","	~ 1849 180B second form (isolate)\n"
+/* 1848 */ { "MONGOLIAN LETTER TODO OE","	~ 1848 ALT1 first form (initial)\n"
+	"	~ 1848 ALT1 first form (medial)\n"
+	"	~ 1848 ALT1 first form (final)\n"
+	"	~ 1848 180B second form (medial)"},
+/* 1849 */ { "MONGOLIAN LETTER TODO UE","	~ 1849 ALT1 first form (initial)\n"
+	"	~ 1849 ALT1 first form (medial)\n"
+	"	~ 1849 ALT1 first form (final)\n"
+	"	~ 1849 180B second form (isolate)\n"
 	"	~ 1849 180B second form (medial)"},
 /* 184A */ { "MONGOLIAN LETTER TODO ANG",NULL},
 /* 184B */ { "MONGOLIAN LETTER TODO BA",NULL},
 /* 184C */ { "MONGOLIAN LETTER TODO PA",NULL},
-/* 184D */ { "MONGOLIAN LETTER TODO QA","	~ 184D 180B feminine form (initial)\n"
+/* 184D */ { "MONGOLIAN LETTER TODO QA","	~ 184D ALT1 first form (initial)\n"
+	"	~ 184D ALT1 first form (medial)\n"
+	"	~ 184D ALT1 first form (final)\n"
+	"	~ 184D 180B feminine form (initial)\n"
 	"	~ 184D 180B feminine form (medial)"},
-/* 184E */ { "MONGOLIAN LETTER TODO GA","	~ 184E 180B second form (medial)"},
+/* 184E */ { "MONGOLIAN LETTER TODO GA","	~ 184E ALT1 first form (initial)\n"
+	"	~ 184E ALT1 first form (medial)\n"
+	"	~ 184E ALT1 first form (final)\n"
+	"	~ 184E 180B second form (medial)"},
 /* 184F */ { "MONGOLIAN LETTER TODO MA",NULL},
 /* 1850 */ { "MONGOLIAN LETTER TODO TA",NULL},
 /* 1851 */ { "MONGOLIAN LETTER TODO DA",NULL},
@@ -8156,49 +8257,79 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 185A */ { "MONGOLIAN LETTER TODO JIA",NULL},
 /* 185B */ { "MONGOLIAN LETTER TODO NIA",NULL},
 /* 185C */ { "MONGOLIAN LETTER TODO DZA",NULL},
-/* 185D */ { "MONGOLIAN LETTER SIBE E","	~ 185D 180B second form (medial)\n"
+/* 185D */ { "MONGOLIAN LETTER SIBE E","	~ 185D ALT1 first form (initial)\n"
+	"	~ 185D ALT1 first form (medial)\n"
+	"	~ 185D ALT1 first form (final)\n"
+	"	~ 185D 180B second form (medial)\n"
 	"	~ 185D 180B second form (final)"},
-/* 185E */ { "MONGOLIAN LETTER SIBE I","	~ 185E 180B second form (medial)\n"
+/* 185E */ { "MONGOLIAN LETTER SIBE I","	~ 185E ALT1 first form (initial)\n"
+	"	~ 185E ALT1 first form (medial)\n"
+	"	~ 185E ALT1 first form (final)\n"
+	"	~ 185E 180B second form (medial)\n"
 	"	~ 185E 180B second form (final)\n"
 	"	~ 185E 180C third form (medial)\n"
 	"	~ 185E 180C third form (final)"},
 /* 185F */ { "MONGOLIAN LETTER SIBE IY",NULL},
-/* 1860 */ { "MONGOLIAN LETTER SIBE UE","	~ 1860 180B second form (medial)\n"
+/* 1860 */ { "MONGOLIAN LETTER SIBE UE","	~ 1860 ALT1 first form (initial)\n"
+	"	~ 1860 ALT1 first form (medial)\n"
+	"	~ 1860 ALT1 first form (final)\n"
+	"	~ 1860 180B second form (medial)\n"
 	"	~ 1860 180B second form (final)"},
 /* 1861 */ { "MONGOLIAN LETTER SIBE U",NULL},
 /* 1862 */ { "MONGOLIAN LETTER SIBE ANG",NULL},
-/* 1863 */ { "MONGOLIAN LETTER SIBE KA","	~ 1863 180B second form (medial)"},
+/* 1863 */ { "MONGOLIAN LETTER SIBE KA","	~ 1863 ALT1 first form (initial)\n"
+	"	~ 1863 ALT1 first form (medial)\n"
+	"	~ 1863 ALT1 first form (final)\n"
+	"	~ 1863 180B second form (medial)"},
 /* 1864 */ { "MONGOLIAN LETTER SIBE GA",NULL},
 /* 1865 */ { "MONGOLIAN LETTER SIBE HA",NULL},
 /* 1866 */ { "MONGOLIAN LETTER SIBE PA",NULL},
 /* 1867 */ { "MONGOLIAN LETTER SIBE SHA",NULL},
-/* 1868 */ { "MONGOLIAN LETTER SIBE TA","	~ 1868 180B second form (initial)\n"
+/* 1868 */ { "MONGOLIAN LETTER SIBE TA","	~ 1868 ALT1 first form (initial)\n"
+	"	~ 1868 ALT1 first form (medial)\n"
+	"	~ 1868 ALT1 first form (final)\n"
+	"	~ 1868 180B second form (initial)\n"
 	"	~ 1868 180B second form (medial)\n"
 	"	~ 1868 180C third form (medial)"},
-/* 1869 */ { "MONGOLIAN LETTER SIBE DA","	~ 1869 180B second form (initial)\n"
+/* 1869 */ { "MONGOLIAN LETTER SIBE DA","	~ 1869 ALT1 first form (initial)\n"
+	"	~ 1869 ALT1 first form (medial)\n"
+	"	~ 1869 ALT1 first form (final)\n"
+	"	~ 1869 180B second form (initial)\n"
 	"	~ 1869 180B second form (medial)"},
 /* 186A */ { "MONGOLIAN LETTER SIBE JA",NULL},
 /* 186B */ { "MONGOLIAN LETTER SIBE FA",NULL},
 /* 186C */ { "MONGOLIAN LETTER SIBE GAA",NULL},
 /* 186D */ { "MONGOLIAN LETTER SIBE HAA",NULL},
 /* 186E */ { "MONGOLIAN LETTER SIBE TSA",NULL},
-/* 186F */ { "MONGOLIAN LETTER SIBE ZA","	~ 186F 180B second form (initial)\n"
+/* 186F */ { "MONGOLIAN LETTER SIBE ZA","	~ 186F ALT1 first form (initial)\n"
+	"	~ 186F ALT1 first form (medial)\n"
+	"	~ 186F ALT1 first form (final)\n"
+	"	~ 186F 180B second form (initial)\n"
 	"	~ 186F 180B second form (medial)"},
 /* 1870 */ { "MONGOLIAN LETTER SIBE RAA",NULL},
 /* 1871 */ { "MONGOLIAN LETTER SIBE CHA",NULL},
 /* 1872 */ { "MONGOLIAN LETTER SIBE ZHA",NULL},
-/* 1873 */ { "MONGOLIAN LETTER MANCHU I","	~ 1873 180B second form (medial)\n"
+/* 1873 */ { "MONGOLIAN LETTER MANCHU I","	~ 1873 ALT1 first form (initial)\n"
+	"	~ 1873 ALT1 first form (medial)\n"
+	"	~ 1873 ALT1 first form (final)\n"
+	"	~ 1873 180B second form (medial)\n"
 	"	~ 1873 180B second form (final)\n"
 	"	~ 1873 180C third form (medial)\n"
 	"	~ 1873 180C third form (final)\n"
 	"	~ 1873 180D fourth form (medial)"},
-/* 1874 */ { "MONGOLIAN LETTER MANCHU KA","	~ 1874 180B second form (medial)\n"
+/* 1874 */ { "MONGOLIAN LETTER MANCHU KA","	~ 1874 ALT1 first form (initial)\n"
+	"	~ 1874 ALT1 first form (medial)\n"
+	"	~ 1874 ALT1 first form (final)\n"
+	"	~ 1874 180B second form (medial)\n"
 	"	~ 1874 180B feminine first final form (final)\n"
 	"	~ 1874 180C feminine first medial form (medial)\n"
 	"	~ 1874 180C feminine second final form (final)\n"
 	"	~ 1874 180D feminine second medial form (medial)"},
 /* 1875 */ { "MONGOLIAN LETTER MANCHU RA",NULL},
-/* 1876 */ { "MONGOLIAN LETTER MANCHU FA","	~ 1876 180B second form (initial)\n"
+/* 1876 */ { "MONGOLIAN LETTER MANCHU FA","	~ 1876 ALT1 first form (initial)\n"
+	"	~ 1876 ALT1 first form (medial)\n"
+	"	~ 1876 ALT1 first form (final)\n"
+	"	~ 1876 180B second form (initial)\n"
 	"	~ 1876 180B second form (medial)"},
 /* 1877 */ { "MONGOLIAN LETTER MANCHU ZHA",NULL},
 /* 1878 */ { NULL,NULL},
@@ -8218,13 +8349,22 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 1884 */ { "MONGOLIAN LETTER ALI GALI INVERTED UBADAMA","	x (tibetan sign mchu can - 0F89)"},
 /* 1885 */ { "MONGOLIAN LETTER ALI GALI BALUDA","	x (tibetan mark paluta - 0F85)"},
 /* 1886 */ { "MONGOLIAN LETTER ALI GALI THREE BALUDA",NULL},
-/* 1887 */ { "MONGOLIAN LETTER ALI GALI A","	~ 1887 180B second form (isolate)\n"
+/* 1887 */ { "MONGOLIAN LETTER ALI GALI A","	~ 1887 ALT1 first form (initial)\n"
+	"	~ 1887 ALT1 first form (medial)\n"
+	"	~ 1887 ALT1 first form (final)\n"
+	"	~ 1887 180B second form (isolate)\n"
 	"	~ 1887 180B second form (final)\n"
 	"	~ 1887 180C third form (final)\n"
 	"	~ 1887 180D fourth form (final)"},
-/* 1888 */ { "MONGOLIAN LETTER ALI GALI I","	~ 1888 180B second form (final)"},
+/* 1888 */ { "MONGOLIAN LETTER ALI GALI I","	~ 1888 ALT1 first form (initial)\n"
+	"	~ 1888 ALT1 first form (medial)\n"
+	"	~ 1888 ALT1 first form (final)\n"
+	"	~ 1888 180B second form (final)"},
 /* 1889 */ { "MONGOLIAN LETTER ALI GALI KA",NULL},
-/* 188A */ { "MONGOLIAN LETTER ALI GALI NGA","	~ 188A 180B second form (initial)\n"
+/* 188A */ { "MONGOLIAN LETTER ALI GALI NGA","	~ 188A ALT1 first form (initial)\n"
+	"	~ 188A ALT1 first form (medial)\n"
+	"	~ 188A ALT1 first form (final)\n"
+	"	~ 188A 180B second form (initial)\n"
 	"	~ 188A 180B second form (medial)"},
 /* 188B */ { "MONGOLIAN LETTER ALI GALI CA",NULL},
 /* 188C */ { "MONGOLIAN LETTER ALI GALI TTA",NULL},
@@ -9124,7 +9264,7 @@ static const struct unicode_nameannot una_00_1B[] = {
 /* 1BEC */ { "BATAK VOWEL SIGN O","	= siala ulu"},
 /* 1BED */ { "BATAK VOWEL SIGN KARO O","	= hatulungan"},
 /* 1BEE */ { "BATAK VOWEL SIGN U","	= boruta"},
-/* 1BEF */ { "BATAK VOWEL SIGN U FOR SIMALUNGUN SA","	= haboritan for simalungun sa "},
+/* 1BEF */ { "BATAK VOWEL SIGN U FOR SIMALUNGUN SA","	= haboritan for simalungun sa"},
 /* 1BF0 */ { "BATAK CONSONANT SIGN NG","	= amisara"},
 /* 1BF1 */ { "BATAK CONSONANT SIGN H","	= hajoringan"},
 /* 1BF2 */ { "BATAK PANGOLAT","	= virama\n"
@@ -9273,15 +9413,15 @@ static const struct unicode_nameannot una_00_1C[] = {
 /* 1C7D */ { "OL CHIKI AHAD","	* deglottalizes consonants"},
 /* 1C7E */ { "OL CHIKI PUNCTUATION MUCAAD",NULL},
 /* 1C7F */ { "OL CHIKI PUNCTUATION DOUBLE MUCAAD",NULL},
-/* 1C80 */ { NULL,NULL},
-/* 1C81 */ { NULL,NULL},
-/* 1C82 */ { NULL,NULL},
-/* 1C83 */ { NULL,NULL},
-/* 1C84 */ { NULL,NULL},
-/* 1C85 */ { NULL,NULL},
-/* 1C86 */ { NULL,NULL},
-/* 1C87 */ { NULL,NULL},
-/* 1C88 */ { NULL,NULL},
+/* 1C80 */ { "CYRILLIC SMALL LETTER ROUNDED VE",NULL},
+/* 1C81 */ { "CYRILLIC SMALL LETTER LONG-LEGGED DE",NULL},
+/* 1C82 */ { "CYRILLIC SMALL LETTER NARROW O",NULL},
+/* 1C83 */ { "CYRILLIC SMALL LETTER WIDE ES",NULL},
+/* 1C84 */ { "CYRILLIC SMALL LETTER TALL TE",NULL},
+/* 1C85 */ { "CYRILLIC SMALL LETTER THREE-LEGGED TE",NULL},
+/* 1C86 */ { "CYRILLIC SMALL LETTER TALL HARD SIGN",NULL},
+/* 1C87 */ { "CYRILLIC SMALL LETTER TALL YAT",NULL},
+/* 1C88 */ { "CYRILLIC SMALL LETTER UNBLENDED UK",NULL},
 /* 1C89 */ { NULL,NULL},
 /* 1C8A */ { NULL,NULL},
 /* 1C8B */ { NULL,NULL},
@@ -9683,7 +9823,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DF8 */ { NULL,NULL},
 /* 1DF9 */ { NULL,NULL},
 /* 1DFA */ { NULL,NULL},
-/* 1DFB */ { NULL,NULL},
+/* 1DFB */ { "COMBINING DELETION MARK","	* used for \"mhusaa\" in Newa scribal tradition"},
 /* 1DFC */ { "COMBINING DOUBLE INVERTED BREVE BELOW",NULL},
 /* 1DFD */ { "COMBINING ALMOST EQUAL TO BELOW","	* diacritic indicating a strident vowel in Khoisan languages"},
 /* 1DFE */ { "COMBINING LEFT ARROWHEAD ABOVE",NULL},
@@ -10470,7 +10610,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 2055 */ { "FLOWER PUNCTUATION MARK","	= phul, puspika\n"
 	"	* used as a punctuation mark with Syloti Nagri, Bengali and other Indic scripts\n"
 	"	x (heavy eight teardrop-spoked propeller asterisk - 274B)"},
-/* 2056 */ { "THREE DOT PUNCTUATION",NULL},
+/* 2056 */ { "THREE DOT PUNCTUATION","	x (georgian paragraph separator - 10FB)"},
 /* 2057 */ { "QUADRUPLE PRIME","	# 2032 2032 2032 2032"},
 /* 2058 */ { "FOUR DOT PUNCTUATION",NULL},
 /* 2059 */ { "FIVE DOT PUNCTUATION","	= Greek pentonkion\n"
@@ -10604,7 +10744,7 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	* glyph may look like '023B' or like C with a short vertical stroke through the upper arm\n"
 	"	x (cent sign - 00A2)\n"
 	"	x (latin capital letter c with stroke - 023B)"},
-/* 20B6 */ { "LIVRE TOURNOIS SIGN","	* used in France from 13th-18th centuries "},
+/* 20B6 */ { "LIVRE TOURNOIS SIGN","	* used in France from 13th-18th centuries"},
 /* 20B7 */ { "SPESMILO SIGN","	* historical international currency associated with Esperanto"},
 /* 20B8 */ { "TENGE SIGN","	* Kazakhstan\n"
 	"	x (apl functional symbol up tack overbar - 2351)\n"
@@ -10759,7 +10899,7 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	= cross ratio"},
 /* 211F */ { "RESPONSE",NULL},
 /* 2120 */ { "SERVICE MARK","	# <super> 0053 004D"},
-/* 2121 */ { "TELEPHONE SIGN","	* typical forms for this symbol may use lower case, small caps or superscripted letter shapes\n"
+/* 2121 */ { "TELEPHONE SIGN","	* typical forms for this symbol may use lowercase, small caps or superscripted letter shapes\n"
 	"	x (black telephone - 260E)\n"
 	"	x (telephone location sign - 2706)\n"
 	"	x (telephone receiver - 1F4DE)\n"
@@ -10827,7 +10967,7 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	~ 2139 FE0F emoji style\n"
 	"	# <font> 0069 latin small letter i"},
 /* 213A */ { "ROTATED CAPITAL Q","	* a binding signature mark"},
-/* 213B */ { "FACSIMILE SIGN","	* typical forms for this symbol may use lower case, small caps or superscripted letter shapes\n"
+/* 213B */ { "FACSIMILE SIGN","	* typical forms for this symbol may use lowercase, small caps or superscripted letter shapes\n"
 	"	x (telephone sign - 2121)\n"
 	"	x (fax machine - 1F4E0)\n"
 	"	# 0046 0041 0058"},
@@ -11078,7 +11218,8 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 2205 */ { "EMPTY SET","	= null set\n"
 	"	* used in linguistics to indicate a null morpheme or phonological \"zero\"\n"
 	"	x (latin capital letter o with stroke - 00D8)\n"
-	"	x (diameter sign - 2300)"},
+	"	x (diameter sign - 2300)\n"
+	"	~ 2205 FE00 zero with long diagonal stroke overlay form"},
 /* 2206 */ { "INCREMENT","	= Laplace operator\n"
 	"	= forward difference\n"
 	"	= symmetric difference (in set theory)\n"
@@ -11500,7 +11641,9 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2326 */ { "ERASE TO THE RIGHT","	= delete to the right key"},
 /* 2327 */ { "X IN A RECTANGLE BOX","	= clear key"},
 /* 2328 */ { "KEYBOARD","	x (keyboard and mouse - 1F5A6)\n"
-	"	x (wired keyboard - 1F5AE)"},
+	"	x (wired keyboard - 1F5AE)\n"
+	"	~ 2328 FE0E text style\n"
+	"	~ 2328 FE0F emoji style"},
 /* 2329 */ { "LEFT-POINTING ANGLE BRACKET","	x (less-than sign - 003C)\n"
 	"	x (single left-pointing angle quotation mark - 2039)\n"
 	"	x (mathematical left angle bracket - 27E8)\n"
@@ -11695,7 +11838,9 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23CE */ { "RETURN SYMBOL","	* may be shown with either hollow or filled glyph\n"
 	"	x (downwards arrow with corner leftwards - 21B5)\n"
 	"	x (return left - 2B90)"},
-/* 23CF */ { "EJECT SYMBOL","	* UI symbol to eject media"},
+/* 23CF */ { "EJECT SYMBOL","	* UI symbol to eject media\n"
+	"	~ 23CF FE0E text style\n"
+	"	~ 23CF FE0F emoji style"},
 /* 23D0 */ { "VERTICAL LINE EXTENSION","	* used for extension of arrows\n"
 	"	x (horizontal line extension - 23AF)"},
 /* 23D1 */ { "METRICAL BREVE",NULL},
@@ -11726,14 +11871,19 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23EA */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE","	= fast rewind"},
 /* 23EB */ { "BLACK UP-POINTING DOUBLE TRIANGLE",NULL},
 /* 23EC */ { "BLACK DOWN-POINTING DOUBLE TRIANGLE",NULL},
-/* 23ED */ { "BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR",NULL},
-/* 23EE */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR",NULL},
-/* 23EF */ { "BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR",NULL},
+/* 23ED */ { "BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR","	~ 23ED FE0E text style\n"
+	"	~ 23ED FE0F emoji style"},
+/* 23EE */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR","	~ 23EE FE0E text style\n"
+	"	~ 23EE FE0F emoji style"},
+/* 23EF */ { "BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR","	~ 23EF FE0E text style\n"
+	"	~ 23EF FE0F emoji style"},
 /* 23F0 */ { "ALARM CLOCK","	x (watch - 231A)\n"
 	"	x (clock face one oclock - 1F550)\n"
 	"	x (mantelpiece clock - 1F570)"},
-/* 23F1 */ { "STOPWATCH",NULL},
-/* 23F2 */ { "TIMER CLOCK",NULL},
+/* 23F1 */ { "STOPWATCH","	~ 23F1 FE0E text style\n"
+	"	~ 23F1 FE0F emoji style"},
+/* 23F2 */ { "TIMER CLOCK","	~ 23F2 FE0E text style\n"
+	"	~ 23F2 FE0F emoji style"},
 /* 23F3 */ { "HOURGLASS WITH FLOWING SAND","	x (hourglass - 231B)"},
 /* 23F4 */ { "BLACK MEDIUM LEFT-POINTING TRIANGLE","	= reverse, back\n"
 	"	* preferred to 25C0 black left-pointing triangle\n"
@@ -11748,15 +11898,23 @@ static const struct unicode_nameannot una_00_23[] = {
 	"	* preferred to 25BC black down-pointing triangle\n"
 	"	x (black down-pointing isosceles right triangle - 1F783)"},
 /* 23F8 */ { "DOUBLE VERTICAL BAR","	= pause\n"
-	"	x (double vertical line - 2016)"},
+	"	x (double vertical line - 2016)\n"
+	"	~ 23F8 FE0E text style\n"
+	"	~ 23F8 FE0F emoji style"},
 /* 23F9 */ { "BLACK SQUARE FOR STOP","	= stop\n"
-	"	x (black medium square - 25FC)"},
+	"	x (black medium square - 25FC)\n"
+	"	~ 23F9 FE0E text style\n"
+	"	~ 23F9 FE0F emoji style"},
 /* 23FA */ { "BLACK CIRCLE FOR RECORD","	= record\n"
-	"	x (medium black circle - 26AB)"},
-/* 23FB */ { NULL,NULL},
-/* 23FC */ { NULL,NULL},
-/* 23FD */ { NULL,NULL},
-/* 23FE */ { NULL,NULL},
+	"	x (medium black circle - 26AB)\n"
+	"	~ 23FA FE0E text style\n"
+	"	~ 23FA FE0F emoji style"},
+/* 23FB */ { "POWER SYMBOL","	* IEC 5009 standby symbol\n"
+	"	* IEEE 1621 power symbol"},
+/* 23FC */ { "POWER ON-OFF SYMBOL","	* IEC 5010 power on-off symbol"},
+/* 23FD */ { "POWER ON SYMBOL","	* use 2B58 for power off symbol\n"
+	"	x (heavy circle - 2B58)"},
+/* 23FE */ { "POWER SLEEP SYMBOL","	x (last quarter moon - 263E)"},
 /* 23FF */ { NULL,NULL}
 };
 
@@ -12376,9 +12534,14 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	~ 2601 FE0E text style\n"
 	"	~ 2601 FE0F emoji style"},
 /* 2602 */ { "UMBRELLA","	= rainy weather\n"
-	"	x (closed umbrella - 1F302)"},
-/* 2603 */ { "SNOWMAN","	= snowy weather"},
-/* 2604 */ { "COMET",NULL},
+	"	x (closed umbrella - 1F302)\n"
+	"	~ 2602 FE0E text style\n"
+	"	~ 2602 FE0F emoji style"},
+/* 2603 */ { "SNOWMAN","	= snowy weather\n"
+	"	~ 2603 FE0E text style\n"
+	"	~ 2603 FE0F emoji style"},
+/* 2604 */ { "COMET","	~ 2604 FE0E text style\n"
+	"	~ 2604 FE0F emoji style"},
 /* 2605 */ { "BLACK STAR","	x (star operator - 22C6)"},
 /* 2606 */ { "WHITE STAR","	x (stress outlined white star - 2729)\n"
 	"	x (glowing star - 1F31F)"},
@@ -12424,7 +12587,9 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	~ 2615 FE0F emoji style"},
 /* 2616 */ { "WHITE SHOGI PIECE",NULL},
 /* 2617 */ { "BLACK SHOGI PIECE",NULL},
-/* 2618 */ { "SHAMROCK","	x (four leaf clover - 1F340)"},
+/* 2618 */ { "SHAMROCK","	x (four leaf clover - 1F340)\n"
+	"	~ 2618 FE0E text style\n"
+	"	~ 2618 FE0F emoji style"},
 /* 2619 */ { "REVERSED ROTATED FLORAL HEART BULLET","	* a binding signature mark\n"
 	"	x (rotated floral heart bullet - 2767)\n"
 	"	x (south west pointing vine leaf - 1F659)"},
@@ -12440,24 +12605,33 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 261F */ { "WHITE DOWN POINTING INDEX","	x (white down pointing left hand index - 1F597)\n"
 	"	x (sideways white down pointing index - 1F59F)"},
 /* 2620 */ { "SKULL AND CROSSBONES","	= poison\n"
-	"	x (black skull and crossbones - 1F571)"},
+	"	x (black skull and crossbones - 1F571)\n"
+	"	~ 2620 FE0E text style\n"
+	"	~ 2620 FE0F emoji style"},
 /* 2621 */ { "CAUTION SIGN",NULL},
-/* 2622 */ { "RADIOACTIVE SIGN",NULL},
-/* 2623 */ { "BIOHAZARD SIGN",NULL},
+/* 2622 */ { "RADIOACTIVE SIGN","	~ 2622 FE0E text style\n"
+	"	~ 2622 FE0F emoji style"},
+/* 2623 */ { "BIOHAZARD SIGN","	~ 2623 FE0E text style\n"
+	"	~ 2623 FE0F emoji style"},
 /* 2624 */ { "CADUCEUS","	x (staff of aesculapius - 2695)\n"
 	"	x (alchemical symbol for caduceus - 1F750)"},
 /* 2625 */ { "ANKH",NULL},
-/* 2626 */ { "ORTHODOX CROSS",NULL},
+/* 2626 */ { "ORTHODOX CROSS","	~ 2626 FE0E text style\n"
+	"	~ 2626 FE0F emoji style"},
 /* 2627 */ { "CHI RHO","	= Constantine's cross, Christogram\n"
 	"	x (coptic symbol khi ro - 2CE9)"},
 /* 2628 */ { "CROSS OF LORRAINE",NULL},
 /* 2629 */ { "CROSS OF JERUSALEM","	x (alchemical symbol for vinegar - 1F70A)"},
-/* 262A */ { "STAR AND CRESCENT",NULL},
+/* 262A */ { "STAR AND CRESCENT","	~ 262A FE0E text style\n"
+	"	~ 262A FE0F emoji style"},
 /* 262B */ { "FARSI SYMBOL","	= symbol of iran (1.0)"},
 /* 262C */ { "ADI SHAKTI","	= Gurmukhi khanda"},
 /* 262D */ { "HAMMER AND SICKLE",NULL},
-/* 262E */ { "PEACE SYMBOL",NULL},
-/* 262F */ { "YIN YANG","	x (tibetan symbol nor bu nyis -khyil - 0FCA)"},
+/* 262E */ { "PEACE SYMBOL","	~ 262E FE0E text style\n"
+	"	~ 262E FE0F emoji style"},
+/* 262F */ { "YIN YANG","	x (tibetan symbol nor bu nyis -khyil - 0FCA)\n"
+	"	~ 262F FE0E text style\n"
+	"	~ 262F FE0F emoji style"},
 /* 2630 */ { "TRIGRAM FOR HEAVEN","	= qian2"},
 /* 2631 */ { "TRIGRAM FOR LAKE","	= dui4"},
 /* 2632 */ { "TRIGRAM FOR FIRE","	= li2"},
@@ -12466,8 +12640,12 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 2635 */ { "TRIGRAM FOR WATER","	= kan3"},
 /* 2636 */ { "TRIGRAM FOR MOUNTAIN","	= gen4"},
 /* 2637 */ { "TRIGRAM FOR EARTH","	= kun1"},
-/* 2638 */ { "WHEEL OF DHARMA","	x (helm symbol - 2388)"},
-/* 2639 */ { "WHITE FROWNING FACE","	x (slightly frowning face - 1F641)"},
+/* 2638 */ { "WHEEL OF DHARMA","	x (helm symbol - 2388)\n"
+	"	~ 2638 FE0E text style\n"
+	"	~ 2638 FE0F emoji style"},
+/* 2639 */ { "WHITE FROWNING FACE","	x (slightly frowning face - 1F641)\n"
+	"	~ 2639 FE0E text style\n"
+	"	~ 2639 FE0F emoji style"},
 /* 263A */ { "WHITE SMILING FACE","	x (slightly smiling face - 1F642)\n"
 	"	= have a nice day!\n"
 	"	~ 263A FE0E text style\n"
@@ -12479,6 +12657,7 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (high brightness symbol - 1F506)"},
 /* 263D */ { "FIRST QUARTER MOON","	= alchemical symbol for silver"},
 /* 263E */ { "LAST QUARTER MOON","	= alchemical symbol for silver\n"
+	"	x (power sleep symbol - 23FE)\n"
 	"	x (crescent moon - 1F319)"},
 /* 263F */ { "MERCURY","	= alchemical symbol for quicksilver"},
 /* 2640 */ { "FEMALE SIGN","	= Venus\n"
@@ -12556,6 +12735,7 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (heavy black heart - 2764)\n"
 	"	x (heart with tip on the left - 1F394)\n"
 	"	x (blue heart - 1F499)\n"
+	"	x (black heart - 1F5A4)\n"
 	"	~ 2665 FE0E text style\n"
 	"	~ 2665 FE0F emoji style"},
 /* 2666 */ { "BLACK DIAMOND SUIT","	x (black diamond - 25C6)\n"
@@ -12616,35 +12796,50 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 2691 */ { "BLACK FLAG",NULL},
 /* 2692 */ { "HAMMER AND PICK","	= mining, working day (in timetables)\n"
 	"	x (pick - 26CF)\n"
-	"	x (hammer and wrench - 1F6E0)"},
+	"	x (hammer and wrench - 1F6E0)\n"
+	"	~ 2692 FE0E text style\n"
+	"	~ 2692 FE0F emoji style"},
 /* 2693 */ { "ANCHOR","	= nautical term, harbor (on maps)\n"
 	"	~ 2693 FE0E text style\n"
 	"	~ 2693 FE0F emoji style"},
-/* 2694 */ { "CROSSED SWORDS","	= military term, battleground (on maps), killed in action"},
+/* 2694 */ { "CROSSED SWORDS","	= military term, battleground (on maps), killed in action\n"
+	"	x (fencer - 1F93A)\n"
+	"	~ 2694 FE0E text style\n"
+	"	~ 2694 FE0F emoji style"},
 /* 2695 */ { "STAFF OF AESCULAPIUS","	= medical term\n"
 	"	* both inclined or upright renderings of this symbol are common\n"
 	"	x (caduceus - 2624)\n"
 	"	x (bowl of hygieia - 1F54F)"},
 /* 2696 */ { "SCALES","	= legal term, jurisprudence\n"
-	"	x (libra - 264E)"},
+	"	x (libra - 264E)\n"
+	"	~ 2696 FE0E text style\n"
+	"	~ 2696 FE0F emoji style"},
 /* 2697 */ { "ALEMBIC","	= chemical term, chemistry\n"
-	"	x (alchemical symbol for retort - 1F76D)"},
+	"	x (alchemical symbol for retort - 1F76D)\n"
+	"	~ 2697 FE0E text style\n"
+	"	~ 2697 FE0F emoji style"},
 /* 2698 */ { "FLOWER","	= botanical term\n"
 	"	x (flower punctuation mark - 2055)\n"
 	"	x (white florette - 2740)\n"
 	"	x (tulip - 1F337)"},
-/* 2699 */ { "GEAR","	= technology, tools"},
+/* 2699 */ { "GEAR","	= technology, tools\n"
+	"	~ 2699 FE0E text style\n"
+	"	~ 2699 FE0F emoji style"},
 /* 269A */ { "STAFF OF HERMES","	* signifies a commercial term or commerce\n"
 	"	* glyph shows a heraldic staff with a winged wheel"},
-/* 269B */ { "ATOM SYMBOL","	= nuclear installation (on maps)"},
-/* 269C */ { "FLEUR-DE-LIS",NULL},
+/* 269B */ { "ATOM SYMBOL","	= nuclear installation (on maps)\n"
+	"	~ 269B FE0E text style\n"
+	"	~ 269B FE0F emoji style"},
+/* 269C */ { "FLEUR-DE-LIS","	~ 269C FE0E text style\n"
+	"	~ 269C FE0F emoji style"},
 /* 269D */ { "OUTLINED WHITE STAR","	* alternative form of the interlaced pentagram (a symbol of Morocco)\n"
 	"	x (right-handed interlaced pentagram - 26E5)"},
 /* 269E */ { "THREE LINES CONVERGING RIGHT","	= someone speaking\n"
 	"	x (three rays left - 1F5E6)"},
 /* 269F */ { "THREE LINES CONVERGING LEFT","	= background speaking\n"
 	"	x (three rays right - 1F5E7)"},
-/* 26A0 */ { "WARNING SIGN","	~ 26A0 FE0E text style\n"
+/* 26A0 */ { "WARNING SIGN","	x (octagonal sign - 1F6D1)\n"
+	"	~ 26A0 FE0E text style\n"
 	"	~ 26A0 FE0F emoji style"},
 /* 26A1 */ { "HIGH VOLTAGE SIGN","	= thunder\n"
 	"	= lightning symbol\n"
@@ -12658,11 +12853,11 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (two men holding hands - 1F46C)"},
 /* 26A4 */ { "INTERLOCKED FEMALE AND MALE SIGN","	* a glyph variant has the two circles on the same line\n"
 	"	= bisexuality"},
-/* 26A5 */ { "MALE AND FEMALE SIGN","	= transgendered sexuality\n"
+/* 26A5 */ { "MALE AND FEMALE SIGN","	= transgender\n"
 	"	= hermaphrodite (in entomology)"},
-/* 26A6 */ { "MALE WITH STROKE SIGN","	= transgendered sexuality\n"
+/* 26A6 */ { "MALE WITH STROKE SIGN","	= transgender\n"
 	"	= alchemical symbol for iron or crocus of iron"},
-/* 26A7 */ { "MALE WITH STROKE AND MALE AND FEMALE SIGN","	= transgendered sexuality"},
+/* 26A7 */ { "MALE WITH STROKE AND MALE AND FEMALE SIGN","	= transgender"},
 /* 26A8 */ { "VERTICAL MALE WITH STROKE SIGN","	= alchemical symbol for iron"},
 /* 26A9 */ { "HORIZONTAL MALE WITH STROKE SIGN","	= alchemical symbol for iron"},
 /* 26AA */ { "MEDIUM WHITE CIRCLE","	= asexuality, sexless, genderless\n"
@@ -12682,8 +12877,12 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26AE */ { "DIVORCE SYMBOL","	x (infinity negated with vertical bar - 29DE)"},
 /* 26AF */ { "UNMARRIED PARTNERSHIP SYMBOL","	x (double-ended multimap - 29DF)"},
 /* 26B0 */ { "COFFIN","	= buried (genealogy)\n"
-	"	x (white rectangle - 25AD)"},
-/* 26B1 */ { "FUNERAL URN","	= cremated (genealogy)"},
+	"	x (white rectangle - 25AD)\n"
+	"	~ 26B0 FE0E text style\n"
+	"	~ 26B0 FE0F emoji style"},
+/* 26B1 */ { "FUNERAL URN","	= cremated (genealogy)\n"
+	"	~ 26B1 FE0E text style\n"
+	"	~ 26B1 FE0F emoji style"},
 /* 26B2 */ { "NEUTER",NULL},
 /* 26B3 */ { "CERES",NULL},
 /* 26B4 */ { "PALLAS",NULL},
@@ -12692,6 +12891,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26B7 */ { "CHIRON",NULL},
 /* 26B8 */ { "BLACK MOON LILITH",NULL},
 /* 26B9 */ { "SEXTILE","	x (asterisk - 002A)\n"
+	"	x (six pointed black star - 2736)\n"
 	"	x (alchemical symbol for sal-ammoniac - 1F739)"},
 /* 26BA */ { "SEMISEXTILE","	x (xor - 22BB)"},
 /* 26BB */ { "QUINCUNX","	x (nand - 22BC)"},
@@ -12716,7 +12916,9 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26C6 */ { "RAIN","	= rainy weather"},
 /* 26C7 */ { "BLACK SNOWMAN","	= heavy snow"},
 /* 26C8 */ { "THUNDER CLOUD AND RAIN","	= thunderstorm\n"
-	"	x (cloud with lightning - 1F329)"},
+	"	x (cloud with lightning - 1F329)\n"
+	"	~ 26C8 FE0E text style\n"
+	"	~ 26C8 FE0F emoji style"},
 /* 26C9 */ { "TURNED WHITE SHOGI PIECE",NULL},
 /* 26CA */ { "TURNED BLACK SHOGI PIECE",NULL},
 /* 26CB */ { "WHITE DIAMOND IN SQUARE","	x (apl functional symbol quad diamond - 233A)"},
@@ -12726,12 +12928,19 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26CE */ { "OPHIUCHUS",NULL},
 /* 26CF */ { "PICK","	= under construction\n"
 	"	x (hammer and pick - 2692)\n"
-	"	x (construction sign - 1F6A7)"},
+	"	x (construction sign - 1F6A7)\n"
+	"	~ 26CF FE0E text style\n"
+	"	~ 26CF FE0F emoji style"},
 /* 26D0 */ { "CAR SLIDING","	= icy road"},
-/* 26D1 */ { "HELMET WITH WHITE CROSS","	= maintenance"},
+/* 26D1 */ { "HELMET WITH WHITE CROSS","	= maintenance\n"
+	"	x (construction worker - 1F477)\n"
+	"	~ 26D1 FE0E text style\n"
+	"	~ 26D1 FE0F emoji style"},
 /* 26D2 */ { "CIRCLED CROSSING LANES","	= road closed\n"
 	"	x (circled times - 2297)"},
-/* 26D3 */ { "CHAINS","	= tyre chains required"},
+/* 26D3 */ { "CHAINS","	= tyre chains required\n"
+	"	~ 26D3 FE0E text style\n"
+	"	~ 26D3 FE0F emoji style"},
 /* 26D4 */ { "NO ENTRY","	x (no entry sign - 1F6AB)\n"
 	"	~ 26D4 FE0E text style\n"
 	"	~ 26D4 FE0F emoji style"},
@@ -12763,7 +12972,9 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26E7 */ { "INVERTED PENTAGRAM",NULL},
 /* 26E8 */ { "BLACK CROSS ON SHIELD","	= hospital\n"
 	"	x (hospital - 1F3E5)"},
-/* 26E9 */ { "SHINTO SHRINE","	= torii"},
+/* 26E9 */ { "SHINTO SHRINE","	= torii\n"
+	"	~ 26E9 FE0E text style\n"
+	"	~ 26E9 FE0F emoji style"},
 /* 26EA */ { "CHURCH","	~ 26EA FE0E text style\n"
 	"	~ 26EA FE0F emoji style"},
 /* 26EB */ { "CASTLE","	x (european castle - 1F3F0)"},
@@ -12774,10 +12985,14 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26EE */ { "GEAR WITH HANDLES","	= power plant, power substation"},
 /* 26EF */ { "MAP SYMBOL FOR LIGHTHOUSE",NULL},
 /* 26F0 */ { "MOUNTAIN","	x (black up-pointing triangle - 25B2)\n"
-	"	x (snow capped mountain - 1F3D4)"},
+	"	x (snow capped mountain - 1F3D4)\n"
+	"	~ 26F0 FE0E text style\n"
+	"	~ 26F0 FE0F emoji style"},
 /* 26F1 */ { "UMBRELLA ON GROUND","	= bathing beach\n"
 	"	x (umbrella - 2602)\n"
-	"	x (beach with umbrella - 1F3D6)"},
+	"	x (beach with umbrella - 1F3D6)\n"
+	"	~ 26F1 FE0E text style\n"
+	"	~ 26F1 FE0F emoji style"},
 /* 26F2 */ { "FOUNTAIN","	= park\n"
 	"	~ 26F2 FE0E text style\n"
 	"	~ 26F2 FE0F emoji style"},
@@ -12786,16 +13001,24 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	~ 26F3 FE0E text style\n"
 	"	~ 26F3 FE0F emoji style"},
 /* 26F4 */ { "FERRY","	= ferry boat terminal\n"
-	"	x (ship - 1F6A2)"},
+	"	x (ship - 1F6A2)\n"
+	"	~ 26F4 FE0E text style\n"
+	"	~ 26F4 FE0F emoji style"},
 /* 26F5 */ { "SAILBOAT","	= marina or yacht harbour\n"
 	"	x (rowboat - 1F6A3)\n"
 	"	~ 26F5 FE0E text style\n"
 	"	~ 26F5 FE0F emoji style"},
 /* 26F6 */ { "SQUARE FOUR CORNERS","	= intersection"},
 /* 26F7 */ { "SKIER","	= ski resort\n"
-	"	x (ski and ski boot - 1F3BF)"},
-/* 26F8 */ { "ICE SKATE","	= ice skating rink"},
-/* 26F9 */ { "PERSON WITH BALL","	= track and field, gymnasium"},
+	"	x (ski and ski boot - 1F3BF)\n"
+	"	~ 26F7 FE0E text style\n"
+	"	~ 26F7 FE0F emoji style"},
+/* 26F8 */ { "ICE SKATE","	= ice skating rink\n"
+	"	~ 26F8 FE0E text style\n"
+	"	~ 26F8 FE0F emoji style"},
+/* 26F9 */ { "PERSON WITH BALL","	= track and field, gymnasium\n"
+	"	~ 26F9 FE0E text style\n"
+	"	~ 26F9 FE0F emoji style"},
 /* 26FA */ { "TENT","	= camping site\n"
 	"	x (camping - 1F3D5)\n"
 	"	~ 26FA FE0E text style\n"
@@ -12838,7 +13061,9 @@ static const struct unicode_nameannot una_00_27[] = {
 	"	x (reversed victory hand - 1F594)\n"
 	"	~ 270C FE0E text style\n"
 	"	~ 270C FE0F emoji style"},
-/* 270D */ { "WRITING HAND","	x (left writing hand - 1F58E)"},
+/* 270D */ { "WRITING HAND","	x (left writing hand - 1F58E)\n"
+	"	~ 270D FE0E text style\n"
+	"	~ 270D FE0F emoji style"},
 /* 270E */ { "LOWER RIGHT PENCIL","	x (lower left pencil - 1F589)"},
 /* 270F */ { "PENCIL","	~ 270F FE0E text style\n"
 	"	~ 270F FE0F emoji style"},
@@ -12861,11 +13086,14 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 271A */ { "HEAVY GREEK CROSS","	x (very bold greek cross - 1F7A5)"},
 /* 271B */ { "OPEN CENTRE CROSS",NULL},
 /* 271C */ { "HEAVY OPEN CENTRE CROSS",NULL},
-/* 271D */ { "LATIN CROSS",NULL},
+/* 271D */ { "LATIN CROSS","	~ 271D FE0E text style\n"
+	"	~ 271D FE0F emoji style"},
 /* 271E */ { "SHADOWED WHITE LATIN CROSS","	x (white latin cross - 1F546)"},
 /* 271F */ { "OUTLINED LATIN CROSS",NULL},
 /* 2720 */ { "MALTESE CROSS","	* Historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée."},
-/* 2721 */ { "STAR OF DAVID","	x (six pointed star with middle dot - 1F52F)"},
+/* 2721 */ { "STAR OF DAVID","	x (six pointed star with middle dot - 1F52F)\n"
+	"	~ 2721 FE0E text style\n"
+	"	~ 2721 FE0F emoji style"},
 /* 2722 */ { "FOUR TEARDROP-SPOKED ASTERISK",NULL},
 /* 2723 */ { "FOUR BALLOON-SPOKED ASTERISK",NULL},
 /* 2724 */ { "HEAVY FOUR BALLOON-SPOKED ASTERISK",NULL},
@@ -12891,7 +13119,7 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 2734 */ { "EIGHT POINTED BLACK STAR","	~ 2734 FE0E text style\n"
 	"	~ 2734 FE0F emoji style"},
 /* 2735 */ { "EIGHT POINTED PINWHEEL STAR","	x (heavy eight pointed pinwheel star - 1F7D1)"},
-/* 2736 */ { "SIX POINTED BLACK STAR","	= sextile"},
+/* 2736 */ { "SIX POINTED BLACK STAR","	x (sextile - 26B9)"},
 /* 2737 */ { "EIGHT POINTED RECTILINEAR BLACK STAR","	x (medium eight pointed black star - 1F7CE)"},
 /* 2738 */ { "HEAVY EIGHT POINTED RECTILINEAR BLACK STAR","	x (heavy eight pointed black star - 1F7CF)"},
 /* 2739 */ { "TWELVE POINTED BLACK STAR",NULL},
@@ -12946,7 +13174,8 @@ static const struct unicode_nameannot una_00_27[] = {
 	"	x (sans-serif heavy low double comma quotation mark ornament - 1F678)"},
 /* 2761 */ { "CURVED STEM PARAGRAPH SIGN ORNAMENT","	x (pilcrow sign - 00B6)"},
 /* 2762 */ { "HEAVY EXCLAMATION MARK ORNAMENT","	x (exclamation mark - 0021)"},
-/* 2763 */ { "HEAVY HEART EXCLAMATION MARK ORNAMENT",NULL},
+/* 2763 */ { "HEAVY HEART EXCLAMATION MARK ORNAMENT","	~ 2763 FE0E text style\n"
+	"	~ 2763 FE0F emoji style"},
 /* 2764 */ { "HEAVY BLACK HEART","	x (black heart suit - 2665)\n"
 	"	~ 2764 FE0E text style\n"
 	"	~ 2764 FE0F emoji style"},
@@ -13621,7 +13850,8 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29B2 */ { "EMPTY SET WITH SMALL CIRCLE ABOVE",NULL},
 /* 29B3 */ { "EMPTY SET WITH RIGHT ARROW ABOVE",NULL},
 /* 29B4 */ { "EMPTY SET WITH LEFT ARROW ABOVE",NULL},
-/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	x (circled minus - 2296)"},
+/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	* used in superscripted form to mean standard state (chemistry)\n"
+	"	x (circled minus - 2296)"},
 /* 29B6 */ { "CIRCLED VERTICAL BAR","	x (alchemical symbol for nitre - 1F715)"},
 /* 29B7 */ { "CIRCLED PARALLEL",NULL},
 /* 29B8 */ { "CIRCLED REVERSE SOLIDUS",NULL},
@@ -14126,15 +14356,17 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B57 */ { "HEAVY CIRCLE WITH CIRCLE INSIDE","	= municipal office\n"
 	"	x (bullseye - 25CE)"},
 /* 2B58 */ { "HEAVY CIRCLE","	= town or village office\n"
+	"	= power off symbol\n"
+	"	x (power on symbol - 23FD)\n"
 	"	x (white circle - 25CB)"},
 /* 2B59 */ { "HEAVY CIRCLED SALTIRE","	= police station\n"
 	"	x (n-ary circled times operator - 2A02)"},
-/* 2B5A */ { "SLANTED NORTH ARROW WITH HOOKED HEAD","	* increasing tone with falling trend at the end "},
+/* 2B5A */ { "SLANTED NORTH ARROW WITH HOOKED HEAD","	* increasing tone with falling trend at the end"},
 /* 2B5B */ { "BACKSLANTED SOUTH ARROW WITH HOOKED TAIL","	* sharp rise and fall in tone"},
-/* 2B5C */ { "SLANTED NORTH ARROW WITH HORIZONTAL TAIL","	* continued rise in tone "},
+/* 2B5C */ { "SLANTED NORTH ARROW WITH HORIZONTAL TAIL","	* continued rise in tone"},
 /* 2B5D */ { "BACKSLANTED SOUTH ARROW WITH HORIZONTAL TAIL","	* continued fall in tone"},
 /* 2B5E */ { "BENT ARROW POINTING DOWNWARDS THEN NORTH EAST","	* sharp fall in tone with rising trend at the end"},
-/* 2B5F */ { "SHORT BENT ARROW POINTING DOWNWARDS THEN NORTH EAST","	* slight fall in tone with rising trend at the end "},
+/* 2B5F */ { "SHORT BENT ARROW POINTING DOWNWARDS THEN NORTH EAST","	* slight fall in tone with rising trend at the end"},
 /* 2B60 */ { "LEFTWARDS TRIANGLE-HEADED ARROW","	x (leftwards arrow - 2190)"},
 /* 2B61 */ { "UPWARDS TRIANGLE-HEADED ARROW","	x (upwards arrow - 2191)"},
 /* 2B62 */ { "RIGHTWARDS TRIANGLE-HEADED ARROW","	x (rightwards arrow - 2192)\n"
@@ -14437,8 +14669,8 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2C7B */ { "LATIN LETTER SMALL CAPITAL TURNED E",NULL},
 /* 2C7C */ { "LATIN SUBSCRIPT SMALL LETTER J","	# <sub> 006A"},
 /* 2C7D */ { "MODIFIER LETTER CAPITAL V","	# <super> 0056"},
-/* 2C7E */ { "LATIN CAPITAL LETTER S WITH SWASH TAIL","	* lower case is 023F"},
-/* 2C7F */ { "LATIN CAPITAL LETTER Z WITH SWASH TAIL","	* lower case is 0240"},
+/* 2C7E */ { "LATIN CAPITAL LETTER S WITH SWASH TAIL","	* lowercase is 023F"},
+/* 2C7F */ { "LATIN CAPITAL LETTER Z WITH SWASH TAIL","	* lowercase is 0240"},
 /* 2C80 */ { "COPTIC CAPITAL LETTER ALFA",NULL},
 /* 2C81 */ { "COPTIC SMALL LETTER ALFA",NULL},
 /* 2C82 */ { "COPTIC CAPITAL LETTER VIDA",NULL},
@@ -14820,7 +15052,7 @@ static const struct unicode_nameannot una_00_2D[] = {
 /* 2DF2 */ { "COMBINING CYRILLIC LETTER SHA",NULL},
 /* 2DF3 */ { "COMBINING CYRILLIC LETTER SHCHA",NULL},
 /* 2DF4 */ { "COMBINING CYRILLIC LETTER FITA",NULL},
-/* 2DF5 */ { "COMBINING CYRILLIC LETTER ES-TE","	* preferred representation is the sequence: 2DED 2DEE "},
+/* 2DF5 */ { "COMBINING CYRILLIC LETTER ES-TE","	* preferred representation is the sequence: 2DED 2DEE"},
 /* 2DF6 */ { "COMBINING CYRILLIC LETTER A","	x (combining latin small letter a - 0363)"},
 /* 2DF7 */ { "COMBINING CYRILLIC LETTER IE","	x (combining latin small letter e - 0364)"},
 /* 2DF8 */ { "COMBINING CYRILLIC LETTER DJERV",NULL},
@@ -14937,8 +15169,8 @@ static const struct unicode_nameannot una_00_2E[] = {
 	"	x (comma - 002C)\n"
 	"	x (arabic comma - 060C)"},
 /* 2E42 */ { "DOUBLE LOW-REVERSED-9 QUOTATION MARK","	x (double low-9 quotation mark - 201E)"},
-/* 2E43 */ { NULL,NULL},
-/* 2E44 */ { NULL,NULL},
+/* 2E43 */ { "DASH WITH LEFT UPTURN",NULL},
+/* 2E44 */ { "DOUBLE SUSPENSION MARK",NULL},
 /* 2E45 */ { NULL,NULL},
 /* 2E46 */ { NULL,NULL},
 /* 2E47 */ { NULL,NULL},
@@ -15434,7 +15666,7 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 3002 */ { "IDEOGRAPHIC FULL STOP","	x (full stop - 002E)"},
 /* 3003 */ { "DITTO MARK","	x (double prime - 2033)"},
 /* 3004 */ { "JAPANESE INDUSTRIAL STANDARD SYMBOL",NULL},
-/* 3005 */ { "IDEOGRAPHIC ITERATION MARK",NULL},
+/* 3005 */ { "IDEOGRAPHIC ITERATION MARK","	x (tangut iteration mark - 16FE0)"},
 /* 3006 */ { "IDEOGRAPHIC CLOSING MARK",NULL},
 /* 3007 */ { "IDEOGRAPHIC NUMBER ZERO","	x (combining enclosing circle - 20DD)\n"
 	"	x (white circle - 25CB)\n"
@@ -18893,7 +19125,7 @@ static const struct unicode_nameannot una_00_A7[] = {
 	"	* lowercase is 0265"},
 /* A78E */ { "LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT","	* voiceless lateral retroflex fricative\n"
 	"	* used to transcribe Toda"},
-/* A78F */ { "LATIN LETTER SINOLOGICAL DOT","	* used for transliteration for Phags-Pa and phonetic transcription for Tangut\n"
+/* A78F */ { "LATIN LETTER SINOLOGICAL DOT","	* used in transliteration of Phags-Pa and in phonetic transcription of Tangut\n"
 	"	x (middle dot - 00B7)"},
 /* A790 */ { "LATIN CAPITAL LETTER N WITH DESCENDER",NULL},
 /* A791 */ { "LATIN SMALL LETTER N WITH DESCENDER","	* Janalif"},
@@ -18928,13 +19160,14 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7AB */ { "LATIN CAPITAL LETTER REVERSED OPEN E","	* lowercase is 025C"},
 /* A7AC */ { "LATIN CAPITAL LETTER SCRIPT G","	* lowercase is 0261"},
 /* A7AD */ { "LATIN CAPITAL LETTER L WITH BELT","	* lowercase is 026C"},
-/* A7AE */ { NULL,NULL},
+/* A7AE */ { "LATIN CAPITAL LETTER SMALL CAPITAL I","	* lowercase is 026A\n"
+	"	* also used in Unifon"},
 /* A7AF */ { NULL,NULL},
 /* A7B0 */ { "LATIN CAPITAL LETTER TURNED K","	* lowercase is 029E"},
 /* A7B1 */ { "LATIN CAPITAL LETTER TURNED T","	* lowercase is 0287\n"
 	"	* also used in Unifon"},
 /* A7B2 */ { "LATIN CAPITAL LETTER J WITH CROSSED-TAIL","	* lowercase is 029D"},
-/* A7B3 */ { "LATIN CAPITAL LETTER CHI","	* lower case is AB53\n"
+/* A7B3 */ { "LATIN CAPITAL LETTER CHI","	* lowercase is AB53\n"
 	"	x (greek capital letter chi - 03A7)"},
 /* A7B4 */ { "LATIN CAPITAL LETTER BETA",NULL},
 /* A7B5 */ { "LATIN SMALL LETTER BETA","	x (greek small letter beta - 03B2)"},
@@ -19258,7 +19491,7 @@ static const struct unicode_nameannot una_00_A8[] = {
 /* A8C2 */ { "SAURASHTRA VOWEL SIGN OO",NULL},
 /* A8C3 */ { "SAURASHTRA VOWEL SIGN AU",NULL},
 /* A8C4 */ { "SAURASHTRA SIGN VIRAMA",NULL},
-/* A8C5 */ { NULL,NULL},
+/* A8C5 */ { "SAURASHTRA SIGN CANDRABINDU",NULL},
 /* A8C6 */ { NULL,NULL},
 /* A8C7 */ { NULL,NULL},
 /* A8C8 */ { NULL,NULL},
@@ -19686,22 +19919,22 @@ static const struct unicode_nameannot una_00_AA[] = {
 /* AA5D */ { "CHAM PUNCTUATION DANDA",NULL},
 /* AA5E */ { "CHAM PUNCTUATION DOUBLE DANDA",NULL},
 /* AA5F */ { "CHAM PUNCTUATION TRIPLE DANDA",NULL},
-/* AA60 */ { "MYANMAR LETTER KHAMTI GA",NULL},
-/* AA61 */ { "MYANMAR LETTER KHAMTI CA",NULL},
-/* AA62 */ { "MYANMAR LETTER KHAMTI CHA",NULL},
-/* AA63 */ { "MYANMAR LETTER KHAMTI JA",NULL},
-/* AA64 */ { "MYANMAR LETTER KHAMTI JHA",NULL},
-/* AA65 */ { "MYANMAR LETTER KHAMTI NYA",NULL},
-/* AA66 */ { "MYANMAR LETTER KHAMTI TTA",NULL},
+/* AA60 */ { "MYANMAR LETTER KHAMTI GA","	~ AA60 FE00 dotted form"},
+/* AA61 */ { "MYANMAR LETTER KHAMTI CA","	~ AA61 FE00 dotted form"},
+/* AA62 */ { "MYANMAR LETTER KHAMTI CHA","	~ AA62 FE00 dotted form"},
+/* AA63 */ { "MYANMAR LETTER KHAMTI JA","	~ AA63 FE00 dotted form"},
+/* AA64 */ { "MYANMAR LETTER KHAMTI JHA","	~ AA64 FE00 dotted form"},
+/* AA65 */ { "MYANMAR LETTER KHAMTI NYA","	~ AA65 FE00 dotted form"},
+/* AA66 */ { "MYANMAR LETTER KHAMTI TTA","	~ AA66 FE00 dotted form"},
 /* AA67 */ { "MYANMAR LETTER KHAMTI TTHA",NULL},
 /* AA68 */ { "MYANMAR LETTER KHAMTI DDA",NULL},
 /* AA69 */ { "MYANMAR LETTER KHAMTI DDHA",NULL},
 /* AA6A */ { "MYANMAR LETTER KHAMTI DHA",NULL},
-/* AA6B */ { "MYANMAR LETTER KHAMTI NA",NULL},
-/* AA6C */ { "MYANMAR LETTER KHAMTI SA",NULL},
+/* AA6B */ { "MYANMAR LETTER KHAMTI NA","	~ AA6B FE00 dotted form"},
+/* AA6C */ { "MYANMAR LETTER KHAMTI SA","	~ AA6C FE00 dotted form"},
 /* AA6D */ { "MYANMAR LETTER KHAMTI HA",NULL},
 /* AA6E */ { "MYANMAR LETTER KHAMTI HHA",NULL},
-/* AA6F */ { "MYANMAR LETTER KHAMTI FA",NULL},
+/* AA6F */ { "MYANMAR LETTER KHAMTI FA","	~ AA6F FE00 dotted form"},
 /* AA70 */ { "MYANMAR MODIFIER LETTER KHAMTI REDUPLICATION","	x (myanmar modifier letter shan reduplication - A9E6)"},
 /* AA71 */ { "MYANMAR LETTER KHAMTI XA",NULL},
 /* AA72 */ { "MYANMAR LETTER KHAMTI ZA",NULL},
@@ -19712,7 +19945,7 @@ static const struct unicode_nameannot una_00_AA[] = {
 /* AA77 */ { "MYANMAR SYMBOL AITON EXCLAMATION",NULL},
 /* AA78 */ { "MYANMAR SYMBOL AITON ONE",NULL},
 /* AA79 */ { "MYANMAR SYMBOL AITON TWO",NULL},
-/* AA7A */ { "MYANMAR LETTER AITON RA",NULL},
+/* AA7A */ { "MYANMAR LETTER AITON RA","	~ AA7A FE00 dotted form"},
 /* AA7B */ { "MYANMAR SIGN PAO KAREN TONE",NULL},
 /* AA7C */ { "MYANMAR SIGN TAI LAING TONE-2",NULL},
 /* AA7D */ { "MYANMAR SIGN TAI LAING TONE-5",NULL},
@@ -19950,7 +20183,7 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB5D */ { "MODIFIER LETTER SMALL L WITH INVERTED LAZY S","	# <super> AB37"},
 /* AB5E */ { "MODIFIER LETTER SMALL L WITH MIDDLE TILDE","	# <super> 026B"},
 /* AB5F */ { "MODIFIER LETTER SMALL U WITH LEFT HOOK","	# <super> AB52"},
-/* AB60 */ { "LATIN SMALL LETTER SAKHA YAT","	x (cyrillic small letter iotified a - A657)"},
+/* AB60 */ { "LATIN SMALL LETTER SAKHA YAT","	x (cyrillic small letter yat - 0463)"},
 /* AB61 */ { "LATIN SMALL LETTER IOTIFIED E","	x (cyrillic small letter iotified e - 0465)"},
 /* AB62 */ { "LATIN SMALL LETTER OPEN OE","	x (latin small letter open o - 0254)"},
 /* AB63 */ { "LATIN SMALL LETTER UO",NULL},
@@ -21660,7 +21893,9 @@ static const struct unicode_nameannot una_00_FD[] = {
 /* FDF2 */ { "ARABIC LIGATURE ALLAH ISOLATED FORM","	# <isolated> 0627 0644 0644 0647"},
 /* FDF3 */ { "ARABIC LIGATURE AKBAR ISOLATED FORM","	# <isolated> 0627 0643 0628 0631"},
 /* FDF4 */ { "ARABIC LIGATURE MOHAMMAD ISOLATED FORM","	# <isolated> 0645 062D 0645 062F"},
-/* FDF5 */ { "ARABIC LIGATURE SALAM ISOLATED FORM","	# <isolated> 0635 0644 0639 0645"},
+/* FDF5 */ { "ARABIC LIGATURE SALAM ISOLATED FORM","	* common abbreviation for sallallahou alayhe wasallam\n"
+	"	x (arabic ligature sallallahou alayhe wasallam - FDFA)\n"
+	"	# <isolated> 0635 0644 0639 0645"},
 /* FDF6 */ { "ARABIC LIGATURE RASOUL ISOLATED FORM","	# <isolated> 0631 0633 0648 0644"},
 /* FDF7 */ { "ARABIC LIGATURE ALAYHE ISOLATED FORM","	# <isolated> 0639 0644 064A 0647"},
 /* FDF8 */ { "ARABIC LIGATURE WASALLAM ISOLATED FORM","	# <isolated> 0648 0633 0644 0645"},
@@ -21733,7 +21968,7 @@ static const struct unicode_nameannot una_00_FE[] = {
 /* FE2D */ { "COMBINING CONJOINING MACRON BELOW","	x (combining macron below - 0331)\n"
 	"	x (combining double macron below - 035F)"},
 /* FE2E */ { "COMBINING CYRILLIC TITLO LEFT HALF",NULL},
-/* FE2F */ { "COMBINING CYRILLIC TITLO RIGHT HALF",NULL},
+/* FE2F */ { "COMBINING CYRILLIC TITLO RIGHT HALF","	x (combining cyrillic titlo - 0483)"},
 /* FE30 */ { "PRESENTATION FORM FOR VERTICAL TWO DOT LEADER","	# <vertical> 2025"},
 /* FE31 */ { "PRESENTATION FORM FOR VERTICAL EM DASH","	# <vertical> 2014"},
 /* FE32 */ { "PRESENTATION FORM FOR VERTICAL EN DASH","	# <vertical> 2013"},
@@ -22464,7 +22699,7 @@ static const struct unicode_nameannot una_01_00[] = {
 /* 100E5 */ { "LINEAR B IDEOGRAM VESSEL B206",NULL},
 /* 100E6 */ { "LINEAR B IDEOGRAM VESSEL B207",NULL},
 /* 100E7 */ { "LINEAR B IDEOGRAM VESSEL B208",NULL},
-/* 100E8 */ { "LINEAR B IDEOGRAM VESSEL B209",NULL},
+/* 100E8 */ { "LINEAR B IDEOGRAM VESSEL B209","	x (amphora - 1F3FA)"},
 /* 100E9 */ { "LINEAR B IDEOGRAM VESSEL B210",NULL},
 /* 100EA */ { "LINEAR B IDEOGRAM VESSEL B211",NULL},
 /* 100EB */ { "LINEAR B IDEOGRAM VESSEL B212",NULL},
@@ -22633,8 +22868,8 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 1018A */ { "GREEK ZERO SIGN",NULL},
 /* 1018B */ { "GREEK ONE QUARTER SIGN",NULL},
 /* 1018C */ { "GREEK SINUSOID SIGN","	* designates year"},
-/* 1018D */ { NULL,NULL},
-/* 1018E */ { NULL,NULL},
+/* 1018D */ { "GREEK INDICTION SIGN","	* timekeeping"},
+/* 1018E */ { "NOMISMA SIGN","	* currency sign and marker of weight"},
 /* 1018F */ { NULL,NULL},
 /* 10190 */ { "ROMAN SEXTANS SIGN","	x (equals sign - 003D)"},
 /* 10191 */ { "ROMAN UNCIA SIGN","	x (hyphen-minus - 002D)"},
@@ -23447,82 +23682,82 @@ static const struct unicode_nameannot una_01_04[] = {
 /* 104AD */ { NULL,NULL},
 /* 104AE */ { NULL,NULL},
 /* 104AF */ { NULL,NULL},
-/* 104B0 */ { NULL,NULL},
-/* 104B1 */ { NULL,NULL},
-/* 104B2 */ { NULL,NULL},
-/* 104B3 */ { NULL,NULL},
-/* 104B4 */ { NULL,NULL},
-/* 104B5 */ { NULL,NULL},
-/* 104B6 */ { NULL,NULL},
-/* 104B7 */ { NULL,NULL},
-/* 104B8 */ { NULL,NULL},
-/* 104B9 */ { NULL,NULL},
-/* 104BA */ { NULL,NULL},
-/* 104BB */ { NULL,NULL},
-/* 104BC */ { NULL,NULL},
-/* 104BD */ { NULL,NULL},
-/* 104BE */ { NULL,NULL},
-/* 104BF */ { NULL,NULL},
-/* 104C0 */ { NULL,NULL},
-/* 104C1 */ { NULL,NULL},
-/* 104C2 */ { NULL,NULL},
-/* 104C3 */ { NULL,NULL},
-/* 104C4 */ { NULL,NULL},
-/* 104C5 */ { NULL,NULL},
-/* 104C6 */ { NULL,NULL},
-/* 104C7 */ { NULL,NULL},
-/* 104C8 */ { NULL,NULL},
-/* 104C9 */ { NULL,NULL},
-/* 104CA */ { NULL,NULL},
-/* 104CB */ { NULL,NULL},
-/* 104CC */ { NULL,NULL},
-/* 104CD */ { NULL,NULL},
-/* 104CE */ { NULL,NULL},
-/* 104CF */ { NULL,NULL},
-/* 104D0 */ { NULL,NULL},
-/* 104D1 */ { NULL,NULL},
-/* 104D2 */ { NULL,NULL},
-/* 104D3 */ { NULL,NULL},
+/* 104B0 */ { "OSAGE CAPITAL LETTER A",NULL},
+/* 104B1 */ { "OSAGE CAPITAL LETTER AI",NULL},
+/* 104B2 */ { "OSAGE CAPITAL LETTER AIN",NULL},
+/* 104B3 */ { "OSAGE CAPITAL LETTER AH",NULL},
+/* 104B4 */ { "OSAGE CAPITAL LETTER BRA",NULL},
+/* 104B5 */ { "OSAGE CAPITAL LETTER CHA",NULL},
+/* 104B6 */ { "OSAGE CAPITAL LETTER EHCHA",NULL},
+/* 104B7 */ { "OSAGE CAPITAL LETTER E",NULL},
+/* 104B8 */ { "OSAGE CAPITAL LETTER EIN",NULL},
+/* 104B9 */ { "OSAGE CAPITAL LETTER HA",NULL},
+/* 104BA */ { "OSAGE CAPITAL LETTER HYA",NULL},
+/* 104BB */ { "OSAGE CAPITAL LETTER I",NULL},
+/* 104BC */ { "OSAGE CAPITAL LETTER KA",NULL},
+/* 104BD */ { "OSAGE CAPITAL LETTER EHKA",NULL},
+/* 104BE */ { "OSAGE CAPITAL LETTER KYA",NULL},
+/* 104BF */ { "OSAGE CAPITAL LETTER LA",NULL},
+/* 104C0 */ { "OSAGE CAPITAL LETTER MA",NULL},
+/* 104C1 */ { "OSAGE CAPITAL LETTER NA",NULL},
+/* 104C2 */ { "OSAGE CAPITAL LETTER O",NULL},
+/* 104C3 */ { "OSAGE CAPITAL LETTER OIN",NULL},
+/* 104C4 */ { "OSAGE CAPITAL LETTER PA",NULL},
+/* 104C5 */ { "OSAGE CAPITAL LETTER EHPA",NULL},
+/* 104C6 */ { "OSAGE CAPITAL LETTER SA",NULL},
+/* 104C7 */ { "OSAGE CAPITAL LETTER SHA",NULL},
+/* 104C8 */ { "OSAGE CAPITAL LETTER TA",NULL},
+/* 104C9 */ { "OSAGE CAPITAL LETTER EHTA",NULL},
+/* 104CA */ { "OSAGE CAPITAL LETTER TSA",NULL},
+/* 104CB */ { "OSAGE CAPITAL LETTER EHTSA",NULL},
+/* 104CC */ { "OSAGE CAPITAL LETTER TSHA",NULL},
+/* 104CD */ { "OSAGE CAPITAL LETTER DHA",NULL},
+/* 104CE */ { "OSAGE CAPITAL LETTER U",NULL},
+/* 104CF */ { "OSAGE CAPITAL LETTER WA",NULL},
+/* 104D0 */ { "OSAGE CAPITAL LETTER KHA",NULL},
+/* 104D1 */ { "OSAGE CAPITAL LETTER GHA",NULL},
+/* 104D2 */ { "OSAGE CAPITAL LETTER ZA",NULL},
+/* 104D3 */ { "OSAGE CAPITAL LETTER ZHA",NULL},
 /* 104D4 */ { NULL,NULL},
 /* 104D5 */ { NULL,NULL},
 /* 104D6 */ { NULL,NULL},
 /* 104D7 */ { NULL,NULL},
-/* 104D8 */ { NULL,NULL},
-/* 104D9 */ { NULL,NULL},
-/* 104DA */ { NULL,NULL},
-/* 104DB */ { NULL,NULL},
-/* 104DC */ { NULL,NULL},
-/* 104DD */ { NULL,NULL},
-/* 104DE */ { NULL,NULL},
-/* 104DF */ { NULL,NULL},
-/* 104E0 */ { NULL,NULL},
-/* 104E1 */ { NULL,NULL},
-/* 104E2 */ { NULL,NULL},
-/* 104E3 */ { NULL,NULL},
-/* 104E4 */ { NULL,NULL},
-/* 104E5 */ { NULL,NULL},
-/* 104E6 */ { NULL,NULL},
-/* 104E7 */ { NULL,NULL},
-/* 104E8 */ { NULL,NULL},
-/* 104E9 */ { NULL,NULL},
-/* 104EA */ { NULL,NULL},
-/* 104EB */ { NULL,NULL},
-/* 104EC */ { NULL,NULL},
-/* 104ED */ { NULL,NULL},
-/* 104EE */ { NULL,NULL},
-/* 104EF */ { NULL,NULL},
-/* 104F0 */ { NULL,NULL},
-/* 104F1 */ { NULL,NULL},
-/* 104F2 */ { NULL,NULL},
-/* 104F3 */ { NULL,NULL},
-/* 104F4 */ { NULL,NULL},
-/* 104F5 */ { NULL,NULL},
-/* 104F6 */ { NULL,NULL},
-/* 104F7 */ { NULL,NULL},
-/* 104F8 */ { NULL,NULL},
-/* 104F9 */ { NULL,NULL},
-/* 104FA */ { NULL,NULL},
-/* 104FB */ { NULL,NULL},
+/* 104D8 */ { "OSAGE SMALL LETTER A",NULL},
+/* 104D9 */ { "OSAGE SMALL LETTER AI",NULL},
+/* 104DA */ { "OSAGE SMALL LETTER AIN",NULL},
+/* 104DB */ { "OSAGE SMALL LETTER AH",NULL},
+/* 104DC */ { "OSAGE SMALL LETTER BRA",NULL},
+/* 104DD */ { "OSAGE SMALL LETTER CHA",NULL},
+/* 104DE */ { "OSAGE SMALL LETTER EHCHA",NULL},
+/* 104DF */ { "OSAGE SMALL LETTER E",NULL},
+/* 104E0 */ { "OSAGE SMALL LETTER EIN",NULL},
+/* 104E1 */ { "OSAGE SMALL LETTER HA",NULL},
+/* 104E2 */ { "OSAGE SMALL LETTER HYA",NULL},
+/* 104E3 */ { "OSAGE SMALL LETTER I",NULL},
+/* 104E4 */ { "OSAGE SMALL LETTER KA",NULL},
+/* 104E5 */ { "OSAGE SMALL LETTER EHKA",NULL},
+/* 104E6 */ { "OSAGE SMALL LETTER KYA",NULL},
+/* 104E7 */ { "OSAGE SMALL LETTER LA",NULL},
+/* 104E8 */ { "OSAGE SMALL LETTER MA",NULL},
+/* 104E9 */ { "OSAGE SMALL LETTER NA",NULL},
+/* 104EA */ { "OSAGE SMALL LETTER O",NULL},
+/* 104EB */ { "OSAGE SMALL LETTER OIN",NULL},
+/* 104EC */ { "OSAGE SMALL LETTER PA",NULL},
+/* 104ED */ { "OSAGE SMALL LETTER EHPA",NULL},
+/* 104EE */ { "OSAGE SMALL LETTER SA",NULL},
+/* 104EF */ { "OSAGE SMALL LETTER SHA",NULL},
+/* 104F0 */ { "OSAGE SMALL LETTER TA",NULL},
+/* 104F1 */ { "OSAGE SMALL LETTER EHTA",NULL},
+/* 104F2 */ { "OSAGE SMALL LETTER TSA",NULL},
+/* 104F3 */ { "OSAGE SMALL LETTER EHTSA",NULL},
+/* 104F4 */ { "OSAGE SMALL LETTER TSHA",NULL},
+/* 104F5 */ { "OSAGE SMALL LETTER DHA",NULL},
+/* 104F6 */ { "OSAGE SMALL LETTER U",NULL},
+/* 104F7 */ { "OSAGE SMALL LETTER WA",NULL},
+/* 104F8 */ { "OSAGE SMALL LETTER KHA",NULL},
+/* 104F9 */ { "OSAGE SMALL LETTER GHA",NULL},
+/* 104FA */ { "OSAGE SMALL LETTER ZA",NULL},
+/* 104FB */ { "OSAGE SMALL LETTER ZHA",NULL},
 /* 104FC */ { NULL,NULL},
 /* 104FD */ { NULL,NULL},
 /* 104FE */ { NULL,NULL},
@@ -24148,7 +24383,7 @@ static const struct unicode_nameannot una_01_07[] = {
 /* 1074D */ { "LINEAR A SIGN A710 W",NULL},
 /* 1074E */ { "LINEAR A SIGN A711 X","	x (aegean weight second subunit - 10139)"},
 /* 1074F */ { "LINEAR A SIGN A712 Y","	x (runic letter wunjo wynn w - 16B9)"},
-/* 10750 */ { "LINEAR A SIGN A713 OMEGA","	* used with 106A5 linear a sign a405-vas "},
+/* 10750 */ { "LINEAR A SIGN A713 OMEGA","	* used with 106A5 linear a sign a405-vas"},
 /* 10751 */ { "LINEAR A SIGN A714 ABB",NULL},
 /* 10752 */ { "LINEAR A SIGN A715 BB",NULL},
 /* 10753 */ { "LINEAR A SIGN A717 DD",NULL},
@@ -26129,7 +26364,7 @@ static const struct unicode_nameannot una_01_10[] = {
 /* 1107C */ { NULL,NULL},
 /* 1107D */ { NULL,NULL},
 /* 1107E */ { NULL,NULL},
-/* 1107F */ { "BRAHMI NUMBER JOINER","	* used to form ligatures between Brahmi numbers signifying multiplication"},
+/* 1107F */ { "BRAHMI NUMBER JOINER","	* a virama used to form ligatures between Brahmi numbers signifying multiplication"},
 /* 11080 */ { "KAITHI SIGN CANDRABINDU",NULL},
 /* 11081 */ { "KAITHI SIGN ANUSVARA",NULL},
 /* 11082 */ { "KAITHI SIGN VISARGA",NULL},
@@ -26594,7 +26829,7 @@ static const struct unicode_nameannot una_01_12[] = {
 /* 1123C */ { "KHOJKI DOUBLE SECTION MARK","	* delimits larger chunks of text, such as paragraphs\n"
 	"	x (kaithi double section mark - 110BF)"},
 /* 1123D */ { "KHOJKI ABBREVIATION SIGN",NULL},
-/* 1123E */ { NULL,NULL},
+/* 1123E */ { "KHOJKI SIGN SUKUN","	* used for Arabic transliteration"},
 /* 1123F */ { NULL,NULL},
 /* 11240 */ { NULL,NULL},
 /* 11241 */ { NULL,NULL},
@@ -27050,100 +27285,100 @@ static const struct unicode_nameannot una_01_13[] = {
 };
 
 static const struct unicode_nameannot una_01_14[] = {
-/* 11400 */ { NULL,NULL},
-/* 11401 */ { NULL,NULL},
-/* 11402 */ { NULL,NULL},
-/* 11403 */ { NULL,NULL},
-/* 11404 */ { NULL,NULL},
-/* 11405 */ { NULL,NULL},
-/* 11406 */ { NULL,NULL},
-/* 11407 */ { NULL,NULL},
-/* 11408 */ { NULL,NULL},
-/* 11409 */ { NULL,NULL},
-/* 1140A */ { NULL,NULL},
-/* 1140B */ { NULL,NULL},
-/* 1140C */ { NULL,NULL},
-/* 1140D */ { NULL,NULL},
-/* 1140E */ { NULL,NULL},
-/* 1140F */ { NULL,NULL},
-/* 11410 */ { NULL,NULL},
-/* 11411 */ { NULL,NULL},
-/* 11412 */ { NULL,NULL},
-/* 11413 */ { NULL,NULL},
-/* 11414 */ { NULL,NULL},
-/* 11415 */ { NULL,NULL},
-/* 11416 */ { NULL,NULL},
-/* 11417 */ { NULL,NULL},
-/* 11418 */ { NULL,NULL},
-/* 11419 */ { NULL,NULL},
-/* 1141A */ { NULL,NULL},
-/* 1141B */ { NULL,NULL},
-/* 1141C */ { NULL,NULL},
-/* 1141D */ { NULL,NULL},
-/* 1141E */ { NULL,NULL},
-/* 1141F */ { NULL,NULL},
-/* 11420 */ { NULL,NULL},
-/* 11421 */ { NULL,NULL},
-/* 11422 */ { NULL,NULL},
-/* 11423 */ { NULL,NULL},
-/* 11424 */ { NULL,NULL},
-/* 11425 */ { NULL,NULL},
-/* 11426 */ { NULL,NULL},
-/* 11427 */ { NULL,NULL},
-/* 11428 */ { NULL,NULL},
-/* 11429 */ { NULL,NULL},
-/* 1142A */ { NULL,NULL},
-/* 1142B */ { NULL,NULL},
-/* 1142C */ { NULL,NULL},
-/* 1142D */ { NULL,NULL},
-/* 1142E */ { NULL,NULL},
-/* 1142F */ { NULL,NULL},
-/* 11430 */ { NULL,NULL},
-/* 11431 */ { NULL,NULL},
-/* 11432 */ { NULL,NULL},
-/* 11433 */ { NULL,NULL},
-/* 11434 */ { NULL,NULL},
-/* 11435 */ { NULL,NULL},
-/* 11436 */ { NULL,NULL},
-/* 11437 */ { NULL,NULL},
-/* 11438 */ { NULL,NULL},
-/* 11439 */ { NULL,NULL},
-/* 1143A */ { NULL,NULL},
-/* 1143B */ { NULL,NULL},
-/* 1143C */ { NULL,NULL},
-/* 1143D */ { NULL,NULL},
-/* 1143E */ { NULL,NULL},
-/* 1143F */ { NULL,NULL},
-/* 11440 */ { NULL,NULL},
-/* 11441 */ { NULL,NULL},
-/* 11442 */ { NULL,NULL},
-/* 11443 */ { NULL,NULL},
-/* 11444 */ { NULL,NULL},
-/* 11445 */ { NULL,NULL},
-/* 11446 */ { NULL,NULL},
-/* 11447 */ { NULL,NULL},
-/* 11448 */ { NULL,NULL},
-/* 11449 */ { NULL,NULL},
-/* 1144A */ { NULL,NULL},
-/* 1144B */ { NULL,NULL},
-/* 1144C */ { NULL,NULL},
-/* 1144D */ { NULL,NULL},
-/* 1144E */ { NULL,NULL},
-/* 1144F */ { NULL,NULL},
-/* 11450 */ { NULL,NULL},
-/* 11451 */ { NULL,NULL},
-/* 11452 */ { NULL,NULL},
-/* 11453 */ { NULL,NULL},
-/* 11454 */ { NULL,NULL},
-/* 11455 */ { NULL,NULL},
-/* 11456 */ { NULL,NULL},
-/* 11457 */ { NULL,NULL},
-/* 11458 */ { NULL,NULL},
-/* 11459 */ { NULL,NULL},
+/* 11400 */ { "NEWA LETTER A",NULL},
+/* 11401 */ { "NEWA LETTER AA",NULL},
+/* 11402 */ { "NEWA LETTER I",NULL},
+/* 11403 */ { "NEWA LETTER II",NULL},
+/* 11404 */ { "NEWA LETTER U",NULL},
+/* 11405 */ { "NEWA LETTER UU",NULL},
+/* 11406 */ { "NEWA LETTER VOCALIC R",NULL},
+/* 11407 */ { "NEWA LETTER VOCALIC RR",NULL},
+/* 11408 */ { "NEWA LETTER VOCALIC L",NULL},
+/* 11409 */ { "NEWA LETTER VOCALIC LL",NULL},
+/* 1140A */ { "NEWA LETTER E",NULL},
+/* 1140B */ { "NEWA LETTER AI",NULL},
+/* 1140C */ { "NEWA LETTER O",NULL},
+/* 1140D */ { "NEWA LETTER AU",NULL},
+/* 1140E */ { "NEWA LETTER KA",NULL},
+/* 1140F */ { "NEWA LETTER KHA",NULL},
+/* 11410 */ { "NEWA LETTER GA",NULL},
+/* 11411 */ { "NEWA LETTER GHA",NULL},
+/* 11412 */ { "NEWA LETTER NGA",NULL},
+/* 11413 */ { "NEWA LETTER NGHA","	* murmured nasal for Nepal Bhasa language"},
+/* 11414 */ { "NEWA LETTER CA",NULL},
+/* 11415 */ { "NEWA LETTER CHA",NULL},
+/* 11416 */ { "NEWA LETTER JA",NULL},
+/* 11417 */ { "NEWA LETTER JHA",NULL},
+/* 11418 */ { "NEWA LETTER NYA",NULL},
+/* 11419 */ { "NEWA LETTER NYHA","	* murmured nasal for Nepal Bhasa language"},
+/* 1141A */ { "NEWA LETTER TTA",NULL},
+/* 1141B */ { "NEWA LETTER TTHA",NULL},
+/* 1141C */ { "NEWA LETTER DDA",NULL},
+/* 1141D */ { "NEWA LETTER DDHA",NULL},
+/* 1141E */ { "NEWA LETTER NNA",NULL},
+/* 1141F */ { "NEWA LETTER TA",NULL},
+/* 11420 */ { "NEWA LETTER THA",NULL},
+/* 11421 */ { "NEWA LETTER DA",NULL},
+/* 11422 */ { "NEWA LETTER DHA",NULL},
+/* 11423 */ { "NEWA LETTER NA",NULL},
+/* 11424 */ { "NEWA LETTER NHA","	* murmured nasal for Nepal Bhasa language"},
+/* 11425 */ { "NEWA LETTER PA",NULL},
+/* 11426 */ { "NEWA LETTER PHA",NULL},
+/* 11427 */ { "NEWA LETTER BA",NULL},
+/* 11428 */ { "NEWA LETTER BHA",NULL},
+/* 11429 */ { "NEWA LETTER MA",NULL},
+/* 1142A */ { "NEWA LETTER MHA","	* murmured nasal for Nepal Bhasa language"},
+/* 1142B */ { "NEWA LETTER YA",NULL},
+/* 1142C */ { "NEWA LETTER RA",NULL},
+/* 1142D */ { "NEWA LETTER RHA","	* murmured tap for Nepal Bhasa language"},
+/* 1142E */ { "NEWA LETTER LA",NULL},
+/* 1142F */ { "NEWA LETTER LHA","	* murmured lateral for Nepal Bhasa language"},
+/* 11430 */ { "NEWA LETTER WA",NULL},
+/* 11431 */ { "NEWA LETTER SHA",NULL},
+/* 11432 */ { "NEWA LETTER SSA",NULL},
+/* 11433 */ { "NEWA LETTER SA",NULL},
+/* 11434 */ { "NEWA LETTER HA",NULL},
+/* 11435 */ { "NEWA VOWEL SIGN AA",NULL},
+/* 11436 */ { "NEWA VOWEL SIGN I",NULL},
+/* 11437 */ { "NEWA VOWEL SIGN II",NULL},
+/* 11438 */ { "NEWA VOWEL SIGN U",NULL},
+/* 11439 */ { "NEWA VOWEL SIGN UU",NULL},
+/* 1143A */ { "NEWA VOWEL SIGN VOCALIC R",NULL},
+/* 1143B */ { "NEWA VOWEL SIGN VOCALIC RR",NULL},
+/* 1143C */ { "NEWA VOWEL SIGN VOCALIC L",NULL},
+/* 1143D */ { "NEWA VOWEL SIGN VOCALIC LL",NULL},
+/* 1143E */ { "NEWA VOWEL SIGN E",NULL},
+/* 1143F */ { "NEWA VOWEL SIGN AI",NULL},
+/* 11440 */ { "NEWA VOWEL SIGN O",NULL},
+/* 11441 */ { "NEWA VOWEL SIGN AU",NULL},
+/* 11442 */ { "NEWA SIGN VIRAMA","	= tutisaalaa"},
+/* 11443 */ { "NEWA SIGN CANDRABINDU","	= milaaphuti"},
+/* 11444 */ { "NEWA SIGN ANUSVARA","	= sinhaphuti"},
+/* 11445 */ { "NEWA SIGN VISARGA","	= liphuti"},
+/* 11446 */ { "NEWA SIGN NUKTA",NULL},
+/* 11447 */ { "NEWA SIGN AVAGRAHA","	= sulaa"},
+/* 11448 */ { "NEWA SIGN FINAL ANUSVARA","	= baadipu"},
+/* 11449 */ { "NEWA OM",NULL},
+/* 1144A */ { "NEWA SIDDHI",NULL},
+/* 1144B */ { "NEWA DANDA","	= dipu"},
+/* 1144C */ { "NEWA DOUBLE DANDA",NULL},
+/* 1144D */ { "NEWA COMMA","	= jhaasu"},
+/* 1144E */ { "NEWA GAP FILLER","	= thaayjaayekaa"},
+/* 1144F */ { "NEWA ABBREVIATION SIGN",NULL},
+/* 11450 */ { "NEWA DIGIT ZERO","	= guli"},
+/* 11451 */ { "NEWA DIGIT ONE","	= chi"},
+/* 11452 */ { "NEWA DIGIT TWO","	= nasi"},
+/* 11453 */ { "NEWA DIGIT THREE","	= swa"},
+/* 11454 */ { "NEWA DIGIT FOUR","	= pi"},
+/* 11455 */ { "NEWA DIGIT FIVE","	= njaa"},
+/* 11456 */ { "NEWA DIGIT SIX","	= khu"},
+/* 11457 */ { "NEWA DIGIT SEVEN","	= nhasa"},
+/* 11458 */ { "NEWA DIGIT EIGHT","	= cyaa"},
+/* 11459 */ { "NEWA DIGIT NINE","	= gu"},
 /* 1145A */ { NULL,NULL},
-/* 1145B */ { NULL,NULL},
+/* 1145B */ { "NEWA PLACEHOLDER MARK","	= jaayekaa"},
 /* 1145C */ { NULL,NULL},
-/* 1145D */ { NULL,NULL},
+/* 1145D */ { "NEWA INSERTION SIGN","	= tansaa"},
 /* 1145E */ { NULL,NULL},
 /* 1145F */ { NULL,NULL},
 /* 11460 */ { NULL,NULL},
@@ -27665,19 +27900,19 @@ static const struct unicode_nameannot una_01_16[] = {
 /* 1165D */ { NULL,NULL},
 /* 1165E */ { NULL,NULL},
 /* 1165F */ { NULL,NULL},
-/* 11660 */ { NULL,NULL},
-/* 11661 */ { NULL,NULL},
-/* 11662 */ { NULL,NULL},
-/* 11663 */ { NULL,NULL},
-/* 11664 */ { NULL,NULL},
-/* 11665 */ { NULL,NULL},
-/* 11666 */ { NULL,NULL},
-/* 11667 */ { NULL,NULL},
-/* 11668 */ { NULL,NULL},
-/* 11669 */ { NULL,NULL},
-/* 1166A */ { NULL,NULL},
-/* 1166B */ { NULL,NULL},
-/* 1166C */ { NULL,NULL},
+/* 11660 */ { "MONGOLIAN BIRGA WITH ORNAMENT","	x (mongolian birga - 1800)"},
+/* 11661 */ { "MONGOLIAN ROTATED BIRGA",NULL},
+/* 11662 */ { "MONGOLIAN DOUBLE BIRGA WITH ORNAMENT",NULL},
+/* 11663 */ { "MONGOLIAN TRIPLE BIRGA WITH ORNAMENT",NULL},
+/* 11664 */ { "MONGOLIAN BIRGA WITH DOUBLE ORNAMENT",NULL},
+/* 11665 */ { "MONGOLIAN ROTATED BIRGA WITH ORNAMENT",NULL},
+/* 11666 */ { "MONGOLIAN ROTATED BIRGA WITH DOUBLE ORNAMENT",NULL},
+/* 11667 */ { "MONGOLIAN INVERTED BIRGA",NULL},
+/* 11668 */ { "MONGOLIAN INVERTED BIRGA WITH DOUBLE ORNAMENT",NULL},
+/* 11669 */ { "MONGOLIAN SWIRL BIRGA",NULL},
+/* 1166A */ { "MONGOLIAN SWIRL BIRGA WITH ORNAMENT",NULL},
+/* 1166B */ { "MONGOLIAN SWIRL BIRGA WITH DOUBLE ORNAMENT",NULL},
+/* 1166C */ { "MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT",NULL},
 /* 1166D */ { NULL,NULL},
 /* 1166E */ { NULL,NULL},
 /* 1166F */ { NULL,NULL},
@@ -28602,6 +28837,265 @@ static const struct unicode_nameannot una_01_1A[] = {
 /* 11AFD */ { NULL,NULL},
 /* 11AFE */ { NULL,NULL},
 /* 11AFF */ { NULL,NULL}
+};
+
+static const struct unicode_nameannot una_01_1C[] = {
+/* 11C00 */ { "BHAIKSUKI LETTER A",NULL},
+/* 11C01 */ { "BHAIKSUKI LETTER AA",NULL},
+/* 11C02 */ { "BHAIKSUKI LETTER I",NULL},
+/* 11C03 */ { "BHAIKSUKI LETTER II",NULL},
+/* 11C04 */ { "BHAIKSUKI LETTER U",NULL},
+/* 11C05 */ { "BHAIKSUKI LETTER UU",NULL},
+/* 11C06 */ { "BHAIKSUKI LETTER VOCALIC R",NULL},
+/* 11C07 */ { "BHAIKSUKI LETTER VOCALIC RR",NULL},
+/* 11C08 */ { "BHAIKSUKI LETTER VOCALIC L",NULL},
+/* 11C09 */ { NULL,NULL},
+/* 11C0A */ { "BHAIKSUKI LETTER E",NULL},
+/* 11C0B */ { "BHAIKSUKI LETTER AI",NULL},
+/* 11C0C */ { "BHAIKSUKI LETTER O",NULL},
+/* 11C0D */ { "BHAIKSUKI LETTER AU",NULL},
+/* 11C0E */ { "BHAIKSUKI LETTER KA",NULL},
+/* 11C0F */ { "BHAIKSUKI LETTER KHA",NULL},
+/* 11C10 */ { "BHAIKSUKI LETTER GA",NULL},
+/* 11C11 */ { "BHAIKSUKI LETTER GHA",NULL},
+/* 11C12 */ { "BHAIKSUKI LETTER NGA",NULL},
+/* 11C13 */ { "BHAIKSUKI LETTER CA",NULL},
+/* 11C14 */ { "BHAIKSUKI LETTER CHA",NULL},
+/* 11C15 */ { "BHAIKSUKI LETTER JA",NULL},
+/* 11C16 */ { "BHAIKSUKI LETTER JHA",NULL},
+/* 11C17 */ { "BHAIKSUKI LETTER NYA",NULL},
+/* 11C18 */ { "BHAIKSUKI LETTER TTA",NULL},
+/* 11C19 */ { "BHAIKSUKI LETTER TTHA",NULL},
+/* 11C1A */ { "BHAIKSUKI LETTER DDA",NULL},
+/* 11C1B */ { "BHAIKSUKI LETTER DDHA",NULL},
+/* 11C1C */ { "BHAIKSUKI LETTER NNA",NULL},
+/* 11C1D */ { "BHAIKSUKI LETTER TA",NULL},
+/* 11C1E */ { "BHAIKSUKI LETTER THA",NULL},
+/* 11C1F */ { "BHAIKSUKI LETTER DA",NULL},
+/* 11C20 */ { "BHAIKSUKI LETTER DHA",NULL},
+/* 11C21 */ { "BHAIKSUKI LETTER NA",NULL},
+/* 11C22 */ { "BHAIKSUKI LETTER PA",NULL},
+/* 11C23 */ { "BHAIKSUKI LETTER PHA",NULL},
+/* 11C24 */ { "BHAIKSUKI LETTER BA",NULL},
+/* 11C25 */ { "BHAIKSUKI LETTER BHA",NULL},
+/* 11C26 */ { "BHAIKSUKI LETTER MA",NULL},
+/* 11C27 */ { "BHAIKSUKI LETTER YA",NULL},
+/* 11C28 */ { "BHAIKSUKI LETTER RA",NULL},
+/* 11C29 */ { "BHAIKSUKI LETTER LA",NULL},
+/* 11C2A */ { "BHAIKSUKI LETTER VA",NULL},
+/* 11C2B */ { "BHAIKSUKI LETTER SHA",NULL},
+/* 11C2C */ { "BHAIKSUKI LETTER SSA",NULL},
+/* 11C2D */ { "BHAIKSUKI LETTER SA",NULL},
+/* 11C2E */ { "BHAIKSUKI LETTER HA",NULL},
+/* 11C2F */ { "BHAIKSUKI VOWEL SIGN AA",NULL},
+/* 11C30 */ { "BHAIKSUKI VOWEL SIGN I",NULL},
+/* 11C31 */ { "BHAIKSUKI VOWEL SIGN II",NULL},
+/* 11C32 */ { "BHAIKSUKI VOWEL SIGN U",NULL},
+/* 11C33 */ { "BHAIKSUKI VOWEL SIGN UU",NULL},
+/* 11C34 */ { "BHAIKSUKI VOWEL SIGN VOCALIC R",NULL},
+/* 11C35 */ { "BHAIKSUKI VOWEL SIGN VOCALIC RR",NULL},
+/* 11C36 */ { "BHAIKSUKI VOWEL SIGN VOCALIC L",NULL},
+/* 11C37 */ { NULL,NULL},
+/* 11C38 */ { "BHAIKSUKI VOWEL SIGN E",NULL},
+/* 11C39 */ { "BHAIKSUKI VOWEL SIGN AI",NULL},
+/* 11C3A */ { "BHAIKSUKI VOWEL SIGN O",NULL},
+/* 11C3B */ { "BHAIKSUKI VOWEL SIGN AU",NULL},
+/* 11C3C */ { "BHAIKSUKI SIGN CANDRABINDU",NULL},
+/* 11C3D */ { "BHAIKSUKI SIGN ANUSVARA",NULL},
+/* 11C3E */ { "BHAIKSUKI SIGN VISARGA",NULL},
+/* 11C3F */ { "BHAIKSUKI SIGN VIRAMA",NULL},
+/* 11C40 */ { "BHAIKSUKI SIGN AVAGRAHA",NULL},
+/* 11C41 */ { "BHAIKSUKI DANDA",NULL},
+/* 11C42 */ { "BHAIKSUKI DOUBLE DANDA",NULL},
+/* 11C43 */ { "BHAIKSUKI WORD SEPARATOR",NULL},
+/* 11C44 */ { "BHAIKSUKI GAP FILLER-1",NULL},
+/* 11C45 */ { "BHAIKSUKI GAP FILLER-2",NULL},
+/* 11C46 */ { NULL,NULL},
+/* 11C47 */ { NULL,NULL},
+/* 11C48 */ { NULL,NULL},
+/* 11C49 */ { NULL,NULL},
+/* 11C4A */ { NULL,NULL},
+/* 11C4B */ { NULL,NULL},
+/* 11C4C */ { NULL,NULL},
+/* 11C4D */ { NULL,NULL},
+/* 11C4E */ { NULL,NULL},
+/* 11C4F */ { NULL,NULL},
+/* 11C50 */ { "BHAIKSUKI DIGIT ZERO",NULL},
+/* 11C51 */ { "BHAIKSUKI DIGIT ONE",NULL},
+/* 11C52 */ { "BHAIKSUKI DIGIT TWO",NULL},
+/* 11C53 */ { "BHAIKSUKI DIGIT THREE",NULL},
+/* 11C54 */ { "BHAIKSUKI DIGIT FOUR",NULL},
+/* 11C55 */ { "BHAIKSUKI DIGIT FIVE",NULL},
+/* 11C56 */ { "BHAIKSUKI DIGIT SIX",NULL},
+/* 11C57 */ { "BHAIKSUKI DIGIT SEVEN",NULL},
+/* 11C58 */ { "BHAIKSUKI DIGIT EIGHT",NULL},
+/* 11C59 */ { "BHAIKSUKI DIGIT NINE",NULL},
+/* 11C5A */ { "BHAIKSUKI NUMBER ONE",NULL},
+/* 11C5B */ { "BHAIKSUKI NUMBER TWO",NULL},
+/* 11C5C */ { "BHAIKSUKI NUMBER THREE",NULL},
+/* 11C5D */ { "BHAIKSUKI NUMBER FOUR",NULL},
+/* 11C5E */ { "BHAIKSUKI NUMBER FIVE",NULL},
+/* 11C5F */ { "BHAIKSUKI NUMBER SIX",NULL},
+/* 11C60 */ { "BHAIKSUKI NUMBER SEVEN",NULL},
+/* 11C61 */ { "BHAIKSUKI NUMBER EIGHT",NULL},
+/* 11C62 */ { "BHAIKSUKI NUMBER NINE",NULL},
+/* 11C63 */ { "BHAIKSUKI NUMBER TEN",NULL},
+/* 11C64 */ { "BHAIKSUKI NUMBER TWENTY",NULL},
+/* 11C65 */ { "BHAIKSUKI NUMBER THIRTY",NULL},
+/* 11C66 */ { "BHAIKSUKI NUMBER FORTY",NULL},
+/* 11C67 */ { "BHAIKSUKI NUMBER FIFTY",NULL},
+/* 11C68 */ { "BHAIKSUKI NUMBER SIXTY",NULL},
+/* 11C69 */ { "BHAIKSUKI NUMBER SEVENTY",NULL},
+/* 11C6A */ { "BHAIKSUKI NUMBER EIGHTY",NULL},
+/* 11C6B */ { "BHAIKSUKI NUMBER NINETY",NULL},
+/* 11C6C */ { "BHAIKSUKI HUNDREDS UNIT MARK",NULL},
+/* 11C6D */ { NULL,NULL},
+/* 11C6E */ { NULL,NULL},
+/* 11C6F */ { NULL,NULL},
+/* 11C70 */ { "MARCHEN HEAD MARK","	x (left-facing svasti sign - 0FD6)"},
+/* 11C71 */ { "MARCHEN MARK SHAD",NULL},
+/* 11C72 */ { "MARCHEN LETTER KA",NULL},
+/* 11C73 */ { "MARCHEN LETTER KHA",NULL},
+/* 11C74 */ { "MARCHEN LETTER GA",NULL},
+/* 11C75 */ { "MARCHEN LETTER NGA",NULL},
+/* 11C76 */ { "MARCHEN LETTER CA",NULL},
+/* 11C77 */ { "MARCHEN LETTER CHA",NULL},
+/* 11C78 */ { "MARCHEN LETTER JA",NULL},
+/* 11C79 */ { "MARCHEN LETTER NYA",NULL},
+/* 11C7A */ { "MARCHEN LETTER TA",NULL},
+/* 11C7B */ { "MARCHEN LETTER THA",NULL},
+/* 11C7C */ { "MARCHEN LETTER DA",NULL},
+/* 11C7D */ { "MARCHEN LETTER NA",NULL},
+/* 11C7E */ { "MARCHEN LETTER PA",NULL},
+/* 11C7F */ { "MARCHEN LETTER PHA",NULL},
+/* 11C80 */ { "MARCHEN LETTER BA",NULL},
+/* 11C81 */ { "MARCHEN LETTER MA",NULL},
+/* 11C82 */ { "MARCHEN LETTER TSA",NULL},
+/* 11C83 */ { "MARCHEN LETTER TSHA",NULL},
+/* 11C84 */ { "MARCHEN LETTER DZA",NULL},
+/* 11C85 */ { "MARCHEN LETTER WA",NULL},
+/* 11C86 */ { "MARCHEN LETTER ZHA",NULL},
+/* 11C87 */ { "MARCHEN LETTER ZA",NULL},
+/* 11C88 */ { "MARCHEN LETTER -A",NULL},
+/* 11C89 */ { "MARCHEN LETTER YA",NULL},
+/* 11C8A */ { "MARCHEN LETTER RA",NULL},
+/* 11C8B */ { "MARCHEN LETTER LA",NULL},
+/* 11C8C */ { "MARCHEN LETTER SHA",NULL},
+/* 11C8D */ { "MARCHEN LETTER SA",NULL},
+/* 11C8E */ { "MARCHEN LETTER HA",NULL},
+/* 11C8F */ { "MARCHEN LETTER A",NULL},
+/* 11C90 */ { NULL,NULL},
+/* 11C91 */ { NULL,NULL},
+/* 11C92 */ { "MARCHEN SUBJOINED LETTER KA",NULL},
+/* 11C93 */ { "MARCHEN SUBJOINED LETTER KHA",NULL},
+/* 11C94 */ { "MARCHEN SUBJOINED LETTER GA",NULL},
+/* 11C95 */ { "MARCHEN SUBJOINED LETTER NGA",NULL},
+/* 11C96 */ { "MARCHEN SUBJOINED LETTER CA",NULL},
+/* 11C97 */ { "MARCHEN SUBJOINED LETTER CHA",NULL},
+/* 11C98 */ { "MARCHEN SUBJOINED LETTER JA",NULL},
+/* 11C99 */ { "MARCHEN SUBJOINED LETTER NYA",NULL},
+/* 11C9A */ { "MARCHEN SUBJOINED LETTER TA",NULL},
+/* 11C9B */ { "MARCHEN SUBJOINED LETTER THA",NULL},
+/* 11C9C */ { "MARCHEN SUBJOINED LETTER DA",NULL},
+/* 11C9D */ { "MARCHEN SUBJOINED LETTER NA",NULL},
+/* 11C9E */ { "MARCHEN SUBJOINED LETTER PA",NULL},
+/* 11C9F */ { "MARCHEN SUBJOINED LETTER PHA",NULL},
+/* 11CA0 */ { "MARCHEN SUBJOINED LETTER BA",NULL},
+/* 11CA1 */ { "MARCHEN SUBJOINED LETTER MA",NULL},
+/* 11CA2 */ { "MARCHEN SUBJOINED LETTER TSA",NULL},
+/* 11CA3 */ { "MARCHEN SUBJOINED LETTER TSHA",NULL},
+/* 11CA4 */ { "MARCHEN SUBJOINED LETTER DZA",NULL},
+/* 11CA5 */ { "MARCHEN SUBJOINED LETTER WA",NULL},
+/* 11CA6 */ { "MARCHEN SUBJOINED LETTER ZHA",NULL},
+/* 11CA7 */ { "MARCHEN SUBJOINED LETTER ZA",NULL},
+/* 11CA8 */ { NULL,NULL},
+/* 11CA9 */ { "MARCHEN SUBJOINED LETTER YA",NULL},
+/* 11CAA */ { "MARCHEN SUBJOINED LETTER RA",NULL},
+/* 11CAB */ { "MARCHEN SUBJOINED LETTER LA",NULL},
+/* 11CAC */ { "MARCHEN SUBJOINED LETTER SHA",NULL},
+/* 11CAD */ { "MARCHEN SUBJOINED LETTER SA",NULL},
+/* 11CAE */ { "MARCHEN SUBJOINED LETTER HA",NULL},
+/* 11CAF */ { "MARCHEN SUBJOINED LETTER A",NULL},
+/* 11CB0 */ { "MARCHEN VOWEL SIGN AA",NULL},
+/* 11CB1 */ { "MARCHEN VOWEL SIGN I",NULL},
+/* 11CB2 */ { "MARCHEN VOWEL SIGN U",NULL},
+/* 11CB3 */ { "MARCHEN VOWEL SIGN E",NULL},
+/* 11CB4 */ { "MARCHEN VOWEL SIGN O",NULL},
+/* 11CB5 */ { "MARCHEN SIGN ANUSVARA",NULL},
+/* 11CB6 */ { "MARCHEN SIGN CANDRABINDU",NULL},
+/* 11CB7 */ { NULL,NULL},
+/* 11CB8 */ { NULL,NULL},
+/* 11CB9 */ { NULL,NULL},
+/* 11CBA */ { NULL,NULL},
+/* 11CBB */ { NULL,NULL},
+/* 11CBC */ { NULL,NULL},
+/* 11CBD */ { NULL,NULL},
+/* 11CBE */ { NULL,NULL},
+/* 11CBF */ { NULL,NULL},
+/* 11CC0 */ { NULL,NULL},
+/* 11CC1 */ { NULL,NULL},
+/* 11CC2 */ { NULL,NULL},
+/* 11CC3 */ { NULL,NULL},
+/* 11CC4 */ { NULL,NULL},
+/* 11CC5 */ { NULL,NULL},
+/* 11CC6 */ { NULL,NULL},
+/* 11CC7 */ { NULL,NULL},
+/* 11CC8 */ { NULL,NULL},
+/* 11CC9 */ { NULL,NULL},
+/* 11CCA */ { NULL,NULL},
+/* 11CCB */ { NULL,NULL},
+/* 11CCC */ { NULL,NULL},
+/* 11CCD */ { NULL,NULL},
+/* 11CCE */ { NULL,NULL},
+/* 11CCF */ { NULL,NULL},
+/* 11CD0 */ { NULL,NULL},
+/* 11CD1 */ { NULL,NULL},
+/* 11CD2 */ { NULL,NULL},
+/* 11CD3 */ { NULL,NULL},
+/* 11CD4 */ { NULL,NULL},
+/* 11CD5 */ { NULL,NULL},
+/* 11CD6 */ { NULL,NULL},
+/* 11CD7 */ { NULL,NULL},
+/* 11CD8 */ { NULL,NULL},
+/* 11CD9 */ { NULL,NULL},
+/* 11CDA */ { NULL,NULL},
+/* 11CDB */ { NULL,NULL},
+/* 11CDC */ { NULL,NULL},
+/* 11CDD */ { NULL,NULL},
+/* 11CDE */ { NULL,NULL},
+/* 11CDF */ { NULL,NULL},
+/* 11CE0 */ { NULL,NULL},
+/* 11CE1 */ { NULL,NULL},
+/* 11CE2 */ { NULL,NULL},
+/* 11CE3 */ { NULL,NULL},
+/* 11CE4 */ { NULL,NULL},
+/* 11CE5 */ { NULL,NULL},
+/* 11CE6 */ { NULL,NULL},
+/* 11CE7 */ { NULL,NULL},
+/* 11CE8 */ { NULL,NULL},
+/* 11CE9 */ { NULL,NULL},
+/* 11CEA */ { NULL,NULL},
+/* 11CEB */ { NULL,NULL},
+/* 11CEC */ { NULL,NULL},
+/* 11CED */ { NULL,NULL},
+/* 11CEE */ { NULL,NULL},
+/* 11CEF */ { NULL,NULL},
+/* 11CF0 */ { NULL,NULL},
+/* 11CF1 */ { NULL,NULL},
+/* 11CF2 */ { NULL,NULL},
+/* 11CF3 */ { NULL,NULL},
+/* 11CF4 */ { NULL,NULL},
+/* 11CF5 */ { NULL,NULL},
+/* 11CF6 */ { NULL,NULL},
+/* 11CF7 */ { NULL,NULL},
+/* 11CF8 */ { NULL,NULL},
+/* 11CF9 */ { NULL,NULL},
+/* 11CFA */ { NULL,NULL},
+/* 11CFB */ { NULL,NULL},
+/* 11CFC */ { NULL,NULL},
+/* 11CFD */ { NULL,NULL},
+/* 11CFE */ { NULL,NULL},
+/* 11CFF */ { NULL,NULL}
 };
 
 static const struct unicode_nameannot una_01_20[] = {
@@ -31846,7 +32340,7 @@ static const struct unicode_nameannot una_01_45[] = {
 /* 14535 */ { "ANATOLIAN HIEROGLYPH A274",NULL},
 /* 14536 */ { "ANATOLIAN HIEROGLYPH A275",NULL},
 /* 14537 */ { "ANATOLIAN HIEROGLYPH A276","	= frater2"},
-/* 14538 */ { "ANATOLIAN HIEROGLYPH A277","	=  iudex.la, iudex+la"},
+/* 14538 */ { "ANATOLIAN HIEROGLYPH A277","	= iudex.la, iudex+la"},
 /* 14539 */ { "ANATOLIAN HIEROGLYPH A278","	= syllabic li"},
 /* 1453A */ { "ANATOLIAN HIEROGLYPH A279",NULL},
 /* 1453B */ { "ANATOLIAN HIEROGLYPH A280","	= malleus\n"
@@ -33398,10 +33892,10 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F03 */ { "MIAO LETTER PLA","	* used in Sichuan Hmong"},
 /* 16F04 */ { "MIAO LETTER MA",NULL},
 /* 16F05 */ { "MIAO LETTER MHA",NULL},
-/* 16F06 */ { "MIAO LETTER ARCHAIC MA","	* used in Pollard's early orthography "},
+/* 16F06 */ { "MIAO LETTER ARCHAIC MA","	* used in Pollard's early orthography"},
 /* 16F07 */ { "MIAO LETTER FA",NULL},
 /* 16F08 */ { "MIAO LETTER VA",NULL},
-/* 16F09 */ { "MIAO LETTER VFA","	* used in Black Yi "},
+/* 16F09 */ { "MIAO LETTER VFA","	* used in Black Yi"},
 /* 16F0A */ { "MIAO LETTER TA","	* used for da in Dry Yi"},
 /* 16F0B */ { "MIAO LETTER DA",NULL},
 /* 16F0C */ { "MIAO LETTER YI TTA","	* used in Hei Yi"},
@@ -33411,13 +33905,13 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F10 */ { "MIAO LETTER NA",NULL},
 /* 16F11 */ { "MIAO LETTER NHA",NULL},
 /* 16F12 */ { "MIAO LETTER YI NNA","	* used in Hei Yi"},
-/* 16F13 */ { "MIAO LETTER ARCHAIC NA","	* used in Pollard's early orthography "},
+/* 16F13 */ { "MIAO LETTER ARCHAIC NA","	* used in Pollard's early orthography"},
 /* 16F14 */ { "MIAO LETTER NNA",NULL},
 /* 16F15 */ { "MIAO LETTER NNHA",NULL},
 /* 16F16 */ { "MIAO LETTER LA",NULL},
-/* 16F17 */ { "MIAO LETTER LYA","	* used in Black Yi "},
+/* 16F17 */ { "MIAO LETTER LYA","	* used in Black Yi"},
 /* 16F18 */ { "MIAO LETTER LHA",NULL},
-/* 16F19 */ { "MIAO LETTER LHYA","	* used in Black Yi "},
+/* 16F19 */ { "MIAO LETTER LHYA","	* used in Black Yi"},
 /* 16F1A */ { "MIAO LETTER TLHA",NULL},
 /* 16F1B */ { "MIAO LETTER DLHA",NULL},
 /* 16F1C */ { "MIAO LETTER TLHYA",NULL},
@@ -33429,7 +33923,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F22 */ { "MIAO LETTER QGA",NULL},
 /* 16F23 */ { "MIAO LETTER NGA",NULL},
 /* 16F24 */ { "MIAO LETTER NGHA",NULL},
-/* 16F25 */ { "MIAO LETTER ARCHAIC NGA","	* used in Pollard's early orthography "},
+/* 16F25 */ { "MIAO LETTER ARCHAIC NGA","	* used in Pollard's early orthography"},
 /* 16F26 */ { "MIAO LETTER HA",NULL},
 /* 16F27 */ { "MIAO LETTER XA","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F28 */ { "MIAO LETTER GHA",NULL},
@@ -33445,22 +33939,22 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F32 */ { "MIAO LETTER REFORMED TSHA","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F33 */ { "MIAO LETTER SHA",NULL},
 /* 16F34 */ { "MIAO LETTER SSA",NULL},
-/* 16F35 */ { "MIAO LETTER ZHA","	* used in Black Yi "},
-/* 16F36 */ { "MIAO LETTER ZSHA","	* used in Black Yi "},
+/* 16F35 */ { "MIAO LETTER ZHA","	* used in Black Yi"},
+/* 16F36 */ { "MIAO LETTER ZSHA","	* used in Black Yi"},
 /* 16F37 */ { "MIAO LETTER TSA","	* used for dza in Dry Yi"},
 /* 16F38 */ { "MIAO LETTER DZA",NULL},
 /* 16F39 */ { "MIAO LETTER YI TSA","	* used for tsa in Dry Yi"},
 /* 16F3A */ { "MIAO LETTER SA",NULL},
 /* 16F3B */ { "MIAO LETTER ZA",NULL},
-/* 16F3C */ { "MIAO LETTER ZSA","	* used in Black Yi "},
+/* 16F3C */ { "MIAO LETTER ZSA","	* used in Black Yi"},
 /* 16F3D */ { "MIAO LETTER ZZA",NULL},
-/* 16F3E */ { "MIAO LETTER ZZSA","	* used in Black Yi "},
-/* 16F3F */ { "MIAO LETTER ARCHAIC ZZA","	* used in Pollard's early orthography "},
-/* 16F40 */ { "MIAO LETTER ZZYA","	* used in Black Yi "},
-/* 16F41 */ { "MIAO LETTER ZZSYA","	* used in Black Yi "},
+/* 16F3E */ { "MIAO LETTER ZZSA","	* used in Black Yi"},
+/* 16F3F */ { "MIAO LETTER ARCHAIC ZZA","	* used in Pollard's early orthography"},
+/* 16F40 */ { "MIAO LETTER ZZYA","	* used in Black Yi"},
+/* 16F41 */ { "MIAO LETTER ZZSYA","	* used in Black Yi"},
 /* 16F42 */ { "MIAO LETTER WA",NULL},
 /* 16F43 */ { "MIAO LETTER AH","	* glottal stop"},
-/* 16F44 */ { "MIAO LETTER HHA","	* used in Black Yi "},
+/* 16F44 */ { "MIAO LETTER HHA","	* used in Black Yi"},
 /* 16F45 */ { NULL,NULL},
 /* 16F46 */ { NULL,NULL},
 /* 16F47 */ { NULL,NULL},
@@ -33477,7 +33971,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F52 */ { "MIAO SIGN REFORMED VOICING","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F53 */ { "MIAO SIGN REFORMED ASPIRATION","	* archaic character used in a post-1949 reformed orthography"},
 /* 16F54 */ { "MIAO VOWEL SIGN A",NULL},
-/* 16F55 */ { "MIAO VOWEL SIGN AA","	* used in Eastern Lisu "},
+/* 16F55 */ { "MIAO VOWEL SIGN AA","	* used in Eastern Lisu"},
 /* 16F56 */ { "MIAO VOWEL SIGN AHH","	* used in Gan Yi"},
 /* 16F57 */ { "MIAO VOWEL SIGN AN",NULL},
 /* 16F58 */ { "MIAO VOWEL SIGN ANG","	* also used for aw"},
@@ -33495,24 +33989,24 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16F64 */ { "MIAO VOWEL SIGN IANG","	* also used for iaw"},
 /* 16F65 */ { "MIAO VOWEL SIGN IO",NULL},
 /* 16F66 */ { "MIAO VOWEL SIGN IE",NULL},
-/* 16F67 */ { "MIAO VOWEL SIGN II","	* used in Eastern Lisu "},
+/* 16F67 */ { "MIAO VOWEL SIGN II","	* used in Eastern Lisu"},
 /* 16F68 */ { "MIAO VOWEL SIGN IU",NULL},
 /* 16F69 */ { "MIAO VOWEL SIGN ING","	* also used for in"},
 /* 16F6A */ { "MIAO VOWEL SIGN U",NULL},
 /* 16F6B */ { "MIAO VOWEL SIGN UA",NULL},
 /* 16F6C */ { "MIAO VOWEL SIGN UAN",NULL},
 /* 16F6D */ { "MIAO VOWEL SIGN UANG","	* also used for uaw"},
-/* 16F6E */ { "MIAO VOWEL SIGN UU","	* used in Eastern Lisu "},
+/* 16F6E */ { "MIAO VOWEL SIGN UU","	* used in Eastern Lisu"},
 /* 16F6F */ { "MIAO VOWEL SIGN UEI",NULL},
 /* 16F70 */ { "MIAO VOWEL SIGN UNG",NULL},
 /* 16F71 */ { "MIAO VOWEL SIGN Y",NULL},
 /* 16F72 */ { "MIAO VOWEL SIGN YI",NULL},
 /* 16F73 */ { "MIAO VOWEL SIGN AE",NULL},
-/* 16F74 */ { "MIAO VOWEL SIGN AEE","	* used in Eastern Lisu "},
+/* 16F74 */ { "MIAO VOWEL SIGN AEE","	* used in Eastern Lisu"},
 /* 16F75 */ { "MIAO VOWEL SIGN ERR",NULL},
-/* 16F76 */ { "MIAO VOWEL SIGN ROUNDED ERR","	* used in Eastern Lisu "},
+/* 16F76 */ { "MIAO VOWEL SIGN ROUNDED ERR","	* used in Eastern Lisu"},
 /* 16F77 */ { "MIAO VOWEL SIGN ER",NULL},
-/* 16F78 */ { "MIAO VOWEL SIGN ROUNDED ER","	* used in Eastern Lisu "},
+/* 16F78 */ { "MIAO VOWEL SIGN ROUNDED ER","	* used in Eastern Lisu"},
 /* 16F79 */ { "MIAO VOWEL SIGN AI",NULL},
 /* 16F7A */ { "MIAO VOWEL SIGN EI",NULL},
 /* 16F7B */ { "MIAO VOWEL SIGN AU",NULL},
@@ -33616,7 +34110,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16FDD */ { NULL,NULL},
 /* 16FDE */ { NULL,NULL},
 /* 16FDF */ { NULL,NULL},
-/* 16FE0 */ { NULL,NULL},
+/* 16FE0 */ { "TANGUT ITERATION MARK","	x (ideographic iteration mark - 3005)"},
 /* 16FE1 */ { NULL,NULL},
 /* 16FE2 */ { NULL,NULL},
 /* 16FE3 */ { NULL,NULL},
@@ -33648,6 +34142,783 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16FFD */ { NULL,NULL},
 /* 16FFE */ { NULL,NULL},
 /* 16FFF */ { NULL,NULL}
+};
+
+static const struct unicode_nameannot una_01_88[] = {
+/* 18800 */ { "TANGUT COMPONENT-001",NULL},
+/* 18801 */ { "TANGUT COMPONENT-002",NULL},
+/* 18802 */ { "TANGUT COMPONENT-003",NULL},
+/* 18803 */ { "TANGUT COMPONENT-004",NULL},
+/* 18804 */ { "TANGUT COMPONENT-005",NULL},
+/* 18805 */ { "TANGUT COMPONENT-006",NULL},
+/* 18806 */ { "TANGUT COMPONENT-007",NULL},
+/* 18807 */ { "TANGUT COMPONENT-008",NULL},
+/* 18808 */ { "TANGUT COMPONENT-009",NULL},
+/* 18809 */ { "TANGUT COMPONENT-010",NULL},
+/* 1880A */ { "TANGUT COMPONENT-011",NULL},
+/* 1880B */ { "TANGUT COMPONENT-012",NULL},
+/* 1880C */ { "TANGUT COMPONENT-013",NULL},
+/* 1880D */ { "TANGUT COMPONENT-014",NULL},
+/* 1880E */ { "TANGUT COMPONENT-015",NULL},
+/* 1880F */ { "TANGUT COMPONENT-016",NULL},
+/* 18810 */ { "TANGUT COMPONENT-017",NULL},
+/* 18811 */ { "TANGUT COMPONENT-018",NULL},
+/* 18812 */ { "TANGUT COMPONENT-019",NULL},
+/* 18813 */ { "TANGUT COMPONENT-020",NULL},
+/* 18814 */ { "TANGUT COMPONENT-021",NULL},
+/* 18815 */ { "TANGUT COMPONENT-022",NULL},
+/* 18816 */ { "TANGUT COMPONENT-023",NULL},
+/* 18817 */ { "TANGUT COMPONENT-024",NULL},
+/* 18818 */ { "TANGUT COMPONENT-025",NULL},
+/* 18819 */ { "TANGUT COMPONENT-026",NULL},
+/* 1881A */ { "TANGUT COMPONENT-027",NULL},
+/* 1881B */ { "TANGUT COMPONENT-028",NULL},
+/* 1881C */ { "TANGUT COMPONENT-029",NULL},
+/* 1881D */ { "TANGUT COMPONENT-030",NULL},
+/* 1881E */ { "TANGUT COMPONENT-031",NULL},
+/* 1881F */ { "TANGUT COMPONENT-032",NULL},
+/* 18820 */ { "TANGUT COMPONENT-033",NULL},
+/* 18821 */ { "TANGUT COMPONENT-034",NULL},
+/* 18822 */ { "TANGUT COMPONENT-035",NULL},
+/* 18823 */ { "TANGUT COMPONENT-036",NULL},
+/* 18824 */ { "TANGUT COMPONENT-037",NULL},
+/* 18825 */ { "TANGUT COMPONENT-038",NULL},
+/* 18826 */ { "TANGUT COMPONENT-039",NULL},
+/* 18827 */ { "TANGUT COMPONENT-040",NULL},
+/* 18828 */ { "TANGUT COMPONENT-041",NULL},
+/* 18829 */ { "TANGUT COMPONENT-042",NULL},
+/* 1882A */ { "TANGUT COMPONENT-043",NULL},
+/* 1882B */ { "TANGUT COMPONENT-044",NULL},
+/* 1882C */ { "TANGUT COMPONENT-045",NULL},
+/* 1882D */ { "TANGUT COMPONENT-046",NULL},
+/* 1882E */ { "TANGUT COMPONENT-047",NULL},
+/* 1882F */ { "TANGUT COMPONENT-048",NULL},
+/* 18830 */ { "TANGUT COMPONENT-049",NULL},
+/* 18831 */ { "TANGUT COMPONENT-050",NULL},
+/* 18832 */ { "TANGUT COMPONENT-051",NULL},
+/* 18833 */ { "TANGUT COMPONENT-052",NULL},
+/* 18834 */ { "TANGUT COMPONENT-053",NULL},
+/* 18835 */ { "TANGUT COMPONENT-054",NULL},
+/* 18836 */ { "TANGUT COMPONENT-055",NULL},
+/* 18837 */ { "TANGUT COMPONENT-056",NULL},
+/* 18838 */ { "TANGUT COMPONENT-057",NULL},
+/* 18839 */ { "TANGUT COMPONENT-058",NULL},
+/* 1883A */ { "TANGUT COMPONENT-059",NULL},
+/* 1883B */ { "TANGUT COMPONENT-060",NULL},
+/* 1883C */ { "TANGUT COMPONENT-061",NULL},
+/* 1883D */ { "TANGUT COMPONENT-062",NULL},
+/* 1883E */ { "TANGUT COMPONENT-063",NULL},
+/* 1883F */ { "TANGUT COMPONENT-064",NULL},
+/* 18840 */ { "TANGUT COMPONENT-065",NULL},
+/* 18841 */ { "TANGUT COMPONENT-066",NULL},
+/* 18842 */ { "TANGUT COMPONENT-067",NULL},
+/* 18843 */ { "TANGUT COMPONENT-068",NULL},
+/* 18844 */ { "TANGUT COMPONENT-069",NULL},
+/* 18845 */ { "TANGUT COMPONENT-070",NULL},
+/* 18846 */ { "TANGUT COMPONENT-071",NULL},
+/* 18847 */ { "TANGUT COMPONENT-072",NULL},
+/* 18848 */ { "TANGUT COMPONENT-073",NULL},
+/* 18849 */ { "TANGUT COMPONENT-074",NULL},
+/* 1884A */ { "TANGUT COMPONENT-075",NULL},
+/* 1884B */ { "TANGUT COMPONENT-076",NULL},
+/* 1884C */ { "TANGUT COMPONENT-077",NULL},
+/* 1884D */ { "TANGUT COMPONENT-078",NULL},
+/* 1884E */ { "TANGUT COMPONENT-079",NULL},
+/* 1884F */ { "TANGUT COMPONENT-080",NULL},
+/* 18850 */ { "TANGUT COMPONENT-081",NULL},
+/* 18851 */ { "TANGUT COMPONENT-082",NULL},
+/* 18852 */ { "TANGUT COMPONENT-083",NULL},
+/* 18853 */ { "TANGUT COMPONENT-084",NULL},
+/* 18854 */ { "TANGUT COMPONENT-085",NULL},
+/* 18855 */ { "TANGUT COMPONENT-086",NULL},
+/* 18856 */ { "TANGUT COMPONENT-087",NULL},
+/* 18857 */ { "TANGUT COMPONENT-088",NULL},
+/* 18858 */ { "TANGUT COMPONENT-089",NULL},
+/* 18859 */ { "TANGUT COMPONENT-090",NULL},
+/* 1885A */ { "TANGUT COMPONENT-091",NULL},
+/* 1885B */ { "TANGUT COMPONENT-092",NULL},
+/* 1885C */ { "TANGUT COMPONENT-093",NULL},
+/* 1885D */ { "TANGUT COMPONENT-094",NULL},
+/* 1885E */ { "TANGUT COMPONENT-095",NULL},
+/* 1885F */ { "TANGUT COMPONENT-096",NULL},
+/* 18860 */ { "TANGUT COMPONENT-097",NULL},
+/* 18861 */ { "TANGUT COMPONENT-098",NULL},
+/* 18862 */ { "TANGUT COMPONENT-099",NULL},
+/* 18863 */ { "TANGUT COMPONENT-100",NULL},
+/* 18864 */ { "TANGUT COMPONENT-101",NULL},
+/* 18865 */ { "TANGUT COMPONENT-102",NULL},
+/* 18866 */ { "TANGUT COMPONENT-103",NULL},
+/* 18867 */ { "TANGUT COMPONENT-104",NULL},
+/* 18868 */ { "TANGUT COMPONENT-105",NULL},
+/* 18869 */ { "TANGUT COMPONENT-106",NULL},
+/* 1886A */ { "TANGUT COMPONENT-107",NULL},
+/* 1886B */ { "TANGUT COMPONENT-108",NULL},
+/* 1886C */ { "TANGUT COMPONENT-109",NULL},
+/* 1886D */ { "TANGUT COMPONENT-110",NULL},
+/* 1886E */ { "TANGUT COMPONENT-111",NULL},
+/* 1886F */ { "TANGUT COMPONENT-112",NULL},
+/* 18870 */ { "TANGUT COMPONENT-113",NULL},
+/* 18871 */ { "TANGUT COMPONENT-114",NULL},
+/* 18872 */ { "TANGUT COMPONENT-115",NULL},
+/* 18873 */ { "TANGUT COMPONENT-116",NULL},
+/* 18874 */ { "TANGUT COMPONENT-117",NULL},
+/* 18875 */ { "TANGUT COMPONENT-118",NULL},
+/* 18876 */ { "TANGUT COMPONENT-119",NULL},
+/* 18877 */ { "TANGUT COMPONENT-120",NULL},
+/* 18878 */ { "TANGUT COMPONENT-121",NULL},
+/* 18879 */ { "TANGUT COMPONENT-122",NULL},
+/* 1887A */ { "TANGUT COMPONENT-123",NULL},
+/* 1887B */ { "TANGUT COMPONENT-124",NULL},
+/* 1887C */ { "TANGUT COMPONENT-125",NULL},
+/* 1887D */ { "TANGUT COMPONENT-126",NULL},
+/* 1887E */ { "TANGUT COMPONENT-127",NULL},
+/* 1887F */ { "TANGUT COMPONENT-128",NULL},
+/* 18880 */ { "TANGUT COMPONENT-129",NULL},
+/* 18881 */ { "TANGUT COMPONENT-130",NULL},
+/* 18882 */ { "TANGUT COMPONENT-131",NULL},
+/* 18883 */ { "TANGUT COMPONENT-132",NULL},
+/* 18884 */ { "TANGUT COMPONENT-133",NULL},
+/* 18885 */ { "TANGUT COMPONENT-134",NULL},
+/* 18886 */ { "TANGUT COMPONENT-135",NULL},
+/* 18887 */ { "TANGUT COMPONENT-136",NULL},
+/* 18888 */ { "TANGUT COMPONENT-137",NULL},
+/* 18889 */ { "TANGUT COMPONENT-138",NULL},
+/* 1888A */ { "TANGUT COMPONENT-139",NULL},
+/* 1888B */ { "TANGUT COMPONENT-140",NULL},
+/* 1888C */ { "TANGUT COMPONENT-141",NULL},
+/* 1888D */ { "TANGUT COMPONENT-142",NULL},
+/* 1888E */ { "TANGUT COMPONENT-143",NULL},
+/* 1888F */ { "TANGUT COMPONENT-144",NULL},
+/* 18890 */ { "TANGUT COMPONENT-145",NULL},
+/* 18891 */ { "TANGUT COMPONENT-146",NULL},
+/* 18892 */ { "TANGUT COMPONENT-147",NULL},
+/* 18893 */ { "TANGUT COMPONENT-148",NULL},
+/* 18894 */ { "TANGUT COMPONENT-149",NULL},
+/* 18895 */ { "TANGUT COMPONENT-150",NULL},
+/* 18896 */ { "TANGUT COMPONENT-151",NULL},
+/* 18897 */ { "TANGUT COMPONENT-152",NULL},
+/* 18898 */ { "TANGUT COMPONENT-153",NULL},
+/* 18899 */ { "TANGUT COMPONENT-154",NULL},
+/* 1889A */ { "TANGUT COMPONENT-155",NULL},
+/* 1889B */ { "TANGUT COMPONENT-156",NULL},
+/* 1889C */ { "TANGUT COMPONENT-157",NULL},
+/* 1889D */ { "TANGUT COMPONENT-158",NULL},
+/* 1889E */ { "TANGUT COMPONENT-159",NULL},
+/* 1889F */ { "TANGUT COMPONENT-160",NULL},
+/* 188A0 */ { "TANGUT COMPONENT-161",NULL},
+/* 188A1 */ { "TANGUT COMPONENT-162",NULL},
+/* 188A2 */ { "TANGUT COMPONENT-163",NULL},
+/* 188A3 */ { "TANGUT COMPONENT-164",NULL},
+/* 188A4 */ { "TANGUT COMPONENT-165",NULL},
+/* 188A5 */ { "TANGUT COMPONENT-166",NULL},
+/* 188A6 */ { "TANGUT COMPONENT-167",NULL},
+/* 188A7 */ { "TANGUT COMPONENT-168",NULL},
+/* 188A8 */ { "TANGUT COMPONENT-169",NULL},
+/* 188A9 */ { "TANGUT COMPONENT-170",NULL},
+/* 188AA */ { "TANGUT COMPONENT-171",NULL},
+/* 188AB */ { "TANGUT COMPONENT-172",NULL},
+/* 188AC */ { "TANGUT COMPONENT-173",NULL},
+/* 188AD */ { "TANGUT COMPONENT-174",NULL},
+/* 188AE */ { "TANGUT COMPONENT-175",NULL},
+/* 188AF */ { "TANGUT COMPONENT-176",NULL},
+/* 188B0 */ { "TANGUT COMPONENT-177",NULL},
+/* 188B1 */ { "TANGUT COMPONENT-178",NULL},
+/* 188B2 */ { "TANGUT COMPONENT-179",NULL},
+/* 188B3 */ { "TANGUT COMPONENT-180",NULL},
+/* 188B4 */ { "TANGUT COMPONENT-181",NULL},
+/* 188B5 */ { "TANGUT COMPONENT-182",NULL},
+/* 188B6 */ { "TANGUT COMPONENT-183",NULL},
+/* 188B7 */ { "TANGUT COMPONENT-184",NULL},
+/* 188B8 */ { "TANGUT COMPONENT-185",NULL},
+/* 188B9 */ { "TANGUT COMPONENT-186",NULL},
+/* 188BA */ { "TANGUT COMPONENT-187",NULL},
+/* 188BB */ { "TANGUT COMPONENT-188",NULL},
+/* 188BC */ { "TANGUT COMPONENT-189",NULL},
+/* 188BD */ { "TANGUT COMPONENT-190",NULL},
+/* 188BE */ { "TANGUT COMPONENT-191",NULL},
+/* 188BF */ { "TANGUT COMPONENT-192",NULL},
+/* 188C0 */ { "TANGUT COMPONENT-193",NULL},
+/* 188C1 */ { "TANGUT COMPONENT-194",NULL},
+/* 188C2 */ { "TANGUT COMPONENT-195",NULL},
+/* 188C3 */ { "TANGUT COMPONENT-196",NULL},
+/* 188C4 */ { "TANGUT COMPONENT-197",NULL},
+/* 188C5 */ { "TANGUT COMPONENT-198",NULL},
+/* 188C6 */ { "TANGUT COMPONENT-199",NULL},
+/* 188C7 */ { "TANGUT COMPONENT-200",NULL},
+/* 188C8 */ { "TANGUT COMPONENT-201",NULL},
+/* 188C9 */ { "TANGUT COMPONENT-202",NULL},
+/* 188CA */ { "TANGUT COMPONENT-203",NULL},
+/* 188CB */ { "TANGUT COMPONENT-204",NULL},
+/* 188CC */ { "TANGUT COMPONENT-205",NULL},
+/* 188CD */ { "TANGUT COMPONENT-206",NULL},
+/* 188CE */ { "TANGUT COMPONENT-207",NULL},
+/* 188CF */ { "TANGUT COMPONENT-208",NULL},
+/* 188D0 */ { "TANGUT COMPONENT-209",NULL},
+/* 188D1 */ { "TANGUT COMPONENT-210",NULL},
+/* 188D2 */ { "TANGUT COMPONENT-211",NULL},
+/* 188D3 */ { "TANGUT COMPONENT-212",NULL},
+/* 188D4 */ { "TANGUT COMPONENT-213",NULL},
+/* 188D5 */ { "TANGUT COMPONENT-214",NULL},
+/* 188D6 */ { "TANGUT COMPONENT-215",NULL},
+/* 188D7 */ { "TANGUT COMPONENT-216",NULL},
+/* 188D8 */ { "TANGUT COMPONENT-217",NULL},
+/* 188D9 */ { "TANGUT COMPONENT-218",NULL},
+/* 188DA */ { "TANGUT COMPONENT-219",NULL},
+/* 188DB */ { "TANGUT COMPONENT-220",NULL},
+/* 188DC */ { "TANGUT COMPONENT-221",NULL},
+/* 188DD */ { "TANGUT COMPONENT-222",NULL},
+/* 188DE */ { "TANGUT COMPONENT-223",NULL},
+/* 188DF */ { "TANGUT COMPONENT-224",NULL},
+/* 188E0 */ { "TANGUT COMPONENT-225",NULL},
+/* 188E1 */ { "TANGUT COMPONENT-226",NULL},
+/* 188E2 */ { "TANGUT COMPONENT-227",NULL},
+/* 188E3 */ { "TANGUT COMPONENT-228",NULL},
+/* 188E4 */ { "TANGUT COMPONENT-229",NULL},
+/* 188E5 */ { "TANGUT COMPONENT-230",NULL},
+/* 188E6 */ { "TANGUT COMPONENT-231",NULL},
+/* 188E7 */ { "TANGUT COMPONENT-232",NULL},
+/* 188E8 */ { "TANGUT COMPONENT-233",NULL},
+/* 188E9 */ { "TANGUT COMPONENT-234",NULL},
+/* 188EA */ { "TANGUT COMPONENT-235",NULL},
+/* 188EB */ { "TANGUT COMPONENT-236",NULL},
+/* 188EC */ { "TANGUT COMPONENT-237",NULL},
+/* 188ED */ { "TANGUT COMPONENT-238",NULL},
+/* 188EE */ { "TANGUT COMPONENT-239",NULL},
+/* 188EF */ { "TANGUT COMPONENT-240",NULL},
+/* 188F0 */ { "TANGUT COMPONENT-241",NULL},
+/* 188F1 */ { "TANGUT COMPONENT-242",NULL},
+/* 188F2 */ { "TANGUT COMPONENT-243",NULL},
+/* 188F3 */ { "TANGUT COMPONENT-244",NULL},
+/* 188F4 */ { "TANGUT COMPONENT-245",NULL},
+/* 188F5 */ { "TANGUT COMPONENT-246",NULL},
+/* 188F6 */ { "TANGUT COMPONENT-247",NULL},
+/* 188F7 */ { "TANGUT COMPONENT-248",NULL},
+/* 188F8 */ { "TANGUT COMPONENT-249",NULL},
+/* 188F9 */ { "TANGUT COMPONENT-250",NULL},
+/* 188FA */ { "TANGUT COMPONENT-251",NULL},
+/* 188FB */ { "TANGUT COMPONENT-252",NULL},
+/* 188FC */ { "TANGUT COMPONENT-253",NULL},
+/* 188FD */ { "TANGUT COMPONENT-254",NULL},
+/* 188FE */ { "TANGUT COMPONENT-255",NULL},
+/* 188FF */ { "TANGUT COMPONENT-256",NULL}
+};
+
+static const struct unicode_nameannot una_01_89[] = {
+/* 18900 */ { "TANGUT COMPONENT-257",NULL},
+/* 18901 */ { "TANGUT COMPONENT-258",NULL},
+/* 18902 */ { "TANGUT COMPONENT-259",NULL},
+/* 18903 */ { "TANGUT COMPONENT-260",NULL},
+/* 18904 */ { "TANGUT COMPONENT-261",NULL},
+/* 18905 */ { "TANGUT COMPONENT-262",NULL},
+/* 18906 */ { "TANGUT COMPONENT-263",NULL},
+/* 18907 */ { "TANGUT COMPONENT-264",NULL},
+/* 18908 */ { "TANGUT COMPONENT-265",NULL},
+/* 18909 */ { "TANGUT COMPONENT-266",NULL},
+/* 1890A */ { "TANGUT COMPONENT-267",NULL},
+/* 1890B */ { "TANGUT COMPONENT-268",NULL},
+/* 1890C */ { "TANGUT COMPONENT-269",NULL},
+/* 1890D */ { "TANGUT COMPONENT-270",NULL},
+/* 1890E */ { "TANGUT COMPONENT-271",NULL},
+/* 1890F */ { "TANGUT COMPONENT-272",NULL},
+/* 18910 */ { "TANGUT COMPONENT-273",NULL},
+/* 18911 */ { "TANGUT COMPONENT-274",NULL},
+/* 18912 */ { "TANGUT COMPONENT-275",NULL},
+/* 18913 */ { "TANGUT COMPONENT-276",NULL},
+/* 18914 */ { "TANGUT COMPONENT-277",NULL},
+/* 18915 */ { "TANGUT COMPONENT-278",NULL},
+/* 18916 */ { "TANGUT COMPONENT-279",NULL},
+/* 18917 */ { "TANGUT COMPONENT-280",NULL},
+/* 18918 */ { "TANGUT COMPONENT-281",NULL},
+/* 18919 */ { "TANGUT COMPONENT-282",NULL},
+/* 1891A */ { "TANGUT COMPONENT-283",NULL},
+/* 1891B */ { "TANGUT COMPONENT-284",NULL},
+/* 1891C */ { "TANGUT COMPONENT-285",NULL},
+/* 1891D */ { "TANGUT COMPONENT-286",NULL},
+/* 1891E */ { "TANGUT COMPONENT-287",NULL},
+/* 1891F */ { "TANGUT COMPONENT-288",NULL},
+/* 18920 */ { "TANGUT COMPONENT-289",NULL},
+/* 18921 */ { "TANGUT COMPONENT-290",NULL},
+/* 18922 */ { "TANGUT COMPONENT-291",NULL},
+/* 18923 */ { "TANGUT COMPONENT-292",NULL},
+/* 18924 */ { "TANGUT COMPONENT-293",NULL},
+/* 18925 */ { "TANGUT COMPONENT-294",NULL},
+/* 18926 */ { "TANGUT COMPONENT-295",NULL},
+/* 18927 */ { "TANGUT COMPONENT-296",NULL},
+/* 18928 */ { "TANGUT COMPONENT-297",NULL},
+/* 18929 */ { "TANGUT COMPONENT-298",NULL},
+/* 1892A */ { "TANGUT COMPONENT-299",NULL},
+/* 1892B */ { "TANGUT COMPONENT-300",NULL},
+/* 1892C */ { "TANGUT COMPONENT-301",NULL},
+/* 1892D */ { "TANGUT COMPONENT-302",NULL},
+/* 1892E */ { "TANGUT COMPONENT-303",NULL},
+/* 1892F */ { "TANGUT COMPONENT-304",NULL},
+/* 18930 */ { "TANGUT COMPONENT-305",NULL},
+/* 18931 */ { "TANGUT COMPONENT-306",NULL},
+/* 18932 */ { "TANGUT COMPONENT-307",NULL},
+/* 18933 */ { "TANGUT COMPONENT-308",NULL},
+/* 18934 */ { "TANGUT COMPONENT-309",NULL},
+/* 18935 */ { "TANGUT COMPONENT-310",NULL},
+/* 18936 */ { "TANGUT COMPONENT-311",NULL},
+/* 18937 */ { "TANGUT COMPONENT-312",NULL},
+/* 18938 */ { "TANGUT COMPONENT-313",NULL},
+/* 18939 */ { "TANGUT COMPONENT-314",NULL},
+/* 1893A */ { "TANGUT COMPONENT-315",NULL},
+/* 1893B */ { "TANGUT COMPONENT-316",NULL},
+/* 1893C */ { "TANGUT COMPONENT-317",NULL},
+/* 1893D */ { "TANGUT COMPONENT-318",NULL},
+/* 1893E */ { "TANGUT COMPONENT-319",NULL},
+/* 1893F */ { "TANGUT COMPONENT-320",NULL},
+/* 18940 */ { "TANGUT COMPONENT-321",NULL},
+/* 18941 */ { "TANGUT COMPONENT-322",NULL},
+/* 18942 */ { "TANGUT COMPONENT-323",NULL},
+/* 18943 */ { "TANGUT COMPONENT-324",NULL},
+/* 18944 */ { "TANGUT COMPONENT-325",NULL},
+/* 18945 */ { "TANGUT COMPONENT-326",NULL},
+/* 18946 */ { "TANGUT COMPONENT-327",NULL},
+/* 18947 */ { "TANGUT COMPONENT-328",NULL},
+/* 18948 */ { "TANGUT COMPONENT-329",NULL},
+/* 18949 */ { "TANGUT COMPONENT-330",NULL},
+/* 1894A */ { "TANGUT COMPONENT-331",NULL},
+/* 1894B */ { "TANGUT COMPONENT-332",NULL},
+/* 1894C */ { "TANGUT COMPONENT-333",NULL},
+/* 1894D */ { "TANGUT COMPONENT-334",NULL},
+/* 1894E */ { "TANGUT COMPONENT-335",NULL},
+/* 1894F */ { "TANGUT COMPONENT-336",NULL},
+/* 18950 */ { "TANGUT COMPONENT-337",NULL},
+/* 18951 */ { "TANGUT COMPONENT-338",NULL},
+/* 18952 */ { "TANGUT COMPONENT-339",NULL},
+/* 18953 */ { "TANGUT COMPONENT-340",NULL},
+/* 18954 */ { "TANGUT COMPONENT-341",NULL},
+/* 18955 */ { "TANGUT COMPONENT-342",NULL},
+/* 18956 */ { "TANGUT COMPONENT-343",NULL},
+/* 18957 */ { "TANGUT COMPONENT-344",NULL},
+/* 18958 */ { "TANGUT COMPONENT-345",NULL},
+/* 18959 */ { "TANGUT COMPONENT-346",NULL},
+/* 1895A */ { "TANGUT COMPONENT-347",NULL},
+/* 1895B */ { "TANGUT COMPONENT-348",NULL},
+/* 1895C */ { "TANGUT COMPONENT-349",NULL},
+/* 1895D */ { "TANGUT COMPONENT-350",NULL},
+/* 1895E */ { "TANGUT COMPONENT-351",NULL},
+/* 1895F */ { "TANGUT COMPONENT-352",NULL},
+/* 18960 */ { "TANGUT COMPONENT-353",NULL},
+/* 18961 */ { "TANGUT COMPONENT-354",NULL},
+/* 18962 */ { "TANGUT COMPONENT-355",NULL},
+/* 18963 */ { "TANGUT COMPONENT-356",NULL},
+/* 18964 */ { "TANGUT COMPONENT-357",NULL},
+/* 18965 */ { "TANGUT COMPONENT-358",NULL},
+/* 18966 */ { "TANGUT COMPONENT-359",NULL},
+/* 18967 */ { "TANGUT COMPONENT-360",NULL},
+/* 18968 */ { "TANGUT COMPONENT-361",NULL},
+/* 18969 */ { "TANGUT COMPONENT-362",NULL},
+/* 1896A */ { "TANGUT COMPONENT-363",NULL},
+/* 1896B */ { "TANGUT COMPONENT-364",NULL},
+/* 1896C */ { "TANGUT COMPONENT-365",NULL},
+/* 1896D */ { "TANGUT COMPONENT-366",NULL},
+/* 1896E */ { "TANGUT COMPONENT-367",NULL},
+/* 1896F */ { "TANGUT COMPONENT-368",NULL},
+/* 18970 */ { "TANGUT COMPONENT-369",NULL},
+/* 18971 */ { "TANGUT COMPONENT-370",NULL},
+/* 18972 */ { "TANGUT COMPONENT-371",NULL},
+/* 18973 */ { "TANGUT COMPONENT-372",NULL},
+/* 18974 */ { "TANGUT COMPONENT-373",NULL},
+/* 18975 */ { "TANGUT COMPONENT-374",NULL},
+/* 18976 */ { "TANGUT COMPONENT-375",NULL},
+/* 18977 */ { "TANGUT COMPONENT-376",NULL},
+/* 18978 */ { "TANGUT COMPONENT-377",NULL},
+/* 18979 */ { "TANGUT COMPONENT-378",NULL},
+/* 1897A */ { "TANGUT COMPONENT-379",NULL},
+/* 1897B */ { "TANGUT COMPONENT-380",NULL},
+/* 1897C */ { "TANGUT COMPONENT-381",NULL},
+/* 1897D */ { "TANGUT COMPONENT-382",NULL},
+/* 1897E */ { "TANGUT COMPONENT-383",NULL},
+/* 1897F */ { "TANGUT COMPONENT-384",NULL},
+/* 18980 */ { "TANGUT COMPONENT-385",NULL},
+/* 18981 */ { "TANGUT COMPONENT-386",NULL},
+/* 18982 */ { "TANGUT COMPONENT-387",NULL},
+/* 18983 */ { "TANGUT COMPONENT-388",NULL},
+/* 18984 */ { "TANGUT COMPONENT-389",NULL},
+/* 18985 */ { "TANGUT COMPONENT-390",NULL},
+/* 18986 */ { "TANGUT COMPONENT-391",NULL},
+/* 18987 */ { "TANGUT COMPONENT-392",NULL},
+/* 18988 */ { "TANGUT COMPONENT-393",NULL},
+/* 18989 */ { "TANGUT COMPONENT-394",NULL},
+/* 1898A */ { "TANGUT COMPONENT-395",NULL},
+/* 1898B */ { "TANGUT COMPONENT-396",NULL},
+/* 1898C */ { "TANGUT COMPONENT-397",NULL},
+/* 1898D */ { "TANGUT COMPONENT-398",NULL},
+/* 1898E */ { "TANGUT COMPONENT-399",NULL},
+/* 1898F */ { "TANGUT COMPONENT-400",NULL},
+/* 18990 */ { "TANGUT COMPONENT-401",NULL},
+/* 18991 */ { "TANGUT COMPONENT-402",NULL},
+/* 18992 */ { "TANGUT COMPONENT-403",NULL},
+/* 18993 */ { "TANGUT COMPONENT-404",NULL},
+/* 18994 */ { "TANGUT COMPONENT-405",NULL},
+/* 18995 */ { "TANGUT COMPONENT-406",NULL},
+/* 18996 */ { "TANGUT COMPONENT-407",NULL},
+/* 18997 */ { "TANGUT COMPONENT-408",NULL},
+/* 18998 */ { "TANGUT COMPONENT-409",NULL},
+/* 18999 */ { "TANGUT COMPONENT-410",NULL},
+/* 1899A */ { "TANGUT COMPONENT-411",NULL},
+/* 1899B */ { "TANGUT COMPONENT-412",NULL},
+/* 1899C */ { "TANGUT COMPONENT-413",NULL},
+/* 1899D */ { "TANGUT COMPONENT-414",NULL},
+/* 1899E */ { "TANGUT COMPONENT-415",NULL},
+/* 1899F */ { "TANGUT COMPONENT-416",NULL},
+/* 189A0 */ { "TANGUT COMPONENT-417",NULL},
+/* 189A1 */ { "TANGUT COMPONENT-418",NULL},
+/* 189A2 */ { "TANGUT COMPONENT-419",NULL},
+/* 189A3 */ { "TANGUT COMPONENT-420",NULL},
+/* 189A4 */ { "TANGUT COMPONENT-421",NULL},
+/* 189A5 */ { "TANGUT COMPONENT-422",NULL},
+/* 189A6 */ { "TANGUT COMPONENT-423",NULL},
+/* 189A7 */ { "TANGUT COMPONENT-424",NULL},
+/* 189A8 */ { "TANGUT COMPONENT-425",NULL},
+/* 189A9 */ { "TANGUT COMPONENT-426",NULL},
+/* 189AA */ { "TANGUT COMPONENT-427",NULL},
+/* 189AB */ { "TANGUT COMPONENT-428",NULL},
+/* 189AC */ { "TANGUT COMPONENT-429",NULL},
+/* 189AD */ { "TANGUT COMPONENT-430",NULL},
+/* 189AE */ { "TANGUT COMPONENT-431",NULL},
+/* 189AF */ { "TANGUT COMPONENT-432",NULL},
+/* 189B0 */ { "TANGUT COMPONENT-433",NULL},
+/* 189B1 */ { "TANGUT COMPONENT-434",NULL},
+/* 189B2 */ { "TANGUT COMPONENT-435",NULL},
+/* 189B3 */ { "TANGUT COMPONENT-436",NULL},
+/* 189B4 */ { "TANGUT COMPONENT-437",NULL},
+/* 189B5 */ { "TANGUT COMPONENT-438",NULL},
+/* 189B6 */ { "TANGUT COMPONENT-439",NULL},
+/* 189B7 */ { "TANGUT COMPONENT-440",NULL},
+/* 189B8 */ { "TANGUT COMPONENT-441",NULL},
+/* 189B9 */ { "TANGUT COMPONENT-442",NULL},
+/* 189BA */ { "TANGUT COMPONENT-443",NULL},
+/* 189BB */ { "TANGUT COMPONENT-444",NULL},
+/* 189BC */ { "TANGUT COMPONENT-445",NULL},
+/* 189BD */ { "TANGUT COMPONENT-446",NULL},
+/* 189BE */ { "TANGUT COMPONENT-447",NULL},
+/* 189BF */ { "TANGUT COMPONENT-448",NULL},
+/* 189C0 */ { "TANGUT COMPONENT-449",NULL},
+/* 189C1 */ { "TANGUT COMPONENT-450",NULL},
+/* 189C2 */ { "TANGUT COMPONENT-451",NULL},
+/* 189C3 */ { "TANGUT COMPONENT-452",NULL},
+/* 189C4 */ { "TANGUT COMPONENT-453",NULL},
+/* 189C5 */ { "TANGUT COMPONENT-454",NULL},
+/* 189C6 */ { "TANGUT COMPONENT-455",NULL},
+/* 189C7 */ { "TANGUT COMPONENT-456",NULL},
+/* 189C8 */ { "TANGUT COMPONENT-457",NULL},
+/* 189C9 */ { "TANGUT COMPONENT-458",NULL},
+/* 189CA */ { "TANGUT COMPONENT-459",NULL},
+/* 189CB */ { "TANGUT COMPONENT-460",NULL},
+/* 189CC */ { "TANGUT COMPONENT-461",NULL},
+/* 189CD */ { "TANGUT COMPONENT-462",NULL},
+/* 189CE */ { "TANGUT COMPONENT-463",NULL},
+/* 189CF */ { "TANGUT COMPONENT-464",NULL},
+/* 189D0 */ { "TANGUT COMPONENT-465",NULL},
+/* 189D1 */ { "TANGUT COMPONENT-466",NULL},
+/* 189D2 */ { "TANGUT COMPONENT-467",NULL},
+/* 189D3 */ { "TANGUT COMPONENT-468",NULL},
+/* 189D4 */ { "TANGUT COMPONENT-469",NULL},
+/* 189D5 */ { "TANGUT COMPONENT-470",NULL},
+/* 189D6 */ { "TANGUT COMPONENT-471",NULL},
+/* 189D7 */ { "TANGUT COMPONENT-472",NULL},
+/* 189D8 */ { "TANGUT COMPONENT-473",NULL},
+/* 189D9 */ { "TANGUT COMPONENT-474",NULL},
+/* 189DA */ { "TANGUT COMPONENT-475",NULL},
+/* 189DB */ { "TANGUT COMPONENT-476",NULL},
+/* 189DC */ { "TANGUT COMPONENT-477",NULL},
+/* 189DD */ { "TANGUT COMPONENT-478",NULL},
+/* 189DE */ { "TANGUT COMPONENT-479",NULL},
+/* 189DF */ { "TANGUT COMPONENT-480",NULL},
+/* 189E0 */ { "TANGUT COMPONENT-481",NULL},
+/* 189E1 */ { "TANGUT COMPONENT-482",NULL},
+/* 189E2 */ { "TANGUT COMPONENT-483",NULL},
+/* 189E3 */ { "TANGUT COMPONENT-484",NULL},
+/* 189E4 */ { "TANGUT COMPONENT-485",NULL},
+/* 189E5 */ { "TANGUT COMPONENT-486",NULL},
+/* 189E6 */ { "TANGUT COMPONENT-487",NULL},
+/* 189E7 */ { "TANGUT COMPONENT-488",NULL},
+/* 189E8 */ { "TANGUT COMPONENT-489",NULL},
+/* 189E9 */ { "TANGUT COMPONENT-490",NULL},
+/* 189EA */ { "TANGUT COMPONENT-491",NULL},
+/* 189EB */ { "TANGUT COMPONENT-492",NULL},
+/* 189EC */ { "TANGUT COMPONENT-493",NULL},
+/* 189ED */ { "TANGUT COMPONENT-494",NULL},
+/* 189EE */ { "TANGUT COMPONENT-495",NULL},
+/* 189EF */ { "TANGUT COMPONENT-496",NULL},
+/* 189F0 */ { "TANGUT COMPONENT-497",NULL},
+/* 189F1 */ { "TANGUT COMPONENT-498",NULL},
+/* 189F2 */ { "TANGUT COMPONENT-499",NULL},
+/* 189F3 */ { "TANGUT COMPONENT-500",NULL},
+/* 189F4 */ { "TANGUT COMPONENT-501",NULL},
+/* 189F5 */ { "TANGUT COMPONENT-502",NULL},
+/* 189F6 */ { "TANGUT COMPONENT-503",NULL},
+/* 189F7 */ { "TANGUT COMPONENT-504",NULL},
+/* 189F8 */ { "TANGUT COMPONENT-505",NULL},
+/* 189F9 */ { "TANGUT COMPONENT-506",NULL},
+/* 189FA */ { "TANGUT COMPONENT-507",NULL},
+/* 189FB */ { "TANGUT COMPONENT-508",NULL},
+/* 189FC */ { "TANGUT COMPONENT-509",NULL},
+/* 189FD */ { "TANGUT COMPONENT-510",NULL},
+/* 189FE */ { "TANGUT COMPONENT-511",NULL},
+/* 189FF */ { "TANGUT COMPONENT-512",NULL}
+};
+
+static const struct unicode_nameannot una_01_8A[] = {
+/* 18A00 */ { "TANGUT COMPONENT-513",NULL},
+/* 18A01 */ { "TANGUT COMPONENT-514",NULL},
+/* 18A02 */ { "TANGUT COMPONENT-515",NULL},
+/* 18A03 */ { "TANGUT COMPONENT-516",NULL},
+/* 18A04 */ { "TANGUT COMPONENT-517",NULL},
+/* 18A05 */ { "TANGUT COMPONENT-518",NULL},
+/* 18A06 */ { "TANGUT COMPONENT-519",NULL},
+/* 18A07 */ { "TANGUT COMPONENT-520",NULL},
+/* 18A08 */ { "TANGUT COMPONENT-521",NULL},
+/* 18A09 */ { "TANGUT COMPONENT-522",NULL},
+/* 18A0A */ { "TANGUT COMPONENT-523",NULL},
+/* 18A0B */ { "TANGUT COMPONENT-524",NULL},
+/* 18A0C */ { "TANGUT COMPONENT-525",NULL},
+/* 18A0D */ { "TANGUT COMPONENT-526",NULL},
+/* 18A0E */ { "TANGUT COMPONENT-527",NULL},
+/* 18A0F */ { "TANGUT COMPONENT-528",NULL},
+/* 18A10 */ { "TANGUT COMPONENT-529",NULL},
+/* 18A11 */ { "TANGUT COMPONENT-530",NULL},
+/* 18A12 */ { "TANGUT COMPONENT-531",NULL},
+/* 18A13 */ { "TANGUT COMPONENT-532",NULL},
+/* 18A14 */ { "TANGUT COMPONENT-533",NULL},
+/* 18A15 */ { "TANGUT COMPONENT-534",NULL},
+/* 18A16 */ { "TANGUT COMPONENT-535",NULL},
+/* 18A17 */ { "TANGUT COMPONENT-536",NULL},
+/* 18A18 */ { "TANGUT COMPONENT-537",NULL},
+/* 18A19 */ { "TANGUT COMPONENT-538",NULL},
+/* 18A1A */ { "TANGUT COMPONENT-539",NULL},
+/* 18A1B */ { "TANGUT COMPONENT-540",NULL},
+/* 18A1C */ { "TANGUT COMPONENT-541",NULL},
+/* 18A1D */ { "TANGUT COMPONENT-542",NULL},
+/* 18A1E */ { "TANGUT COMPONENT-543",NULL},
+/* 18A1F */ { "TANGUT COMPONENT-544",NULL},
+/* 18A20 */ { "TANGUT COMPONENT-545",NULL},
+/* 18A21 */ { "TANGUT COMPONENT-546",NULL},
+/* 18A22 */ { "TANGUT COMPONENT-547",NULL},
+/* 18A23 */ { "TANGUT COMPONENT-548",NULL},
+/* 18A24 */ { "TANGUT COMPONENT-549",NULL},
+/* 18A25 */ { "TANGUT COMPONENT-550",NULL},
+/* 18A26 */ { "TANGUT COMPONENT-551",NULL},
+/* 18A27 */ { "TANGUT COMPONENT-552",NULL},
+/* 18A28 */ { "TANGUT COMPONENT-553",NULL},
+/* 18A29 */ { "TANGUT COMPONENT-554",NULL},
+/* 18A2A */ { "TANGUT COMPONENT-555",NULL},
+/* 18A2B */ { "TANGUT COMPONENT-556",NULL},
+/* 18A2C */ { "TANGUT COMPONENT-557",NULL},
+/* 18A2D */ { "TANGUT COMPONENT-558",NULL},
+/* 18A2E */ { "TANGUT COMPONENT-559",NULL},
+/* 18A2F */ { "TANGUT COMPONENT-560",NULL},
+/* 18A30 */ { "TANGUT COMPONENT-561",NULL},
+/* 18A31 */ { "TANGUT COMPONENT-562",NULL},
+/* 18A32 */ { "TANGUT COMPONENT-563",NULL},
+/* 18A33 */ { "TANGUT COMPONENT-564",NULL},
+/* 18A34 */ { "TANGUT COMPONENT-565",NULL},
+/* 18A35 */ { "TANGUT COMPONENT-566",NULL},
+/* 18A36 */ { "TANGUT COMPONENT-567",NULL},
+/* 18A37 */ { "TANGUT COMPONENT-568",NULL},
+/* 18A38 */ { "TANGUT COMPONENT-569",NULL},
+/* 18A39 */ { "TANGUT COMPONENT-570",NULL},
+/* 18A3A */ { "TANGUT COMPONENT-571",NULL},
+/* 18A3B */ { "TANGUT COMPONENT-572",NULL},
+/* 18A3C */ { "TANGUT COMPONENT-573",NULL},
+/* 18A3D */ { "TANGUT COMPONENT-574",NULL},
+/* 18A3E */ { "TANGUT COMPONENT-575",NULL},
+/* 18A3F */ { "TANGUT COMPONENT-576",NULL},
+/* 18A40 */ { "TANGUT COMPONENT-577",NULL},
+/* 18A41 */ { "TANGUT COMPONENT-578",NULL},
+/* 18A42 */ { "TANGUT COMPONENT-579",NULL},
+/* 18A43 */ { "TANGUT COMPONENT-580",NULL},
+/* 18A44 */ { "TANGUT COMPONENT-581",NULL},
+/* 18A45 */ { "TANGUT COMPONENT-582",NULL},
+/* 18A46 */ { "TANGUT COMPONENT-583",NULL},
+/* 18A47 */ { "TANGUT COMPONENT-584",NULL},
+/* 18A48 */ { "TANGUT COMPONENT-585",NULL},
+/* 18A49 */ { "TANGUT COMPONENT-586",NULL},
+/* 18A4A */ { "TANGUT COMPONENT-587",NULL},
+/* 18A4B */ { "TANGUT COMPONENT-588",NULL},
+/* 18A4C */ { "TANGUT COMPONENT-589",NULL},
+/* 18A4D */ { "TANGUT COMPONENT-590",NULL},
+/* 18A4E */ { "TANGUT COMPONENT-591",NULL},
+/* 18A4F */ { "TANGUT COMPONENT-592",NULL},
+/* 18A50 */ { "TANGUT COMPONENT-593",NULL},
+/* 18A51 */ { "TANGUT COMPONENT-594",NULL},
+/* 18A52 */ { "TANGUT COMPONENT-595",NULL},
+/* 18A53 */ { "TANGUT COMPONENT-596",NULL},
+/* 18A54 */ { "TANGUT COMPONENT-597",NULL},
+/* 18A55 */ { "TANGUT COMPONENT-598",NULL},
+/* 18A56 */ { "TANGUT COMPONENT-599",NULL},
+/* 18A57 */ { "TANGUT COMPONENT-600",NULL},
+/* 18A58 */ { "TANGUT COMPONENT-601",NULL},
+/* 18A59 */ { "TANGUT COMPONENT-602",NULL},
+/* 18A5A */ { "TANGUT COMPONENT-603",NULL},
+/* 18A5B */ { "TANGUT COMPONENT-604",NULL},
+/* 18A5C */ { "TANGUT COMPONENT-605",NULL},
+/* 18A5D */ { "TANGUT COMPONENT-606",NULL},
+/* 18A5E */ { "TANGUT COMPONENT-607",NULL},
+/* 18A5F */ { "TANGUT COMPONENT-608",NULL},
+/* 18A60 */ { "TANGUT COMPONENT-609",NULL},
+/* 18A61 */ { "TANGUT COMPONENT-610",NULL},
+/* 18A62 */ { "TANGUT COMPONENT-611",NULL},
+/* 18A63 */ { "TANGUT COMPONENT-612",NULL},
+/* 18A64 */ { "TANGUT COMPONENT-613",NULL},
+/* 18A65 */ { "TANGUT COMPONENT-614",NULL},
+/* 18A66 */ { "TANGUT COMPONENT-615",NULL},
+/* 18A67 */ { "TANGUT COMPONENT-616",NULL},
+/* 18A68 */ { "TANGUT COMPONENT-617",NULL},
+/* 18A69 */ { "TANGUT COMPONENT-618",NULL},
+/* 18A6A */ { "TANGUT COMPONENT-619",NULL},
+/* 18A6B */ { "TANGUT COMPONENT-620",NULL},
+/* 18A6C */ { "TANGUT COMPONENT-621",NULL},
+/* 18A6D */ { "TANGUT COMPONENT-622",NULL},
+/* 18A6E */ { "TANGUT COMPONENT-623",NULL},
+/* 18A6F */ { "TANGUT COMPONENT-624",NULL},
+/* 18A70 */ { "TANGUT COMPONENT-625",NULL},
+/* 18A71 */ { "TANGUT COMPONENT-626",NULL},
+/* 18A72 */ { "TANGUT COMPONENT-627",NULL},
+/* 18A73 */ { "TANGUT COMPONENT-628",NULL},
+/* 18A74 */ { "TANGUT COMPONENT-629",NULL},
+/* 18A75 */ { "TANGUT COMPONENT-630",NULL},
+/* 18A76 */ { "TANGUT COMPONENT-631",NULL},
+/* 18A77 */ { "TANGUT COMPONENT-632",NULL},
+/* 18A78 */ { "TANGUT COMPONENT-633",NULL},
+/* 18A79 */ { "TANGUT COMPONENT-634",NULL},
+/* 18A7A */ { "TANGUT COMPONENT-635",NULL},
+/* 18A7B */ { "TANGUT COMPONENT-636",NULL},
+/* 18A7C */ { "TANGUT COMPONENT-637",NULL},
+/* 18A7D */ { "TANGUT COMPONENT-638",NULL},
+/* 18A7E */ { "TANGUT COMPONENT-639",NULL},
+/* 18A7F */ { "TANGUT COMPONENT-640",NULL},
+/* 18A80 */ { "TANGUT COMPONENT-641",NULL},
+/* 18A81 */ { "TANGUT COMPONENT-642",NULL},
+/* 18A82 */ { "TANGUT COMPONENT-643",NULL},
+/* 18A83 */ { "TANGUT COMPONENT-644",NULL},
+/* 18A84 */ { "TANGUT COMPONENT-645",NULL},
+/* 18A85 */ { "TANGUT COMPONENT-646",NULL},
+/* 18A86 */ { "TANGUT COMPONENT-647",NULL},
+/* 18A87 */ { "TANGUT COMPONENT-648",NULL},
+/* 18A88 */ { "TANGUT COMPONENT-649",NULL},
+/* 18A89 */ { "TANGUT COMPONENT-650",NULL},
+/* 18A8A */ { "TANGUT COMPONENT-651",NULL},
+/* 18A8B */ { "TANGUT COMPONENT-652",NULL},
+/* 18A8C */ { "TANGUT COMPONENT-653",NULL},
+/* 18A8D */ { "TANGUT COMPONENT-654",NULL},
+/* 18A8E */ { "TANGUT COMPONENT-655",NULL},
+/* 18A8F */ { "TANGUT COMPONENT-656",NULL},
+/* 18A90 */ { "TANGUT COMPONENT-657",NULL},
+/* 18A91 */ { "TANGUT COMPONENT-658",NULL},
+/* 18A92 */ { "TANGUT COMPONENT-659",NULL},
+/* 18A93 */ { "TANGUT COMPONENT-660",NULL},
+/* 18A94 */ { "TANGUT COMPONENT-661",NULL},
+/* 18A95 */ { "TANGUT COMPONENT-662",NULL},
+/* 18A96 */ { "TANGUT COMPONENT-663",NULL},
+/* 18A97 */ { "TANGUT COMPONENT-664",NULL},
+/* 18A98 */ { "TANGUT COMPONENT-665",NULL},
+/* 18A99 */ { "TANGUT COMPONENT-666",NULL},
+/* 18A9A */ { "TANGUT COMPONENT-667",NULL},
+/* 18A9B */ { "TANGUT COMPONENT-668",NULL},
+/* 18A9C */ { "TANGUT COMPONENT-669",NULL},
+/* 18A9D */ { "TANGUT COMPONENT-670",NULL},
+/* 18A9E */ { "TANGUT COMPONENT-671",NULL},
+/* 18A9F */ { "TANGUT COMPONENT-672",NULL},
+/* 18AA0 */ { "TANGUT COMPONENT-673",NULL},
+/* 18AA1 */ { "TANGUT COMPONENT-674",NULL},
+/* 18AA2 */ { "TANGUT COMPONENT-675",NULL},
+/* 18AA3 */ { "TANGUT COMPONENT-676",NULL},
+/* 18AA4 */ { "TANGUT COMPONENT-677",NULL},
+/* 18AA5 */ { "TANGUT COMPONENT-678",NULL},
+/* 18AA6 */ { "TANGUT COMPONENT-679",NULL},
+/* 18AA7 */ { "TANGUT COMPONENT-680",NULL},
+/* 18AA8 */ { "TANGUT COMPONENT-681",NULL},
+/* 18AA9 */ { "TANGUT COMPONENT-682",NULL},
+/* 18AAA */ { "TANGUT COMPONENT-683",NULL},
+/* 18AAB */ { "TANGUT COMPONENT-684",NULL},
+/* 18AAC */ { "TANGUT COMPONENT-685",NULL},
+/* 18AAD */ { "TANGUT COMPONENT-686",NULL},
+/* 18AAE */ { "TANGUT COMPONENT-687",NULL},
+/* 18AAF */ { "TANGUT COMPONENT-688",NULL},
+/* 18AB0 */ { "TANGUT COMPONENT-689",NULL},
+/* 18AB1 */ { "TANGUT COMPONENT-690",NULL},
+/* 18AB2 */ { "TANGUT COMPONENT-691",NULL},
+/* 18AB3 */ { "TANGUT COMPONENT-692",NULL},
+/* 18AB4 */ { "TANGUT COMPONENT-693",NULL},
+/* 18AB5 */ { "TANGUT COMPONENT-694",NULL},
+/* 18AB6 */ { "TANGUT COMPONENT-695",NULL},
+/* 18AB7 */ { "TANGUT COMPONENT-696",NULL},
+/* 18AB8 */ { "TANGUT COMPONENT-697",NULL},
+/* 18AB9 */ { "TANGUT COMPONENT-698",NULL},
+/* 18ABA */ { "TANGUT COMPONENT-699",NULL},
+/* 18ABB */ { "TANGUT COMPONENT-700",NULL},
+/* 18ABC */ { "TANGUT COMPONENT-701",NULL},
+/* 18ABD */ { "TANGUT COMPONENT-702",NULL},
+/* 18ABE */ { "TANGUT COMPONENT-703",NULL},
+/* 18ABF */ { "TANGUT COMPONENT-704",NULL},
+/* 18AC0 */ { "TANGUT COMPONENT-705",NULL},
+/* 18AC1 */ { "TANGUT COMPONENT-706",NULL},
+/* 18AC2 */ { "TANGUT COMPONENT-707",NULL},
+/* 18AC3 */ { "TANGUT COMPONENT-708",NULL},
+/* 18AC4 */ { "TANGUT COMPONENT-709",NULL},
+/* 18AC5 */ { "TANGUT COMPONENT-710",NULL},
+/* 18AC6 */ { "TANGUT COMPONENT-711",NULL},
+/* 18AC7 */ { "TANGUT COMPONENT-712",NULL},
+/* 18AC8 */ { "TANGUT COMPONENT-713",NULL},
+/* 18AC9 */ { "TANGUT COMPONENT-714",NULL},
+/* 18ACA */ { "TANGUT COMPONENT-715",NULL},
+/* 18ACB */ { "TANGUT COMPONENT-716",NULL},
+/* 18ACC */ { "TANGUT COMPONENT-717",NULL},
+/* 18ACD */ { "TANGUT COMPONENT-718",NULL},
+/* 18ACE */ { "TANGUT COMPONENT-719",NULL},
+/* 18ACF */ { "TANGUT COMPONENT-720",NULL},
+/* 18AD0 */ { "TANGUT COMPONENT-721",NULL},
+/* 18AD1 */ { "TANGUT COMPONENT-722",NULL},
+/* 18AD2 */ { "TANGUT COMPONENT-723",NULL},
+/* 18AD3 */ { "TANGUT COMPONENT-724",NULL},
+/* 18AD4 */ { "TANGUT COMPONENT-725",NULL},
+/* 18AD5 */ { "TANGUT COMPONENT-726",NULL},
+/* 18AD6 */ { "TANGUT COMPONENT-727",NULL},
+/* 18AD7 */ { "TANGUT COMPONENT-728",NULL},
+/* 18AD8 */ { "TANGUT COMPONENT-729",NULL},
+/* 18AD9 */ { "TANGUT COMPONENT-730",NULL},
+/* 18ADA */ { "TANGUT COMPONENT-731",NULL},
+/* 18ADB */ { "TANGUT COMPONENT-732",NULL},
+/* 18ADC */ { "TANGUT COMPONENT-733",NULL},
+/* 18ADD */ { "TANGUT COMPONENT-734",NULL},
+/* 18ADE */ { "TANGUT COMPONENT-735",NULL},
+/* 18ADF */ { "TANGUT COMPONENT-736",NULL},
+/* 18AE0 */ { "TANGUT COMPONENT-737",NULL},
+/* 18AE1 */ { "TANGUT COMPONENT-738",NULL},
+/* 18AE2 */ { "TANGUT COMPONENT-739",NULL},
+/* 18AE3 */ { "TANGUT COMPONENT-740",NULL},
+/* 18AE4 */ { "TANGUT COMPONENT-741",NULL},
+/* 18AE5 */ { "TANGUT COMPONENT-742",NULL},
+/* 18AE6 */ { "TANGUT COMPONENT-743",NULL},
+/* 18AE7 */ { "TANGUT COMPONENT-744",NULL},
+/* 18AE8 */ { "TANGUT COMPONENT-745",NULL},
+/* 18AE9 */ { "TANGUT COMPONENT-746",NULL},
+/* 18AEA */ { "TANGUT COMPONENT-747",NULL},
+/* 18AEB */ { "TANGUT COMPONENT-748",NULL},
+/* 18AEC */ { "TANGUT COMPONENT-749",NULL},
+/* 18AED */ { "TANGUT COMPONENT-750",NULL},
+/* 18AEE */ { "TANGUT COMPONENT-751",NULL},
+/* 18AEF */ { "TANGUT COMPONENT-752",NULL},
+/* 18AF0 */ { "TANGUT COMPONENT-753",NULL},
+/* 18AF1 */ { "TANGUT COMPONENT-754",NULL},
+/* 18AF2 */ { "TANGUT COMPONENT-755",NULL},
+/* 18AF3 */ { NULL,NULL},
+/* 18AF4 */ { NULL,NULL},
+/* 18AF5 */ { NULL,NULL},
+/* 18AF6 */ { NULL,NULL},
+/* 18AF7 */ { NULL,NULL},
+/* 18AF8 */ { NULL,NULL},
+/* 18AF9 */ { NULL,NULL},
+/* 18AFA */ { NULL,NULL},
+/* 18AFB */ { NULL,NULL},
+/* 18AFC */ { NULL,NULL},
+/* 18AFD */ { NULL,NULL},
+/* 18AFE */ { NULL,NULL},
+/* 18AFF */ { NULL,NULL}
 };
 
 static const struct unicode_nameannot una_01_B0[] = {
@@ -37111,7 +38382,7 @@ static const struct unicode_nameannot una_01_DA[] = {
 /* 1DA88 */ { "SIGNWRITING FULL STOP",NULL},
 /* 1DA89 */ { "SIGNWRITING SEMICOLON",NULL},
 /* 1DA8A */ { "SIGNWRITING COLON",NULL},
-/* 1DA8B */ { "SIGNWRITING PARENTHESIS","	* is a closing parenthesis when used with 1DAA5 signwriting rotation modifier-5"},
+/* 1DA8B */ { "SIGNWRITING PARENTHESIS","	* is a closing parenthesis when used with 1DAA4 signwriting rotation modifier-5"},
 /* 1DA8C */ { NULL,NULL},
 /* 1DA8D */ { NULL,NULL},
 /* 1DA8E */ { NULL,NULL},
@@ -37228,6 +38499,265 @@ static const struct unicode_nameannot una_01_DA[] = {
 /* 1DAFD */ { NULL,NULL},
 /* 1DAFE */ { NULL,NULL},
 /* 1DAFF */ { NULL,NULL}
+};
+
+static const struct unicode_nameannot una_01_E0[] = {
+/* 1E000 */ { "COMBINING GLAGOLITIC LETTER AZU",NULL},
+/* 1E001 */ { "COMBINING GLAGOLITIC LETTER BUKY",NULL},
+/* 1E002 */ { "COMBINING GLAGOLITIC LETTER VEDE",NULL},
+/* 1E003 */ { "COMBINING GLAGOLITIC LETTER GLAGOLI",NULL},
+/* 1E004 */ { "COMBINING GLAGOLITIC LETTER DOBRO",NULL},
+/* 1E005 */ { "COMBINING GLAGOLITIC LETTER YESTU",NULL},
+/* 1E006 */ { "COMBINING GLAGOLITIC LETTER ZHIVETE",NULL},
+/* 1E007 */ { NULL,NULL},
+/* 1E008 */ { "COMBINING GLAGOLITIC LETTER ZEMLJA",NULL},
+/* 1E009 */ { "COMBINING GLAGOLITIC LETTER IZHE",NULL},
+/* 1E00A */ { "COMBINING GLAGOLITIC LETTER INITIAL IZHE",NULL},
+/* 1E00B */ { "COMBINING GLAGOLITIC LETTER I",NULL},
+/* 1E00C */ { "COMBINING GLAGOLITIC LETTER DJERVI",NULL},
+/* 1E00D */ { "COMBINING GLAGOLITIC LETTER KAKO",NULL},
+/* 1E00E */ { "COMBINING GLAGOLITIC LETTER LJUDIJE",NULL},
+/* 1E00F */ { "COMBINING GLAGOLITIC LETTER MYSLITE",NULL},
+/* 1E010 */ { "COMBINING GLAGOLITIC LETTER NASHI",NULL},
+/* 1E011 */ { "COMBINING GLAGOLITIC LETTER ONU",NULL},
+/* 1E012 */ { "COMBINING GLAGOLITIC LETTER POKOJI",NULL},
+/* 1E013 */ { "COMBINING GLAGOLITIC LETTER RITSI",NULL},
+/* 1E014 */ { "COMBINING GLAGOLITIC LETTER SLOVO",NULL},
+/* 1E015 */ { "COMBINING GLAGOLITIC LETTER TVRIDO",NULL},
+/* 1E016 */ { "COMBINING GLAGOLITIC LETTER UKU",NULL},
+/* 1E017 */ { "COMBINING GLAGOLITIC LETTER FRITU",NULL},
+/* 1E018 */ { "COMBINING GLAGOLITIC LETTER HERU",NULL},
+/* 1E019 */ { NULL,NULL},
+/* 1E01A */ { NULL,NULL},
+/* 1E01B */ { "COMBINING GLAGOLITIC LETTER SHTA",NULL},
+/* 1E01C */ { "COMBINING GLAGOLITIC LETTER TSI",NULL},
+/* 1E01D */ { "COMBINING GLAGOLITIC LETTER CHRIVI",NULL},
+/* 1E01E */ { "COMBINING GLAGOLITIC LETTER SHA",NULL},
+/* 1E01F */ { "COMBINING GLAGOLITIC LETTER YERU",NULL},
+/* 1E020 */ { "COMBINING GLAGOLITIC LETTER YERI",NULL},
+/* 1E021 */ { "COMBINING GLAGOLITIC LETTER YATI",NULL},
+/* 1E022 */ { NULL,NULL},
+/* 1E023 */ { "COMBINING GLAGOLITIC LETTER YU",NULL},
+/* 1E024 */ { "COMBINING GLAGOLITIC LETTER SMALL YUS",NULL},
+/* 1E025 */ { NULL,NULL},
+/* 1E026 */ { "COMBINING GLAGOLITIC LETTER YO",NULL},
+/* 1E027 */ { "COMBINING GLAGOLITIC LETTER IOTATED SMALL YUS",NULL},
+/* 1E028 */ { "COMBINING GLAGOLITIC LETTER BIG YUS",NULL},
+/* 1E029 */ { "COMBINING GLAGOLITIC LETTER IOTATED BIG YUS",NULL},
+/* 1E02A */ { "COMBINING GLAGOLITIC LETTER FITA",NULL},
+/* 1E02B */ { NULL,NULL},
+/* 1E02C */ { NULL,NULL},
+/* 1E02D */ { NULL,NULL},
+/* 1E02E */ { NULL,NULL},
+/* 1E02F */ { NULL,NULL},
+/* 1E030 */ { NULL,NULL},
+/* 1E031 */ { NULL,NULL},
+/* 1E032 */ { NULL,NULL},
+/* 1E033 */ { NULL,NULL},
+/* 1E034 */ { NULL,NULL},
+/* 1E035 */ { NULL,NULL},
+/* 1E036 */ { NULL,NULL},
+/* 1E037 */ { NULL,NULL},
+/* 1E038 */ { NULL,NULL},
+/* 1E039 */ { NULL,NULL},
+/* 1E03A */ { NULL,NULL},
+/* 1E03B */ { NULL,NULL},
+/* 1E03C */ { NULL,NULL},
+/* 1E03D */ { NULL,NULL},
+/* 1E03E */ { NULL,NULL},
+/* 1E03F */ { NULL,NULL},
+/* 1E040 */ { NULL,NULL},
+/* 1E041 */ { NULL,NULL},
+/* 1E042 */ { NULL,NULL},
+/* 1E043 */ { NULL,NULL},
+/* 1E044 */ { NULL,NULL},
+/* 1E045 */ { NULL,NULL},
+/* 1E046 */ { NULL,NULL},
+/* 1E047 */ { NULL,NULL},
+/* 1E048 */ { NULL,NULL},
+/* 1E049 */ { NULL,NULL},
+/* 1E04A */ { NULL,NULL},
+/* 1E04B */ { NULL,NULL},
+/* 1E04C */ { NULL,NULL},
+/* 1E04D */ { NULL,NULL},
+/* 1E04E */ { NULL,NULL},
+/* 1E04F */ { NULL,NULL},
+/* 1E050 */ { NULL,NULL},
+/* 1E051 */ { NULL,NULL},
+/* 1E052 */ { NULL,NULL},
+/* 1E053 */ { NULL,NULL},
+/* 1E054 */ { NULL,NULL},
+/* 1E055 */ { NULL,NULL},
+/* 1E056 */ { NULL,NULL},
+/* 1E057 */ { NULL,NULL},
+/* 1E058 */ { NULL,NULL},
+/* 1E059 */ { NULL,NULL},
+/* 1E05A */ { NULL,NULL},
+/* 1E05B */ { NULL,NULL},
+/* 1E05C */ { NULL,NULL},
+/* 1E05D */ { NULL,NULL},
+/* 1E05E */ { NULL,NULL},
+/* 1E05F */ { NULL,NULL},
+/* 1E060 */ { NULL,NULL},
+/* 1E061 */ { NULL,NULL},
+/* 1E062 */ { NULL,NULL},
+/* 1E063 */ { NULL,NULL},
+/* 1E064 */ { NULL,NULL},
+/* 1E065 */ { NULL,NULL},
+/* 1E066 */ { NULL,NULL},
+/* 1E067 */ { NULL,NULL},
+/* 1E068 */ { NULL,NULL},
+/* 1E069 */ { NULL,NULL},
+/* 1E06A */ { NULL,NULL},
+/* 1E06B */ { NULL,NULL},
+/* 1E06C */ { NULL,NULL},
+/* 1E06D */ { NULL,NULL},
+/* 1E06E */ { NULL,NULL},
+/* 1E06F */ { NULL,NULL},
+/* 1E070 */ { NULL,NULL},
+/* 1E071 */ { NULL,NULL},
+/* 1E072 */ { NULL,NULL},
+/* 1E073 */ { NULL,NULL},
+/* 1E074 */ { NULL,NULL},
+/* 1E075 */ { NULL,NULL},
+/* 1E076 */ { NULL,NULL},
+/* 1E077 */ { NULL,NULL},
+/* 1E078 */ { NULL,NULL},
+/* 1E079 */ { NULL,NULL},
+/* 1E07A */ { NULL,NULL},
+/* 1E07B */ { NULL,NULL},
+/* 1E07C */ { NULL,NULL},
+/* 1E07D */ { NULL,NULL},
+/* 1E07E */ { NULL,NULL},
+/* 1E07F */ { NULL,NULL},
+/* 1E080 */ { NULL,NULL},
+/* 1E081 */ { NULL,NULL},
+/* 1E082 */ { NULL,NULL},
+/* 1E083 */ { NULL,NULL},
+/* 1E084 */ { NULL,NULL},
+/* 1E085 */ { NULL,NULL},
+/* 1E086 */ { NULL,NULL},
+/* 1E087 */ { NULL,NULL},
+/* 1E088 */ { NULL,NULL},
+/* 1E089 */ { NULL,NULL},
+/* 1E08A */ { NULL,NULL},
+/* 1E08B */ { NULL,NULL},
+/* 1E08C */ { NULL,NULL},
+/* 1E08D */ { NULL,NULL},
+/* 1E08E */ { NULL,NULL},
+/* 1E08F */ { NULL,NULL},
+/* 1E090 */ { NULL,NULL},
+/* 1E091 */ { NULL,NULL},
+/* 1E092 */ { NULL,NULL},
+/* 1E093 */ { NULL,NULL},
+/* 1E094 */ { NULL,NULL},
+/* 1E095 */ { NULL,NULL},
+/* 1E096 */ { NULL,NULL},
+/* 1E097 */ { NULL,NULL},
+/* 1E098 */ { NULL,NULL},
+/* 1E099 */ { NULL,NULL},
+/* 1E09A */ { NULL,NULL},
+/* 1E09B */ { NULL,NULL},
+/* 1E09C */ { NULL,NULL},
+/* 1E09D */ { NULL,NULL},
+/* 1E09E */ { NULL,NULL},
+/* 1E09F */ { NULL,NULL},
+/* 1E0A0 */ { NULL,NULL},
+/* 1E0A1 */ { NULL,NULL},
+/* 1E0A2 */ { NULL,NULL},
+/* 1E0A3 */ { NULL,NULL},
+/* 1E0A4 */ { NULL,NULL},
+/* 1E0A5 */ { NULL,NULL},
+/* 1E0A6 */ { NULL,NULL},
+/* 1E0A7 */ { NULL,NULL},
+/* 1E0A8 */ { NULL,NULL},
+/* 1E0A9 */ { NULL,NULL},
+/* 1E0AA */ { NULL,NULL},
+/* 1E0AB */ { NULL,NULL},
+/* 1E0AC */ { NULL,NULL},
+/* 1E0AD */ { NULL,NULL},
+/* 1E0AE */ { NULL,NULL},
+/* 1E0AF */ { NULL,NULL},
+/* 1E0B0 */ { NULL,NULL},
+/* 1E0B1 */ { NULL,NULL},
+/* 1E0B2 */ { NULL,NULL},
+/* 1E0B3 */ { NULL,NULL},
+/* 1E0B4 */ { NULL,NULL},
+/* 1E0B5 */ { NULL,NULL},
+/* 1E0B6 */ { NULL,NULL},
+/* 1E0B7 */ { NULL,NULL},
+/* 1E0B8 */ { NULL,NULL},
+/* 1E0B9 */ { NULL,NULL},
+/* 1E0BA */ { NULL,NULL},
+/* 1E0BB */ { NULL,NULL},
+/* 1E0BC */ { NULL,NULL},
+/* 1E0BD */ { NULL,NULL},
+/* 1E0BE */ { NULL,NULL},
+/* 1E0BF */ { NULL,NULL},
+/* 1E0C0 */ { NULL,NULL},
+/* 1E0C1 */ { NULL,NULL},
+/* 1E0C2 */ { NULL,NULL},
+/* 1E0C3 */ { NULL,NULL},
+/* 1E0C4 */ { NULL,NULL},
+/* 1E0C5 */ { NULL,NULL},
+/* 1E0C6 */ { NULL,NULL},
+/* 1E0C7 */ { NULL,NULL},
+/* 1E0C8 */ { NULL,NULL},
+/* 1E0C9 */ { NULL,NULL},
+/* 1E0CA */ { NULL,NULL},
+/* 1E0CB */ { NULL,NULL},
+/* 1E0CC */ { NULL,NULL},
+/* 1E0CD */ { NULL,NULL},
+/* 1E0CE */ { NULL,NULL},
+/* 1E0CF */ { NULL,NULL},
+/* 1E0D0 */ { NULL,NULL},
+/* 1E0D1 */ { NULL,NULL},
+/* 1E0D2 */ { NULL,NULL},
+/* 1E0D3 */ { NULL,NULL},
+/* 1E0D4 */ { NULL,NULL},
+/* 1E0D5 */ { NULL,NULL},
+/* 1E0D6 */ { NULL,NULL},
+/* 1E0D7 */ { NULL,NULL},
+/* 1E0D8 */ { NULL,NULL},
+/* 1E0D9 */ { NULL,NULL},
+/* 1E0DA */ { NULL,NULL},
+/* 1E0DB */ { NULL,NULL},
+/* 1E0DC */ { NULL,NULL},
+/* 1E0DD */ { NULL,NULL},
+/* 1E0DE */ { NULL,NULL},
+/* 1E0DF */ { NULL,NULL},
+/* 1E0E0 */ { NULL,NULL},
+/* 1E0E1 */ { NULL,NULL},
+/* 1E0E2 */ { NULL,NULL},
+/* 1E0E3 */ { NULL,NULL},
+/* 1E0E4 */ { NULL,NULL},
+/* 1E0E5 */ { NULL,NULL},
+/* 1E0E6 */ { NULL,NULL},
+/* 1E0E7 */ { NULL,NULL},
+/* 1E0E8 */ { NULL,NULL},
+/* 1E0E9 */ { NULL,NULL},
+/* 1E0EA */ { NULL,NULL},
+/* 1E0EB */ { NULL,NULL},
+/* 1E0EC */ { NULL,NULL},
+/* 1E0ED */ { NULL,NULL},
+/* 1E0EE */ { NULL,NULL},
+/* 1E0EF */ { NULL,NULL},
+/* 1E0F0 */ { NULL,NULL},
+/* 1E0F1 */ { NULL,NULL},
+/* 1E0F2 */ { NULL,NULL},
+/* 1E0F3 */ { NULL,NULL},
+/* 1E0F4 */ { NULL,NULL},
+/* 1E0F5 */ { NULL,NULL},
+/* 1E0F6 */ { NULL,NULL},
+/* 1E0F7 */ { NULL,NULL},
+/* 1E0F8 */ { NULL,NULL},
+/* 1E0F9 */ { NULL,NULL},
+/* 1E0FA */ { NULL,NULL},
+/* 1E0FB */ { NULL,NULL},
+/* 1E0FC */ { NULL,NULL},
+/* 1E0FD */ { NULL,NULL},
+/* 1E0FE */ { NULL,NULL},
+/* 1E0FF */ { NULL,NULL}
 };
 
 static const struct unicode_nameannot una_01_E8[] = {
@@ -37487,6 +39017,265 @@ static const struct unicode_nameannot una_01_E8[] = {
 /* 1E8FD */ { NULL,NULL},
 /* 1E8FE */ { NULL,NULL},
 /* 1E8FF */ { NULL,NULL}
+};
+
+static const struct unicode_nameannot una_01_E9[] = {
+/* 1E900 */ { "ADLAM CAPITAL LETTER ALIF",NULL},
+/* 1E901 */ { "ADLAM CAPITAL LETTER DAALI",NULL},
+/* 1E902 */ { "ADLAM CAPITAL LETTER LAAM",NULL},
+/* 1E903 */ { "ADLAM CAPITAL LETTER MIIM",NULL},
+/* 1E904 */ { "ADLAM CAPITAL LETTER BA",NULL},
+/* 1E905 */ { "ADLAM CAPITAL LETTER SINNYIIYHE",NULL},
+/* 1E906 */ { "ADLAM CAPITAL LETTER PE",NULL},
+/* 1E907 */ { "ADLAM CAPITAL LETTER BHE",NULL},
+/* 1E908 */ { "ADLAM CAPITAL LETTER RA",NULL},
+/* 1E909 */ { "ADLAM CAPITAL LETTER E",NULL},
+/* 1E90A */ { "ADLAM CAPITAL LETTER FA",NULL},
+/* 1E90B */ { "ADLAM CAPITAL LETTER I",NULL},
+/* 1E90C */ { "ADLAM CAPITAL LETTER O",NULL},
+/* 1E90D */ { "ADLAM CAPITAL LETTER DHA",NULL},
+/* 1E90E */ { "ADLAM CAPITAL LETTER YHE",NULL},
+/* 1E90F */ { "ADLAM CAPITAL LETTER WAW",NULL},
+/* 1E910 */ { "ADLAM CAPITAL LETTER NUN",NULL},
+/* 1E911 */ { "ADLAM CAPITAL LETTER KAF",NULL},
+/* 1E912 */ { "ADLAM CAPITAL LETTER YA",NULL},
+/* 1E913 */ { "ADLAM CAPITAL LETTER U",NULL},
+/* 1E914 */ { "ADLAM CAPITAL LETTER JIIM",NULL},
+/* 1E915 */ { "ADLAM CAPITAL LETTER CHI",NULL},
+/* 1E916 */ { "ADLAM CAPITAL LETTER HA",NULL},
+/* 1E917 */ { "ADLAM CAPITAL LETTER QAAF",NULL},
+/* 1E918 */ { "ADLAM CAPITAL LETTER GA",NULL},
+/* 1E919 */ { "ADLAM CAPITAL LETTER NYA",NULL},
+/* 1E91A */ { "ADLAM CAPITAL LETTER TU",NULL},
+/* 1E91B */ { "ADLAM CAPITAL LETTER NHA",NULL},
+/* 1E91C */ { "ADLAM CAPITAL LETTER VA",NULL},
+/* 1E91D */ { "ADLAM CAPITAL LETTER KHA",NULL},
+/* 1E91E */ { "ADLAM CAPITAL LETTER GBE",NULL},
+/* 1E91F */ { "ADLAM CAPITAL LETTER ZAL",NULL},
+/* 1E920 */ { "ADLAM CAPITAL LETTER KPO",NULL},
+/* 1E921 */ { "ADLAM CAPITAL LETTER SHA",NULL},
+/* 1E922 */ { "ADLAM SMALL LETTER ALIF",NULL},
+/* 1E923 */ { "ADLAM SMALL LETTER DAALI",NULL},
+/* 1E924 */ { "ADLAM SMALL LETTER LAAM",NULL},
+/* 1E925 */ { "ADLAM SMALL LETTER MIIM",NULL},
+/* 1E926 */ { "ADLAM SMALL LETTER BA",NULL},
+/* 1E927 */ { "ADLAM SMALL LETTER SINNYIIYHE",NULL},
+/* 1E928 */ { "ADLAM SMALL LETTER PE",NULL},
+/* 1E929 */ { "ADLAM SMALL LETTER BHE",NULL},
+/* 1E92A */ { "ADLAM SMALL LETTER RA",NULL},
+/* 1E92B */ { "ADLAM SMALL LETTER E",NULL},
+/* 1E92C */ { "ADLAM SMALL LETTER FA",NULL},
+/* 1E92D */ { "ADLAM SMALL LETTER I",NULL},
+/* 1E92E */ { "ADLAM SMALL LETTER O",NULL},
+/* 1E92F */ { "ADLAM SMALL LETTER DHA",NULL},
+/* 1E930 */ { "ADLAM SMALL LETTER YHE",NULL},
+/* 1E931 */ { "ADLAM SMALL LETTER WAW",NULL},
+/* 1E932 */ { "ADLAM SMALL LETTER NUN",NULL},
+/* 1E933 */ { "ADLAM SMALL LETTER KAF",NULL},
+/* 1E934 */ { "ADLAM SMALL LETTER YA",NULL},
+/* 1E935 */ { "ADLAM SMALL LETTER U",NULL},
+/* 1E936 */ { "ADLAM SMALL LETTER JIIM",NULL},
+/* 1E937 */ { "ADLAM SMALL LETTER CHI",NULL},
+/* 1E938 */ { "ADLAM SMALL LETTER HA",NULL},
+/* 1E939 */ { "ADLAM SMALL LETTER QAAF",NULL},
+/* 1E93A */ { "ADLAM SMALL LETTER GA",NULL},
+/* 1E93B */ { "ADLAM SMALL LETTER NYA",NULL},
+/* 1E93C */ { "ADLAM SMALL LETTER TU",NULL},
+/* 1E93D */ { "ADLAM SMALL LETTER NHA",NULL},
+/* 1E93E */ { "ADLAM SMALL LETTER VA",NULL},
+/* 1E93F */ { "ADLAM SMALL LETTER KHA",NULL},
+/* 1E940 */ { "ADLAM SMALL LETTER GBE",NULL},
+/* 1E941 */ { "ADLAM SMALL LETTER ZAL",NULL},
+/* 1E942 */ { "ADLAM SMALL LETTER KPO",NULL},
+/* 1E943 */ { "ADLAM SMALL LETTER SHA",NULL},
+/* 1E944 */ { "ADLAM ALIF LENGTHENER",NULL},
+/* 1E945 */ { "ADLAM VOWEL LENGTHENER",NULL},
+/* 1E946 */ { "ADLAM GEMINATION MARK",NULL},
+/* 1E947 */ { "ADLAM HAMZA",NULL},
+/* 1E948 */ { "ADLAM CONSONANT MODIFIER",NULL},
+/* 1E949 */ { "ADLAM GEMINATE CONSONANT MODIFIER",NULL},
+/* 1E94A */ { "ADLAM NUKTA","	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character"},
+/* 1E94B */ { NULL,NULL},
+/* 1E94C */ { NULL,NULL},
+/* 1E94D */ { NULL,NULL},
+/* 1E94E */ { NULL,NULL},
+/* 1E94F */ { NULL,NULL},
+/* 1E950 */ { "ADLAM DIGIT ZERO",NULL},
+/* 1E951 */ { "ADLAM DIGIT ONE",NULL},
+/* 1E952 */ { "ADLAM DIGIT TWO",NULL},
+/* 1E953 */ { "ADLAM DIGIT THREE",NULL},
+/* 1E954 */ { "ADLAM DIGIT FOUR",NULL},
+/* 1E955 */ { "ADLAM DIGIT FIVE",NULL},
+/* 1E956 */ { "ADLAM DIGIT SIX",NULL},
+/* 1E957 */ { "ADLAM DIGIT SEVEN",NULL},
+/* 1E958 */ { "ADLAM DIGIT EIGHT",NULL},
+/* 1E959 */ { "ADLAM DIGIT NINE",NULL},
+/* 1E95A */ { NULL,NULL},
+/* 1E95B */ { NULL,NULL},
+/* 1E95C */ { NULL,NULL},
+/* 1E95D */ { NULL,NULL},
+/* 1E95E */ { "ADLAM INITIAL EXCLAMATION MARK",NULL},
+/* 1E95F */ { "ADLAM INITIAL QUESTION MARK",NULL},
+/* 1E960 */ { NULL,NULL},
+/* 1E961 */ { NULL,NULL},
+/* 1E962 */ { NULL,NULL},
+/* 1E963 */ { NULL,NULL},
+/* 1E964 */ { NULL,NULL},
+/* 1E965 */ { NULL,NULL},
+/* 1E966 */ { NULL,NULL},
+/* 1E967 */ { NULL,NULL},
+/* 1E968 */ { NULL,NULL},
+/* 1E969 */ { NULL,NULL},
+/* 1E96A */ { NULL,NULL},
+/* 1E96B */ { NULL,NULL},
+/* 1E96C */ { NULL,NULL},
+/* 1E96D */ { NULL,NULL},
+/* 1E96E */ { NULL,NULL},
+/* 1E96F */ { NULL,NULL},
+/* 1E970 */ { NULL,NULL},
+/* 1E971 */ { NULL,NULL},
+/* 1E972 */ { NULL,NULL},
+/* 1E973 */ { NULL,NULL},
+/* 1E974 */ { NULL,NULL},
+/* 1E975 */ { NULL,NULL},
+/* 1E976 */ { NULL,NULL},
+/* 1E977 */ { NULL,NULL},
+/* 1E978 */ { NULL,NULL},
+/* 1E979 */ { NULL,NULL},
+/* 1E97A */ { NULL,NULL},
+/* 1E97B */ { NULL,NULL},
+/* 1E97C */ { NULL,NULL},
+/* 1E97D */ { NULL,NULL},
+/* 1E97E */ { NULL,NULL},
+/* 1E97F */ { NULL,NULL},
+/* 1E980 */ { NULL,NULL},
+/* 1E981 */ { NULL,NULL},
+/* 1E982 */ { NULL,NULL},
+/* 1E983 */ { NULL,NULL},
+/* 1E984 */ { NULL,NULL},
+/* 1E985 */ { NULL,NULL},
+/* 1E986 */ { NULL,NULL},
+/* 1E987 */ { NULL,NULL},
+/* 1E988 */ { NULL,NULL},
+/* 1E989 */ { NULL,NULL},
+/* 1E98A */ { NULL,NULL},
+/* 1E98B */ { NULL,NULL},
+/* 1E98C */ { NULL,NULL},
+/* 1E98D */ { NULL,NULL},
+/* 1E98E */ { NULL,NULL},
+/* 1E98F */ { NULL,NULL},
+/* 1E990 */ { NULL,NULL},
+/* 1E991 */ { NULL,NULL},
+/* 1E992 */ { NULL,NULL},
+/* 1E993 */ { NULL,NULL},
+/* 1E994 */ { NULL,NULL},
+/* 1E995 */ { NULL,NULL},
+/* 1E996 */ { NULL,NULL},
+/* 1E997 */ { NULL,NULL},
+/* 1E998 */ { NULL,NULL},
+/* 1E999 */ { NULL,NULL},
+/* 1E99A */ { NULL,NULL},
+/* 1E99B */ { NULL,NULL},
+/* 1E99C */ { NULL,NULL},
+/* 1E99D */ { NULL,NULL},
+/* 1E99E */ { NULL,NULL},
+/* 1E99F */ { NULL,NULL},
+/* 1E9A0 */ { NULL,NULL},
+/* 1E9A1 */ { NULL,NULL},
+/* 1E9A2 */ { NULL,NULL},
+/* 1E9A3 */ { NULL,NULL},
+/* 1E9A4 */ { NULL,NULL},
+/* 1E9A5 */ { NULL,NULL},
+/* 1E9A6 */ { NULL,NULL},
+/* 1E9A7 */ { NULL,NULL},
+/* 1E9A8 */ { NULL,NULL},
+/* 1E9A9 */ { NULL,NULL},
+/* 1E9AA */ { NULL,NULL},
+/* 1E9AB */ { NULL,NULL},
+/* 1E9AC */ { NULL,NULL},
+/* 1E9AD */ { NULL,NULL},
+/* 1E9AE */ { NULL,NULL},
+/* 1E9AF */ { NULL,NULL},
+/* 1E9B0 */ { NULL,NULL},
+/* 1E9B1 */ { NULL,NULL},
+/* 1E9B2 */ { NULL,NULL},
+/* 1E9B3 */ { NULL,NULL},
+/* 1E9B4 */ { NULL,NULL},
+/* 1E9B5 */ { NULL,NULL},
+/* 1E9B6 */ { NULL,NULL},
+/* 1E9B7 */ { NULL,NULL},
+/* 1E9B8 */ { NULL,NULL},
+/* 1E9B9 */ { NULL,NULL},
+/* 1E9BA */ { NULL,NULL},
+/* 1E9BB */ { NULL,NULL},
+/* 1E9BC */ { NULL,NULL},
+/* 1E9BD */ { NULL,NULL},
+/* 1E9BE */ { NULL,NULL},
+/* 1E9BF */ { NULL,NULL},
+/* 1E9C0 */ { NULL,NULL},
+/* 1E9C1 */ { NULL,NULL},
+/* 1E9C2 */ { NULL,NULL},
+/* 1E9C3 */ { NULL,NULL},
+/* 1E9C4 */ { NULL,NULL},
+/* 1E9C5 */ { NULL,NULL},
+/* 1E9C6 */ { NULL,NULL},
+/* 1E9C7 */ { NULL,NULL},
+/* 1E9C8 */ { NULL,NULL},
+/* 1E9C9 */ { NULL,NULL},
+/* 1E9CA */ { NULL,NULL},
+/* 1E9CB */ { NULL,NULL},
+/* 1E9CC */ { NULL,NULL},
+/* 1E9CD */ { NULL,NULL},
+/* 1E9CE */ { NULL,NULL},
+/* 1E9CF */ { NULL,NULL},
+/* 1E9D0 */ { NULL,NULL},
+/* 1E9D1 */ { NULL,NULL},
+/* 1E9D2 */ { NULL,NULL},
+/* 1E9D3 */ { NULL,NULL},
+/* 1E9D4 */ { NULL,NULL},
+/* 1E9D5 */ { NULL,NULL},
+/* 1E9D6 */ { NULL,NULL},
+/* 1E9D7 */ { NULL,NULL},
+/* 1E9D8 */ { NULL,NULL},
+/* 1E9D9 */ { NULL,NULL},
+/* 1E9DA */ { NULL,NULL},
+/* 1E9DB */ { NULL,NULL},
+/* 1E9DC */ { NULL,NULL},
+/* 1E9DD */ { NULL,NULL},
+/* 1E9DE */ { NULL,NULL},
+/* 1E9DF */ { NULL,NULL},
+/* 1E9E0 */ { NULL,NULL},
+/* 1E9E1 */ { NULL,NULL},
+/* 1E9E2 */ { NULL,NULL},
+/* 1E9E3 */ { NULL,NULL},
+/* 1E9E4 */ { NULL,NULL},
+/* 1E9E5 */ { NULL,NULL},
+/* 1E9E6 */ { NULL,NULL},
+/* 1E9E7 */ { NULL,NULL},
+/* 1E9E8 */ { NULL,NULL},
+/* 1E9E9 */ { NULL,NULL},
+/* 1E9EA */ { NULL,NULL},
+/* 1E9EB */ { NULL,NULL},
+/* 1E9EC */ { NULL,NULL},
+/* 1E9ED */ { NULL,NULL},
+/* 1E9EE */ { NULL,NULL},
+/* 1E9EF */ { NULL,NULL},
+/* 1E9F0 */ { NULL,NULL},
+/* 1E9F1 */ { NULL,NULL},
+/* 1E9F2 */ { NULL,NULL},
+/* 1E9F3 */ { NULL,NULL},
+/* 1E9F4 */ { NULL,NULL},
+/* 1E9F5 */ { NULL,NULL},
+/* 1E9F6 */ { NULL,NULL},
+/* 1E9F7 */ { NULL,NULL},
+/* 1E9F8 */ { NULL,NULL},
+/* 1E9F9 */ { NULL,NULL},
+/* 1E9FA */ { NULL,NULL},
+/* 1E9FB */ { NULL,NULL},
+/* 1E9FC */ { NULL,NULL},
+/* 1E9FD */ { NULL,NULL},
+/* 1E9FE */ { NULL,NULL},
+/* 1E9FF */ { NULL,NULL}
 };
 
 static const struct unicode_nameannot una_01_EE[] = {
@@ -38266,24 +40055,24 @@ static const struct unicode_nameannot una_01_F1[] = {
 /* 1F198 */ { "SQUARED SOS","	= search, hunt for missing person"},
 /* 1F199 */ { "SQUARED UP WITH EXCLAMATION MARK","	= new information, update"},
 /* 1F19A */ { "SQUARED VS","	= versus"},
-/* 1F19B */ { NULL,NULL},
-/* 1F19C */ { NULL,NULL},
-/* 1F19D */ { NULL,NULL},
-/* 1F19E */ { NULL,NULL},
-/* 1F19F */ { NULL,NULL},
-/* 1F1A0 */ { NULL,NULL},
-/* 1F1A1 */ { NULL,NULL},
-/* 1F1A2 */ { NULL,NULL},
-/* 1F1A3 */ { NULL,NULL},
-/* 1F1A4 */ { NULL,NULL},
-/* 1F1A5 */ { NULL,NULL},
-/* 1F1A6 */ { NULL,NULL},
-/* 1F1A7 */ { NULL,NULL},
-/* 1F1A8 */ { NULL,NULL},
-/* 1F1A9 */ { NULL,NULL},
-/* 1F1AA */ { NULL,NULL},
-/* 1F1AB */ { NULL,NULL},
-/* 1F1AC */ { NULL,NULL},
+/* 1F19B */ { "SQUARED THREE D",NULL},
+/* 1F19C */ { "SQUARED SECOND SCREEN",NULL},
+/* 1F19D */ { "SQUARED TWO K",NULL},
+/* 1F19E */ { "SQUARED FOUR K",NULL},
+/* 1F19F */ { "SQUARED EIGHT K",NULL},
+/* 1F1A0 */ { "SQUARED FIVE POINT ONE",NULL},
+/* 1F1A1 */ { "SQUARED SEVEN POINT ONE",NULL},
+/* 1F1A2 */ { "SQUARED TWENTY-TWO POINT TWO",NULL},
+/* 1F1A3 */ { "SQUARED SIXTY P",NULL},
+/* 1F1A4 */ { "SQUARED ONE HUNDRED TWENTY P",NULL},
+/* 1F1A5 */ { "SQUARED LATIN SMALL LETTER D","	= data"},
+/* 1F1A6 */ { "SQUARED HC","	= hybrid cast"},
+/* 1F1A7 */ { "SQUARED HDR","	= high dynamic range"},
+/* 1F1A8 */ { "SQUARED HI-RES","	= high resolution"},
+/* 1F1A9 */ { "SQUARED LOSSLESS",NULL},
+/* 1F1AA */ { "SQUARED SHV","	= super high vision"},
+/* 1F1AB */ { "SQUARED UHD","	= ultra-high definition"},
+/* 1F1AC */ { "SQUARED VOD","	= video on demand"},
 /* 1F1AD */ { NULL,NULL},
 /* 1F1AE */ { NULL,NULL},
 /* 1F1AF */ { NULL,NULL},
@@ -38489,7 +40278,8 @@ static const struct unicode_nameannot una_01_F2[] = {
 	"	# <square> 5272"},
 /* 1F23A */ { "SQUARED CJK UNIFIED IDEOGRAPH-55B6","	= in business sign\n"
 	"	# <square> 55B6"},
-/* 1F23B */ { NULL,NULL},
+/* 1F23B */ { "SQUARED CJK UNIFIED IDEOGRAPH-914D","	= program delivery over network (ARIB STD B62)\n"
+	"	# <square> 914D"},
 /* 1F23C */ { NULL,NULL},
 /* 1F23D */ { NULL,NULL},
 /* 1F23E */ { NULL,NULL},
@@ -38736,22 +40526,42 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F31E */ { "SUN WITH FACE",NULL},
 /* 1F31F */ { "GLOWING STAR",NULL},
 /* 1F320 */ { "SHOOTING STAR",NULL},
-/* 1F321 */ { "THERMOMETER","	= temperature, warm"},
+/* 1F321 */ { "THERMOMETER","	= temperature, warm\n"
+	"	~ 1F321 FE0E text style\n"
+	"	~ 1F321 FE0F emoji style"},
 /* 1F322 */ { "BLACK DROPLET","	= droplet\n"
 	"	x (droplet - 1F4A7)"},
 /* 1F323 */ { "WHITE SUN","	= sunny\n"
 	"	x (white sun with rays - 263C)"},
 /* 1F324 */ { "WHITE SUN WITH SMALL CLOUD","	= mostly sunny\n"
-	"	x (sun behind cloud - 26C5)"},
-/* 1F325 */ { "WHITE SUN BEHIND CLOUD","	= mostly cloudy"},
-/* 1F326 */ { "WHITE SUN BEHIND CLOUD WITH RAIN","	= showers"},
-/* 1F327 */ { "CLOUD WITH RAIN","	= rain"},
-/* 1F328 */ { "CLOUD WITH SNOW","	= snow, snow showers"},
+	"	x (sun behind cloud - 26C5)\n"
+	"	~ 1F324 FE0E text style\n"
+	"	~ 1F324 FE0F emoji style"},
+/* 1F325 */ { "WHITE SUN BEHIND CLOUD","	= mostly cloudy\n"
+	"	~ 1F325 FE0E text style\n"
+	"	~ 1F325 FE0F emoji style"},
+/* 1F326 */ { "WHITE SUN BEHIND CLOUD WITH RAIN","	= showers\n"
+	"	~ 1F326 FE0E text style\n"
+	"	~ 1F326 FE0F emoji style"},
+/* 1F327 */ { "CLOUD WITH RAIN","	= rain\n"
+	"	~ 1F327 FE0E text style\n"
+	"	~ 1F327 FE0F emoji style"},
+/* 1F328 */ { "CLOUD WITH SNOW","	= snow, snow showers\n"
+	"	~ 1F328 FE0E text style\n"
+	"	~ 1F328 FE0F emoji style"},
 /* 1F329 */ { "CLOUD WITH LIGHTNING","	= lightning, thunderstorm\n"
-	"	x (thunder cloud and rain - 26C8)"},
-/* 1F32A */ { "CLOUD WITH TORNADO","	= tornado, twister"},
-/* 1F32B */ { "FOG","	x (foggy - 1F301)"},
-/* 1F32C */ { "WIND BLOWING FACE","	= wind"},
+	"	x (thunder cloud and rain - 26C8)\n"
+	"	~ 1F329 FE0E text style\n"
+	"	~ 1F329 FE0F emoji style"},
+/* 1F32A */ { "CLOUD WITH TORNADO","	= tornado, twister\n"
+	"	~ 1F32A FE0E text style\n"
+	"	~ 1F32A FE0F emoji style"},
+/* 1F32B */ { "FOG","	x (foggy - 1F301)\n"
+	"	~ 1F32B FE0E text style\n"
+	"	~ 1F32B FE0F emoji style"},
+/* 1F32C */ { "WIND BLOWING FACE","	= wind\n"
+	"	~ 1F32C FE0E text style\n"
+	"	~ 1F32C FE0F emoji style"},
 /* 1F32D */ { "HOT DOG",NULL},
 /* 1F32E */ { "TACO",NULL},
 /* 1F32F */ { "BURRITO",NULL},
@@ -38761,10 +40571,12 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F333 */ { "DECIDUOUS TREE",NULL},
 /* 1F334 */ { "PALM TREE","	x (desert island - 1F3DD)"},
 /* 1F335 */ { "CACTUS","	x (desert - 1F3DC)"},
-/* 1F336 */ { "HOT PEPPER","	= hot, spicy"},
+/* 1F336 */ { "HOT PEPPER","	= hot, spicy\n"
+	"	~ 1F336 FE0E text style\n"
+	"	~ 1F336 FE0F emoji style"},
 /* 1F337 */ { "TULIP","	x (flower - 2698)"},
 /* 1F338 */ { "CHERRY BLOSSOM",NULL},
-/* 1F339 */ { "ROSE",NULL},
+/* 1F339 */ { "ROSE","	x (wilted flower - 1F940)"},
 /* 1F33A */ { "HIBISCUS",NULL},
 /* 1F33B */ { "SUNFLOWER",NULL},
 /* 1F33C */ { "BLOSSOM","	= daisy"},
@@ -38826,19 +40638,24 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F374 */ { "FORK AND KNIFE","	= restaurant, meal\n"
 	"	* glyph may show a fork and spoon\n"
 	"	* glyph may show a crossed fork and knife\n"
-	"	x (fork and knife with plate - 1F37D)"},
+	"	x (fork and knife with plate - 1F37D)\n"
+	"	x (spoon - 1F944)"},
 /* 1F375 */ { "TEACUP WITHOUT HANDLE","	x (hot beverage - 2615)\n"
 	"	x (cup on black square - 26FE)"},
 /* 1F376 */ { "SAKE BOTTLE AND CUP",NULL},
 /* 1F377 */ { "WINE GLASS",NULL},
 /* 1F378 */ { "COCKTAIL GLASS","	= lounge\n"
-	"	x (couch and lamp - 1F6CB)"},
+	"	x (couch and lamp - 1F6CB)\n"
+	"	x (tumbler glass - 1F943)"},
 /* 1F379 */ { "TROPICAL DRINK",NULL},
 /* 1F37A */ { "BEER MUG",NULL},
-/* 1F37B */ { "CLINKING BEER MUGS","	= cheers"},
+/* 1F37B */ { "CLINKING BEER MUGS","	= cheers\n"
+	"	x (clinking glasses - 1F942)"},
 /* 1F37C */ { "BABY BOTTLE",NULL},
 /* 1F37D */ { "FORK AND KNIFE WITH PLATE","	= dining\n"
-	"	x (fork and knife - 1F374)"},
+	"	x (fork and knife - 1F374)\n"
+	"	~ 1F37D FE0E text style\n"
+	"	~ 1F37D FE0F emoji style"},
 /* 1F37E */ { "BOTTLE WITH POPPING CORK",NULL},
 /* 1F37F */ { "POPCORN",NULL},
 /* 1F380 */ { "RIBBON",NULL},
@@ -38846,7 +40663,8 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F382 */ { "BIRTHDAY CAKE",NULL},
 /* 1F383 */ { "JACK-O-LANTERN","	= Hallowe'en"},
 /* 1F384 */ { "CHRISTMAS TREE",NULL},
-/* 1F385 */ { "FATHER CHRISTMAS","	= Santa Claus"},
+/* 1F385 */ { "FATHER CHRISTMAS","	= Santa Claus\n"
+	"	x (mother christmas - 1F936)"},
 /* 1F386 */ { "FIREWORKS",NULL},
 /* 1F387 */ { "FIREWORK SPARKLER","	* long, stick-like firework that looks like a burning incense stick"},
 /* 1F388 */ { "BALLOON",NULL},
@@ -38866,14 +40684,22 @@ static const struct unicode_nameannot una_01_F3[] = {
 	"	x (black heart suit - 2665)"},
 /* 1F395 */ { "BOUQUET OF FLOWERS","	= occasion\n"
 	"	x (bouquet - 1F490)"},
-/* 1F396 */ { "MILITARY MEDAL",NULL},
-/* 1F397 */ { "REMINDER RIBBON",NULL},
+/* 1F396 */ { "MILITARY MEDAL","	~ 1F396 FE0E text style\n"
+	"	~ 1F396 FE0F emoji style"},
+/* 1F397 */ { "REMINDER RIBBON","	~ 1F397 FE0E text style\n"
+	"	~ 1F397 FE0F emoji style"},
 /* 1F398 */ { "MUSICAL KEYBOARD WITH JACKS","	= midi, midi keyboard\n"
 	"	x (musical keyboard - 1F3B9)"},
 /* 1F399 */ { "STUDIO MICROPHONE","	= microphone\n"
-	"	x (microphone - 1F3A4)"},
-/* 1F39A */ { "LEVEL SLIDER","	= level control"},
-/* 1F39B */ { "CONTROL KNOBS","	= audio control"},
+	"	x (microphone - 1F3A4)\n"
+	"	~ 1F399 FE0E text style\n"
+	"	~ 1F399 FE0F emoji style"},
+/* 1F39A */ { "LEVEL SLIDER","	= level control\n"
+	"	~ 1F39A FE0E text style\n"
+	"	~ 1F39A FE0F emoji style"},
+/* 1F39B */ { "CONTROL KNOBS","	= audio control\n"
+	"	~ 1F39B FE0E text style\n"
+	"	~ 1F39B FE0F emoji style"},
 /* 1F39C */ { "BEAMED ASCENDING MUSICAL NOTES","	= musical performance\n"
 	"	= music, musical background\n"
 	"	* always ascending, unlike 266C\n"
@@ -38881,9 +40707,13 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F39D */ { "BEAMED DESCENDING MUSICAL NOTES","	* always descending, unlike 266C\n"
 	"	x (beamed eighth notes - 266B)"},
 /* 1F39E */ { "FILM FRAMES","	= film clip\n"
-	"	x (movie camera - 1F3A5)"},
+	"	x (movie camera - 1F3A5)\n"
+	"	~ 1F39E FE0E text style\n"
+	"	~ 1F39E FE0F emoji style"},
 /* 1F39F */ { "ADMISSION TICKETS","	= ticket\n"
-	"	x (ticket - 1F3AB)"},
+	"	x (ticket - 1F3AB)\n"
+	"	~ 1F39F FE0E text style\n"
+	"	~ 1F39F FE0F emoji style"},
 /* 1F3A0 */ { "CAROUSEL HORSE","	= amusement park"},
 /* 1F3A1 */ { "FERRIS WHEEL","	= amusement park"},
 /* 1F3A2 */ { "ROLLER COASTER",NULL},
@@ -38906,7 +40736,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3AF */ { "DIRECT HIT","	= archery target, hitting the target\n"
 	"	x (bullseye - 25CE)"},
 /* 1F3B0 */ { "SLOT MACHINE",NULL},
-/* 1F3B1 */ { "BILLIARDS",NULL},
+/* 1F3B1 */ { "BILLIARDS","	* sometimes depicted as just an 8-ball"},
 /* 1F3B2 */ { "GAME DIE",NULL},
 /* 1F3B3 */ { "BOWLING",NULL},
 /* 1F3B4 */ { "FLOWER PLAYING CARDS","	= flower cards"},
@@ -38920,7 +40750,10 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3BA */ { "TRUMPET",NULL},
 /* 1F3BB */ { "VIOLIN",NULL},
 /* 1F3BC */ { "MUSICAL SCORE","	x (musical symbol g clef - 1D11E)"},
-/* 1F3BD */ { "RUNNING SHIRT WITH SASH",NULL},
+/* 1F3BD */ { "RUNNING SHIRT WITH SASH","	= ekiden (Japanese)\n"
+	"	* running shirt with separate sash signifies long-distance relay running\n"
+	"	* symbol is generalized to represent athletics\n"
+	"	* glyph may be shown with a sash, a stripe, or neither"},
 /* 1F3BE */ { "TENNIS RACQUET AND BALL","	= tennis"},
 /* 1F3BF */ { "SKI AND SKI BOOT","	= skiing\n"
 	"	x (skier - 26F7)"},
@@ -38929,40 +40762,71 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3C2 */ { "SNOWBOARDER",NULL},
 /* 1F3C3 */ { "RUNNER","	= running, marathon, track and fields"},
 /* 1F3C4 */ { "SURFER","	= surfing"},
-/* 1F3C5 */ { "SPORTS MEDAL",NULL},
+/* 1F3C5 */ { "SPORTS MEDAL","	x (first place medal - 1F947)"},
 /* 1F3C6 */ { "TROPHY",NULL},
 /* 1F3C7 */ { "HORSE RACING",NULL},
 /* 1F3C8 */ { "AMERICAN FOOTBALL",NULL},
 /* 1F3C9 */ { "RUGBY FOOTBALL",NULL},
 /* 1F3CA */ { "SWIMMER",NULL},
-/* 1F3CB */ { "WEIGHT LIFTER","	= health"},
-/* 1F3CC */ { "GOLFER",NULL},
-/* 1F3CD */ { "RACING MOTORCYCLE","	= motorcycle"},
-/* 1F3CE */ { "RACING CAR","	= race car"},
+/* 1F3CB */ { "WEIGHT LIFTER","	= health\n"
+	"	~ 1F3CB FE0E text style\n"
+	"	~ 1F3CB FE0F emoji style"},
+/* 1F3CC */ { "GOLFER","	~ 1F3CC FE0E text style\n"
+	"	~ 1F3CC FE0F emoji style"},
+/* 1F3CD */ { "RACING MOTORCYCLE","	= motorcycle\n"
+	"	* may be depicted as an ordinary motorcycle, especially in emoji presentation\n"
+	"	~ 1F3CD FE0E text style\n"
+	"	~ 1F3CD FE0F emoji style"},
+/* 1F3CE */ { "RACING CAR","	= race car\n"
+	"	~ 1F3CE FE0E text style\n"
+	"	~ 1F3CE FE0F emoji style"},
 /* 1F3CF */ { "CRICKET BAT AND BALL",NULL},
 /* 1F3D0 */ { "VOLLEYBALL",NULL},
 /* 1F3D1 */ { "FIELD HOCKEY STICK AND BALL",NULL},
 /* 1F3D2 */ { "ICE HOCKEY STICK AND PUCK",NULL},
 /* 1F3D3 */ { "TABLE TENNIS PADDLE AND BALL",NULL},
-/* 1F3D4 */ { "SNOW CAPPED MOUNTAIN","	x (mountain - 26F0)"},
+/* 1F3D4 */ { "SNOW CAPPED MOUNTAIN","	x (mountain - 26F0)\n"
+	"	~ 1F3D4 FE0E text style\n"
+	"	~ 1F3D4 FE0F emoji style"},
 /* 1F3D5 */ { "CAMPING","	= camping site\n"
-	"	x (tent - 26FA)"},
-/* 1F3D6 */ { "BEACH WITH UMBRELLA","	x (umbrella on ground - 26F1)"},
+	"	x (tent - 26FA)\n"
+	"	~ 1F3D5 FE0E text style\n"
+	"	~ 1F3D5 FE0F emoji style"},
+/* 1F3D6 */ { "BEACH WITH UMBRELLA","	x (umbrella on ground - 26F1)\n"
+	"	~ 1F3D6 FE0E text style\n"
+	"	~ 1F3D6 FE0F emoji style"},
 /* 1F3D7 */ { "BUILDING CONSTRUCTION","	= under construction\n"
-	"	x (construction sign - 1F6A7)"},
+	"	x (construction sign - 1F6A7)\n"
+	"	~ 1F3D7 FE0E text style\n"
+	"	~ 1F3D7 FE0F emoji style"},
 /* 1F3D8 */ { "HOUSE BUILDINGS","	= town\n"
-	"	x (house with garden - 1F3E1)"},
+	"	x (house with garden - 1F3E1)\n"
+	"	~ 1F3D8 FE0E text style\n"
+	"	~ 1F3D8 FE0F emoji style"},
 /* 1F3D9 */ { "CITYSCAPE","	= skyline, city\n"
-	"	x (cityscape at dusk - 1F306)"},
-/* 1F3DA */ { "DERELICT HOUSE BUILDING","	= derelict site"},
-/* 1F3DB */ { "CLASSICAL BUILDING","	= public building"},
+	"	x (cityscape at dusk - 1F306)\n"
+	"	~ 1F3D9 FE0E text style\n"
+	"	~ 1F3D9 FE0F emoji style"},
+/* 1F3DA */ { "DERELICT HOUSE BUILDING","	= derelict site\n"
+	"	~ 1F3DA FE0E text style\n"
+	"	~ 1F3DA FE0F emoji style"},
+/* 1F3DB */ { "CLASSICAL BUILDING","	= public building\n"
+	"	~ 1F3DB FE0E text style\n"
+	"	~ 1F3DB FE0F emoji style"},
 /* 1F3DC */ { "DESERT","	= desert\n"
-	"	x (cactus - 1F335)"},
+	"	x (cactus - 1F335)\n"
+	"	~ 1F3DC FE0E text style\n"
+	"	~ 1F3DC FE0F emoji style"},
 /* 1F3DD */ { "DESERT ISLAND","	= island\n"
-	"	x (palm tree - 1F334)"},
+	"	x (palm tree - 1F334)\n"
+	"	~ 1F3DD FE0E text style\n"
+	"	~ 1F3DD FE0F emoji style"},
 /* 1F3DE */ { "NATIONAL PARK","	* by semantic extension has come to connote saving trees, and hence is also used as a symbol meaning \"do not print this (email, document)\"\n"
-	"	x (evergreen tree - 1F332)"},
-/* 1F3DF */ { "STADIUM",NULL},
+	"	x (evergreen tree - 1F332)\n"
+	"	~ 1F3DE FE0E text style\n"
+	"	~ 1F3DE FE0F emoji style"},
+/* 1F3DF */ { "STADIUM","	~ 1F3DF FE0E text style\n"
+	"	~ 1F3DF FE0F emoji style"},
 /* 1F3E0 */ { "HOUSE BUILDING",NULL},
 /* 1F3E1 */ { "HOUSE WITH GARDEN","	= home, house with yard\n"
 	"	x (house buildings - 1F3D8)"},
@@ -38987,17 +40851,25 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3F1 */ { "WHITE PENNANT","	x (triangular flag on post - 1F6A9)"},
 /* 1F3F2 */ { "BLACK PENNANT",NULL},
 /* 1F3F3 */ { "WAVING WHITE FLAG","	= flag\n"
-	"	x (white flag - 2690)"},
+	"	x (white flag - 2690)\n"
+	"	~ 1F3F3 FE0E text style\n"
+	"	~ 1F3F3 FE0F emoji style"},
 /* 1F3F4 */ { "WAVING BLACK FLAG",NULL},
-/* 1F3F5 */ { "ROSETTE","	x (white florette - 2740)"},
+/* 1F3F5 */ { "ROSETTE","	x (white florette - 2740)\n"
+	"	~ 1F3F5 FE0E text style\n"
+	"	~ 1F3F5 FE0F emoji style"},
 /* 1F3F6 */ { "BLACK ROSETTE","	x (eight petalled outlined black florette - 2741)"},
 /* 1F3F7 */ { "LABEL","	= price, price tag\n"
-	"	x (bookmark - 1F516)"},
+	"	x (bookmark - 1F516)\n"
+	"	~ 1F3F7 FE0E text style\n"
+	"	~ 1F3F7 FE0F emoji style"},
 /* 1F3F8 */ { "BADMINTON RACQUET AND SHUTTLECOCK",NULL},
-/* 1F3F9 */ { "BOW AND ARROW","	* used for Sagittarius\n"
+/* 1F3F9 */ { "BOW AND ARROW","	= archery\n"
+	"	* also used for Sagittarius\n"
 	"	x (sagittarius - 2650)"},
 /* 1F3FA */ { "AMPHORA","	* used for Aquarius\n"
-	"	x (aquarius - 2652)"},
+	"	x (aquarius - 2652)\n"
+	"	x (linear b ideogram vessel b209 - 100E8)"},
 /* 1F3FB */ { "EMOJI MODIFIER FITZPATRICK TYPE-1-2",NULL},
 /* 1F3FC */ { "EMOJI MODIFIER FITZPATRICK TYPE-3",NULL},
 /* 1F3FD */ { "EMOJI MODIFIER FITZPATRICK TYPE-4",NULL},
@@ -39021,7 +40893,8 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F40B */ { "WHALE","	* fifth of the signs of the Asian zodiac, used in Persia"},
 /* 1F40C */ { "SNAIL","	* fifth of the signs of the Asian zodiac, used in Kazakhstan"},
 /* 1F40D */ { "SNAKE","	* sixth of the signs of the Asian zodiac"},
-/* 1F40E */ { "HORSE","	* seventh of the signs of the Asian zodiac"},
+/* 1F40E */ { "HORSE","	= equestrian sports\n"
+	"	* seventh of the signs of the Asian zodiac"},
 /* 1F40F */ { "RAM","	* eighth of the signs of the Asian zodiac\n"
 	"	x (aries - 2648)"},
 /* 1F410 */ { "GOAT","	* eighth of the signs of the Asian zodiac, used in Vietnam"},
@@ -39046,7 +40919,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F41F */ { "FISH",NULL},
 /* 1F420 */ { "TROPICAL FISH",NULL},
 /* 1F421 */ { "BLOWFISH",NULL},
-/* 1F422 */ { "TURTLE",NULL},
+/* 1F422 */ { "TURTLE","	= tortoise, terrapin"},
 /* 1F423 */ { "HATCHING CHICK",NULL},
 /* 1F424 */ { "BABY CHICK",NULL},
 /* 1F425 */ { "FRONT-FACING BABY CHICK",NULL},
@@ -39075,9 +40948,13 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F43C */ { "PANDA FACE",NULL},
 /* 1F43D */ { "PIG NOSE",NULL},
 /* 1F43E */ { "PAW PRINTS","	x (footprints - 1F463)"},
-/* 1F43F */ { "CHIPMUNK","	= animal, critter"},
+/* 1F43F */ { "CHIPMUNK","	= animal, critter\n"
+	"	~ 1F43F FE0E text style\n"
+	"	~ 1F43F FE0F emoji style"},
 /* 1F440 */ { "EYES",NULL},
-/* 1F441 */ { "EYE","	= sight"},
+/* 1F441 */ { "EYE","	= sight\n"
+	"	~ 1F441 FE0E text style\n"
+	"	~ 1F441 FE0F emoji style"},
 /* 1F442 */ { "EAR",NULL},
 /* 1F443 */ { "NOSE",NULL},
 /* 1F444 */ { "MOUTH",NULL},
@@ -39129,27 +41006,30 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F46C */ { "TWO MEN HOLDING HANDS",NULL},
 /* 1F46D */ { "TWO WOMEN HOLDING HANDS",NULL},
 /* 1F46E */ { "POLICE OFFICER",NULL},
-/* 1F46F */ { "WOMAN WITH BUNNY EARS",NULL},
-/* 1F470 */ { "BRIDE WITH VEIL",NULL},
+/* 1F46F */ { "WOMAN WITH BUNNY EARS","	* most popularly depicted as two women dancing"},
+/* 1F470 */ { "BRIDE WITH VEIL","	x (man in tuxedo - 1F935)"},
 /* 1F471 */ { "PERSON WITH BLOND HAIR",NULL},
 /* 1F472 */ { "MAN WITH GUA PI MAO",NULL},
-/* 1F473 */ { "MAN WITH TURBAN",NULL},
+/* 1F473 */ { "MAN WITH TURBAN","	* may be shown with or without a beard"},
 /* 1F474 */ { "OLDER MAN",NULL},
 /* 1F475 */ { "OLDER WOMAN",NULL},
 /* 1F476 */ { "BABY",NULL},
-/* 1F477 */ { "CONSTRUCTION WORKER",NULL},
-/* 1F478 */ { "PRINCESS",NULL},
+/* 1F477 */ { "CONSTRUCTION WORKER","	* the helmet may show a green cross, used as a safety reminder in Japan\n"
+	"	x (helmet with white cross - 26D1)"},
+/* 1F478 */ { "PRINCESS","	x (prince - 1F934)"},
 /* 1F479 */ { "JAPANESE OGRE",NULL},
 /* 1F47A */ { "JAPANESE GOBLIN",NULL},
 /* 1F47B */ { "GHOST",NULL},
 /* 1F47C */ { "BABY ANGEL",NULL},
 /* 1F47D */ { "EXTRATERRESTRIAL ALIEN",NULL},
-/* 1F47E */ { "ALIEN MONSTER",NULL},
-/* 1F47F */ { "IMP",NULL},
+/* 1F47E */ { "ALIEN MONSTER","	x (robot face - 1F916)"},
+/* 1F47F */ { "IMP","	* commonly depicted as a frowning/angry version of 1F608 smiling face with horns"},
 /* 1F480 */ { "SKULL",NULL},
-/* 1F481 */ { "INFORMATION DESK PERSON",NULL},
+/* 1F481 */ { "INFORMATION DESK PERSON","	* often used to indicate \"sassy\" or \"carefree\""},
 /* 1F482 */ { "GUARDSMAN",NULL},
-/* 1F483 */ { "DANCER",NULL},
+/* 1F483 */ { "DANCER","	* also used for \"let's party\"\n"
+	"	* may be depicted as gender neutral\n"
+	"	x (man dancing - 1F57A)"},
 /* 1F484 */ { "LIPSTICK",NULL},
 /* 1F485 */ { "NAIL POLISH","	= manicure, nail care"},
 /* 1F486 */ { "FACE MASSAGE",NULL},
@@ -39194,7 +41074,8 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4A7 */ { "DROPLET","	* represents a drop of sweat or drop of water\n"
 	"	x (black droplet - 1F322)"},
 /* 1F4A8 */ { "DASH SYMBOL","	= running dash, briffits"},
-/* 1F4A9 */ { "PILE OF POO","	= dog dirt"},
+/* 1F4A9 */ { "PILE OF POO","	= dog dirt\n"
+	"	* may be depicted with a friendly face"},
 /* 1F4AA */ { "FLEXED BICEPS","	= strong, muscled"},
 /* 1F4AB */ { "DIZZY SYMBOL","	= circling stars, squeans"},
 /* 1F4AC */ { "SPEECH BALLOON","	= comic book conversation bubble"},
@@ -39212,7 +41093,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4B7 */ { "BANKNOTE WITH POUND SIGN",NULL},
 /* 1F4B8 */ { "MONEY WITH WINGS",NULL},
 /* 1F4B9 */ { "CHART WITH UPWARDS TREND AND YEN SIGN",NULL},
-/* 1F4BA */ { "SEAT",NULL},
+/* 1F4BA */ { "SEAT","	* intended to denote a reserved or ticketed seat, as for an airplane, train, or theater"},
 /* 1F4BB */ { "PERSONAL COMPUTER","	x (old personal computer - 1F5B3)"},
 /* 1F4BC */ { "BRIEFCASE",NULL},
 /* 1F4BD */ { "MINIDISC",NULL},
@@ -39251,7 +41132,8 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4DB */ { "NAME BADGE",NULL},
 /* 1F4DC */ { "SCROLL",NULL},
 /* 1F4DD */ { "MEMO",NULL},
-/* 1F4DE */ { "TELEPHONE RECEIVER","	x (left hand telephone receiver - 1F57B)\n"
+/* 1F4DE */ { "TELEPHONE RECEIVER","	* commonly oriented rightwards, so that a face emoticon can be positioned to the right\n"
+	"	x (left hand telephone receiver - 1F57B)\n"
 	"	x (right hand telephone receiver - 1F57D)"},
 /* 1F4DF */ { "PAGER",NULL},
 /* 1F4E0 */ { "FAX MACHINE","	x (facsimile sign - 213B)\n"
@@ -39264,7 +41146,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4E4 */ { "OUTBOX TRAY",NULL},
 /* 1F4E5 */ { "INBOX TRAY",NULL},
 /* 1F4E6 */ { "PACKAGE","	x (wrapped present - 1F381)"},
-/* 1F4E7 */ { "E-MAIL SYMBOL","	* glyph may show an @-sign instead of an E\n"
+/* 1F4E7 */ { "E-MAIL SYMBOL","	* glyph may show an E instead of an @-sign\n"
 	"	x (envelope with lightning - 1F584)"},
 /* 1F4E8 */ { "INCOMING ENVELOPE","	x (envelope - 2709)"},
 /* 1F4E9 */ { "ENVELOPE WITH DOWNWARDS ARROW ABOVE","	* sending mail\n"
@@ -39290,7 +41172,9 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4FB */ { "RADIO",NULL},
 /* 1F4FC */ { "VIDEOCASSETTE",NULL},
 /* 1F4FD */ { "FILM PROJECTOR","	= movies\n"
-	"	x (cinema - 1F3A6)"},
+	"	x (cinema - 1F3A6)\n"
+	"	~ 1F4FD FE0E text style\n"
+	"	~ 1F4FD FE0F emoji style"},
 /* 1F4FE */ { "PORTABLE STEREO","	= stereo"},
 /* 1F4FF */ { "PRAYER BEADS",NULL}
 };
@@ -39328,7 +41212,8 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (symbol for bell - 2407)\n"
 	"	x (ringing bell - 1F56D)"},
 /* 1F515 */ { "BELL WITH CANCELLATION STROKE",NULL},
-/* 1F516 */ { "BOOKMARK","	x (label - 1F3F7)"},
+/* 1F516 */ { "BOOKMARK","	* indicates a bookmark, not a price tag\n"
+	"	x (label - 1F3F7)"},
 /* 1F517 */ { "LINK SYMBOL",NULL},
 /* 1F518 */ { "RADIO BUTTON","	x (circled dot operator - 2299)\n"
 	"	x (fisheye - 25C9)\n"
@@ -39352,7 +41237,7 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F529 */ { "NUT AND BOLT",NULL},
 /* 1F52A */ { "HOCHO","	= Japanese kitchen knife\n"
 	"	x (dagger knife - 1F5E1)"},
-/* 1F52B */ { "PISTOL",NULL},
+/* 1F52B */ { "PISTOL","	= handgun, revolver"},
 /* 1F52C */ { "MICROSCOPE",NULL},
 /* 1F52D */ { "TELESCOPE",NULL},
 /* 1F52E */ { "CRYSTAL BALL",NULL},
@@ -39391,12 +41276,16 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F547 */ { "HEAVY LATIN CROSS",NULL},
 /* 1F548 */ { "CELTIC CROSS",NULL},
 /* 1F549 */ { "OM SYMBOL","	* generic symbol independent of Devanagari font\n"
-	"	x (devanagari om - 0950)"},
-/* 1F54A */ { "DOVE OF PEACE","	= peace"},
+	"	x (devanagari om - 0950)\n"
+	"	~ 1F549 FE0E text style\n"
+	"	~ 1F549 FE0F emoji style"},
+/* 1F54A */ { "DOVE OF PEACE","	= peace\n"
+	"	~ 1F54A FE0E text style\n"
+	"	~ 1F54A FE0F emoji style"},
 /* 1F54B */ { "KAABA",NULL},
 /* 1F54C */ { "MOSQUE",NULL},
 /* 1F54D */ { "SYNAGOGUE",NULL},
-/* 1F54E */ { "MENORAH WITH NINE BRANCHES",NULL},
+/* 1F54E */ { "MENORAH WITH NINE BRANCHES","	= hanukiah"},
 /* 1F54F */ { "BOWL OF HYGIEIA","	x (staff of aesculapius - 2695)"},
 /* 1F550 */ { "CLOCK FACE ONE OCLOCK","	x (watch - 231A)\n"
 	"	x (alarm clock - 23F0)"},
@@ -39433,19 +41322,34 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (speaker with three sound waves - 1F50A)"},
 /* 1F56D */ { "RINGING BELL","	x (bell - 1F514)"},
 /* 1F56E */ { "BOOK","	x (open book - 1F4D6)"},
-/* 1F56F */ { "CANDLE",NULL},
+/* 1F56F */ { "CANDLE","	~ 1F56F FE0E text style\n"
+	"	~ 1F56F FE0F emoji style"},
 /* 1F570 */ { "MANTELPIECE CLOCK","	= clock\n"
-	"	x (alarm clock - 23F0)"},
+	"	x (alarm clock - 23F0)\n"
+	"	~ 1F570 FE0E text style\n"
+	"	~ 1F570 FE0F emoji style"},
 /* 1F571 */ { "BLACK SKULL AND CROSSBONES","	x (skull and crossbones - 2620)"},
 /* 1F572 */ { "NO PIRACY",NULL},
-/* 1F573 */ { "HOLE","	= portable hole"},
-/* 1F574 */ { "MAN IN BUSINESS SUIT LEVITATING","	= jump"},
-/* 1F575 */ { "SLEUTH OR SPY","	= investigate"},
-/* 1F576 */ { "DARK SUNGLASSES","	= cool"},
-/* 1F577 */ { "SPIDER",NULL},
-/* 1F578 */ { "SPIDER WEB",NULL},
-/* 1F579 */ { "JOYSTICK",NULL},
-/* 1F57A */ { NULL,NULL},
+/* 1F573 */ { "HOLE","	= portable hole\n"
+	"	~ 1F573 FE0E text style\n"
+	"	~ 1F573 FE0F emoji style"},
+/* 1F574 */ { "MAN IN BUSINESS SUIT LEVITATING","	= jump\n"
+	"	~ 1F574 FE0E text style\n"
+	"	~ 1F574 FE0F emoji style"},
+/* 1F575 */ { "SLEUTH OR SPY","	= investigate\n"
+	"	~ 1F575 FE0E text style\n"
+	"	~ 1F575 FE0F emoji style"},
+/* 1F576 */ { "DARK SUNGLASSES","	= cool\n"
+	"	~ 1F576 FE0E text style\n"
+	"	~ 1F576 FE0F emoji style"},
+/* 1F577 */ { "SPIDER","	~ 1F577 FE0E text style\n"
+	"	~ 1F577 FE0F emoji style"},
+/* 1F578 */ { "SPIDER WEB","	~ 1F578 FE0E text style\n"
+	"	~ 1F578 FE0F emoji style"},
+/* 1F579 */ { "JOYSTICK","	~ 1F579 FE0E text style\n"
+	"	~ 1F579 FE0F emoji style"},
+/* 1F57A */ { "MAN DANCING","	* forms a gender pair with 1F483\n"
+	"	x (dancer - 1F483)"},
 /* 1F57B */ { "LEFT HAND TELEPHONE RECEIVER","	x (telephone receiver - 1F4DE)"},
 /* 1F57C */ { "TELEPHONE RECEIVER WITH PAGE","	= fax\n"
 	"	x (fax machine - 1F4E0)"},
@@ -39464,26 +41368,38 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (envelope with downwards arrow above - 1F4E9)"},
 /* 1F586 */ { "PEN OVER STAMPED ENVELOPE",NULL},
 /* 1F587 */ { "LINKED PAPERCLIPS","	= links\n"
-	"	x (paperclip - 1F4CE)"},
+	"	x (paperclip - 1F4CE)\n"
+	"	~ 1F587 FE0E text style\n"
+	"	~ 1F587 FE0F emoji style"},
 /* 1F588 */ { "BLACK PUSHPIN","	= marker\n"
 	"	x (pushpin - 1F4CC)"},
 /* 1F589 */ { "LOWER LEFT PENCIL","	= pencil\n"
 	"	x (lower right pencil - 270E)"},
-/* 1F58A */ { "LOWER LEFT BALLPOINT PEN","	= ballpoint pen"},
+/* 1F58A */ { "LOWER LEFT BALLPOINT PEN","	= ballpoint pen\n"
+	"	~ 1F58A FE0E text style\n"
+	"	~ 1F58A FE0F emoji style"},
 /* 1F58B */ { "LOWER LEFT FOUNTAIN PEN","	= fountain pen\n"
-	"	x (white nib - 2711)"},
-/* 1F58C */ { "LOWER LEFT PAINTBRUSH","	= brush"},
-/* 1F58D */ { "LOWER LEFT CRAYON","	= crayon"},
+	"	x (white nib - 2711)\n"
+	"	~ 1F58B FE0E text style\n"
+	"	~ 1F58B FE0F emoji style"},
+/* 1F58C */ { "LOWER LEFT PAINTBRUSH","	= brush\n"
+	"	~ 1F58C FE0E text style\n"
+	"	~ 1F58C FE0F emoji style"},
+/* 1F58D */ { "LOWER LEFT CRAYON","	= crayon\n"
+	"	~ 1F58D FE0E text style\n"
+	"	~ 1F58D FE0F emoji style"},
 /* 1F58E */ { "LEFT WRITING HAND","	x (writing hand - 270D)"},
 /* 1F58F */ { "TURNED OK HAND SIGN","	x (ok hand sign - 1F44C)"},
 /* 1F590 */ { "RAISED HAND WITH FINGERS SPLAYED","	= halt\n"
-	"	x (raised hand - 270B)"},
+	"	x (raised hand - 270B)\n"
+	"	~ 1F590 FE0E text style\n"
+	"	~ 1F590 FE0F emoji style"},
 /* 1F591 */ { "REVERSED RAISED HAND WITH FINGERS SPLAYED",NULL},
 /* 1F592 */ { "REVERSED THUMBS UP SIGN","	x (thumbs up sign - 1F44D)"},
 /* 1F593 */ { "REVERSED THUMBS DOWN SIGN","	x (thumbs down sign - 1F44E)"},
 /* 1F594 */ { "REVERSED VICTORY HAND","	x (victory hand - 270C)"},
 /* 1F595 */ { "REVERSED HAND WITH MIDDLE FINGER EXTENDED",NULL},
-/* 1F596 */ { "RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS",NULL},
+/* 1F596 */ { "RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS","	= Vulcan salute"},
 /* 1F597 */ { "WHITE DOWN POINTING LEFT HAND INDEX","	x (white down pointing index - 261F)\n"
 	"	x (white down pointing backhand index - 1F447)"},
 /* 1F598 */ { "SIDEWAYS WHITE LEFT POINTING INDEX","	x (white left pointing index - 261C)"},
@@ -39498,11 +41414,16 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5A1 */ { "SIDEWAYS BLACK DOWN POINTING INDEX",NULL},
 /* 1F5A2 */ { "BLACK UP POINTING BACKHAND INDEX","	x (white up pointing backhand index - 1F446)"},
 /* 1F5A3 */ { "BLACK DOWN POINTING BACKHAND INDEX","	x (white down pointing backhand index - 1F447)"},
-/* 1F5A4 */ { NULL,NULL},
-/* 1F5A5 */ { "DESKTOP COMPUTER","	= tower computer"},
+/* 1F5A4 */ { "BLACK HEART","	* unequivocally represented as black in all variants\n"
+	"	x (black heart suit - 2665)"},
+/* 1F5A5 */ { "DESKTOP COMPUTER","	= tower computer\n"
+	"	~ 1F5A5 FE0E text style\n"
+	"	~ 1F5A5 FE0F emoji style"},
 /* 1F5A6 */ { "KEYBOARD AND MOUSE","	x (keyboard - 2328)"},
 /* 1F5A7 */ { "THREE NETWORKED COMPUTERS","	= computer network"},
-/* 1F5A8 */ { "PRINTER","	x (fax machine - 1F4E0)"},
+/* 1F5A8 */ { "PRINTER","	x (fax machine - 1F4E0)\n"
+	"	~ 1F5A8 FE0E text style\n"
+	"	~ 1F5A8 FE0F emoji style"},
 /* 1F5A9 */ { "POCKET CALCULATOR","	= calculator"},
 /* 1F5AA */ { "BLACK HARD SHELL FLOPPY DISK","	= disk\n"
 	"	x (floppy disk - 1F4BE)"},
@@ -39513,8 +41434,11 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (keyboard - 2328)"},
 /* 1F5AF */ { "ONE BUTTON MOUSE",NULL},
 /* 1F5B0 */ { "TWO BUTTON MOUSE",NULL},
-/* 1F5B1 */ { "THREE BUTTON MOUSE",NULL},
-/* 1F5B2 */ { "TRACKBALL","	= ballpoint"},
+/* 1F5B1 */ { "THREE BUTTON MOUSE","	~ 1F5B1 FE0E text style\n"
+	"	~ 1F5B1 FE0F emoji style"},
+/* 1F5B2 */ { "TRACKBALL","	= ballpoint\n"
+	"	~ 1F5B2 FE0E text style\n"
+	"	~ 1F5B2 FE0F emoji style"},
 /* 1F5B3 */ { "OLD PERSONAL COMPUTER","	= personal computer\n"
 	"	x (personal computer - 1F4BB)"},
 /* 1F5B4 */ { "HARD DISK",NULL},
@@ -39527,7 +41451,9 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5B9 */ { "DOCUMENT WITH TEXT",NULL},
 /* 1F5BA */ { "DOCUMENT WITH TEXT AND PICTURE",NULL},
 /* 1F5BB */ { "DOCUMENT WITH PICTURE","	= graphic document"},
-/* 1F5BC */ { "FRAME WITH PICTURE","	= art"},
+/* 1F5BC */ { "FRAME WITH PICTURE","	= art\n"
+	"	~ 1F5BC FE0E text style\n"
+	"	~ 1F5BC FE0F emoji style"},
 /* 1F5BD */ { "FRAME WITH TILES","	= frames"},
 /* 1F5BE */ { "FRAME WITH AN X","	= no frames, no picture"},
 /* 1F5BF */ { "BLACK FOLDER",NULL},
@@ -39535,9 +41461,14 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (file folder - 1F4C1)"},
 /* 1F5C1 */ { "OPEN FOLDER","	x (open file folder - 1F4C2)"},
 /* 1F5C2 */ { "CARD INDEX DIVIDERS","	= index\n"
-	"	x (card index - 1F4C7)"},
-/* 1F5C3 */ { "CARD FILE BOX","	= archive"},
-/* 1F5C4 */ { "FILE CABINET",NULL},
+	"	x (card index - 1F4C7)\n"
+	"	~ 1F5C2 FE0E text style\n"
+	"	~ 1F5C2 FE0F emoji style"},
+/* 1F5C3 */ { "CARD FILE BOX","	= archive\n"
+	"	~ 1F5C3 FE0E text style\n"
+	"	~ 1F5C3 FE0F emoji style"},
+/* 1F5C4 */ { "FILE CABINET","	~ 1F5C4 FE0E text style\n"
+	"	~ 1F5C4 FE0F emoji style"},
 /* 1F5C5 */ { "EMPTY NOTE",NULL},
 /* 1F5C6 */ { "EMPTY NOTE PAGE",NULL},
 /* 1F5C7 */ { "EMPTY NOTE PAD",NULL},
@@ -39550,11 +41481,17 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5CE */ { "DOCUMENT","	x (page facing up - 1F4C4)"},
 /* 1F5CF */ { "PAGE","	x (page with curl - 1F4C3)"},
 /* 1F5D0 */ { "PAGES",NULL},
-/* 1F5D1 */ { "WASTEBASKET","	= trashcan"},
+/* 1F5D1 */ { "WASTEBASKET","	= trashcan\n"
+	"	~ 1F5D1 FE0E text style\n"
+	"	~ 1F5D1 FE0F emoji style"},
 /* 1F5D2 */ { "SPIRAL NOTE PAD","	= note, empty calendar\n"
-	"	x (calendar - 1F4C5)"},
+	"	x (calendar - 1F4C5)\n"
+	"	~ 1F5D2 FE0E text style\n"
+	"	~ 1F5D2 FE0F emoji style"},
 /* 1F5D3 */ { "SPIRAL CALENDAR PAD","	= calendar, day 1\n"
-	"	x (tear-off calendar - 1F4C6)"},
+	"	x (tear-off calendar - 1F4C6)\n"
+	"	~ 1F5D3 FE0E text style\n"
+	"	~ 1F5D3 FE0F emoji style"},
 /* 1F5D4 */ { "DESKTOP WINDOW",NULL},
 /* 1F5D5 */ { "MINIMIZE",NULL},
 /* 1F5D6 */ { "MAXIMIZE",NULL},
@@ -39565,40 +41502,55 @@ static const struct unicode_nameannot una_01_F5[] = {
 	"	x (cross mark - 274C)"},
 /* 1F5DA */ { "INCREASE FONT SIZE SYMBOL",NULL},
 /* 1F5DB */ { "DECREASE FONT SIZE SYMBOL",NULL},
-/* 1F5DC */ { "COMPRESSION","	* symbol depicts a hand press with a box inside"},
+/* 1F5DC */ { "COMPRESSION","	* symbol depicts a hand press with a box inside\n"
+	"	~ 1F5DC FE0E text style\n"
+	"	~ 1F5DC FE0F emoji style"},
 /* 1F5DD */ { "OLD KEY","	= encryption\n"
-	"	x (key - 1F511)"},
+	"	x (key - 1F511)\n"
+	"	~ 1F5DD FE0E text style\n"
+	"	~ 1F5DD FE0F emoji style"},
 /* 1F5DE */ { "ROLLED-UP NEWSPAPER","	= news\n"
-	"	x (newspaper - 1F4F0)"},
+	"	x (newspaper - 1F4F0)\n"
+	"	~ 1F5DE FE0E text style\n"
+	"	~ 1F5DE FE0F emoji style"},
 /* 1F5DF */ { "PAGE WITH CIRCLED TEXT","	= classified"},
 /* 1F5E0 */ { "STOCK CHART","	= finance\n"
 	"	x (chart with upwards trend - 1F4C8)"},
 /* 1F5E1 */ { "DAGGER KNIFE","	= rated for violence\n"
 	"	= hate\n"
-	"	x (hocho - 1F52A)"},
+	"	x (hocho - 1F52A)\n"
+	"	~ 1F5E1 FE0E text style\n"
+	"	~ 1F5E1 FE0F emoji style"},
 /* 1F5E2 */ { "LIPS","	= rated for sex\n"
 	"	= kiss\n"
 	"	x (kiss mark - 1F48B)"},
-/* 1F5E3 */ { "SPEAKING HEAD IN SILHOUETTE","	= rated for strong language"},
+/* 1F5E3 */ { "SPEAKING HEAD IN SILHOUETTE","	= rated for strong language\n"
+	"	~ 1F5E3 FE0E text style\n"
+	"	~ 1F5E3 FE0F emoji style"},
 /* 1F5E4 */ { "THREE RAYS ABOVE",NULL},
 /* 1F5E5 */ { "THREE RAYS BELOW",NULL},
 /* 1F5E6 */ { "THREE RAYS LEFT","	x (three lines converging right - 269E)"},
 /* 1F5E7 */ { "THREE RAYS RIGHT","	x (three lines converging left - 269F)"},
-/* 1F5E8 */ { "LEFT SPEECH BUBBLE",NULL},
+/* 1F5E8 */ { "LEFT SPEECH BUBBLE","	~ 1F5E8 FE0E text style\n"
+	"	~ 1F5E8 FE0F emoji style"},
 /* 1F5E9 */ { "RIGHT SPEECH BUBBLE",NULL},
 /* 1F5EA */ { "TWO SPEECH BUBBLES","	= chat"},
 /* 1F5EB */ { "THREE SPEECH BUBBLES","	= conference"},
 /* 1F5EC */ { "LEFT THOUGHT BUBBLE",NULL},
 /* 1F5ED */ { "RIGHT THOUGHT BUBBLE","	x (thought balloon - 1F4AD)"},
 /* 1F5EE */ { "LEFT ANGER BUBBLE","	= shout left"},
-/* 1F5EF */ { "RIGHT ANGER BUBBLE","	= shout right"},
+/* 1F5EF */ { "RIGHT ANGER BUBBLE","	= shout right\n"
+	"	~ 1F5EF FE0E text style\n"
+	"	~ 1F5EF FE0F emoji style"},
 /* 1F5F0 */ { "MOOD BUBBLE","	= new\n"
 	"	x (collision symbol - 1F4A5)"},
 /* 1F5F1 */ { "LIGHTNING MOOD BUBBLE","	= updated"},
 /* 1F5F2 */ { "LIGHTNING MOOD","	= lightning bolt\n"
 	"	x (high voltage sign - 26A1)"},
 /* 1F5F3 */ { "BALLOT BOX WITH BALLOT","	= vote\n"
-	"	x (ballot box with x - 2612)"},
+	"	x (ballot box with x - 2612)\n"
+	"	~ 1F5F3 FE0E text style\n"
+	"	~ 1F5F3 FE0F emoji style"},
 /* 1F5F4 */ { "BALLOT SCRIPT X","	= x mark\n"
 	"	x (ballot x - 2717)"},
 /* 1F5F5 */ { "BALLOT BOX WITH SCRIPT X","	x (ballot box with x - 2612)"},
@@ -39607,7 +41559,8 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5F8 */ { "LIGHT CHECK MARK","	= check\n"
 	"	x (check mark - 2713)"},
 /* 1F5F9 */ { "BALLOT BOX WITH BOLD CHECK","	x (ballot box with check - 2611)"},
-/* 1F5FA */ { "WORLD MAP",NULL},
+/* 1F5FA */ { "WORLD MAP","	~ 1F5FA FE0E text style\n"
+	"	~ 1F5FA FE0F emoji style"},
 /* 1F5FB */ { "MOUNT FUJI",NULL},
 /* 1F5FC */ { "TOKYO TOWER",NULL},
 /* 1F5FD */ { "STATUE OF LIBERTY",NULL},
@@ -39624,11 +41577,11 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F605 */ { "SMILING FACE WITH OPEN MOUTH AND COLD SWEAT",NULL},
 /* 1F606 */ { "SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES",NULL},
 /* 1F607 */ { "SMILING FACE WITH HALO",NULL},
-/* 1F608 */ { "SMILING FACE WITH HORNS",NULL},
+/* 1F608 */ { "SMILING FACE WITH HORNS","	* commonly depicted as a (sinister) smiling version of 1F47F imp"},
 /* 1F609 */ { "WINKING FACE",NULL},
 /* 1F60A */ { "SMILING FACE WITH SMILING EYES",NULL},
 /* 1F60B */ { "FACE SAVOURING DELICIOUS FOOD",NULL},
-/* 1F60C */ { "RELIEVED FACE",NULL},
+/* 1F60C */ { "RELIEVED FACE","	* indicates relief, not sleeping"},
 /* 1F60D */ { "SMILING FACE WITH HEART-SHAPED EYES",NULL},
 /* 1F60E */ { "SMILING FACE WITH SUNGLASSES",NULL},
 /* 1F60F */ { "SMIRKING FACE",NULL},
@@ -39649,29 +41602,29 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F61E */ { "DISAPPOINTED FACE","	x (white frowning face - 2639)"},
 /* 1F61F */ { "WORRIED FACE",NULL},
 /* 1F620 */ { "ANGRY FACE",NULL},
-/* 1F621 */ { "POUTING FACE",NULL},
+/* 1F621 */ { "POUTING FACE","	* intended to depict pouting rather than simply anger"},
 /* 1F622 */ { "CRYING FACE",NULL},
 /* 1F623 */ { "PERSEVERING FACE",NULL},
-/* 1F624 */ { "FACE WITH LOOK OF TRIUMPH",NULL},
+/* 1F624 */ { "FACE WITH LOOK OF TRIUMPH","	* indicates triumph, not anger"},
 /* 1F625 */ { "DISAPPOINTED BUT RELIEVED FACE",NULL},
-/* 1F626 */ { "FROWNING FACE WITH OPEN MOUTH",NULL},
+/* 1F626 */ { "FROWNING FACE WITH OPEN MOUTH","	* frowning, not shocked or surprised"},
 /* 1F627 */ { "ANGUISHED FACE",NULL},
 /* 1F628 */ { "FEARFUL FACE",NULL},
 /* 1F629 */ { "WEARY FACE",NULL},
 /* 1F62A */ { "SLEEPY FACE",NULL},
 /* 1F62B */ { "TIRED FACE",NULL},
-/* 1F62C */ { "GRIMACING FACE",NULL},
+/* 1F62C */ { "GRIMACING FACE","	* should not be depicted with zipper mouth\n"
+	"	x (zipper-mouth face - 1F910)"},
 /* 1F62D */ { "LOUDLY CRYING FACE",NULL},
 /* 1F62E */ { "FACE WITH OPEN MOUTH",NULL},
 /* 1F62F */ { "HUSHED FACE",NULL},
 /* 1F630 */ { "FACE WITH OPEN MOUTH AND COLD SWEAT",NULL},
 /* 1F631 */ { "FACE SCREAMING IN FEAR",NULL},
 /* 1F632 */ { "ASTONISHED FACE",NULL},
-/* 1F633 */ { "FLUSHED FACE",NULL},
+/* 1F633 */ { "FLUSHED FACE","	* embarrassed"},
 /* 1F634 */ { "SLEEPING FACE",NULL},
 /* 1F635 */ { "DIZZY FACE",NULL},
-/* 1F636 */ { "FACE WITHOUT MOUTH","	* used for the South Wind in some Mahjong annotation\n"
-	"	x (white circle with two dots - 2687)"},
+/* 1F636 */ { "FACE WITHOUT MOUTH","	x (white circle with two dots - 2687)"},
 /* 1F637 */ { "FACE WITH MEDICAL MASK",NULL},
 /* 1F638 */ { "GRINNING CAT FACE WITH SMILING EYES",NULL},
 /* 1F639 */ { "CAT FACE WITH TEARS OF JOY",NULL},
@@ -39679,25 +41632,25 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F63B */ { "SMILING CAT FACE WITH HEART-SHAPED EYES",NULL},
 /* 1F63C */ { "CAT FACE WITH WRY SMILE",NULL},
 /* 1F63D */ { "KISSING CAT FACE WITH CLOSED EYES",NULL},
-/* 1F63E */ { "POUTING CAT FACE",NULL},
+/* 1F63E */ { "POUTING CAT FACE","	* intended to depict pouting rather than simply anger"},
 /* 1F63F */ { "CRYING CAT FACE",NULL},
-/* 1F640 */ { "WEARY CAT FACE",NULL},
+/* 1F640 */ { "WEARY CAT FACE","	* indicates tired, not horrified"},
 /* 1F641 */ { "SLIGHTLY FROWNING FACE","	x (white frowning face - 2639)"},
 /* 1F642 */ { "SLIGHTLY SMILING FACE","	x (white smiling face - 263A)"},
 /* 1F643 */ { "UPSIDE-DOWN FACE",NULL},
 /* 1F644 */ { "FACE WITH ROLLING EYES",NULL},
-/* 1F645 */ { "FACE WITH NO GOOD GESTURE",NULL},
+/* 1F645 */ { "FACE WITH NO GOOD GESTURE","	* conveys \"no deal\" or \"not ok\", not anger; the inverse of 1F646 face with ok gesture"},
 /* 1F646 */ { "FACE WITH OK GESTURE",NULL},
-/* 1F647 */ { "PERSON BOWING DEEPLY",NULL},
+/* 1F647 */ { "PERSON BOWING DEEPLY","	* most commonly depicted as Japanese-style bowing while seated (dogeza)"},
 /* 1F648 */ { "SEE-NO-EVIL MONKEY",NULL},
 /* 1F649 */ { "HEAR-NO-EVIL MONKEY",NULL},
 /* 1F64A */ { "SPEAK-NO-EVIL MONKEY",NULL},
 /* 1F64B */ { "HAPPY PERSON RAISING ONE HAND",NULL},
 /* 1F64C */ { "PERSON RAISING BOTH HANDS IN CELEBRATION","	= banzai!"},
 /* 1F64D */ { "PERSON FROWNING",NULL},
-/* 1F64E */ { "PERSON WITH POUTING FACE",NULL},
+/* 1F64E */ { "PERSON WITH POUTING FACE","	* intended to depict pouting rather than simply anger"},
 /* 1F64F */ { "PERSON WITH FOLDED HANDS","	* can indicate sorrow or regret\n"
-	"	* can indicate pleading"},
+	"	* can also indicate pleading, praying, bowing, or thanking"},
 /* 1F650 */ { "NORTH WEST POINTING LEAF",NULL},
 /* 1F651 */ { "SOUTH WEST POINTING LEAF",NULL},
 /* 1F652 */ { "NORTH EAST POINTING LEAF",NULL},
@@ -39724,13 +41677,13 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F667 */ { "HEAVY SOUTH EAST POINTING BUD",NULL},
 /* 1F668 */ { "HOLLOW QUILT SQUARE ORNAMENT",NULL},
 /* 1F669 */ { "HOLLOW QUILT SQUARE ORNAMENT IN BLACK SQUARE",NULL},
-/* 1F66A */ { "SOLID QUILT SQUARE ORNAMENT","	=  fourfold knot ornament"},
+/* 1F66A */ { "SOLID QUILT SQUARE ORNAMENT","	= fourfold knot ornament"},
 /* 1F66B */ { "SOLID QUILT SQUARE ORNAMENT IN BLACK SQUARE","	= inverse fourfold knot ornament"},
 /* 1F66C */ { "LEFTWARDS ROCKET","	x (rocket - 1F680)"},
 /* 1F66D */ { "UPWARDS ROCKET",NULL},
 /* 1F66E */ { "RIGHTWARDS ROCKET",NULL},
 /* 1F66F */ { "DOWNWARDS ROCKET",NULL},
-/* 1F670 */ { "SCRIPT LIGATURE ET ORNAMENT","	= italic ampersand lower case\n"
+/* 1F670 */ { "SCRIPT LIGATURE ET ORNAMENT","	= italic ampersand lowercase\n"
 	"	x (tironian sign et - 204A)"},
 /* 1F671 */ { "HEAVY SCRIPT LIGATURE ET ORNAMENT",NULL},
 /* 1F672 */ { "LIGATURE OPEN ET ORNAMENT",NULL},
@@ -39836,15 +41789,25 @@ static const struct unicode_nameannot una_01_F6[] = {
 	"	x (information source - 2139)"},
 /* 1F6C9 */ { "BOYS SYMBOL",NULL},
 /* 1F6CA */ { "GIRLS SYMBOL",NULL},
-/* 1F6CB */ { "COUCH AND LAMP","	= furniture, lifestyles"},
+/* 1F6CB */ { "COUCH AND LAMP","	= furniture, lifestyles\n"
+	"	~ 1F6CB FE0E text style\n"
+	"	~ 1F6CB FE0F emoji style"},
 /* 1F6CC */ { "SLEEPING ACCOMMODATION","	= hotel, guestrooms\n"
 	"	x (hotel - 1F3E8)"},
-/* 1F6CD */ { "SHOPPING BAGS","	= shopping"},
-/* 1F6CE */ { "BELLHOP BELL","	= reception, services"},
-/* 1F6CF */ { "BED",NULL},
+/* 1F6CD */ { "SHOPPING BAGS","	= shopping\n"
+	"	~ 1F6CD FE0E text style\n"
+	"	~ 1F6CD FE0F emoji style"},
+/* 1F6CE */ { "BELLHOP BELL","	= reception, services\n"
+	"	~ 1F6CE FE0E text style\n"
+	"	~ 1F6CE FE0F emoji style"},
+/* 1F6CF */ { "BED","	~ 1F6CF FE0E text style\n"
+	"	~ 1F6CF FE0F emoji style"},
 /* 1F6D0 */ { "PLACE OF WORSHIP",NULL},
-/* 1F6D1 */ { NULL,NULL},
-/* 1F6D2 */ { NULL,NULL},
+/* 1F6D1 */ { "OCTAGONAL SIGN","	= stop sign\n"
+	"	* may contain text indicating stop\n"
+	"	x (warning sign - 26A0)\n"
+	"	x (heavy white down-pointing triangle - 26DB)"},
+/* 1F6D2 */ { "SHOPPING TROLLEY","	= shopping cart"},
 /* 1F6D3 */ { NULL,NULL},
 /* 1F6D4 */ { NULL,NULL},
 /* 1F6D5 */ { NULL,NULL},
@@ -39859,35 +41822,50 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6DE */ { NULL,NULL},
 /* 1F6DF */ { NULL,NULL},
 /* 1F6E0 */ { "HAMMER AND WRENCH","	= tools, repair facility\n"
-	"	x (hammer and pick - 2692)"},
-/* 1F6E1 */ { "SHIELD","	= US road interstate highway"},
-/* 1F6E2 */ { "OIL DRUM","	= commodities"},
-/* 1F6E3 */ { "MOTORWAY",NULL},
-/* 1F6E4 */ { "RAILWAY TRACK","	= railroad"},
+	"	x (hammer and pick - 2692)\n"
+	"	~ 1F6E0 FE0E text style\n"
+	"	~ 1F6E0 FE0F emoji style"},
+/* 1F6E1 */ { "SHIELD","	= US road interstate highway\n"
+	"	~ 1F6E1 FE0E text style\n"
+	"	~ 1F6E1 FE0F emoji style"},
+/* 1F6E2 */ { "OIL DRUM","	= commodities\n"
+	"	~ 1F6E2 FE0E text style\n"
+	"	~ 1F6E2 FE0F emoji style"},
+/* 1F6E3 */ { "MOTORWAY","	~ 1F6E3 FE0E text style\n"
+	"	~ 1F6E3 FE0F emoji style"},
+/* 1F6E4 */ { "RAILWAY TRACK","	= railroad\n"
+	"	~ 1F6E4 FE0E text style\n"
+	"	~ 1F6E4 FE0F emoji style"},
 /* 1F6E5 */ { "MOTOR BOAT","	= boat\n"
-	"	x (speedboat - 1F6A4)"},
+	"	x (speedboat - 1F6A4)\n"
+	"	~ 1F6E5 FE0E text style\n"
+	"	~ 1F6E5 FE0F emoji style"},
 /* 1F6E6 */ { "UP-POINTING MILITARY AIRPLANE","	= military airport"},
 /* 1F6E7 */ { "UP-POINTING AIRPLANE","	= commercial airport\n"
 	"	x (airplane - 2708)"},
 /* 1F6E8 */ { "UP-POINTING SMALL AIRPLANE","	= airfield"},
-/* 1F6E9 */ { "SMALL AIRPLANE",NULL},
+/* 1F6E9 */ { "SMALL AIRPLANE","	~ 1F6E9 FE0E text style\n"
+	"	~ 1F6E9 FE0F emoji style"},
 /* 1F6EA */ { "NORTHEAST-POINTING AIRPLANE",NULL},
 /* 1F6EB */ { "AIRPLANE DEPARTURE","	= departures"},
 /* 1F6EC */ { "AIRPLANE ARRIVING","	= arrivals"},
 /* 1F6ED */ { NULL,NULL},
 /* 1F6EE */ { NULL,NULL},
 /* 1F6EF */ { NULL,NULL},
-/* 1F6F0 */ { "SATELLITE",NULL},
+/* 1F6F0 */ { "SATELLITE","	~ 1F6F0 FE0E text style\n"
+	"	~ 1F6F0 FE0F emoji style"},
 /* 1F6F1 */ { "ONCOMING FIRE ENGINE","	= fire\n"
 	"	x (fire engine - 1F692)"},
 /* 1F6F2 */ { "DIESEL LOCOMOTIVE","	= train\n"
 	"	x (steam locomotive - 1F682)\n"
 	"	x (train - 1F686)"},
 /* 1F6F3 */ { "PASSENGER SHIP","	= cruise line vacation\n"
-	"	x (ship - 1F6A2)"},
-/* 1F6F4 */ { NULL,NULL},
-/* 1F6F5 */ { NULL,NULL},
-/* 1F6F6 */ { NULL,NULL},
+	"	x (ship - 1F6A2)\n"
+	"	~ 1F6F3 FE0E text style\n"
+	"	~ 1F6F3 FE0F emoji style"},
+/* 1F6F4 */ { "SCOOTER",NULL},
+/* 1F6F5 */ { "MOTOR SCOOTER",NULL},
+/* 1F6F6 */ { "CANOE",NULL},
 /* 1F6F7 */ { NULL,NULL},
 /* 1F6F8 */ { NULL,NULL},
 /* 1F6F9 */ { NULL,NULL},
@@ -40466,24 +42444,24 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F913 */ { "NERD FACE",NULL},
 /* 1F914 */ { "THINKING FACE",NULL},
 /* 1F915 */ { "FACE WITH HEAD-BANDAGE",NULL},
-/* 1F916 */ { "ROBOT FACE",NULL},
+/* 1F916 */ { "ROBOT FACE","	x (alien monster - 1F47E)"},
 /* 1F917 */ { "HUGGING FACE",NULL},
 /* 1F918 */ { "SIGN OF THE HORNS",NULL},
-/* 1F919 */ { NULL,NULL},
-/* 1F91A */ { NULL,NULL},
-/* 1F91B */ { NULL,NULL},
-/* 1F91C */ { NULL,NULL},
-/* 1F91D */ { NULL,NULL},
-/* 1F91E */ { NULL,NULL},
+/* 1F919 */ { "CALL ME HAND",NULL},
+/* 1F91A */ { "RAISED BACK OF HAND",NULL},
+/* 1F91B */ { "LEFT-FACING FIST",NULL},
+/* 1F91C */ { "RIGHT-FACING FIST",NULL},
+/* 1F91D */ { "HANDSHAKE",NULL},
+/* 1F91E */ { "HAND WITH INDEX AND MIDDLE FINGERS CROSSED",NULL},
 /* 1F91F */ { NULL,NULL},
-/* 1F920 */ { NULL,NULL},
-/* 1F921 */ { NULL,NULL},
-/* 1F922 */ { NULL,NULL},
-/* 1F923 */ { NULL,NULL},
-/* 1F924 */ { NULL,NULL},
-/* 1F925 */ { NULL,NULL},
-/* 1F926 */ { NULL,NULL},
-/* 1F927 */ { NULL,NULL},
+/* 1F920 */ { "FACE WITH COWBOY HAT",NULL},
+/* 1F921 */ { "CLOWN FACE",NULL},
+/* 1F922 */ { "NAUSEATED FACE",NULL},
+/* 1F923 */ { "ROLLING ON THE FLOOR LAUGHING","	= rofl, rotfl"},
+/* 1F924 */ { "DROOLING FACE",NULL},
+/* 1F925 */ { "LYING FACE",NULL},
+/* 1F926 */ { "FACE PALM","	= frustration, disbelief"},
+/* 1F927 */ { "SNEEZING FACE","	= gesundheit"},
 /* 1F928 */ { NULL,NULL},
 /* 1F929 */ { NULL,NULL},
 /* 1F92A */ { NULL,NULL},
@@ -40492,53 +42470,61 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F92D */ { NULL,NULL},
 /* 1F92E */ { NULL,NULL},
 /* 1F92F */ { NULL,NULL},
-/* 1F930 */ { NULL,NULL},
+/* 1F930 */ { "PREGNANT WOMAN",NULL},
 /* 1F931 */ { NULL,NULL},
 /* 1F932 */ { NULL,NULL},
-/* 1F933 */ { NULL,NULL},
-/* 1F934 */ { NULL,NULL},
-/* 1F935 */ { NULL,NULL},
-/* 1F936 */ { NULL,NULL},
-/* 1F937 */ { NULL,NULL},
-/* 1F938 */ { NULL,NULL},
-/* 1F939 */ { NULL,NULL},
-/* 1F93A */ { NULL,NULL},
-/* 1F93B */ { NULL,NULL},
-/* 1F93C */ { NULL,NULL},
-/* 1F93D */ { NULL,NULL},
-/* 1F93E */ { NULL,NULL},
+/* 1F933 */ { "SELFIE","	* typically used with face or human figure on the left"},
+/* 1F934 */ { "PRINCE","	x (princess - 1F478)"},
+/* 1F935 */ { "MAN IN TUXEDO","	* appearance for groom, may be paired with 1F470\n"
+	"	x (bride with veil - 1F470)"},
+/* 1F936 */ { "MOTHER CHRISTMAS","	= Mrs. Claus\n"
+	"	x (father christmas - 1F385)"},
+/* 1F937 */ { "SHRUG",NULL},
+/* 1F938 */ { "PERSON DOING CARTWHEEL","	= gymnastics"},
+/* 1F939 */ { "JUGGLING",NULL},
+/* 1F93A */ { "FENCER","	= fencing\n"
+	"	x (crossed swords - 2694)"},
+/* 1F93B */ { "MODERN PENTATHLON",NULL},
+/* 1F93C */ { "WRESTLERS","	= wrestling"},
+/* 1F93D */ { "WATER POLO",NULL},
+/* 1F93E */ { "HANDBALL",NULL},
 /* 1F93F */ { NULL,NULL},
-/* 1F940 */ { NULL,NULL},
-/* 1F941 */ { NULL,NULL},
-/* 1F942 */ { NULL,NULL},
-/* 1F943 */ { NULL,NULL},
-/* 1F944 */ { NULL,NULL},
-/* 1F945 */ { NULL,NULL},
-/* 1F946 */ { NULL,NULL},
-/* 1F947 */ { NULL,NULL},
-/* 1F948 */ { NULL,NULL},
-/* 1F949 */ { NULL,NULL},
-/* 1F94A */ { NULL,NULL},
-/* 1F94B */ { NULL,NULL},
+/* 1F940 */ { "WILTED FLOWER","	x (rose - 1F339)"},
+/* 1F941 */ { "DRUM WITH DRUMSTICKS",NULL},
+/* 1F942 */ { "CLINKING GLASSES","	= celebration, formal toasting\n"
+	"	x (clinking beer mugs - 1F37B)"},
+/* 1F943 */ { "TUMBLER GLASS","	= whisky\n"
+	"	* typically shown with ice\n"
+	"	x (cocktail glass - 1F378)"},
+/* 1F944 */ { "SPOON","	x (fork and knife - 1F374)"},
+/* 1F945 */ { "GOAL NET",NULL},
+/* 1F946 */ { "RIFLE","	= marksmanship, shooting, hunting"},
+/* 1F947 */ { "FIRST PLACE MEDAL","	= gold medal\n"
+	"	x (sports medal - 1F3C5)"},
+/* 1F948 */ { "SECOND PLACE MEDAL","	= silver medal"},
+/* 1F949 */ { "THIRD PLACE MEDAL","	= bronze medal"},
+/* 1F94A */ { "BOXING GLOVE","	= boxing"},
+/* 1F94B */ { "MARTIAL ARTS UNIFORM","	= judo, karate, taekwondo"},
 /* 1F94C */ { NULL,NULL},
 /* 1F94D */ { NULL,NULL},
 /* 1F94E */ { NULL,NULL},
 /* 1F94F */ { NULL,NULL},
-/* 1F950 */ { NULL,NULL},
-/* 1F951 */ { NULL,NULL},
-/* 1F952 */ { NULL,NULL},
-/* 1F953 */ { NULL,NULL},
-/* 1F954 */ { NULL,NULL},
-/* 1F955 */ { NULL,NULL},
-/* 1F956 */ { NULL,NULL},
-/* 1F957 */ { NULL,NULL},
-/* 1F958 */ { NULL,NULL},
-/* 1F959 */ { NULL,NULL},
-/* 1F95A */ { NULL,NULL},
-/* 1F95B */ { NULL,NULL},
-/* 1F95C */ { NULL,NULL},
-/* 1F95D */ { NULL,NULL},
-/* 1F95E */ { NULL,NULL},
+/* 1F950 */ { "CROISSANT",NULL},
+/* 1F951 */ { "AVOCADO",NULL},
+/* 1F952 */ { "CUCUMBER","	= pickle"},
+/* 1F953 */ { "BACON",NULL},
+/* 1F954 */ { "POTATO",NULL},
+/* 1F955 */ { "CARROT",NULL},
+/* 1F956 */ { "BAGUETTE BREAD","	= French bread"},
+/* 1F957 */ { "GREEN SALAD",NULL},
+/* 1F958 */ { "SHALLOW PAN OF FOOD","	= paella, casserole"},
+/* 1F959 */ { "STUFFED FLATBREAD","	= döner kebab, falafel, gyro, shawarma"},
+/* 1F95A */ { "EGG","	= chicken egg"},
+/* 1F95B */ { "GLASS OF MILK","	= milk"},
+/* 1F95C */ { "PEANUTS",NULL},
+/* 1F95D */ { "KIWIFRUIT",NULL},
+/* 1F95E */ { "PANCAKES","	= hotcakes, crêpes, blini\n"
+	"	* sweet or savory"},
 /* 1F95F */ { NULL,NULL},
 /* 1F960 */ { NULL,NULL},
 /* 1F961 */ { NULL,NULL},
@@ -40580,19 +42566,19 @@ static const struct unicode_nameannot una_01_F9[] = {
 	"	x (scorpius - 264F)"},
 /* 1F983 */ { "TURKEY",NULL},
 /* 1F984 */ { "UNICORN FACE",NULL},
-/* 1F985 */ { NULL,NULL},
-/* 1F986 */ { NULL,NULL},
-/* 1F987 */ { NULL,NULL},
-/* 1F988 */ { NULL,NULL},
-/* 1F989 */ { NULL,NULL},
-/* 1F98A */ { NULL,NULL},
-/* 1F98B */ { NULL,NULL},
-/* 1F98C */ { NULL,NULL},
-/* 1F98D */ { NULL,NULL},
-/* 1F98E */ { NULL,NULL},
-/* 1F98F */ { NULL,NULL},
-/* 1F990 */ { NULL,NULL},
-/* 1F991 */ { NULL,NULL},
+/* 1F985 */ { "EAGLE",NULL},
+/* 1F986 */ { "DUCK",NULL},
+/* 1F987 */ { "BAT",NULL},
+/* 1F988 */ { "SHARK",NULL},
+/* 1F989 */ { "OWL",NULL},
+/* 1F98A */ { "FOX FACE",NULL},
+/* 1F98B */ { "BUTTERFLY",NULL},
+/* 1F98C */ { "DEER",NULL},
+/* 1F98D */ { "GORILLA",NULL},
+/* 1F98E */ { "LIZARD",NULL},
+/* 1F98F */ { "RHINOCEROS",NULL},
+/* 1F990 */ { "SHRIMP",NULL},
+/* 1F991 */ { "SQUID",NULL},
 /* 1F992 */ { NULL,NULL},
 /* 1F993 */ { NULL,NULL},
 /* 1F994 */ { NULL,NULL},
@@ -41495,7 +43481,7 @@ static const struct unicode_nameannot una_02_FA[] = {
 
 static const struct unicode_nameannot una_0E_00[] = {
 /* E0000 */ { NULL,NULL},
-/* E0001 */ { "LANGUAGE TAG",NULL},
+/* E0001 */ { "LANGUAGE TAG","	* This character is deprecated, and its use is strongly discouraged."},
 /* E0002 */ { NULL,NULL},
 /* E0003 */ { NULL,NULL},
 /* E0004 */ { NULL,NULL},
@@ -42299,7 +44285,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	una_01_1A,
 	nullarray,
-	nullarray,
+	una_01_1C,
 	nullarray,
 	nullarray,
 	nullarray,
@@ -42407,9 +44393,9 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	nullarray,
 	nullarray,
-	nullarray,
-	nullarray,
-	nullarray,
+	una_01_88,
+	una_01_89,
+	una_01_8A,
 	nullarray,
 	nullarray,
 	nullarray,
@@ -42495,7 +44481,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	nullarray,
 	nullarray,
-	nullarray,
+	una_01_E0,
 	nullarray,
 	nullarray,
 	nullarray,
@@ -42504,7 +44490,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	nullarray,
 	una_01_E8,
-	nullarray,
+	una_01_E9,
 	nullarray,
 	nullarray,
 	nullarray,
