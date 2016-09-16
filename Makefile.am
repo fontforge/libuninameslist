@@ -1,6 +1,8 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
-ACLOCAL_AMFLAGS = -I m4 $(ACLOCAL_FLAGS)
+# The braces around ACLOCAL_FLAGS below instead of parentheses are intentional!
+# Otherwise autoreconf misparses the line.
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 AM_CFLAGS = $(WCFLAGS) $(UN_CFLAGS)
 AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
