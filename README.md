@@ -121,8 +121,21 @@ $ sudo make install
 ```
 
 If you need to also include libuninameslist-fr, you will want to use:
+```bash
 $ ./configure --help
 $ ./configure --enable-frenchlib
+```
+
+NOTE: Some Distros and Operating Systems may require you to run 'ldconfig' to
+recognize LibUniNamesList if you are not rebooting your computer first before
+loading another program that depends on LibUniNamesList. To do this, you may
+need to run 'ldconfig' in 'su -' mode after you have done 'make install':
+```bash
+	$ su -
+	# ldconfig
+	# exit
+	$
+```
 
 See Also
 --------
