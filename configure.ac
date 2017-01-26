@@ -59,6 +59,8 @@ AC_CONFIG_SRCDIR([buildnameslist.c])
 AM_INIT_AUTOMAKE([foreign -Wall])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
+AC_CANONICAL_HOST
+AC_CANONICAL_BUILD
 
 #-------------------------------------------
 # automake 1.12 seems to require AM_PROG_AR,
@@ -68,13 +70,15 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
+# Check building environment
 AC_PROG_CC
-AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MKDIR_P
 AC_PROG_MAKE_SET
 AC_PROG_SED
-AC_PATH_PROGS([WGET],[wget],[wget])
+AC_CHECK_TOOL([WGET],[wget],[:])
+AC_CHECK_TOOL([STRIP],[strip],[:])
+AC_PROG_INSTALL
 
 #-------------------------------------------
 # Indicate this is a release build and that
@@ -104,8 +108,7 @@ AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may 
 AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xtrue])
 
 #-------------------------------------------
-# Platform specific stuff
-AC_CANONICAL_HOST
+# Platform specific stuff, AC_CANONICAL_HOST
 case "$host" in
 *-pc-cygwin*)
  AC_DEFINE(__CygWin,1)
