@@ -1,6 +1,6 @@
 # -*- Autoconf -*-
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.61])
+AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
