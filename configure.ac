@@ -4,9 +4,9 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20160701]) dnl yyyymmdd
+m4_define([uninameslist_package_stamp], [20170319beta]) dnl yyyymmdd
 m4_define([uninameslist_major_version], [9]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [0])
+m4_define([uninameslist_minor_version], [9])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
@@ -194,6 +194,7 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES([
 Makefile
+tests/Makefile
 libuninameslist.pc
 ])
 

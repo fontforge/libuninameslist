@@ -1,3 +1,6 @@
+- 2017-Mar-19
+    * Unicode 10.0_Beta (Nameslist.txt 10_Beta for review until Apr30).
+
 - 2016-Jul-01
     * Version 1.0, Unicode 9.0, French version is 7.0(2014-06-22).
     * Corrected library to report correctly as next version up. This is
@@ -27,7 +30,7 @@
     * This will be tagged as version 0.3
 
 - 2013-Apr-28
-    * Seperate namelist.h and namelist-fr.h due to different versions.
+    * Separate namelist.h and namelist-fr.h due to different versions.
     * Clarify README to indicated differences between both libraries.
     * Closes bugs http://sourceforge.net "WFLAGS value - ID: 1307144",
 	"pkg-config support and fix for bug 1307144 - ID: 3402865"

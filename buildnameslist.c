@@ -11,7 +11,8 @@
 /* must be present in the current directory. Then, builds two arrays  */
 /* of strings for each unicode character. One array contains the name */
 /* of the character, the other holds annotations for each character.  */
-/* Outputs nameslist.c containing these two sparse arrays */
+/* Outputs nameslist.c containing these two sparse arrays:	      */
+/* Build program using: make buildnameslist			      */
 
 /* 2=={English=0, French=1} */
 static char *uninames[2][17*65536];
