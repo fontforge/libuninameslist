@@ -18,31 +18,147 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 */
 
-//#include <math.h>
-//#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "uninameslist.h"
 
-int main(int argc, char **argv) {
+const char NOTCMP[]="Annotation can vary, check to exist, string not compared";
+
+int test(long val, const char *result, const char *expect) {
+
+    printf("test code=");
+    if ( val<0 )
+	printf("%d,",val);
+    else if ( val<65536 )
+	printf("U+%04x,",val);
+    else
+	printf("0x%08x,",val);
+
+    if ( result==NULL ) {
+	if ( expect!=NULL ) {
+	    printf("\n  ret=NULL\n  exp=\"%s\".\n",expect);
+	    return( 0 );
+	}
+	printf("  return=NULL value\n");
+	return( 1 );
+    }
+
+    printf("\n  ret=\"%s\"\n  exp=\"%s\"\n",result,expect);
+    return( (strcmp(result,expect)==0 || NOTCMP==expect ? 1:0) );
+}
+
+#ifdef DO_CALL_TEST0
+const char *test_name(unsigned long uni) {
+    const char *pt;
+
+    pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;
+    return( pt );
+}
+
+const char *test_annot(unsigned long uni) {
+    const char *pt;
+
+    pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
+    return( pt );
+}
+
+int test_calls_2012(void) {
+/* Verify backwards compatibility for older programs. */
+    return( ((test(32,test_name(32),"SPACE") && \
+	      test(32,test_annot(32),NOTCMP) && \
+	      test(58,test_name(58),"COLON") && \
+	      test(126,test_name(126),"TILDE"))?0:-1) );
+}
+#endif
+
+#ifdef DO_CALL_TEST1
+int test_calls_03(void) {
     int ret;
     const char *cc;
-    char *c;
 
-    /* expect "LATIN CAPITAL LETTER A" */
-    cc = uniNamesList_name(65);
-    printf("test, return=\"%s\"=uniNamesList_name(65);\n",cc);
+    if ( uniNamesList_name(-100)==NULL && \
+	 uniNamesList_name(0x300000)==NULL && \
+	 test(32,uniNamesList_name(32),"SPACE") && \
+	 test(59,uniNamesList_name(59),"SEMICOLON") && \
+	 test(63,uniNamesList_name(63),"QUESTION MARK") && \
+	 test(0x1F3A9,uniNamesList_name(0x1F3A9),"TOP HAT") )
+	;
+    else {
+	printf("error with uniNamesList_name(code)\n");
+	return( -1 );
+    }
+
+    if ( uniNamesList_annot(-100)==NULL && \
+	 uniNamesList_annot(0x300000)==NULL && \
+	 test(32,uniNamesList_annot(32),NOTCMP) && \
+	 test(66,uniNamesList_annot(66),NOTCMP) && \
+	 test(126,uniNamesList_annot(126),NOTCMP) && \
+	 test(0x1F3B5,uniNamesList_annot(0x1F3B5),NOTCMP) )
+	;
+    else {
+	printf("error with uniNamesList_annot(code)\n");
+	return( -2 );
+    }
 
     cc = uniNamesList_NamesListVersion();
-    printf("test, return=\"%s\"=uniNamesList_NamesListVersion(void);\n",cc);
+    printf("test uniNamesList_NamesListVersion(), return=\"%s\"\n",cc);
+    if ( cc==NULL || cc[0]!='N' )
+	return( -3 );
+
+    return( 0 );
+}
+#endif
+
+#ifdef DO_CALL_TEST2
+int test_calls_04(void) {
+    int ret;
+    const char *cc;
+
+    ret = 0;
+
+    cc = uniNamesList_NamesListVersion();
+    printf("test uniNamesList_NamesListVersion(), return=\"%s\"\n",cc);
+    if ( cc==NULL || cc[0]!='N' )
+	return( -1 );
 
     ret = uniNamesList_blockCount();
     printf("test, return=%d=uniNamesList_blockCount(void);\n",ret);
-    if ( ret<10) {
-        printf("error, expected positive value\n");
-        return -1;
+    if ( ret<100) {
+        printf("error, expected positive value (over 100).\n");
+        return( -2 );
     }
 
-    ret = 0;
+    if ( uniNamesList_blockName(-100)==NULL && \
+	 uniNamesList_blockName(0x300000)==NULL && \
+	 test(0,uniNamesList_blockName(0),NOTCMP) && \
+	 test(1,uniNamesList_blockName(1),NOTCMP) && \
+	 test(12,uniNamesList_annot(12),NOTCMP) && \
+	 test(50,uniNamesList_blockName(50),NOTCMP) )
+	;
+    else {
+	printf("error with uniNamesList_blockName(uniBlock)\n");
+	return( -2 );
+    }
+
+    return( 0 );
+}
+#endif
+
+int main(int argc, char **argv) {
+    int ret;
+
+#ifdef DO_CALL_TEST0
+    /* test 20120731 version calls for older programs */
+    ret=test_calls_2012();
+#endif
+#ifdef DO_CALL_TEST1
+    /* test function calls available for 0.3.20130423 */
+    ret=test_calls_03();
+#endif
+#ifdef DO_CALL_TEST2
+    /* test function calls available for 0.4.20140731 */
+    ret=test_calls_04();
+#endif
     return ret;
 }

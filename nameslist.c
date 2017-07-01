@@ -9,7 +9,7 @@ The data contained in these arrays were derived from data contained in
 NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
-Copyright © 1991-2016 Unicode, Inc. All rights reserved.
+Copyright © 1991-2017 Unicode, Inc. All rights reserved.
 Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Unicode data files and any associated documentation (the "Data Files")
@@ -65,7 +65,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 
 /* Retrieve Nameslist.txt version number. */
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 9.9" );
+	return( "Nameslist-Version: 10.0" );
 }
 
 
@@ -907,7 +907,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (lira sign - 20A4)\n"
 	"	x (turkish lira sign - 20BA)\n"
 	"	x (roman semuncia sign - 10192)"},
-/* 00A4 */ { "CURRENCY SIGN","	* other currency symbol characters: 20A0-20BA\n"
+/* 00A4 */ { "CURRENCY SIGN","	* other currency symbol characters: 20A0-20BF\n"
 	"	x (dollar sign - 0024)"},
 /* 00A5 */ { "YEN SIGN","	= yuan sign\n"
 	"	* glyph may have one or two crossbars, but official symbol in Japan and China has two"},
@@ -8121,7 +8121,7 @@ static const struct unicode_nameannot una_00_18[] = {
 	"	~ 1828 180B second form (initial)\n"
 	"	~ 1828 180B second form (medial)\n"
 	"	~ 1828 180C third form (medial)\n"
-	"	~ 1828 180D separate form (medial)"},
+	"	~ 1828 180D fourth form (medial)"},
 /* 1829 */ { "MONGOLIAN LETTER ANG","	~ 1829 ALT1 first form (initial)\n"
 	"	~ 1829 ALT1 first form (medial)\n"
 	"	~ 1829 ALT1 first form (final)"},
@@ -8129,7 +8129,7 @@ static const struct unicode_nameannot una_00_18[] = {
 	"	~ 182A ALT1 first form (initial)\n"
 	"	~ 182A ALT1 first form (medial)\n"
 	"	~ 182A ALT1 first form (final)\n"
-	"	~ 182A 180B alternative form (final)"},
+	"	~ 182A 180B second form (final)"},
 /* 182B */ { "MONGOLIAN LETTER PA","	x (cyrillic small letter pe - 043F)\n"
 	"	~ 182B ALT1 first form (initial)\n"
 	"	~ 182B ALT1 first form (medial)\n"
@@ -8335,12 +8335,14 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 185C */ { "MONGOLIAN LETTER TODO DZA","	~ 185C ALT1 first form (initial)\n"
 	"	~ 185C ALT1 first form (medial)\n"
 	"	~ 185C ALT1 first form (final)"},
-/* 185D */ { "MONGOLIAN LETTER SIBE E","	~ 185D ALT1 first form (initial)\n"
+/* 185D */ { "MONGOLIAN LETTER SIBE E","	~ 185D ALT1 first form (isolate)\n"
+	"	~ 185D ALT1 first form (initial)\n"
 	"	~ 185D ALT1 first form (medial)\n"
 	"	~ 185D ALT1 first form (final)\n"
 	"	~ 185D 180B second form (medial)\n"
 	"	~ 185D 180B second form (final)"},
-/* 185E */ { "MONGOLIAN LETTER SIBE I","	~ 185E ALT1 first form (initial)\n"
+/* 185E */ { "MONGOLIAN LETTER SIBE I","	~ 185E ALT1 first form (isolate)\n"
+	"	~ 185E ALT1 first form (initial)\n"
 	"	~ 185E ALT1 first form (medial)\n"
 	"	~ 185E ALT1 first form (final)\n"
 	"	~ 185E 180B second form (medial)\n"
@@ -8355,7 +8357,8 @@ static const struct unicode_nameannot una_00_18[] = {
 	"	~ 1860 ALT1 first form (final)\n"
 	"	~ 1860 180B second form (medial)\n"
 	"	~ 1860 180B second form (final)"},
-/* 1861 */ { "MONGOLIAN LETTER SIBE U","	~ 1861 ALT1 first form (initial)\n"
+/* 1861 */ { "MONGOLIAN LETTER SIBE U","	~ 1861 ALT1 first form (isolate)\n"
+	"	~ 1861 ALT1 first form (initial)\n"
 	"	~ 1861 ALT1 first form (medial)\n"
 	"	~ 1861 ALT1 first form (final)"},
 /* 1862 */ { "MONGOLIAN LETTER SIBE ANG","	~ 1862 ALT1 first form (initial)\n"
@@ -8417,7 +8420,8 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 1872 */ { "MONGOLIAN LETTER SIBE ZHA","	~ 1872 ALT1 first form (initial)\n"
 	"	~ 1872 ALT1 first form (medial)\n"
 	"	~ 1872 ALT1 first form (final)"},
-/* 1873 */ { "MONGOLIAN LETTER MANCHU I","	~ 1873 ALT1 first form (initial)\n"
+/* 1873 */ { "MONGOLIAN LETTER MANCHU I","	~ 1873 ALT1 first form (isolate)\n"
+	"	~ 1873 ALT1 first form (initial)\n"
 	"	~ 1873 ALT1 first form (medial)\n"
 	"	~ 1873 ALT1 first form (final)\n"
 	"	~ 1873 180B second form (medial)\n"
@@ -9589,15 +9593,16 @@ static const struct unicode_nameannot una_00_1C[] = {
 /* 1C7D */ { "OL CHIKI AHAD","	* deglottalizes consonants"},
 /* 1C7E */ { "OL CHIKI PUNCTUATION MUCAAD",NULL},
 /* 1C7F */ { "OL CHIKI PUNCTUATION DOUBLE MUCAAD",NULL},
-/* 1C80 */ { "CYRILLIC SMALL LETTER ROUNDED VE",NULL},
-/* 1C81 */ { "CYRILLIC SMALL LETTER LONG-LEGGED DE",NULL},
-/* 1C82 */ { "CYRILLIC SMALL LETTER NARROW O",NULL},
-/* 1C83 */ { "CYRILLIC SMALL LETTER WIDE ES",NULL},
+/* 1C80 */ { "CYRILLIC SMALL LETTER ROUNDED VE","	x (cyrillic small letter ve - 0432)"},
+/* 1C81 */ { "CYRILLIC SMALL LETTER LONG-LEGGED DE","	x (cyrillic small letter de - 0434)"},
+/* 1C82 */ { "CYRILLIC SMALL LETTER NARROW O","	x (cyrillic small letter o - 043E)"},
+/* 1C83 */ { "CYRILLIC SMALL LETTER WIDE ES","	x (cyrillic small letter es - 0441)"},
 /* 1C84 */ { "CYRILLIC SMALL LETTER TALL TE",NULL},
-/* 1C85 */ { "CYRILLIC SMALL LETTER THREE-LEGGED TE",NULL},
-/* 1C86 */ { "CYRILLIC SMALL LETTER TALL HARD SIGN",NULL},
-/* 1C87 */ { "CYRILLIC SMALL LETTER TALL YAT",NULL},
-/* 1C88 */ { "CYRILLIC SMALL LETTER UNBLENDED UK",NULL},
+/* 1C85 */ { "CYRILLIC SMALL LETTER THREE-LEGGED TE","	x (cyrillic small letter te - 0442)"},
+/* 1C86 */ { "CYRILLIC SMALL LETTER TALL HARD SIGN","	x (cyrillic small letter hard sign - 044A)"},
+/* 1C87 */ { "CYRILLIC SMALL LETTER TALL YAT","	x (cyrillic small letter yat - 0463)"},
+/* 1C88 */ { "CYRILLIC SMALL LETTER UNBLENDED UK","	x (cyrillic small letter uk - 0479)\n"
+	"	x (cyrillic small letter monograph uk - A64B)"},
 /* 1C89 */ { NULL,NULL},
 /* 1C8A */ { NULL,NULL},
 /* 1C8B */ { NULL,NULL},
@@ -11968,7 +11973,7 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23B8 */ { "LEFT VERTICAL BOX LINE",NULL},
 /* 23B9 */ { "RIGHT VERTICAL BOX LINE",NULL},
 /* 23BA */ { "HORIZONTAL SCAN LINE-1",NULL},
-/* 23BB */ { "HORIZONTAL SCAN LINE-3",NULL},
+/* 23BB */ { "HORIZONTAL SCAN LINE-3","	* scan line-5 is unified with the box-drawing graphic character 2500"},
 /* 23BC */ { "HORIZONTAL SCAN LINE-7",NULL},
 /* 23BD */ { "HORIZONTAL SCAN LINE-9",NULL},
 /* 23BE */ { "DENTISTRY SYMBOL LIGHT VERTICAL AND TOP RIGHT","	x (left ceiling - 2308)"},
@@ -14359,9 +14364,9 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B77 */ { "NORTH EAST TRIANGLE-HEADED ARROW TO BAR",NULL},
 /* 2B78 */ { "SOUTH EAST TRIANGLE-HEADED ARROW TO BAR","	= end"},
 /* 2B79 */ { "SOUTH WEST TRIANGLE-HEADED ARROW TO BAR",NULL},
-/* 2B7A */ { "LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE",NULL},
+/* 2B7A */ { "LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE","	% LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE"},
 /* 2B7B */ { "UPWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE","	= page up"},
-/* 2B7C */ { "RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE",NULL},
+/* 2B7C */ { "RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE","	% RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE"},
 /* 2B7D */ { "DOWNWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE","	= page down"},
 /* 2B7E */ { "HORIZONTAL TAB KEY","	x (leftwards arrow to bar over rightwards arrow to bar - 21B9)"},
 /* 2B7F */ { "VERTICAL TAB KEY",NULL},
@@ -15697,9 +15702,9 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 3030 */ { "WAVY DASH","	x (wavy line - 2307)\n"
 	"	x (wave dash - 301C)"},
 /* 3031 */ { "VERTICAL KANA REPEAT MARK",NULL},
-/* 3032 */ { "VERTICAL KANA REPEAT WITH VOICED SOUND MARK","	* the preceding two semantic characters are preferred to the following three glyphic forms"},
+/* 3032 */ { "VERTICAL KANA REPEAT WITH VOICED SOUND MARK","	* implemented as glyphs that are two-em tall"},
 /* 3033 */ { "VERTICAL KANA REPEAT MARK UPPER HALF",NULL},
-/* 3034 */ { "VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF","	* the preceding two are glyphs used in conjunction with the following glyph"},
+/* 3034 */ { "VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF","	* implemented as glyphs that are one-em tall and that combine with the following character to form ligated two-em glyphs for the complete repeat marks"},
 /* 3035 */ { "VERTICAL KANA REPEAT MARK LOWER HALF",NULL},
 /* 3036 */ { "CIRCLED POSTAL MARK","	# 3012 postal mark"},
 /* 3037 */ { "IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL",NULL},
@@ -16573,7 +16578,8 @@ static const struct unicode_nameannot una_00_33[] = {
 	"	# <square> 30CF 30A4 30C4"},
 /* 332B */ { "SQUARE PAASENTO","	* percent\n"
 	"	# <square> 30D1 30FC 30BB 30F3 30C8"},
-/* 332C */ { "SQUARE PAATU","	* parts\n"
+/* 332C */ { "SQUARE PAATU","	* a mistaken, unused representation originally intended for the Thai baht currency sign\n"
+	"	x (thai currency symbol baht - 0E3F)\n"
 	"	# <square> 30D1 30FC 30C4"},
 /* 332D */ { "SQUARE BAARERU","	* barrel\n"
 	"	# <square> 30D0 30FC 30EC 30EB"},
@@ -20613,7 +20619,10 @@ static const struct unicode_nameannot una_00_F9[] = {
 /* F929 */ { "CJK COMPATIBILITY IDEOGRAPH-F929","	: 6717"},
 /* F92A */ { "CJK COMPATIBILITY IDEOGRAPH-F92A","	: 6D6A"},
 /* F92B */ { "CJK COMPATIBILITY IDEOGRAPH-F92B","	: 72FC"},
-/* F92C */ { "CJK COMPATIBILITY IDEOGRAPH-F92C","	: 90CE"},
+/* F92C */ { "CJK COMPATIBILITY IDEOGRAPH-F92C","	* a mapping change removed the original K0 source\n"
+	"	x (cjk unified ideograph-90DE - 90DE)\n"
+	"	x (cjk compatibility ideograph-FA2E - FA2E)\n"
+	"	: 90CE"},
 /* F92D */ { "CJK COMPATIBILITY IDEOGRAPH-F92D","	: 4F86"},
 /* F92E */ { "CJK COMPATIBILITY IDEOGRAPH-F92E","	: 51B7"},
 /* F92F */ { "CJK COMPATIBILITY IDEOGRAPH-F92F","	: 52DE"},
@@ -20753,7 +20762,9 @@ static const struct unicode_nameannot una_00_F9[] = {
 /* F9B5 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B5","	: 4F8B"},
 /* F9B6 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B6","	: 79AE"},
 /* F9B7 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B7","	: 91B4"},
-/* F9B8 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B8","	x (cjk unified ideograph-96B7 - 96B7)\n"
+/* F9B8 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B8","	* a mapping change removed the original K0 source\n"
+	"	x (cjk unified ideograph-96B7 - 96B7)\n"
+	"	x (cjk compatibility ideograph-FA2F - FA2F)\n"
 	"	: 96B8"},
 /* F9B9 */ { "CJK COMPATIBILITY IDEOGRAPH-F9B9","	: 60E1"},
 /* F9BA */ { "CJK COMPATIBILITY IDEOGRAPH-F9BA","	: 4E86"},
@@ -24813,10 +24824,10 @@ static const struct unicode_nameannot una_01_09[] = {
 /* 1091C */ { NULL,NULL},
 /* 1091D */ { NULL,NULL},
 /* 1091E */ { NULL,NULL},
-/* 1091F */ { "PHOENICIAN WORD SEPARATOR","	x (full stop - 002E)\n"
+/* 1091F */ { "PHOENICIAN WORD SEPARATOR","	* sometimes shown with a glyph for a short vertical bar\n"
+	"	x (full stop - 002E)\n"
 	"	x (middle dot - 00B7)\n"
-	"	x (word separator middle dot - 2E31)\n"
-	"	* sometimes shown with a glyph for a short vertical bar"},
+	"	x (word separator middle dot - 2E31)"},
 /* 10920 */ { "LYDIAN LETTER A",NULL},
 /* 10921 */ { "LYDIAN LETTER B",NULL},
 /* 10922 */ { "LYDIAN LETTER G",NULL},
@@ -28599,6 +28610,7 @@ static const struct unicode_nameannot una_01_1A[] = {
 /* 11A33 */ { "ZANABAZAR SQUARE FINAL CONSONANT MARK","	* used for marking a syllable-final consonant in Mongolian\n"
 	"	* indicates a syllabic boundary in Mongolian"},
 /* 11A34 */ { "ZANABAZAR SQUARE SIGN VIRAMA","	* indicates a bare consonant in Sanskrit and Tibetan\n"
+	"	* not used for conjunct formation\n"
 	"	x (tibetan mark halanta - 0F84)"},
 /* 11A35 */ { "ZANABAZAR SQUARE SIGN CANDRABINDU","	* indicates nasalization\n"
 	"	x (tibetan sign sna ldan - 0F83)\n"
@@ -28624,7 +28636,7 @@ static const struct unicode_nameannot una_01_1A[] = {
 /* 11A44 */ { "ZANABAZAR SQUARE MARK LONG TSHEG","	x (tibetan mark gter tsheg - 0F14)"},
 /* 11A45 */ { "ZANABAZAR SQUARE INITIAL DOUBLE-LINED HEAD MARK","	x (tibetan mark initial yig mgo mdun ma - 0F04)"},
 /* 11A46 */ { "ZANABAZAR SQUARE CLOSING DOUBLE-LINED HEAD MARK","	x (tibetan mark closing yig mgo sgab ma - 0F05)"},
-/* 11A47 */ { "ZANABAZAR SQUARE SUBJOINER",NULL},
+/* 11A47 */ { "ZANABAZAR SQUARE SUBJOINER","	* used for producing consonant conjuncts"},
 /* 11A48 */ { NULL,NULL},
 /* 11A49 */ { NULL,NULL},
 /* 11A4A */ { NULL,NULL},
@@ -29143,8 +29155,8 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11D43 */ { "MASARAM GONDI SIGN CANDRA","	* used for transcribing foreign vowels"},
 /* 11D44 */ { "MASARAM GONDI SIGN HALANTA","	* used for silencing the inherent vowel"},
 /* 11D45 */ { "MASARAM GONDI VIRAMA","	* used for producing conjuncts"},
-/* 11D46 */ { "MASARAM GONDI REPHA","	* cluster-initial form of RA"},
-/* 11D47 */ { "MASARAM GONDI RA-KARA","	* cluster-final form of RA"},
+/* 11D46 */ { "MASARAM GONDI REPHA","	* cluster-initial form of 11D26"},
+/* 11D47 */ { "MASARAM GONDI RA-KARA","	* cluster-final form of 11D26"},
 /* 11D48 */ { NULL,NULL},
 /* 11D49 */ { NULL,NULL},
 /* 11D4A */ { NULL,NULL},
@@ -36164,7 +36176,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 	"	* French suffix -tan\n"
 	"	* Romanian str-/-str"},
 /* 1BC79 */ { "DUPLOYAN AFFIX ATTACHED TAIL","	* orientating character\n"
-	"	* French suffix -sionaire"},
+	"	* French suffix -sionnaire"},
 /* 1BC7A */ { "DUPLOYAN AFFIX ATTACHED E HOOK","	* glyph is retrograde and opens up or down, depending on preceding letter\n"
 	"	* French suffix -te\n"
 	"	x (duployan letter e - 1BC47)"},
@@ -36227,11 +36239,11 @@ static const struct unicode_nameannot una_01_BC[] = {
 	"	* French number millions\n"
 	"	x (modifier letter low grave accent - 02CE)"},
 /* 1BC93 */ { "DUPLOYAN AFFIX LOW LONG GRAVE","	* Pernin extra-"},
-/* 1BC94 */ { "DUPLOYAN AFFIX LOW DOT","	* French suffix -ie\n"
+/* 1BC94 */ { "DUPLOYAN AFFIX LOW DOT","	* French suffix -ié\n"
 	"	* French iterative number\n"
 	"	* Romanian affix inter-\n"
 	"	* not Romanian millions - see 0323 combining dot below and 0324 combining diaeresis below"},
-/* 1BC95 */ { "DUPLOYAN AFFIX LOW CIRCLE","	* French suffix -iere\n"
+/* 1BC95 */ { "DUPLOYAN AFFIX LOW CIRCLE","	* French suffix -ière\n"
 	"	* French percent\n"
 	"	x (modifier letter low ring - 02F3)"},
 /* 1BC96 */ { "DUPLOYAN AFFIX LOW LINE","	* French suffix -isme\n"
@@ -37169,7 +37181,7 @@ static const struct unicode_nameannot una_01_D2[] = {
 
 static const struct unicode_nameannot una_01_D3[] = {
 /* 1D300 */ { "MONOGRAM FOR EARTH","	= ren\n"
-	"	* usually associated with human (Chinese ren), rather than earth\n"
+	"	* usually associated with human (Chinese rén), rather than earth (Chinese dì)\n"
 	"	x (monogram for yang - 268A)\n"
 	"	x (monogram for yin - 268B)"},
 /* 1D301 */ { "DIGRAM FOR HEAVENLY EARTH","	= tian ren"},
@@ -41243,7 +41255,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F307 */ { "SUNSET OVER BUILDINGS",NULL},
 /* 1F308 */ { "RAINBOW",NULL},
 /* 1F309 */ { "BRIDGE AT NIGHT",NULL},
-/* 1F30A */ { "WATER WAVE",NULL},
+/* 1F30A */ { "WATER WAVE","	= tsunami, tidal wave"},
 /* 1F30B */ { "VOLCANO",NULL},
 /* 1F30C */ { "MILKY WAY",NULL},
 /* 1F30D */ { "EARTH GLOBE EUROPE-AFRICA",NULL},
@@ -41405,7 +41417,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 	"	x (bouquet - 1F490)"},
 /* 1F396 */ { "MILITARY MEDAL",NULL},
 /* 1F397 */ { "REMINDER RIBBON",NULL},
-/* 1F398 */ { "MUSICAL KEYBOARD WITH JACKS","	= midi, midi keyboard\n"
+/* 1F398 */ { "MUSICAL KEYBOARD WITH JACKS","	= midi, midi keyboard, master keyboard with plugs\n"
 	"	x (musical keyboard - 1F3B9)"},
 /* 1F399 */ { "STUDIO MICROPHONE","	= microphone\n"
 	"	x (microphone - 1F3A4)"},
@@ -41497,8 +41509,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 	"	x (cityscape at dusk - 1F306)"},
 /* 1F3DA */ { "DERELICT HOUSE BUILDING","	= derelict site"},
 /* 1F3DB */ { "CLASSICAL BUILDING","	= public building"},
-/* 1F3DC */ { "DESERT","	= desert\n"
-	"	x (cactus - 1F335)"},
+/* 1F3DC */ { "DESERT","	x (cactus - 1F335)"},
 /* 1F3DD */ { "DESERT ISLAND","	= island\n"
 	"	x (palm tree - 1F334)"},
 /* 1F3DE */ { "NATIONAL PARK","	* by semantic extension has come to connote saving trees, and hence is also used as a symbol meaning \"do not print this (email, document)\"\n"
@@ -41688,7 +41699,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F47A */ { "JAPANESE GOBLIN",NULL},
 /* 1F47B */ { "GHOST",NULL},
 /* 1F47C */ { "BABY ANGEL",NULL},
-/* 1F47D */ { "EXTRATERRESTRIAL ALIEN",NULL},
+/* 1F47D */ { "EXTRATERRESTRIAL ALIEN","	x (flying saucer - 1F6F8)"},
 /* 1F47E */ { "ALIEN MONSTER","	x (robot face - 1F916)"},
 /* 1F47F */ { "IMP","	* commonly depicted as a frowning/angry version of 1F608 smiling face with horns"},
 /* 1F480 */ { "SKULL",NULL},
@@ -41741,7 +41752,8 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4A7 */ { "DROPLET","	* represents a drop of sweat or drop of water\n"
 	"	x (black droplet - 1F322)"},
 /* 1F4A8 */ { "DASH SYMBOL","	= running dash, briffits"},
-/* 1F4A9 */ { "PILE OF POO","	= dog dirt"},
+/* 1F4A9 */ { "PILE OF POO","	= dog dirt\n"
+	"	* may be depicted with or without a friendly face"},
 /* 1F4AA */ { "FLEXED BICEPS","	= strong, muscled"},
 /* 1F4AB */ { "DIZZY SYMBOL","	= circling stars, squeans"},
 /* 1F4AC */ { "SPEECH BALLOON","	= comic book conversation bubble"},
@@ -42443,8 +42455,9 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6F4 */ { "SCOOTER",NULL},
 /* 1F6F5 */ { "MOTOR SCOOTER",NULL},
 /* 1F6F6 */ { "CANOE",NULL},
-/* 1F6F7 */ { "SLED",NULL},
-/* 1F6F8 */ { "FLYING SAUCER",NULL},
+/* 1F6F7 */ { "SLED","	= sledge, toboggan"},
+/* 1F6F8 */ { "FLYING SAUCER","	= UFO\n"
+	"	x (extraterrestrial alien - 1F47D)"},
 /* 1F6F9 */ { NULL,NULL},
 /* 1F6FA */ { NULL,NULL},
 /* 1F6FB */ { NULL,NULL},
@@ -42612,7 +42625,7 @@ static const struct unicode_nameannot una_01_F7[] = {
 /* 1F783 */ { "BLACK DOWN-POINTING ISOSCELES RIGHT TRIANGLE","	x (black medium down-pointing triangle - 23F7)"},
 /* 1F784 */ { "BLACK SLIGHTLY SMALL CIRCLE",NULL},
 /* 1F785 */ { "MEDIUM BOLD WHITE CIRCLE","	x (medium white circle - 26AA)"},
-/* 1F786 */ { "BOLD WHITE CIRCLE","	= very heavy circle"},
+/* 1F786 */ { "BOLD WHITE CIRCLE",NULL},
 /* 1F787 */ { "HEAVY WHITE CIRCLE",NULL},
 /* 1F788 */ { "VERY HEAVY WHITE CIRCLE",NULL},
 /* 1F789 */ { "EXTREMELY HEAVY WHITE CIRCLE",NULL},
@@ -43030,7 +43043,7 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F91C */ { "RIGHT-FACING FIST",NULL},
 /* 1F91D */ { "HANDSHAKE",NULL},
 /* 1F91E */ { "HAND WITH INDEX AND MIDDLE FINGERS CROSSED",NULL},
-/* 1F91F */ { "I LOVE YOU HAND SIGN","	* can be abbreviated ILY "},
+/* 1F91F */ { "I LOVE YOU HAND SIGN","	* can be abbreviated ILY"},
 /* 1F920 */ { "FACE WITH COWBOY HAT",NULL},
 /* 1F921 */ { "CLOWN FACE",NULL},
 /* 1F922 */ { "NAUSEATED FACE",NULL},
@@ -43104,7 +43117,7 @@ static const struct unicode_nameannot una_01_F9[] = {
 	"	* sweet or savory"},
 /* 1F95F */ { "DUMPLING","	= potsticker, gyooza, jiaozi, pierogi, empanada"},
 /* 1F960 */ { "FORTUNE COOKIE",NULL},
-/* 1F961 */ { "TAKEOUT BOX","	= oyster pail"},
+/* 1F961 */ { "TAKEOUT BOX","	= take-away box, oyster pail"},
 /* 1F962 */ { "CHOPSTICKS","	= kuaizi, hashi, jeotgarak"},
 /* 1F963 */ { "BOWL WITH SPOON","	* can indicate breakfast, cereal, congee, etc."},
 /* 1F964 */ { "CUP WITH STRAW","	* can indicate soda, juice, etc."},

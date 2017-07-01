@@ -23,12 +23,12 @@ static struct block { long int start, end; char *name; struct block *next;}
 unsigned max_a, max_n;
 
 static int printcopyright1(FILE *out) {
-/* Copyright notice for unicode NamesList.txt - 2016 */
+/* Copyright notice for unicode NamesList.txt - 2017 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2016 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2017 Unicode, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
     fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
@@ -249,13 +249,13 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif (uni<0x110000)\n" );
+	fprintf( out, "\tif ( uni<0x110000 )\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif (uni<0x110000)\n" );
+	fprintf( out, "\tif ( uni<0x110000 )\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
@@ -268,7 +268,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\treturn( UNICODE_BLOCK_MAX );\n}\n\n" );
 	fprintf( out, "/* Return block number for this unicode value, -1 if unlisted unicode value */\n" );
 	fprintf( out, "int uniNamesList_blockNumber(unsigned long uni) {\n" );
-	fprintf( out, "\tif (uni<0x110000) {\n\t\tint i;\n" );
+	fprintf( out, "\tif ( uni<0x110000 ) {\n\t\tint i;\n" );
 	fprintf( out, "\t\tfor (i=0; i<UNICODE_BLOCK_MAX; i++) {\n" );
 	fprintf( out, "\t\t\tif ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;\n" );
 	fprintf( out, "\t\t\tif ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );\n" );

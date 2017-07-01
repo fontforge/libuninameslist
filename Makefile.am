@@ -13,7 +13,7 @@ AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
-EXTRA_DIST = LICENSE README.md
+EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 noinst_PROGRAMS = buildnameslist
@@ -51,7 +51,7 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
+	$(WGET) "http://unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt" -O ListeDesNoms.latin1

@@ -1,3 +1,7 @@
+- 2017-Jul-01
+    * Version 1.1, Unicode 10.0, French version is 7.0(2014-06-22).
+    * Added "make check" to allow for automatic library test and verify.
+
 - 2017-Mar-19
     * Unicode 10.0_Beta (Nameslist.txt 10_Beta for review until Apr30).
 
