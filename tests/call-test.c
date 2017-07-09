@@ -29,11 +29,11 @@ int test(long val, const char *result, const char *expect) {
 
     printf("test code=");
     if ( val<0 )
-	printf("%d,",val);
+	printf("%ld,",val);
     else if ( val<65536 )
-	printf("U+%04x,",val);
+	printf("U+%04lx,",val);
     else
-	printf("0x%08x,",val);
+	printf("0x%08lx,",val);
 
     if ( result==NULL ) {
 	if ( expect!=NULL ) {
@@ -74,7 +74,6 @@ int test_calls_2012(void) {
 
 #ifdef DO_CALL_TEST1
 int test_calls_03(void) {
-    int ret;
     const char *cc;
 
     if ( uniNamesList_name(-100)==NULL && \
@@ -103,7 +102,7 @@ int test_calls_03(void) {
 
     cc = uniNamesList_NamesListVersion();
     printf("test uniNamesList_NamesListVersion(), return=\"%s\"\n",cc);
-    if ( cc==NULL || cc[0]!='N' )
+    if ( cc==NULL || cc[0]!='N' || cc[1]!='a' || cc[2]!='m' )
 	return( -3 );
 
     return( 0 );
@@ -115,17 +114,21 @@ int test_calls_04(void) {
     int ret;
     const char *cc;
 
-    ret = 0;
-
-    cc = uniNamesList_NamesListVersion();
-    printf("test uniNamesList_NamesListVersion(), return=\"%s\"\n",cc);
-    if ( cc==NULL || cc[0]!='N' )
-	return( -1 );
-
     ret = uniNamesList_blockCount();
     printf("test, return=%d=uniNamesList_blockCount(void);\n",ret);
     if ( ret<100) {
         printf("error, expected positive value (over 100).\n");
+        return( -1 );
+    }
+
+    if ( uniNamesList_blockNumber(-100)==-1 && \
+	 uniNamesList_blockNumber(0x300000)==-1 && \
+	 uniNamesList_blockNumber(7)==0 && \
+	 uniNamesList_blockNumber(0x100)==2 && \
+	 uniNamesList_blockNumber(960)>5 )
+	;
+    else {
+        printf("error with uniNamesList_blockNumber(code).\n");
         return( -2 );
     }
 
@@ -133,12 +136,12 @@ int test_calls_04(void) {
 	 uniNamesList_blockName(0x300000)==NULL && \
 	 test(0,uniNamesList_blockName(0),NOTCMP) && \
 	 test(1,uniNamesList_blockName(1),NOTCMP) && \
-	 test(12,uniNamesList_annot(12),NOTCMP) && \
+	 test(12,uniNamesList_blockName(12),NOTCMP) && \
 	 test(50,uniNamesList_blockName(50),NOTCMP) )
 	;
     else {
 	printf("error with uniNamesList_blockName(uniBlock)\n");
-	return( -2 );
+	return( -3 );
     }
 
     return( 0 );
