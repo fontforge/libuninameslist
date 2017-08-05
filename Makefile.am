@@ -54,8 +54,7 @@ NamesList.txt:
 	$(WGET) "http://unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
-	$(WGET) "http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt" -O ListeDesNoms.latin1
-	iconv -f latin1 ListeDesNoms.latin1 -o ListeDesNoms.txt
+	$(WGET) "http://hapax.qc.ca/ListeNoms-10.0.0-20170716.txt" -O ListeDesNoms.txt
 
 # test: run all tests in cwd and subdirs
 test:	$(TEST_PROGS)

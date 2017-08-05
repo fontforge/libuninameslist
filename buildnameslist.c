@@ -22,7 +22,35 @@ static struct block { long int start, end; char *name; struct block *next;}
 
 unsigned max_a, max_n;
 
-static int printcopyright1(FILE *out) {
+static int printcopyright2credits(FILE *out) {
+    fprintf( out, "; Ces noms français sont utilisés pour confectionner\n");
+    fprintf( out, ";\tles commentaires documentant chacun des caractères\n");
+    fprintf( out, ";\tdont les poids de tri sont déterminés dans la table commune\n");
+    fprintf( out, ";\tde la norme internationale ISO/CEI 14651. Cette dernière table\n");
+    fprintf( out, ";\test normative. La présente liste est informative, jusqu’à ce que\n");
+    fprintf( out, ";\tl’ISO/CEI 10646 ait été remise à niveau en français.\n;\n");
+    fprintf( out, "; Contributions à la version %s française des noms de caractère :\n", NFR_VERSION);
+    fprintf( out, ";\tJacques André, France\n");
+    fprintf( out, ";\tPatrick Andries, Canada (Québec)\n");
+    fprintf( out, ";\tBernard Chauvois, France\n");
+    fprintf( out, ";\tKarljürgen Feuerherm, Canada (Ontario)\n");
+    fprintf( out, ";\tAlain LaBonté, Canada (Québec)\n");
+    fprintf( out, ";\tMarc Lodewijck, Belgique\n");
+    fprintf( out, ";\tMichel Suignard, États-Unis d’Amérique\n");
+    fprintf( out, ";\tFrançois Yergeau, Canada (Québec)\n");
+    return( 1 );
+}
+
+static int printcopyright2(FILE *out) {
+    fprintf( out, "\n/*\n");
+    fprintf( out, "; Standard Unicode %s ou\n", NFR_VERSION);
+    fprintf( out, ";	Norme internationale ISO/CEI 10646:2017\n;\n");
+    printcopyright2credits(out);
+    fprintf( out, "*/\n\n");
+    return( 1 );
+}
+
+static int printcopyright1(FILE *out, int is_fr) {
 /* Copyright notice for unicode NamesList.txt - 2017 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
@@ -58,7 +86,12 @@ static int printcopyright1(FILE *out) {
     fprintf( out, "copyright holder.\n\n");
     fprintf( out, "Unicode and the Unicode logo are trademarks of Unicode, Inc. in the United\n");
     fprintf( out, "States and other countries. All third party trademarks referenced herein are\n");
-    fprintf( out, "the property of their respective owners.\n*/\n\n");
+    fprintf( out, "the property of their respective owners.\n");
+    if ( is_fr<0 || is_fr==1 ) {
+	fprintf( out, "\n");
+	printcopyright2credits(out);
+    }
+    fprintf( out, "*/\n\n");
     return( 1 );
 }
 
@@ -115,7 +148,7 @@ static int ReadNamesList(void) {
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
 	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
-	"http://hapax.qc.ca/ListeDesNoms-7.0(2014-06-22).txt (latin base char set)"
+	"http://hapax.qc.ca/ListeNoms-10.0.0-20170716.txt (latin base char set)"
     };
 
     buffer[sizeof(buffer)-1]=0;
@@ -235,16 +268,16 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
-    if ( is_fr==0 )
+    if ( is_fr<1 )
 	fprintf( out, "#include \"uninameslist.h\"\n\n" );
     else
 	fprintf( out, "#include \"uninameslist-fr.h\"\n\n" );
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
-    if ( is_fr==0 ) {
+    if ( is_fr<1 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
-	printcopyright1(out);
+	printcopyright1(out, is_fr);
 	/* Added functions available in libuninameslist version 0.3 and higher. */
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
 	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
@@ -283,6 +316,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "const char *uniNamesList_blockName(int uniBlock) {\n" );
 	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );\n}\n\n" );
     }
+    if ( is_fr==1 ) printcopyright2(out);
 
     fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
     for ( i=0; i<256/4 ; ++i )

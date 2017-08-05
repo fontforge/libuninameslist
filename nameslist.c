@@ -49,7 +49,7 @@ the property of their respective owners.
 const char *uniNamesList_name(unsigned long uni) {
 	const char *pt=NULL;
 
-	if (uni<0x110000)
+	if ( uni<0x110000 )
 		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;
 	return( pt );
 }
@@ -58,7 +58,7 @@ const char *uniNamesList_name(unsigned long uni) {
 const char *uniNamesList_annot(unsigned long uni) {
 	const char *pt=NULL;
 
-	if (uni<0x110000)
+	if ( uni<0x110000 )
 		pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
 	return( pt );
 }
@@ -78,7 +78,7 @@ int uniNamesList_blockCount(void) {
 
 /* Return block number for this unicode value, -1 if unlisted unicode value */
 int uniNamesList_blockNumber(unsigned long uni) {
-	if (uni<0x110000) {
+	if ( uni<0x110000 ) {
 		int i;
 		for (i=0; i<UNICODE_BLOCK_MAX; i++) {
 			if ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;
