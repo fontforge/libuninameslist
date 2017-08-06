@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "nameslist-dll.h"
 #include "uninameslist-fr.h"
 
 /* This file was generated using the program 'buildnameslist.c' */
@@ -26,6 +27,7 @@
 ;	François Yergeau, Canada (Québec)
 */
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -94,6 +96,7 @@ static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray2[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -164,6 +167,7 @@ static const struct unicode_nameannot nullarray2[] = {
 	{ NULL, "	* on est assuré que la valeur ?FFFF n'est en aucune façon un caractère Unicode" },
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot * const nullnullarray[] = {
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,
@@ -200,9 +204,7 @@ static const struct unicode_nameannot * const nullnullarray[] = {
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray2
 };
 
-#ifdef __Cygwin
-__declspec(dllexport)	/* Need this for cygwin to get shared libs */
-#endif /* __Cygwin */
+UN_DLL_EXPORT
 const struct unicode_block UnicodeBlock[] = {
 	{ 0x0, 0x7f, "Commandes C0 et latin de base (Latin de base)" },
 	{ 0x80, 0xff, "Commandes C1 et supplément Latin-1 (Supplément Latin-1)" },
@@ -500,6 +502,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x10ff80, 0x10ffff, "Zone supplémentaire B à usage privé" }
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_00[] = {
 /* 0000 */ { NULL,"	= NUL"},
 /* 0001 */ { NULL,"	= DÉBUT D'EN-TÊTE"},
@@ -1046,6 +1049,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	: 0079 0308"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_01[] = {
 /* 0100 */ { "LETTRE MAJUSCULE LATINE A MACRON","	: 0041 0304"},
 /* 0101 */ { "LETTRE MINUSCULE LATINE A MACRON","	* letton, latin, etc.\n"
@@ -1554,6 +1558,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01FF */ { "LETTRE MINUSCULE LATINE O BARRÉ ACCENT AIGU","	: 00F8 0301"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_02[] = {
 /* 0200 */ { "LETTRE MAJUSCULE LATINE A DOUBLE ACCENT GRAVE","	: 0041 030F"},
 /* 0201 */ { "LETTRE MINUSCULE LATINE A DOUBLE ACCENT GRAVE","	: 0061 030F"},
@@ -2077,6 +2082,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02FF */ { "LETTRE MODIFICATIVE FLÈCHE VERS LA GAUCHE BASSE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_03[] = {
 /* 0300 */ { "DIACRITIQUE ACCENT GRAVE","	= accent grave grec, varia grec\n"
 	"	x (accent grave - 0060)\n"
@@ -2513,6 +2519,7 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	* indique que les lignes qui succèdent à ce symbole doivent être déplacées à l'endroit marqué par 03FE"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_04[] = {
 /* 0400 */ { "LETTRE MAJUSCULE CYRILLIQUE IÉ GRAVE","	: 0415 0300"},
 /* 0401 */ { "LETTRE MAJUSCULE CYRILLIQUE IO","	: 0415 0308"},
@@ -2832,6 +2839,7 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04FF */ { "LETTRE MINUSCULE CYRILLIQUE KHA BARRÉ",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_05[] = {
 /* 0500 */ { "LETTRE MAJUSCULE CYRILLIQUE DÉ KOMI",NULL},
 /* 0501 */ { "LETTRE MINUSCULE CYRILLIQUE DÉ KOMI",NULL},
@@ -3124,6 +3132,7 @@ static const struct unicode_nameannot una_00_05[] = {
 /* 05FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_06[] = {
 /* 0600 */ { "SIGNE NUMÉRAL ARABE",NULL},
 /* 0601 */ { "SIGNE ARABE SANAH",NULL},
@@ -3444,6 +3453,7 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06FF */ { "LETTRE ARABE HÉ' PIGNON",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_07[] = {
 /* 0700 */ { "FIN DE PARAGRAPHE SYRIAQUE","	* marque la fin d'un paragraphe"},
 /* 0701 */ { "POINT SYRIAQUE SUPRALINÉAIRE","	* indique une interrogative, l'impératif et les pauses, particulièrement dans les textes bibliques"},
@@ -3719,6 +3729,7 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 07FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_08[] = {
 /* 0800 */ { "LETTRE SAMARITAINE ALAF",NULL},
 /* 0801 */ { "LETTRE SAMARITAINE BIT",NULL},
@@ -3988,6 +3999,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08FF */ { "DIACRITIQUE ARABE NOÛN GHOUNNA COUCHÉ",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_09[] = {
 /* 0900 */ { "DIACRITIQUE DÉVANÂGARÎ TCHANDRABINDOU RENVERSÉ","	= vaïdika adhomoukha tchandrabindou"},
 /* 0901 */ { "DIACRITIQUE DÉVANÂGARÎ TCHANDRABINDOU","	= anounassika\n"
@@ -4271,6 +4283,7 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 09FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0A[] = {
 /* 0A00 */ { NULL,NULL},
 /* 0A01 */ { "DIACRITIQUE GOURMOUKHÎ ADDAK BINDI",NULL},
@@ -4533,6 +4546,7 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0AFF */ { "DIACRITIQUE GOUDJARATI NOUKTA SUSCRIT FORMÉ DE DEUX CERCLES",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0B[] = {
 /* 0B00 */ { NULL,NULL},
 /* 0B01 */ { "DIACRITIQUE ORIYA TCHANDRABINDOU",NULL},
@@ -4803,6 +4817,7 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0C[] = {
 /* 0C00 */ { "DIACRITIQUE TÉLOUGOU TCHANDRABINDOU SUSCRIT",NULL},
 /* 0C01 */ { "DIACRITIQUE TÉLOUGOU TCHANDRABINDOU","	= arasounna"},
@@ -5063,6 +5078,7 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0CFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0D[] = {
 /* 0D00 */ { "DIACRITIQUE MALAYALAM ANOUSVÂRA SUSCRIT",NULL},
 /* 0D01 */ { "DIACRITIQUE MALAYALAM TCHANDRABINDOU",NULL},
@@ -5335,6 +5351,7 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0DFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0E[] = {
 /* 0E00 */ { NULL,NULL},
 /* 0E01 */ { "CARACTÈRE THAÏ KO KAÏ",NULL},
@@ -5607,6 +5624,7 @@ static const struct unicode_nameannot una_00_0E[] = {
 /* 0EFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0F[] = {
 /* 0F00 */ { "SYLLABE TIBÉTAINE OM",NULL},
 /* 0F01 */ { "SIGNE TIBÉTAIN GTER YIG MGO A TRONQUÉ","	= ter yik go a t'oung"},
@@ -5951,6 +5969,7 @@ static const struct unicode_nameannot una_00_0F[] = {
 /* 0FFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_10[] = {
 /* 1000 */ { "LETTRE BIRMANE KA","	~ 1000 FE00 forme pointée"},
 /* 1001 */ { "LETTRE BIRMANE KHA",NULL},
@@ -6214,6 +6233,7 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 10FF */ { "LETTRE GÉORGIENNE SIGNE LABIAL",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_11[] = {
 /* 1100 */ { "HANGÛL TCH'ÔSONG KIYOK","	= K"},
 /* 1101 */ { "HANGÛL TCH'ÔSONG SSANGKIYOK","	= KK"},
@@ -6473,6 +6493,7 @@ static const struct unicode_nameannot una_00_11[] = {
 /* 11FF */ { "HANGÛL DJÔNGSONG SSANGNIEUN",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_12[] = {
 /* 1200 */ { "SYLLABE ÉTHIOPIENNE HÄ",NULL},
 /* 1201 */ { "SYLLABE ÉTHIOPIENNE HOU",NULL},
@@ -6733,6 +6754,7 @@ static const struct unicode_nameannot una_00_12[] = {
 /* 12FF */ { "SYLLABE ÉTHIOPIENNE DDWA",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_13[] = {
 /* 1300 */ { "SYLLABE ÉTHIOPIENNE DJÄ",NULL},
 /* 1301 */ { "SYLLABE ÉTHIOPIENNE DJOU",NULL},
@@ -6993,6 +7015,7 @@ static const struct unicode_nameannot una_00_13[] = {
 /* 13FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_14[] = {
 /* 1400 */ { "TRAIT D'UNION SYLLABE CANADIENNE",NULL},
 /* 1401 */ { "SYLLABE CANADIENNE É","	* inuktitut (AÏ), porteur (OU)"},
@@ -7254,6 +7277,7 @@ static const struct unicode_nameannot una_00_14[] = {
 /* 14FF */ { "SYLLABE CANADIENNE SOUÔ CRI DES PLAINES",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_15[] = {
 /* 1500 */ { "SYLLABE CANADIENNE SOUA",NULL},
 /* 1501 */ { "SYLLABE CANADIENNE SOUA CRI DES PLAINES",NULL},
@@ -7514,6 +7538,7 @@ static const struct unicode_nameannot una_00_15[] = {
 /* 15FF */ { "SYLLABE CANADIENNE KKI PORTEUR",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_16[] = {
 /* 1600 */ { "SYLLABE CANADIENNE KKA PORTEUR",NULL},
 /* 1601 */ { "SYLLABE CANADIENNE KK PORTEUR",NULL},
@@ -7776,6 +7801,7 @@ static const struct unicode_nameannot una_00_16[] = {
 /* 16FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_17[] = {
 /* 1700 */ { "LETTRE TAGALOG A",NULL},
 /* 1701 */ { "LETTRE TAGALOG I",NULL},
@@ -8070,6 +8096,7 @@ static const struct unicode_nameannot una_00_17[] = {
 /* 17FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_18[] = {
 /* 1800 */ { "BIRGA MONGOL","	x (signe tibétain yig mgo mdun ma ouvrant - 0F04)"},
 /* 1801 */ { "POINTS DE SUSPENSION MONGOLS",NULL},
@@ -8713,6 +8740,7 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 18FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_19[] = {
 /* 1900 */ { "LETTRE LIMBU PORTE-VOYELLE",NULL},
 /* 1901 */ { "LETTRE LIMBU KA",NULL},
@@ -8974,6 +9002,7 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19FF */ { "SYMBOLE KHMER QUINZIÈME LUNE DÉCROISSANTE","	= dâp-pram rootch"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1A[] = {
 /* 1A00 */ { "LETTRE BOUGUIE KA",NULL},
 /* 1A01 */ { "LETTRE BOUGUIE GA",NULL},
@@ -9237,6 +9266,7 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1AFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1B[] = {
 /* 1B00 */ { "DIACRITIQUE BALINAIS ULU RICEM","	= ardhatchandra"},
 /* 1B01 */ { "DIACRITIQUE BALINAIS ULU CANDRA","	= tchandrabindou"},
@@ -9511,6 +9541,7 @@ static const struct unicode_nameannot una_00_1B[] = {
 /* 1BFF */ { "SYMBOLE BATAK BINDOU PANGOLAT",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1C[] = {
 /* 1C00 */ { "LETTRE LEPTCHA KA",NULL},
 /* 1C01 */ { "LETTRE LEPTCHA KLA",NULL},
@@ -9776,6 +9807,7 @@ static const struct unicode_nameannot una_00_1C[] = {
 /* 1CFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1D[] = {
 /* 1D00 */ { "LETTRE LATINE PETITE CAPITALE A",NULL},
 /* 1D01 */ { "LETTRE LATINE PETITE CAPITALE AE",NULL},
@@ -10055,6 +10087,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DFF */ { "DIACRITIQUE POINTES DE FLÈCHE VERS LA DROITE ET VERS LE BAS SOUSCRITES",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1E[] = {
 /* 1E00 */ { "LETTRE MAJUSCULE LATINE A ROND SOUSCRIT","	: 0041 0325"},
 /* 1E01 */ { "LETTRE MINUSCULE LATINE A ROND SOUSCRIT","	: 0061 0325"},
@@ -10357,6 +10390,7 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1EFF */ { "LETTRE MINUSCULE LATINE Y BOUCLÉ",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1F[] = {
 /* 1F00 */ { "LETTRE MINUSCULE GRECQUE ALPHA ESPRIT DOUX","	: 03B1 0313"},
 /* 1F01 */ { "LETTRE MINUSCULE GRECQUE ALPHA ESPRIT RUDE","	: 03B1 0314"},
@@ -10618,6 +10652,7 @@ static const struct unicode_nameannot una_00_1F[] = {
 /* 1FFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_20[] = {
 /* 2000 */ { "DEMI-CADRATIN","	* ce caractère est en pratique équivalent à l'espace demi-cadratin\n"
 	"	: 2002 espace demi-cadratin"},
@@ -11054,6 +11089,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_21[] = {
 /* 2100 */ { "AU COMPTE DE","	# 0061 002F 0063"},
 /* 2101 */ { "AUX BONS SOINS DE","	= au sujet de\n"
@@ -11435,6 +11471,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 21FF */ { "FLÈCHE VERS LA DROITE ET LA GAUCHE À TÊTE CREUSE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_22[] = {
 /* 2200 */ { "POUR TOUS","	= quanteur quel que soit, quanteur universel"},
 /* 2201 */ { "COMPLÉMENT","	x (lettre latine c étiré - 0297)"},
@@ -11801,6 +11838,7 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 22FF */ { "ÉLÉMENT D'UN SAC EN NOTATION Z","	= appartient à un multi-ensemble"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_23[] = {
 /* 2300 */ { "SYMBOLE DIAMÈTRE","	x (ensemble vide - 2205)"},
 /* 2301 */ { "FLÈCHE ÉLECTRIQUE","	* tiré d'ISO 2047\n"
@@ -12128,6 +12166,7 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23FF */ { "SYMBOLE DE L'ŒIL OBSERVATEUR",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_24[] = {
 /* 2400 */ { "SYMBOLE POUR NUL",NULL},
 /* 2401 */ { "SYMBOLE POUR DÉBUT D'EN-TÊTE",NULL},
@@ -12396,6 +12435,7 @@ static const struct unicode_nameannot una_00_24[] = {
 /* 24FF */ { "CHIFFRE ZÉRO CERCLÉ NOIR AU BLANC","	x (vignette chiffre un cerclé noir au blanc - 2776)"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_25[] = {
 /* 2500 */ { "FILET HORIZONTAL FIN","	= Mosaïque Vidéotex DG 15"},
 /* 2501 */ { "FILET HORIZONTAL GRAS",NULL},
@@ -12718,6 +12758,7 @@ static const struct unicode_nameannot una_00_25[] = {
 /* 25FF */ { "TRIANGLE RECTANGLE INFÉRIEUR DROIT","	x (triangle rectangle - 22BF)"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_26[] = {
 /* 2600 */ { "SOLEIL NOIR AVEC RAYONS","	= beau temps\n"
 	"	x (soleil - 2609)\n"
@@ -13095,6 +13136,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26FF */ { "DRAPEAU BLANC À BANDE MÉDIANE HORIZONTALE NOIRE","	= site des forces japonaises d'autodéfense"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_27[] = {
 /* 2700 */ { "CISEAUX DE SÉCURITÉ NOIRS","	* forme une paire avec 2704"},
 /* 2701 */ { "CISEAUX À LAME SUPÉRIEURE VISIBLE",NULL},
@@ -13415,6 +13457,7 @@ static const struct unicode_nameannot una_00_27[] = {
 	"	x (longue flèche vers la gauche en tire-bouchon - 2B33)"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_28[] = {
 /* 2800 */ { "COMBINAISON BRAILLE BLANC","	* bien que ce caractère soit représenté par un blanc à chasse fixe dans de nombreuses polices, il ne joue pas le rôle d'une espace"},
 /* 2801 */ { "COMBINAISON BRAILLE POINTS-1",NULL},
@@ -13674,6 +13717,7 @@ static const struct unicode_nameannot una_00_28[] = {
 /* 28FF */ { "COMBINAISON BRAILLE POINTS-12345678",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_29[] = {
 /* 2900 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE BARRÉE VERTICALEMENT","	= surjection partielle en notation z\n"
 	"	x (flèche à deux pointes vers la gauche barrée verticalement - 2B34)"},
@@ -13979,6 +14023,7 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29FF */ { "MINY","	x (signe moins - 2212)"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2A[] = {
 /* 2A00 */ { "OPÉRATEUR POINT CERCLÉ N-AIRE","	x (opérateur point cerclé - 2299)\n"
 	"	x (cercle blanc évidé - 25C9)"},
@@ -14270,6 +14315,7 @@ static const struct unicode_nameannot una_00_2A[] = {
 /* 2AFF */ { "BARRE VERTICALE BLANCHE N-AIRE","	= choix n-aire de Dijkstra"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2B[] = {
 /* 2B00 */ { "FLÈCHE BLANCHE NORD-EST",NULL},
 /* 2B01 */ { "FLÈCHE BLANCHE NORD-OUEST",NULL},
@@ -14563,6 +14609,7 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2BFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2C[] = {
 /* 2C00 */ { "LETTRE MAJUSCULE GLAGOLITIQUE AZE",NULL},
 /* 2C01 */ { "LETTRE MAJUSCULE GLAGOLITIQUE BOUKI",NULL},
@@ -14830,6 +14877,7 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2CFF */ { "DIVISEUR MORPHOLOGIQUE COPTE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2D[] = {
 /* 2D00 */ { "LETTRE GÉORGIENNE NOUSKHOURI AN",NULL},
 /* 2D01 */ { "LETTRE GÉORGIENNE NOUSKHOURI BAN",NULL},
@@ -15092,6 +15140,7 @@ static const struct unicode_nameannot una_00_2D[] = {
 /* 2DFF */ { "DIACRITIQUE LETTRE CYRILLIQUE GRAND YOUSSE YODISÉ",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2E[] = {
 /* 2E00 */ { "ANGLET DE SUBSTITUTION","	x (coin nord-ouest - 231C)"},
 /* 2E01 */ { "ANGLET DE SUBSTITUTION POINTÉ",NULL},
@@ -15422,6 +15471,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2EFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2F[] = {
 /* 2F00 */ { "CLÉ CHINOISE UN","	# 4E00"},
 /* 2F01 */ { "CLÉ CHINOISE BARRE","	# 4E28"},
@@ -15683,6 +15733,7 @@ static const struct unicode_nameannot una_00_2F[] = {
 /* 2FFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_30[] = {
 /* 3000 */ { "ESPACE IDÉOGRAPHIQUE","	x (espace - 0020)\n"
 	"	# <large> 0020"},
@@ -15978,6 +16029,7 @@ static const struct unicode_nameannot una_00_30[] = {
 	"	# <verticale> 30B3 30C8"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_31[] = {
 /* 3100 */ { NULL,NULL},
 /* 3101 */ { NULL,NULL},
@@ -16253,6 +16305,7 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 31FF */ { "SYLLABE KATAKANA PETIT RO",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_32[] = {
 /* 3200 */ { "HANGÛL KIYOK ENTRE PARENTHÈSES","	# 0028 1100 0029"},
 /* 3201 */ { "HANGÛL NIÛN ENTRE PARENTHÈSES","	# 0028 1102 0029"},
@@ -16539,6 +16592,7 @@ static const struct unicode_nameannot una_00_32[] = {
 /* 32FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_33[] = {
 /* 3300 */ { "APÂTO DISPOSÉ EN CARRÉ","	* appartement\n"
 	"	# <enCarré> 30A2 30D1 30FC 30C8"},
@@ -16890,6 +16944,7 @@ static const struct unicode_nameannot una_00_33[] = {
 /* 33FF */ { "GAL DISPOSÉ EN CARRÉ","	# <enCarré> 0067 0061 006C"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_4D[] = {
 /* 4D00 */ { NULL,NULL},
 /* 4D01 */ { NULL,NULL},
@@ -17151,6 +17206,7 @@ static const struct unicode_nameannot una_00_4D[] = {
 /* 4DFF */ { "HEXAGRAMME DE LA MARCHE VERS L'ACCOMPLISSEMENT","	= wei-tsi"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A0[] = {
 /* A000 */ { "SYLLABE YI IT",NULL},
 /* A001 */ { "SYLLABE YI IX",NULL},
@@ -17411,6 +17467,7 @@ static const struct unicode_nameannot una_00_A0[] = {
 /* A0FF */ { "SYLLABE YI VYR",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A1[] = {
 /* A100 */ { "SYLLABE YI DIT",NULL},
 /* A101 */ { "SYLLABE YI DIX",NULL},
@@ -17670,6 +17727,7 @@ static const struct unicode_nameannot una_00_A1[] = {
 /* A1FF */ { "SYLLABE YI KAT",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A2[] = {
 /* A200 */ { "SYLLABE YI KAX",NULL},
 /* A201 */ { "SYLLABE YI KA",NULL},
@@ -17929,6 +17987,7 @@ static const struct unicode_nameannot una_00_A2[] = {
 /* A2FF */ { "SYLLABE YI NZU",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A3[] = {
 /* A300 */ { "SYLLABE YI NZUP",NULL},
 /* A301 */ { "SYLLABE YI NZURX",NULL},
@@ -18188,6 +18247,7 @@ static const struct unicode_nameannot una_00_A3[] = {
 /* A3FF */ { "SYLLABE YI QIP",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A4[] = {
 /* A400 */ { "SYLLABE YI QIET",NULL},
 /* A401 */ { "SYLLABE YI QIEX",NULL},
@@ -18447,6 +18507,7 @@ static const struct unicode_nameannot una_00_A4[] = {
 /* A4FF */ { "PONCTUATION LISSOU POINT",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A5[] = {
 /* A500 */ { "SYLLABE VAÏE É",NULL},
 /* A501 */ { "SYLLABE VAÏE ÉN",NULL},
@@ -18706,6 +18767,7 @@ static const struct unicode_nameannot una_00_A5[] = {
 /* A5FF */ { "SYLLABE VAÏE TCHÊ",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A6[] = {
 /* A600 */ { "SYLLABE VAÏE JÊ",NULL},
 /* A601 */ { "SYLLABE VAÏE NJÊ",NULL},
@@ -18977,6 +19039,7 @@ static const struct unicode_nameannot una_00_A6[] = {
 /* A6FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A7[] = {
 /* A700 */ { "LETTRE MODIFICATIVE CHINOISE TON YIN PING","	* yin p'ing"},
 /* A701 */ { "LETTRE MODIFICATIVE CHINOISE TON YANG PING","	* yang p'ing"},
@@ -19258,6 +19321,7 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7FF */ { "LETTRE LATINE ÉPIGRAPHIQUE M ARCHAÏQUE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A8[] = {
 /* A800 */ { "LETTRE SYLOTÎ NÂGRÎ Â",NULL},
 /* A801 */ { "LETTRE SYLOTÎ NÂGRÎ I",NULL},
@@ -19580,6 +19644,7 @@ static const struct unicode_nameannot una_00_A8[] = {
 /* A8FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A9[] = {
 /* A900 */ { "CHIFFRE KAYAH LI ZÉRO",NULL},
 /* A901 */ { "CHIFFRE KAYAH LI UN",NULL},
@@ -19840,6 +19905,7 @@ static const struct unicode_nameannot una_00_A9[] = {
 /* A9FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_AA[] = {
 /* AA00 */ { "LETTRE TCHAME A",NULL},
 /* AA01 */ { "LETTRE TCHAME I",NULL},
@@ -20101,6 +20167,7 @@ static const struct unicode_nameannot una_00_AA[] = {
 /* AAFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_AB[] = {
 /* AB00 */ { NULL,NULL},
 /* AB01 */ { "SYLLABE ÉTHIOPIENNE TTHU",NULL},
@@ -20367,6 +20434,7 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* ABFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_D7[] = {
 /* D700 */ { NULL,NULL},
 /* D701 */ { NULL,NULL},
@@ -20626,6 +20694,7 @@ static const struct unicode_nameannot una_00_D7[] = {
 /* D7FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_F9[] = {
 /* F900 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F900","	: 8C48"},
 /* F901 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F901","	: 66F4"},
@@ -20889,6 +20958,7 @@ static const struct unicode_nameannot una_00_F9[] = {
 /* F9FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F9FF","	: 523A"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FA[] = {
 /* FA00 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-FA00","	: 5207"},
 /* FA01 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-FA01","	: 5EA6"},
@@ -21149,6 +21219,7 @@ static const struct unicode_nameannot una_00_FA[] = {
 /* FAFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FB[] = {
 /* FB00 */ { "LIGATURE MINUSCULE LATINE FF","	# 0066 0066"},
 /* FB01 */ { "LIGATURE MINUSCULE LATINE FI","	# 0066 0069"},
@@ -21411,6 +21482,7 @@ static const struct unicode_nameannot una_00_FB[] = {
 /* FBFF */ { "LETTRE ARABE FARSI YA' MÉDIAL","	# <médiale> 06CC"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FC[] = {
 /* FC00 */ { "LIGATURE ARABE YA' HAMZA EN CHEF DJÎM ISOLÉ","	# <isolée> 0626 062C"},
 /* FC01 */ { "LIGATURE ARABE YA' HAMZA EN CHEF HA' ISOLÉ","	# <isolée> 0626 062D"},
@@ -21670,6 +21742,7 @@ static const struct unicode_nameannot una_00_FC[] = {
 /* FCFF */ { "LIGATURE ARABE HA' ALIF MAKSOURA ISOLÉ","	# <isolée> 062D 0649"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FD[] = {
 /* FD00 */ { "LIGATURE ARABE HA' YA' ISOLÉ","	# <isolée> 062D 064A"},
 /* FD01 */ { "LIGATURE ARABE DJÎM ALIF MAKSOURA ISOLÉ","	# <isolée> 062C 0649"},
@@ -21931,6 +22004,7 @@ static const struct unicode_nameannot una_00_FD[] = {
 /* FDFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FE[] = {
 /* FE00 */ { "SÉLECTEUR DE VARIANTE-1","	* ces caractères ont pour abréviation VS1, VS2, et ainsi de suite"},
 /* FE01 */ { "SÉLECTEUR DE VARIANTE-2",NULL},
@@ -22219,6 +22293,7 @@ static const struct unicode_nameannot una_00_FE[] = {
 	"	x (<pas un caractère> - FFFE)"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FF[] = {
 /* FF00 */ { NULL,NULL},
 /* FF01 */ { "POINT D'EXCLAMATION PLEINE CHASSE","	# <large> 0021"},
@@ -22492,6 +22567,7 @@ static const struct unicode_nameannot una_00_FF[] = {
 /* FFFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_00[] = {
 /* 10000 */ { "SYLLABE LINÉAIRE B B008 A",NULL},
 /* 10001 */ { "SYLLABE LINÉAIRE B B038 E",NULL},
@@ -22751,6 +22827,7 @@ static const struct unicode_nameannot una_01_00[] = {
 /* 100FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_01[] = {
 /* 10100 */ { "TRAIT ÉGÉEN SÉPARATEUR DE MOTS",NULL},
 /* 10101 */ { "POINT ÉGÉEN SÉPARATEUR DE MOTS",NULL},
@@ -23013,6 +23090,7 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 101FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_02[] = {
 /* 10200 */ { NULL,NULL},
 /* 10201 */ { NULL,NULL},
@@ -23272,6 +23350,7 @@ static const struct unicode_nameannot una_01_02[] = {
 /* 102FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_03[] = {
 /* 10300 */ { "LETTRE VIEIL ITALIQUE A",NULL},
 /* 10301 */ { "LETTRE VIEIL ITALIQUE BÉ",NULL},
@@ -23531,6 +23610,7 @@ static const struct unicode_nameannot una_01_03[] = {
 /* 103FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_04[] = {
 /* 10400 */ { "LETTRE MAJUSCULE DÉSÉRET I LONG",NULL},
 /* 10401 */ { "LETTRE MAJUSCULE DÉSÉRET E LONG",NULL},
@@ -23790,6 +23870,7 @@ static const struct unicode_nameannot una_01_04[] = {
 /* 104FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_05[] = {
 /* 10500 */ { "LETTRE ELBASAN A",NULL},
 /* 10501 */ { "LETTRE ELBASAN BÉ",NULL},
@@ -24049,6 +24130,7 @@ static const struct unicode_nameannot una_01_05[] = {
 /* 105FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_06[] = {
 /* 10600 */ { "SIGNE LINÉAIRE A AB001",NULL},
 /* 10601 */ { "SIGNE LINÉAIRE A AB002",NULL},
@@ -24326,6 +24408,7 @@ static const struct unicode_nameannot una_01_06[] = {
 /* 106FF */ { "SIGNE LINÉAIRE A A594","	* 1064D ab131a, 10634 ab060"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_07[] = {
 /* 10700 */ { "SIGNE LINÉAIRE A A595","	* 1064D ab131a, 10634 ab060"},
 /* 10701 */ { "SIGNE LINÉAIRE A A596","	* 1064D ab131a, 1063E ab077"},
@@ -24587,6 +24670,7 @@ static const struct unicode_nameannot una_01_07[] = {
 /* 107FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_08[] = {
 /* 10800 */ { "SYLLABE CHYPRIOTE A",NULL},
 /* 10801 */ { "SYLLABE CHYPRIOTE E",NULL},
@@ -24846,6 +24930,7 @@ static const struct unicode_nameannot una_01_08[] = {
 /* 108FF */ { "NOMBRE HATRÉEN CENT",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_09[] = {
 /* 10900 */ { "LETTRE PHÉNICIENNE ALF","	x (lettre hébraïque alef - 05D0)"},
 /* 10901 */ { "LETTRE PHÉNICIENNE BÈT","	x (lettre hébraïque bèt - 05D1)"},
@@ -25110,6 +25195,7 @@ static const struct unicode_nameannot una_01_09[] = {
 /* 109FF */ { "FRACTION CURSIVE MÉROÏTIQUE DIX DOUZIÈMES",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0A[] = {
 /* 10A00 */ { "LETTRE KHAROCHTHÎ A",NULL},
 /* 10A01 */ { "DIACRITIQUE VOYELLE KHAROCHTHÎ I",NULL},
@@ -25419,6 +25505,7 @@ static const struct unicode_nameannot una_01_0A[] = {
 /* 10AFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0B[] = {
 /* 10B00 */ { "LETTRE AVESTIQUE A",NULL},
 /* 10B01 */ { "LETTRE AVESTIQUE AA",NULL},
@@ -25680,6 +25767,7 @@ static const struct unicode_nameannot una_01_0B[] = {
 /* 10BFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0C[] = {
 /* 10C00 */ { "LETTRE ORKHON A",NULL},
 /* 10C01 */ { "LETTRE ORKHON IÉNISSÉI A",NULL},
@@ -25939,6 +26027,7 @@ static const struct unicode_nameannot una_01_0C[] = {
 /* 10CFF */ { "NOMBRE RUNIQUE HONGROIS MILLE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0E[] = {
 /* 10E00 */ { NULL,NULL},
 /* 10E01 */ { NULL,NULL},
@@ -26198,6 +26287,7 @@ static const struct unicode_nameannot una_01_0E[] = {
 /* 10EFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_10[] = {
 /* 11000 */ { "DIACRITIQUE BRAHMI TCHANDRABINDOU",NULL},
 /* 11001 */ { "DIACRITIQUE BRAHMI ANOUSVÂRA",NULL},
@@ -26459,6 +26549,7 @@ static const struct unicode_nameannot una_01_10[] = {
 /* 110FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_11[] = {
 /* 11100 */ { "DIACRITIQUE CHAKMA TCHANDRABINDOU","	= tchânaphoupoudâ"},
 /* 11101 */ { "DIACRITIQUE CHAKMA ANOUSVÂRA","	= ékaphoudâ"},
@@ -26727,6 +26818,7 @@ static const struct unicode_nameannot una_01_11[] = {
 /* 111FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_12[] = {
 /* 11200 */ { "LETTRE KHOJKI A",NULL},
 /* 11201 */ { "LETTRE KHOJKI Â",NULL},
@@ -26988,6 +27080,7 @@ static const struct unicode_nameannot una_01_12[] = {
 /* 112FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_13[] = {
 /* 11300 */ { "DIACRITIQUE GRANTHA ANOUSVÂRA SUSCRIT",NULL},
 /* 11301 */ { "DIACRITIQUE GRANTHA TCHANDRABINDOU",NULL},
@@ -27247,6 +27340,7 @@ static const struct unicode_nameannot una_01_13[] = {
 /* 113FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_14[] = {
 /* 11400 */ { "LETTRE NÉWAR A",NULL},
 /* 11401 */ { "LETTRE NÉWAR Â",NULL},
@@ -27506,6 +27600,7 @@ static const struct unicode_nameannot una_01_14[] = {
 /* 114FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_15[] = {
 /* 11500 */ { NULL,NULL},
 /* 11501 */ { NULL,NULL},
@@ -27766,6 +27861,7 @@ static const struct unicode_nameannot una_01_15[] = {
 /* 115FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_16[] = {
 /* 11600 */ { "LETTRE MODI A",NULL},
 /* 11601 */ { "LETTRE MODI Â",NULL},
@@ -28025,6 +28121,7 @@ static const struct unicode_nameannot una_01_16[] = {
 /* 116FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_17[] = {
 /* 11700 */ { "LETTRE ÂHOM KA",NULL},
 /* 11701 */ { "LETTRE ÂHOM KHA",NULL},
@@ -28284,6 +28381,7 @@ static const struct unicode_nameannot una_01_17[] = {
 /* 117FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_18[] = {
 /* 11800 */ { NULL,NULL},
 /* 11801 */ { NULL,NULL},
@@ -28543,6 +28641,7 @@ static const struct unicode_nameannot una_01_18[] = {
 /* 118FF */ { "OM VARANG KCHITI",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1A[] = {
 /* 11A00 */ { "LETTRE ZANABAZAR CARRÉ A","	* s'utilise pour représenter des voyelles indépendantes en combinaison avec des signes voyelles"},
 /* 11A01 */ { "DIACRITIQUE VOYELLE ZANABAZAR CARRÉ I",NULL},
@@ -28815,6 +28914,7 @@ static const struct unicode_nameannot una_01_1A[] = {
 /* 11AFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1C[] = {
 /* 11C00 */ { "LETTRE BHAIKSUKI A",NULL},
 /* 11C01 */ { "LETTRE BHAIKSUKI AA",NULL},
@@ -29074,6 +29174,7 @@ static const struct unicode_nameannot una_01_1C[] = {
 /* 11CFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1D[] = {
 /* 11D00 */ { "LETTRE GONDI DE MASARAM A",NULL},
 /* 11D01 */ { "LETTRE GONDI DE MASARAM Â",NULL},
@@ -29333,6 +29434,7 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11DFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_20[] = {
 /* 12000 */ { "SIGNE CUNÉIFORME A",NULL},
 /* 12001 */ { "SIGNE CUNÉIFORME A FOIS A",NULL},
@@ -29592,6 +29694,7 @@ static const struct unicode_nameannot una_01_20[] = {
 /* 120FF */ { "SIGNE CUNÉIFORME GECHTIN FOIS KOUR",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_21[] = {
 /* 12100 */ { "SIGNE CUNÉIFORME GI",NULL},
 /* 12101 */ { "SIGNE CUNÉIFORME GI FOIS E",NULL},
@@ -29851,6 +29954,7 @@ static const struct unicode_nameannot una_01_21[] = {
 /* 121FF */ { "SIGNE CUNÉIFORME LOU2 FOIS BAD",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_22[] = {
 /* 12200 */ { "SIGNE CUNÉIFORME LOU2 FOIS ECH2",NULL},
 /* 12201 */ { "SIGNE CUNÉIFORME LOU2 FOIS ECH2 TENOU",NULL},
@@ -30110,6 +30214,7 @@ static const struct unicode_nameannot una_01_22[] = {
 /* 122FF */ { "SIGNE CUNÉIFORME TI TENOU",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_23[] = {
 /* 12300 */ { "SIGNE CUNÉIFORME TIL",NULL},
 /* 12301 */ { "SIGNE CUNÉIFORME TIR",NULL},
@@ -30369,6 +30474,7 @@ static const struct unicode_nameannot una_01_23[] = {
 /* 123FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_24[] = {
 /* 12400 */ { "SIGNE NUMÉRAL CUNÉIFORME DEUX ACH",NULL},
 /* 12401 */ { "SIGNE NUMÉRAL CUNÉIFORME TROIS ACH",NULL},
@@ -30629,6 +30735,7 @@ static const struct unicode_nameannot una_01_24[] = {
 /* 124FF */ { "SIGNE CUNÉIFORME LAK-550",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_25[] = {
 /* 12500 */ { "SIGNE CUNÉIFORME LAK-608",NULL},
 /* 12501 */ { "SIGNE CUNÉIFORME LAK-617",NULL},
@@ -30888,6 +30995,7 @@ static const struct unicode_nameannot una_01_25[] = {
 /* 125FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_30[] = {
 /* 13000 */ { "HIÉROGLYPHE ÉGYPTIEN A001",NULL},
 /* 13001 */ { "HIÉROGLYPHE ÉGYPTIEN A002",NULL},
@@ -31149,6 +31257,7 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 130FF */ { "HIÉROGLYPHE ÉGYPTIEN F001A",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_31[] = {
 /* 13100 */ { "HIÉROGLYPHE ÉGYPTIEN F002",NULL},
 /* 13101 */ { "HIÉROGLYPHE ÉGYPTIEN F003",NULL},
@@ -31412,6 +31521,7 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 131FF */ { "HIÉROGLYPHE ÉGYPTIEN N017",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_32[] = {
 /* 13200 */ { "HIÉROGLYPHE ÉGYPTIEN N018",NULL},
 /* 13201 */ { "HIÉROGLYPHE ÉGYPTIEN N018A",NULL},
@@ -31676,6 +31786,7 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 132FF */ { "HIÉROGLYPHE ÉGYPTIEN S039",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_33[] = {
 /* 13300 */ { "HIÉROGLYPHE ÉGYPTIEN S040",NULL},
 /* 13301 */ { "HIÉROGLYPHE ÉGYPTIEN S041",NULL},
@@ -31943,6 +32054,7 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 133FF */ { "HIÉROGLYPHE ÉGYPTIEN Z015E","	* 6"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_34[] = {
 /* 13400 */ { "HIÉROGLYPHE ÉGYPTIEN Z015F","	* 7"},
 /* 13401 */ { "HIÉROGLYPHE ÉGYPTIEN Z015G","	* 8"},
@@ -32202,6 +32314,7 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 134FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_44[] = {
 /* 14400 */ { "HIÉROGLYPHE ANATOLIEN A001","	= ego"},
 /* 14401 */ { "HIÉROGLYPHE ANATOLIEN A002","	= ego2"},
@@ -32509,6 +32622,7 @@ static const struct unicode_nameannot una_01_44[] = {
 /* 144FF */ { "HIÉROGLYPHE ANATOLIEN A222",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_45[] = {
 /* 14500 */ { "HIÉROGLYPHE ANATOLIEN A223","	= « sa6 » syllabique"},
 /* 14501 */ { "HIÉROGLYPHE ANATOLIEN A224","	= « ha? pa? » syllabique"},
@@ -32811,6 +32925,7 @@ static const struct unicode_nameannot una_01_45[] = {
 /* 145FF */ { "HIÉROGLYPHE ANATOLIEN A457",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_46[] = {
 /* 14600 */ { "HIÉROGLYPHE ANATOLIEN A457A",NULL},
 /* 14601 */ { "HIÉROGLYPHE ANATOLIEN A458",NULL},
@@ -33071,6 +33186,7 @@ static const struct unicode_nameannot una_01_46[] = {
 /* 146FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_68[] = {
 /* 16800 */ { "LETTRE BAMOUM DE PHASE 'A' NGKÜ MFON",NULL},
 /* 16801 */ { "LETTRE BAMOUM DE PHASE 'A' GBIÉ FON",NULL},
@@ -33330,6 +33446,7 @@ static const struct unicode_nameannot una_01_68[] = {
 /* 168FF */ { "LETTRE BAMOUM DE PHASE 'D' KÙETMÙN",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_69[] = {
 /* 16900 */ { "LETTRE BAMOUM DE PHASE 'D' TÙT",NULL},
 /* 16901 */ { "LETTRE BAMOUM DE PHASE 'D' SHÙE",NULL},
@@ -33589,6 +33706,7 @@ static const struct unicode_nameannot una_01_69[] = {
 /* 169FF */ { "LETTRE BAMOUM DE PHASE 'E' MON",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6A[] = {
 /* 16A00 */ { "LETTRE BAMOUM DE PHASE 'E' TÈN",NULL},
 /* 16A01 */ { "LETTRE BAMOUM DE PHASE 'E' FA'",NULL},
@@ -33848,6 +33966,7 @@ static const struct unicode_nameannot una_01_6A[] = {
 /* 16AFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6B[] = {
 /* 16B00 */ { "VOYELLE PAHAWH HMONG KEEB","	= keem"},
 /* 16B01 */ { "VOYELLE PAHAWH HMONG KEEV","	= kee"},
@@ -34110,6 +34229,7 @@ static const struct unicode_nameannot una_01_6B[] = {
 /* 16BFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6F[] = {
 /* 16F00 */ { "LETTRE MIAO PA","	* utilisée pour « ba » en yi sec"},
 /* 16F01 */ { "LETTRE MIAO BA",NULL},
@@ -34369,6 +34489,7 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16FFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_88[] = {
 /* 18800 */ { "ÉLÉMENT TANGOUTE-001",NULL},
 /* 18801 */ { "ÉLÉMENT TANGOUTE-002",NULL},
@@ -34628,6 +34749,7 @@ static const struct unicode_nameannot una_01_88[] = {
 /* 188FF */ { "ÉLÉMENT TANGOUTE-256",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_89[] = {
 /* 18900 */ { "ÉLÉMENT TANGOUTE-257",NULL},
 /* 18901 */ { "ÉLÉMENT TANGOUTE-258",NULL},
@@ -34887,6 +35009,7 @@ static const struct unicode_nameannot una_01_89[] = {
 /* 189FF */ { "ÉLÉMENT TANGOUTE-512",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_8A[] = {
 /* 18A00 */ { "ÉLÉMENT TANGOUTE-513",NULL},
 /* 18A01 */ { "ÉLÉMENT TANGOUTE-514",NULL},
@@ -35146,6 +35269,7 @@ static const struct unicode_nameannot una_01_8A[] = {
 /* 18AFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B0[] = {
 /* 1B000 */ { "LETTRE KATAKANA E ARCHAÏQUE",NULL},
 /* 1B001 */ { "SYLLABE HENTAIGANA E-1","	* dérivé de 6C5F\n"
@@ -35406,6 +35530,7 @@ static const struct unicode_nameannot una_01_B0[] = {
 /* 1B0FF */ { "SYLLABE HENTAIGANA RE-2","	* dérivé de 79AE"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B1[] = {
 /* 1B100 */ { "SYLLABE HENTAIGANA RE-3","	* dérivé de 9023"},
 /* 1B101 */ { "SYLLABE HENTAIGANA RE-4","	* dérivé de 9E97"},
@@ -35665,6 +35790,7 @@ static const struct unicode_nameannot una_01_B1[] = {
 /* 1B1FF */ { "CARACTÈRE NÜSHU-1B1FF",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B2[] = {
 /* 1B200 */ { "CARACTÈRE NÜSHU-1B200",NULL},
 /* 1B201 */ { "CARACTÈRE NÜSHU-1B201","	x 591A"},
@@ -35924,6 +36050,7 @@ static const struct unicode_nameannot una_01_B2[] = {
 /* 1B2FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_BC[] = {
 /* 1BC00 */ { "LETTRE DE STÉNO DUPLOYÉ H","	* chinook, Pernin, Sloan, Perrault"},
 /* 1BC01 */ { "LETTRE DE STÉNO DUPLOYÉ X","	* langues salishennes"},
@@ -36344,6 +36471,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 /* 1BCFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D0[] = {
 /* 1D000 */ { "SYMBOLE MUSICAL BYZANTIN PSILI",NULL},
 /* 1D001 */ { "SYMBOLE MUSICAL BYZANTIN DASEIA",NULL},
@@ -36605,6 +36733,7 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D1[] = {
 /* 1D100 */ { "SYMBOLE MUSICAL BARRE DE MESURE SIMPLE",NULL},
 /* 1D101 */ { "SYMBOLE MUSICAL BARRE DE MESURE DOUBLE",NULL},
@@ -36870,6 +36999,7 @@ static const struct unicode_nameannot una_01_D1[] = {
 /* 1D1FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D2[] = {
 /* 1D200 */ { "SYMBOLE NOTATION GRECQUE VOCALE 1","	* mi1 vocal"},
 /* 1D201 */ { "SYMBOLE NOTATION GRECQUE VOCALE 2","	* premier dièse du mi1 vocal"},
@@ -37153,6 +37283,7 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D2FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D3[] = {
 /* 1D300 */ { "MONOGRAMME DE L'HOMME","	= ren, jen\n"
 	"	* l'appellation anglaise de ce caractère est erronée\n"
@@ -37415,6 +37546,7 @@ static const struct unicode_nameannot una_01_D3[] = {
 /* 1D3FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D4[] = {
 /* 1D400 */ { "MAJUSCULE MATHÉMATIQUE GRASSE A","	# <police> 0041 lettre majuscule latine a"},
 /* 1D401 */ { "MAJUSCULE MATHÉMATIQUE GRASSE B","	# <police> 0042 lettre majuscule latine b"},
@@ -37676,6 +37808,7 @@ static const struct unicode_nameannot una_01_D4[] = {
 /* 1D4FF */ { "MINUSCULE MATHÉMATIQUE GRASSE V DE RONDE","	# <police> 0076 lettre minuscule latine v"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D5[] = {
 /* 1D500 */ { "MINUSCULE MATHÉMATIQUE GRASSE W DE RONDE","	# <police> 0077 lettre minuscule latine w"},
 /* 1D501 */ { "MINUSCULE MATHÉMATIQUE GRASSE X DE RONDE","	# <police> 0078 lettre minuscule latine x"},
@@ -37938,6 +38071,7 @@ static const struct unicode_nameannot una_01_D5[] = {
 /* 1D5FF */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT R","	# <police> 0072 lettre minuscule latine r"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D6[] = {
 /* 1D600 */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT S","	# <police> 0073 lettre minuscule latine s"},
 /* 1D601 */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT T","	# <police> 0074 lettre minuscule latine t"},
@@ -38203,6 +38337,7 @@ static const struct unicode_nameannot una_01_D6[] = {
 /* 1D6FF */ { "MINUSCULE MATHÉMATIQUE ITALIQUE DELTA","	# <police> 03B4 lettre minuscule grecque delta"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D7[] = {
 /* 1D700 */ { "MINUSCULE MATHÉMATIQUE ITALIQUE EPSILON","	# <police> 03B5 lettre minuscule grecque epsilon"},
 /* 1D701 */ { "MINUSCULE MATHÉMATIQUE ITALIQUE DZÊTA","	# <police> 03B6 lettre minuscule grecque dzêta"},
@@ -38462,6 +38597,7 @@ static const struct unicode_nameannot una_01_D7[] = {
 /* 1D7FF */ { "CHIFFRE MATHÉMATIQUE À CHASSE FIXE NEUF","	# <police> 0039 chiffre neuf"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D8[] = {
 /* 1D800 */ { "SIGNWRITING MAIN-POING INDEX",NULL},
 /* 1D801 */ { "SIGNWRITING MAIN-CERCLE INDEX",NULL},
@@ -38721,6 +38857,7 @@ static const struct unicode_nameannot una_01_D8[] = {
 /* 1D8FF */ { "SIGNWRITING MAIN-POING POUCE SUR DEUX DOIGTS",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D9[] = {
 /* 1D900 */ { "SIGNWRITING MAIN-POING POUCE SOUS TROIS DOIGTS",NULL},
 /* 1D901 */ { "SIGNWRITING MAIN-POING POUCE SOUS QUATRE DOIGTS",NULL},
@@ -38980,6 +39117,7 @@ static const struct unicode_nameannot una_01_D9[] = {
 /* 1D9FF */ { "SIGNWRITING TÊTE",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_DA[] = {
 /* 1DA00 */ { "SIGNWRITING TÊTE BORD",NULL},
 /* 1DA01 */ { "SIGNWRITING TÊTE MOUVEMENT-PLAN VERTICAL RECTILIGNE",NULL},
@@ -39239,6 +39377,7 @@ static const struct unicode_nameannot una_01_DA[] = {
 /* 1DAFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E0[] = {
 /* 1E000 */ { "DIACRITIQUE LETTRE GLAGOLITIQUE AZE",NULL},
 /* 1E001 */ { "DIACRITIQUE LETTRE GLAGOLITIQUE BOUKI",NULL},
@@ -39498,6 +39637,7 @@ static const struct unicode_nameannot una_01_E0[] = {
 /* 1E0FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E8[] = {
 /* 1E800 */ { "SYLLABE MENDÉ KIKAKUI M001 KI",NULL},
 /* 1E801 */ { "SYLLABE MENDÉ KIKAKUI M002 KA",NULL},
@@ -39757,6 +39897,7 @@ static const struct unicode_nameannot una_01_E8[] = {
 /* 1E8FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E9[] = {
 /* 1E900 */ { "LETTRE MAJUSCULE ADLAM ALIF",NULL},
 /* 1E901 */ { "LETTRE MAJUSCULE ADLAM DÂLI",NULL},
@@ -40016,6 +40157,7 @@ static const struct unicode_nameannot una_01_E9[] = {
 /* 1E9FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_EE[] = {
 /* 1EE00 */ { "SYMBOLE MATHÉMATIQUE ARABE ALIF","	x (lettre arabe alif isolé - FE8D)\n"
 	"	# <police> 0627 lettre arabe alif"},
@@ -40329,6 +40471,7 @@ static const struct unicode_nameannot una_01_EE[] = {
 /* 1EEFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F0[] = {
 /* 1F000 */ { "TUILE DE MAJONG VENT D'EST",NULL},
 /* 1F001 */ { "TUILE DE MAJONG VENT DU SUD",NULL},
@@ -40588,6 +40731,7 @@ static const struct unicode_nameannot una_01_F0[] = {
 /* 1F0FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F1[] = {
 /* 1F100 */ { "CHIFFRE ZÉRO POINT","	# 0030 002E"},
 /* 1F101 */ { "CHIFFRE ZÉRO VIRGULE","	# 0030 002C"},
@@ -40882,6 +41026,7 @@ static const struct unicode_nameannot una_01_F1[] = {
 /* 1F1FF */ { "SYMBOLE INDICATEUR RÉGIONAL LETTRE Z",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F2[] = {
 /* 1F200 */ { "HIRAGANA HOKA DISPOSÉ EN CARRÉ","	= et autres\n"
 	"	# <enCarré> 307B 304B"},
@@ -41214,6 +41359,7 @@ static const struct unicode_nameannot una_01_F2[] = {
 /* 1F2FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F3[] = {
 /* 1F300 */ { "CYCLONE","	= typhon, ouragan"},
 /* 1F301 */ { "BRUMEUX","	x (brouillard - 1F32B)"},
@@ -41526,6 +41672,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3FF */ { "MODIFICATEUR D'ÉMOJI PHOTOTYPE-6",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F4[] = {
 /* 1F400 */ { "RAT","	* premier signe du zodiaque asiatique"},
 /* 1F401 */ { "SOURIS","	* premier signe du zodiaque asiatique utilisé en Perse"},
@@ -41815,6 +41962,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4FF */ { "CHAPELET",NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F5[] = {
 /* 1F500 */ { "FLÈCHES VERS LA DROITE S'ENTRECROISANT","	= brouiller"},
 /* 1F501 */ { "FLÈCHES VERS LA DROITE ET VERS LA GAUCHE SENS HORAIRE EN CERCLE OUVERT","	= répéter\n"
@@ -42135,6 +42283,7 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5FF */ { "MOYAI","	* statue de pierre japonaise, semblable aux statues monumentales (moaï) de l'île de Pâques"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F6[] = {
 /* 1F600 */ { "VISAGE RIEUR",NULL},
 /* 1F601 */ { "VISAGE RIEUR AUX YEUX RÉJOUIS",NULL},
@@ -42422,6 +42571,7 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F7[] = {
 /* 1F700 */ { "SYMBOLE ALCHIMIQUE DE LA QUINTESSENCE",NULL},
 /* 1F701 */ { "SYMBOLE ALCHIMIQUE DE L'AIR",NULL},
@@ -42706,6 +42856,7 @@ static const struct unicode_nameannot una_01_F7[] = {
 /* 1F7FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F8[] = {
 /* 1F800 */ { "FLÈCHE À PETITE TÊTE TRIANGULAIRE VERS LA GAUCHE",NULL},
 /* 1F801 */ { "FLÈCHE À PETITE TÊTE TRIANGULAIRE VERS LE HAUT",NULL},
@@ -42965,6 +43116,7 @@ static const struct unicode_nameannot una_01_F8[] = {
 /* 1F8FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F9[] = {
 /* 1F900 */ { "CROIX PATTÉE CERCLÉE AVEC QUATRE POINTS",NULL},
 /* 1F901 */ { "CROIX PATTÉE CERCLÉE AVEC DEUX POINTS",NULL},
@@ -43246,6 +43398,7 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F9FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_F8[] = {
 /* 2F800 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F800","	: 4E3D"},
 /* 2F801 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F801","	: 4E38"},
@@ -43510,6 +43663,7 @@ static const struct unicode_nameannot una_02_F8[] = {
 /* 2F8FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F8FF","	: 6D16"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_F9[] = {
 /* 2F900 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F900","	: 6D3E"},
 /* 2F901 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F901","	: 6D77"},
@@ -43775,6 +43929,7 @@ static const struct unicode_nameannot una_02_F9[] = {
 /* 2F9FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F9FF","	: 980B"}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_FA[] = {
 /* 2FA00 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2FA00","	: 9829"},
 /* 2FA01 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2FA01","	: 295B6"},
@@ -44034,6 +44189,7 @@ static const struct unicode_nameannot una_02_FA[] = {
 /* 2FAFF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_0E_00[] = {
 /* E0000 */ { NULL,NULL},
 /* E0001 */ { "ÉTIQUETTE DE LANGUE","	* Ce caractère est obsolète et son utilisation est fortement déconseillée."},
@@ -44293,6 +44449,7 @@ static const struct unicode_nameannot una_0E_00[] = {
 /* E00FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_0E_01[] = {
 /* E0100 */ { "SÉLECTEUR DE VARIANTE-17","	* ces caractères ont pour abréviation VS17, VS18, et ainsi de suite"},
 /* E0101 */ { "SÉLECTEUR DE VARIANTE-18",NULL},
@@ -44552,6 +44709,7 @@ static const struct unicode_nameannot una_0E_01[] = {
 /* E01FF */ { NULL,NULL}
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_00[] = {
 	una_00_00,
 	una_00_01,
@@ -44811,6 +44969,7 @@ static const struct unicode_nameannot * const una_00[] = {
 	una_00_FF
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_01[] = {
 	una_01_00,
 	una_01_01,
@@ -45070,6 +45229,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray2
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_02[] = {
 	nullarray,
 	nullarray,
@@ -45329,6 +45489,7 @@ static const struct unicode_nameannot * const una_02[] = {
 	nullarray2
 };
 
+UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_0E[] = {
 	una_0E_00,
 	una_0E_01,
@@ -45588,9 +45749,7 @@ static const struct unicode_nameannot * const una_0E[] = {
 	nullarray2
 };
 
-#ifdef __Cygwin
-__declspec(dllexport)	/* Need this for cygwin to get shared libs */
-#endif /* __Cygwin */
+UN_DLL_EXPORT
 const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {
 	una_00,
 	una_01,

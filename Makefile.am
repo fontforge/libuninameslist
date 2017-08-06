@@ -29,12 +29,12 @@ endif
 
 libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(UN_VERSION)
 libuninameslist_la_SOURCES = nameslist.c
-libuninameslist_la.$(OBJEXT): uninameslist.h
+libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h
 
 if WANTLIBOFR
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
-libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h
+libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h
 else
 EXTRA_DIST += nameslist-fr.c uninameslist-fr.h
 endif
@@ -43,6 +43,7 @@ include_HEADERS = uninameslist.h
 if WANTLIBOFR
 include_HEADERS += uninameslist-fr.h
 endif
+noinst_HEADERS = nameslist-dll.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libuninameslist.pc

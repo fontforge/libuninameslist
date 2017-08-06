@@ -268,6 +268,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     int i;
 
     fprintf( out, "#include <stdio.h>\n" );
+    fprintf( out, "#include \"nameslist-dll.h\"\n" );
     if ( is_fr<1 )
 	fprintf( out, "#include \"uninameslist.h\"\n\n" );
     else
@@ -280,50 +281,50 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	printcopyright1(out, is_fr);
 	/* Added functions available in libuninameslist version 0.3 and higher. */
 	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
-	fprintf( out, "const char *uniNamesList_name(unsigned long uni) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_name(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
 	fprintf( out, "\tif ( uni<0x110000 )\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
-	fprintf( out, "const char *uniNamesList_annot(unsigned long uni) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_annot(unsigned long uni) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n" );
 	fprintf( out, "\tif ( uni<0x110000 )\n" );
 	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
 	fprintf( out, "\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
-	fprintf( out, "const char *uniNamesList_NamesListVersion(void) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_NamesListVersion(void) {\n" );
 	fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", NL_VERSION );
 	/* Added functions available in libuninameslist version 0.4 and higher. */
 	fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
 	fprintf( out, "/* Return number of blocks in this NamesList. */\n" );
-	fprintf( out, "int uniNamesList_blockCount(void) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockCount(void) {\n" );
 	fprintf( out, "\treturn( UNICODE_BLOCK_MAX );\n}\n\n" );
 	fprintf( out, "/* Return block number for this unicode value, -1 if unlisted unicode value */\n" );
-	fprintf( out, "int uniNamesList_blockNumber(unsigned long uni) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockNumber(unsigned long uni) {\n" );
 	fprintf( out, "\tif ( uni<0x110000 ) {\n\t\tint i;\n" );
 	fprintf( out, "\t\tfor (i=0; i<UNICODE_BLOCK_MAX; i++) {\n" );
 	fprintf( out, "\t\t\tif ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;\n" );
 	fprintf( out, "\t\t\tif ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );\n" );
 	fprintf( out, "\t\t}\n\t}\n\treturn( -1 );\n}\n\n" );
 	fprintf( out, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( out, "long uniNamesList_blockStart(int uniBlock) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockStart(int uniBlock) {\n" );
 	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].start : -1) );\n}\n\n" );
 	fprintf( out, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( out, "long uniNamesList_blockEnd(int uniBlock) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockEnd(int uniBlock) {\n" );
 	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].end : -1) );\n}\n\n" );
 	fprintf( out, "/* Return a pointer to the blockname for this unicode block. */\n" );
-	fprintf( out, "const char *uniNamesList_blockName(int uniBlock) {\n" );
+	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_blockName(int uniBlock) {\n" );
 	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );\n}\n\n" );
     }
     if ( is_fr==1 ) printcopyright2(out);
 
-    fprintf( out, "static const struct unicode_nameannot nullarray[] = {\n" );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray[] = {\n" );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }\n" );
     fprintf( out, "};\n\n" );
-    fprintf( out, "static const struct unicode_nameannot nullarray2[] = {\n" );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray2[] = {\n" );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL },\n" );
@@ -335,7 +336,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );
     }
     fprintf( out, "};\n\n" );
-    fprintf( out, "static const struct unicode_nameannot * const nullnullarray[] = {\n" );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const nullnullarray[] = {\n" );
     for ( i=0; i<256/8 ; ++i )
 	fprintf( out, "\tnullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,\n" );
     fprintf( out, "\tnullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray2\n" );
@@ -408,10 +409,7 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
     struct block *block;
     unsigned int i, maxa, maxn;
 
-    fprintf( out, "#ifdef __Cygwin\n" );
-    fprintf( out, "__declspec(dllexport)\t/* Need this for cygwin to get shared libs */\n" );
-    fprintf( out, "#endif /* __Cygwin */\n" );
-    fprintf( out, "const struct unicode_block UnicodeBlock[] = {\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_block UnicodeBlock[] = {\n" );
     for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
 	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", (unsigned int)(block->start),
 		(unsigned int)(block->end), block->name, block->next!=NULL ? "," : "" );
@@ -466,7 +464,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	    }
 	    if ( t==256 || (j==0xff && t==0xfe -1))
 	continue;	/* Empty sub-plane */
-	    fprintf( out, "static const struct unicode_nameannot %s_%02X_%02X[] = {\n", prefix, i, j );
+	    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot %s_%02X_%02X[] = {\n", prefix, i, j );
 	    for ( k=0; k<256; ++k ) {
 		fprintf( out, "/* %04X */ { ", (i<<16) + (j<<8) + k );
 		if ( uninames[is_fr][(i<<16) + (j<<8) + k]==NULL )
@@ -490,7 +488,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	break;
 	if ( t==0xFFFE )
     continue;		/* Empty plane */
-	fprintf( out, "static const struct unicode_nameannot * const %s_%02X[] = {\n", prefix, i );
+	fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const %s_%02X[] = {\n", prefix, i );
 	for ( j=0; j<256; ++j ) {
 	    for ( t=0; t<256; ++t ) {
 		if ( uninames[is_fr][(i<<16) + (j<<8) + t]!=NULL || uniannot[is_fr][(i<<16) + (j<<8) + t]!=NULL )
@@ -510,10 +508,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 
     fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];\n" );
 
-    fprintf( out, "#ifdef __Cygwin\n" );
-    fprintf( out, "__declspec(dllexport)\t/* Need this for cygwin to get shared libs */\n" );
-    fprintf( out, "#endif /* __Cygwin */\n" );
-    fprintf( out, "const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_nameannot * const *const UnicodeNameAnnot[] = {\n" );
     for ( i=0; i<sizeof(uniannot[is_fr])/(sizeof(uniannot[is_fr][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
 	    if ( uninames[is_fr][(i<<16)+t]!=NULL || uniannot[is_fr][(i<<16)+t]!=NULL )

@@ -115,6 +115,7 @@ case "$host" in
  AC_LIBTOOL_WIN32_DLL
  ;;
 esac
+
 #-------------------------------------------
 # Compiler and Linker flags to override auto
 # detection and insertion. Use CFLAGS if you
@@ -150,6 +151,10 @@ dnl   AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
 dnl   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
 dnl   AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
 dnl   AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
+
+dnl reduce exported symbol list for dynamic library
+dnl AX_CHECK_COMPILE_FLAG([-fvisibility=hidden],[WCFLAGS="$WCFLAGS -fvisibility=hidden"])
+dnl AX_CHECK_COMPILE_FLAG([-fvisibility-inlines-hidden],[WCFLAGS="$WCFLAGS -fvisibility-inlines-hidden"])
 AC_LANG_POP
 
 # Skip if replacing with UN_LIB instead.
