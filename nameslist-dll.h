@@ -8,7 +8,9 @@
   #if __GNUC__ >= 4
     #define UN_DLL_IMPORT __attribute__ ((visibility ("default")))
     #define UN_DLL_EXPORT __attribute__ ((visibility ("default")))
-    #define UN_DLL_LOCAL  __attribute__ ((visibility ("hidden")))
+    /* 'internal' to avoid library conflicts. 'hidden' for debugging */
+    /* #define UN_DLL_LOCAL  __attribute__ ((visibility ("hidden"))) */
+    #define UN_DLL_LOCAL  __attribute__ ((visibility ("internal")))
   #else
     #define UN_DLL_IMPORT
     #define UN_DLL_EXPORT

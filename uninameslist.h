@@ -1,5 +1,5 @@
-#ifndef _NAMESLIST_H
-# define _NAMESLIST_H
+#ifndef UN_NAMESLIST_H
+# define UN_NAMESLIST_H
 
 /* This file was generated using the program 'buildnameslist.c' */
 
@@ -16,11 +16,10 @@ struct unicode_nameannot {
 	const char *name, *annot;
 };
 
-/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[294] */
-/* because newer version of NamesList.txt can have more blocks than before. */
-/* To allow for future use of libuninameslist without changing your program */
-/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
+/* NOTE: Build your program to access the functions if using multilanguage. */
+
 #define UNICODE_BLOCK_MAX	294
+#define UNICODE_EN_BLOCK_MAX	294
 extern const struct unicode_block UnicodeBlock[294];
 
 /* NOTE: These 4 constants are correct for this version of libuninameslist, */
@@ -73,7 +72,7 @@ long uniNamesList_blockEnd(int uniBlock);
 
 /* Return a pointer to the blockname for this unicode block. */
 /* This value points to a constant string inside the library */
-const char *uniNamesList_blockName(int uniBlock);
+const char * uniNamesList_blockName(int uniBlock);
 
 #ifdef __cplusplus
 }

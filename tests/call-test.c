@@ -21,11 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#if defined(DO_CALL_TEST3) || defined(DO_CALL_TEST_4)
+#include "uninameslist-fr.h"
+#else
 #include "uninameslist.h"
+#ifdef DO_CALL_TEST5
+#include "uninameslist-fr.h"
+#endif
+#endif
 
-const char NOTCMP[]="Annotation can vary, check to exist, string not compared";
+static const char NOTCMP[]="Annotation can vary, check to exist, string not compared";
+static const char NOBLKT[]="Block Names can vary, check to exist, string not compared";
 
-int test(long val, const char *result, const char *expect) {
+static int test(long val, const char *result, const char *expect) {
 
     printf("test code=");
     if ( val<0 )
@@ -45,35 +53,37 @@ int test(long val, const char *result, const char *expect) {
     }
 
     printf("\n  ret=\"%s\"\n  exp=\"%s\"\n",result,expect);
-    return( (strcmp(result,expect)==0 || NOTCMP==expect ? 1:0) );
+    return( (int)(strcmp(result,expect)==0 || NOTCMP==expect || NOBLKT==expect ? 1:0) );
 }
 
-#ifdef DO_CALL_TEST0
-const char *test_name(unsigned long uni) {
+#if defined(DO_CALL_TEST0) || defined(DO_CALL_TEST3)
+static const char *test_name(unsigned long uni) {
     const char *pt;
 
     pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;
     return( pt );
 }
 
-const char *test_annot(unsigned long uni) {
+static const char *test_annot(unsigned long uni) {
     const char *pt;
 
     pt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;
     return( pt );
 }
+#endif
 
-int test_calls_2012(void) {
+#ifdef DO_CALL_TEST0
+static int test_calls_2012(void) {
 /* Verify backwards compatibility for older programs. */
     return( ((test(32,test_name(32),"SPACE") && \
-	      test(32,test_annot(32),NOTCMP) && \
+	      test(7,test_annot(7),"\t= BELL") && \
 	      test(58,test_name(58),"COLON") && \
 	      test(126,test_name(126),"TILDE"))?0:-1) );
 }
 #endif
 
 #ifdef DO_CALL_TEST1
-int test_calls_03(void) {
+static int test_calls_03(void) {
     const char *cc;
 
     if ( uniNamesList_name(-100)==NULL && \
@@ -90,7 +100,7 @@ int test_calls_03(void) {
 
     if ( uniNamesList_annot(-100)==NULL && \
 	 uniNamesList_annot(0x300000)==NULL && \
-	 test(32,uniNamesList_annot(32),NOTCMP) && \
+	 test(7,uniNamesList_annot(7),"\t= BELL") && \
 	 test(66,uniNamesList_annot(66),NOTCMP) && \
 	 test(126,uniNamesList_annot(126),NOTCMP) && \
 	 test(0x1F3B5,uniNamesList_annot(0x1F3B5),NOTCMP) )
@@ -110,7 +120,7 @@ int test_calls_03(void) {
 #endif
 
 #ifdef DO_CALL_TEST2
-int test_calls_04(void) {
+static int test_calls_04(void) {
     int ret;
     const char *cc;
 
@@ -134,14 +144,89 @@ int test_calls_04(void) {
 
     if ( uniNamesList_blockName(-100)==NULL && \
 	 uniNamesList_blockName(0x300000)==NULL && \
-	 test(0,uniNamesList_blockName(0),NOTCMP) && \
-	 test(1,uniNamesList_blockName(1),NOTCMP) && \
-	 test(12,uniNamesList_blockName(12),NOTCMP) && \
-	 test(50,uniNamesList_blockName(50),NOTCMP) )
+	 test(0,uniNamesList_blockName(0),NOBLKT) && \
+	 test(1,uniNamesList_blockName(1),NOBLKT) && \
+	 test(12,uniNamesList_blockName(12),NOBLKT) && \
+	 test(50,uniNamesList_blockName(50),NOBLKT) )
 	;
     else {
 	printf("error with uniNamesList_blockName(uniBlock)\n");
 	return( -3 );
+    }
+
+    return( 0 );
+}
+#endif
+
+#ifdef DO_CALL_TEST3
+static int test_calls_2012F(void) {
+/* Verify backwards compatibility for older programs. */
+    return( ((test(32,test_name(32),"ESPACE") && \
+	      test(5,test_annot(5),"\t= DEMANDE") && \
+	      test(42,test_name(42),"ASTÉRISQUE") && \
+	      test(44,test_name(44),"VIRGULE"))?0:-1) );
+}
+#endif
+
+#ifdef DO_CALL_TEST4
+static int test_calls_FR(void) {
+    const char *cc;
+
+    if ( uniNamesList_nameFR(-100)==NULL && \
+	 uniNamesList_nameFR(0x300000)==NULL && \
+	 test(32,uniNamesList_nameFR(32),"ESPACE") && \
+	 test(42,uniNamesList_nameFR(42),"ASTÉRISQUE") && \
+	 test(44,uniNamesList_nameFR(44),"VIRGULE") )
+	;
+    else {
+	printf("error with uniNamesList_FRname(code)\n");
+	return( -1 );
+    }
+
+    if ( uniNamesList_annotFR(-100)==NULL && \
+	 uniNamesList_annotFR(0x300000)==NULL && \
+	 test(5,uniNamesList_annotFR(5),"\t= DEMANDE") && \
+	 test(7,uniNamesList_annotFR(7),"\t= SONNERIE") && \
+	 test(126,uniNamesList_annotFR(126),NOTCMP) && \
+	 test(0x1F3B5,uniNamesList_annotFR(0x1F3B5),NOTCMP) )
+	;
+    else {
+	printf("error with uniNamesList_annotFR(code)\n");
+	return( -2 );
+    }
+
+    cc = uniNamesList_NamesListVersionFR();
+    printf("test uniNamesList_NamesListVersionFR(), return=\"%s\"\n",cc);
+    if ( cc==NULL || cc[0]!='N' || cc[1]!='a' || cc[2]!='m' )
+	return( -3 );
+
+    return( 0 );
+}
+#endif
+
+#ifdef DO_CALL_TEST5
+static int test_calls_both(void) {
+    if ( uniNamesList_name(-100)==NULL && \
+	 uniNamesList_name(0x300000)==NULL && \
+	 test(32,uniNamesList_name(32),"SPACE") && \
+	 test(59,uniNamesList_name(59),"SEMICOLON") && \
+	 test(63,uniNamesList_name(63),"QUESTION MARK") && \
+	 test(0x1F3A9,uniNamesList_name(0x1F3A9),"TOP HAT") )
+	;
+    else {
+	printf("error with uniNamesList_name(code)\n");
+	return( -1 );
+    }
+
+    if ( uniNamesList_nameFR(-100)==NULL && \
+	 uniNamesList_nameFR(0x300000)==NULL && \
+	 test(32,uniNamesList_nameFR(32),"ESPACE") && \
+	 test(42,uniNamesList_nameFR(42),"ASTÉRISQUE") && \
+	 test(44,uniNamesList_nameFR(44),"VIRGULE") )
+	;
+    else {
+	printf("error with uniNamesList_FRname(code)\n");
+	return( -2 );
     }
 
     return( 0 );
@@ -162,6 +247,18 @@ int main(int argc, char **argv) {
 #ifdef DO_CALL_TEST2
     /* test function calls available for 0.4.20140731 */
     ret=test_calls_04();
+#endif
+#ifdef DO_CALL_TEST3
+    /* test 20120731 version calls for older programs */
+    ret=test_calls_2012F();
+#endif
+#ifdef DO_CALL_TEST4
+    /* try test a function call to the French library */
+    ret=test_calls_FR();
+#endif
+#ifdef DO_CALL_TEST5
+    /* verify we can use both libraries at same time! */
+    ret=test_calls_both();
 #endif
     return ret;
 }

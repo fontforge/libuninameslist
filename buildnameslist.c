@@ -22,6 +22,11 @@ static struct block { long int start, end; char *name; struct block *next;}
 
 unsigned max_a, max_n;
 
+static const char *lg[2] = { "", "FR" };
+static const char *lgb[2] = { "UNICODE_EN_BLOCK_MAX", "UNICODE_FR_BLOCK_MAX" };
+static const char *lgv[2] = { NL_VERSION, NFR_VERSION };
+
+
 static int printcopyright2credits(FILE *out) {
     fprintf( out, "; Ces noms français sont utilisés pour confectionner\n");
     fprintf( out, ";\tles commentaires documentant chacun des caractères\n");
@@ -265,7 +270,9 @@ static void dumpstring(char *str,FILE *out) {
 
 static int dumpinit(FILE *out, FILE *header, int is_fr) {
     /* is_fr => 0=english, 1=french */
-    int i;
+    int i, l;
+
+    l = is_fr; if ( is_fr<0 ) l = 0;
 
     fprintf( out, "#include <stdio.h>\n" );
     fprintf( out, "#include \"nameslist-dll.h\"\n" );
@@ -276,55 +283,56 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
-    if ( is_fr<1 ) {
-	/* default Nameslist.txt language=EN file holds these additional functions */
-	printcopyright1(out, is_fr);
-	/* Added functions available in libuninameslist version 0.3 and higher. */
-	fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_name(unsigned long uni) {\n" );
-	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif ( uni<0x110000 )\n" );
-	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n" );
-	fprintf( out, "\treturn( pt );\n}\n\n" );
-	fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_annot(unsigned long uni) {\n" );
-	fprintf( out, "\tconst char *pt=NULL;\n\n" );
-	fprintf( out, "\tif ( uni<0x110000 )\n" );
-	fprintf( out, "\t\tpt=UnicodeNameAnnot[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n" );
-	fprintf( out, "\treturn( pt );\n}\n\n" );
-	fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_NamesListVersion(void) {\n" );
-	fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", NL_VERSION );
-	/* Added functions available in libuninameslist version 0.4 and higher. */
-	fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
-	fprintf( out, "/* Return number of blocks in this NamesList. */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockCount(void) {\n" );
-	fprintf( out, "\treturn( UNICODE_BLOCK_MAX );\n}\n\n" );
-	fprintf( out, "/* Return block number for this unicode value, -1 if unlisted unicode value */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockNumber(unsigned long uni) {\n" );
-	fprintf( out, "\tif ( uni<0x110000 ) {\n\t\tint i;\n" );
-	fprintf( out, "\t\tfor (i=0; i<UNICODE_BLOCK_MAX; i++) {\n" );
-	fprintf( out, "\t\t\tif ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;\n" );
-	fprintf( out, "\t\t\tif ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );\n" );
-	fprintf( out, "\t\t}\n\t}\n\treturn( -1 );\n}\n\n" );
-	fprintf( out, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockStart(int uniBlock) {\n" );
-	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].start : -1) );\n}\n\n" );
-	fprintf( out, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockEnd(int uniBlock) {\n" );
-	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].end : -1) );\n}\n\n" );
-	fprintf( out, "/* Return a pointer to the blockname for this unicode block. */\n" );
-	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_blockName(int uniBlock) {\n" );
-	fprintf( out, "\treturn( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );\n}\n\n" );
-    }
+    if ( is_fr<1 ) printcopyright1(out, is_fr);
     if ( is_fr==1 ) printcopyright2(out);
 
-    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray[] = {\n" );
+    /* Added functions available in libuninameslist version 0.3 and higher. */
+    fprintf( out, "/* Retrieve a pointer to the name of a Unicode codepoint. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_name%s(unsigned long uni) {\n", lg[l] );
+    fprintf( out, "\tconst char *pt=NULL;\n\n" );
+    fprintf( out, "\tif ( uni<0x110000 )\n" );
+    fprintf( out, "\t\tpt=UnicodeNameAnnot%s[uni>>16][(uni>>8)&0xff][uni&0xff].name;\n", lg[l] );
+    fprintf( out, "\treturn( pt );\n}\n\n" );
+    fprintf( out, "/* Retrieve a pointer to annotation details of a Unicode codepoint. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_annot%s(unsigned long uni) {\n", lg[l] );
+    fprintf( out, "\tconst char *pt=NULL;\n\n" );
+    fprintf( out, "\tif ( uni<0x110000 )\n" );
+    fprintf( out, "\t\tpt=UnicodeNameAnnot%s[uni>>16][(uni>>8)&0xff][uni&0xff].annot;\n", lg[l] );
+    fprintf( out, "\treturn( pt );\n}\n\n" );
+    fprintf( out, "/* Retrieve Nameslist.txt version number. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_NamesListVersion%s(void) {\n",lg[l] );
+    fprintf( out, "\treturn( \"Nameslist-Version: %s\" );\n}\n\n", lgv[l] );
+    /* Added functions available in libuninameslist version 0.4 and higher. */
+    fprintf( out, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
+    fprintf( out, "/* Return number of blocks in this NamesList. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockCount%s(void) {\n", lg[l] );
+    fprintf( out, "\treturn( %s );\n}\n\n", lgb[l] );
+    fprintf( out, "/* Return block number for this unicode value, -1 if unlisted unicode value */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockNumber%s(unsigned long uni) {\n", lg[l] );
+    fprintf( out, "\tif ( uni<0x110000 ) {\n\t\tint i;\n" );
+    fprintf( out, "\t\tfor (i=0; i<%s; i++) {\n", lgb[l] );
+    fprintf( out, "\t\t\tif ( uni<(unsigned long)(UnicodeBlock%s[i].start) ) break;\n", lg[l] );
+    fprintf( out, "\t\t\tif ( uni<=(unsigned long)(UnicodeBlock%s[i].end) ) return( i );\n", lg[l] );
+    fprintf( out, "\t\t}\n\t}\n\treturn( -1 );\n}\n\n" );
+    fprintf( out, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockStart%s(int uniBlock) {\n", lg[l] );
+    fprintf( out, "\tif ( uniBlock<0 || uniBlock>=%s )\n\t\treturn( -1 );\n", lgb[l] );
+    fprintf( out, "\treturn( (long)(UnicodeBlock%s[uniBlock].start) );\n}\n\n", lg[l] );
+    fprintf( out, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockEnd%s(int uniBlock) {\n", lg[l] );
+    fprintf( out, "\tif ( uniBlock<0 || uniBlock>=%s )\n\t\treturn( -1 );\n", lgb[l] );
+    fprintf( out, "\treturn( (long)(UnicodeBlock%s[uniBlock].end) );\n}\n\n", lg[l] );
+    fprintf( out, "/* Return a pointer to the blockname for this unicode block. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst char * uniNamesList_blockName%s(int uniBlock) {\n", lg[l] );
+    fprintf( out, "\tif ( uniBlock<0 || uniBlock>=%s )\n\t\treturn( NULL );\n", lgb[l] );
+    fprintf( out, "\treturn( UnicodeBlock%s[uniBlock].name );\n}\n\n", lg[l] );
+
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray%s[] = {\n", lg[l] );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }\n" );
     fprintf( out, "};\n\n" );
-    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray2[] = {\n" );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray2%s[] = {\n", lg[l] );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL },\n" );
@@ -336,91 +344,103 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );
     }
     fprintf( out, "};\n\n" );
-    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const nullnullarray[] = {\n" );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const nullnullarray%s[] = {\n", lg[l] );
     for ( i=0; i<256/8 ; ++i )
-	fprintf( out, "\tnullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,\n" );
-    fprintf( out, "\tnullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray2\n" );
+	fprintf( out, "\tnullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s,\n", \
+			lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l] );
+    fprintf( out, "\tnullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray2%s\n",
+			lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l] );
     fprintf( out, "};\n\n" );
 
     if ( is_fr==1 ) {
 	/* default Nameslist.txt language=EN file holds these additional functions */
-	fprintf( header, "#ifndef _NAMESLIST_FR_H\n" );
-	fprintf( header, "# define _NAMESLIST_FR_H\n\n" );
+	fprintf( header, "#ifndef UN_NAMESLIST_FR_H\n" );
+	fprintf( header, "# define UN_NAMESLIST_FR_H\n\n" );
     } else {
-	fprintf( header, "#ifndef _NAMESLIST_H\n" );
-	fprintf( header, "# define _NAMESLIST_H\n\n" );
+	fprintf( header, "#ifndef UN_NAMESLIST_H\n" );
+	fprintf( header, "# define UN_NAMESLIST_H\n\n" );
     }
     fprintf( header, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
     fprintf( header, "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n" );
+    if ( is_fr!=0 ) fprintf( header, "#ifndef UN_NAMESLIST_H\n" );
     fprintf( header, "struct unicode_block {\n\tint start, end;\n\tconst char *name;\n};\n\n" );
-    fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n\n" );
+    fprintf( header, "struct unicode_nameannot {\n\tconst char *name, *annot;\n};\n" );
+    if ( is_fr!=0 ) fprintf( header, "#endif\n" );
+    fprintf( header, "\n" );
     return( 1 );
 }
 
 static int dumpend(FILE *header, int is_fr) {
-    fprintf( header, "\n/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n" );
+    int l;
+
+    l = is_fr; if ( is_fr<0 ) l = 0;
+
+    fprintf( header, "\n/* Index by: UnicodeNameAnnot%s[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n", lg[l] );
     fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a: */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
     fprintf( header, "/*  x should be replaced by a right arrow U+2192 */\n" );
     fprintf( header, "/*  : should be replaced by an equivalent U+224D */\n" );
     fprintf( header, "/*  # should be replaced by an approximate U+2245 */\n" );
     fprintf( header, "/*  = should remain itself */\n\n" );
+
+    /* default Nameslist.txt language=EN file holds these additional functions */
+    /* Added functions available in libuninameslist version 0.3 and higher. */
+    /* Maintain this sequence for old-programs-binary-backwards-compatibility. */
+    fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n" );
+    fprintf( header, "const char *uniNamesList_name%s(unsigned long uni);\n\n", lg[l] );
+    fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n" );
+    fprintf( header, "const char *uniNamesList_annot%s(unsigned long uni);\n\n", lg[l] );
+    fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n" );
+    fprintf( header, "const char *uniNamesList_NamesListVersion%s(void);\n\n", lg[l] );
+    /* Added functions available in libuninameslist version 0.4 and higher. */
+    fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
+    fprintf( header, "/* Version information for this <uninameslist.h> include file */\n" );
     if ( is_fr==0 ) {
-	/* default Nameslist.txt language=EN file holds these additional functions */
-	/* Added functions available in libuninameslist version 0.3 and higher. */
-	/* Maintain this sequence for old-programs-binary-backwards-compatibility. */
-	fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n" );
-	fprintf( header, "const char *uniNamesList_name(unsigned long uni);\n\n" );
-	fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n" );
-	fprintf( header, "const char *uniNamesList_annot(unsigned long uni);\n\n" );
-	fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n" );
-	fprintf( header, "const char *uniNamesList_NamesListVersion(void);\n\n" );
-	/* Added functions available in libuninameslist version 0.4 and higher. */
-	fprintf( header, "\n/* These functions are available in libuninameslist-0.4.20140731 and higher */\n\n" );
-	fprintf( header, "/* Version information for this <uninameslist.h> include file */\n" );
 	fprintf( header, "#define LIBUNINAMESLIST_MAJOR\t%d\n", LU_VERSION_MJ );
 	fprintf( header, "#define LIBUNINAMESLIST_MINOR\t%d\n\n", LU_VERSION_MN );
 	fprintf( header, "/* Return number of blocks in this NamesList (Version %s). */\n", NL_VERSION );
-	fprintf( header, "int uniNamesList_blockCount(void);\n\n" );
-	fprintf( header, "/* Return block number for this unicode value (-1 if bad unicode value) */\n" );
-	fprintf( header, "int uniNamesList_blockNumber(unsigned long uni);\n\n" );
-	fprintf( header, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( header, "long uniNamesList_blockStart(int uniBlock);\n\n" );
-	fprintf( header, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
-	fprintf( header, "long uniNamesList_blockEnd(int uniBlock);\n\n" );
-	fprintf( header, "/* Return a pointer to the blockname for this unicode block. */\n" );
-	fprintf( header, "/* This value points to a constant string inside the library */\n" );
-	fprintf( header, "const char *uniNamesList_blockName(int uniBlock);\n\n" );
-    }
-    if ( is_fr==1 ) {
-	fprintf( header, "/* French NamesList (Version %s). */\n", NFR_VERSION );
+    } else if ( is_fr==1 ) {
 	fprintf( header, "#define LIBUNINAMESLIST_FR_MAJOR\t%d\n", LFR_VERSION_MJ );
 	fprintf( header, "#define LIBUNINAMESLIST_FR_MINOR\t%d\n\n", LFR_VERSION_MN );
+	fprintf( header, "/* Return number of blocks in this NamesList (Version %s). */\n", NFR_VERSION );
     }
-    fprintf( header, "#ifdef __cplusplus\n}\n#endif\n#endif\n" );
+    fprintf( header, "int uniNamesList_blockCount%s(void);\n\n", lg[l] );
+    fprintf( header, "/* Return block number for this unicode value (-1 if bad unicode value) */\n" );
+    fprintf( header, "int uniNamesList_blockNumber%s(unsigned long uni);\n\n", lg[l] );
+    fprintf( header, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
+    fprintf( header, "long uniNamesList_blockStart%s(int uniBlock);\n\n", lg[l] );
+    fprintf( header, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
+    fprintf( header, "long uniNamesList_blockEnd%s(int uniBlock);\n\n", lg[l] );
+    fprintf( header, "/* Return a pointer to the blockname for this unicode block. */\n" );
+    fprintf( header, "/* This value points to a constant string inside the library */\n" );
+    fprintf( header, "const char * uniNamesList_blockName%s(int uniBlock);\n", lg[l] );
+    if ( is_fr!=0 ) fprintf( header, "\n#define UnicodeNameAnnot UnicodeNameAnnot%s\n", lg[l] );
+
+    fprintf( header, "\n#ifdef __cplusplus\n}\n#endif\n#endif\n" );
     return( 1 );
 }
 
 static int dumpblock(FILE *out, FILE *header, int is_fr ) {
-    int bcnt;
+    int bcnt, l;
     struct block *block;
     unsigned int i, maxa, maxn;
 
-    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_block UnicodeBlock[] = {\n" );
+    l = is_fr; if ( is_fr<0 ) l = 0;
+
+    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_block UnicodeBlock%s[] = {\n", lg[l] );
     for ( block = head[is_fr], bcnt=0; block!=NULL; block=block->next, ++bcnt ) {
 	fprintf( out, "\t{ 0x%x, 0x%x, \"%s\" }%s\n", (unsigned int)(block->start),
 		(unsigned int)(block->end), block->name, block->next!=NULL ? "," : "" );
     }
     fprintf( out, "};\n\n" );
-    fprintf( header, "/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[%d] */\n", bcnt );
-    fprintf( header, "/* because newer version of NamesList.txt can have more blocks than before. */\n" );
-    fprintf( header, "/* To allow for future use of libuninameslist without changing your program */\n" );
-    fprintf( header, "/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */\n" );
+    fprintf( header, "/* NOTE: Build your program to access the functions if using multilanguage. */\n\n" );
     if ( is_fr==0 ) fprintf( header, "#define UNICODE_BLOCK_MAX\t%d\n", bcnt );
-    fprintf( header, "extern const struct unicode_block UnicodeBlock[%d];\n", bcnt );
+    fprintf( header, "#define %s\t%d\n", lgb[l], bcnt );
+    fprintf( header, "extern const struct unicode_block UnicodeBlock%s[%d];\n", lg[l], bcnt );
+    if ( is_fr!=0 ) fprintf( header, "#define UnicodeBlock UnicodeBlock%s\n", lg[l] );
 
     maxn = maxa = 0;
     for ( i=0; i<sizeof(uniannot[is_fr])/sizeof(uniannot[0][is_fr]); ++i ) {
@@ -447,7 +467,10 @@ static int dumpblock(FILE *out, FILE *header, int is_fr ) {
 
 static int dumparrays(FILE *out, FILE *header, int is_fr ) {
     unsigned int i,j,k,t;
+    int l;
     char *prefix = "una";
+
+    l = is_fr; if ( is_fr<0 ) l = 0;
 
     for ( i=0; i<sizeof(uniannot[0])/(sizeof(uniannot[0][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
@@ -464,7 +487,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	    }
 	    if ( t==256 || (j==0xff && t==0xfe -1))
 	continue;	/* Empty sub-plane */
-	    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot %s_%02X_%02X[] = {\n", prefix, i, j );
+	    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot %s%s_%02X_%02X[] = {\n", prefix, lg[l], i, j );
 	    for ( k=0; k<256; ++k ) {
 		fprintf( out, "/* %04X */ { ", (i<<16) + (j<<8) + k );
 		if ( uninames[is_fr][(i<<16) + (j<<8) + k]==NULL )
@@ -488,7 +511,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	break;
 	if ( t==0xFFFE )
     continue;		/* Empty plane */
-	fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const %s_%02X[] = {\n", prefix, i );
+	fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const %s%s_%02X[] = {\n", prefix, lg[l], i );
 	for ( j=0; j<256; ++j ) {
 	    for ( t=0; t<256; ++t ) {
 		if ( uninames[is_fr][(i<<16) + (j<<8) + t]!=NULL || uniannot[is_fr][(i<<16) + (j<<8) + t]!=NULL )
@@ -497,32 +520,31 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	    break;
 	    }
 	    if ( t==256 )
-		fprintf( out, "\tnullarray%s\n", j!=255?",":"" );
+		fprintf( out, "\tnullarray%s%s\n", lg[l], j!=255?",":"" );
 	    else if ( j==0xff && t==0xfe -1 )
-		fprintf( out, "\tnullarray2\n" );
+		fprintf( out, "\tnullarray2%s\n", lg[l] );
 	    else
-		fprintf( out, "\t%s_%02X_%02X%s\n", prefix, i, j, j!=255?",":"" );
+		fprintf( out, "\t%s%s_%02X_%02X%s\n", prefix, lg[l], i, j, j!=255?",":"" );
 	}
 	fprintf( out, "};\n\n" );
     }
 
-    fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];\n" );
+    fprintf( header, "extern const struct unicode_nameannot * const *const UnicodeNameAnnot%s[];\n", lg[l] );
 
-    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_nameannot * const *const UnicodeNameAnnot[] = {\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst struct unicode_nameannot * const *const UnicodeNameAnnot%s[] = {\n", lg[l] );
     for ( i=0; i<sizeof(uniannot[is_fr])/(sizeof(uniannot[is_fr][0])*65536); ++i ) {	/* For each plane */
 	for ( t=0; t<0xFFFE; ++t )
 	    if ( uninames[is_fr][(i<<16)+t]!=NULL || uniannot[is_fr][(i<<16)+t]!=NULL )
 	break;
 	if ( t==0xFFFE )
-	    fprintf( out, "\tnullnullarray,\n" );
+	    fprintf( out, "\tnullnullarray%s,\n", lg[l] );
 	else
-	    fprintf( out, "\t%s_%02X,\n", prefix, i );
+	    fprintf( out, "\t%s%s_%02X,\n", prefix, lg[l], i );
     }
     while ( i<0x20 ) {
-	fprintf( out, "\tnullnullarray%s\n", i!=0x20-1?",":"" );
+	fprintf( out, "\tnullnullarray%s%s\n", lg[l], i!=0x20-1?",":"" );
 	++i;
     }
-
     fprintf( out, "};\n\n" );
     return( 1 );
 }

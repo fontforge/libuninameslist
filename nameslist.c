@@ -78,7 +78,7 @@ const char *uniNamesList_NamesListVersion(void) {
 /* Return number of blocks in this NamesList. */
 UN_DLL_EXPORT
 int uniNamesList_blockCount(void) {
-	return( UNICODE_BLOCK_MAX );
+	return( UNICODE_EN_BLOCK_MAX );
 }
 
 /* Return block number for this unicode value, -1 if unlisted unicode value */
@@ -86,7 +86,7 @@ UN_DLL_EXPORT
 int uniNamesList_blockNumber(unsigned long uni) {
 	if ( uni<0x110000 ) {
 		int i;
-		for (i=0; i<UNICODE_BLOCK_MAX; i++) {
+		for (i=0; i<UNICODE_EN_BLOCK_MAX; i++) {
 			if ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;
 			if ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );
 		}
@@ -97,19 +97,25 @@ int uniNamesList_blockNumber(unsigned long uni) {
 /* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
 UN_DLL_EXPORT
 long uniNamesList_blockStart(int uniBlock) {
-	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].start : -1) );
+	if ( uniBlock<0 || uniBlock>=UNICODE_EN_BLOCK_MAX )
+		return( -1 );
+	return( (long)(UnicodeBlock[uniBlock].start) );
 }
 
 /* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
 UN_DLL_EXPORT
 long uniNamesList_blockEnd(int uniBlock) {
-	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].end : -1) );
+	if ( uniBlock<0 || uniBlock>=UNICODE_EN_BLOCK_MAX )
+		return( -1 );
+	return( (long)(UnicodeBlock[uniBlock].end) );
 }
 
 /* Return a pointer to the blockname for this unicode block. */
 UN_DLL_EXPORT
-const char *uniNamesList_blockName(int uniBlock) {
-	return( ((unsigned int)(uniBlock)<UNICODE_BLOCK_MAX ? UnicodeBlock[uniBlock].name : NULL) );
+const char * uniNamesList_blockName(int uniBlock) {
+	if ( uniBlock<0 || uniBlock>=UNICODE_EN_BLOCK_MAX )
+		return( NULL );
+	return( UnicodeBlock[uniBlock].name );
 }
 
 UN_DLL_LOCAL

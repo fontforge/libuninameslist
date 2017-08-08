@@ -1,3 +1,10 @@
+- 2017-Aug-07
+    * Version 1.2, Unicode 10.0, French version is now also 10.0.0.
+    * Added function calls to French version to allow use of one or more
+      libraries at the same (Dynamic library linking needs testing since
+      added 'FR' may be issue with older programs expecting same name).
+    * Added more "make check" to include checking French library.
+
 - 2017-Jul-01
     * Version 1.1, Unicode 10.0, French version is 7.0(2014-06-22).
     * Added "make check" to allow for automatic library test and verify.

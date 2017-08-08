@@ -1,5 +1,5 @@
-#ifndef _NAMESLIST_FR_H
-# define _NAMESLIST_FR_H
+#ifndef UN_NAMESLIST_FR_H
+# define UN_NAMESLIST_FR_H
 
 /* This file was generated using the program 'buildnameslist.c' */
 
@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+#ifndef UN_NAMESLIST_H
 struct unicode_block {
 	int start, end;
 	const char *name;
@@ -15,20 +16,21 @@ struct unicode_block {
 struct unicode_nameannot {
 	const char *name, *annot;
 };
+#endif
 
-/* NOTE: Build your program to access UnicodeBlock[], not UnicodeBlock[294] */
-/* because newer version of NamesList.txt can have more blocks than before. */
-/* To allow for future use of libuninameslist without changing your program */
-/* you can test for (UnicodeBlock[i].end>=0x10ffff) to find the last block. */
-extern const struct unicode_block UnicodeBlock[294];
+/* NOTE: Build your program to access the functions if using multilanguage. */
+
+#define UNICODE_FR_BLOCK_MAX	294
+extern const struct unicode_block UnicodeBlockFR[294];
+#define UnicodeBlock UnicodeBlockFR
 
 /* NOTE: These 2 constants are correct for this version of libuninameslist, */
 /* but can change for later versions of NamesList (use as an example guide) */
 #define UNICODE_FR_NAME_MAX	100
 #define UNICODE_FR_ANNOT_MAX	609
-extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
+extern const struct unicode_nameannot * const *const UnicodeNameAnnotFR[];
 
-/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
+/* Index by: UnicodeNameAnnotFR[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
 
 /* At the beginning of lines (after a tab) within the annotation string, a: */
 /*  * should be replaced by a bullet U+2022 */
@@ -37,9 +39,42 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 /*  # should be replaced by an approximate U+2245 */
 /*  = should remain itself */
 
-/* French NamesList (Version 10.0). */
+/* Return a pointer to the name for this unicode value */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_nameFR(unsigned long uni);
+
+/* Return a pointer to the annotations for this unicode value */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_annotFR(unsigned long uni);
+
+/* Return a pointer to the Nameslist.txt version number. */
+/* This value points to a constant string inside the library */
+const char *uniNamesList_NamesListVersionFR(void);
+
+
+/* These functions are available in libuninameslist-0.4.20140731 and higher */
+
+/* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_FR_MAJOR	1
 #define LIBUNINAMESLIST_FR_MINOR	1
+
+/* Return number of blocks in this NamesList (Version 10.0). */
+int uniNamesList_blockCountFR(void);
+
+/* Return block number for this unicode value (-1 if bad unicode value) */
+int uniNamesList_blockNumberFR(unsigned long uni);
+
+/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockStartFR(int uniBlock);
+
+/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
+long uniNamesList_blockEndFR(int uniBlock);
+
+/* Return a pointer to the blockname for this unicode block. */
+/* This value points to a constant string inside the library */
+const char * uniNamesList_blockNameFR(int uniBlock);
+
+#define UnicodeNameAnnot UnicodeNameAnnotFR
 
 #ifdef __cplusplus
 }

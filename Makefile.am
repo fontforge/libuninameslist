@@ -2,7 +2,10 @@
 
 SUBDIRS = . tests
 
-test_programs = call-test
+test_programs = call-test0 call-test1 call-test2
+if WANTLIBOFR
+test_programs += call-test3 call-test4 call-test5
+endif
 
 # The braces around ACLOCAL_FLAGS below instead of parentheses are intentional!
 # Otherwise autoreconf misparses the line.
