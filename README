@@ -113,8 +113,25 @@ compilation of the CRA being confused with Major Minor versioning.
 Backwards compatibility to accessing data still remains intact for programs
 that require access using older methods.
 
+Adding And/Or Updating Languages (for translators)
+**************************************************
+
+If you are interested in adding a new language but don't know where to start,
+then first recommendation is get a hold of the latest NamesList.txt file from
+www.unicode.org and start with that first. You will want to use some sort of
+plain text editor able to edit UTF-8 style files.
+If you are interested in updating an existing file, there are some references
+pointing to where latest NamesList style files were found, see in Makefile.am
+or other nameslist*.c or uninameslist*.h for possible information if not seen
+on readme files. Ask originating Authors if they want/need help if looking at
+updating existing files.
+If you are aware of translations in another format, they could be considered.
+
+Old Bugs Out, New Bugs In
+*************************
+
 Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2017-Jul-01, by Joe Da Silva
+	2017-Aug-07, by Joe Da Silva

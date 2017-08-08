@@ -11,7 +11,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver 10.0 and ListeDesNoms.txt ver 7.0.
+This program is updated for Nameslist.txt ver10.0 and ListeDesNoms.txt ver10.0.
 
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
@@ -24,8 +24,7 @@ quickly and easily.
 ListeDesNoms.txt
 Is a seperate file which is translated from Nameslist.txt and was outdated for
 a period of time but was recently updated by a group of developers who have
-updated it up to version 7.0. Contibutors to that file are listed in that file.
-
+updated it up to version 10. Contibutors to that file are listed in that file.
 
 These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
@@ -100,8 +99,8 @@ Installation and Build instructions
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 
 ```bash
-wget https://github.com/fontforge/libuninameslist/archive/20170701.tar.gz
-tar -xzf 20170701.tar.gz
+wget https://github.com/fontforge/libuninameslist/archive/20170807.tar.gz
+tar -xzf 20170807.tar.gz
 $ cd libuninameslist
 ```
 
