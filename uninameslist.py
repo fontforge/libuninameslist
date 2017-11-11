@@ -10,7 +10,8 @@ __all__ = ["version", "name", "annotation", "blocks", "block", "uplus"]
 # connecting to the dynamic library
 
 from ctypes import *
-_lib = CDLL("libuninameslist.so.1")
+from ctypes.util import find_library
+_lib = CDLL(find_library("uninameslist"))
 
 def _setSig(fn, restype, argtypes):
     if restype is not None: fn.restype = restype
