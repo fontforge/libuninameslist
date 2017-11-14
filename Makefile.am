@@ -1,6 +1,10 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
 SUBDIRS = . tests
+if PSWRAP
+SUBDIRS += py
+endif
+DIST_SUBDIRS = . py tests
 
 test_programs = call-test0 call-test1 call-test2
 if WANTLIBOFR
@@ -16,14 +20,15 @@ AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
-EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c
+EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
+	py/setup.py py/uninameslist.py
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 noinst_PROGRAMS = buildnameslist
 nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt .git/*
 
 DISTCLEANFILES = libuninameslist.pc
-DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib
+DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib --disable-pscript
 
 lib_LTLIBRARIES = libuninameslist.la
 if WANTLIBOFR

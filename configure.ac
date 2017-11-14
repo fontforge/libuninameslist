@@ -108,6 +108,26 @@ AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may 
 AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xtrue])
 
 #-------------------------------------------
+# Have Python? with or without Python script
+PYTHON=""
+pscript=yes
+AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes.]),
+  [case "${enableval}" in
+    true)  pscript=yes ;;
+    false) pscript=no  ;;
+    yes)   pscript=yes ;;
+    no)    pscript=no  ;;
+    *) AC_MSG_ERROR([bad value ${enableval} for --enable-pscript]) ;;
+   esac],[])
+if test x$pscript = xyes ; then
+   AM_PATH_PYTHON([2.7],,[:])
+   if test "$PYTHON" = ":" ; then
+      AC_MSG_ERROR([Python not found. Please install Python first.])
+   fi
+fi
+AM_CONDITIONAL([PSWRAP],[test x$pscript = xyes])
+
+#-------------------------------------------
 # Platform specific stuff, AC_CANONICAL_HOST
 case "$host" in
 *-pc-cygwin*)
@@ -199,6 +219,7 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES([
 Makefile
+py/Makefile
 tests/Makefile
 libuninameslist.pc
 ])
@@ -218,5 +239,10 @@ Configuration:
   Config LDFLAGS	"${LDFLAGS}"
   Config UN_CFLAGS	"${UN_CFLAGS}"
   Config UN_LIB		"${UN_LIB}"
+
+Default Optional:
+  Include Python Script	${pscript} ${PSWRAP}
+    Have Python		"${PYTHON}"
+    Install directory	${pythondir}
 
 ])
