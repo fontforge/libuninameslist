@@ -54,7 +54,7 @@ _setSig(_lib.uniNamesList_blockEnd, c_long, [c_int])
 # const char *uniNamesList_blockName(int uniBlock);
 _setSig(_lib.uniNamesList_blockName, c_char_p, [c_int])
 
-# internal helpers
+# internal helpers for library data
 
 class _block:
     '''Simple class containing the name, start and end codepoints of a Unicode block'''
@@ -74,6 +74,28 @@ class _block:
 
 _blockCount = _lib.uniNamesList_blockCount()
 
+# other internal helpers
+
+def _hexFmt(char, bmpFmt, beyondBmpFmt):
+    if type(char) is int:
+        if not (0 <= char <= 0x10FFFF):
+            raise ValueError("Invalid Unicode codepoint: {}{:X}".format(prefix, char))
+        val = char
+    else: # presuming can't be an invalid value since input as str
+        val = ord(char)
+    return (beyondBmpFmt if val > 0xFFFF else bmpFmt).format(val)
+
+def _charsForName2():
+    chars = ""
+    for o in range(0x110000):  # whole Unicode range
+        c = chr(o)
+        annot = annotation(c)
+        if "\t% " in annot:
+            chars += _hexFmt(o, "\\u{:04X}", "\\U{:08X}")
+        else:
+            continue
+    return chars
+
 # public symbols
 
 '''documents the version of libuninameslist'''
@@ -90,16 +112,17 @@ def name2(char):
     #   U+01A2 U+01A3 U+0709 U+0CDE U+0E9D U+0E9F U+0EA3 U+0EA5 U+0FD0 U+11EC U+11ED U+11EE U+11EF
     #   U+2118 U+2448 U+2449 U+2B7A U+2B7C U+A015 U+FE18 U+FEFF U+0122D4 U+0122D5 U+01B001 U+01D0C5
     # ... but the function is provided if you want it.
-    annot = annotation(char)
-    try:
-        # NOTE: index should not be needed as NamesList.txt always defines the normative alias first, but just keeping safe
+    # WARNING: For speed, we look for the alias only if the input character is one of the above.
+    # Thus with every new Unicode release, this list should be updated by using the helper _charsForName2()
+    if char in "\u01A2\u01A3\u0709\u0CDE\u0E9D\u0E9F\u0EA3\u0EA5\u0FD0\u11EC\u11ED\u11EE\u11EF\u2118\u2448\u2449\u2B7A\u2B7C\uA015\uFE18\uFEFF\U000122D4\U000122D5\U0001B001\U0001D0C5":
+        annot = annotation(char)
         correctedNamePos = annot.index("\t% ") + 3
         try:
             nextTabPos = correctedNamePos + annot[correctedNamePos:].index("\n\t")  # there may be annotations beyond the alias
             return annot[correctedNamePos:nextTabPos]
         except ValueError:
             return annot[correctedNamePos:]
-    except ValueError:
+    else:
         return name(char)
 
 def annotation(char):
@@ -118,13 +141,7 @@ def block(char):
 
 def uplus(char):
     '''convenience function to return the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that'''
-    if type(char) is int:
-        if not (0 <= char <= 0x10FFFF):
-            raise ValueError("Invalid Unicode codepoint: U+{:X}".format(char))
-        val = char
-    else:
-        val = ord(char)
-    return ("U+{:06X}" if val > 0xFFFF else "U+{:04X}").format(val)
+    return _hexFmt(char, "U+{:04X}", "U+{:06X}")
 
 # test
 
@@ -137,8 +154,11 @@ def _test():
     print("The Unicode block of ೞ is:\n\t", block("ೞ"))
     print("The Unicode codepoint of ೞ is:\n\t", uplus("ೞ"))
     print()
-    print("A complete list of blocks:")
-    print("\n".join(str(block) for block in blocks()))
+    print("The following codepoints have normative aliases:\n\t", _charsForName2())
+    print()
+    print("A random sample of blocks from a total of {}:".format(_blockCount))
+    from random import sample
+    print("\n".join(str(block) for block in sample(tuple(blocks()), 10)))
 
 if __name__ == "__main__":
     _test()
