@@ -56,7 +56,7 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_MAJOR	1
-#define LIBUNINAMESLIST_MINOR	1
+#define LIBUNINAMESLIST_MINOR	2
 
 /* Return number of blocks in this NamesList (Version 10.0). */
 int uniNamesList_blockCount(void);

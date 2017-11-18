@@ -45843,3 +45843,19 @@ const struct unicode_nameannot * const *const UnicodeNameAnnot[] = {
 	nullnullarray
 };
 
+UN_DLL_LOCAL
+static const long unicode_name2code_[] = {
+	418, 419, 1801, 3294, 3741, 3743, 3747, 3749,
+	4048, 4588, 4589, 4590, 4591, 8472, 9288, 9289,
+	11130, 11132, 40981, 65048, 65279, 74452, 74453, 110593,
+	118981
+};
+
+UN_DLL_LOCAL
+static const char unicode_name2vals_[] = {
+	3,25, 3,23, 3,35, 3,20, 3,18, 3,18, 3,14, 3,14,
+	3,36, 3,33, 3,38, 3,31, 3,34, 3,30, 3,18, 3,17,
+	3,60, 3,61, 3,27, 3,62, 3,16, 3,25, 3,43, 3,22,
+	3,53
+};
+

@@ -45857,3 +45857,11 @@ const struct unicode_nameannot * const *const UnicodeNameAnnotFR[] = {
 	nullnullarrayFR
 };
 
+UN_DLL_LOCAL
+static const long unicode_name2code_FR[] = {
+};
+
+UN_DLL_LOCAL
+static const char unicode_name2vals_FR[] = {
+};
+

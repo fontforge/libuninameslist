@@ -7,16 +7,24 @@
 
 #define UNUSED_PARAMETER(x) ((void)x)
 
+/* Build this program using: make buildnameslist		      */
+
 /* buildnameslist reads from NamesList.txt and ListeDesNoms.txt which */
 /* must be present in the current directory. Then, builds two arrays  */
 /* of strings for each unicode character. One array contains the name */
 /* of the character, the other holds annotations for each character.  */
 /* Outputs nameslist.c containing these two sparse arrays:	      */
-/* Build program using: make buildnameslist			      */
-
 /* 2=={English=0, French=1} */
 static char *uninames[2][17*65536];
 static char *uniannot[2][17*65536];
+/* There are approximately 25 names that changed (version 1 ->2), and */
+/* a few more errors later. names2pt points to the name (after the %) */
+/* and names2ln is the string length of the name if you only want the */
+/* 2nd name without trailing annotations:			      */
+static char names2pt[2][17*65536];
+static char names2ln[2][17*65536];
+static char names2cnt[2];
+
 static struct block { long int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
@@ -124,8 +132,10 @@ return( buf );
 static void InitArrays(void) {
     int i,j;
     for (i=0; i<2; i++) for (j=0; j<17*65536; j++) {
-	uninames[i][j] = NULL; uniannot[i][j] = NULL;
+	uninames[i][j] = uniannot[i][j] = NULL;
+	names2pt[i][j] = names2ln[i][j] = -1;
     }
+    names2cnt[0] = names2cnt[1] = 0;
 }
 
 static void FreeArrays(void) {
@@ -149,7 +159,7 @@ static int ReadNamesList(void) {
     long int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
     struct block *cur;
-    int i;
+    int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
 	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
@@ -242,6 +252,21 @@ static int ReadNamesList(void) {
 	    }
 	}
 	fclose(nl);
+
+	/* search for possible normalized aliases. Assume 1st annotation line */
+fprintf(stdout,"do normal.\n");
+	for ( a_char=0; a_char<17*65536; ++a_char ) if ( uniannot[i][a_char]!=NULL ) {
+	    pt = uniannot[i][a_char];
+	    if ( *pt=='\t' && *++pt=='\%' && *++pt==' ' ) {
+		for ( j=0; *pt!='\n' && *pt!='\0'; ++j,++pt );
+		if ( j>0 ) {
+		    names2pt[i][a_char] = 3;
+		    names2ln[i][a_char] = j;
+		    names2cnt[i]++;
+		}
+fprintf( stdout, "char=%x start=%d end=%d annot='%s'\n", a_char, names2pt[i][a_char], names2ln[i][a_char], uniannot[i][a_char] );
+	    }
+	}
     }
     return( 1 );
 
@@ -549,6 +574,33 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
     return( 1 );
 }
 
+
+static int dumpnames2(FILE *out, FILE *header, int is_fr ) {
+    int i,l;
+    long int a_char;
+
+    l = is_fr; if ( is_fr<0 ) l = 0;
+
+    fprintf( out, "UN_DLL_LOCAL\nstatic const long unicode_name2code_%s[] = {", lg[l] );
+    for ( i=0,a_char=0; i<names2cnt[l] && a_char<17*65536; ++a_char ) {
+	if ( names2pt[l][a_char]>=0 ) {
+	    if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
+	    fprintf( out, "%ld%s", a_char, ++i!=names2cnt[l]?",":"" );
+	}
+    }
+    fprintf( out, "\n};\n\n" );
+
+    fprintf( out, "UN_DLL_LOCAL\nstatic const char unicode_name2vals_%s[] = {", lg[l] );
+    for ( i=0,a_char=0; i<names2cnt[l] && a_char<17*65536; ++a_char ) {
+	if ( names2pt[l][a_char]>=0 ) {
+	    if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
+	    fprintf( out, "%d,%d%s", names2pt[l][a_char], names2ln[l][a_char], ++i!=names2cnt[l]?",":"" );
+	}
+    }
+    fprintf( out, "\n};\n\n" );
+    return( 1 );
+}
+
 static int dump(int is_fr) {
     int dumpOK=0;
 
@@ -566,7 +618,7 @@ static int dump(int is_fr) {
 
     if ( dumpinit(out,header,is_fr) && dumpblock(out,header,is_fr) && \
 	 dumparrays(out,header,is_fr) && dumpend(header,is_fr) && \
-	 fflush(out)==0 && fflush(header)==0 )
+	 dumpnames2(out,header,is_fr) && fflush(out)==0 && fflush(header)==0 )
 	dumpOK=1;
     fclose(out); fclose(header);
     return( dumpOK );
