@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#if defined(DO_CALL_TEST3) || defined(DO_CALL_TEST_4)
+#if defined(DO_CALL_TEST3) || defined(DO_CALL_TEST4)
 #include "uninameslist-fr.h"
 #else
 #include "uninameslist.h"
@@ -233,6 +233,36 @@ static int test_calls_both(void) {
 }
 #endif
 
+#ifdef DO_CALL_TEST6
+static int test_normalize(void) {
+    int a,b,c;
+    long u,w;
+    const char *p;
+
+    if ( uniNamesList_names2cnt()<25 ) {
+	printf("error with uniNamesList_names2cnt(void)\n");
+	return( -1 );
+    }
+
+    u = uniNamesList_names2val(2);
+    w = uniNamesList_names2val(-1);
+    if ( u<100 || u>10000 || w!=-1 ) {
+	printf("error with uniNamesList_names2val(code), expected 0x709,-1, Received 0x%04X %d\n", u, w );
+	return( -2 );
+    }
+
+    c = uniNamesList_names2lnU(0x0709);
+    p = uniNamesList_names2anU(0x0709);
+    printf("value:%d, str='%s'\n", c, p );
+    if ( uniNamesList_names2anU(0x01A0)!=NULL || c!=34 || p[3]!='I' ) {
+	printf("error with uniNamesList_names2anU(Ucode), expected NULL,'I'\n" );
+	return( -3 );
+    }
+
+    return( 0 );
+}
+#endif
+
 int main(int argc, char **argv) {
     int ret;
 
@@ -259,6 +289,10 @@ int main(int argc, char **argv) {
 #ifdef DO_CALL_TEST5
     /* verify we can use both libraries at same time! */
     ret=test_calls_both();
+#endif
+#ifdef DO_CALL_TEST6
+    /* errors happen! check a few normalized aliases. */
+    ret=test_normalize();
 #endif
     return ret;
 }

@@ -43,7 +43,7 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnotFR[];
 /* This value points to a constant string inside the library */
 const char *uniNamesList_nameFR(unsigned long uni);
 
-/* Return a pointer to the annotations for this unicode value */
+/* Returns pointer to the annotations for this unicode value */
 /* This value points to a constant string inside the library */
 const char *uniNamesList_annotFR(unsigned long uni);
 
@@ -64,7 +64,7 @@ int uniNamesList_blockCountFR(void);
 /* Return block number for this unicode value (-1 if bad unicode value) */
 int uniNamesList_blockNumberFR(unsigned long uni);
 
-/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
+/* Return unicode value starting this Unicode block (bad uniBlock = -1) */
 long uniNamesList_blockStartFR(int uniBlock);
 
 /* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
@@ -75,6 +75,22 @@ long uniNamesList_blockEndFR(int uniBlock);
 const char * uniNamesList_blockNameFR(int uniBlock);
 
 #define UnicodeNameAnnot UnicodeNameAnnotFR
+
+/* These functions are available in libuninameslist-20171118 and higher */
+
+/* Return count of how many names2 are found in this version of library */
+int uniNamesList_names2cntFR(void);
+
+/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
+long uniNamesList_names2valFR(int count);
+
+/* Stringlength of names2. Use this if you want to truncate annotations */
+int uniNamesList_names2lnCFR(int count);
+int uniNamesList_names2lnUFR(unsigned long uni);
+
+/* Return pointer to start of normalized alias names2 within annotation */
+const char *uniNamesList_names2anCFR(int count);
+const char *uniNamesList_names2anUFR(unsigned long uni);
 
 #ifdef __cplusplus
 }

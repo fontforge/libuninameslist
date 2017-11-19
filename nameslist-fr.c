@@ -99,6 +99,43 @@ const char * uniNamesList_blockNameFR(int uniBlock) {
 	return( UnicodeBlockFR[uniBlock].name );
 }
 
+
+/* These functions are available in libuninameslist-20171118 and higher */
+
+/* Return count of how many names2 are found in this version of library */
+UN_DLL_EXPORT
+int uniNamesList_names2cntFR(void) {
+	return( 0 );
+}
+
+/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
+UN_DLL_EXPORT
+long uniNamesList_names2valFR(int count) {
+	return( -1 );
+}
+
+/* Stringlength of names2. Use this if you want to truncate annotations */
+UN_DLL_EXPORT
+int uniNamesList_names2lnCFR(int count) {
+	return( -1 );
+}
+
+UN_DLL_EXPORT
+int uniNamesList_names2lnUFR(unsigned long uni) {
+	return( -1 );
+}
+
+/* Return pointer to start of normalized alias names2 within annotation */
+UN_DLL_EXPORT
+const char *uniNamesList_names2anCFR(int count) {
+	return( NULL );
+}
+
+UN_DLL_EXPORT
+const char *uniNamesList_names2anUFR(unsigned long uni) {
+	return( NULL );
+}
+
 UN_DLL_LOCAL
 static const struct unicode_nameannot nullarrayFR[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },

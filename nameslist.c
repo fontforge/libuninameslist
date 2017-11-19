@@ -118,6 +118,78 @@ const char * uniNamesList_blockName(int uniBlock) {
 	return( UnicodeBlock[uniBlock].name );
 }
 
+
+/* These functions are available in libuninameslist-20171118 and higher */
+
+/* Return count of how many names2 are found in this version of library */
+UN_DLL_EXPORT
+int uniNamesList_names2cnt(void) {
+	return( 25 );
+}
+
+UN_DLL_LOCAL
+static const unsigned long unicode_name2code[] = {
+	0x01A2, 0x01A3, 0x0709, 0x0CDE, 0x0E9D, 0x0E9F, 0x0EA3, 0x0EA5,
+	0x0FD0, 0x11EC, 0x11ED, 0x11EE, 0x11EF, 0x2118, 0x2448, 0x2449,
+	0x2B7A, 0x2B7C, 0xA015, 0xFE18, 0xFEFF, 74452, 74453, 110593,
+	118981
+};
+
+UN_DLL_LOCAL
+static const char unicode_name2vals[] = {
+	3,24, 3,22, 3,34, 3,19, 3,17, 3,17, 3,13, 3,13,
+	3,35, 3,32, 3,37, 3,30, 3,33, 3,29, 3,17, 3,16,
+	3,59, 3,60, 3,26, 3,61, 3,15, 3,24, 3,42, 3,21,
+	3,52
+};
+
+/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
+UN_DLL_EXPORT
+long uniNamesList_names2val(int count) {
+	if ( count<0 || count>=25 ) return( -1 );
+	return( (long)(unicode_name2code[count]) );
+}
+
+UN_DLL_LOCAL
+int uniNamesList_names2getU(unsigned long uni) {
+	int i;
+	if ( uni<0x110000 ) for ( i=0; i<25; ++i ) {
+		if ( uni==unicode_name2code[i] ) return( i );
+		if ( uni<unicode_name2code[i] ) break;
+	}
+	return( -1 );
+}
+
+/* Stringlength of names2. Use this if you want to truncate annotations */
+UN_DLL_EXPORT
+int uniNamesList_names2lnC(int count) {
+	if ( count<0 || count>=25 ) return( -1 );
+	return( (int)(unicode_name2vals[(count<<1)+1]) );
+}
+
+UN_DLL_EXPORT
+int uniNamesList_names2lnU(unsigned long uni) {
+	return( uniNamesList_names2lnC(uniNamesList_names2getU(uni)) );
+}
+
+/* Return pointer to start of normalized alias names2 within annotation */
+UN_DLL_EXPORT
+const char *uniNamesList_names2anC(int count) {
+	int c;
+	const char *pt;
+
+	if ( count<0 || count>=25 ) return( NULL );
+	c = unicode_name2vals[count<<1];
+	pt = uniNamesList_annot((unsigned long)(uniNamesList_names2val(count)));
+	while ( --c>=0 ) ++pt;
+	return( pt );
+}
+
+UN_DLL_EXPORT
+const char *uniNamesList_names2anU(unsigned long uni) {
+	return( uniNamesList_names2anC(uniNamesList_names2getU(uni)) );
+}
+
 UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },

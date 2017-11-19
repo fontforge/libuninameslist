@@ -7,16 +7,24 @@
 
 #define UNUSED_PARAMETER(x) ((void)x)
 
+/* Build this program using: make buildnameslist		      */
+
 /* buildnameslist reads from NamesList.txt and ListeDesNoms.txt which */
 /* must be present in the current directory. Then, builds two arrays  */
 /* of strings for each unicode character. One array contains the name */
 /* of the character, the other holds annotations for each character.  */
 /* Outputs nameslist.c containing these two sparse arrays:	      */
-/* Build program using: make buildnameslist			      */
-
 /* 2=={English=0, French=1} */
 static char *uninames[2][17*65536];
 static char *uniannot[2][17*65536];
+/* There are approximately 25 names that changed (version 1 ->2), and */
+/* a few more errors later. names2pt points to the name (after the %) */
+/* and names2ln is the string length of the name if you only want the */
+/* 2nd name without trailing annotations:			      */
+static char names2pt[2][17*65536];
+static char names2ln[2][17*65536];
+static char names2cnt[2];
+
 static struct block { long int start, end; char *name; struct block *next;}
 	*head[2]={NULL,NULL}, *final[2]={NULL,NULL};
 
@@ -124,8 +132,10 @@ return( buf );
 static void InitArrays(void) {
     int i,j;
     for (i=0; i<2; i++) for (j=0; j<17*65536; j++) {
-	uninames[i][j] = NULL; uniannot[i][j] = NULL;
+	uninames[i][j] = uniannot[i][j] = NULL;
+	names2pt[i][j] = names2ln[i][j] = -1;
     }
+    names2cnt[0] = names2cnt[1] = 0;
 }
 
 static void FreeArrays(void) {
@@ -149,7 +159,7 @@ static int ReadNamesList(void) {
     long int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
     struct block *cur;
-    int i;
+    int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
 	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
@@ -242,6 +252,19 @@ static int ReadNamesList(void) {
 	    }
 	}
 	fclose(nl);
+
+	/* search for possible normalized aliases. Assume 1st annotation line */
+	for ( a_char=0; a_char<17*65536; ++a_char ) if ( uniannot[i][a_char]!=NULL ) {
+	    pt = uniannot[i][a_char];
+	    if ( *pt=='\t' && *++pt=='\%' && *++pt==' ' ) {
+		for ( j=-1; *pt!='\n' && *pt!='\0'; ++j,++pt );
+		if ( j>0 && j<128 ) {
+		    names2pt[i][a_char] = 3;
+		    names2ln[i][a_char] = (char)(j);
+		    names2cnt[i]++;
+		}
+	    }
+	}
     }
     return( 1 );
 
@@ -271,6 +294,7 @@ static void dumpstring(char *str,FILE *out) {
 static int dumpinit(FILE *out, FILE *header, int is_fr) {
     /* is_fr => 0=english, 1=french */
     int i, l;
+    long a_char;
 
     l = is_fr; if ( is_fr<0 ) l = 0;
 
@@ -326,6 +350,80 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     fprintf( out, "UN_DLL_EXPORT\nconst char * uniNamesList_blockName%s(int uniBlock) {\n", lg[l] );
     fprintf( out, "\tif ( uniBlock<0 || uniBlock>=%s )\n\t\treturn( NULL );\n", lgb[l] );
     fprintf( out, "\treturn( UnicodeBlock%s[uniBlock].name );\n}\n\n", lg[l] );
+
+    fprintf( out, "\n/* These functions are available in libuninameslist-20171118 and higher */\n\n" );
+    fprintf( out, "/* Return count of how many names2 are found in this version of library */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_names2cnt%s(void) {\n", lg[l] );
+    fprintf( out, "\treturn( %d );\n}\n\n", names2cnt[l] );
+
+    if ( names2cnt[l]>0 ) {
+	fprintf( out, "UN_DLL_LOCAL\nstatic const unsigned long unicode_name2code%s[] = {", lg[l] );
+	for ( i=0,a_char=0; i<names2cnt[l] && a_char<0x110000; ++a_char ) {
+	    if ( names2pt[l][a_char]>=0 ) {
+		if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
+		if ( a_char<=0xffff )
+		    fprintf( out, "0x%04X", (int)(a_char) );
+		else
+		    fprintf( out, "%ld", a_char );
+		if ( ++i!=names2cnt[l] ) fputc( ',', out );
+	    }
+	}
+	fprintf( out, "\n};\n\n" );
+
+	fprintf( out, "UN_DLL_LOCAL\nstatic const char unicode_name2vals%s[] = {", lg[l] );
+	for ( i=0,a_char=0; i<names2cnt[l] && a_char<0x110000; ++a_char ) {
+	    if ( names2pt[l][a_char]>=0 ) {
+		if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
+		fprintf( out, "%d,%d%s", names2pt[l][a_char], names2ln[l][a_char], ++i!=names2cnt[l]?",":"" );
+	    }
+	}
+	fprintf( out, "\n};\n\n" );
+    }
+
+    fprintf( out, "/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_names2val%s(int count) {\n", lg[l] );
+    if ( names2cnt[l]<=0 )
+	fprintf( out, "\treturn( -1 );\n}\n\n" );
+    else {
+	fprintf( out, "\tif ( count<0 || count>=%d ) return( -1 );\n", names2cnt[l] );
+	fprintf( out, "\treturn( (long)(unicode_name2code%s[count]) );\n}\n\n", lg[l] );
+    }
+    if ( names2cnt[l]>0 ) {
+	fprintf( out, "UN_DLL_LOCAL\nint uniNamesList_names2getU%s(unsigned long uni) {\n", lg[l] );
+	fprintf( out, "\tint i;\n\tif ( uni<0x110000 ) for ( i=0; i<%d; ++i ) {\n", names2cnt[l] );
+	fprintf( out, "\t\tif ( uni==unicode_name2code%s[i] ) return( i );\n", lg[l] );
+	fprintf( out, "\t\tif ( uni<unicode_name2code%s[i] ) break;\n\t}\n\treturn( -1 );\n}\n\n", lg[l] );
+    }
+    fprintf( out, "/* Stringlength of names2. Use this if you want to truncate annotations */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_names2lnC%s(int count) {\n", lg[l] );
+    if ( names2cnt[l]<=0 )
+	fprintf( out, "\treturn( -1 );\n}\n\n" );
+    else {
+	fprintf( out, "\tif ( count<0 || count>=%d ) return( -1 );\n", names2cnt[l] );
+	fprintf( out, "\treturn( (int)(unicode_name2vals%s[(count<<1)+1]) );\n}\n\n", lg[l] );
+    }
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_names2lnU%s(unsigned long uni) {\n", lg[l] );
+    if ( names2cnt[l]<=0 )
+	fprintf( out, "\treturn( -1 );\n}\n\n" );
+    else
+	fprintf( out, "\treturn( uniNamesList_names2lnC%s(uniNamesList_names2getU%s(uni)) );\n}\n\n", lg[l], lg[l] );
+    fprintf( out, "/* Return pointer to start of normalized alias names2 within annotation */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_names2anC%s(int count) {\n", lg[l] );
+    if ( names2cnt[l]<=0 )
+	fprintf( out, "\treturn( NULL );\n}\n\n" );
+    else {
+	fprintf( out, "\tint c;\n\tconst char *pt;\n\n" );
+	fprintf( out, "\tif ( count<0 || count>=%d ) return( NULL );\n", names2cnt[l] );
+	fprintf( out, "\tc = unicode_name2vals%s[count<<1];\n", lg[l] );
+	fprintf( out, "\tpt = uniNamesList_annot((unsigned long)(uniNamesList_names2val%s(count)));\n", lg[l] );
+	fprintf( out, "\twhile ( --c>=0 ) ++pt;\n\treturn( pt );\n}\n\n" );
+    }
+    fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_names2anU%s(unsigned long uni) {\n", lg[l] );
+    if ( names2cnt[l]<=0 )
+	fprintf( out, "\treturn( NULL );\n}\n\n" );
+    else
+	fprintf( out, "\treturn( uniNamesList_names2anC%s(uniNamesList_names2getU%s(uni)) );\n}\n\n", lg[l], lg[l] );
+
 
     fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray%s[] = {\n", lg[l] );
     for ( i=0; i<256/4 ; ++i )
@@ -389,7 +487,7 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "/* Return a pointer to the name for this unicode value */\n" );
     fprintf( header, "/* This value points to a constant string inside the library */\n" );
     fprintf( header, "const char *uniNamesList_name%s(unsigned long uni);\n\n", lg[l] );
-    fprintf( header, "/* Return a pointer to the annotations for this unicode value */\n" );
+    fprintf( header, "/* Returns pointer to the annotations for this unicode value */\n" );
     fprintf( header, "/* This value points to a constant string inside the library */\n" );
     fprintf( header, "const char *uniNamesList_annot%s(unsigned long uni);\n\n", lg[l] );
     fprintf( header, "/* Return a pointer to the Nameslist.txt version number. */\n" );
@@ -410,7 +508,7 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "int uniNamesList_blockCount%s(void);\n\n", lg[l] );
     fprintf( header, "/* Return block number for this unicode value (-1 if bad unicode value) */\n" );
     fprintf( header, "int uniNamesList_blockNumber%s(unsigned long uni);\n\n", lg[l] );
-    fprintf( header, "/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */\n" );
+    fprintf( header, "/* Return unicode value starting this Unicode block (bad uniBlock = -1) */\n" );
     fprintf( header, "long uniNamesList_blockStart%s(int uniBlock);\n\n", lg[l] );
     fprintf( header, "/* Return unicode value ending this Unicode block (-1 if bad uniBlock). */\n" );
     fprintf( header, "long uniNamesList_blockEnd%s(int uniBlock);\n\n", lg[l] );
@@ -418,6 +516,18 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "/* This value points to a constant string inside the library */\n" );
     fprintf( header, "const char * uniNamesList_blockName%s(int uniBlock);\n", lg[l] );
     if ( is_fr!=0 ) fprintf( header, "\n#define UnicodeNameAnnot UnicodeNameAnnot%s\n", lg[l] );
+
+    fprintf( header, "\n/* These functions are available in libuninameslist-20171118 and higher */\n\n" );
+    fprintf( header, "/* Return count of how many names2 are found in this version of library */\n" );
+    fprintf( header, "int uniNamesList_names2cnt%s(void);\n\n", lg[l] );
+    fprintf( header, "/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */\n" );
+    fprintf( header, "long uniNamesList_names2val%s(int count);\n\n", lg[l] );
+    fprintf( header, "/* Stringlength of names2. Use this if you want to truncate annotations */\n" );
+    fprintf( header, "int uniNamesList_names2lnC%s(int count);\n", lg[l] );
+    fprintf( header, "int uniNamesList_names2lnU%s(unsigned long uni);\n\n", lg[l] );
+    fprintf( header, "/* Return pointer to start of normalized alias names2 within annotation */\n" );
+    fprintf( header, "const char *uniNamesList_names2anC%s(int count);\n", lg[l] );
+    fprintf( header, "const char *uniNamesList_names2anU%s(unsigned long uni);\n", lg[l] );
 
     fprintf( header, "\n#ifdef __cplusplus\n}\n#endif\n#endif\n" );
     return( 1 );

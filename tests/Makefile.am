@@ -35,5 +35,9 @@ noinst_PROGRAMS += call-test3 call-test4 call-test5
 else
 EXTRA_DIST = call-test3.c call-test4.c call-test5.c
 endif
+noinst_PROGRAMS += call-test6
+
+call_test6_SOURCES = call-test6.c
+call_test6_LDADD = $(LDADDS)
 
 TESTS = $(noinst_PROGRAMS)

@@ -43,7 +43,7 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 /* This value points to a constant string inside the library */
 const char *uniNamesList_name(unsigned long uni);
 
-/* Return a pointer to the annotations for this unicode value */
+/* Returns pointer to the annotations for this unicode value */
 /* This value points to a constant string inside the library */
 const char *uniNamesList_annot(unsigned long uni);
 
@@ -56,7 +56,7 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_MAJOR	1
-#define LIBUNINAMESLIST_MINOR	1
+#define LIBUNINAMESLIST_MINOR	2
 
 /* Return number of blocks in this NamesList (Version 10.0). */
 int uniNamesList_blockCount(void);
@@ -64,7 +64,7 @@ int uniNamesList_blockCount(void);
 /* Return block number for this unicode value (-1 if bad unicode value) */
 int uniNamesList_blockNumber(unsigned long uni);
 
-/* Return unicode value starting this Unicode block (-1 if bad uniBlock). */
+/* Return unicode value starting this Unicode block (bad uniBlock = -1) */
 long uniNamesList_blockStart(int uniBlock);
 
 /* Return unicode value ending this Unicode block (-1 if bad uniBlock). */
@@ -73,6 +73,22 @@ long uniNamesList_blockEnd(int uniBlock);
 /* Return a pointer to the blockname for this unicode block. */
 /* This value points to a constant string inside the library */
 const char * uniNamesList_blockName(int uniBlock);
+
+/* These functions are available in libuninameslist-20171118 and higher */
+
+/* Return count of how many names2 are found in this version of library */
+int uniNamesList_names2cnt(void);
+
+/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
+long uniNamesList_names2val(int count);
+
+/* Stringlength of names2. Use this if you want to truncate annotations */
+int uniNamesList_names2lnC(int count);
+int uniNamesList_names2lnU(unsigned long uni);
+
+/* Return pointer to start of normalized alias names2 within annotation */
+const char *uniNamesList_names2anC(int count);
+const char *uniNamesList_names2anU(unsigned long uni);
 
 #ifdef __cplusplus
 }
