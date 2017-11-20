@@ -1,6 +1,7 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
 SUBDIRS = . tests
+man_MANS = libuninameslist.3
 if PSWRAP
 SUBDIRS += py
 endif
@@ -22,7 +23,7 @@ AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
 EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
-	py/setup.py py/uninameslist.py
+	py/setup.py py/uninameslist.py libuninameslist.3
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 noinst_PROGRAMS = buildnameslist
