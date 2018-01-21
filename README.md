@@ -2,11 +2,12 @@ libuninameslist – A Library of Unicode names and annotation data
 ================================================================
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
 
--   [Description](#description)
--   [Installation and Build instructions](#installation-and-build-instructions)
--   [Changelog](https://raw.github.com/fontforge/libuninameslist/master/ChangeLog)
--   [License](https://raw.github.com/fontforge/libuninameslist/master/LICENSE)
--   [See Also](#see-also)
+- [Description](#description)
+- [Installation and Build Instructions](#installation-and-build-instructions)
+- [Changelog](https://raw.github.com/fontforge/libuninameslist/master/ChangeLog)
+- [License](https://raw.github.com/fontforge/libuninameslist/master/LICENSE)
+- [Added Python Wrapper](#added-python-wrapper)
+- [See Also](#see-also)
 
 Description
 -----------
@@ -108,7 +109,7 @@ This library maintains the same 'name' and 'annot' structure, but has function
 names with FR so that it is possible to open both libraries at the same time.
 The header file for the French library is `<uninameslist-fr.h>`
 
-Installation and Build instructions
+Installation and Build Instructions
 -----------------------------------
 
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
@@ -121,7 +122,7 @@ $ cd libuninameslist
 
 or download the latest HEAD from github:
 ```bash
-$ git clone https://github.com/fontforge/libuninameslist.git;
+$ git clone https://github.com/fontforge/libuninameslist.git
 $ cd libuninameslist
 ```
 
@@ -157,12 +158,11 @@ Added Python Wrapper
 If you have Python installed, a python wrapper is installed to the default
 python site-packages directory. Use '--enable-pscript=no' to disable this.
 To change the install/uninstall directory, you need to modify 'pythondir'.
-This is done by passing a variable during ./configure
+This is done by passing a variable during ./configure (default shown).
 ```bash
 $ autoreconf -i
 $ automake
-$ ./configure --help
-$ ./configure PYWRDR=/usr/lib/python2.7/site-packages
+$ ./configure PYWRDR=/usr/local/lib/python2.7/site-packages
 $ make
 $ sudo make install
 ```
