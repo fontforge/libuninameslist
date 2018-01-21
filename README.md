@@ -33,59 +33,69 @@ unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
 and an annotation. Either or both may be NULL. Both libraries also contain a
 (much smaller) list of all the Unicode blocks.
 
->     struct unicode_block {
->         int start, end;
->         const char *name;
->     };
->
->     struct unicode_nameannot {
->         const char *name, *annot;
->     };
->
->     extern const struct unicode_block UnicodeBlock[???];
->
->     #define UNICODE_NAME_MAX    ???
->     #define UNICODE_ANNOT_MAX   ???
->     extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
->
->     /* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
+```c
+struct unicode_block {
+    int start, end;
+    const char *name;
+};
+
+struct unicode_nameannot {
+    const char *name, *annot;
+};
+
+extern const struct unicode_block UnicodeBlock[???];
+
+#define UNICODE_NAME_MAX    ???
+#define UNICODE_ANNOT_MAX   ???
+extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
+
+/* Index by: UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */
+```
 
 To keep both libraries slightly smaller, the beginning of lines starting with
 TAB can be expanded with UTF-8 character substitutions as defined below:
 
->     /* At the beginning of lines (after a tab) within the annotation string, a */
->     /*  * should be replaced by a bullet U+2022 */
->     /*  x should be replaced by a right arrow U+2192 */
->     /*  : should be replaced by an equivalent U+224D */
->     /*  # should be replaced by an approximate U+2245 */
->     /*  = should remain itself */
+```c
+/* At the beginning of lines (after a tab) within the annotation string, a */
+/*  * should be replaced by a bullet U+2022 */
+/*  x should be replaced by a right arrow U+2192 */
+/*  : should be replaced by an equivalent U+224D */
+/*  # should be replaced by an approximate U+2245 */
+/*  = should remain itself */
+```
 
 With the default configure option chosen, this package will install one library
 file, one header file, and one python wrapper. The library is 'libuninameslist', and the header is `<uninameslist.h>`. You can access these fifteen functions:
 
->     const char *uniNamesList_name(unsigned long uni);
->     const char *uniNamesList_annot(unsigned long uni);
->     const char *uniNamesList_NamesListVersion(void);
->     int uniNamesList_blockCount(void);
->     int uniNamesList_blockNumber(unsigned long uni);
->     long uniNamesList_blockStart(int uniBlock);
->     long uniNamesList_blockEnd(int uniBlock);
->     const char *uniNamesList_blockName(int uniBlock);
->     int uniNamesList_names2cnt(void);
->     long uniNamesList_names2val(int count);
->     int uniNamesList_names2getU(unsigned long uni);
->     int uniNamesList_names2lnC(int count);
->     int uniNamesList_names2lnU(unsigned long uni);
->     const char *uniNamesList_names2anC(int count);
->     const char *uniNamesList_names2anU(unsigned long uni);
+```c
+const char *uniNamesList_name(unsigned long uni);
+const char *uniNamesList_annot(unsigned long uni);
+const char *uniNamesList_NamesListVersion(void);
+int uniNamesList_blockCount(void);
+int uniNamesList_blockNumber(unsigned long uni);
+long uniNamesList_blockStart(int uniBlock);
+long uniNamesList_blockEnd(int uniBlock);
+const char *uniNamesList_blockName(int uniBlock);
+int uniNamesList_names2cnt(void);
+long uniNamesList_names2val(int count);
+int uniNamesList_names2getU(unsigned long uni);
+int uniNamesList_names2lnC(int count);
+int uniNamesList_names2lnU(unsigned long uni);
+const char *uniNamesList_names2anC(int count);
+const char *uniNamesList_names2anU(unsigned long uni);
+```
 
 and for backwards compatibility for older programs that still use it, there is:
 
->     UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].name
+```c
+UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].name
+```
 
 while the annotation string is:
 
->     UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
+```c
+UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
+```
 
 The name string is in ASCII, while the annotation string is in UTF-8 and is
 also intended to be modified slightly by the having any `*` characters which
@@ -104,8 +114,8 @@ Installation and Build instructions
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 
 ```bash
-wget https://github.com/fontforge/libuninameslist/archive/20170807.tar.gz
-tar -xzf 20170807.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20170807.tar.gz
+$ tar -xzf 20170807.tar.gz
 $ cd libuninameslist
 ```
 
@@ -135,10 +145,10 @@ recognize LibUniNamesList if you are not rebooting your computer first before
 loading another program that depends on LibUniNamesList. To do this, you may
 need to run 'ldconfig' in 'su -' mode after you have done 'make install':
 ```bash
-	$ su -
-	# ldconfig
-	# exit
-	$
+$ su -
+# ldconfig
+# exit
+$
 ```
 
 Added Python Wrapper
@@ -146,10 +156,20 @@ Added Python Wrapper
 
 If you have Python installed, a python wrapper is installed to the default
 python site-packages directory. Use '--enable-pscript=no' to disable this.
-To change the default install/uninstall directory, modify 'pythondir'
+To change the install/uninstall directory, you need to modify 'pythondir'.
+This is done by passing a variable during ./configure
+```bash
+$ autoreconf -i
+$ automake
+$ ./configure --help
+$ ./configure PYWRDR=/usr/lib/python2.7/site-packages
+$ make
+$ sudo make install
+```
 
 See Also
 --------
 
--   [FontForge](http://github.com/fontforge/fontforge/) - font editor application that this library was made for
--   [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard
+- [FontForge Users](https://sourceforge.net/p/fontforge/mailman/fontforge-users/) - Discussion area for users.
+- [FontForge](http://github.com/fontforge/fontforge/) - font editor application that this library was made for.
+- [UMap](http://umap.sf.net/) - Find unicode characters and copy them to the clipboard.

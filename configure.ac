@@ -131,6 +131,11 @@ if test x$pscript = xyes ; then
    fi
 fi
 AM_CONDITIONAL([PSWRAP],[test x$pscript = xyes])
+AC_ARG_VAR([PYWRDR],[Python wrapper install directory])
+if test x"${PYWRDR}" = x; then
+   PYWRDR="${pythondir}"
+fi
+AC_SUBST([PYWRDR],["${PYWRDR}"])
 
 #-------------------------------------------
 # Platform specific stuff, AC_CANONICAL_HOST
@@ -249,6 +254,6 @@ Optional:
   Include French C lib	${frenchlib}
   Include Python Script	${pscript} ${PSWRAP}
     Have Python		"${PYTHON}"
-    wrapper pythondir	${pythondir}
+    Python wrapper dir	"${PYWRDR}"
 
 ])

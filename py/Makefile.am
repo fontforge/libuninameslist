@@ -14,11 +14,11 @@ all-local:
 		--verbose
 
 install-exec-local:
-	$(PYTHON) setup.py install --install-lib $(pythondir) --verbose
+	$(PYTHON) setup.py install --install-lib $(PYWRDR) --verbose
 
 # lacking uninstall... do: python install --record then remove
 uninstall-local:
-	$(PYTHON) setup.py install --install-lib $(pythondir) --verbose \
+	$(PYTHON) setup.py install --install-lib $(PYWRDR) --verbose \
 		--record uninameslistfilestoremove.txt
 	cat uninameslistfilestoremove.txt | xargs rm -rf
 	rm -rf uninameslistfilestoremove.txt
