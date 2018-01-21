@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
+import sys
+
+if sys.version_info >= (3,):
+    extra['use_2to3'] = True
 
 setup(
     name='uninameslist',

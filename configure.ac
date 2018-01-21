@@ -98,17 +98,22 @@ dnl AM_MAINTAINER_MODE([enable])
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])],[AC_SUBST([AM_DEFAULT_VERBOSITY],[1])])
 
 #-------------------------------------------
-# Include deprecated French library too?
+# Include French library too? default was no
+frenchlib=no
 AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may be useful for French programs. Currently at ListeDesNoms.txt version ${uninameslist_fr_nameslist_ver}]),
   [case "${enableval}" in
-    yes) frenchlib=true ;;
-    no)  frenchlib=false ;;
+    true)  frenchlib=yes ;;
+    false) frenchlib=no  ;;
+    yes)   frenchlib=yes ;;
+    no)    frenchlib=no  ;;
     *) AC_MSG_ERROR([bad value ${enableval} for --enable-frenchlib]) ;;
-   esac],[frenchlib=false])
-AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xtrue])
+   esac],[frenchlib=no])
+AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xyes])
 
 #-------------------------------------------
 # Have Python? with or without Python script
+# Note user may need to set pythondir if not
+# the expected install/uninstall directory.
 PYTHON=""
 pscript=yes
 AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes.]),
@@ -240,9 +245,10 @@ Configuration:
   Config UN_CFLAGS	"${UN_CFLAGS}"
   Config UN_LIB		"${UN_LIB}"
 
-Default Optional:
+Optional:
+  Include French C lib	${frenchlib}
   Include Python Script	${pscript} ${PSWRAP}
     Have Python		"${PYTHON}"
-    Install directory	${pythondir}
+    wrapper pythondir	${pythondir}
 
 ])

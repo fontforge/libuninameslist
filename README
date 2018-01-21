@@ -25,24 +25,27 @@ added, they will be added to the bottom of this list.
 6) long uniNamesList_blockStart(int uniBlock);
 7) long uniNamesList_blockEnd(int uniBlock);
 8) const char *uniNamesList_blockName(int uniBlock);
+9) int uniNamesList_names2cnt(void);
+10) long uniNamesList_names2val(int count);
+11) int uniNamesList_names2getU(unsigned long uni);
+12) int uniNamesList_names2lnC(int count);
+13) int uniNamesList_names2lnU(unsigned long uni);
+14) const char *uniNamesList_names2anC(int count);
+15) const char *uniNamesList_names2anU(unsigned long uni);
 
 For a better description of each function, check "uninameslist.h", and see
-an example of how to use these funtions in FontForge ~ 20140101 or later.
+an example of how to use these functions in FontForge ~ 20140101 or later.
 
 Building and Installing LibUniNamesList
 ***************************************
 
-Read the file INSTALLATION for details on building LibUniNamesList using this
-package. This package contains 2 libraries, but only 1 is built by default:
+Read INSTALL for details on building LibUniNamesList using this package.
+This package contains 2 libraries, but only 1 is built by default:
 	1) libuninameslist - holds NamesList.txt data from www.unicode.org
-	2) libuninameslist-fr - currently holds French 7.0 NamesList.txt
+	2) libuninameslist-fr - currently holds French 10.0 NamesList.txt
 If you need the libuninameslist-fr library then you will also need to enable
-building it since the current default is to not build it since this library
-was not maintained for a while (prior version was still at 5.0 for a while).
+building it since the current default is not to build it.
 	configure --enable-frenchlib
-(Also note, that other libraries may not necessarily be at the same version,
-so you will want to make use of "nameslist-fr.h" since some information and
-dimensions are different)
 
 The build process can be summarized quickly like this:
 
@@ -69,7 +72,7 @@ need to run 'ldconfig' in 'su -' mode after you have done 'make install':
 	# exit
 	$
 
-
+	
 How to Update LibUniNamesList (for maintainers)
 ***********************************************
 
@@ -134,4 +137,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2017-Aug-07, by Joe Da Silva
+	2018-Jan-20, by Joe Da Silva

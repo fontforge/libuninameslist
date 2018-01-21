@@ -5,7 +5,7 @@ includedir=@includedir@
 
 Name: libuninameslist
 Description: Unicode Names and Annotations List Library (NamesList.txt=@NL_VERSION@)
-URL: https://github.com/fontforge/libuninameslist
+URL: https://github.com/fontforge/libuninameslist/releases
 Version: @VERSION@
 Libs: -L${libdir} @LIBUNINAMESLIST_PKGCONFIG_LIBS@
 Cflags: -I${includedir}

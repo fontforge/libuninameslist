@@ -13,6 +13,8 @@ Description
 
 This program is updated for Nameslist.txt ver10.0 and ListeDesNoms.txt ver10.0.
 
+For latest release, see: https://github.com/fontforge/libuninameslist/releases
+
 http://sourceforge.net/projects/libuninameslist/files/ is not kept up to date.
 
 Nameslist.txt
@@ -24,7 +26,7 @@ quickly and easily.
 ListeDesNoms.txt
 Is a seperate file which is translated from Nameslist.txt and was outdated for
 a period of time but was recently updated by a group of developers who have
-updated it up to version 10. Contibutors to that file are listed in that file.
+updated it up to version 10. Contributors to that file are listed in that file.
 
 These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
@@ -59,8 +61,7 @@ TAB can be expanded with UTF-8 character substitutions as defined below:
 >     /*  = should remain itself */
 
 With the default configure option chosen, this package will install one library
-file and one header file. The library file is 'libuninameslist', and the header
-is `<uninameslist.h>`. You can access these eight functions:
+file, one header file, and one python wrapper. The library is 'libuninameslist', and the header is `<uninameslist.h>`. You can access these fifteen functions:
 
 >     const char *uniNamesList_name(unsigned long uni);
 >     const char *uniNamesList_annot(unsigned long uni);
@@ -70,6 +71,13 @@ is `<uninameslist.h>`. You can access these eight functions:
 >     long uniNamesList_blockStart(int uniBlock);
 >     long uniNamesList_blockEnd(int uniBlock);
 >     const char *uniNamesList_blockName(int uniBlock);
+>     int uniNamesList_names2cnt(void);
+>     long uniNamesList_names2val(int count);
+>     int uniNamesList_names2getU(unsigned long uni);
+>     int uniNamesList_names2lnC(int count);
+>     int uniNamesList_names2lnU(unsigned long uni);
+>     const char *uniNamesList_names2anC(int count);
+>     const char *uniNamesList_names2anU(unsigned long uni);
 
 and for backwards compatibility for older programs that still use it, there is:
 
@@ -86,12 +94,9 @@ character. Etc.
 
 If you choose to install the second library as well, then you will need to
 use ./configure --enable-frenchlib
-This library only uses the older method at the moment since it is not decided
-yet if they should also have there own identical functions as the mainline
-Namelist.txt, or if it/they should be accessed through the mainline library
-by creating new additional functions 9 to n for accessing this/these other
-library/libraries.
-The header file the french library is `<uninameslist-fr.h>`
+This library maintains the same 'name' and 'annot' structure, but has function
+names with FR so that it is possible to open both libraries at the same time.
+The header file for the French library is `<uninameslist-fr.h>`
 
 Installation and Build instructions
 -----------------------------------
@@ -135,6 +140,13 @@ need to run 'ldconfig' in 'su -' mode after you have done 'make install':
 	# exit
 	$
 ```
+
+Added Python Wrapper
+--------------------
+
+If you have Python installed, a python wrapper is installed to the default
+python site-packages directory. Use '--enable-pscript=no' to disable this.
+To change the default install/uninstall directory, modify 'pythondir'
 
 See Also
 --------
