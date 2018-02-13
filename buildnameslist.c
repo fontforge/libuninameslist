@@ -256,7 +256,7 @@ static int ReadNamesList(void) {
 	/* search for possible normalized aliases. Assume 1st annotation line */
 	for ( a_char=0; a_char<17*65536; ++a_char ) if ( uniannot[i][a_char]!=NULL ) {
 	    pt = uniannot[i][a_char];
-	    if ( *pt=='\t' && *++pt=='\%' && *++pt==' ' ) {
+	    if ( *pt=='\t' && *++pt=='%' && *++pt==' ' ) {
 		for ( j=-1; *pt!='\n' && *pt!='\0'; ++j,++pt );
 		if ( j>0 && j<128 ) {
 		    names2pt[i][a_char] = 3;

@@ -54,6 +54,15 @@ _setSig(_lib.uniNamesList_blockEnd, c_long, [c_int])
 # const char *uniNamesList_blockName(int uniBlock);
 _setSig(_lib.uniNamesList_blockName, c_char_p, [c_int])
 
+# int uniNamesList_names2cnt(void);
+_setSig(_lib.uniNamesList_names2cnt, c_int, [])
+# long uniNamesList_names2val(int count);
+_setSig(_lib.uniNamesList_names2val, c_long, [c_int])
+# int uniNamesList_names2lnC(int count);
+_setSig(_lib.uniNamesList_names2lnC, c_int, [c_int])
+# const char *uniNamesList_names2anC(int count);
+_setSig(_lib.uniNamesList_names2anC, c_char_p, [c_int])
+
 # internal helpers
 
 class _block:
@@ -74,6 +83,10 @@ class _block:
 
 _blockCount = _lib.uniNamesList_blockCount()
 
+_codepointsWithName2 = tuple(_lib.uniNamesList_names2val(i) for i in range(_lib.uniNamesList_names2cnt()))
+# using tuple i.o. set above since such codepoints are very limited and to check membership
+# in such cases I assume the hash function of set would be costlier than just looking through
+
 # public symbols
 
 '''documents the version of libuninameslist'''
@@ -86,19 +99,11 @@ def name(char):
 
 def name2(char):
     '''returns the normative alias if defined for correcting a Unicode character name, else just the name'''
-    # NOTE: As of Unicode 10.0 these are only the 25 characters:
-    #   U+01A2 U+01A3 U+0709 U+0CDE U+0E9D U+0E9F U+0EA3 U+0EA5 U+0FD0 U+11EC U+11ED U+11EE U+11EF
-    #   U+2118 U+2448 U+2449 U+2B7A U+2B7C U+A015 U+FE18 U+FEFF U+0122D4 U+0122D5 U+01B001 U+01D0C5
-    # ... but the function is provided if you want it.
-    annot = annotation(char)
     try:
-        # NOTE: index should not be needed as NamesList.txt always defines the normative alias first, but just keeping safe
-        correctedNamePos = annot.index("\t% ") + 3
-        try:
-            nextTabPos = correctedNamePos + annot[correctedNamePos:].index("\n\t")  # there may be annotations beyond the alias
-            return annot[correctedNamePos:nextTabPos]
-        except ValueError:
-            return annot[correctedNamePos:]
+        name2Index = _codepointsWithName2.index(ord(char))
+        annotationBytes = _lib.uniNamesList_names2anC(name2Index)
+        normativeAliasLength = _lib.uniNamesList_names2lnC(name2Index)
+        return annotationBytes[:normativeAliasLength].decode()
     except ValueError:
         return name(char)
 
