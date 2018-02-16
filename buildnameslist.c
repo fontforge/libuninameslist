@@ -388,12 +388,14 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\tif ( count<0 || count>=%d ) return( -1 );\n", names2cnt[l] );
 	fprintf( out, "\treturn( (long)(unicode_name2code%s[count]) );\n}\n\n", lg[l] );
     }
+    fprintf( out, "/* Return list location for this unicode value. Return -1 if not found. */\n" );
+    fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_names2getU%s(unsigned long uni) {\n", lg[l] );
     if ( names2cnt[l]>0 ) {
-	fprintf( out, "UN_DLL_LOCAL\nint uniNamesList_names2getU%s(unsigned long uni) {\n", lg[l] );
 	fprintf( out, "\tint i;\n\tif ( uni<0x110000 ) for ( i=0; i<%d; ++i ) {\n", names2cnt[l] );
 	fprintf( out, "\t\tif ( uni==unicode_name2code%s[i] ) return( i );\n", lg[l] );
-	fprintf( out, "\t\tif ( uni<unicode_name2code%s[i] ) break;\n\t}\n\treturn( -1 );\n}\n\n", lg[l] );
+	fprintf( out, "\t\tif ( uni<unicode_name2code%s[i] ) break;\n\t}\n", lg[l] );
     }
+    fprintf( out, "\treturn( -1 );\n}\n\n" );
     fprintf( out, "/* Stringlength of names2. Use this if you want to truncate annotations */\n" );
     fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_names2lnC%s(int count) {\n", lg[l] );
     if ( names2cnt[l]<=0 )
@@ -520,6 +522,8 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "\n/* These functions are available in libuninameslist-20171118 and higher */\n\n" );
     fprintf( header, "/* Return count of how many names2 are found in this version of library */\n" );
     fprintf( header, "int uniNamesList_names2cnt%s(void);\n\n", lg[l] );
+    fprintf( header, "/* Return list location for this unicode value. Return -1 if not found. */\n" );
+    fprintf( header, "int uniNamesList_names2getU%s(unsigned long uni);\n\n", lg[l] );
     fprintf( header, "/* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */\n" );
     fprintf( header, "long uniNamesList_names2val%s(int count);\n\n", lg[l] );
     fprintf( header, "/* Stringlength of names2. Use this if you want to truncate annotations */\n" );

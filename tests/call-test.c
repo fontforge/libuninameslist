@@ -251,9 +251,10 @@ static int test_normalize(void) {
 	return( -2 );
     }
 
+    a = uniNamesList_names2getU(0x0709);
     c = uniNamesList_names2lnU(0x0709);
     p = uniNamesList_names2anU(0x0709);
-    printf("value:%d, str='%s'\n", c, p );
+    printf("name2code_index:%d, value:%d, str='%s'\n", a, c, p );
     if ( uniNamesList_names2anU(0x01A0)!=NULL || c!=34 || p[3]!='I' ) {
 	printf("error with uniNamesList_names2anU(Ucode), expected NULL,'I'\n" );
 	return( -3 );

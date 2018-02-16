@@ -114,6 +114,12 @@ long uniNamesList_names2valFR(int count) {
 	return( -1 );
 }
 
+/* Return list location for this unicode value. Return -1 if not found. */
+UN_DLL_EXPORT
+int uniNamesList_names2getUFR(unsigned long uni) {
+	return( -1 );
+}
+
 /* Stringlength of names2. Use this if you want to truncate annotations */
 UN_DLL_EXPORT
 int uniNamesList_names2lnCFR(int count) {

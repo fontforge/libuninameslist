@@ -150,7 +150,8 @@ long uniNamesList_names2val(int count) {
 	return( (long)(unicode_name2code[count]) );
 }
 
-UN_DLL_LOCAL
+/* Return list location for this unicode value. Return -1 if not found. */
+UN_DLL_EXPORT
 int uniNamesList_names2getU(unsigned long uni) {
 	int i;
 	if ( uni<0x110000 ) for ( i=0; i<25; ++i ) {

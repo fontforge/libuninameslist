@@ -79,6 +79,9 @@ const char * uniNamesList_blockName(int uniBlock);
 /* Return count of how many names2 are found in this version of library */
 int uniNamesList_names2cnt(void);
 
+/* Return list location for this unicode value. Return -1 if not found. */
+int uniNamesList_names2getU(unsigned long uni);
+
 /* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
 long uniNamesList_names2val(int count);
 
