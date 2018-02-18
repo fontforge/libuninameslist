@@ -58,6 +58,8 @@ _setSig(_lib.uniNamesList_blockName, c_char_p, [c_int])
 _setSig(_lib.uniNamesList_names2cnt, c_int, [])
 # long uniNamesList_names2val(int count);
 _setSig(_lib.uniNamesList_names2val, c_long, [c_int])
+# int uniNamesList_names2getU(unsigned long uni);
+_setSig(_lib.uniNamesList_names2getU, c_int, [c_ulong])
 # int uniNamesList_names2lnC(int count);
 _setSig(_lib.uniNamesList_names2lnC, c_int, [c_int])
 # const char *uniNamesList_names2anC(int count);
@@ -83,10 +85,6 @@ class _block:
 
 _blockCount = _lib.uniNamesList_blockCount()
 
-_codepointsWithName2 = tuple(_lib.uniNamesList_names2val(i) for i in range(_lib.uniNamesList_names2cnt()))
-# using tuple i.o. set above since such codepoints are very limited and to check membership
-# in such cases I assume the hash function of set would be costlier than just looking through
-
 # public symbols
 
 '''documents the version of libuninameslist'''
@@ -99,13 +97,12 @@ def name(char):
 
 def name2(char):
     '''returns the normative alias if defined for correcting a Unicode character name, else just the name'''
-    try:
-        name2Index = _codepointsWithName2.index(ord(char))
-        annotationBytes = _lib.uniNamesList_names2anC(name2Index)
-        normativeAliasLength = _lib.uniNamesList_names2lnC(name2Index)
-        return annotationBytes[:normativeAliasLength].decode()
-    except ValueError:
+    name2Index = _lib.uniNamesList_names2getU(ord(char))
+    if name2Index < 0:  # no normative alias
         return name(char)
+    annotationBytes = _lib.uniNamesList_names2anC(name2Index)
+    normativeAliasLength = _lib.uniNamesList_names2lnC(name2Index)
+    return annotationBytes[:normativeAliasLength].decode()
 
 def annotation(char):
     '''returns all Unicode annotations including aliases and cross-references as provided by NamesList.txt'''
@@ -120,6 +117,10 @@ def blocks():
 def block(char):
     '''returns the Unicode block a character is in'''
     return _block._fromNum(_lib.uniNamesList_blockNumber(ord(char)))
+
+# apart from what C library provides
+
+charactersWithName2 = "".join(chr(_lib.uniNamesList_names2val(i)) for i in range(_lib.uniNamesList_names2cnt()))
 
 def uplus(char):
     '''convenience function to return the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that'''
