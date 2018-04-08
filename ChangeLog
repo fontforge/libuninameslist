@@ -1,3 +1,7 @@
+- 2018-Apr-08
+    * Unicode 11.0_Beta (Nameslist.txt 11_Beta for review until Apr23).
+    * Added Python wrapper and names2 functions.
+
 - 2017-Aug-07
     * Version 1.2, Unicode 10.0, French version is now also 10.0.0.
     * Added function calls to French version to allow use of one or more

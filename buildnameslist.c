@@ -64,12 +64,12 @@ static int printcopyright2(FILE *out) {
 }
 
 static int printcopyright1(FILE *out, int is_fr) {
-/* Copyright notice for unicode NamesList.txt - 2017 */
+/* Copyright notice for unicode NamesList.txt - 2018 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2017 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2018 Unicode, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
     fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
@@ -519,7 +519,7 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "const char * uniNamesList_blockName%s(int uniBlock);\n", lg[l] );
     if ( is_fr!=0 ) fprintf( header, "\n#define UnicodeNameAnnot UnicodeNameAnnot%s\n", lg[l] );
 
-    fprintf( header, "\n/* These functions are available in libuninameslist-20171118 and higher */\n\n" );
+    fprintf( header, "\n/* These functions are available in libuninameslist-20180408 and higher */\n\n" );
     fprintf( header, "/* Return count of how many names2 are found in this version of library */\n" );
     fprintf( header, "int uniNamesList_names2cnt%s(void);\n\n", lg[l] );
     fprintf( header, "/* Return list location for this unicode value. Return -1 if not found. */\n" );

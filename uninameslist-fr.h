@@ -76,7 +76,7 @@ const char * uniNamesList_blockNameFR(int uniBlock);
 
 #define UnicodeNameAnnot UnicodeNameAnnotFR
 
-/* These functions are available in libuninameslist-20171118 and higher */
+/* These functions are available in libuninameslist-20180408 and higher */
 
 /* Return count of how many names2 are found in this version of library */
 int uniNamesList_names2cntFR(void);

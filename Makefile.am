@@ -62,7 +62,7 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "http://unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
+	$(WGET) "http://www.unicode.org/Public/11.0.0/ucd/NamesList-11.0.0d5.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeNoms-10.0.0-20170716.txt" -O ListeDesNoms.txt
