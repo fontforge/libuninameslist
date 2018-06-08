@@ -56,11 +56,11 @@ m4_define([uninameslist_package_name], [libuninameslist])
 AC_INIT([uninameslist],[uninameslist_package_stamp],[fontforge-devel@lists.sourceforge.net],
 	[uninameslist_package_name],[https://github.com/fontforge/libuninameslist])
 AC_CONFIG_SRCDIR([buildnameslist.c])
-AM_INIT_AUTOMAKE([foreign -Wall])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
 AC_CANONICAL_HOST
 AC_CANONICAL_BUILD
+AM_INIT_AUTOMAKE([foreign -Wall])
 
 #-------------------------------------------
 # automake 1.12 seems to require AM_PROG_AR,
@@ -116,16 +116,23 @@ AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xyes])
 # the expected install/uninstall directory.
 PYTHON=""
 pscript=yes
-AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes.]),
+AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes. If you have python 2 and python3 and require python3, use --enable-psscript=3]),
   [case "${enableval}" in
+    2)  pscript=2 ;;
+    3)  pscript=3 ;;
     true)  pscript=yes ;;
     false) pscript=no  ;;
     yes)   pscript=yes ;;
     no)    pscript=no  ;;
     *) AC_MSG_ERROR([bad value ${enableval} for --enable-pscript]) ;;
    esac],[])
-if test x$pscript = xyes ; then
-   AM_PATH_PYTHON([2.7],,[:])
+if test x$pscript = xyes || test x$pscript = x2 || test x$pscript = x3 ; then
+   if test x$pscript = x3 ; then
+      AM_PATH_PYTHON([3.3],,[:])
+   else
+      AM_PATH_PYTHON([2.7],,[:])
+   fi
+   pscript=yes
    if test "$PYTHON" = ":" ; then
       AC_MSG_ERROR([Python not found. Please install Python first.])
    fi
