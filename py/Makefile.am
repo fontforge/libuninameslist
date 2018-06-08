@@ -7,21 +7,19 @@
 
 EXTRA_DIST = setup.py uninameslist.py
 
-all-local:
-	cd $(srcdir)
+install-exec-hook:
 	$(PYTHON) setup.py build \
 		--build-base $(shell readlink -f $(builddir))/build \
-		--verbose
-
-install-exec-local:
-	$(PYTHON) setup.py install --install-lib $(PYWRDR) --verbose
+		install --install-lib $(PYWRDR) --verbose
 
 # lacking uninstall... do: python install --record then remove
-uninstall-local:
-	$(PYTHON) setup.py install --install-lib $(PYWRDR) --verbose \
-		--record uninameslistfilestoremove.txt
-	cat uninameslistfilestoremove.txt | xargs rm -rf
-	rm -rf uninameslistfilestoremove.txt
+uninstall-hook:
+	$(PYTHON) setup.py build \
+		--build-base $(shell readlink -f $(builddir))/build \
+		install --install-lib $(PYWRDR) --verbose \
+		--record $(shell readlink -f $(builddir))uninameslistfilestoremove.txt
+	cat $(shell readlink -f $(builddir))uninameslistfilestoremove.txt | xargs rm -rf
+	rm -rf $(shell readlink -f $(builddir))uninameslistfilestoremove.txt
 
 clean-local:
 if PSWRAP
