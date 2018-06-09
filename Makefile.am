@@ -45,8 +45,9 @@ if WANTLIBOFR
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
 libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h
+man_MANS += libuninameslist-fr.3
 else
-EXTRA_DIST += nameslist-fr.c uninameslist-fr.h
+EXTRA_DIST += nameslist-fr.c uninameslist-fr.h libuninameslist-fr.3
 endif
 
 include_HEADERS = uninameslist.h

@@ -116,7 +116,7 @@ AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xyes])
 # the expected install/uninstall directory.
 PYTHON=""
 pscript=yes
-AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes. If you have python 2 and python3 and require python3, use --enable-psscript=3]),
+AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=yes. If you have python 2 and python3 and require python3, use --enable-pscript=3]),
   [case "${enableval}" in
     2)  pscript=2 ;;
     3)  pscript=3 ;;
