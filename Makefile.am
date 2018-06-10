@@ -1,11 +1,12 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
-SUBDIRS = . tests
-man_MANS = libuninameslist.3
+SUBDIRS = .
 if PSWRAP
 SUBDIRS += py
 endif
+SUBDIRS += tests
 DIST_SUBDIRS = . py tests
+man_MANS = libuninameslist.3
 
 test_programs = call-test0 call-test1 call-test2
 if WANTLIBOFR

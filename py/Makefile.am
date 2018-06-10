@@ -7,26 +7,59 @@
 
 EXTRA_DIST = setup.py uninameslist.py
 
+all-local:
+if HAVE_PYTHON2
+	$(LUPYTHON2) setup.py build --build-base $(builddir)/build2 \
+		--verbose
+endif
+if HAVE_PYTHON3
+	$(LUPYTHON3) setup.py build --build-base $(builddir)/build3 \
+		--verbose
+endif
+
+# python still does a build before doing an install
 install-exec-hook:
-	$(PYTHON) setup.py build \
-		--build-base $(shell readlink -f $(builddir))/build \
-		install --install-lib $(PYWRDR) --verbose
+if HAVE_PYTHON2
+	$(LUPYTHON2) setup.py build --build-base $(builddir)/build2 \
+		install $(PYWRDR2) --verbose
+endif
+if HAVE_PYTHON3
+	$(LUPYTHON3) setup.py build --build-base $(builddir)/build3 \
+		install $(PYWRDR3) --verbose
+endif
 
 # lacking uninstall... do: python install --record then remove
 uninstall-hook:
-	$(PYTHON) setup.py build \
-		--build-base $(shell readlink -f $(builddir))/build \
-		install --install-lib $(PYWRDR) --verbose \
-		--record $(shell readlink -f $(builddir))uninameslistfilestoremove.txt
-	cat $(shell readlink -f $(builddir))uninameslistfilestoremove.txt | xargs rm -rf
-	rm -rf $(shell readlink -f $(builddir))uninameslistfilestoremove.txt
+if HAVE_PYTHON2
+	$(LUPYTHON2) setup.py build --build-base $(builddir)/build2 \
+		install $(PYWRDR2) --verbose \
+		--record $(builddir)/uninameslistfilestoremove.txt
+	cat $(builddir)/uninameslistfilestoremove.txt | xargs rm -rf
+	rm -rf $(builddir)/uninameslistfilestoremove.txt
+endif
+if HAVE_PYTHON3
+	$(LUPYTHON3) setup.py build --build-base $(builddir)/build3 \
+		install $(PYWRDR3) --verbose \
+		--record $(builddir)/uninameslistfilestoremove.txt
+	cat $(builddir)/uninameslistfilestoremove.txt | xargs rm -rf
+	rm -rf $(builddir)/uninameslistfilestoremove.txt
+endif
+
+check-local:
 
 clean-local:
 if PSWRAP
-	$(PYTHON) $(srcdir)/setup.py clean --all
+if HAVE_PYTHON2
+	$(LUPYTHON2) $(srcdir)/setup.py clean --all
 endif
-	rm -rf $(builddir)/build
+if HAVE_PYTHON3
+	$(LUPYTHON3) $(srcdir)/setup.py clean --all
+endif
+	rm -rf $(builddir)/build2 $(builddir)/build3
+endif
 
 lint:
+if PSWRAP
 	pylint $(srcdir)/py
+endif
 
