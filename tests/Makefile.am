@@ -41,3 +41,5 @@ call_test6_SOURCES = call-test6.c
 call_test6_LDADD = $(LDADDS)
 
 TESTS = $(noinst_PROGRAMS)
+
+-include $(top_srcdir)/git.mk

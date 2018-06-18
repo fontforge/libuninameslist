@@ -63,3 +63,6 @@ if PSWRAP
 	pylint $(srcdir)/py
 endif
 
+CLEANFILES = build2 build3
+
+-include $(top_srcdir)/git.mk
