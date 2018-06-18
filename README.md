@@ -155,16 +155,24 @@ $
 Added Python Wrapper
 --------------------
 
-If you have Python installed, a python wrapper is installed to the default
-python site-packages directory. Use '--enable-pscript=no' to disable this.
-To change the install/uninstall directory, you need to modify 'pythondir'.
-This is done by passing a variable during ./configure (default shown).
+A python wrapper is provided. To install, run
+
 ```bash
-$ autoreconf -i
-$ automake
-$ ./configure PYWRDR=/usr/local/lib/python2.7/site-packages
-$ make
-$ sudo make install
+cd py
+# May require sudo if you're not using a virutalenv
+python setup.py install
+```
+
+The build system can optionally also build installable wheels of the package.
+To do this, pass `--enable-pylib`. Optionally, also set the `PYTHON` environment
+variable to configure which python to use. The configured python must have both
+`pip` and the `wheel` package installed.
+
+```bash
+autoreconf -fiv
+PYTHON=python2 ./configure --enable-pylib
+make
+pip install py/dist/*.whl
 ```
 
 See Also

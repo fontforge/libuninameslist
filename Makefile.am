@@ -1,7 +1,7 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
 SUBDIRS = .
-if PSWRAP
+if ENABLE_PYLIB
 SUBDIRS += py
 endif
 SUBDIRS += tests
