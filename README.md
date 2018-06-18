@@ -1,6 +1,6 @@
 libuninameslist – A Library of Unicode names and annotation data
 ================================================================
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
+[![Build Status](https://travis-ci.org/fontforge/libuninameslist.svg?branch=master)](https://travis-ci.org/fontforge/libuninameslist) [![Build status](https://ci.appveyor.com/api/projects/status/qseac73evm9leu0g?svg=true)](https://ci.appveyor.com/project/fontforge/libuninameslist) [![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
 
 - [Description](#description)
 - [Installation and Build Instructions](#installation-and-build-instructions)
