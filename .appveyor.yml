@@ -23,5 +23,5 @@ build_script:
   - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && ./configure --enable-pylib && make check -j4 && make install"
 test: off
 artifacts:
-  - path: py\dist\*.whl
+  - path: py\wheel\*.whl
     name: libuninameslist
