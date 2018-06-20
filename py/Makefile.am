@@ -9,8 +9,7 @@ EXTRA_DIST = setup.py uninameslist.py
 GENERATED = build wheel uninameslist.egg-info
 
 wheel: $(EXTRA_DIST)
-	$(PYTHON) setup.py sdist --dist-dir wheel bdist_wheel --universal --dist-dir wheel
-
+	$(PYTHON) $(srcdir)/setup.py sdist --dist-dir wheel bdist_wheel --universal --dist-dir wheel
 
 all-local: wheel
 
