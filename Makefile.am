@@ -1,7 +1,7 @@
 # Makefile.am - Top level automakefile for libuninameslist
 
 SUBDIRS = .
-if PSWRAP
+if ENABLE_PYLIB
 SUBDIRS += py
 endif
 SUBDIRS += tests
@@ -78,3 +78,10 @@ check-local: test
 
 CLEANFILES = NamesList.txt ListeDesNoms.latin1 ListeDesNoms.txt buildnameslist buildnameslist.h
 
+MAINTAINERCLEANFILES = \
+	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \
+	$(GITIGNORE_MAINTAINERCLEANFILES_MAKEFILE_IN) \
+	$(GITIGNORE_MAINTAINERCLEANFILES_M4_GETTEXT) \
+	$(GITIGNORE_MAINTAINERCLEANFILES_M4_LIBTOOL)
+
+-include $(top_srcdir)/git.mk

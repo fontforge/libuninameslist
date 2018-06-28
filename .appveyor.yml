@@ -1,0 +1,27 @@
+
+platform:
+  - x64
+branches:
+  only:
+  - master
+clone_depth: 10
+environment:
+  global:
+    MSYSTEM: MSYS
+    MBASH: C:\msys64\usr\bin\sh -lc
+    PMOPTS: -S --needed --noconfirm --noprogressbar
+matrix:
+  fast_finish: true
+
+install:
+  - call %MBASH% "pacman -Syuu --noconfirm"
+  - call %MBASH% "pacman -Suu --noconfirm"
+  - call %MBASH% "pacman -Suu --noconfirm"
+  - call %MBASH% "pacman $PMOPTS python2 python2-pip"
+  - call %MBASH% "pip install wheel"
+build_script:
+  - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
+test: off
+artifacts:
+  - path: build\py\wheel\*.whl
+    name: libuninameslist

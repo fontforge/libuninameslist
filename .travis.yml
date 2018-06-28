@@ -1,0 +1,40 @@
+language: c
+compiler: gcc
+sudo: false
+dist: trusty
+
+branches:
+  only:
+    - master
+    - travis
+    - coverity_scan
+
+env:
+  global:
+    - MAKEFLAGS="-j4"
+
+matrix:
+  include:
+    - os: linux
+      env: LINUX=true
+    - os: osx
+      env: OSX=true
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - deadsnakes
+    packages: [autoconf, automake, autotools-dev, gcc-7, libtool]
+
+before_install:
+   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | sudo python && pip install wheel; fi
+
+script:
+  - autoreconf -fiv
+  - ./configure --enable-pylib --prefix=$TRAVIS_BUILD_DIR/target
+  - make check
+  - make install
+
+after_failure:
+  - which python

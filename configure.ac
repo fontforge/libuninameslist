@@ -111,50 +111,28 @@ AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may 
 AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xyes])
 
 #-------------------------------------------
-# Have Python? Include/exclude Python script
-# Note user may need to set pythondir if not
-# the expected install/uninstall directory.
-AC_CHECK_TOOL([LUPYTHON2],[python2],[no])
-AC_CHECK_TOOL([LUPYTHON3],[python3],[no])
-AM_CONDITIONAL([HAVE_PYTHON2], [test "x$LUPYTHON2" != xno])
-AM_CONDITIONAL([HAVE_PYTHON3], [test "x$LUPYTHON3" != xno])
+# Python lib building
+AC_ARG_ENABLE([pylib],
+        [AS_HELP_STRING([--enable-pylib],
+                [Build the python module as an installable wheel.])],
+        [enable_pylib=yes], [enable_pylib=no])
+if test x$enable_pylib = xyes ; then
+    AC_ARG_VAR([PYTHON],[Python to use to build the python wheel.])
+    if test x"${PYTHON}" = x; then
+        PYTHON=python
+    fi
+    AC_CHECK_PROG([PYTHONFOUND],[${PYTHON}],[yes])
+    if test x"${PYTHONFOUND}" != xyes; then
+        AC_MSG_ERROR([${PYTHON} was not found])
+    fi
 
-pscript=check
-AC_ARG_ENABLE([pscript],AS_HELP_STRING([--enable-pscript],[Include uninameslist python wrapper script, default=check. To force only python2 install, use --enable-pscript=2, to force only python3 install use --enable-pscript=3]),
-  [case "${enableval}" in
-    2)  pscript=2 ;;
-    3)  pscript=3 ;;
-    true)  pscript=yes ;;
-    false) pscript=no  ;;
-    yes)   pscript=yes ;;
-    no)    pscript=no  ;;
-    *) AC_MSG_ERROR([bad value ${enableval} for --enable-pscript]) ;;
-   esac],[])
-if test x$pscript = x2 && test "x$LUPYTHON2" = xno ; then
-   AC_MSG_ERROR([python2 not found. Please install Python2 first.])
+    PKGS=$(${PYTHON} -c 'import wheel; import pip' 2>/dev/null)
+    if test $? != 0; then
+        AC_MSG_ERROR([${PYTHON} does not have 'pip' and 'wheel' installed])
+    fi
+    AC_SUBST(PYTHON, "${PYTHON}")
 fi
-if test x$pscript = x3 && test "x$LUPYTHON3" = xno ; then
-   AC_MSG_ERROR([python3 not found. Please install Python3 first.])
-fi
-if test "x$LUPYTHON2" = xno && test "x$LUPYTHON3" = xno ; then
-   if test x$pscript = xyes ; then
-      AC_MSG_ERROR([Python not found. Please install Python first.])
-   fi
-   have_python=no
-else
-   have_python=yes
-fi
-AM_CONDITIONAL([PSWRAP],[test x$have_python = xyes])
-AC_ARG_VAR([PYWRDR2],[Python2 wrapper install directory])
-AC_ARG_VAR([PYWRDR3],[Python3 wrapper install directory])
-if test x"${PYWRDR2}" != x; then
-   PYWRDR2="--install-lib ${PYWRDR2}"
-fi
-if test x"${PYWRDR3}" != x; then
-   PYWRDR3="--install-lib ${PYWRDR3}"
-fi
-AC_SUBST([PYWRDR2],["${PYWRDR2}"])
-AC_SUBST([PYWRDR3],["${PYWRDR3}"])
+AM_CONDITIONAL([ENABLE_PYLIB],[test x"${enable_pylib}" = xyes])
 
 #-------------------------------------------
 # Platform specific stuff, AC_CANONICAL_HOST
@@ -271,9 +249,6 @@ Configuration:
 
 Optional:
   Include French C lib	${frenchlib}
-  Include Python Script	${pscript}
-    Have Python 2 or 3	${have_python}"
-    Python wrapper dir2	"${PYWRDR2}"
-    Python wrapper dir3	"${PYWRDR3}"
+  Build Python wheels ${enable_pylib}
 
 ])
