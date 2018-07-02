@@ -69,7 +69,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 10.9" );
+	return( "Nameslist-Version: 11.0" );
 }
 
 
@@ -124,29 +124,27 @@ const char * uniNamesList_blockName(int uniBlock) {
 /* Return count of how many names2 are found in this version of library */
 UN_DLL_EXPORT
 int uniNamesList_names2cnt(void) {
-	return( 25 );
+	return( 29 );
 }
 
-UN_DLL_LOCAL
 static const unsigned long unicode_name2code[] = {
 	0x01A2, 0x01A3, 0x0709, 0x0CDE, 0x0E9D, 0x0E9F, 0x0EA3, 0x0EA5,
 	0x0FD0, 0x11EC, 0x11ED, 0x11EE, 0x11EF, 0x2118, 0x2448, 0x2449,
-	0x2B7A, 0x2B7C, 0xA015, 0xFE18, 0xFEFF, 74452, 74453, 110593,
-	118981
+	0x2B7A, 0x2B7C, 0xA015, 0xFE18, 0xFEFF, 74452, 74453, 93782,
+	93783, 93814, 93815, 110593, 118981
 };
 
-UN_DLL_LOCAL
 static const char unicode_name2vals[] = {
 	3,24, 3,22, 3,34, 3,19, 3,17, 3,17, 3,13, 3,13,
 	3,35, 3,32, 3,37, 3,30, 3,33, 3,29, 3,17, 3,16,
-	3,59, 3,60, 3,26, 3,61, 3,15, 3,24, 3,42, 3,21,
-	3,52
+	3,59, 3,60, 3,26, 3,61, 3,15, 3,24, 3,42, 3,28,
+	3,29, 3,26, 3,27, 3,21, 3,52
 };
 
 /* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
 UN_DLL_EXPORT
 long uniNamesList_names2val(int count) {
-	if ( count<0 || count>=25 ) return( -1 );
+	if ( count<0 || count>=29 ) return( -1 );
 	return( (long)(unicode_name2code[count]) );
 }
 
@@ -154,7 +152,7 @@ long uniNamesList_names2val(int count) {
 UN_DLL_EXPORT
 int uniNamesList_names2getU(unsigned long uni) {
 	int i;
-	if ( uni<0x110000 ) for ( i=0; i<25; ++i ) {
+	if ( uni<0x110000 ) for ( i=0; i<29; ++i ) {
 		if ( uni==unicode_name2code[i] ) return( i );
 		if ( uni<unicode_name2code[i] ) break;
 	}
@@ -164,7 +162,7 @@ int uniNamesList_names2getU(unsigned long uni) {
 /* Stringlength of names2. Use this if you want to truncate annotations */
 UN_DLL_EXPORT
 int uniNamesList_names2lnC(int count) {
-	if ( count<0 || count>=25 ) return( -1 );
+	if ( count<0 || count>=29 ) return( -1 );
 	return( (int)(unicode_name2vals[(count<<1)+1]) );
 }
 
@@ -179,7 +177,7 @@ const char *uniNamesList_names2anC(int count) {
 	int c;
 	const char *pt;
 
-	if ( count<0 || count>=25 ) return( NULL );
+	if ( count<0 || count>=29 ) return( NULL );
 	c = unicode_name2vals[count<<1];
 	pt = uniNamesList_annot((unsigned long)(uniNamesList_names2val(count)));
 	while ( --c>=0 ) ++pt;
@@ -191,7 +189,6 @@ const char *uniNamesList_names2anU(unsigned long uni) {
 	return( uniNamesList_names2anC(uniNamesList_names2getU(uni)) );
 }
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -260,7 +257,6 @@ static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray2[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -331,7 +327,6 @@ static const struct unicode_nameannot nullarray2[] = {
 	{ NULL, "	* the value ?FFFF is guaranteed not to be a Unicode character at all" },
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const nullnullarray[] = {
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,
 	nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray, nullarray,
@@ -677,7 +672,6 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x10ff80, 0x10ffff, "Supplementary Private Use Area-B" }
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_00[] = {
 /* 0000 */ { NULL,"	= NULL"},
 /* 0001 */ { NULL,"	= START OF HEADING"},
@@ -1129,7 +1123,9 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00D5 */ { "LATIN CAPITAL LETTER O WITH TILDE","	: 004F 0303"},
 /* 00D6 */ { "LATIN CAPITAL LETTER O WITH DIAERESIS","	: 004F 0308"},
 /* 00D7 */ { "MULTIPLICATION SIGN","	= z notation Cartesian product\n"
-	"	x (cross mark - 274C)"},
+	"	x (multiplication x - 2715)\n"
+	"	x (cross mark - 274C)\n"
+	"	x (vector or cross product - 2A2F)"},
 /* 00D8 */ { "LATIN CAPITAL LETTER O WITH STROKE","	= o slash\n"
 	"	x (empty set - 2205)"},
 /* 00D9 */ { "LATIN CAPITAL LETTER U WITH GRAVE","	: 0055 0300"},
@@ -1140,8 +1136,8 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00DE */ { "LATIN CAPITAL LETTER THORN",NULL},
 /* 00DF */ { "LATIN SMALL LETTER SHARP S","	= Eszett\n"
 	"	* German\n"
-	"	* uppercase is \"SS\"\n"
-	"	* nonstandard uppercase is 1E9E\n"
+	"	* not used in Swiss High German\n"
+	"	* uppercase is \"SS\" or 1E9E\n"
 	"	* typographically the glyph for this character can be based on a ligature of 017F with either 0073 or with an old-style glyph for 007A (the latter similar in appearance to 0292). Both forms exist interchangeably today.\n"
 	"	x (greek small letter beta - 03B2)"},
 /* 00E0 */ { "LATIN SMALL LETTER A WITH GRAVE","	: 0061 0300"},
@@ -1175,7 +1171,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00F2 */ { "LATIN SMALL LETTER O WITH GRAVE","	: 006F 0300"},
 /* 00F3 */ { "LATIN SMALL LETTER O WITH ACUTE","	: 006F 0301"},
 /* 00F4 */ { "LATIN SMALL LETTER O WITH CIRCUMFLEX","	: 006F 0302"},
-/* 00F5 */ { "LATIN SMALL LETTER O WITH TILDE","	* Portuguese, Estonian\n"
+/* 00F5 */ { "LATIN SMALL LETTER O WITH TILDE","	* Portuguese, Estonian, Livonian\n"
 	"	: 006F 0303"},
 /* 00F6 */ { "LATIN SMALL LETTER O WITH DIAERESIS","	: 006F 0308"},
 /* 00F7 */ { "DIVISION SIGN","	= obelus\n"
@@ -1189,7 +1185,8 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (ratio - 2236)\n"
 	"	x (heavy division sign - 2797)"},
 /* 00F8 */ { "LATIN SMALL LETTER O WITH STROKE","	= o slash\n"
-	"	* Danish, Norwegian, Faroese, IPA"},
+	"	* Danish, Norwegian, Faroese, IPA\n"
+	"	x (diameter sign - 2300)"},
 /* 00F9 */ { "LATIN SMALL LETTER U WITH GRAVE","	* French, Italian\n"
 	"	: 0075 0300"},
 /* 00FA */ { "LATIN SMALL LETTER U WITH ACUTE","	: 0075 0301"},
@@ -1205,7 +1202,6 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	: 0079 0308"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_01[] = {
 /* 0100 */ { "LATIN CAPITAL LETTER A WITH MACRON","	: 0041 0304"},
 /* 0101 */ { "LATIN SMALL LETTER A WITH MACRON","	* Latvian, Latin, ...\n"
@@ -1675,7 +1671,7 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01EB */ { "LATIN SMALL LETTER O WITH OGONEK","	* Sami, Iroquoian, Old Icelandic\n"
 	"	: 006F 0328"},
 /* 01EC */ { "LATIN CAPITAL LETTER O WITH OGONEK AND MACRON","	: 01EA 0304"},
-/* 01ED */ { "LATIN SMALL LETTER O WITH OGONEK AND MACRON","	* Old Icelandic\n"
+/* 01ED */ { "LATIN SMALL LETTER O WITH OGONEK AND MACRON","	* Old Icelandic, Livonian (in recent linguistic scholarship)\n"
 	"	: 01EB 0304"},
 /* 01EE */ { "LATIN CAPITAL LETTER EZH WITH CARON","	: 01B7 030C"},
 /* 01EF */ { "LATIN SMALL LETTER EZH WITH CARON","	* Skolt Sami\n"
@@ -1702,7 +1698,6 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01FF */ { "LATIN SMALL LETTER O WITH STROKE AND ACUTE","	: 00F8 0301"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_02[] = {
 /* 0200 */ { "LATIN CAPITAL LETTER A WITH DOUBLE GRAVE","	: 0041 030F"},
 /* 0201 */ { "LATIN SMALL LETTER A WITH DOUBLE GRAVE","	: 0061 030F"},
@@ -1729,12 +1724,10 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0216 */ { "LATIN CAPITAL LETTER U WITH INVERTED BREVE","	: 0055 0311"},
 /* 0217 */ { "LATIN SMALL LETTER U WITH INVERTED BREVE","	: 0075 0311"},
 /* 0218 */ { "LATIN CAPITAL LETTER S WITH COMMA BELOW","	: 0053 0326"},
-/* 0219 */ { "LATIN SMALL LETTER S WITH COMMA BELOW","	* Romanian\n"
-	"	x (latin small letter s with cedilla - 015F)\n"
+/* 0219 */ { "LATIN SMALL LETTER S WITH COMMA BELOW","	x (latin small letter s with cedilla - 015F)\n"
 	"	: 0073 0326"},
 /* 021A */ { "LATIN CAPITAL LETTER T WITH COMMA BELOW","	: 0054 0326"},
-/* 021B */ { "LATIN SMALL LETTER T WITH COMMA BELOW","	* Romanian\n"
-	"	x (latin small letter t with cedilla - 0163)\n"
+/* 021B */ { "LATIN SMALL LETTER T WITH COMMA BELOW","	x (latin small letter t with cedilla - 0163)\n"
 	"	: 0074 0326"},
 /* 021C */ { "LATIN CAPITAL LETTER YOGH","	x (latin capital letter ezh - 01B7)"},
 /* 021D */ { "LATIN SMALL LETTER YOGH","	* Middle English, Scots\n"
@@ -2065,7 +2058,9 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (combining double acute accent - 030B)\n"
 	"	x (double prime - 2033)"},
 /* 02BB */ { "MODIFIER LETTER TURNED COMMA","	* typographical alternate for 02BD or 02BF\n"
-	"	* used in Hawai`ian orthography as `okina (glottal stop)\n"
+	"	* used in some Polynesian orthographies for glottal stop\n"
+	"	* Hawaiʻian: ʻokina\n"
+	"	* Tongan: fakauʻa\n"
 	"	x (combining turned comma above - 0312)\n"
 	"	x (nko low tone apostrophe - 07F5)\n"
 	"	x (left single quotation mark - 2018)"},
@@ -2218,7 +2213,6 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02FF */ { "MODIFIER LETTER LOW LEFT ARROW",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_03[] = {
 /* 0300 */ { "COMBINING GRAVE ACCENT","	= Greek varia\n"
 	"	x (grave accent - 0060)\n"
@@ -2354,7 +2348,8 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	x (double low line - 2017)"},
 /* 0334 */ { "COMBINING TILDE OVERLAY","	* IPA: velarization or pharyngealization"},
 /* 0335 */ { "COMBINING SHORT STROKE OVERLAY",NULL},
-/* 0336 */ { "COMBINING LONG STROKE OVERLAY",NULL},
+/* 0336 */ { "COMBINING LONG STROKE OVERLAY","	= strikethrough\n"
+	"	* connects on left and right"},
 /* 0337 */ { "COMBINING SHORT SOLIDUS OVERLAY","	= short slash overlay"},
 /* 0338 */ { "COMBINING LONG SOLIDUS OVERLAY","	= long slash overlay"},
 /* 0339 */ { "COMBINING RIGHT HALF RING BELOW",NULL},
@@ -2370,7 +2365,7 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	x (combining cyrillic palatalization - 0484)\n"
 	"	x (vertical tilde - 2E2F)\n"
 	"	x (combining cyrillic payerok - A67D)"},
-/* 033F */ { "COMBINING DOUBLE OVERLINE",NULL},
+/* 033F */ { "COMBINING DOUBLE OVERLINE","	* connects on left and right"},
 /* 0340 */ { "COMBINING GRAVE TONE MARK","	: 0300 combining grave accent"},
 /* 0341 */ { "COMBINING ACUTE TONE MARK","	: 0301 combining acute accent"},
 /* 0342 */ { "COMBINING GREEK PERISPOMENI","	* Greek-specific form of circumflex for rising-falling accent\n"
@@ -2419,7 +2414,7 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 035D */ { "COMBINING DOUBLE BREVE",NULL},
 /* 035E */ { "COMBINING DOUBLE MACRON",NULL},
 /* 035F */ { "COMBINING DOUBLE MACRON BELOW",NULL},
-/* 0360 */ { "COMBINING DOUBLE TILDE",NULL},
+/* 0360 */ { "COMBINING DOUBLE TILDE","	x (combining double tilde left half - FE22)"},
 /* 0361 */ { "COMBINING DOUBLE INVERTED BREVE","	= ligature tie\n"
 	"	x (combining ligature left half - FE20)"},
 /* 0362 */ { "COMBINING DOUBLE RIGHTWARDS ARROW BELOW","	* IPA: sliding articulation"},
@@ -2635,7 +2630,6 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 03FF */ { "GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL","	= antisigma periestigmenon"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_04[] = {
 /* 0400 */ { "CYRILLIC CAPITAL LETTER IE WITH GRAVE","	: 0415 0300"},
 /* 0401 */ { "CYRILLIC CAPITAL LETTER IO","	: 0415 0308"},
@@ -2949,7 +2943,6 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 04FF */ { "CYRILLIC SMALL LETTER HA WITH STROKE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_05[] = {
 /* 0500 */ { "CYRILLIC CAPITAL LETTER KOMI DE",NULL},
 /* 0501 */ { "CYRILLIC SMALL LETTER KOMI DE",NULL},
@@ -3235,7 +3228,6 @@ static const struct unicode_nameannot una_00_05[] = {
 /* 05FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_06[] = {
 /* 0600 */ { "ARABIC NUMBER SIGN",NULL},
 /* 0601 */ { "ARABIC SIGN SANAH",NULL},
@@ -3417,7 +3409,7 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	* Burushaski"},
 /* 068F */ { "ARABIC LETTER DAL WITH THREE DOTS ABOVE DOWNWARDS","	* Sindhi\n"
 	"	* current shape used for DUL"},
-/* 0690 */ { "ARABIC LETTER DAL WITH FOUR DOTS ABOVE","	* old Urdu, not in current use"},
+/* 0690 */ { "ARABIC LETTER DAL WITH FOUR DOTS ABOVE","	* Old Urdu, not in current use"},
 /* 0691 */ { "ARABIC LETTER RREH","	* Urdu"},
 /* 0692 */ { "ARABIC LETTER REH WITH SMALL V","	* Kurdish"},
 /* 0693 */ { "ARABIC LETTER REH WITH RING","	* Pashto"},
@@ -3432,13 +3424,13 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 069C */ { "ARABIC LETTER SEEN WITH THREE DOTS BELOW AND THREE DOTS ABOVE","	* Moroccan Arabic"},
 /* 069D */ { "ARABIC LETTER SAD WITH TWO DOTS BELOW","	* Turkic"},
 /* 069E */ { "ARABIC LETTER SAD WITH THREE DOTS ABOVE","	* Berber, Burushaski"},
-/* 069F */ { "ARABIC LETTER TAH WITH THREE DOTS ABOVE","	* old Hausa"},
-/* 06A0 */ { "ARABIC LETTER AIN WITH THREE DOTS ABOVE","	* old Malay"},
+/* 069F */ { "ARABIC LETTER TAH WITH THREE DOTS ABOVE","	* Old Hausa"},
+/* 06A0 */ { "ARABIC LETTER AIN WITH THREE DOTS ABOVE","	* Jawi"},
 /* 06A1 */ { "ARABIC LETTER DOTLESS FEH","	* Adighe"},
 /* 06A2 */ { "ARABIC LETTER FEH WITH DOT MOVED BELOW","	* Maghrib Arabic"},
 /* 06A3 */ { "ARABIC LETTER FEH WITH DOT BELOW","	* Ingush"},
 /* 06A4 */ { "ARABIC LETTER VEH","	* Middle Eastern Arabic for foreign words\n"
-	"	* Kurdish, Khwarazmian, early Persian"},
+	"	* Kurdish, Khwarazmian, early Persian, Jawi"},
 /* 06A5 */ { "ARABIC LETTER FEH WITH THREE DOTS BELOW","	* North African Arabic for foreign words"},
 /* 06A6 */ { "ARABIC LETTER PEHEH","	* Sindhi"},
 /* 06A7 */ { "ARABIC LETTER QAF WITH DOT ABOVE","	* Maghrib Arabic, Uighur"},
@@ -3448,7 +3440,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06AA */ { "ARABIC LETTER SWASH KAF","	* represents a letter distinct from Arabic KAF (0643) in Sindhi"},
 /* 06AB */ { "ARABIC LETTER KAF WITH RING","	* Pashto\n"
 	"	* may appear like an Arabic KAF (0643) with a ring below the base"},
-/* 06AC */ { "ARABIC LETTER KAF WITH DOT ABOVE","	* old Malay"},
+/* 06AC */ { "ARABIC LETTER KAF WITH DOT ABOVE","	* use for the Jawi gaf is not recommended, although it may be found in some existing text data; recommended character for Jawi gaf is 0762\n"
+	"	x (arabic letter keheh with dot above - 0762)"},
 /* 06AD */ { "ARABIC LETTER NG","	* Uighur, Kazakh, old Malay, early Persian, ..."},
 /* 06AE */ { "ARABIC LETTER KAF WITH THREE DOTS BELOW","	* Berber, early Persian"},
 /* 06AF */ { "ARABIC LETTER GAF","	* Persian, Urdu, ..."},
@@ -3551,7 +3544,6 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06FF */ { "ARABIC LETTER HEH WITH INVERTED V",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_07[] = {
 /* 0700 */ { "SYRIAC END OF PARAGRAPH","	* marks the end of a paragraph"},
 /* 0701 */ { "SYRIAC SUPRALINEAR FULL STOP","	* marks interrogations, imperatives, and pauses, especially in Biblical texts"},
@@ -3658,7 +3650,7 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 075F */ { "ARABIC LETTER AIN WITH TWO DOTS VERTICALLY ABOVE",NULL},
 /* 0760 */ { "ARABIC LETTER FEH WITH TWO DOTS BELOW",NULL},
 /* 0761 */ { "ARABIC LETTER FEH WITH THREE DOTS POINTING UPWARDS BELOW",NULL},
-/* 0762 */ { "ARABIC LETTER KEHEH WITH DOT ABOVE","	* old Malay, preferred to 06AC\n"
+/* 0762 */ { "ARABIC LETTER KEHEH WITH DOT ABOVE","	* Jawi, preferred to 06AC\n"
 	"	x (arabic letter kaf with dot above - 06AC)"},
 /* 0763 */ { "ARABIC LETTER KEHEH WITH THREE DOTS ABOVE","	* Moroccan Arabic, Amazigh, Burushaski\n"
 	"	x (arabic letter ng - 06AD)"},
@@ -3810,8 +3802,9 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 07F3 */ { "NKO COMBINING DOUBLE DOT ABOVE","	x (combining diaeresis - 0308)"},
 /* 07F4 */ { "NKO HIGH TONE APOSTROPHE","	x (modifier letter apostrophe - 02BC)"},
 /* 07F5 */ { "NKO LOW TONE APOSTROPHE","	x (modifier letter turned comma - 02BB)"},
-/* 07F6 */ { "NKO SYMBOL OO DENNEN",NULL},
-/* 07F7 */ { "NKO SYMBOL GBAKURUNEN",NULL},
+/* 07F6 */ { "NKO SYMBOL OO DENNEN","	* indicates remote future placement of the topic under discussion"},
+/* 07F7 */ { "NKO SYMBOL GBAKURUNEN","	* marks end of a major section of text\n"
+	"	* symbol represents the three stones holding a cooking pot over a fire"},
 /* 07F8 */ { "NKO COMMA",NULL},
 /* 07F9 */ { "NKO EXCLAMATION MARK",NULL},
 /* 07FA */ { "NKO LAJANYALAN","	x (low line - 005F)\n"
@@ -3824,7 +3817,6 @@ static const struct unicode_nameannot una_00_07[] = {
 /* 07FF */ { "NKO TAMAN SIGN","	x (nko letter ta - 07D5)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_08[] = {
 /* 0800 */ { "SAMARITAN LETTER ALAF",NULL},
 /* 0801 */ { "SAMARITAN LETTER BIT",NULL},
@@ -4096,7 +4088,6 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08FF */ { "ARABIC MARK SIDEWAYS NOON GHUNNA",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_09[] = {
 /* 0900 */ { "DEVANAGARI SIGN INVERTED CANDRABINDU","	= vaidika adhomukha candrabindu"},
 /* 0901 */ { "DEVANAGARI SIGN CANDRABINDU","	= anunasika\n"
@@ -4385,7 +4376,6 @@ static const struct unicode_nameannot una_00_09[] = {
 /* 09FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0A[] = {
 /* 0A00 */ { NULL,NULL},
 /* 0A01 */ { "GURMUKHI SIGN ADAK BINDI",NULL},
@@ -4648,7 +4638,6 @@ static const struct unicode_nameannot una_00_0A[] = {
 /* 0AFF */ { "GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0B[] = {
 /* 0B00 */ { NULL,NULL},
 /* 0B01 */ { "ORIYA SIGN CANDRABINDU",NULL},
@@ -4922,7 +4911,6 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0C[] = {
 /* 0C00 */ { "TELUGU SIGN COMBINING CANDRABINDU ABOVE",NULL},
 /* 0C01 */ { "TELUGU SIGN CANDRABINDU","	= arasunna\n"
@@ -5189,7 +5177,6 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0D[] = {
 /* 0D00 */ { "MALAYALAM SIGN COMBINING ANUSVARA ABOVE",NULL},
 /* 0D01 */ { "MALAYALAM SIGN CANDRABINDU",NULL},
@@ -5466,7 +5453,6 @@ static const struct unicode_nameannot una_00_0D[] = {
 /* 0DFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0E[] = {
 /* 0E00 */ { NULL,NULL},
 /* 0E01 */ { "THAI CHARACTER KO KAI",NULL},
@@ -5742,7 +5728,6 @@ static const struct unicode_nameannot una_00_0E[] = {
 /* 0EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_0F[] = {
 /* 0F00 */ { "TIBETAN SYLLABLE OM",NULL},
 /* 0F01 */ { "TIBETAN MARK GTER YIG MGO TRUNCATED A",NULL},
@@ -6039,7 +6024,6 @@ static const struct unicode_nameannot una_00_0F[] = {
 /* 0FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_10[] = {
 /* 1000 */ { "MYANMAR LETTER KA","	~ 1000 FE00 dotted form"},
 /* 1001 */ { "MYANMAR LETTER KHA",NULL},
@@ -6301,7 +6285,6 @@ static const struct unicode_nameannot una_00_10[] = {
 /* 10FF */ { "GEORGIAN LETTER LABIAL SIGN",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_11[] = {
 /* 1100 */ { "HANGUL CHOSEONG KIYEOK","	= G"},
 /* 1101 */ { "HANGUL CHOSEONG SSANGKIYEOK","	= GG"},
@@ -6568,7 +6551,6 @@ static const struct unicode_nameannot una_00_11[] = {
 /* 11FF */ { "HANGUL JONGSEONG SSANGNIEUN",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_12[] = {
 /* 1200 */ { "ETHIOPIC SYLLABLE HA",NULL},
 /* 1201 */ { "ETHIOPIC SYLLABLE HU",NULL},
@@ -6828,7 +6810,6 @@ static const struct unicode_nameannot una_00_12[] = {
 /* 12FF */ { "ETHIOPIC SYLLABLE DDWA",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_13[] = {
 /* 1300 */ { "ETHIOPIC SYLLABLE JA",NULL},
 /* 1301 */ { "ETHIOPIC SYLLABLE JU",NULL},
@@ -7088,7 +7069,6 @@ static const struct unicode_nameannot una_00_13[] = {
 /* 13FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_14[] = {
 /* 1400 */ { "CANADIAN SYLLABICS HYPHEN",NULL},
 /* 1401 */ { "CANADIAN SYLLABICS E","	* Inuktitut (AI), Carrier (U)"},
@@ -7350,7 +7330,6 @@ static const struct unicode_nameannot una_00_14[] = {
 /* 14FF */ { "CANADIAN SYLLABICS WEST-CREE SWOO",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_15[] = {
 /* 1500 */ { "CANADIAN SYLLABICS SWA",NULL},
 /* 1501 */ { "CANADIAN SYLLABICS WEST-CREE SWA",NULL},
@@ -7611,7 +7590,6 @@ static const struct unicode_nameannot una_00_15[] = {
 /* 15FF */ { "CANADIAN SYLLABICS CARRIER KKI",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_16[] = {
 /* 1600 */ { "CANADIAN SYLLABICS CARRIER KKA",NULL},
 /* 1601 */ { "CANADIAN SYLLABICS CARRIER KK",NULL},
@@ -7874,7 +7852,6 @@ static const struct unicode_nameannot una_00_16[] = {
 /* 16FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_17[] = {
 /* 1700 */ { "TAGALOG LETTER A",NULL},
 /* 1701 */ { "TAGALOG LETTER I",NULL},
@@ -8172,7 +8149,6 @@ static const struct unicode_nameannot una_00_17[] = {
 /* 17FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_18[] = {
 /* 1800 */ { "MONGOLIAN BIRGA","	x (tibetan mark initial yig mgo mdun ma - 0F04)"},
 /* 1801 */ { "MONGOLIAN ELLIPSIS",NULL},
@@ -8181,6 +8157,7 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 1804 */ { "MONGOLIAN COLON",NULL},
 /* 1805 */ { "MONGOLIAN FOUR DOTS","	* marks the end of a chapter"},
 /* 1806 */ { "MONGOLIAN TODO SOFT HYPHEN","	* not a format control character, but simply a hyphen for Todo\n"
+	"	* also used in the Hudum (modern Mongolian) writing system\n"
 	"	x (soft hyphen - 00AD)"},
 /* 1807 */ { "MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER",NULL},
 /* 1808 */ { "MONGOLIAN MANCHU COMMA",NULL},
@@ -8785,7 +8762,6 @@ static const struct unicode_nameannot una_00_18[] = {
 /* 18FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_19[] = {
 /* 1900 */ { "LIMBU VOWEL-CARRIER LETTER",NULL},
 /* 1901 */ { "LIMBU LETTER KA",NULL},
@@ -9047,7 +9023,6 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19FF */ { "KHMER SYMBOL DAP-PRAM ROC",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1A[] = {
 /* 1A00 */ { "BUGINESE LETTER KA",NULL},
 /* 1A01 */ { "BUGINESE LETTER GA",NULL},
@@ -9311,7 +9286,6 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1B[] = {
 /* 1B00 */ { "BALINESE SIGN ULU RICEM","	= ardhacandra"},
 /* 1B01 */ { "BALINESE SIGN ULU CANDRA","	= candrabindu"},
@@ -9587,7 +9561,6 @@ static const struct unicode_nameannot una_00_1B[] = {
 /* 1BFF */ { "BATAK SYMBOL BINDU PANGOLAT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1C[] = {
 /* 1C00 */ { "LEPCHA LETTER KA",NULL},
 /* 1C01 */ { "LEPCHA LETTER KLA",NULL},
@@ -9857,7 +9830,6 @@ static const struct unicode_nameannot una_00_1C[] = {
 /* 1CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1D[] = {
 /* 1D00 */ { "LATIN LETTER SMALL CAPITAL A",NULL},
 /* 1D01 */ { "LATIN LETTER SMALL CAPITAL AE",NULL},
@@ -10070,8 +10042,10 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DBD */ { "MODIFIER LETTER SMALL Z WITH CURL","	# <super> 0291"},
 /* 1DBE */ { "MODIFIER LETTER SMALL EZH","	# <super> 0292"},
 /* 1DBF */ { "MODIFIER LETTER SMALL THETA","	# <super> 03B8"},
-/* 1DC0 */ { "COMBINING DOTTED GRAVE ACCENT","	x (greek dialytika and varia - 1FED)"},
-/* 1DC1 */ { "COMBINING DOTTED ACUTE ACCENT","	x (combining greek dialytika tonos - 0344)\n"
+/* 1DC0 */ { "COMBINING DOTTED GRAVE ACCENT","	x (combining grave accent - 0300)\n"
+	"	x (greek dialytika and varia - 1FED)"},
+/* 1DC1 */ { "COMBINING DOTTED ACUTE ACCENT","	x (combining acute accent - 0301)\n"
+	"	x (combining greek dialytika tonos - 0344)\n"
 	"	x (greek dialytika and oxia - 1FEE)"},
 /* 1DC2 */ { "COMBINING SNAKE BELOW",NULL},
 /* 1DC3 */ { "COMBINING SUSPENSION MARK","	* Glagolitic\n"
@@ -10138,7 +10112,6 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DFF */ { "COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1E[] = {
 /* 1E00 */ { "LATIN CAPITAL LETTER A WITH RING BELOW","	: 0041 0325"},
 /* 1E01 */ { "LATIN SMALL LETTER A WITH RING BELOW","	: 0061 0325"},
@@ -10339,7 +10312,8 @@ static const struct unicode_nameannot una_00_1E[] = {
 	"	* used in Blackletter types of pre-1950 Lower Sorbian orthography\n"
 	"	x (latin small letter s with oblique stroke - A7A9)"},
 /* 1E9D */ { "LATIN SMALL LETTER LONG S WITH HIGH STROKE",NULL},
-/* 1E9E */ { "LATIN CAPITAL LETTER SHARP S","	* lowercase is 00DF\n"
+/* 1E9E */ { "LATIN CAPITAL LETTER SHARP S","	* not used in Swiss High German\n"
+	"	* lowercase is 00DF\n"
 	"	x (latin small letter sharp s - 00DF)"},
 /* 1E9F */ { "LATIN SMALL LETTER DELTA",NULL},
 /* 1EA0 */ { "LATIN CAPITAL LETTER A WITH DOT BELOW","	: 0041 0323"},
@@ -10441,7 +10415,6 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1EFF */ { "LATIN SMALL LETTER Y WITH LOOP",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_1F[] = {
 /* 1F00 */ { "GREEK SMALL LETTER ALPHA WITH PSILI","	: 03B1 0313"},
 /* 1F01 */ { "GREEK SMALL LETTER ALPHA WITH DASIA","	: 03B1 0314"},
@@ -10703,7 +10676,6 @@ static const struct unicode_nameannot una_00_1F[] = {
 /* 1FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_20[] = {
 /* 2000 */ { "EN QUAD","	: 2002 en space"},
 /* 2001 */ { "EM QUAD","	= mutton quad\n"
@@ -10887,7 +10859,7 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	* for composing arbitrary fractions\n"
 	"	x (solidus - 002F)\n"
 	"	x (division slash - 2215)"},
-/* 2045 */ { "LEFT SQUARE BRACKET WITH QUILL",NULL},
+/* 2045 */ { "LEFT SQUARE BRACKET WITH QUILL","	x (left vertical bar with quill - 2E20)"},
 /* 2046 */ { "RIGHT SQUARE BRACKET WITH QUILL",NULL},
 /* 2047 */ { "DOUBLE QUESTION MARK","	# 003F 003F"},
 /* 2048 */ { "QUESTION EXCLAMATION MARK","	# 003F 0021"},
@@ -11145,7 +11117,6 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_21[] = {
 /* 2100 */ { "ACCOUNT OF","	# 0061 002F 0063"},
 /* 2101 */ { "ADDRESSED TO THE SUBJECT","	x (aktieselskab - 214D)\n"
@@ -11156,7 +11127,8 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	# 00B0 0043"},
 /* 2104 */ { "CENTRE LINE SYMBOL","	= clone"},
 /* 2105 */ { "CARE OF","	# 0063 002F 006F"},
-/* 2106 */ { "CADA UNA","	# 0063 002F 0075"},
+/* 2106 */ { "CADA UNA","	* Spanish for \"each one\"\n"
+	"	# 0063 002F 0075"},
 /* 2107 */ { "EULER CONSTANT","	x (latin capital letter e - 0045)\n"
 	"	# 0190 latin capital letter open e"},
 /* 2108 */ { "SCRUPLE",NULL},
@@ -11189,7 +11161,9 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 2115 */ { "DOUBLE-STRUCK CAPITAL N","	= natural number\n"
 	"	* a glyph variant with doubled vertical strokes exists\n"
 	"	# <font> 004E latin capital letter n"},
-/* 2116 */ { "NUMERO SIGN","	# 004E 006F"},
+/* 2116 */ { "NUMERO SIGN","	x (number sign - 0023)\n"
+	"	x (masculine ordinal indicator - 00BA)\n"
+	"	# 004E 006F"},
 /* 2117 */ { "SOUND RECORDING COPYRIGHT","	= published\n"
 	"	= phonorecord sign\n"
 	"	x (copyright sign - 00A9)\n"
@@ -11359,8 +11333,10 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	= Claudian antisigma\n"
 	"	* used in combination with C and I to form large numbers\n"
 	"	* lowercase is 2184\n"
+	"	x (latin capital letter open o - 0186)\n"
 	"	x (greek capital reversed lunate sigma symbol - 03FD)"},
-/* 2184 */ { "LATIN SMALL LETTER REVERSED C","	x (greek small reversed lunate sigma symbol - 037B)"},
+/* 2184 */ { "LATIN SMALL LETTER REVERSED C","	x (latin small letter open o - 0254)\n"
+	"	x (greek small reversed lunate sigma symbol - 037B)"},
 /* 2185 */ { "ROMAN NUMERAL SIX LATE FORM","	x (greek letter stigma - 03DA)"},
 /* 2186 */ { "ROMAN NUMERAL FIFTY EARLY FORM","	x (runic letter z - 16CE)\n"
 	"	x (downwards arrow - 2193)"},
@@ -11506,7 +11482,6 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 21FF */ { "LEFT RIGHT OPEN-HEADED ARROW",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_22[] = {
 /* 2200 */ { "FOR ALL","	= universal quantifier"},
 /* 2201 */ { "COMPLEMENT","	x (latin letter stretched c - 0297)"},
@@ -11635,7 +11610,7 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 2242 */ { "MINUS TILDE",NULL},
 /* 2243 */ { "ASYMPTOTICALLY EQUAL TO",NULL},
 /* 2244 */ { "NOT ASYMPTOTICALLY EQUAL TO","	: 2243 0338"},
-/* 2245 */ { "APPROXIMATELY EQUAL TO",NULL},
+/* 2245 */ { "APPROXIMATELY EQUAL TO","	x (approximately equal or equal to - 2A70)"},
 /* 2246 */ { "APPROXIMATELY BUT NOT ACTUALLY EQUAL TO",NULL},
 /* 2247 */ { "NEITHER APPROXIMATELY NOR ACTUALLY EQUAL TO","	: 2245 0338"},
 /* 2248 */ { "ALMOST EQUAL TO","	= asymptotic to"},
@@ -11852,8 +11827,7 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 22EB */ { "DOES NOT CONTAIN AS NORMAL SUBGROUP","	: 22B3 0338"},
 /* 22EC */ { "NOT NORMAL SUBGROUP OF OR EQUAL TO","	: 22B4 0338"},
 /* 22ED */ { "DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL","	: 22B5 0338"},
-/* 22EE */ { "VERTICAL ELLIPSIS","	* these four ellipses are used for matrix row/column elision\n"
-	"	x (tricolon - 205D)\n"
+/* 22EE */ { "VERTICAL ELLIPSIS","	x (tricolon - 205D)\n"
 	"	x (horizontal ellipsis - 2026)\n"
 	"	x (presentation form for vertical horizontal ellipsis - FE19)"},
 /* 22EF */ { "MIDLINE HORIZONTAL ELLIPSIS",NULL},
@@ -11875,9 +11849,9 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 22FF */ { "Z NOTATION BAG MEMBERSHIP",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_23[] = {
-/* 2300 */ { "DIAMETER SIGN","	x (empty set - 2205)"},
+/* 2300 */ { "DIAMETER SIGN","	x (latin small letter o with stroke - 00F8)\n"
+	"	x (empty set - 2205)"},
 /* 2301 */ { "ELECTRIC ARROW","	* from ISO 2047\n"
 	"	* symbol for End of Transmission"},
 /* 2302 */ { "HOUSE",NULL},
@@ -11936,7 +11910,8 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2324 */ { "UP ARROWHEAD BETWEEN TWO HORIZONTAL BARS","	= enter key"},
 /* 2325 */ { "OPTION KEY",NULL},
 /* 2326 */ { "ERASE TO THE RIGHT","	= delete to the right key"},
-/* 2327 */ { "X IN A RECTANGLE BOX","	= clear key"},
+/* 2327 */ { "X IN A RECTANGLE BOX","	= clear key\n"
+	"	x (ballot box with x - 2612)"},
 /* 2328 */ { "KEYBOARD","	x (keyboard and mouse - 1F5A6)\n"
 	"	x (wired keyboard - 1F5AE)"},
 /* 2329 */ { "LEFT-POINTING ANGLE BRACKET","	x (less-than sign - 003C)\n"
@@ -12067,7 +12042,7 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 2391 */ { "PASSIVE-PULL-DOWN-OUTPUT SYMBOL",NULL},
 /* 2392 */ { "PASSIVE-PULL-UP-OUTPUT SYMBOL",NULL},
 /* 2393 */ { "DIRECT CURRENT SYMBOL FORM TWO",NULL},
-/* 2394 */ { "SOFTWARE-FUNCTION SYMBOL",NULL},
+/* 2394 */ { "SOFTWARE-FUNCTION SYMBOL","	x (white hexagon - 2B21)"},
 /* 2395 */ { "APL FUNCTIONAL SYMBOL QUAD","	x (apl functional symbol squish quad - 2337)\n"
 	"	x (white vertical rectangle - 25AF)"},
 /* 2396 */ { "DECIMAL SEPARATOR KEY SYMBOL",NULL},
@@ -12161,12 +12136,12 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23E7 */ { "ELECTRICAL INTERSECTION",NULL},
 /* 23E8 */ { "DECIMAL EXPONENT SYMBOL","	* Algol-60 token for scientific notation literals"},
 /* 23E9 */ { "BLACK RIGHT-POINTING DOUBLE TRIANGLE","	= fast forward"},
-/* 23EA */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE","	= fast rewind"},
+/* 23EA */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE","	= rewind, fast backwards"},
 /* 23EB */ { "BLACK UP-POINTING DOUBLE TRIANGLE",NULL},
 /* 23EC */ { "BLACK DOWN-POINTING DOUBLE TRIANGLE",NULL},
-/* 23ED */ { "BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR",NULL},
-/* 23EE */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR",NULL},
-/* 23EF */ { "BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR",NULL},
+/* 23ED */ { "BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR","	= skip to the end or next file/track/chapter"},
+/* 23EE */ { "BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR","	= skip to the start or previous file/track/chapter"},
+/* 23EF */ { "BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR","	= play/pause toggle"},
 /* 23F0 */ { "ALARM CLOCK","	x (watch - 231A)\n"
 	"	x (clock face one oclock - 1F550)\n"
 	"	x (mantelpiece clock - 1F570)"},
@@ -12194,7 +12169,8 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23F9 */ { "BLACK SQUARE FOR STOP","	= stop\n"
 	"	x (black medium square - 25FC)"},
 /* 23FA */ { "BLACK CIRCLE FOR RECORD","	= record\n"
-	"	x (medium black circle - 26AB)"},
+	"	x (medium black circle - 26AB)\n"
+	"	x (large red circle - 1F534)"},
 /* 23FB */ { "POWER SYMBOL","	* IEC 5009 standby symbol\n"
 	"	* IEEE 1621 power symbol"},
 /* 23FC */ { "POWER ON-OFF SYMBOL","	* IEC 5010 power on-off symbol"},
@@ -12204,7 +12180,6 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 23FF */ { "OBSERVER EYE SYMBOL",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_24[] = {
 /* 2400 */ { "SYMBOL FOR NULL",NULL},
 /* 2401 */ { "SYMBOL FOR START OF HEADING",NULL},
@@ -12474,7 +12449,6 @@ static const struct unicode_nameannot una_00_24[] = {
 /* 24FF */ { "NEGATIVE CIRCLED DIGIT ZERO","	x (dingbat negative circled digit one - 2776)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_25[] = {
 /* 2500 */ { "BOX DRAWINGS LIGHT HORIZONTAL","	= Videotex Mosaic DG 15"},
 /* 2501 */ { "BOX DRAWINGS HEAVY HORIZONTAL",NULL},
@@ -12798,7 +12772,6 @@ static const struct unicode_nameannot una_00_25[] = {
 /* 25FF */ { "LOWER RIGHT TRIANGLE","	x (right triangle - 22BF)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_26[] = {
 /* 2600 */ { "BLACK SUN WITH RAYS","	= clear weather\n"
 	"	x (sun - 2609)\n"
@@ -12823,7 +12796,8 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (black sun with rays - 2600)\n"
 	"	x (white sun with rays - 263C)\n"
 	"	x (sun with face - 1F31E)"},
-/* 260A */ { "ASCENDING NODE","	= alchemical symbol for sublimate"},
+/* 260A */ { "ASCENDING NODE","	= alchemical symbol for sublimation\n"
+	"	x (alchemical symbol for sublimation - 1F75E)"},
 /* 260B */ { "DESCENDING NODE","	= alchemical symbol for purify\n"
 	"	x (alchemical symbol for purify - 1F763)"},
 /* 260C */ { "CONJUNCTION","	= alchemical symbol for day"},
@@ -12836,6 +12810,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 2610 */ { "BALLOT BOX","	x (white square - 25A1)"},
 /* 2611 */ { "BALLOT BOX WITH CHECK","	x (ballot box with bold check - 1F5F9)"},
 /* 2612 */ { "BALLOT BOX WITH X","	x (squared times - 22A0)\n"
+	"	x (x in a rectangle box - 2327)\n"
 	"	x (ballot box with light x - 2BBD)\n"
 	"	x (ballot box with ballot - 1F5F3)\n"
 	"	x (ballot box with script x - 1F5F5)"},
@@ -12993,8 +12968,8 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 267B */ { "BLACK UNIVERSAL RECYCLING SYMBOL","	x (clockwise rightwards and leftwards open circle arrows - 1F501)"},
 /* 267C */ { "RECYCLED PAPER SYMBOL","	* used to indicate 100% recycled paper content"},
 /* 267D */ { "PARTIALLY-RECYCLED PAPER SYMBOL","	* percentage of recycled paper content indicated in overlay or next to this symbol"},
-/* 267E */ { "PERMANENT PAPER SIGN",NULL},
-/* 267F */ { "WHEELCHAIR SYMBOL",NULL},
+/* 267E */ { "PERMANENT PAPER SIGN","	= non-acid paper"},
+/* 267F */ { "WHEELCHAIR SYMBOL","	= accessible place"},
 /* 2680 */ { "DIE FACE-1","	x (game die - 1F3B2)"},
 /* 2681 */ { "DIE FACE-2",NULL},
 /* 2682 */ { "DIE FACE-3",NULL},
@@ -13189,7 +13164,6 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26FF */ { "WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE","	= Japanese self-defence force site"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_27[] = {
 /* 2700 */ { "BLACK SAFETY SCISSORS","	* forms a pair with 2704 white scissors"},
 /* 2701 */ { "UPPER BLADE SCISSORS",NULL},
@@ -13232,7 +13206,7 @@ static const struct unicode_nameannot una_00_27[] = {
 /* 271D */ { "LATIN CROSS",NULL},
 /* 271E */ { "SHADOWED WHITE LATIN CROSS","	x (white latin cross - 1F546)"},
 /* 271F */ { "OUTLINED LATIN CROSS",NULL},
-/* 2720 */ { "MALTESE CROSS","	* Historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée.\n"
+/* 2720 */ { "MALTESE CROSS","	* historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée\n"
 	"	x (circled cross formee - 1F902)"},
 /* 2721 */ { "STAR OF DAVID","	x (six pointed star with middle dot - 1F52F)"},
 /* 2722 */ { "FOUR TEARDROP-SPOKED ASTERISK",NULL},
@@ -13513,7 +13487,6 @@ static const struct unicode_nameannot una_00_27[] = {
 	"	x (long leftwards squiggle arrow - 2B33)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_28[] = {
 /* 2800 */ { "BRAILLE PATTERN BLANK","	* while this character is imaged as a fixed-width blank in many fonts, it does not act as a space"},
 /* 2801 */ { "BRAILLE PATTERN DOTS-1",NULL},
@@ -13773,7 +13746,6 @@ static const struct unicode_nameannot una_00_28[] = {
 /* 28FF */ { "BRAILLE PATTERN DOTS-12345678",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_29[] = {
 /* 2900 */ { "RIGHTWARDS TWO-HEADED ARROW WITH VERTICAL STROKE","	= z notation partial surjection\n"
 	"	x (leftwards two-headed arrow with vertical stroke - 2B34)"},
@@ -14077,7 +14049,6 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29FF */ { "MINY","	x (minus sign - 2212)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2A[] = {
 /* 2A00 */ { "N-ARY CIRCLED DOT OPERATOR","	x (circled dot operator - 2299)\n"
 	"	x (fisheye - 25C9)"},
@@ -14206,7 +14177,7 @@ static const struct unicode_nameannot una_00_2A[] = {
 /* 2A6D */ { "CONGRUENT WITH DOT ABOVE","	x (approximately equal to - 2245)"},
 /* 2A6E */ { "EQUALS WITH ASTERISK","	x (star equals - 225B)"},
 /* 2A6F */ { "ALMOST EQUAL TO WITH CIRCUMFLEX ACCENT",NULL},
-/* 2A70 */ { "APPROXIMATELY EQUAL OR EQUAL TO",NULL},
+/* 2A70 */ { "APPROXIMATELY EQUAL OR EQUAL TO","	x (approximately equal to - 2245)"},
 /* 2A71 */ { "EQUALS SIGN ABOVE PLUS SIGN","	* black stands slightly better (chess notation)"},
 /* 2A72 */ { "PLUS SIGN ABOVE EQUALS SIGN","	* white stands slightly better (chess notation)"},
 /* 2A73 */ { "EQUALS SIGN ABOVE TILDE OPERATOR",NULL},
@@ -14333,7 +14304,8 @@ static const struct unicode_nameannot una_00_2A[] = {
 /* 2AE5 */ { "DOUBLE VERTICAL BAR DOUBLE LEFT TURNSTILE",NULL},
 /* 2AE6 */ { "LONG DASH FROM LEFT MEMBER OF DOUBLE VERTICAL","	x (forces - 22A9)"},
 /* 2AE7 */ { "SHORT DOWN TACK WITH OVERBAR","	x (down tack - 22A4)\n"
-	"	x (apl functional symbol up tack overbar - 2351)"},
+	"	x (apl functional symbol up tack overbar - 2351)\n"
+	"	x (postal mark - 3012)"},
 /* 2AE8 */ { "SHORT UP TACK WITH UNDERBAR","	x (up tack - 22A5)\n"
 	"	x (apl functional symbol down tack underbar - 234A)"},
 /* 2AE9 */ { "SHORT UP TACK ABOVE SHORT DOWN TACK",NULL},
@@ -14369,7 +14341,6 @@ static const struct unicode_nameannot una_00_2A[] = {
 /* 2AFF */ { "N-ARY WHITE VERTICAL BAR","	= n-ary Dijkstra choice"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2B[] = {
 /* 2B00 */ { "NORTH EAST WHITE ARROW",NULL},
 /* 2B01 */ { "NORTH WEST WHITE ARROW",NULL},
@@ -14406,7 +14377,7 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B1E */ { "WHITE VERY SMALL SQUARE","	x (white small square - 25AB)"},
 /* 2B1F */ { "BLACK PENTAGON",NULL},
 /* 2B20 */ { "WHITE PENTAGON",NULL},
-/* 2B21 */ { "WHITE HEXAGON",NULL},
+/* 2B21 */ { "WHITE HEXAGON","	x (software-function symbol - 2394)"},
 /* 2B22 */ { "BLACK HEXAGON",NULL},
 /* 2B23 */ { "HORIZONTAL BLACK HEXAGON",NULL},
 /* 2B24 */ { "BLACK LARGE CIRCLE","	x (black circle - 25CF)\n"
@@ -14673,7 +14644,6 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2C[] = {
 /* 2C00 */ { "GLAGOLITIC CAPITAL LETTER AZU",NULL},
 /* 2C01 */ { "GLAGOLITIC CAPITAL LETTER BUKY",NULL},
@@ -14937,7 +14907,6 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2CFF */ { "COPTIC MORPHOLOGICAL DIVIDER",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2D[] = {
 /* 2D00 */ { "GEORGIAN SMALL LETTER AN","	x (georgian capital letter an - 10A0)"},
 /* 2D01 */ { "GEORGIAN SMALL LETTER BAN",NULL},
@@ -15200,7 +15169,6 @@ static const struct unicode_nameannot una_00_2D[] = {
 /* 2DFF */ { "COMBINING CYRILLIC LETTER IOTIFIED BIG YUS",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2E[] = {
 /* 2E00 */ { "RIGHT ANGLE SUBSTITUTION MARKER","	x (top left corner - 231C)"},
 /* 2E01 */ { "RIGHT ANGLE DOTTED SUBSTITUTION MARKER",NULL},
@@ -15241,7 +15209,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E1D */ { "RIGHT LOW PARAPHRASE BRACKET","	* used in N'Ko"},
 /* 2E1E */ { "TILDE WITH DOT ABOVE","	* indicates derived form changes to uppercase"},
 /* 2E1F */ { "TILDE WITH DOT BELOW","	* indicates derived form changes to lowercase"},
-/* 2E20 */ { "LEFT VERTICAL BAR WITH QUILL",NULL},
+/* 2E20 */ { "LEFT VERTICAL BAR WITH QUILL","	x (left square bracket with quill - 2045)"},
 /* 2E21 */ { "RIGHT VERTICAL BAR WITH QUILL",NULL},
 /* 2E22 */ { "TOP LEFT HALF BRACKET","	x (left ceiling - 2308)\n"
 	"	x (top left corner - 231C)\n"
@@ -15316,7 +15284,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E48 */ { "LOW KAVYKA WITH DOT",NULL},
 /* 2E49 */ { "DOUBLE STACKED COMMA",NULL},
 /* 2E4A */ { "DOTTED SOLIDUS","	= virgula suspensiva\n"
-	"	* indicates a medial disjunction less than solidus but more than punctus elevatus"},
+	"	* indicates a medial disjunction more than solidus but less than punctus elevatus"},
 /* 2E4B */ { "TRIPLE DAGGER","	x (dagger - 2020)\n"
 	"	x (double dagger - 2021)"},
 /* 2E4C */ { "MEDIEVAL COMMA","	* indicates a minor medial pause or disjunction of sense"},
@@ -15325,7 +15293,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 	"	x (reversed pilcrow sign - 204B)\n"
 	"	x (paragraphos - 2E0F)\n"
 	"	x (capitulum - 2E3F)"},
-/* 2E4E */ { "PUNCTUS ELEVATUS MARK","	* indicates a minor medial pause where the sense is complete but the meaning is not"},
+/* 2E4E */ { "PUNCTUS ELEVATUS MARK","	* indicates a major medial pause where the sense is complete but the meaning is not"},
 /* 2E4F */ { NULL,NULL},
 /* 2E50 */ { NULL,NULL},
 /* 2E51 */ { NULL,NULL},
@@ -15543,7 +15511,6 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2F[] = {
 /* 2F00 */ { "KANGXI RADICAL ONE","	# 4E00"},
 /* 2F01 */ { "KANGXI RADICAL LINE","	# 4E28"},
@@ -15803,18 +15770,20 @@ static const struct unicode_nameannot una_00_2F[] = {
 /* 2FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_30[] = {
 /* 3000 */ { "IDEOGRAPHIC SPACE","	x (space - 0020)\n"
 	"	# <wide> 0020"},
 /* 3001 */ { "IDEOGRAPHIC COMMA","	* in Chinese, delimits items in a list or series\n"
 	"	x (comma - 002C)\n"
-	"	x (fullwidth comma - FF0C)"},
-/* 3002 */ { "IDEOGRAPHIC FULL STOP","	x (full stop - 002E)"},
+	"	x (fullwidth comma - FF0C)\n"
+	"	x (halfwidth ideographic comma - FF64)"},
+/* 3002 */ { "IDEOGRAPHIC FULL STOP","	x (full stop - 002E)\n"
+	"	x (halfwidth ideographic full stop - FF61)"},
 /* 3003 */ { "DITTO MARK","	x (double prime - 2033)"},
 /* 3004 */ { "JAPANESE INDUSTRIAL STANDARD SYMBOL",NULL},
-/* 3005 */ { "IDEOGRAPHIC ITERATION MARK","	x (tangut iteration mark - 16FE0)"},
-/* 3006 */ { "IDEOGRAPHIC CLOSING MARK",NULL},
+/* 3005 */ { "IDEOGRAPHIC ITERATION MARK","	x 206A4\n"
+	"	x (tangut iteration mark - 16FE0)"},
+/* 3006 */ { "IDEOGRAPHIC CLOSING MARK","	x 4E44"},
 /* 3007 */ { "IDEOGRAPHIC NUMBER ZERO","	x (combining enclosing circle - 20DD)\n"
 	"	x (white circle - 25CB)\n"
 	"	x (large circle - 25EF)"},
@@ -15831,13 +15800,14 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 300B */ { "RIGHT DOUBLE ANGLE BRACKET","	x (right-pointing double angle quotation mark - 00BB)\n"
 	"	x (mathematical right double angle bracket - 27EB)"},
 /* 300C */ { "LEFT CORNER BRACKET","	x (left ceiling - 2308)"},
-/* 300D */ { "RIGHT CORNER BRACKET","	* used as quotation marks\n"
-	"	x (right floor - 230B)"},
+/* 300D */ { "RIGHT CORNER BRACKET","	x (right floor - 230B)"},
 /* 300E */ { "LEFT WHITE CORNER BRACKET",NULL},
-/* 300F */ { "RIGHT WHITE CORNER BRACKET","	* used as quotation marks"},
+/* 300F */ { "RIGHT WHITE CORNER BRACKET",NULL},
 /* 3010 */ { "LEFT BLACK LENTICULAR BRACKET",NULL},
 /* 3011 */ { "RIGHT BLACK LENTICULAR BRACKET",NULL},
-/* 3012 */ { "POSTAL MARK","	x (japanese post office - 1F3E3)"},
+/* 3012 */ { "POSTAL MARK","	x (tenge sign - 20B8)\n"
+	"	x (short down tack with overbar - 2AE7)\n"
+	"	x (japanese post office - 1F3E3)"},
 /* 3013 */ { "GETA MARK","	* substitute for ideograph not in font\n"
 	"	* editorial convention to represent ideographic lacuna\n"
 	"	x (white square - 25A1)"},
@@ -15885,7 +15855,9 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 3033 */ { "VERTICAL KANA REPEAT MARK UPPER HALF",NULL},
 /* 3034 */ { "VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF","	* implemented as glyphs that are one-em tall and that combine with the following character to form ligated two-em glyphs for the complete repeat marks"},
 /* 3035 */ { "VERTICAL KANA REPEAT MARK LOWER HALF",NULL},
-/* 3036 */ { "CIRCLED POSTAL MARK","	# 3012 postal mark"},
+/* 3036 */ { "CIRCLED POSTAL MARK","	= symbol for type b electronics\n"
+	"	* not used as a postal mark\n"
+	"	# 3012 postal mark"},
 /* 3037 */ { "IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL",NULL},
 /* 3038 */ { "HANGZHOU NUMERAL TEN","	# 5341"},
 /* 3039 */ { "HANGZHOU NUMERAL TWENTY","	# 5344"},
@@ -16099,7 +16071,6 @@ static const struct unicode_nameannot una_00_30[] = {
 	"	# <vertical> 30B3 30C8"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_31[] = {
 /* 3100 */ { NULL,NULL},
 /* 3101 */ { NULL,NULL},
@@ -16383,7 +16354,6 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 31FF */ { "KATAKANA LETTER SMALL RO",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_32[] = {
 /* 3200 */ { "PARENTHESIZED HANGUL KIYEOK","	# 0028 1100 0029"},
 /* 3201 */ { "PARENTHESIZED HANGUL NIEUN","	# 0028 1102 0029"},
@@ -16670,7 +16640,6 @@ static const struct unicode_nameannot una_00_32[] = {
 /* 32FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_33[] = {
 /* 3300 */ { "SQUARE APAATO","	* apartment\n"
 	"	# <square> 30A2 30D1 30FC 30C8"},
@@ -17022,7 +16991,6 @@ static const struct unicode_nameannot una_00_33[] = {
 /* 33FF */ { "SQUARE GAL","	# <square> 0067 0061 006C"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_4D[] = {
 /* 4D00 */ { NULL,NULL},
 /* 4D01 */ { NULL,NULL},
@@ -17282,7 +17250,6 @@ static const struct unicode_nameannot una_00_4D[] = {
 /* 4DFF */ { "HEXAGRAM FOR BEFORE COMPLETION",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A0[] = {
 /* A000 */ { "YI SYLLABLE IT",NULL},
 /* A001 */ { "YI SYLLABLE IX",NULL},
@@ -17543,7 +17510,6 @@ static const struct unicode_nameannot una_00_A0[] = {
 /* A0FF */ { "YI SYLLABLE VYR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A1[] = {
 /* A100 */ { "YI SYLLABLE DIT",NULL},
 /* A101 */ { "YI SYLLABLE DIX",NULL},
@@ -17803,7 +17769,6 @@ static const struct unicode_nameannot una_00_A1[] = {
 /* A1FF */ { "YI SYLLABLE KAT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A2[] = {
 /* A200 */ { "YI SYLLABLE KAX",NULL},
 /* A201 */ { "YI SYLLABLE KA",NULL},
@@ -18063,7 +18028,6 @@ static const struct unicode_nameannot una_00_A2[] = {
 /* A2FF */ { "YI SYLLABLE NZU",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A3[] = {
 /* A300 */ { "YI SYLLABLE NZUP",NULL},
 /* A301 */ { "YI SYLLABLE NZURX",NULL},
@@ -18323,7 +18287,6 @@ static const struct unicode_nameannot una_00_A3[] = {
 /* A3FF */ { "YI SYLLABLE QIP",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A4[] = {
 /* A400 */ { "YI SYLLABLE QIET",NULL},
 /* A401 */ { "YI SYLLABLE QIEX",NULL},
@@ -18583,7 +18546,6 @@ static const struct unicode_nameannot una_00_A4[] = {
 /* A4FF */ { "LISU PUNCTUATION FULL STOP",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A5[] = {
 /* A500 */ { "VAI SYLLABLE EE",NULL},
 /* A501 */ { "VAI SYLLABLE EEN",NULL},
@@ -18845,7 +18807,6 @@ static const struct unicode_nameannot una_00_A5[] = {
 /* A5FF */ { "VAI SYLLABLE CE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A6[] = {
 /* A600 */ { "VAI SYLLABLE JE",NULL},
 /* A601 */ { "VAI SYLLABLE NJE",NULL},
@@ -19120,7 +19081,6 @@ static const struct unicode_nameannot una_00_A6[] = {
 /* A6FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A7[] = {
 /* A700 */ { "MODIFIER LETTER CHINESE TONE YIN PING",NULL},
 /* A701 */ { "MODIFIER LETTER CHINESE TONE YANG PING",NULL},
@@ -19404,7 +19364,6 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7FF */ { "LATIN EPIGRAPHIC LETTER ARCHAIC M",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A8[] = {
 /* A800 */ { "SYLOTI NAGRI LETTER A",NULL},
 /* A801 */ { "SYLOTI NAGRI LETTER I",NULL},
@@ -19721,7 +19680,6 @@ static const struct unicode_nameannot una_00_A8[] = {
 /* A8FF */ { "DEVANAGARI VOWEL SIGN AY",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_A9[] = {
 /* A900 */ { "KAYAH LI DIGIT ZERO",NULL},
 /* A901 */ { "KAYAH LI DIGIT ONE",NULL},
@@ -19982,7 +19940,6 @@ static const struct unicode_nameannot una_00_A9[] = {
 /* A9FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_AA[] = {
 /* AA00 */ { "CHAM LETTER A",NULL},
 /* AA01 */ { "CHAM LETTER I",NULL},
@@ -20244,7 +20201,6 @@ static const struct unicode_nameannot una_00_AA[] = {
 /* AAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_AB[] = {
 /* AB00 */ { NULL,NULL},
 /* AB01 */ { "ETHIOPIC SYLLABLE TTHU",NULL},
@@ -20511,7 +20467,6 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* ABFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_D7[] = {
 /* D700 */ { NULL,NULL},
 /* D701 */ { NULL,NULL},
@@ -20771,7 +20726,6 @@ static const struct unicode_nameannot una_00_D7[] = {
 /* D7FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_F9[] = {
 /* F900 */ { "CJK COMPATIBILITY IDEOGRAPH-F900","	: 8C48"},
 /* F901 */ { "CJK COMPATIBILITY IDEOGRAPH-F901","	: 66F4"},
@@ -21037,7 +20991,6 @@ static const struct unicode_nameannot una_00_F9[] = {
 /* F9FF */ { "CJK COMPATIBILITY IDEOGRAPH-F9FF","	: 523A"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FA[] = {
 /* FA00 */ { "CJK COMPATIBILITY IDEOGRAPH-FA00","	: 5207"},
 /* FA01 */ { "CJK COMPATIBILITY IDEOGRAPH-FA01","	: 5EA6"},
@@ -21299,7 +21252,6 @@ static const struct unicode_nameannot una_00_FA[] = {
 /* FAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FB[] = {
 /* FB00 */ { "LATIN SMALL LIGATURE FF","	# 0066 0066"},
 /* FB01 */ { "LATIN SMALL LIGATURE FI","	# 0066 0069"},
@@ -21560,7 +21512,6 @@ static const struct unicode_nameannot una_00_FB[] = {
 /* FBFF */ { "ARABIC LETTER FARSI YEH MEDIAL FORM","	# <medial> 06CC"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FC[] = {
 /* FC00 */ { "ARABIC LIGATURE YEH WITH HAMZA ABOVE WITH JEEM ISOLATED FORM","	# <isolated> 0626 062C"},
 /* FC01 */ { "ARABIC LIGATURE YEH WITH HAMZA ABOVE WITH HAH ISOLATED FORM","	# <isolated> 0626 062D"},
@@ -21820,7 +21771,6 @@ static const struct unicode_nameannot una_00_FC[] = {
 /* FCFF */ { "ARABIC LIGATURE HAH WITH ALEF MAKSURA ISOLATED FORM","	# <isolated> 062D 0649"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FD[] = {
 /* FD00 */ { "ARABIC LIGATURE HAH WITH YEH ISOLATED FORM","	# <isolated> 062D 064A"},
 /* FD01 */ { "ARABIC LIGATURE JEEM WITH ALEF MAKSURA ISOLATED FORM","	# <isolated> 062C 0649"},
@@ -22082,7 +22032,6 @@ static const struct unicode_nameannot una_00_FD[] = {
 /* FDFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FE[] = {
 /* FE00 */ { "VARIATION SELECTOR-1","	* these are abbreviated VS1, and so on"},
 /* FE01 */ { "VARIATION SELECTOR-2",NULL},
@@ -22373,7 +22322,6 @@ static const struct unicode_nameannot una_00_FE[] = {
 	"	x (<not a character> - FFFE)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_FF[] = {
 /* FF00 */ { NULL,NULL},
 /* FF01 */ { "FULLWIDTH EXCLAMATION MARK","	# <wide> 0021"},
@@ -22472,7 +22420,8 @@ static const struct unicode_nameannot una_00_FF[] = {
 /* FF5B */ { "FULLWIDTH LEFT CURLY BRACKET","	# <wide> 007B"},
 /* FF5C */ { "FULLWIDTH VERTICAL LINE","	# <wide> 007C"},
 /* FF5D */ { "FULLWIDTH RIGHT CURLY BRACKET","	# <wide> 007D"},
-/* FF5E */ { "FULLWIDTH TILDE","	# <wide> 007E"},
+/* FF5E */ { "FULLWIDTH TILDE","	x (wave dash - 301C)\n"
+	"	# <wide> 007E"},
 /* FF5F */ { "FULLWIDTH LEFT WHITE PARENTHESIS","	* the most commonly occurring glyph variant looks like doubled parentheses\n"
 	"	x (left double parenthesis - 2E28)\n"
 	"	# <wide> 2985"},
@@ -22643,7 +22592,6 @@ static const struct unicode_nameannot una_00_FF[] = {
 /* FFFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_00[] = {
 /* 10000 */ { "LINEAR B SYLLABLE B008 A",NULL},
 /* 10001 */ { "LINEAR B SYLLABLE B038 E",NULL},
@@ -22903,7 +22851,6 @@ static const struct unicode_nameannot una_01_00[] = {
 /* 100FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_01[] = {
 /* 10100 */ { "AEGEAN WORD SEPARATOR LINE",NULL},
 /* 10101 */ { "AEGEAN WORD SEPARATOR DOT",NULL},
@@ -23166,7 +23113,6 @@ static const struct unicode_nameannot una_01_01[] = {
 /* 101FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_02[] = {
 /* 10200 */ { NULL,NULL},
 /* 10201 */ { NULL,NULL},
@@ -23426,7 +23372,6 @@ static const struct unicode_nameannot una_01_02[] = {
 /* 102FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_03[] = {
 /* 10300 */ { "OLD ITALIC LETTER A",NULL},
 /* 10301 */ { "OLD ITALIC LETTER BE",NULL},
@@ -23686,7 +23631,6 @@ static const struct unicode_nameannot una_01_03[] = {
 /* 103FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_04[] = {
 /* 10400 */ { "DESERET CAPITAL LETTER LONG I",NULL},
 /* 10401 */ { "DESERET CAPITAL LETTER LONG E",NULL},
@@ -23946,7 +23890,6 @@ static const struct unicode_nameannot una_01_04[] = {
 /* 104FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_05[] = {
 /* 10500 */ { "ELBASAN LETTER A",NULL},
 /* 10501 */ { "ELBASAN LETTER BE",NULL},
@@ -24206,7 +24149,6 @@ static const struct unicode_nameannot una_01_05[] = {
 /* 105FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_06[] = {
 /* 10600 */ { "LINEAR A SIGN AB001",NULL},
 /* 10601 */ { "LINEAR A SIGN AB002",NULL},
@@ -24484,7 +24426,6 @@ static const struct unicode_nameannot una_01_06[] = {
 /* 106FF */ { "LINEAR A SIGN A594","	* 1064D ab131a, 10634 ab060"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_07[] = {
 /* 10700 */ { "LINEAR A SIGN A595","	* 1064D ab131a, 10634 ab060"},
 /* 10701 */ { "LINEAR A SIGN A596","	* 1064D ab131a, 1063E ab077"},
@@ -24746,7 +24687,6 @@ static const struct unicode_nameannot una_01_07[] = {
 /* 107FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_08[] = {
 /* 10800 */ { "CYPRIOT SYLLABLE A",NULL},
 /* 10801 */ { "CYPRIOT SYLLABLE E",NULL},
@@ -25006,7 +24946,6 @@ static const struct unicode_nameannot una_01_08[] = {
 /* 108FF */ { "HATRAN NUMBER ONE HUNDRED",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_09[] = {
 /* 10900 */ { "PHOENICIAN LETTER ALF","	x (hebrew letter alef - 05D0)"},
 /* 10901 */ { "PHOENICIAN LETTER BET","	x (hebrew letter bet - 05D1)"},
@@ -25271,7 +25210,6 @@ static const struct unicode_nameannot una_01_09[] = {
 /* 109FF */ { "MEROITIC CURSIVE FRACTION TEN TWELFTHS",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0A[] = {
 /* 10A00 */ { "KHAROSHTHI LETTER A",NULL},
 /* 10A01 */ { "KHAROSHTHI VOWEL SIGN I",NULL},
@@ -25579,7 +25517,7 @@ static const struct unicode_nameannot una_01_0A[] = {
 /* 10AC5 */ { "MANICHAEAN LETTER DALETH","	~ 10AC5 FE00 alternate form (isolate)"},
 /* 10AC6 */ { "MANICHAEAN LETTER HE","	~ 10AC6 FE00 alternate form (isolate)"},
 /* 10AC7 */ { "MANICHAEAN LETTER WAW",NULL},
-/* 10AC8 */ { "MANICHAEAN SIGN UD",NULL},
+/* 10AC8 */ { "MANICHAEAN SIGN UD","	* represents the conjunction \"and\""},
 /* 10AC9 */ { "MANICHAEAN LETTER ZAYIN",NULL},
 /* 10ACA */ { "MANICHAEAN LETTER ZHAYIN",NULL},
 /* 10ACB */ { "MANICHAEAN LETTER JAYIN",NULL},
@@ -25638,7 +25576,6 @@ static const struct unicode_nameannot una_01_0A[] = {
 /* 10AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0B[] = {
 /* 10B00 */ { "AVESTAN LETTER A",NULL},
 /* 10B01 */ { "AVESTAN LETTER AA",NULL},
@@ -25900,7 +25837,6 @@ static const struct unicode_nameannot una_01_0B[] = {
 /* 10BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0C[] = {
 /* 10C00 */ { "OLD TURKIC LETTER ORKHON A",NULL},
 /* 10C01 */ { "OLD TURKIC LETTER YENISEI A",NULL},
@@ -26167,7 +26103,6 @@ static const struct unicode_nameannot una_01_0C[] = {
 /* 10CFF */ { "OLD HUNGARIAN NUMBER ONE THOUSAND",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0D[] = {
 /* 10D00 */ { "HANIFI ROHINGYA LETTER A",NULL},
 /* 10D01 */ { "HANIFI ROHINGYA LETTER BA",NULL},
@@ -26427,7 +26362,6 @@ static const struct unicode_nameannot una_01_0D[] = {
 /* 10DFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0E[] = {
 /* 10E00 */ { NULL,NULL},
 /* 10E01 */ { NULL,NULL},
@@ -26687,7 +26621,6 @@ static const struct unicode_nameannot una_01_0E[] = {
 /* 10EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_0F[] = {
 /* 10F00 */ { "OLD SOGDIAN LETTER ALEPH",NULL},
 /* 10F01 */ { "OLD SOGDIAN LETTER FINAL ALEPH",NULL},
@@ -26707,9 +26640,9 @@ static const struct unicode_nameannot una_01_0F[] = {
 /* 10F0F */ { "OLD SOGDIAN LETTER FINAL NUN",NULL},
 /* 10F10 */ { "OLD SOGDIAN LETTER FINAL NUN WITH VERTICAL TAIL",NULL},
 /* 10F11 */ { "OLD SOGDIAN LETTER SAMEKH",NULL},
-/* 10F12 */ { "OLD SOGDIAN LETTER AYIN","	* used only in the Aramaic heterogram `D\n"
+/* 10F12 */ { "OLD SOGDIAN LETTER AYIN","	* used only in the Aramaic heterogram ʿD\n"
 	"	* resh-ayin-daleth is used in other heterograms"},
-/* 10F13 */ { "OLD SOGDIAN LETTER ALTERNATE AYIN","	* used only in the Aramaic heterogram `D\n"
+/* 10F13 */ { "OLD SOGDIAN LETTER ALTERNATE AYIN","	* used only in the Aramaic heterogram ʿD\n"
 	"	* resh-ayin-daleth is used in other heterograms"},
 /* 10F14 */ { "OLD SOGDIAN LETTER PE",NULL},
 /* 10F15 */ { "OLD SOGDIAN LETTER SADHE",NULL},
@@ -26730,7 +26663,7 @@ static const struct unicode_nameannot una_01_0F[] = {
 /* 10F24 */ { "OLD SOGDIAN NUMBER THIRTY",NULL},
 /* 10F25 */ { "OLD SOGDIAN NUMBER ONE HUNDRED",NULL},
 /* 10F26 */ { "OLD SOGDIAN FRACTION ONE HALF",NULL},
-/* 10F27 */ { "OLD SOGDIAN LIGATURE AYIN-DALETH","	* represents the Aramaic heterogram `D"},
+/* 10F27 */ { "OLD SOGDIAN LIGATURE AYIN-DALETH","	* represents the Aramaic heterogram ʿD"},
 /* 10F28 */ { NULL,NULL},
 /* 10F29 */ { NULL,NULL},
 /* 10F2A */ { NULL,NULL},
@@ -26949,7 +26882,6 @@ static const struct unicode_nameannot una_01_0F[] = {
 /* 10FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_10[] = {
 /* 11000 */ { "BRAHMI SIGN CANDRABINDU",NULL},
 /* 11001 */ { "BRAHMI SIGN ANUSVARA",NULL},
@@ -27211,7 +27143,6 @@ static const struct unicode_nameannot una_01_10[] = {
 /* 110FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_11[] = {
 /* 11100 */ { "CHAKMA SIGN CANDRABINDU","	= caanaphupudaa"},
 /* 11101 */ { "CHAKMA SIGN ANUSVARA","	= ekaphudaa"},
@@ -27482,7 +27413,6 @@ static const struct unicode_nameannot una_01_11[] = {
 /* 111FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_12[] = {
 /* 11200 */ { "KHOJKI LETTER A",NULL},
 /* 11201 */ { "KHOJKI LETTER AA",NULL},
@@ -27744,7 +27674,6 @@ static const struct unicode_nameannot una_01_12[] = {
 /* 112FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_13[] = {
 /* 11300 */ { "GRANTHA SIGN COMBINING ANUSVARA ABOVE","	* used in Prakrit language Jain texts for the linguistic anusvara"},
 /* 11301 */ { "GRANTHA SIGN CANDRABINDU",NULL},
@@ -28005,7 +27934,6 @@ static const struct unicode_nameannot una_01_13[] = {
 /* 113FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_14[] = {
 /* 11400 */ { "NEWA LETTER A",NULL},
 /* 11401 */ { "NEWA LETTER AA",NULL},
@@ -28266,7 +28194,6 @@ static const struct unicode_nameannot una_01_14[] = {
 /* 114FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_15[] = {
 /* 11500 */ { NULL,NULL},
 /* 11501 */ { NULL,NULL},
@@ -28527,7 +28454,6 @@ static const struct unicode_nameannot una_01_15[] = {
 /* 115FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_16[] = {
 /* 11600 */ { "MODI LETTER A",NULL},
 /* 11601 */ { "MODI LETTER AA",NULL},
@@ -28787,7 +28713,6 @@ static const struct unicode_nameannot una_01_16[] = {
 /* 116FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_17[] = {
 /* 11700 */ { "AHOM LETTER KA",NULL},
 /* 11701 */ { "AHOM LETTER KHA",NULL},
@@ -29047,7 +28972,6 @@ static const struct unicode_nameannot una_01_17[] = {
 /* 117FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_18[] = {
 /* 11800 */ { "DOGRA LETTER A",NULL},
 /* 11801 */ { "DOGRA LETTER AA",NULL},
@@ -29307,7 +29231,6 @@ static const struct unicode_nameannot una_01_18[] = {
 /* 118FF */ { "WARANG CITI OM",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1A[] = {
 /* 11A00 */ { "ZANABAZAR SQUARE LETTER A","	* used for representing independent vowels in combination with vowel signs"},
 /* 11A01 */ { "ZANABAZAR SQUARE VOWEL SIGN I",NULL},
@@ -29580,7 +29503,6 @@ static const struct unicode_nameannot una_01_1A[] = {
 /* 11AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1C[] = {
 /* 11C00 */ { "BHAIKSUKI LETTER A",NULL},
 /* 11C01 */ { "BHAIKSUKI LETTER AA",NULL},
@@ -29840,7 +29762,6 @@ static const struct unicode_nameannot una_01_1C[] = {
 /* 11CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1D[] = {
 /* 11D00 */ { "MASARAM GONDI LETTER A",NULL},
 /* 11D01 */ { "MASARAM GONDI LETTER AA",NULL},
@@ -29911,7 +29832,7 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11D42 */ { "MASARAM GONDI SIGN NUKTA",NULL},
 /* 11D43 */ { "MASARAM GONDI SIGN CANDRA","	* used for transcribing foreign vowels"},
 /* 11D44 */ { "MASARAM GONDI SIGN HALANTA","	* used for silencing the inherent vowel"},
-/* 11D45 */ { "MASARAM GONDI VIRAMA","	* used for producing conjuncts"},
+/* 11D45 */ { "MASARAM GONDI VIRAMA","	* used to form conjuncts"},
 /* 11D46 */ { "MASARAM GONDI REPHA","	* cluster-initial form of 11D26"},
 /* 11D47 */ { "MASARAM GONDI RA-KARA","	* cluster-final form of 11D26"},
 /* 11D48 */ { NULL,NULL},
@@ -29993,7 +29914,7 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11D94 */ { "GUNJALA GONDI VOWEL SIGN AU",NULL},
 /* 11D95 */ { "GUNJALA GONDI SIGN ANUSVARA",NULL},
 /* 11D96 */ { "GUNJALA GONDI SIGN VISARGA",NULL},
-/* 11D97 */ { "GUNJALA GONDI VIRAMA","	* used for producing conjuncts"},
+/* 11D97 */ { "GUNJALA GONDI VIRAMA","	* used to form conjuncts"},
 /* 11D98 */ { "GUNJALA GONDI OM",NULL},
 /* 11D99 */ { NULL,NULL},
 /* 11D9A */ { NULL,NULL},
@@ -30100,7 +30021,6 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11DFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_1E[] = {
 /* 11E00 */ { NULL,NULL},
 /* 11E01 */ { NULL,NULL},
@@ -30360,7 +30280,6 @@ static const struct unicode_nameannot una_01_1E[] = {
 /* 11EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_20[] = {
 /* 12000 */ { "CUNEIFORM SIGN A",NULL},
 /* 12001 */ { "CUNEIFORM SIGN A TIMES A",NULL},
@@ -30620,7 +30539,6 @@ static const struct unicode_nameannot una_01_20[] = {
 /* 120FF */ { "CUNEIFORM SIGN GESHTIN TIMES KUR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_21[] = {
 /* 12100 */ { "CUNEIFORM SIGN GI",NULL},
 /* 12101 */ { "CUNEIFORM SIGN GI TIMES E",NULL},
@@ -30880,7 +30798,6 @@ static const struct unicode_nameannot una_01_21[] = {
 /* 121FF */ { "CUNEIFORM SIGN LU2 TIMES BAD",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_22[] = {
 /* 12200 */ { "CUNEIFORM SIGN LU2 TIMES ESH2",NULL},
 /* 12201 */ { "CUNEIFORM SIGN LU2 TIMES ESH2 TENU",NULL},
@@ -31140,7 +31057,6 @@ static const struct unicode_nameannot una_01_22[] = {
 /* 122FF */ { "CUNEIFORM SIGN TI TENU",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_23[] = {
 /* 12300 */ { "CUNEIFORM SIGN TIL",NULL},
 /* 12301 */ { "CUNEIFORM SIGN TIR",NULL},
@@ -31400,7 +31316,6 @@ static const struct unicode_nameannot una_01_23[] = {
 /* 123FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_24[] = {
 /* 12400 */ { "CUNEIFORM NUMERIC SIGN TWO ASH",NULL},
 /* 12401 */ { "CUNEIFORM NUMERIC SIGN THREE ASH",NULL},
@@ -31661,7 +31576,6 @@ static const struct unicode_nameannot una_01_24[] = {
 /* 124FF */ { "CUNEIFORM SIGN LAK-550",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_25[] = {
 /* 12500 */ { "CUNEIFORM SIGN LAK-608",NULL},
 /* 12501 */ { "CUNEIFORM SIGN LAK-617",NULL},
@@ -31921,7 +31835,6 @@ static const struct unicode_nameannot una_01_25[] = {
 /* 125FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_30[] = {
 /* 13000 */ { "EGYPTIAN HIEROGLYPH A001",NULL},
 /* 13001 */ { "EGYPTIAN HIEROGLYPH A002",NULL},
@@ -32183,7 +32096,6 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 130FF */ { "EGYPTIAN HIEROGLYPH F001A",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_31[] = {
 /* 13100 */ { "EGYPTIAN HIEROGLYPH F002",NULL},
 /* 13101 */ { "EGYPTIAN HIEROGLYPH F003",NULL},
@@ -32448,7 +32360,6 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 131FF */ { "EGYPTIAN HIEROGLYPH N017",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_32[] = {
 /* 13200 */ { "EGYPTIAN HIEROGLYPH N018",NULL},
 /* 13201 */ { "EGYPTIAN HIEROGLYPH N018A",NULL},
@@ -32716,7 +32627,6 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 132FF */ { "EGYPTIAN HIEROGLYPH S039",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_33[] = {
 /* 13300 */ { "EGYPTIAN HIEROGLYPH S040",NULL},
 /* 13301 */ { "EGYPTIAN HIEROGLYPH S041",NULL},
@@ -32987,7 +32897,6 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 133FF */ { "EGYPTIAN HIEROGLYPH Z015E","	* 6"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_34[] = {
 /* 13400 */ { "EGYPTIAN HIEROGLYPH Z015F","	* 7"},
 /* 13401 */ { "EGYPTIAN HIEROGLYPH Z015G","	* 8"},
@@ -33248,7 +33157,6 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 134FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_44[] = {
 /* 14400 */ { "ANATOLIAN HIEROGLYPH A001","	= ego"},
 /* 14401 */ { "ANATOLIAN HIEROGLYPH A002","	= ego2"},
@@ -33556,7 +33464,6 @@ static const struct unicode_nameannot una_01_44[] = {
 /* 144FF */ { "ANATOLIAN HIEROGLYPH A222",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_45[] = {
 /* 14500 */ { "ANATOLIAN HIEROGLYPH A223","	= syllabic sa6"},
 /* 14501 */ { "ANATOLIAN HIEROGLYPH A224","	= syllabic ha? pa?"},
@@ -33860,7 +33767,6 @@ static const struct unicode_nameannot una_01_45[] = {
 /* 145FF */ { "ANATOLIAN HIEROGLYPH A457",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_46[] = {
 /* 14600 */ { "ANATOLIAN HIEROGLYPH A457A",NULL},
 /* 14601 */ { "ANATOLIAN HIEROGLYPH A458",NULL},
@@ -34121,7 +34027,6 @@ static const struct unicode_nameannot una_01_46[] = {
 /* 146FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_68[] = {
 /* 16800 */ { "BAMUM LETTER PHASE-A NGKUE MFON",NULL},
 /* 16801 */ { "BAMUM LETTER PHASE-A GBIEE FON",NULL},
@@ -34381,7 +34286,6 @@ static const struct unicode_nameannot una_01_68[] = {
 /* 168FF */ { "BAMUM LETTER PHASE-D KEUAETMEUN",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_69[] = {
 /* 16900 */ { "BAMUM LETTER PHASE-D TEUT",NULL},
 /* 16901 */ { "BAMUM LETTER PHASE-D SHEUAE",NULL},
@@ -34642,7 +34546,6 @@ static const struct unicode_nameannot una_01_69[] = {
 /* 169FF */ { "BAMUM LETTER PHASE-E MON",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6A[] = {
 /* 16A00 */ { "BAMUM LETTER PHASE-E TEN",NULL},
 /* 16A01 */ { "BAMUM LETTER PHASE-E FAQ",NULL},
@@ -34902,7 +34805,6 @@ static const struct unicode_nameannot una_01_6A[] = {
 /* 16AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6B[] = {
 /* 16B00 */ { "PAHAWH HMONG VOWEL KEEB","	= keem"},
 /* 16B01 */ { "PAHAWH HMONG VOWEL KEEV","	= kee"},
@@ -35165,7 +35067,6 @@ static const struct unicode_nameannot una_01_6B[] = {
 /* 16BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6E[] = {
 /* 16E00 */ { NULL,NULL},
 /* 16E01 */ { NULL,NULL},
@@ -35253,11 +35154,11 @@ static const struct unicode_nameannot una_01_6E[] = {
 /* 16E53 */ { "MEDEFAIDRIN CAPITAL LETTER YU",NULL},
 /* 16E54 */ { "MEDEFAIDRIN CAPITAL LETTER L",NULL},
 /* 16E55 */ { "MEDEFAIDRIN CAPITAL LETTER Q",NULL},
-/* 16E56 */ { "MEDEFAIDRIN CAPITAL LETTER HP",NULL},
-/* 16E57 */ { "MEDEFAIDRIN CAPITAL LETTER NY",NULL},
+/* 16E56 */ { "MEDEFAIDRIN CAPITAL LETTER HP","	% MEDEFAIDRIN CAPITAL LETTER H"},
+/* 16E57 */ { "MEDEFAIDRIN CAPITAL LETTER NY","	% MEDEFAIDRIN CAPITAL LETTER NG"},
 /* 16E58 */ { "MEDEFAIDRIN CAPITAL LETTER X",NULL},
 /* 16E59 */ { "MEDEFAIDRIN CAPITAL LETTER D",NULL},
-/* 16E5A */ { "MEDEFAIDRIN CAPITAL LETTER OE",NULL},
+/* 16E5A */ { "MEDEFAIDRIN CAPITAL LETTER OE","	* represents the open o vowel"},
 /* 16E5B */ { "MEDEFAIDRIN CAPITAL LETTER N",NULL},
 /* 16E5C */ { "MEDEFAIDRIN CAPITAL LETTER R",NULL},
 /* 16E5D */ { "MEDEFAIDRIN CAPITAL LETTER O",NULL},
@@ -35285,11 +35186,11 @@ static const struct unicode_nameannot una_01_6E[] = {
 /* 16E73 */ { "MEDEFAIDRIN SMALL LETTER YU",NULL},
 /* 16E74 */ { "MEDEFAIDRIN SMALL LETTER L",NULL},
 /* 16E75 */ { "MEDEFAIDRIN SMALL LETTER Q",NULL},
-/* 16E76 */ { "MEDEFAIDRIN SMALL LETTER HP",NULL},
-/* 16E77 */ { "MEDEFAIDRIN SMALL LETTER NY",NULL},
+/* 16E76 */ { "MEDEFAIDRIN SMALL LETTER HP","	% MEDEFAIDRIN SMALL LETTER H"},
+/* 16E77 */ { "MEDEFAIDRIN SMALL LETTER NY","	% MEDEFAIDRIN SMALL LETTER NG"},
 /* 16E78 */ { "MEDEFAIDRIN SMALL LETTER X",NULL},
 /* 16E79 */ { "MEDEFAIDRIN SMALL LETTER D",NULL},
-/* 16E7A */ { "MEDEFAIDRIN SMALL LETTER OE",NULL},
+/* 16E7A */ { "MEDEFAIDRIN SMALL LETTER OE","	* represents the open o vowel"},
 /* 16E7B */ { "MEDEFAIDRIN SMALL LETTER N",NULL},
 /* 16E7C */ { "MEDEFAIDRIN SMALL LETTER R",NULL},
 /* 16E7D */ { "MEDEFAIDRIN SMALL LETTER O",NULL},
@@ -35320,7 +35221,7 @@ static const struct unicode_nameannot una_01_6E[] = {
 /* 16E96 */ { "MEDEFAIDRIN DIGIT THREE ALTERNATE FORM",NULL},
 /* 16E97 */ { "MEDEFAIDRIN COMMA",NULL},
 /* 16E98 */ { "MEDEFAIDRIN FULL STOP",NULL},
-/* 16E99 */ { "MEDEFAIDRIN SYMBOL AIVA",NULL},
+/* 16E99 */ { "MEDEFAIDRIN SYMBOL AIVA","	* or"},
 /* 16E9A */ { "MEDEFAIDRIN EXCLAMATION OH",NULL},
 /* 16E9B */ { NULL,NULL},
 /* 16E9C */ { NULL,NULL},
@@ -35425,7 +35326,6 @@ static const struct unicode_nameannot una_01_6E[] = {
 /* 16EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_6F[] = {
 /* 16F00 */ { "MIAO LETTER PA","	* used for ba in Dry Yi"},
 /* 16F01 */ { "MIAO LETTER BA",NULL},
@@ -35685,7 +35585,6 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_88[] = {
 /* 18800 */ { "TANGUT COMPONENT-001",NULL},
 /* 18801 */ { "TANGUT COMPONENT-002",NULL},
@@ -35945,7 +35844,6 @@ static const struct unicode_nameannot una_01_88[] = {
 /* 188FF */ { "TANGUT COMPONENT-256",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_89[] = {
 /* 18900 */ { "TANGUT COMPONENT-257",NULL},
 /* 18901 */ { "TANGUT COMPONENT-258",NULL},
@@ -36205,7 +36103,6 @@ static const struct unicode_nameannot una_01_89[] = {
 /* 189FF */ { "TANGUT COMPONENT-512",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_8A[] = {
 /* 18A00 */ { "TANGUT COMPONENT-513",NULL},
 /* 18A01 */ { "TANGUT COMPONENT-514",NULL},
@@ -36465,7 +36362,6 @@ static const struct unicode_nameannot una_01_8A[] = {
 /* 18AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B0[] = {
 /* 1B000 */ { "KATAKANA LETTER ARCHAIC E",NULL},
 /* 1B001 */ { "HIRAGANA LETTER ARCHAIC YE","	% HENTAIGANA LETTER E-1\n"
@@ -36726,7 +36622,6 @@ static const struct unicode_nameannot una_01_B0[] = {
 /* 1B0FF */ { "HENTAIGANA LETTER RE-2","	* derived from 79AE"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B1[] = {
 /* 1B100 */ { "HENTAIGANA LETTER RE-3","	* derived from 9023"},
 /* 1B101 */ { "HENTAIGANA LETTER RE-4","	* derived from 9E97"},
@@ -36986,7 +36881,6 @@ static const struct unicode_nameannot una_01_B1[] = {
 /* 1B1FF */ { "NUSHU CHARACTER-1B1FF",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_B2[] = {
 /* 1B200 */ { "NUSHU CHARACTER-1B200",NULL},
 /* 1B201 */ { "NUSHU CHARACTER-1B201","	x 591A"},
@@ -37246,7 +37140,6 @@ static const struct unicode_nameannot una_01_B2[] = {
 /* 1B2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_BC[] = {
 /* 1BC00 */ { "DUPLOYAN LETTER H","	* Chinook, Pernin, Sloan, Perrault"},
 /* 1BC01 */ { "DUPLOYAN LETTER X","	* Salishan"},
@@ -37309,7 +37202,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 /* 1BC1D */ { "DUPLOYAN LETTER M N","	* Romanian mai mult, not Romanian mult mai sign"},
 /* 1BC1E */ { "DUPLOYAN LETTER N M","	* not Romanian nu nu sign"},
 /* 1BC1F */ { "DUPLOYAN LETTER J M","	* not Romanian ceea ce sign"},
-/* 1BC20 */ { "DUPLOYAN LETTER S J","	* not Romanian sa se sign"},
+/* 1BC20 */ { "DUPLOYAN LETTER S J","	* not Romanian să se sign"},
 /* 1BC21 */ { "DUPLOYAN LETTER M WITH DOT","	* Romanian sign mijloc"},
 /* 1BC22 */ { "DUPLOYAN LETTER N WITH DOT","	* Chinook ng\n"
 	"	* Romanian sign nici"},
@@ -37317,17 +37210,17 @@ static const struct unicode_nameannot una_01_BC[] = {
 	"	* Sloan zh\n"
 	"	* Chinook, Perrault j"},
 /* 1BC24 */ { "DUPLOYAN LETTER J WITH DOTS INSIDE AND ABOVE","	* used in isolation\n"
-	"	* Romanian sign ici si colo"},
+	"	* Romanian sign ici și colo"},
 /* 1BC25 */ { "DUPLOYAN LETTER S WITH DOT","	* Chinook ts\n"
 	"	* Chinook, Romanian, Sloan z"},
-/* 1BC26 */ { "DUPLOYAN LETTER S WITH DOT BELOW","	* Romanian sh"},
+/* 1BC26 */ { "DUPLOYAN LETTER S WITH DOT BELOW","	* Romanian ș"},
 /* 1BC27 */ { "DUPLOYAN LETTER M S","	* Sloan m m"},
 /* 1BC28 */ { "DUPLOYAN LETTER N S","	* Pernin, Sloan, Perrault ng"},
 /* 1BC29 */ { "DUPLOYAN LETTER J S","	* Romanian ge\n"
 	"	* Pernin, Perrault zh\n"
 	"	* Sloan ch"},
 /* 1BC2A */ { "DUPLOYAN LETTER S S","	* French, Sloan\n"
-	"	* Romanian ts\n"
+	"	* Romanian ț\n"
 	"	* Pernin, Perrault z"},
 /* 1BC2B */ { "DUPLOYAN LETTER M N S",NULL},
 /* 1BC2C */ { "DUPLOYAN LETTER N M S",NULL},
@@ -37356,7 +37249,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 	"	* Sloan sw"},
 /* 1BC3B */ { "DUPLOYAN LETTER S N","	* Perrault\n"
 	"	* Pernin krs\n"
-	"	* Sloan SP"},
+	"	* Sloan sp"},
 /* 1BC3C */ { "DUPLOYAN LETTER S M","	* Perrault\n"
 	"	* Pernin grs\n"
 	"	* Sloan sl"},
@@ -37445,7 +37338,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 	"	* neutral nasal vowel for transcription of an ambiguous primary orientating nasal vowel\n"
 	"	* Perrault vocalic n - an, en, in, un (with accents)\n"
 	"	* Pernin on\n"
-	"	* Romanian yn"},
+	"	* Romanian în"},
 /* 1BC65 */ { "DUPLOYAN LETTER PERNIN AN","	* written downwards"},
 /* 1BC66 */ { "DUPLOYAN LETTER PERNIN AM","	* written downwards"},
 /* 1BC67 */ { "DUPLOYAN LETTER SLOAN EN",NULL},
@@ -37565,7 +37458,7 @@ static const struct unicode_nameannot una_01_BC[] = {
 /* 1BC9C */ { "DUPLOYAN SIGN O WITH CROSS","	* Chinook Likalisti"},
 /* 1BC9D */ { "DUPLOYAN THICK LETTER SELECTOR",NULL},
 /* 1BC9E */ { "DUPLOYAN DOUBLE MARK","	* Romanian, Sloan\n"
-	"	* should be used with m, n, j, and s for the Romanian word signs mai mult, nu nu, ceea ce, and sa se\n"
+	"	* should be used with m, n, j, and s for the Romanian word signs mai mult, nu nu, ceea ce, and să se\n"
 	"	* can be doubled and tripled"},
 /* 1BC9F */ { "DUPLOYAN PUNCTUATION CHINOOK FULL STOP",NULL},
 /* 1BCA0 */ { "SHORTHAND FORMAT LETTER OVERLAP",NULL},
@@ -37667,7 +37560,6 @@ static const struct unicode_nameannot una_01_BC[] = {
 /* 1BCFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D0[] = {
 /* 1D000 */ { "BYZANTINE MUSICAL SYMBOL PSILI",NULL},
 /* 1D001 */ { "BYZANTINE MUSICAL SYMBOL DASEIA",NULL},
@@ -37930,7 +37822,6 @@ static const struct unicode_nameannot una_01_D0[] = {
 /* 1D0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D1[] = {
 /* 1D100 */ { "MUSICAL SYMBOL SINGLE BARLINE",NULL},
 /* 1D101 */ { "MUSICAL SYMBOL DOUBLE BARLINE",NULL},
@@ -38201,7 +38092,6 @@ static const struct unicode_nameannot una_01_D1[] = {
 /* 1D1FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D2[] = {
 /* 1D200 */ { "GREEK VOCAL NOTATION SYMBOL-1","	* vocal E"},
 /* 1D201 */ { "GREEK VOCAL NOTATION SYMBOL-2","	* vocal first sharp of E"},
@@ -38485,7 +38375,6 @@ static const struct unicode_nameannot una_01_D2[] = {
 /* 1D2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D3[] = {
 /* 1D300 */ { "MONOGRAM FOR EARTH","	= ren\n"
 	"	* usually associated with human (Chinese rén), rather than earth (Chinese dì)\n"
@@ -38748,7 +38637,6 @@ static const struct unicode_nameannot una_01_D3[] = {
 /* 1D3FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D4[] = {
 /* 1D400 */ { "MATHEMATICAL BOLD CAPITAL A","	# <font> 0041 latin capital letter a"},
 /* 1D401 */ { "MATHEMATICAL BOLD CAPITAL B","	# <font> 0042 latin capital letter b"},
@@ -39010,7 +38898,6 @@ static const struct unicode_nameannot una_01_D4[] = {
 /* 1D4FF */ { "MATHEMATICAL BOLD SCRIPT SMALL V","	# <font> 0076 latin small letter v"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D5[] = {
 /* 1D500 */ { "MATHEMATICAL BOLD SCRIPT SMALL W","	# <font> 0077 latin small letter w"},
 /* 1D501 */ { "MATHEMATICAL BOLD SCRIPT SMALL X","	# <font> 0078 latin small letter x"},
@@ -39273,7 +39160,6 @@ static const struct unicode_nameannot una_01_D5[] = {
 /* 1D5FF */ { "MATHEMATICAL SANS-SERIF BOLD SMALL R","	# <font> 0072 latin small letter r"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D6[] = {
 /* 1D600 */ { "MATHEMATICAL SANS-SERIF BOLD SMALL S","	# <font> 0073 latin small letter s"},
 /* 1D601 */ { "MATHEMATICAL SANS-SERIF BOLD SMALL T","	# <font> 0074 latin small letter t"},
@@ -39539,7 +39425,6 @@ static const struct unicode_nameannot una_01_D6[] = {
 /* 1D6FF */ { "MATHEMATICAL ITALIC SMALL DELTA","	# <font> 03B4 greek small letter delta"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D7[] = {
 /* 1D700 */ { "MATHEMATICAL ITALIC SMALL EPSILON","	# <font> 03B5 greek small letter epsilon"},
 /* 1D701 */ { "MATHEMATICAL ITALIC SMALL ZETA","	# <font> 03B6 greek small letter zeta"},
@@ -39799,7 +39684,6 @@ static const struct unicode_nameannot una_01_D7[] = {
 /* 1D7FF */ { "MATHEMATICAL MONOSPACE DIGIT NINE","	# <font> 0039 digit nine"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D8[] = {
 /* 1D800 */ { "SIGNWRITING HAND-FIST INDEX",NULL},
 /* 1D801 */ { "SIGNWRITING HAND-CIRCLE INDEX",NULL},
@@ -40059,7 +39943,6 @@ static const struct unicode_nameannot una_01_D8[] = {
 /* 1D8FF */ { "SIGNWRITING HAND-FIST THUMB OVER TWO FINGERS",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_D9[] = {
 /* 1D900 */ { "SIGNWRITING HAND-FIST THUMB UNDER THREE FINGERS",NULL},
 /* 1D901 */ { "SIGNWRITING HAND-FIST THUMB UNDER FOUR FINGERS",NULL},
@@ -40319,7 +40202,6 @@ static const struct unicode_nameannot una_01_D9[] = {
 /* 1D9FF */ { "SIGNWRITING HEAD",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_DA[] = {
 /* 1DA00 */ { "SIGNWRITING HEAD RIM",NULL},
 /* 1DA01 */ { "SIGNWRITING HEAD MOVEMENT-WALLPLANE STRAIGHT",NULL},
@@ -40579,7 +40461,6 @@ static const struct unicode_nameannot una_01_DA[] = {
 /* 1DAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E0[] = {
 /* 1E000 */ { "COMBINING GLAGOLITIC LETTER AZU",NULL},
 /* 1E001 */ { "COMBINING GLAGOLITIC LETTER BUKY",NULL},
@@ -40839,7 +40720,6 @@ static const struct unicode_nameannot una_01_E0[] = {
 /* 1E0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E8[] = {
 /* 1E800 */ { "MENDE KIKAKUI SYLLABLE M001 KI",NULL},
 /* 1E801 */ { "MENDE KIKAKUI SYLLABLE M002 KA",NULL},
@@ -41099,7 +40979,6 @@ static const struct unicode_nameannot una_01_E8[] = {
 /* 1E8FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E9[] = {
 /* 1E900 */ { "ADLAM CAPITAL LETTER ALIF",NULL},
 /* 1E901 */ { "ADLAM CAPITAL LETTER DAALI",NULL},
@@ -41359,7 +41238,6 @@ static const struct unicode_nameannot una_01_E9[] = {
 /* 1E9FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_EC[] = {
 /* 1EC00 */ { NULL,NULL},
 /* 1EC01 */ { NULL,NULL},
@@ -41626,7 +41504,6 @@ static const struct unicode_nameannot una_01_EC[] = {
 /* 1ECFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_EE[] = {
 /* 1EE00 */ { "ARABIC MATHEMATICAL ALEF","	x (arabic letter alef isolated form - FE8D)\n"
 	"	# <font> 0627 arabic letter alef"},
@@ -41940,7 +41817,6 @@ static const struct unicode_nameannot una_01_EE[] = {
 /* 1EEFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F0[] = {
 /* 1F000 */ { "MAHJONG TILE EAST WIND",NULL},
 /* 1F001 */ { "MAHJONG TILE SOUTH WIND",NULL},
@@ -42204,7 +42080,6 @@ static const struct unicode_nameannot una_01_F0[] = {
 /* 1F0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F1[] = {
 /* 1F100 */ { "DIGIT ZERO FULL STOP","	# 0030 002E"},
 /* 1F101 */ { "DIGIT ZERO COMMA","	# 0030 002C"},
@@ -42502,7 +42377,6 @@ static const struct unicode_nameannot una_01_F1[] = {
 /* 1F1FF */ { "REGIONAL INDICATOR SYMBOL LETTER Z",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F2[] = {
 /* 1F200 */ { "SQUARE HIRAGANA HOKA","	= and others\n"
 	"	# <square> 307B 304B"},
@@ -42835,7 +42709,6 @@ static const struct unicode_nameannot una_01_F2[] = {
 /* 1F2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F3[] = {
 /* 1F300 */ { "CYCLONE","	= typhoon, hurricane"},
 /* 1F301 */ { "FOGGY","	x (fog - 1F32B)"},
@@ -43155,7 +43028,6 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3FF */ { "EMOJI MODIFIER FITZPATRICK TYPE-6",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F4[] = {
 /* 1F400 */ { "RAT","	* first of the signs of the Asian zodiac"},
 /* 1F401 */ { "MOUSE","	* first of the signs of the Asian zodiac, used in Persia"},
@@ -43453,7 +43325,6 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F4FF */ { "PRAYER BEADS",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F5[] = {
 /* 1F500 */ { "TWISTED RIGHTWARDS ARROWS","	= shuffle"},
 /* 1F501 */ { "CLOCKWISE RIGHTWARDS AND LEFTWARDS OPEN CIRCLE ARROWS","	= repeat\n"
@@ -43521,7 +43392,8 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F531 */ { "TRIDENT EMBLEM",NULL},
 /* 1F532 */ { "BLACK SQUARE BUTTON",NULL},
 /* 1F533 */ { "WHITE SQUARE BUTTON",NULL},
-/* 1F534 */ { "LARGE RED CIRCLE","	x (black circle - 25CF)\n"
+/* 1F534 */ { "LARGE RED CIRCLE","	x (black circle for record - 23FA)\n"
+	"	x (black circle - 25CF)\n"
 	"	x (large circle - 25EF)\n"
 	"	x (black large circle - 2B24)\n"
 	"	x (heavy large circle - 2B55)"},
@@ -43777,7 +43649,6 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F5FF */ { "MOYAI","	* Japanese stone statue like Moai on Easter Island"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F6[] = {
 /* 1F600 */ { "GRINNING FACE",NULL},
 /* 1F601 */ { "GRINNING FACE WITH SMILING EYES",NULL},
@@ -44068,7 +43939,6 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F7[] = {
 /* 1F700 */ { "ALCHEMICAL SYMBOL FOR QUINTESSENCE",NULL},
 /* 1F701 */ { "ALCHEMICAL SYMBOL FOR AIR",NULL},
@@ -44354,7 +44224,6 @@ static const struct unicode_nameannot una_01_F7[] = {
 /* 1F7FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F8[] = {
 /* 1F800 */ { "LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD",NULL},
 /* 1F801 */ { "UPWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD",NULL},
@@ -44614,7 +44483,6 @@ static const struct unicode_nameannot una_01_F8[] = {
 /* 1F8FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_F9[] = {
 /* 1F900 */ { "CIRCLED CROSS FORMEE WITH FOUR DOTS",NULL},
 /* 1F901 */ { "CIRCLED CROSS FORMEE WITH TWO DOTS",NULL},
@@ -44732,7 +44600,7 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F969 */ { "CUT OF MEAT","	= porkchop, chop, steak"},
 /* 1F96A */ { "SANDWICH",NULL},
 /* 1F96B */ { "CANNED FOOD",NULL},
-/* 1F96C */ { "LEAFY GREEN","	* intended to represent cooked green vegetables such as  bok choy, kale, etc."},
+/* 1F96C */ { "LEAFY GREEN","	* intended to represent cooked green vegetables such as bok choy, kale, etc."},
 /* 1F96D */ { "MANGO",NULL},
 /* 1F96E */ { "MOON CAKE",NULL},
 /* 1F96F */ { "BAGEL",NULL},
@@ -44894,7 +44762,6 @@ static const struct unicode_nameannot una_01_F9[] = {
 /* 1F9FF */ { "NAZAR AMULET",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_FA[] = {
 /* 1FA00 */ { NULL,NULL},
 /* 1FA01 */ { NULL,NULL},
@@ -44992,7 +44859,7 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FA5D */ { NULL,NULL},
 /* 1FA5E */ { NULL,NULL},
 /* 1FA5F */ { NULL,NULL},
-/* 1FA60 */ { "XIANGQI RED GENERAL","	= hóng shuài \n"
+/* 1FA60 */ { "XIANGQI RED GENERAL","	= hóng shuài\n"
 	"	* design typically shows 5E25 or 5E05\n"
 	"	* design sometimes shows 5C07 (Yuan dynasty)"},
 /* 1FA61 */ { "XIANGQI RED MANDARIN","	= hóng shì\n"
@@ -45178,7 +45045,6 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_F8[] = {
 /* 2F800 */ { "CJK COMPATIBILITY IDEOGRAPH-2F800","	: 4E3D"},
 /* 2F801 */ { "CJK COMPATIBILITY IDEOGRAPH-2F801","	: 4E38"},
@@ -45443,7 +45309,6 @@ static const struct unicode_nameannot una_02_F8[] = {
 /* 2F8FF */ { "CJK COMPATIBILITY IDEOGRAPH-2F8FF","	: 6D16"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_F9[] = {
 /* 2F900 */ { "CJK COMPATIBILITY IDEOGRAPH-2F900","	: 6D3E"},
 /* 2F901 */ { "CJK COMPATIBILITY IDEOGRAPH-2F901","	: 6D77"},
@@ -45709,7 +45574,6 @@ static const struct unicode_nameannot una_02_F9[] = {
 /* 2F9FF */ { "CJK COMPATIBILITY IDEOGRAPH-2F9FF","	: 980B"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_02_FA[] = {
 /* 2FA00 */ { "CJK COMPATIBILITY IDEOGRAPH-2FA00","	: 9829"},
 /* 2FA01 */ { "CJK COMPATIBILITY IDEOGRAPH-2FA01","	: 295B6"},
@@ -45969,7 +45833,6 @@ static const struct unicode_nameannot una_02_FA[] = {
 /* 2FAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_0E_00[] = {
 /* E0000 */ { NULL,NULL},
 /* E0001 */ { "LANGUAGE TAG","	* This character is deprecated, and its use is strongly discouraged."},
@@ -46229,7 +46092,6 @@ static const struct unicode_nameannot una_0E_00[] = {
 /* E00FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot una_0E_01[] = {
 /* E0100 */ { "VARIATION SELECTOR-17","	* these are abbreviated VS17, and so on"},
 /* E0101 */ { "VARIATION SELECTOR-18",NULL},
@@ -46489,7 +46351,6 @@ static const struct unicode_nameannot una_0E_01[] = {
 /* E01FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_00[] = {
 	una_00_00,
 	una_00_01,
@@ -46749,7 +46610,6 @@ static const struct unicode_nameannot * const una_00[] = {
 	una_00_FF
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_01[] = {
 	una_01_00,
 	una_01_01,
@@ -47009,7 +46869,6 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray2
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_02[] = {
 	nullarray,
 	nullarray,
@@ -47269,7 +47128,6 @@ static const struct unicode_nameannot * const una_02[] = {
 	nullarray2
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const una_0E[] = {
 	una_0E_00,
 	una_0E_01,

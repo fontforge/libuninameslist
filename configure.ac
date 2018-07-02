@@ -4,13 +4,13 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20180408]) dnl yyyymmdd
-m4_define([uninameslist_major_version], [10]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [9])
+m4_define([uninameslist_package_stamp], [20180701]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [11]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[2])
+m4_define([uninameslist_revision],[3])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -21,7 +21,7 @@ m4_define([fr_major_version], [10]) dnl latest ListeDesNoms.txt = ver10.0
 m4_define([fr_minor_version], [0])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])
-m4_define([uninameslist_fr_revision],[1])
+m4_define([uninameslist_fr_revision],[2])
 m4_define([uninameslist_fr_age],     [0])
 m4_define([uninameslist_fr_libver],
           [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])
@@ -128,7 +128,7 @@ if test x$enable_pylib = xyes ; then
 
     PKGS=$(${PYTHON} -c 'import wheel; import pip' 2>/dev/null)
     if test $? != 0; then
-        AC_MSG_ERROR([${PYTHON} does not have 'pip' and 'wheel' installed])
+        AC_MSG_ERROR([${PYTHON} does not have 'pip', 'setuptools' and 'wheel' installed])
     fi
     AC_SUBST(PYTHON, "${PYTHON}")
 fi
@@ -137,10 +137,9 @@ AM_CONDITIONAL([ENABLE_PYLIB],[test x"${enable_pylib}" = xyes])
 #-------------------------------------------
 # Platform specific stuff, AC_CANONICAL_HOST
 case "$host" in
-*-pc-cygwin*)
- AC_DEFINE(__CygWin,1)
- AC_LIBTOOL_WIN32_DLL
- ;;
+ *-pc-cygwin*)
+   AC_DEFINE(__CygWin,1)
+   AC_LIBTOOL_WIN32_DLL
 esac
 
 #-------------------------------------------
@@ -195,8 +194,6 @@ fi
 
 #-------------------------------------------
 # Pass some definitions to buildnameslist.c
-echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
-echo 'const char NFR_VERSION[[]] = "uninameslist_fr_nameslist_ver";' >> buildnameslist.h
 AC_DEFINE([LU_VERSION_MJ],[uninameslist_current])
 AC_DEFINE([LU_VERSION_MN],[uninameslist_revision])
 AC_DEFINE([LFR_VERSION_MJ],[uninameslist_fr_current])
@@ -249,6 +246,6 @@ Configuration:
 
 Optional:
   Include French C lib	${frenchlib}
-  Build Python wheels ${enable_pylib}
+  Build Python wheels	${enable_pylib}
 
 ])

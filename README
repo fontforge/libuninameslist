@@ -47,7 +47,34 @@ If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is not to build it.
 	configure --enable-frenchlib
 
-The build process can be summarized quickly like this:
+Added Python Wrapper
+********************
+
+A python wrapper is provided for users interested in libuninameslist access
+using python. The easiest and simplest method for users to add it is to run:
+
+	$ cd py
+	$ su
+	# python setup.py install
+	# exit
+	$
+
+The build system can optionally also build installable wheels of the package.
+To do this, pass --enable-pylib. Optionally, also set the `PYTHON` environment
+variable to configure which python to use. The configured python must have pip,
+setuptools and the wheel packages installed.
+
+	$ PYTHON=python2 ./configure --enable-pylib
+	$ make
+	$ su
+	# pip install py/dist/*.whl
+	# exit
+	$
+
+Build Process
+*************
+
+The default build process can be summarized quickly like this:
 
 	Download LibUniNamesList*.tar.gz
 	Move it somewhere appropriate (temp perhaps?) and type:
@@ -61,6 +88,11 @@ The build process can be summarized quickly like this:
 	# make install
 	# exit
 	$
+
+The above steps work for both release or latest versions of libuninameslist.
+Release versions provided by your distro may include a configure script which
+allows you to skip extra package requirements (for autotools, automake), and
+you would skip steps autoreconf -i, automake above, and start at ./configure
 
 NOTE: Some Distros and Operating Systems may require you to run 'ldconfig' to
 recognize LibUniNamesList if you are not rebooting your computer first before
@@ -141,4 +173,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2018-Jan-20, by Joe Da Silva
+	2018-Jul-01, by Joe Da Silva

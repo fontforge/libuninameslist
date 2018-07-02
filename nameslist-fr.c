@@ -142,7 +142,6 @@ const char *uniNamesList_names2anUFR(unsigned long uni) {
 	return( NULL );
 }
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot nullarrayFR[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -211,7 +210,6 @@ static const struct unicode_nameannot nullarrayFR[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot nullarray2FR[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
@@ -282,7 +280,6 @@ static const struct unicode_nameannot nullarray2FR[] = {
 	{ NULL, "	* on est assuré que la valeur ?FFFF n'est en aucune façon un caractère Unicode" },
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const nullnullarrayFR[] = {
 	nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR,
 	nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR, nullarrayFR,
@@ -410,7 +407,7 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x2700, 0x27bf, "Casseau" },
 	{ 0x27c0, 0x27ef, "Divers symboles mathématiques - A" },
 	{ 0x27f0, 0x27ff, "Supplément A de flèches" },
-	{ 0x2800, 0x28ff, "Combinaisons Braille" },
+	{ 0x2800, 0x28ff, "Combinaisons braille" },
 	{ 0x2900, 0x297f, "Supplément B de flèches" },
 	{ 0x2980, 0x29ff, "Divers symboles mathématiques - B" },
 	{ 0x2a00, 0x2aff, "Opérateurs mathématiques supplémentaires" },
@@ -617,7 +614,6 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x10ff80, 0x10ffff, "Zone supplémentaire B à usage privé" }
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_00[] = {
 /* 0000 */ { NULL,"	= NUL"},
 /* 0001 */ { NULL,"	= DÉBUT D'EN-TÊTE"},
@@ -696,7 +692,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (carré de visualisation - 2317)\n"
 	"	x (dièse - 266F)"},
 /* 0024 */ { "SYMBOLE DOLLAR","	= milreis, escudo, piastre\n"
-	"	* utilisé pour de nombreuses devises (pesos) en Amérique latine et ailleurs\n"
+	"	* utilisé pour de nombreuses monnaies portant le nom de « peso » en Amérique latine\n"
 	"	* le glyphe peut comporter une ou deux barres verticales\n"
 	"	* d'autres caractères de symboles monétaires sont codés à partir de la valeur 20A0\n"
 	"	x (symbole monétaire - 00A4)\n"
@@ -739,8 +735,8 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (guillemet-virgule inférieur - 201A)\n"
 	"	x (virgule réfléchie - 2E41)\n"
 	"	x (virgule idéographique - 3001)"},
-/* 002D */ { "TRAIT D'UNION-SIGNE MOINS","	= tiret, trait d'union, signe moins\n"
-	"	* appelé division par les typographes\n"
+/* 002D */ { "TRAIT D'UNION-SIGNE MOINS","	= trait d'union ou signe moins\n"
+	"	* appelé « division » par les typographes\n"
 	"	* le caractère recommandé pour le signe moins est 2212\n"
 	"	x (trait d'union - 2010)\n"
 	"	x (trait d'union insécable - 2011)\n"
@@ -800,8 +796,8 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (point exclarrogatif - 203D)\n"
 	"	x (point d'interrogation-exclamation - 2048)\n"
 	"	x (point d'exclamation-interrogation - 2049)"},
-/* 0040 */ { "ARROBE","	= arobase, arobas, arrobas, à commercial\n"
-	"	= queue de singe\n"
+/* 0040 */ { "ARROBE","	= arobase, arobas/arrobas, à commercial\n"
+	"	* a reçu des dénominations imagées dans de nombreuses langues\n"
 	"	* ancienne mesure de poids espagnole"},
 /* 0041 */ { "LETTRE MAJUSCULE LATINE A",NULL},
 /* 0042 */ { "LETTRE MAJUSCULE LATINE B","	x (majuscule b de ronde - 212C)"},
@@ -855,7 +851,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (diacritique accent circonflexe - 0302)\n"
 	"	x (chevron d'insertion - 2038)\n"
 	"	x (pointe de flèche vers le haut - 2303)"},
-/* 005F */ { "TIRET BAS","	= tiret de soulignement, souligné\n"
+/* 005F */ { "TIRET BAS","	= trait de soulignement, souligné\n"
 	"	* ce caractère chasse\n"
 	"	x (lettre modificative macron bas - 02CD)\n"
 	"	x (diacritique macron souscrit - 0331)\n"
@@ -964,17 +960,19 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	* castillan, asturien, galicien\n"
 	"	x (point d'exclamation - 0021)"},
 /* 00A2 */ { "SYMBOLE CENTIME","	= symbole cent américain"},
-/* 00A3 */ { "SYMBOLE LIVRE","	= livre sterling, punt irlandaise, livre tournoi, lire italienne, lire turque, etc.\n"
+/* 00A3 */ { "SYMBOLE LIVRE","	= livre sterling, punt irlandaise, livre tournois, lire italienne, lire turque, etc.\n"
 	"	x (symbole lire - 20A4)\n"
 	"	x (symbole lire turque - 20BA)\n"
 	"	x (symbole romain demi-once - 10192)"},
 /* 00A4 */ { "SYMBOLE MONÉTAIRE","	* d'autres caractères de symboles monétaires sont codés dans l'intervalle 20A0-20BF\n"
 	"	x (symbole dollar - 0024)"},
 /* 00A5 */ { "SYMBOLE YEN","	= symbole yuan\n"
+	"	* il n'y a pas d'autre caractère défini pour distinguer le yuan et le yen\n"
 	"	* le glyphe peut comporter une ou deux barres transversales, mais le symbole officiel au Japon et en Chine en comporte deux"},
 /* 00A6 */ { "BARRE BRISÉE","	= barre verticale brisée (1.0)\n"
 	"	= barre discontinue, barre déjointe, barre à trou"},
-/* 00A7 */ { "PARAGRAPHE","	= alinéa"},
+/* 00A7 */ { "PARAGRAPHE","	* symbole typographique qui sert à désigner la subdivision d'un alinéa ou d'un article\n"
+	"	* pourrait être issu de « SS », abréviation de « signum sectionis »"},
 /* 00A8 */ { "TRÉMA","	* ce caractère chasse\n"
 	"	x (diacritique tréma - 0308)\n"
 	"	# 0020 0308"},
@@ -1004,11 +1002,11 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (exposant zéro - 2070)\n"
 	"	x (opérateur rond - 2218)"},
 /* 00B1 */ { "SIGNE PLUS-OU-MOINS","	x (signe moins-ou-plus - 2213)"},
-/* 00B2 */ { "EXPOSANT DEUX","	= au carré\n"
+/* 00B2 */ { "EXPOSANT DEUX","	= élevé au carré\n"
 	"	* autres exposants : 2070-2079\n"
 	"	x (exposant un - 00B9)\n"
 	"	# <exp> 0032"},
-/* 00B3 */ { "EXPOSANT TROIS","	= cube\n"
+/* 00B3 */ { "EXPOSANT TROIS","	= élevé au cube\n"
 	"	x (exposant un - 00B9)\n"
 	"	# <exp> 0033"},
 /* 00B4 */ { "ACCENT AIGU","	* ce caractère chasse\n"
@@ -1019,7 +1017,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	# 0020 0301"},
 /* 00B5 */ { "SYMBOLE MICRO","	# 03BC lettre minuscule grecque mu"},
 /* 00B6 */ { "PIED-DE-MOUCHE","	= fin de paragraphe\n"
-	"	* signe de paragraphe dans certains pays d'Europe\n"
+	"	* symbole typographique désuet qui pouvait être utilisé pour marquer la fin d'un paragraphe\n"
+	"	* parfois encore employé à des fins esthétiques dans certaines publications\n"
+	"	* en informatique, caractère non imprimable qui marque la présence d'un code de fin de paragraphe\n"
 	"	x (pied-de-mouche réfléchi - 204B)\n"
 	"	x (pied-de-mouche de fantaisie à jambage courbé - 2761)\n"
 	"	x (capitule - 2E3F)"},
@@ -1039,7 +1039,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (point médian katakana - 30FB)\n"
 	"	x (lettre latine point sinologique - A78F)"},
 /* 00B8 */ { "CÉDILLE","	* ce caractère chasse\n"
-	"	* autres diacritiques avec chasse : 02D8-02DB\n"
+	"	* autres diacritiques à chasse : 02D8-02DB\n"
 	"	x (diacritique cédille - 0327)\n"
 	"	# 0020 0327"},
 /* 00B9 */ { "EXPOSANT UN","	x (exposant deux - 00B2)\n"
@@ -1065,8 +1065,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 00C4 */ { "LETTRE MAJUSCULE LATINE A TRÉMA","	: 0041 0308"},
 /* 00C5 */ { "LETTRE MAJUSCULE LATINE A ROND EN CHEF","	x (symbole angström - 212B)\n"
 	"	: 0041 030A"},
-/* 00C6 */ { "LETTRE MAJUSCULE LATINE AE","	= digramme soudé ae majuscule, ash majuscule (du vieil anglais æsc)\n"
-	"	= e dans l'a majuscule"},
+/* 00C6 */ { "LETTRE MAJUSCULE LATINE AE","	= digramme soudé ae majuscule, ligature ae majuscule\n"
+	"	= e dans l'a majuscule\n"
+	"	= ash majuscule (du vieil anglais æsc)"},
 /* 00C7 */ { "LETTRE MAJUSCULE LATINE C CÉDILLE","	: 0043 0327"},
 /* 00C8 */ { "LETTRE MAJUSCULE LATINE E ACCENT GRAVE","	: 0045 0300"},
 /* 00C9 */ { "LETTRE MAJUSCULE LATINE E ACCENT AIGU","	: 0045 0301"},
@@ -1087,7 +1088,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 00D4 */ { "LETTRE MAJUSCULE LATINE O ACCENT CIRCONFLEXE","	: 004F 0302"},
 /* 00D5 */ { "LETTRE MAJUSCULE LATINE O TILDE","	: 004F 0303"},
 /* 00D6 */ { "LETTRE MAJUSCULE LATINE O TRÉMA","	: 004F 0308"},
-/* 00D7 */ { "SIGNE DE MULTIPLICATION","	= produit cartésien en notation z\n"
+/* 00D7 */ { "SIGNE DE MULTIPLICATION","	= produit cartésien en notation Z\n"
 	"	x (signe en forme de croix - 274C)"},
 /* 00D8 */ { "LETTRE MAJUSCULE LATINE O BARRÉ OBLIQUEMENT","	= o coticé\n"
 	"	x (ensemble vide - 2205)"},
@@ -1111,8 +1112,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 00E4 */ { "LETTRE MINUSCULE LATINE A TRÉMA","	: 0061 0308"},
 /* 00E5 */ { "LETTRE MINUSCULE LATINE A ROND EN CHEF","	* danois, norvégien, suédois, wallon\n"
 	"	: 0061 030A"},
-/* 00E6 */ { "LETTRE MINUSCULE LATINE AE","	= digramme soudé ae minuscule, ash minuscule (du vieil anglais æsc)\n"
+/* 00E6 */ { "LETTRE MINUSCULE LATINE AE","	= digramme soudé ae minuscule, ligature ae minuscule\n"
 	"	= e dans l'a minuscule\n"
+	"	= ash minuscule (du vieil anglais æsc)\n"
 	"	* danois, norvégien, islandais, féroïen, vieil anglais, français, API\n"
 	"	x (digramme soudé minuscule latin oe - 0153)\n"
 	"	x (ligature minuscule cyrillique a ié - 04D5)"},
@@ -1164,7 +1166,6 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	: 0079 0308"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_01[] = {
 /* 0100 */ { "LETTRE MAJUSCULE LATINE A MACRON","	: 0041 0304"},
 /* 0101 */ { "LETTRE MINUSCULE LATINE A MACRON","	* letton, latin, etc.\n"
@@ -1319,7 +1320,8 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 0151 */ { "LETTRE MINUSCULE LATINE O DOUBLE ACCENT AIGU","	* hongrois\n"
 	"	: 006F 030B"},
 /* 0152 */ { "DIGRAMME SOUDÉ MAJUSCULE LATIN OE",NULL},
-/* 0153 */ { "DIGRAMME SOUDÉ MINUSCULE LATIN OE","	= ligature oe, e dans l'o\n"
+/* 0153 */ { "DIGRAMME SOUDÉ MINUSCULE LATIN OE","	= ligature oe\n"
+	"	= e dans l'o\n"
 	"	= ethel (du vieil anglais eðel)\n"
 	"	* français, API, vieil islandais, vieil anglais, etc.\n"
 	"	x (lettre minuscule latine ae - 00E6)\n"
@@ -1507,7 +1509,7 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* la minuscule est 0283\n"
 	"	x (lettre majuscule grecque sigma - 03A3)"},
 /* 01AA */ { "LETTRE LATINE ECH RÉFLÉCHI BOUCLÉ","	* symbole phonétique désuet de la palato-alvéolaire labialisée ou de la fricative palatale\n"
-	"	* tchi\n"
+	"	* tchi (ou twi)\n"
 	"	* orthographes recommandées : 0283 02B7, 00E7 02B7, 0068 0265, etc."},
 /* 01AB */ { "LETTRE MINUSCULE LATINE T HAMEÇON PALATAL","	* symbole phonétique désuet de la dentale ou de l'alvéolaire palatalisée\n"
 	"	* orthographe recommandée : 0074 02B2"},
@@ -1543,7 +1545,7 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	x (lettre latine fricative pharyngale sonore - 0295)\n"
 	"	x (lettre arabe 'aïn - 0639)"},
 /* 01BA */ { "LETTRE MINUSCULE LATINE EJ À JAMBAGE","	* symbole désuet de la palato-alvéolaire labialisée sonore ou de la fricative palatale\n"
-	"	* tchi\n"
+	"	* tchi (ou twi)\n"
 	"	* orthographes recommandées : 0292 02B7 ou 006A 02B7"},
 /* 01BB */ { "LETTRE LATINE DEUX BARRÉ","	* symbole désuet de l'affriquée [dz]\n"
 	"	* orthographes recommandées : 0292 ou 0064 007A"},
@@ -1616,7 +1618,7 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 01DC */ { "LETTRE MINUSCULE LATINE U TRÉMA ET ACCENT GRAVE","	* quatrième ton pinyin\n"
 	"	: 00FC 0300"},
 /* 01DD */ { "LETTRE MINUSCULE LATINE E CULBUTÉ","	* alphabet pan-nigérian\n"
-	"	* utiliser 0259 pour tous les autres emplois du schwa\n"
+	"	* il faut utiliser 0259 pour tous les autres emplois du schwa\n"
 	"	* la majuscule est 018E\n"
 	"	x (lettre minuscule latine schwa - 0259)"},
 /* 01DE */ { "LETTRE MAJUSCULE LATINE A TRÉMA ET MACRON","	: 00C4 0304"},
@@ -1673,7 +1675,6 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 01FF */ { "LETTRE MINUSCULE LATINE O BARRÉ ACCENT AIGU","	: 00F8 0301"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0200 */ { "LETTRE MAJUSCULE LATINE A DOUBLE ACCENT GRAVE","	: 0041 030F"},
 /* 0201 */ { "LETTRE MINUSCULE LATINE A DOUBLE ACCENT GRAVE","	: 0061 030F"},
@@ -1700,12 +1701,10 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0216 */ { "LETTRE MAJUSCULE LATINE U BRÈVE RENVERSÉE","	: 0055 0311"},
 /* 0217 */ { "LETTRE MINUSCULE LATINE U BRÈVE RENVERSÉE","	: 0075 0311"},
 /* 0218 */ { "LETTRE MAJUSCULE LATINE S VIRGULE SOUSCRITE","	: 0053 0326"},
-/* 0219 */ { "LETTRE MINUSCULE LATINE S VIRGULE SOUSCRITE","	* roumain, quand la forme à virgule souscrite s'impose\n"
-	"	x (lettre minuscule latine s cédille - 015F)\n"
+/* 0219 */ { "LETTRE MINUSCULE LATINE S VIRGULE SOUSCRITE","	x (lettre minuscule latine s cédille - 015F)\n"
 	"	: 0073 0326"},
 /* 021A */ { "LETTRE MAJUSCULE LATINE T VIRGULE SOUSCRITE","	: 0054 0326"},
-/* 021B */ { "LETTRE MINUSCULE LATINE T VIRGULE SOUSCRITE","	* roumain, quand la forme à virgule souscrite s'impose\n"
-	"	x (lettre minuscule latine t cédille - 0163)\n"
+/* 021B */ { "LETTRE MINUSCULE LATINE T VIRGULE SOUSCRITE","	x (lettre minuscule latine t cédille - 0163)\n"
 	"	: 0074 0326"},
 /* 021C */ { "LETTRE MAJUSCULE LATINE YOGH","	x (lettre majuscule latine ej - 01B7)"},
 /* 021D */ { "LETTRE MINUSCULE LATINE YOGH","	* moyen anglais, écossais\n"
@@ -1865,7 +1864,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0271 */ { "LETTRE MINUSCULE LATINE M HAMEÇON","	* nasale labiodentale sonore\n"
 	"	* la majuscule est 2C6E"},
 /* 0272 */ { "LETTRE MINUSCULE LATINE N HAMEÇON À GAUCHE","	* nasale palatale sonore\n"
-	"	* « gn » en français et italien, « ñ » en castillan\n"
+	"	* « gn » en français et en italien, « ñ » en castillan\n"
 	"	* la majuscule est 019D"},
 /* 0273 */ { "LETTRE MINUSCULE LATINE N HAMEÇON RÉTROFLEXE","	* nasale rétroflexe sonore"},
 /* 0274 */ { "LETTRE LATINE PETITE CAPITALE N","	* nasale uvulaire sonore"},
@@ -1916,7 +1915,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0285 */ { "LETTRE MINUSCULE LATINE R SANS OBIT RÉFLÉCHI HAMEÇON RÉTROFLEXE","	* voyelle rétroflexe apicale\n"
 	"	* utilisée par les sinisants et autres spécialistes des langues sino-tibétaines\n"
 	"	* l'API recommande 0290 0329\n"
-	"	* à l'origine 027F plus le hameçon rétroflexe 0322\n"
+	"	* à l'origine 027F plus l'hameçon rétroflexe 0322\n"
 	"	* la représentation recommandée préconise une hampe descendante"},
 /* 0286 */ { "LETTRE MINUSCULE LATINE ECH BOUCLÉ","	* fricative palatalisée post-alvéolaire sourde\n"
 	"	* écriture recommandée : 0290 0329"},
@@ -1947,7 +1946,8 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0290 */ { "LETTRE MINUSCULE LATINE Z HAMEÇON RÉTROFLEXE","	* fricative rétroflexe sonore"},
 /* 0291 */ { "LETTRE MINUSCULE LATINE Z BOUCLÉ","	* fricative laminale alvéolopalatale sonore\n"
 	"	* son écrit à l'aide de 017A en polonais"},
-/* 0292 */ { "LETTRE MINUSCULE LATINE EJ","	* fricative post-alvéolaire sonore\n"
+/* 0292 */ { "LETTRE MINUSCULE LATINE EJ","	= drachme anglo-saxonne (dram)\n"
+	"	* fricative post-alvéolaire sonore\n"
 	"	* portait le nom erroné de « yogh » dans Unicode 1.0\n"
 	"	* la majuscule est 01B7\n"
 	"	* same skolt\n"
@@ -2044,7 +2044,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (guillemet-apostrophe culbuté - 2018)"},
 /* 02BC */ { "LETTRE MODIFICATIVE APOSTROPHE","	= apostrophe\n"
 	"	* coup de glotte, glottalisation, éjectif\n"
-	"	* clone avec chasse de l'esprit doux grec\n"
+	"	* clone à chasse de l'esprit doux grec\n"
 	"	* beaucoup de langues considèrent ce caractère comme une lettre de leur alphabet\n"
 	"	* s'utilise comme une marque de ton en bodo, en dogri et en maïthili\n"
 	"	* 2019 est le caractère privilégié pour noter une apostrophe de ponctuation\n"
@@ -2060,7 +2060,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (lettre modificative arménienne demi-rond gauche - 0559)\n"
 	"	x (esprit rude grec - 1FFE)\n"
 	"	x (guillemet-virgule supérieur culbuté - 201B)"},
-/* 02BE */ { "LETTRE MODIFICATIVE DEMI-ROND DROIT","	* clone avec chasse de l'esprit rude grec\n"
+/* 02BE */ { "LETTRE MODIFICATIVE DEMI-ROND DROIT","	* clone à chasse de l'esprit rude grec\n"
 	"	* translittération de la hamza arabe (coup de glotte)\n"
 	"	* translittération de l'alef hébreu\n"
 	"	x (apostrophe arménienne - 055A)\n"
@@ -2197,13 +2197,13 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 02FF */ { "LETTRE MODIFICATIVE FLÈCHE VERS LA GAUCHE BASSE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_03[] = {
-/* 0300 */ { "DIACRITIQUE ACCENT GRAVE","	= accent grave grec, varia grec\n"
+/* 0300 */ { "DIACRITIQUE ACCENT GRAVE","	= accent grave grec (varia)\n"
 	"	x (accent grave - 0060)\n"
 	"	x (lettre modificative accent grave - 02CB)"},
 /* 0301 */ { "DIACRITIQUE ACCENT AIGU","	= accent tonique\n"
-	"	= accent aigu grec, oxeia grec\n"
+	"	= accent aigu grec (du système polytonique)\n"
+	"	= accent grec (du système monotonique)\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (accent aigu - 00B4)\n"
 	"	x (lettre modificative prime - 02B9)\n"
@@ -2221,7 +2221,9 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	* à distinguer du caractère suivant\n"
 	"	x (macron - 00AF)\n"
 	"	x (lettre modificative macron - 02C9)"},
-/* 0305 */ { "DIACRITIQUE TIRET HAUT","	* se lie à gauche et à droite\n"
+/* 0305 */ { "DIACRITIQUE TIRET HAUT","	= trait suscrit, vinculum\n"
+	"	* se lie à gauche et à droite\n"
+	"	* dans l'écriture d'une expression mathématique, il relie graphiquement des symboles qui doivent être considérés comme formant un tout\n"
 	"	x (macron - 00AF)"},
 /* 0306 */ { "DIACRITIQUE BRÈVE","	= bref\n"
 	"	= brève grecque, brakhus grec\n"
@@ -2231,9 +2233,9 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	* syriaque\n"
 	"	* API (retiré en 1976) : palatalisation\n"
 	"	x (point en chef - 02D9)"},
-/* 0308 */ { "DIACRITIQUE TRÉMA","	= double point en chef, tréma\n"
+/* 0308 */ { "DIACRITIQUE TRÉMA","	= double point en chef, Umlaut\n"
 	"	= tréma grec\n"
-	"	= dérivée double\n"
+	"	= dérivée seconde\n"
 	"	* syriaque\n"
 	"	x (tréma - 00A8)"},
 /* 0309 */ { "DIACRITIQUE CROCHET EN CHEF","	= hoï\n"
@@ -2249,7 +2251,7 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	x (double accent aigu - 02DD)"},
 /* 030C */ { "DIACRITIQUE CARON","	= hatchek, chevron, accent hirondelle\n"
 	"	x (caron - 02C7)"},
-/* 030D */ { "DIACRITIQUE LIGNE VERTICALE EN CHEF","	* il ne s'agit pas d'un accent grec, en dépit de l'annotation contraire d'ISO 10646\n"
+/* 030D */ { "DIACRITIQUE LIGNE VERTICALE EN CHEF","	* il ne s'agit pas de l'accent grec (tonos)\n"
 	"	* marshallais\n"
 	"	x (lettre modificative ligne verticale - 02C8)"},
 /* 030E */ { "DIACRITIQUE DOUBLE LIGNE VERTICALE EN CHEF","	* marshallais\n"
@@ -2262,12 +2264,12 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 /* 0312 */ { "DIACRITIQUE VIRGULE CULBUTÉE EN CHEF","	= cédille suscrite, cédille en chef\n"
 	"	* letton (mais pas utilisé dans les décompositions)\n"
 	"	x (lettre modificative virgule culbutée - 02BB)"},
-/* 0313 */ { "DIACRITIQUE VIRGULE EN CHEF","	= esprit doux, psili grec\n"
+/* 0313 */ { "DIACRITIQUE VIRGULE EN CHEF","	= esprit doux grec (psili)\n"
 	"	* éjective ou glottalisation des américanistes\n"
 	"	x (lettre modificative apostrophe - 02BC)\n"
 	"	x (diacritique cyrillique psili pneumata - 0486)\n"
 	"	x (apostrophe arménienne - 055A)"},
-/* 0314 */ { "DIACRITIQUE VIRGULE RÉFLÉCHIE EN CHEF","	= esprit rude, dasia grec\n"
+/* 0314 */ { "DIACRITIQUE VIRGULE RÉFLÉCHIE EN CHEF","	= esprit rude grec (dasia)\n"
 	"	x (lettre modificative virgule réfléchie - 02BD)\n"
 	"	x (diacritique cyrillique dasia pneumata - 0485)\n"
 	"	x (lettre modificative arménienne demi-rond gauche - 0559)"},
@@ -2372,7 +2374,8 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	: 0313 diacritique virgule en chef"},
 /* 0344 */ { "DIACRITIQUE GREC TRÉMA ACCENT","	* l'utilisation de ce caractère est déconseillée\n"
 	"	: 0308 0301"},
-/* 0345 */ { "DIACRITIQUE GREC IOTA SOUSCRIT","	* présente des particularités liées à la casse\n"
+/* 0345 */ { "DIACRITIQUE GREC IOTA SOUSCRIT","	= iota grec sans chasse souscrit (1.0)\n"
+	"	* présente des particularités liées à la casse\n"
 	"	x (caractère grec iota souscrit - 037A)\n"
 	"	x (lettre majuscule grecque iota - 0399)"},
 /* 0346 */ { "DIACRITIQUE PONTET EN CHEF","	* API : dentolabiale\n"
@@ -2458,7 +2461,8 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 /* 0381 */ { NULL,NULL},
 /* 0382 */ { NULL,NULL},
 /* 0383 */ { NULL,NULL},
-/* 0384 */ { "ACCENT GREC","	= caractère grec accent aigu\n"
+/* 0384 */ { "ACCENT GREC","	= caractère grec accent\n"
+	"	= tonos\n"
 	"	x (accent aigu - 00B4)\n"
 	"	x (diacritique ligne verticale en chef - 030D)\n"
 	"	# 0020 0301"},
@@ -2634,7 +2638,6 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	* indique que les lignes qui succèdent à ce symbole doivent être déplacées à l'endroit marqué par 03FE"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_04[] = {
 /* 0400 */ { "LETTRE MAJUSCULE CYRILLIQUE IÉ GRAVE","	: 0415 0300"},
 /* 0401 */ { "LETTRE MAJUSCULE CYRILLIQUE IO","	: 0415 0308"},
@@ -2954,7 +2957,6 @@ static const struct unicode_nameannot unaFR_00_04[] = {
 /* 04FF */ { "LETTRE MINUSCULE CYRILLIQUE KHA BARRÉ",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_05[] = {
 /* 0500 */ { "LETTRE MAJUSCULE CYRILLIQUE DÉ KOMI",NULL},
 /* 0501 */ { "LETTRE MINUSCULE CYRILLIQUE DÉ KOMI",NULL},
@@ -3247,7 +3249,6 @@ static const struct unicode_nameannot unaFR_00_05[] = {
 /* 05FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_06[] = {
 /* 0600 */ { "SIGNE NUMÉRAL ARABE",NULL},
 /* 0601 */ { "SIGNE ARABE SANAH",NULL},
@@ -3275,7 +3276,7 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 0614 */ { "DIACRITIQUE ARABE TAKHALLOUS","	* signe placé au-dessus du nom ou du pseudonyme d'un poète ou, parfois, pour indiquer tous les noms propres"},
 /* 0615 */ { "PETIT TA' ARABE EN CHEF","	* indique une pause recommandée dans certains corans publiés en Iran et au Pakistan\n"
 	"	* ne doit pas être confondu avec le petit signe TA' utilisé comme diacritique avec certaines lettres comme 0679"},
-/* 0616 */ { "PETITE LIGATURE ARABE EN CHEF ALIF LAM YA'","	* vieux persan"},
+/* 0616 */ { "PETITE LIGATURE ARABE EN CHEF ALIF LAM YA'","	* persan classique"},
 /* 0617 */ { "PETIT ZAÏN ARABE EN CHEF",NULL},
 /* 0618 */ { "PETIT FATHA ARABE","	* ne doit pas être confondu avec 064E FATHA"},
 /* 0619 */ { "PETIT DAMMA ARABE","	* ne doit pas être confondu avec 064F DAMMA"},
@@ -3353,7 +3354,7 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 	"	* indique la gémination (ou le renforcement) de la consonne"},
 /* 0652 */ { "SOUKOUN ARABE","	= djezm, quiescence, soukoûn\n"
 	"	* indique l'absence de voyelle après une consonne de base\n"
-	"	* utilisé dans les annotations coraniques pour indiquer une longue voyelle à ignorer\n"
+	"	* utilisé dans les annotations coraniques pour indiquer une voyelle longue à ignorer\n"
 	"	* peut prendre une variété de formes, y compris une forme circulaire ou une forme semblable à 06E1\n"
 	"	x (petite tête de kha' arabe en chef sans point - 06E1)"},
 /* 0653 */ { "MADDA ARABE EN CHEF","	= medda suscrite"},
@@ -3422,7 +3423,7 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 0687 */ { "LETTRE ARABE TCHEHA'","	* sindhi"},
 /* 0688 */ { "LETTRE ARABE DDAL","	* ourdou"},
 /* 0689 */ { "LETTRE ARABE DAL ROND","	* pachto"},
-/* 068A */ { "LETTRE ARABE DAL POINT SOUSCRIT","	* sindhi, vieux persan"},
+/* 068A */ { "LETTRE ARABE DAL POINT SOUSCRIT","	* sindhi, persan classique"},
 /* 068B */ { "LETTRE ARABE DAL POINT SOUSCRIT ET PETIT TA'","	* langues lahnda"},
 /* 068C */ { "LETTRE ARABE DAHAL","	* sindhi"},
 /* 068D */ { "LETTRE ARABE DDAHAL","	* sindhi"},
@@ -3434,14 +3435,14 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 0691 */ { "LETTRE ARABE RRA'","	* ourdou"},
 /* 0692 */ { "LETTRE ARABE RA' PETIT V","	* kurde"},
 /* 0693 */ { "LETTRE ARABE RA' ROND","	* pachto"},
-/* 0694 */ { "LETTRE ARABE RA' POINT SOUSCRIT","	* kurde, vieux persan"},
+/* 0694 */ { "LETTRE ARABE RA' POINT SOUSCRIT","	* kurde, persan classique"},
 /* 0695 */ { "LETTRE ARABE RA' PETIT V SOUSCRIT","	* kurde"},
 /* 0696 */ { "LETTRE ARABE RA' POINT SOUSCRIT ET POINT EN CHEF","	* pachto"},
 /* 0697 */ { "LETTRE ARABE RA' DEUX POINTS EN CHEF","	* dargwa"},
 /* 0698 */ { "LETTRE ARABE JA'","	* persan, ourdou, etc."},
 /* 0699 */ { "LETTRE ARABE RA' QUATRE POINTS EN CHEF","	* sindhi"},
 /* 069A */ { "LETTRE ARABE SÎN POINT SOUSCRIT ET POINT EN CHEF","	* pachto"},
-/* 069B */ { "LETTRE ARABE SÎN TROIS POINTS SOUSCRITS","	* vieux persan"},
+/* 069B */ { "LETTRE ARABE SÎN TROIS POINTS SOUSCRITS","	* persan classique"},
 /* 069C */ { "LETTRE ARABE SÎN TROIS POINTS SOUSCRITS ET TROIS POINTS EN CHEF","	* arabe marocain"},
 /* 069D */ { "LETTRE ARABE ÇAD DEUX POINTS SOUSCRITS","	* langues turques"},
 /* 069E */ { "LETTRE ARABE ÇAD TROIS POINTS EN CHEF","	* berbère, bourouchaski"},
@@ -3451,19 +3452,19 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06A2 */ { "LETTRE ARABE FA' POINT DESCENDU","	* arabe maghrébin"},
 /* 06A3 */ { "LETTRE ARABE FA' POINT SOUSCRIT","	* ingouche"},
 /* 06A4 */ { "LETTRE ARABE VA'","	* parfois utilisée pour l'écriture de mots d'emprunt en arabe\n"
-	"	* kurde, chorasmien (khwarezmien), vieux persan"},
+	"	* kurde, chorasmien (khwarezmien), persan classique"},
 /* 06A5 */ { "LETTRE ARABE FA' TROIS POINTS SOUSCRITS","	* arabe maghrébin dans les mots d'emprunt"},
 /* 06A6 */ { "LETTRE ARABE PEHA'","	* sindhi"},
 /* 06A7 */ { "LETTRE ARABE QAF POINT EN CHEF","	* arabe maghrébin, ouïgour"},
 /* 06A8 */ { "LETTRE ARABE QAF TROIS POINTS EN CHEF","	* arabe tunisien"},
 /* 06A9 */ { "LETTRE ARABE KEHA'","	* persan, ourdou, etc."},
 /* 06AA */ { "LETTRE ARABE KAF ÉCRASÉ","	= kaf de l'impiété, kaf paraphe\n"
-	"	* en sindhi, représente un lettre distincte du KAF arabe (0643)"},
+	"	* en sindhi, représente une lettre distincte du KAF arabe (0643)"},
 /* 06AB */ { "LETTRE ARABE KAF ROND","	* pachto\n"
 	"	* peut ressembler à un KAF arabe (0643) avec un rond souscrit"},
 /* 06AC */ { "LETTRE ARABE KAF POINT EN CHEF","	* vieux malais"},
-/* 06AD */ { "LETTRE ARABE NG","	* ouïgour, kazakh, vieux malais, vieux persan, etc."},
-/* 06AE */ { "LETTRE ARABE KAF TROIS POINTS SOUSCRITS","	* berbère, vieux persan"},
+/* 06AD */ { "LETTRE ARABE NG","	* ouïgour, kazakh, vieux malais, persan classique, etc."},
+/* 06AE */ { "LETTRE ARABE KAF TROIS POINTS SOUSCRITS","	* berbère, persan classique"},
 /* 06AF */ { "LETTRE ARABE GAF","	* persan, ourdou, etc."},
 /* 06B0 */ { "LETTRE ARABE GAF ROND","	* langues lahnda"},
 /* 06B1 */ { "LETTRE ARABE NGOA'","	* sindhi"},
@@ -3505,7 +3506,7 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06CA */ { "LETTRE ARABE WAW DEUX POINTS EN CHEF","	* kurde"},
 /* 06CB */ { "LETTRE ARABE VÉ","	* ouïgour, kazakh"},
 /* 06CC */ { "LETTRE ARABE FARSI YA'","	* arabe, persan, ourdou, cachemiri, etc.\n"
-	"	* les formes initiales et médiales de cette lettre sont pourvues de points\n"
+	"	* les formes initiale et médiale de cette lettre sont pourvues de points\n"
 	"	x (lettre arabe alif maksoura - 0649)\n"
 	"	x (lettre arabe ya' - 064A)"},
 /* 06CD */ { "LETTRE ARABE YA' À QUEUE","	* pachto, sindhi"},
@@ -3549,7 +3550,7 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06EC */ { "POINT PLEIN ARABE EN CHEF",NULL},
 /* 06ED */ { "PETIT MÎM ARABE SOUSCRIT",NULL},
 /* 06EE */ { "LETTRE ARABE DAL PIGNON",NULL},
-/* 06EF */ { "LETTRE ARABE RA' PIGNON","	* utilisée aussi en vieux persan"},
+/* 06EF */ { "LETTRE ARABE RA' PIGNON","	* utilisée aussi en persan classique"},
 /* 06F0 */ { "CHIFFRE ARABO-INDIEN ÉTENDU ZÉRO",NULL},
 /* 06F1 */ { "CHIFFRE ARABO-INDIEN ÉTENDU UN",NULL},
 /* 06F2 */ { "CHIFFRE ARABO-INDIEN ÉTENDU DEUX",NULL},
@@ -3568,7 +3569,6 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06FF */ { "LETTRE ARABE HÉ' PIGNON",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_07[] = {
 /* 0700 */ { "FIN DE PARAGRAPHE SYRIAQUE","	* marque la fin d'un paragraphe"},
 /* 0701 */ { "POINT SYRIAQUE SUPRALINÉAIRE","	* indique une interrogative, l'impératif et les pauses, particulièrement dans les textes bibliques"},
@@ -3844,7 +3844,6 @@ static const struct unicode_nameannot unaFR_00_07[] = {
 /* 07FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_08[] = {
 /* 0800 */ { "LETTRE SAMARITAINE ALAF",NULL},
 /* 0801 */ { "LETTRE SAMARITAINE BIT",NULL},
@@ -4114,7 +4113,6 @@ static const struct unicode_nameannot unaFR_00_08[] = {
 /* 08FF */ { "DIACRITIQUE ARABE NOÛN GHOUNNA COUCHÉ",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_09[] = {
 /* 0900 */ { "DIACRITIQUE DÉVANÂGARÎ TCHANDRABINDOU RENVERSÉ","	= vaïdika adhomoukha tchandrabindou"},
 /* 0901 */ { "DIACRITIQUE DÉVANÂGARÎ TCHANDRABINDOU","	= anounassika\n"
@@ -4379,7 +4377,7 @@ static const struct unicode_nameannot unaFR_00_09[] = {
 /* 09F1 */ { "LETTRE BENGALI RA AVEC BARRE OBLIQUE SOUSCRITE","	= lettre assamaise wa\n"
 	"	= lettre bengali va avec barre oblique souscrite (1.0)"},
 /* 09F2 */ { "SIGNE BENGALI ROUPIE","	= taka\n"
-	"	* signe monétaire historique"},
+	"	* symbole désuet"},
 /* 09F3 */ { "SYMBOLE BENGALI ROUPIE","	= taka bangladais"},
 /* 09F4 */ { "NUMÉRATEUR MONÉTAIRE BENGALI UN","	* tombé en désuétude"},
 /* 09F5 */ { "NUMÉRATEUR MONÉTAIRE BENGALI DEUX","	* tombé en désuétude"},
@@ -4398,7 +4396,6 @@ static const struct unicode_nameannot unaFR_00_09[] = {
 /* 09FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0A[] = {
 /* 0A00 */ { NULL,NULL},
 /* 0A01 */ { "DIACRITIQUE GOURMOUKHÎ ADDAK BINDI",NULL},
@@ -4661,7 +4658,6 @@ static const struct unicode_nameannot unaFR_00_0A[] = {
 /* 0AFF */ { "DIACRITIQUE GOUDJARATI NOUKTA SUSCRIT FORMÉ DE DEUX CERCLES",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0B[] = {
 /* 0B00 */ { NULL,NULL},
 /* 0B01 */ { "DIACRITIQUE ORIYA TCHANDRABINDOU",NULL},
@@ -4932,7 +4928,6 @@ static const struct unicode_nameannot unaFR_00_0B[] = {
 /* 0BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0C[] = {
 /* 0C00 */ { "DIACRITIQUE TÉLOUGOU TCHANDRABINDOU SUSCRIT",NULL},
 /* 0C01 */ { "DIACRITIQUE TÉLOUGOU TCHANDRABINDOU","	= arasounna"},
@@ -5156,7 +5151,7 @@ static const struct unicode_nameannot unaFR_00_0C[] = {
 /* 0CDB */ { NULL,NULL},
 /* 0CDC */ { NULL,NULL},
 /* 0CDD */ { NULL,NULL},
-/* 0CDE */ { "LETTRE KANNARA LLLA","	* lettre historique désuète\n"
+/* 0CDE */ { "LETTRE KANNARA LLLA","	* lettre désuète\n"
 	"	* l'appellation anglaise de ce caractère est erronée"},
 /* 0CDF */ { NULL,NULL},
 /* 0CE0 */ { "LETTRE KANNARA RR VOCALIQUE",NULL},
@@ -5193,7 +5188,6 @@ static const struct unicode_nameannot unaFR_00_0C[] = {
 /* 0CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0D[] = {
 /* 0D00 */ { "DIACRITIQUE MALAYALAM ANOUSVÂRA SUSCRIT",NULL},
 /* 0D01 */ { "DIACRITIQUE MALAYALAM TCHANDRABINDOU",NULL},
@@ -5466,7 +5460,6 @@ static const struct unicode_nameannot unaFR_00_0D[] = {
 /* 0DFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0E[] = {
 /* 0E00 */ { NULL,NULL},
 /* 0E01 */ { "CARACTÈRE THAÏ KO KAÏ",NULL},
@@ -5739,7 +5732,6 @@ static const struct unicode_nameannot unaFR_00_0E[] = {
 /* 0EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_0F[] = {
 /* 0F00 */ { "SYLLABE TIBÉTAINE OM",NULL},
 /* 0F01 */ { "SIGNE TIBÉTAIN GTER YIG MGO A TRONQUÉ","	= ter yik go a t'oung"},
@@ -6084,7 +6076,6 @@ static const struct unicode_nameannot unaFR_00_0F[] = {
 /* 0FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_10[] = {
 /* 1000 */ { "LETTRE BIRMANE KA","	~ 1000 FE00 forme pointée"},
 /* 1001 */ { "LETTRE BIRMANE KHA",NULL},
@@ -6348,7 +6339,6 @@ static const struct unicode_nameannot unaFR_00_10[] = {
 /* 10FF */ { "LETTRE GÉORGIENNE SIGNE LABIAL",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_11[] = {
 /* 1100 */ { "HANGÛL TCH'ÔSONG KIYOK","	= K"},
 /* 1101 */ { "HANGÛL TCH'ÔSONG SSANGKIYOK","	= KK"},
@@ -6608,7 +6598,6 @@ static const struct unicode_nameannot unaFR_00_11[] = {
 /* 11FF */ { "HANGÛL DJÔNGSONG SSANGNIEUN",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_12[] = {
 /* 1200 */ { "SYLLABE ÉTHIOPIENNE HÄ",NULL},
 /* 1201 */ { "SYLLABE ÉTHIOPIENNE HOU",NULL},
@@ -6625,7 +6614,7 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 120C */ { "SYLLABE ÉTHIOPIENNE LÉ",NULL},
 /* 120D */ { "SYLLABE ÉTHIOPIENNE LE",NULL},
 /* 120E */ { "SYLLABE ÉTHIOPIENNE LO",NULL},
-/* 120F */ { "SYLLABE ÉTHIOPIENNE LWA","	* le socle de la lettre sert à noter les combinaisons de consonne avec w"},
+/* 120F */ { "SYLLABE ÉTHIOPIENNE LWA","	* le socle de la lettre sert à noter les combinaisons de consonnes avec w"},
 /* 1210 */ { "SYLLABE ÉTHIOPIENNE HHÄ",NULL},
 /* 1211 */ { "SYLLABE ÉTHIOPIENNE HHOU",NULL},
 /* 1212 */ { "SYLLABE ÉTHIOPIENNE HHI",NULL},
@@ -6869,7 +6858,6 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 12FF */ { "SYLLABE ÉTHIOPIENNE DDWA",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_13[] = {
 /* 1300 */ { "SYLLABE ÉTHIOPIENNE DJÄ",NULL},
 /* 1301 */ { "SYLLABE ÉTHIOPIENNE DJOU",NULL},
@@ -7130,7 +7118,6 @@ static const struct unicode_nameannot unaFR_00_13[] = {
 /* 13FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_14[] = {
 /* 1400 */ { "TRAIT D'UNION SYLLABE CANADIENNE",NULL},
 /* 1401 */ { "SYLLABE CANADIENNE É","	* inuktitut (AÏ), porteur (OU)"},
@@ -7392,7 +7379,6 @@ static const struct unicode_nameannot unaFR_00_14[] = {
 /* 14FF */ { "SYLLABE CANADIENNE SOUÔ CRI DES PLAINES",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_15[] = {
 /* 1500 */ { "SYLLABE CANADIENNE SOUA",NULL},
 /* 1501 */ { "SYLLABE CANADIENNE SOUA CRI DES PLAINES",NULL},
@@ -7653,7 +7639,6 @@ static const struct unicode_nameannot unaFR_00_15[] = {
 /* 15FF */ { "SYLLABE CANADIENNE KKI PORTEUR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_16[] = {
 /* 1600 */ { "SYLLABE CANADIENNE KKA PORTEUR",NULL},
 /* 1601 */ { "SYLLABE CANADIENNE KK PORTEUR",NULL},
@@ -7916,7 +7901,6 @@ static const struct unicode_nameannot unaFR_00_16[] = {
 /* 16FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_17[] = {
 /* 1700 */ { "LETTRE TAGALOG A",NULL},
 /* 1701 */ { "LETTRE TAGALOG I",NULL},
@@ -8211,7 +8195,6 @@ static const struct unicode_nameannot unaFR_00_17[] = {
 /* 17FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_18[] = {
 /* 1800 */ { "BIRGA MONGOL","	x (signe tibétain yig mgo mdun ma ouvrant - 0F04)"},
 /* 1801 */ { "POINTS DE SUSPENSION MONGOLS",NULL},
@@ -8855,7 +8838,6 @@ static const struct unicode_nameannot unaFR_00_18[] = {
 /* 18FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_19[] = {
 /* 1900 */ { "LETTRE LIMBU PORTE-VOYELLE",NULL},
 /* 1901 */ { "LETTRE LIMBU KA",NULL},
@@ -9117,7 +9099,6 @@ static const struct unicode_nameannot unaFR_00_19[] = {
 /* 19FF */ { "SYMBOLE KHMER QUINZIÈME LUNE DÉCROISSANTE","	= dâp-pram rootch"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1A[] = {
 /* 1A00 */ { "LETTRE BOUGUIE KA",NULL},
 /* 1A01 */ { "LETTRE BOUGUIE GA",NULL},
@@ -9381,7 +9362,6 @@ static const struct unicode_nameannot unaFR_00_1A[] = {
 /* 1AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1B[] = {
 /* 1B00 */ { "DIACRITIQUE BALINAIS ULU RICEM","	= ardhatchandra"},
 /* 1B01 */ { "DIACRITIQUE BALINAIS ULU CANDRA","	= tchandrabindou"},
@@ -9656,7 +9636,6 @@ static const struct unicode_nameannot unaFR_00_1B[] = {
 /* 1BFF */ { "SYMBOLE BATAK BINDOU PANGOLAT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1C[] = {
 /* 1C00 */ { "LETTRE LEPTCHA KA",NULL},
 /* 1C01 */ { "LETTRE LEPTCHA KLA",NULL},
@@ -9922,7 +9901,6 @@ static const struct unicode_nameannot unaFR_00_1C[] = {
 /* 1CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D00 */ { "LETTRE LATINE PETITE CAPITALE A",NULL},
 /* 1D01 */ { "LETTRE LATINE PETITE CAPITALE AE",NULL},
@@ -10202,7 +10180,6 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1DFF */ { "DIACRITIQUE POINTES DE FLÈCHE VERS LA DROITE ET VERS LE BAS SOUSCRITES",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1E[] = {
 /* 1E00 */ { "LETTRE MAJUSCULE LATINE A ROND SOUSCRIT","	: 0041 0325"},
 /* 1E01 */ { "LETTRE MINUSCULE LATINE A ROND SOUSCRIT","	: 0061 0325"},
@@ -10505,7 +10482,6 @@ static const struct unicode_nameannot unaFR_00_1E[] = {
 /* 1EFF */ { "LETTRE MINUSCULE LATINE Y BOUCLÉ",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_1F[] = {
 /* 1F00 */ { "LETTRE MINUSCULE GRECQUE ALPHA ESPRIT DOUX","	: 03B1 0313"},
 /* 1F01 */ { "LETTRE MINUSCULE GRECQUE ALPHA ESPRIT RUDE","	: 03B1 0314"},
@@ -10767,7 +10743,6 @@ static const struct unicode_nameannot unaFR_00_1F[] = {
 /* 1FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_20[] = {
 /* 2000 */ { "DEMI-CADRATIN","	* ce caractère est en pratique équivalent à l'espace demi-cadratin\n"
 	"	: 2002 espace demi-cadratin"},
@@ -10850,9 +10825,11 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 	"	x (guillemet-virgule double inférieur réfléchi - 2E42)\n"
 	"	x (guillemet double prime inférieur - 301F)"},
 /* 201F */ { "GUILLEMET-VIRGULE DOUBLE SUPÉRIEUR CULBUTÉ","	* a la même signification que 201C, mais diffère dans sa forme"},
-/* 2020 */ { "OBÈLE","	x (obèle culbuté - 2E38)"},
-/* 2021 */ { "DOUBLE OBÈLE",NULL},
-/* 2022 */ { "PUCE","	x (point médian - 00B7)\n"
+/* 2020 */ { "OBÈLE","	* en typographie, signe permettant de signifier un appel de note\n"
+	"	x (obèle culbuté - 2E38)"},
+/* 2021 */ { "DOUBLE OBÈLE","	* en typographie, signe permettant de signifier un appel de note"},
+/* 2022 */ { "PUCE","	= petit cercle noir\n"
+	"	x (point médian - 00B7)\n"
 	"	x (point de conduite simple - 2024)\n"
 	"	x (opérateur puce - 2219)\n"
 	"	x (puce noir au blanc - 25D8)\n"
@@ -10927,11 +10904,11 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 	"	x (point d'interrogation - 003F)\n"
 	"	x (point exclarrogatif culbuté - 2E18)\n"
 	"	x (ornement point exclarrogatif au trait fort - 1F679)"},
-/* 203E */ { "TIRET HAUT","	= tiret suscrit avec chasse\n"
+/* 203E */ { "TIRET HAUT","	= trait suscrit à chasse\n"
 	"	# 0020 0305"},
 /* 203F */ { "TIRANT BAS","	= énotikon grec\n"
 	"	x (sourire - 2323)"},
-/* 2040 */ { "TIRANT HAUT","	= concaténation d'une séquence en notation z\n"
+/* 2040 */ { "TIRANT HAUT","	= concaténation d'une séquence en notation Z\n"
 	"	= dos-d'âne suscrit\n"
 	"	x (moue - 2322)"},
 /* 2041 */ { "LAMBDA D'INSERTION","	* signe de correcteur : insérer ici\n"
@@ -10970,14 +10947,13 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 	"	x (signe de division - 00F7)"},
 /* 2053 */ { "TIRET ONDÉ","	x (tilde - 007E)"},
 /* 2054 */ { "TIRANT BAS RENVERSÉ",NULL},
-/* 2055 */ { "POINT-FLEUR","	= phoul, pouspika, phul\n"
+/* 2055 */ { "POINT-FLEUR","	= phoul, pouspika\n"
 	"	* sert de signe de ponctuation en sylotî nâgrî, en bengali et dans d'autres écritures de l'Inde\n"
 	"	x (gros astérisque-hélice à huit branches larmées - 274B)"},
 /* 2056 */ { "TROIS-POINTS","	x (séparateur de paragraphes géorgien - 10FB)"},
 /* 2057 */ { "QUADRUPLE PRIME","	# 2032 2032 2032 2032"},
 /* 2058 */ { "QUATRE-POINTS EN LOSANGE",NULL},
 /* 2059 */ { "CINQ-POINTS EN QUINCONCE","	= pentonkion grec\n"
-	"	= quinconce\n"
 	"	x (face de dé-5 - 2684)"},
 /* 205A */ { "DEUX-POINTS EN CAPITALE","	* autrefois utilisé pour indiquer la fin d'une phrase ou le changement de locuteur\n"
 	"	* va de la ligne de base à celle de la hauteur des capitales\n"
@@ -11066,8 +11042,8 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 209D */ { NULL,NULL},
 /* 209E */ { NULL,NULL},
 /* 209F */ { NULL,NULL},
-/* 20A0 */ { "SYMBOLE ÉCU","	* prévu pour l'ECU\n"
-	"	* caractère historique ; il ne s'agit pas de l'euro\n"
+/* 20A0 */ { "SYMBOLE ÉCU","	* caractère prévu pour l'ECU, unité de compte électronique obsolète de la Communauté européenne ; ce caractère est caduc et n'a guère été utilisé\n"
+	"	* l'ECU n'est pas l'euro !\n"
 	"	x (symbole euro - 20AC)"},
 /* 20A1 */ { "SYMBOLE COLON","	* Costa Rica, Salvador"},
 /* 20A2 */ { "SYMBOLE CRUZEIRO","	* Brésil"},
@@ -11080,45 +11056,46 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 20A6 */ { "SYMBOLE NAIRA","	* Nigeria"},
 /* 20A7 */ { "SYMBOLE PESETA","	* Espagne\n"
 	"	x (symbole peso - 20B1)"},
-/* 20A8 */ { "SYMBOLE ROUPIE","	* Inde, symbole utilisé anciennement\n"
+/* 20A8 */ { "SYMBOLE ROUPIE","	* symbole générique utilisé pour la roupie au Sri Lanka, au Pakistan et au Népal (abandonné officiellement en Inde)\n"
 	"	x (symbole roupie indienne - 20B9)\n"
 	"	# 0052 0073"},
-/* 20A9 */ { "SYMBOLE WON","	* Corée"},
+/* 20A9 */ { "SYMBOLE WON","	* Corée du Sud et Corée du Nord"},
 /* 20AA */ { "SYMBOLE NOUVEAU CHÉKEL","	* Israël"},
 /* 20AB */ { "SYMBOLE DONG","	* Viêt Nam"},
-/* 20AC */ { "SYMBOLE EURO","	* symbole monétaire de l'Union monétaire européenne\n"
-	"	* euro, il ne s'agit pas de l'ECU\n"
+/* 20AC */ { "SYMBOLE EURO","	* symbole monétaire pour l'Union monétaire européenne\n"
+	"	* l'euro n'est pas l'ECU\n"
 	"	x (symbole écu - 20A0)"},
 /* 20AD */ { "SYMBOLE KIP","	* Laos"},
 /* 20AE */ { "SYMBOLE TOUGRIK","	* Mongolie\n"
 	"	* se translittère aussi tougroug, tougric, tougrog, togrog"},
-/* 20AF */ { "SYMBOLE DRACHME","	= drakhmê\n"
-	"	* Grèce"},
-/* 20B0 */ { "SYMBOLE PFENNIG","	= denier, pfennig allemand\n"
-	"	* Allemagne"},
-/* 20B1 */ { "SYMBOLE PESO","	* Philippines\n"
-	"	* le symbole dollar s'utilise pour le peso, qui est le nom de plusieurs devises d'Amérique latine\n"
+/* 20AF */ { "SYMBOLE DRACHME","	* Grèce"},
+/* 20B0 */ { "SYMBOLE PFENNIG","	* Allemagne\n"
+	"	* forme stylisée de la lettre minuscule d (pour « denarius », denier) en écriture cursive allemande (Kurrentschrift)"},
+/* 20B1 */ { "SYMBOLE PESO","	= symbole peso philippin\n"
+	"	* Philippines\n"
+	"	* le symbole dollar s'utilise pour le peso dans de nombreux pays d'Amérique latine\n"
 	"	x (symbole dollar - 0024)\n"
 	"	x (symbole peseta - 20A7)"},
 /* 20B2 */ { "SYMBOLE GUARANI","	* Paraguay\n"
 	"	* souvent représenté au moyen de « G. » ou de « Gs. »"},
-/* 20B3 */ { "SYMBOLE AUSTRAL","	* ancienne monnaie argentine"},
+/* 20B3 */ { "SYMBOLE AUSTRAL","	* Argentine\n"
+	"	* symbole pour l'austral, unité monétaire remplacée par le peso argentin"},
 /* 20B4 */ { "SYMBOLE HRYVNIA","	* Ukraine"},
 /* 20B5 */ { "SYMBOLE CEDI","	* Ghana\n"
 	"	* le glyphe peut ressembler à 023B ou à un C avec une petite barre verticale traversant l'arc supérieur\n"
 	"	x (symbole centime - 00A2)\n"
 	"	x (lettre majuscule latine c barré - 023B)"},
-/* 20B6 */ { "SYMBOLE LIVRE TOURNOIS","	* monnaie de compte qui fut utilisée en France des XIIIe au XVIIIe siècles"},
-/* 20B7 */ { "SYMBOLE SPESMILO","	* unité de compte monétaire historique associée à l'espéranto"},
+/* 20B6 */ { "SYMBOLE LIVRE TOURNOIS","	* unité de compte monétaire utilisée en France du XIIIe au XVIIIe siècle"},
+/* 20B7 */ { "SYMBOLE SPESMILO","	* unité monétaire transnationale obsolète associée au monde de l'espéranto"},
 /* 20B8 */ { "SYMBOLE TENGE","	* Kazakhstan\n"
 	"	x (symbole de fonction apl taquet vers le bas surligné - 2351)\n"
 	"	x (filet vers le bas simple et horizontal double - 2564)\n"
 	"	x (marque postale - 3012)"},
-/* 20B9 */ { "SYMBOLE ROUPIE INDIENNE","	* symbole officiel de la monnaie de l'Inde\n"
+/* 20B9 */ { "SYMBOLE ROUPIE INDIENNE","	* symbole monétaire officiel de la roupie pour l'Inde\n"
 	"	* contraste avec les symboles de la roupie propres à certaines polices\n"
 	"	x (lettre dévanâgarî ra - 0930)"},
-/* 20BA */ { "SYMBOLE LIRE TURQUE","	* symbole monétaire officiel de la lire turque"},
-/* 20BB */ { "SYMBOLE MARK NORDIQUE","	* ancienne représentation du mark utilisé au Danemark et en Norvège\n"
+/* 20BA */ { "SYMBOLE LIRE TURQUE","	* symbole monétaire officiel de la lire pour la Turquie"},
+/* 20BB */ { "SYMBOLE MARK NORDIQUE","	* représentation primitive du mark utilisé au Danemark et en Norvège\n"
 	"	x (majuscule m de ronde - 2133)"},
 /* 20BC */ { "SYMBOLE MANAT","	* Azerbaïdjan"},
 /* 20BD */ { "SYMBOLE ROUBLE","	* Russie"},
@@ -11151,8 +11128,8 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 20D8 */ { "DIACRITIQUE ROND COUVRANT",NULL},
 /* 20D9 */ { "DIACRITIQUE ROND SENS HORAIRE COUVRANT",NULL},
 /* 20DA */ { "DIACRITIQUE ROND SENS ANTIHORAIRE COUVRANT",NULL},
-/* 20DB */ { "DIACRITIQUE TROIS POINTS EN CHEF","	= troisième dérivée"},
-/* 20DC */ { "DIACRITIQUE QUATRE POINTS EN CHEF","	= quatrième dérivée"},
+/* 20DB */ { "DIACRITIQUE TROIS POINTS EN CHEF","	= dérivée troisième"},
+/* 20DC */ { "DIACRITIQUE QUATRE POINTS EN CHEF","	= dérivée quatrième"},
 /* 20DD */ { "DIACRITIQUE CERCLE ENGLOBANT","	= cercle de composition JIS\n"
 	"	= diacritique cyrillique myriade, diacritique cyrillique symbole dix mille\n"
 	"	x (cercle blanc - 25CB)\n"
@@ -11172,7 +11149,7 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 20E5 */ { "DIACRITIQUE BARRE OBLIQUE INVERSÉE COUVRANTE","	= diacritique contre-cotice couvrante\n"
 	"	= diacritique contre-oblique couvrante\n"
 	"	x (barre oblique inversée - 005C)"},
-/* 20E6 */ { "DIACRITIQUE DOUBLE BARRE VERTICALE COUVRANTE","	= diacritique fonction finie en notation z\n"
+/* 20E6 */ { "DIACRITIQUE DOUBLE BARRE VERTICALE COUVRANTE","	= diacritique fonction finie en notation Z\n"
 	"	x (double ligne verticale - 2016)"},
 /* 20E7 */ { "DIACRITIQUE SYMBOLE DE RENTE","	= anglet actuariel\n"
 	"	x (plafond à droite - 2309)"},
@@ -11204,13 +11181,12 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 20FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_21[] = {
 /* 2100 */ { "AU COMPTE DE","	# 0061 002F 0063"},
 /* 2101 */ { "AUX BONS SOINS DE","	= au sujet de\n"
 	"	x (aktieselskab - 214D)\n"
 	"	# 0061 002F 0073"},
-/* 2102 */ { "MAJUSCULE C AJOURÉ","	= c majuscule éclairé\n"
+/* 2102 */ { "MAJUSCULE C AJOURÉ","	= majuscule c éclairé\n"
 	"	= l'ensemble des nombres complexes\n"
 	"	# <police> 0043 lettre majuscule latine c"},
 /* 2103 */ { "DEGRÉ CELSIUS","	= degrés centigrades (à éviter)\n"
@@ -11228,7 +11204,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	# <police> 0067 lettre minuscule latine g"},
 /* 210B */ { "MAJUSCULE H DE RONDE","	= opérateur hamiltonien\n"
 	"	# <police> 0048 lettre majuscule latine h"},
-/* 210C */ { "MAJUSCULE H GOTHIQUE","	= espace de Hilbert séparable\n"
+/* 210C */ { "MAJUSCULE H GOTHIQUE","	= espace de Hilbert\n"
 	"	# <police> 0048 lettre majuscule latine h"},
 /* 210D */ { "MAJUSCULE H AJOURÉ","	= majuscule h éclairé\n"
 	"	# <police> 0048 lettre majuscule latine h"},
@@ -11252,7 +11228,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 2114 */ { "SYMBOLE L B BARRÉ","	= livre poids\n"
 	"	x (croisillon - 0023)"},
 /* 2115 */ { "MAJUSCULE N AJOURÉ","	= majuscule n éclairé\n"
-	"	= ensemble des nombres naturels\n"
+	"	= l'ensemble des nombres entiers naturels\n"
 	"	* il existe une variante de glyphe avec des hastes doublées\n"
 	"	# <police> 004E lettre majuscule latine n"},
 /* 2116 */ { "SYMBOLE NUMÉRO","	# 004E 006F"},
@@ -11284,7 +11260,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	# <exp> 0054 004D"},
 /* 2123 */ { "VERSICULE","	= verset"},
 /* 2124 */ { "MAJUSCULE Z AJOURÉ","	= majuscule z éclairé\n"
-	"	= l'ensemble des entiers relatifs\n"
+	"	= l'ensemble des nombres entiers relatifs\n"
 	"	# <police> 005A lettre majuscule latine z"},
 /* 2125 */ { "SYMBOLE ONCE","	x (lettre minuscule latine ej - 0292)\n"
 	"	x (symbole alchimique de la demi-once - 1F773)"},
@@ -11294,7 +11270,6 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	x (nœud ascendant - 260A)\n"
 	"	: 03A9 lettre majuscule grecque oméga"},
 /* 2127 */ { "SYMBOLE OHM RENVERSÉ","	= symbole mho\n"
-	"	= conductance\n"
 	"	* symbole SI désuet de la conductance, remplacé par S (Siemens)\n"
 	"	* typographiquement, une lettre majuscule grecque oméga culbutée\n"
 	"	x (lettre majuscule latine upsilon - 01B1)\n"
@@ -11316,7 +11291,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 212F */ { "MINUSCULE E DE RONDE","	= erreur\n"
 	"	= exposant naturel\n"
 	"	# <police> 0065 lettre minuscule latine e"},
-/* 2130 */ { "MAJUSCULE E DE RONDE","	= fem (force électromagnétique)\n"
+/* 2130 */ { "MAJUSCULE E DE RONDE","	= fem (force électromotrice)\n"
 	"	# <police> 0045 lettre majuscule latine e"},
 /* 2131 */ { "MAJUSCULE F DE RONDE","	= transformée de Fourier, transformation de Fourier\n"
 	"	# <police> 0046 lettre majuscule latine f"},
@@ -11457,9 +11432,9 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 218F */ { NULL,NULL},
 /* 2190 */ { "FLÈCHE VERS LA GAUCHE","	x (diacritique flèche vers la gauche couvrante - 20EA)"},
 /* 2191 */ { "FLÈCHE VERS LE HAUT","	* API : phonation égressive"},
-/* 2192 */ { "FLÈCHE VERS LA DROITE","	= fonction totale (notation z)"},
+/* 2192 */ { "FLÈCHE VERS LA DROITE","	= fonction totale en notation Z"},
 /* 2193 */ { "FLÈCHE VERS LE BAS","	* API : phonation ingressive"},
-/* 2194 */ { "FLÈCHE GAUCHE-DROITE","	= relation binaire (notation z)"},
+/* 2194 */ { "FLÈCHE GAUCHE-DROITE","	= relation binaire en notation Z"},
 /* 2195 */ { "FLÈCHE HAUT-BAS",NULL},
 /* 2196 */ { "FLÈCHE NORD-OUEST",NULL},
 /* 2197 */ { "FLÈCHE NORD-EST",NULL},
@@ -11475,15 +11450,21 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	x (flèche à deux pointes triangulaires vers la gauche - 2BEC)"},
 /* 219F */ { "FLÈCHE À DEUX POINTES VERS LE HAUT","	= déplacement rapide du curseur vers le haut"},
 /* 21A0 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE","	= déplacement rapide du curseur vers la droite\n"
-	"	= surjection totale (notation z)"},
+	"	= surjection totale en notation Z"},
 /* 21A1 */ { "FLÈCHE À DEUX POINTES VERS LE BAS","	= déplacement rapide du curseur vers le bas\n"
 	"	= page suivante"},
 /* 21A2 */ { "FLÈCHE VERS LA GAUCHE EMPENNÉE",NULL},
-/* 21A3 */ { "FLÈCHE VERS LA DROITE EMPENNÉE","	= injection totale (notation z)"},
-/* 21A4 */ { "FLÈCHE D'UN TAQUET VERS LA GAUCHE","	= flèche à socle, flèche à béquillon"},
-/* 21A5 */ { "FLÈCHE D'UN TAQUET VERS LE HAUT",NULL},
-/* 21A6 */ { "FLÈCHE D'UN TAQUET VERS LA DROITE","	= flèche à socle, flèche à béquillon"},
-/* 21A7 */ { "FLÈCHE D'UN TAQUET VERS LE BAS","	= symbole de profondeur"},
+/* 21A3 */ { "FLÈCHE VERS LA DROITE EMPENNÉE","	= injection totale en notation Z"},
+/* 21A4 */ { "FLÈCHE D'UN TAQUET VERS LA GAUCHE","	= flèche à socle vers la gauche\n"
+	"	= flèche à béquillon vers la gauche"},
+/* 21A5 */ { "FLÈCHE D'UN TAQUET VERS LE HAUT","	= flèche à socle vers le haut\n"
+	"	= flèche à béquillon vers le haut"},
+/* 21A6 */ { "FLÈCHE D'UN TAQUET VERS LA DROITE","	= flèche à socle vers la droite\n"
+	"	= flèche à béquillon vers la droite\n"
+	"	= opérateur maplet en notation Z (« a pour image »)"},
+/* 21A7 */ { "FLÈCHE D'UN TAQUET VERS LE BAS","	= flèche à socle vers le bas\n"
+	"	= flèche à béquillon vers le bas\n"
+	"	= symbole de profondeur"},
 /* 21A8 */ { "FLÈCHE HAUT-BAS SUR BASE",NULL},
 /* 21A9 */ { "FLÈCHE VERS LA GAUCHE À CROCHET",NULL},
 /* 21AA */ { "FLÈCHE VERS LA DROITE À CROCHET",NULL},
@@ -11504,7 +11485,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 21B6 */ { "FLÈCHE SEMI-CIRCULAIRE SENS ANTIHORAIRE EN CHEF",NULL},
 /* 21B7 */ { "FLÈCHE SEMI-CIRCULAIRE SENS HORAIRE EN CHEF",NULL},
 /* 21B8 */ { "FLÈCHE NORD-OUEST JUSQU'À UN LONG TAQUET","	= début"},
-/* 21B9 */ { "FLÈCHE VERS LA GAUCHE JUSQU'À UN TAQUET SUR FLÈCHE VERS LA DROITE JUSQU'À UN TAQUET","	= tabulation à droite et à gauche\n"
+/* 21B9 */ { "FLÈCHE VERS LA GAUCHE JUSQU'À UN TAQUET SUR FLÈCHE VERS LA DROITE JUSQU'À UN TAQUET","	= tabulation et tabulation arrière\n"
 	"	x (touche de tabulation horizontale - 2B7E)"},
 /* 21BA */ { "FLÈCHE CIRCULAIRE OUVERTE SENS ANTIHORAIRE",NULL},
 /* 21BB */ { "FLÈCHE CIRCULAIRE OUVERTE SENS HORAIRE",NULL},
@@ -11552,8 +11533,8 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 21E1 */ { "FLÈCHE À TRAITS DISCONTINUS VERS LE HAUT",NULL},
 /* 21E2 */ { "FLÈCHE À TRAITS DISCONTINUS VERS LA DROITE",NULL},
 /* 21E3 */ { "FLÈCHE À TRAITS DISCONTINUS VERS LE BAS",NULL},
-/* 21E4 */ { "FLÈCHE VERS LA GAUCHE JUSQU'À UN TAQUET","	= tabulation vers la gauche"},
-/* 21E5 */ { "FLÈCHE VERS LA DROITE JUSQU'À UN TAQUET","	= tabulation vers la droite"},
+/* 21E4 */ { "FLÈCHE VERS LA GAUCHE JUSQU'À UN TAQUET","	= tabulation arrière"},
+/* 21E5 */ { "FLÈCHE VERS LA DROITE JUSQU'À UN TAQUET","	= tabulation"},
 /* 21E6 */ { "FLÈCHE BLANCHE VERS LA GAUCHE","	x (flèche blanche nord-est - 2B00)"},
 /* 21E7 */ { "FLÈCHE BLANCHE VERS LE HAUT","	= majuscules\n"
 	"	= sélection du niveau 2 (ISO 9995-7)"},
@@ -11576,37 +11557,37 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 21F5 */ { "FLÈCHE VERS LE BAS À GAUCHE D'UNE FLÈCHE VERS LE HAUT",NULL},
 /* 21F6 */ { "TROIS FLÈCHES VERS LA DROITE","	x (trois flèches vers la gauche - 2B31)"},
 /* 21F7 */ { "FLÈCHE VERS LA GAUCHE BARRÉE VERTICALEMENT",NULL},
-/* 21F8 */ { "FLÈCHE VERS LA DROITE BARRÉE VERTICALEMENT","	= fonction partielle en notation z"},
-/* 21F9 */ { "FLÈCHE VERS LA DROITE ET LA GAUCHE BARRÉE VERTICALEMENT","	= relation partielle en notation z"},
+/* 21F8 */ { "FLÈCHE VERS LA DROITE BARRÉE VERTICALEMENT","	= fonction partielle en notation Z"},
+/* 21F9 */ { "FLÈCHE VERS LA DROITE ET LA GAUCHE BARRÉE VERTICALEMENT","	= relation partielle en notation Z"},
 /* 21FA */ { "FLÈCHE VERS LA GAUCHE BARRÉE DEUX FOIS VERTICALEMENT",NULL},
-/* 21FB */ { "FLÈCHE VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= fonction finie en notation z"},
-/* 21FC */ { "FLÈCHE GAUCHE-DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= relation finie en notation z"},
+/* 21FB */ { "FLÈCHE VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= fonction finie en notation Z"},
+/* 21FC */ { "FLÈCHE GAUCHE-DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= relation finie en notation Z"},
 /* 21FD */ { "FLÈCHE VERS LA GAUCHE À TÊTE CREUSE",NULL},
 /* 21FE */ { "FLÈCHE VERS LA DROITE À TÊTE CREUSE",NULL},
 /* 21FF */ { "FLÈCHE VERS LA DROITE ET LA GAUCHE À TÊTE CREUSE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_22[] = {
-/* 2200 */ { "POUR TOUS","	= quanteur quel que soit, quanteur universel"},
+/* 2200 */ { "POUR TOUS","	= quantificateur universel, quanteur universel"},
 /* 2201 */ { "COMPLÉMENT","	x (lettre latine c étiré - 0297)"},
 /* 2202 */ { "DÉRIVÉE PARTIELLE","	= d rond"},
-/* 2203 */ { "IL EXISTE","	= quanteur existe"},
+/* 2203 */ { "IL EXISTE","	= quantificateur existentiel, quanteur existentiel"},
 /* 2204 */ { "IL N'EXISTE PAS","	: 2203 0338"},
 /* 2205 */ { "ENSEMBLE VIDE","	* s'utilise en linguistique pour indiquer un morphème nul ou un « zéro » phonologique\n"
 	"	x (lettre majuscule latine o barré obliquement - 00D8)\n"
 	"	x (symbole diamètre - 2300)\n"
 	"	~ 2205 FE00 sous la forme d'un zéro avec une longue barre diagonale couvrante"},
-/* 2206 */ { "INCRÉMENT","	= laplacien\n"
-	"	= disjonction exclusive\n"
+/* 2206 */ { "INCRÉMENT","	= laplacien (ou opérateur laplacien)\n"
+	"	= différence avant\n"
 	"	= différence symétrique (dans la théorie des ensembles)\n"
 	"	* d'autres symboles peuvent être utilisés pour la différence symétrique\n"
 	"	x (lettre majuscule grecque delta - 0394)\n"
 	"	x (triangle blanc pointant vers le haut - 25B3)"},
-/* 2207 */ { "NABLA","	= atled\n"
-	"	= gradient, del\n"
-	"	= laplacien\n"
+/* 2207 */ { "NABLA","	= différence arrière\n"
+	"	= gradient d'une fonction (en analyse vectorielle)\n"
+	"	= connexion de Koszul (en géométrie différentielle)\n"
 	"	* utilisé pour l'opérateur laplacien avec un exposant 2\n"
+	"	* a été temporairement surnommé avec malice « atled » (équivalent dextroverse de « delta ») par James Maxwell\n"
 	"	x (triangle blanc pointant vers le bas - 25BD)"},
 /* 2208 */ { "APPARTIENT À",NULL},
 /* 2209 */ { "N'APPARTIENT PAS À","	: 2208 0338"},
@@ -11666,10 +11647,10 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 2227 */ { "ET LOGIQUE","	= conjonction\n"
 	"	x (et logique de la famille - 22C0)\n"
 	"	x (pointe de flèche vers le haut - 2303)"},
-/* 2228 */ { "OU LOGIQUE","	= disjonction, vel\n"
+/* 2228 */ { "OU LOGIQUE","	= disjonction non exclusive (« vel » latin)\n"
 	"	x (ou logique de la famille - 22C1)\n"
 	"	x (pointe de flèche vers le bas - 2304)"},
-/* 2229 */ { "INTERSECTION","	= inter\n"
+/* 2229 */ { "INTERSECTION","	* peut se lire « inter » (« A inter B »)\n"
 	"	x (intersection de la famille - 22C2)\n"
 	"	~ 2229 FE00 avec des empattements"},
 /* 222A */ { "UNION","	= réunion\n"
@@ -11691,16 +11672,16 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 2236 */ { "RAPPORT","	* préféré à 003A pour le signe de division ou d'échelle dans les emplois mathématiques\n"
 	"	x (deux-points - 003A)"},
 /* 2237 */ { "PROPORTION",NULL},
-/* 2238 */ { "MOINS POINTÉ","	= soustraction saturante\n"
+/* 2238 */ { "MOINS POINTÉ","	= soustraction saturée\n"
 	"	* parfois présenté comme le symbole pour la différence symétrique de deux ensembles, mais l'emploi de 2206 est recommandé pour cet usage"},
 /* 2239 */ { "EXCÈS",NULL},
 /* 223A */ { "PROPORTION GÉOMÉTRIQUE",NULL},
 /* 223B */ { "HOMOTHÉTIQUE","	x (opérateur tilde avec points ascendants - 2A6B)"},
-/* 223C */ { "OPÉRATEUR TILDE","	= varié avec (proportionnel à)\n"
+/* 223C */ { "OPÉRATEUR TILDE","	= varie avec (proportionnel à)\n"
 	"	= similaire à\n"
 	"	= non\n"
 	"	= cycle\n"
-	"	= équivalent\n"
+	"	= équivalent à\n"
 	"	= tilde APL\n"
 	"	x (tilde - 007E)\n"
 	"	x (signe négation - 00AC)\n"
@@ -11710,7 +11691,7 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 223E */ { "S COUCHÉ RENVERSÉ","	= le plus positif"},
 /* 223F */ { "SINUSOÏDE","	= courant alternatif"},
 /* 2240 */ { "PRODUIT COURONNE",NULL},
-/* 2241 */ { "NON TILDE","	= pas équivalent\n"
+/* 2241 */ { "NON TILDE","	= pas équivalent à\n"
 	"	: 223C 0338"},
 /* 2242 */ { "MOINS TILDE",NULL},
 /* 2243 */ { "ASYMPTOTIQUEMENT ÉGAL À",NULL},
@@ -11793,18 +11774,18 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 228C */ { "MULTIENSEMBLE",NULL},
 /* 228D */ { "MULTIPLICATION DE MULTIENSEMBLE","	x (opérateur union n-aire pointé - 2A03)\n"
 	"	x (intersection pointée - 2A40)"},
-/* 228E */ { "UNION DE MULTIENSEMBLE","	= addition de sacs en notation z\n"
+/* 228E */ { "UNION DE MULTIENSEMBLE","	= addition de sacs en notation Z\n"
 	"	x (opérateur union n-aire avec plus - 2A04)"},
 /* 228F */ { "IMAGE CARRÉE DE",NULL},
 /* 2290 */ { "ORIGINAL CARRÉ DE",NULL},
-/* 2291 */ { "IMAGE CARRÉE DE OU ÉGAL À","	= appartient à un sous-sac en notation z"},
+/* 2291 */ { "IMAGE CARRÉE DE OU ÉGAL À",NULL},
 /* 2292 */ { "ORIGINAL CARRÉ DE OU ÉGAL À",NULL},
 /* 2293 */ { "CHAPEAU CARRÉ","	x (opérateur intersection carré n-aire - 2A05)\n"
 	"	~ 2293 FE00 avec des empattements"},
 /* 2294 */ { "COUPE CARRÉE","	x (opérateur union carré n-aire - 2A06)\n"
 	"	~ 2294 FE00 avec des empattements"},
 /* 2295 */ { "PLUS CERCLÉ","	= somme directe\n"
-	"	= vecteur pointant vers l'intérieur de la page\n"
+	"	= vecteur entrant dans le plan\n"
 	"	x (opérateur plus cerclé n-aire - 2A01)\n"
 	"	x (symbole alchimique du vert-de-gris - 1F728)\n"
 	"	~ 2295 FE00 avec une bordure blanche"},
@@ -11812,14 +11793,14 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 	"	x (cercle avec barre horizontale - 29B5)\n"
 	"	x (symbole alchimique du sel - 1F714)"},
 /* 2297 */ { "MULTIPLIÉ PAR CERCLÉ","	= produit tensoriel\n"
-	"	= vecteur pointant vers l'intérieur de la page\n"
+	"	= vecteur entrant dans le plan\n"
 	"	x (voies croisées cerclées - 26D2)\n"
 	"	x (opérateur de multiplication n-aire cerclé - 2A02)\n"
 	"	x (x cerclé - 2BBE)\n"
 	"	~ 2297 FE00 avec une bordure blanche"},
 /* 2298 */ { "BARRE OBLIQUE DE DIVISION CERCLÉE",NULL},
-/* 2299 */ { "OPÉRATEUR POINT CERCLÉ","	= vecteur pointant hors de la page\n"
-	"	= produit direct\n"
+/* 2299 */ { "OPÉRATEUR POINT CERCLÉ","	= produit direct\n"
+	"	= vecteur sortant du plan\n"
 	"	x (lettre latine clic bilabial - 0298)\n"
 	"	x (soleil - 2609)\n"
 	"	x (opérateur point cerclé n-aire - 2A00)"},
@@ -11868,7 +11849,7 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 22B8 */ { "MULTIJECTION","	= multimap, liste associative"},
 /* 22B9 */ { "MATRICE HERMITIENNE CONJUGUÉE",NULL},
 /* 22BA */ { "INTERCALE",NULL},
-/* 22BB */ { "OU EXCLUSIF","	= aut\n"
+/* 22BB */ { "OU EXCLUSIF","	= disjonction exclusive (« aut » latin)\n"
 	"	x (demi-sextile - 26BA)"},
 /* 22BC */ { "NON ET","	x (projective - 2305)\n"
 	"	x (quinconce - 26BB)"},
@@ -11879,9 +11860,9 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 	"	x (et logique - 2227)"},
 /* 22C1 */ { "OU LOGIQUE DE LA FAMILLE","	* représente aussi le quanteur existe\n"
 	"	x (ou logique - 2228)"},
-/* 22C2 */ { "INTERSECTION DE LA FAMILLE","	= intersection généralisée en notation z\n"
+/* 22C2 */ { "INTERSECTION DE LA FAMILLE","	= intersection généralisée en notation Z\n"
 	"	x (intersection - 2229)"},
-/* 22C3 */ { "RÉUNION DE LA FAMILLE","	= union généralisée en notation z\n"
+/* 22C3 */ { "RÉUNION DE LA FAMILLE","	= union généralisée en notation Z\n"
 	"	x (union - 222A)"},
 /* 22C4 */ { "OPÉRATEUR LOSANGE","	x (losange blanc - 25C7)\n"
 	"	x (petit losange noir - 2B29)"},
@@ -11953,7 +11934,6 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 22FF */ { "ÉLÉMENT D'UN SAC EN NOTATION Z","	= appartient à un multi-ensemble"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_23[] = {
 /* 2300 */ { "SYMBOLE DIAMÈTRE","	x (ensemble vide - 2205)"},
 /* 2301 */ { "FLÈCHE ÉLECTRIQUE","	* tiré d'ISO 2047\n"
@@ -12281,7 +12261,6 @@ static const struct unicode_nameannot unaFR_00_23[] = {
 /* 23FF */ { "SYMBOLE DE L'ŒIL OBSERVATEUR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_24[] = {
 /* 2400 */ { "SYMBOLE POUR NUL",NULL},
 /* 2401 */ { "SYMBOLE POUR DÉBUT D'EN-TÊTE",NULL},
@@ -12317,9 +12296,8 @@ static const struct unicode_nameannot unaFR_00_24[] = {
 /* 241F */ { "SYMBOLE POUR SÉPARATEUR D'UNITÉS",NULL},
 /* 2420 */ { "SYMBOLE POUR ESPACE",NULL},
 /* 2421 */ { "SYMBOLE POUR SUPPRESSION",NULL},
-/* 2422 */ { "SYMBOLE VISUEL POUR L'ESPACE","	* symbole visuel pour l'espace\n"
-	"	x (lettre minuscule latine b barré - 0180)"},
-/* 2423 */ { "BOÎTE OUVERTE","	* symbole visuel pour l'espace\n"
+/* 2422 */ { "SYMBOLE VISUEL POUR L'ESPACE","	x (lettre minuscule latine b barré - 0180)"},
+/* 2423 */ { "BOÎTE OUVERTE","	* autre symbole visuel pour l'espace\n"
 	"	x (alésage - 2334)"},
 /* 2424 */ { "SYMBOLE POUR NOUVELLE LIGNE",NULL},
 /* 2425 */ { "SYMBOLE POUR SUPPRESSION FORME DEUX","	* tiré d'ISO 9995-7\n"
@@ -12550,7 +12528,6 @@ static const struct unicode_nameannot unaFR_00_24[] = {
 /* 24FF */ { "CHIFFRE ZÉRO CERCLÉ NOIR AU BLANC","	x (vignette chiffre un cerclé noir au blanc - 2776)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_25[] = {
 /* 2500 */ { "FILET HORIZONTAL FIN","	= Mosaïque Vidéotex DG 15"},
 /* 2501 */ { "FILET HORIZONTAL GRAS",NULL},
@@ -12721,10 +12698,12 @@ static const struct unicode_nameannot unaFR_00_25[] = {
 /* 259D */ { "QUADRANT SUPÉRIEUR DROIT",NULL},
 /* 259E */ { "QUADRANT SUPÉRIEUR DROIT ET INFÉRIEUR GAUCHE","	x (damier - 1F67E)"},
 /* 259F */ { "QUADRANT SUPÉRIEUR DROIT INFÉRIEUR GAUCHE ET INFÉRIEUR DROIT",NULL},
-/* 25A0 */ { "CARRÉ NOIR","	= carré plein, signe mòdîng (dans les textes idéographiques)\n"
+/* 25A0 */ { "CARRÉ NOIR","	= carré plein\n"
+	"	= signe mòdîng (dans les textes idéographiques)\n"
 	"	x (pavé plein - 2588)\n"
 	"	x (grand carré noir - 2B1B)"},
-/* 25A1 */ { "CARRÉ BLANC","	= carré vide, quadrature astronomique\n"
+/* 25A1 */ { "CARRÉ BLANC","	= carré vide\n"
+	"	= quadrature astronomique\n"
 	"	= symbole alchimique du sel\n"
 	"	* peut servir à représenter un idéogramme manquant\n"
 	"	x (diacritique carré englobant - 20DE)\n"
@@ -12763,7 +12742,7 @@ static const struct unicode_nameannot unaFR_00_25[] = {
 /* 25B5 */ { "PETIT TRIANGLE BLANC POINTANT VERS LE HAUT",NULL},
 /* 25B6 */ { "TRIANGLE NOIR POINTANT VERS LA DROITE","	x (triangle noir moyen pointant vers la droite - 23F5)\n"
 	"	x (triangle moyen noir vers la droite centré - 2BC8)"},
-/* 25B7 */ { "TRIANGLE BLANC POINTANT VERS LA DROITE","	= restriction de codomaine en notation z"},
+/* 25B7 */ { "TRIANGLE BLANC POINTANT VERS LA DROITE","	= restriction de codomaine en notation Z"},
 /* 25B8 */ { "PETIT TRIANGLE NOIR POINTANT VERS LA DROITE","	x (puce triangulaire - 2023)"},
 /* 25B9 */ { "PETIT TRIANGLE BLANC POINTANT VERS LA DROITE",NULL},
 /* 25BA */ { "POINTEUR NOIR VERS LA DROITE",NULL},
@@ -12780,7 +12759,7 @@ static const struct unicode_nameannot unaFR_00_25[] = {
 /* 25BF */ { "PETIT TRIANGLE BLANC POINTANT VERS LE BAS",NULL},
 /* 25C0 */ { "TRIANGLE NOIR POINTANT VERS LA GAUCHE","	x (triangle noir moyen pointant vers la gauche - 23F4)\n"
 	"	x (triangle moyen noir vers la gauche centré - 2BC7)"},
-/* 25C1 */ { "TRIANGLE BLANC POINTANT VERS LA GAUCHE","	= restriction de domaine en notation z"},
+/* 25C1 */ { "TRIANGLE BLANC POINTANT VERS LA GAUCHE","	= restriction de domaine en notation Z"},
 /* 25C2 */ { "PETIT TRIANGLE NOIR POINTANT VERS LA GAUCHE",NULL},
 /* 25C3 */ { "PETIT TRIANGLE BLANC POINTANT VERS LA GAUCHE",NULL},
 /* 25C4 */ { "POINTEUR NOIR VERS LA GAUCHE",NULL},
@@ -12873,13 +12852,12 @@ static const struct unicode_nameannot unaFR_00_25[] = {
 /* 25FF */ { "TRIANGLE RECTANGLE INFÉRIEUR DROIT","	x (triangle rectangle - 22BF)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_26[] = {
-/* 2600 */ { "SOLEIL NOIR AVEC RAYONS","	= beau temps\n"
+/* 2600 */ { "SOLEIL NOIR AVEC RAYONS","	= temps clair\n"
 	"	x (soleil - 2609)\n"
 	"	x (symbole de la forte intensité - 1F506)"},
-/* 2601 */ { "NUAGE","	= nuageux"},
-/* 2602 */ { "PARAPLUIE","	= pluvieux\n"
+/* 2601 */ { "NUAGE","	= temps couvert"},
+/* 2602 */ { "PARAPLUIE","	= temps pluvieux\n"
 	"	x (parapluie fermé - 1F302)"},
 /* 2603 */ { "BONHOMME DE NEIGE","	= temps de neige"},
 /* 2604 */ { "COMÈTE",NULL},
@@ -12917,7 +12895,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 2613 */ { "SAUTOIR","	= croix de saint André, croix encadrée, croix en sautoir, croix de Bourgogne\n"
 	"	x (x de vote - 2717)\n"
 	"	x (sautoir fin - 1F7A9)"},
-/* 2614 */ { "PARAPLUIE AVEC GOUTTES DE PLUIE","	= mauvais temps"},
+/* 2614 */ { "PARAPLUIE AVEC GOUTTES DE PLUIE","	= temps pluvieux"},
 /* 2615 */ { "BOISSON CHAUDE","	= thé ou café selon le profil culturel\n"
 	"	* peut indiquer une attente\n"
 	"	x (montre - 231A)\n"
@@ -12926,8 +12904,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 2616 */ { "PIÈCE DE CHOGI BLANCHE",NULL},
 /* 2617 */ { "PIÈCE DE CHOGI NOIRE",NULL},
 /* 2618 */ { "TRÈFLE IRLANDAIS","	x (trèfle à quatre feuilles - 1F340)"},
-/* 2619 */ { "CŒUR FLORAL COUCHÉ À DROITE","	= feuille de lierre couchée à droite\n"
-	"	* marque de cahier en reliure\n"
+/* 2619 */ { "CŒUR FLORAL COUCHÉ À DROITE","	* marque de cahier en reliure, indice de collationnement\n"
 	"	x (cœur floral couché - 2767)\n"
 	"	x (feuille de vigne sud-ouest - 1F659)"},
 /* 261A */ { "INDEX NOIR POINTANT VERS LA GAUCHE",NULL},
@@ -12939,7 +12916,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 	"	x (index blanc pointant vers la droite couché - 1F599)"},
 /* 261F */ { "INDEX BLANC POINTANT VERS LE BAS","	x (index de la main gauche blanc pointant vers le bas - 1F597)\n"
 	"	x (index blanc pointant vers le bas couché - 1F59F)"},
-/* 2620 */ { "TÊTE DE MORT","	= symbole de danger, symbole pirate\n"
+/* 2620 */ { "TÊTE DE MORT","	= poison, produit chimique toxique\n"
 	"	x (tête de mort noire - 1F571)"},
 /* 2621 */ { "VIRAGES",NULL},
 /* 2622 */ { "SYMBOLE POUR RADIOACTIF",NULL},
@@ -12971,7 +12948,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 2637 */ { "TRIGRAMME DE LA TERRE","	= k'ouen, kun1"},
 /* 2638 */ { "ROUE DE DHARMA","	x (symbole barre à roue - 2388)"},
 /* 2639 */ { "VISAGE BLANC GRIMAÇANT","	x (visage légèrement grimaçant - 1F641)"},
-/* 263A */ { "VISAGE BLANC SOURIANT","	= bonne journée !\n"
+/* 263A */ { "VISAGE BLANC SOURIANT","	= « Bonne journée ! »\n"
 	"	x (visage légèrement souriant - 1F642)"},
 /* 263B */ { "VISAGE NOIR SOURIANT",NULL},
 /* 263C */ { "SOLEIL BLANC AVEC RAYONS","	= compas\n"
@@ -13003,10 +12980,10 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 264A */ { "GÉMEAUX",NULL},
 /* 264B */ { "CANCER","	x (crabe - 1F980)"},
 /* 264C */ { "LION","	x (face de lion - 1F981)"},
-/* 264D */ { "VIERGE","	= autre glyphe pour la goutte, la minime anglo-saxonne"},
+/* 264D */ { "VIERGE","	* variante de glyphe pour la goutte impériale et la goutte américaine, unités de volume appelées « minim »"},
 /* 264E */ { "BALANCE","	x (balance de thémis - 2696)\n"
 	"	x (symbole alchimique sublimer - 1F75E)"},
-/* 264F */ { "SCORPION","	= goutte, minime anglo-saxonne\n"
+/* 264F */ { "SCORPION","	= goutte impériale, goutte américaine [unités de volume appelées « minim »]\n"
 	"	x (symbole scorpion - 1F982)"},
 /* 2650 */ { "SAGITTAIRE","	x (arc et flèche - 1F3F9)"},
 /* 2651 */ { "CAPRICORNE",NULL},
@@ -13045,7 +13022,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 266C */ { "DEUX DOUBLES CROCHES RAMÉES",NULL},
 /* 266D */ { "BÉMOL",NULL},
 /* 266E */ { "BÉCARRE",NULL},
-/* 266F */ { "DIÈSE","	= cardinalité d'un sac, taille d'un ensemble en notation z\n"
+/* 266F */ { "DIÈSE","	= cardinalité d'un sac, taille d'un ensemble en notation Z\n"
 	"	x (croisillon - 0023)"},
 /* 2670 */ { "CROIX SYRIAQUE OCCIDENTALE",NULL},
 /* 2671 */ { "CROIX SYRIAQUE ORIENTALE",NULL},
@@ -13082,7 +13059,7 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 268F */ { "DIGRAMME DU GRAND YIN",NULL},
 /* 2690 */ { "DRAPEAU BLANC","	x (drapeau blanc battant au vent - 1F3F3)"},
 /* 2691 */ { "DRAPEAU NOIR",NULL},
-/* 2692 */ { "MARTEAU ET PIOCHE","	= mine, jour ouvrable (dans les horaires ou indicateurs)\n"
+/* 2692 */ { "MARTEAU ET PIOCHE","	= mine, jour ouvré (dans les horaires ou indicateurs)\n"
 	"	x (pioche - 26CF)\n"
 	"	x (marteau et clé à écrous - 1F6E0)"},
 /* 2693 */ { "ANCRE","	= terme nautique, port (sur les cartes)"},
@@ -13207,7 +13184,8 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 /* 26E1 */ { "ENTRÉE GAUCHE RESTREINTE-2",NULL},
 /* 26E2 */ { "SYMBOLE ASTRONOMIQUE D'URANUS","	x (uranus - 2645)"},
 /* 26E3 */ { "CERCLE ÉPAIS AVEC BARRE VERTICALE ENTRE DEUX POINTS EN CHEF",NULL},
-/* 26E4 */ { "PENTAGRAMME","	* symbole pour différents usages, incluant le symbole sur le drapeau marocain\n"
+/* 26E4 */ { "PENTAGRAMME","	= pentalpha\n"
+	"	* symbole pour différents usages, incluant le symbole sur le drapeau marocain\n"
 	"	x (étoile blanche - 2606)"},
 /* 26E5 */ { "PENTAGRAMME TRESSÉ À DROITE","	* symbole de divers pays, incluant le Maroc\n"
 	"	x (étoile blanche à contour - 269D)"},
@@ -13244,14 +13222,14 @@ static const struct unicode_nameannot unaFR_00_26[] = {
 	"	x (camping - 1F3D5)"},
 /* 26FB */ { "SYMBOLE JAPONAIS DE BANQUE","	x (banque - 1F3E6)"},
 /* 26FC */ { "SYMBOLE DE CIMETIÈRE","	= nécropole"},
-/* 26FD */ { "POMPE À ESSENCE","	= station-service"},
+/* 26FD */ { "POMPE À ESSENCE","	= station-service\n"
+	"	= poste d'essence (Canada)"},
 /* 26FE */ { "TASSE SUR CARRÉ NOIR","	= restoroute\n"
 	"	x (boisson chaude - 2615)\n"
 	"	x (tasse à thé sans anse - 1F375)"},
 /* 26FF */ { "DRAPEAU BLANC À BANDE MÉDIANE HORIZONTALE NOIRE","	= site des forces japonaises d'autodéfense"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_27[] = {
 /* 2700 */ { "CISEAUX DE SÉCURITÉ NOIRS","	* forme une paire avec 2704"},
 /* 2701 */ { "CISEAUX À LAME SUPÉRIEURE VISIBLE",NULL},
@@ -13265,12 +13243,12 @@ static const struct unicode_nameannot unaFR_00_27[] = {
 /* 2708 */ { "AVION","	x (avion pointant vers le haut - 1F6E7)"},
 /* 2709 */ { "ENVELOPPE","	x (enveloppe de réception - 1F4E8)\n"
 	"	x (dos d'enveloppe - 1F582)"},
-/* 270A */ { "POING LEVÉ","	= pierre ou roche (jeu des trois coups)\n"
+/* 270A */ { "POING LEVÉ","	= pierre ou roche (dans le jeu des trois coups)\n"
 	"	x (signe du coup de poing - 1F44A)"},
-/* 270B */ { "MAIN LEVÉE","	= papier ou feuille (jeu des trois coups)\n"
+/* 270B */ { "MAIN LEVÉE","	= papier ou feuille (dans le jeu des trois coups)\n"
 	"	x (salut de la main - 1F44B)\n"
 	"	x (main levée avec doigts écartés - 1F590)"},
-/* 270C */ { "MAIN DE LA VICTOIRE","	= ciseaux (jeu des trois coups)\n"
+/* 270C */ { "MAIN DE LA VICTOIRE","	= ciseaux (dans le jeu des trois coups)\n"
 	"	x (main de dos faisant le signe de la victoire - 1F594)"},
 /* 270D */ { "MAIN ÉCRIVANT","	= lettre manuscrite\n"
 	"	x (main gauche écrivant - 1F58E)"},
@@ -13374,9 +13352,9 @@ static const struct unicode_nameannot unaFR_00_27[] = {
 /* 2763 */ { "POINT D'EXCLAMATION DE FANTAISIE ÉPAIS EN FORME DE CŒUR",NULL},
 /* 2764 */ { "CŒUR NOIR ÉPAIS","	x (enseigne de cœur noire - 2665)"},
 /* 2765 */ { "CŒUR NOIR ÉPAIS COUCHÉ",NULL},
-/* 2766 */ { "CŒUR FLORAL","	= feuille d'Alde, feuille de lierre verticale"},
-/* 2767 */ { "CŒUR FLORAL COUCHÉ","	= feuille de lierre\n"
-	"	* également une marque de cahier en reliure, un indice de collationnement\n"
+/* 2766 */ { "CŒUR FLORAL","	= feuille aldine"},
+/* 2767 */ { "CŒUR FLORAL COUCHÉ","	= hedera (en épigraphie), feuille de lierre\n"
+	"	* une marque de cahier en reliure, un indice de collationnement\n"
 	"	x (cœur floral couché à droite - 2619)\n"
 	"	x (feuille de vigne sud-est - 1F65B)"},
 /* 2768 */ { "PARENTHÈSE DE FANTAISIE GAUCHE DEMI-GRASSE","	x (parenthèse gauche - 0028)"},
@@ -13525,19 +13503,21 @@ static const struct unicode_nameannot unaFR_00_27[] = {
 	"	x (carré blanc - 25A1)\n"
 	"	x (carré moyen blanc - 25FB)"},
 /* 27E5 */ { "CARRÉ BLANC AVEC TRAIT À DROITE","	= sera à jamais (opérateur modal)"},
-/* 27E6 */ { "CROCHET MATHÉMATIQUE BLANC GAUCHE","	= crochet de sac gauche en notation z\n"
+/* 27E6 */ { "CROCHET MATHÉMATIQUE BLANC GAUCHE","	= crochet de sac gauche en notation Z\n"
 	"	x (crochet blanc gauche - 301A)"},
-/* 27E7 */ { "CROCHET MATHÉMATIQUE BLANC DROIT","	= crochet de sac droit en notation z\n"
+/* 27E7 */ { "CROCHET MATHÉMATIQUE BLANC DROIT","	= crochet de sac droit en notation Z\n"
 	"	x (crochet blanc droit - 301B)"},
-/* 27E8 */ { "CHEVRON MATHÉMATIQUE GAUCHE","	= crochet de séquence gauche en notation z\n"
+/* 27E8 */ { "CHEVRON MATHÉMATIQUE GAUCHE","	= bra ou vecteur bra (notation de Dirac)\n"
+	"	= crochet de séquence gauche en notation Z\n"
 	"	x (chevron pointant à gauche - 2329)\n"
 	"	x (chevron gauche - 3008)"},
-/* 27E9 */ { "CHEVRON MATHÉMATIQUE DROIT","	= crochet de séquence droit en notation z\n"
+/* 27E9 */ { "CHEVRON MATHÉMATIQUE DROIT","	= ket ou vecteur ket (notation de Dirac)\n"
+	"	= crochet de séquence droit en notation Z\n"
 	"	x (chevron pointant à droite - 232A)\n"
 	"	x (chevron droit - 3009)"},
-/* 27EA */ { "DOUBLE CHEVRON MATHÉMATIQUE GAUCHE","	= chevron gauche en notation z\n"
+/* 27EA */ { "DOUBLE CHEVRON MATHÉMATIQUE GAUCHE","	= chevron gauche en notation Z\n"
 	"	x (double chevron gauche - 300A)"},
-/* 27EB */ { "DOUBLE CHEVRON MATHÉMATIQUE DROIT","	= chevron droit en notation z\n"
+/* 27EB */ { "DOUBLE CHEVRON MATHÉMATIQUE DROIT","	= chevron droit en notation Z\n"
 	"	x (double chevron droit - 300B)"},
 /* 27EC */ { "CROCHET EN ÉCAILLE MATHÉMATIQUE BLANC GAUCHE","	x (crochet en écaille noir gauche - 2997)\n"
 	"	x (crochet en écaille blanc gauche - 3018)"},
@@ -13560,8 +13540,6 @@ static const struct unicode_nameannot unaFR_00_27[] = {
 /* 27F9 */ { "LONGUE DOUBLE FLÈCHE VERS LA DROITE","	x (double flèche vers la droite - 21D2)"},
 /* 27FA */ { "LONGUE DOUBLE FLÈCHE GAUCHE-DROITE","	x (double flèche gauche-droite - 21D4)"},
 /* 27FB */ { "LONGUE FLÈCHE D'UN TAQUET VERS LA GAUCHE","	= est l'image de\n"
-	"	= longue flèche à socle vers la gauche\n"
-	"	= longue flèche à béquillon vers la gauche\n"
 	"	x (flèche d'un taquet vers la gauche - 21A4)"},
 /* 27FC */ { "LONGUE FLÈCHE D'UN TAQUET VERS LA DROITE","	= a pour image\n"
 	"	x (flèche d'un taquet vers la droite - 21A6)"},
@@ -13572,7 +13550,6 @@ static const struct unicode_nameannot unaFR_00_27[] = {
 	"	x (longue flèche vers la gauche en tire-bouchon - 2B33)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_28[] = {
 /* 2800 */ { "COMBINAISON BRAILLE BLANC","	* bien que ce caractère soit représenté par un blanc à chasse fixe dans de nombreuses polices, il ne joue pas le rôle d'une espace"},
 /* 2801 */ { "COMBINAISON BRAILLE POINTS-1",NULL},
@@ -13832,11 +13809,10 @@ static const struct unicode_nameannot unaFR_00_28[] = {
 /* 28FF */ { "COMBINAISON BRAILLE POINTS-12345678",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_29[] = {
-/* 2900 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE BARRÉE VERTICALEMENT","	= surjection partielle en notation z\n"
+/* 2900 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE BARRÉE VERTICALEMENT","	= surjection partielle en notation Z\n"
 	"	x (flèche à deux pointes vers la gauche barrée verticalement - 2B34)"},
-/* 2901 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= surjection finie en notation z\n"
+/* 2901 */ { "FLÈCHE À DEUX POINTES VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= surjection finie en notation Z\n"
 	"	x (flèche à deux pointes vers la gauche barrée deux fois verticalement - 2B35)"},
 /* 2902 */ { "DOUBLE FLÈCHE VERS LA GAUCHE BARRÉE VERTICALEMENT",NULL},
 /* 2903 */ { "DOUBLE FLÈCHE VERS LA DROITE BARRÉE VERTICALEMENT",NULL},
@@ -13861,16 +13837,16 @@ static const struct unicode_nameannot unaFR_00_29[] = {
 /* 2911 */ { "FLÈCHE VERS LA DROITE À FÛT POINTILLÉ","	x (flèche vers la gauche à fût pointillé - 2B38)"},
 /* 2912 */ { "FLÈCHE VERS LE HAUT JUSQU'À UN TAQUET",NULL},
 /* 2913 */ { "FLÈCHE VERS LE BAS JUSQU'À UN TAQUET",NULL},
-/* 2914 */ { "FLÈCHE EMPENNÉE VERS LA DROITE BARRÉE VERTICALEMENT","	= injection partielle en notation z\n"
+/* 2914 */ { "FLÈCHE EMPENNÉE VERS LA DROITE BARRÉE VERTICALEMENT","	= injection partielle en notation Z\n"
 	"	x (flèche empennée vers la gauche barrée verticalement - 2B39)"},
-/* 2915 */ { "FLÈCHE EMPENNÉE VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= injection finie en notation z\n"
+/* 2915 */ { "FLÈCHE EMPENNÉE VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= injection finie en notation Z\n"
 	"	x (flèche empennée vers la gauche barrée deux fois verticalement - 2B3A)"},
-/* 2916 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE","	= bijection\n"
-	"	= bijection en notation z\n"
+/* 2916 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE","	= correspondance bijective\n"
+	"	= bijection en notation Z\n"
 	"	x (flèche empennée à deux pointes vers la gauche - 2B3B)"},
-/* 2917 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE BARRÉE VERTICALEMENT","	= injection surjective en notation z\n"
+/* 2917 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE BARRÉE VERTICALEMENT","	= injection surjective en notation Z\n"
 	"	x (flèche empennée à deux pointes vers la gauche barrée verticalement - 2B3C)"},
-/* 2918 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= injection surjective finie en notation z\n"
+/* 2918 */ { "FLÈCHE EMPENNÉE À DEUX POINTES VERS LA DROITE BARRÉE DEUX FOIS VERTICALEMENT","	= injection surjective finie en notation Z\n"
 	"	x (flèche empennée à deux pointes vers la gauche barrée deux fois verticalement - 2B3D)"},
 /* 2919 */ { "EMPENNE VERS LA GAUCHE",NULL},
 /* 291A */ { "EMPENNE VERS LA DROITE",NULL},
@@ -14126,7 +14102,7 @@ static const struct unicode_nameannot unaFR_00_29[] = {
 	"	x (symbole de fonction apl contre-cotice barrée - 2340)"},
 /* 29F8 */ { "GRANDE BARRE OBLIQUE","	x (barre oblique de division - 2215)"},
 /* 29F9 */ { "GRANDE BARRE OBLIQUE INVERSÉE","	= grande contre-oblique, grande contre-cotice\n"
-	"	= masquage de schémas en notation z\n"
+	"	= masquage de schémas en notation Z\n"
 	"	x (différence d'ensembles - 2216)"},
 /* 29FA */ { "DOUBLE PLUS",NULL},
 /* 29FB */ { "TRIPLE PLUS",NULL},
@@ -14138,7 +14114,6 @@ static const struct unicode_nameannot unaFR_00_29[] = {
 /* 29FF */ { "MINY","	x (signe moins - 2212)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2A[] = {
 /* 2A00 */ { "OPÉRATEUR POINT CERCLÉ N-AIRE","	x (opérateur point cerclé - 2299)\n"
 	"	x (cercle blanc évidé - 25C9)"},
@@ -14217,7 +14192,7 @@ static const struct unicode_nameannot unaFR_00_2A[] = {
 /* 2A3F */ { "AMALGAMATION OU COPRODUIT","	x (coproduit de la famille - 2210)"},
 /* 2A40 */ { "INTERSECTION POINTÉE","	x (et logique - 2227)\n"
 	"	x (et pointé - 27D1)"},
-/* 2A41 */ { "UNION À SIGNE MOINS","	= différence de sacs en notation z\n"
+/* 2A41 */ { "UNION À SIGNE MOINS","	= différence de sacs en notation Z\n"
 	"	x (union de multiensemble - 228E)"},
 /* 2A42 */ { "UNION À BARRE EN CHEF",NULL},
 /* 2A43 */ { "INTERSECTION À BARRE EN CHEF",NULL},
@@ -14430,7 +14405,6 @@ static const struct unicode_nameannot unaFR_00_2A[] = {
 /* 2AFF */ { "BARRE VERTICALE BLANCHE N-AIRE","	= choix n-aire de Dijkstra"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2B[] = {
 /* 2B00 */ { "FLÈCHE BLANCHE NORD-EST",NULL},
 /* 2B01 */ { "FLÈCHE BLANCHE NORD-OUEST",NULL},
@@ -14489,7 +14463,8 @@ static const struct unicode_nameannot unaFR_00_2B[] = {
 /* 2B30 */ { "FLÈCHE VERS LA GAUCHE À PETIT CERCLE","	x (flèche vers la droite à petit cercle - 21F4)"},
 /* 2B31 */ { "TROIS FLÈCHES VERS LA GAUCHE","	x (trois flèches vers la droite - 21F6)"},
 /* 2B32 */ { "FLÈCHE VERS LA GAUCHE À SIGNE PLUS CERCLÉ","	x (flèche vers la droite à signe plus cerclé - 27F4)"},
-/* 2B33 */ { "LONGUE FLÈCHE VERS LA GAUCHE EN TIRE-BOUCHON","	x (longue flèche vers la droite en tire-bouchon - 27FF)\n"
+/* 2B33 */ { "LONGUE FLÈCHE VERS LA GAUCHE EN TIRE-BOUCHON","	= longue flèche gauche dentée\n"
+	"	x (longue flèche vers la droite en tire-bouchon - 27FF)\n"
 	"	x (flèche vers la gauche en tire-bouchon - 21DC)"},
 /* 2B34 */ { "FLÈCHE À DEUX POINTES VERS LA GAUCHE BARRÉE VERTICALEMENT","	x (flèche à deux pointes vers la droite barrée verticalement - 2900)"},
 /* 2B35 */ { "FLÈCHE À DEUX POINTES VERS LA GAUCHE BARRÉE DEUX FOIS VERTICALEMENT","	x (flèche à deux pointes vers la droite barrée deux fois verticalement - 2901)"},
@@ -14724,7 +14699,6 @@ static const struct unicode_nameannot unaFR_00_2B[] = {
 /* 2BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2C[] = {
 /* 2C00 */ { "LETTRE MAJUSCULE GLAGOLITIQUE AZE",NULL},
 /* 2C01 */ { "LETTRE MAJUSCULE GLAGOLITIQUE BOUKI",NULL},
@@ -14992,7 +14966,6 @@ static const struct unicode_nameannot unaFR_00_2C[] = {
 /* 2CFF */ { "DIVISEUR MORPHOLOGIQUE COPTE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2D[] = {
 /* 2D00 */ { "LETTRE GÉORGIENNE NOUSKHOURI AN",NULL},
 /* 2D01 */ { "LETTRE GÉORGIENNE NOUSKHOURI BAN",NULL},
@@ -15255,7 +15228,6 @@ static const struct unicode_nameannot unaFR_00_2D[] = {
 /* 2DFF */ { "DIACRITIQUE LETTRE CYRILLIQUE GRAND YOUSSE YODISÉ",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2E00 */ { "ANGLET DE SUBSTITUTION","	x (coin nord-ouest - 231C)"},
 /* 2E01 */ { "ANGLET DE SUBSTITUTION POINTÉ",NULL},
@@ -15277,7 +15249,7 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2E0F */ { "PARAGRAPHOS","	* changement de locuteur ou de strophe"},
 /* 2E10 */ { "PARAGRAPHOS FOURCHU",NULL},
 /* 2E11 */ { "PARAGRAPHOS FOURCHU RÉFLÉCHI",NULL},
-/* 2E12 */ { "HYPODIASTOLE","	= ypodiastoli"},
+/* 2E12 */ { "HYPODIASTOLE",NULL},
 /* 2E13 */ { "OBÈLE POINTÉ","	* les variantes de glyphe peuvent ressembler à 00F7 ou à 2238\n"
 	"	x (signe moins commercial - 2052)"},
 /* 2E14 */ { "ANCORA VERS LE HAUT","	* suppression ou correction au-dessus du signe"},
@@ -15289,8 +15261,7 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 	"	x (signe égal - 003D)\n"
 	"	x (trait d'union - 2010)\n"
 	"	x (trait d'union double - 2E40)"},
-/* 2E18 */ { "POINT EXCLARROGATIF CULBUTÉ","	= gnaborretni\n"
-	"	x (point exclarrogatif - 203D)"},
+/* 2E18 */ { "POINT EXCLARROGATIF CULBUTÉ","	x (point exclarrogatif - 203D)"},
 /* 2E19 */ { "PALME","	* signe servant de séparateur"},
 /* 2E1A */ { "TRAIT D'UNION À TRÉMA","	* indique l'inflexion de la voyelle thématique d'une forme plurielle"},
 /* 2E1B */ { "TILDE À CERCLE SUSCRIT","	* indique le changement de casse pour une forme dérivée"},
@@ -15586,7 +15557,6 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2F[] = {
 /* 2F00 */ { "CLÉ CHINOISE UN","	# 4E00"},
 /* 2F01 */ { "CLÉ CHINOISE BARRE","	# 4E28"},
@@ -15848,7 +15818,6 @@ static const struct unicode_nameannot unaFR_00_2F[] = {
 /* 2FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_30[] = {
 /* 3000 */ { "ESPACE IDÉOGRAPHIQUE","	x (espace - 0020)\n"
 	"	# <large> 0020"},
@@ -16144,7 +16113,6 @@ static const struct unicode_nameannot unaFR_00_30[] = {
 	"	# <verticale> 30B3 30C8"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_31[] = {
 /* 3100 */ { NULL,NULL},
 /* 3101 */ { NULL,NULL},
@@ -16420,7 +16388,6 @@ static const struct unicode_nameannot unaFR_00_31[] = {
 /* 31FF */ { "SYLLABE KATAKANA PETIT RO",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_32[] = {
 /* 3200 */ { "HANGÛL KIYOK ENTRE PARENTHÈSES","	# 0028 1100 0029"},
 /* 3201 */ { "HANGÛL NIÛN ENTRE PARENTHÈSES","	# 0028 1102 0029"},
@@ -16707,7 +16674,6 @@ static const struct unicode_nameannot unaFR_00_32[] = {
 /* 32FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_33[] = {
 /* 3300 */ { "APÂTO DISPOSÉ EN CARRÉ","	* appartement\n"
 	"	# <enCarré> 30A2 30D1 30FC 30C8"},
@@ -16721,9 +16687,9 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 	"	# <enCarré> 30A4 30CB 30F3 30B0"},
 /* 3305 */ { "INTI DISPOSÉ EN CARRÉ","	* pouce\n"
 	"	# <enCarré> 30A4 30F3 30C1"},
-/* 3306 */ { "UON DISPOSÉ EN CARRÉ","	* won (devise coréenne)\n"
+/* 3306 */ { "UON DISPOSÉ EN CARRÉ","	* won sud-coréen, won nord-coréen\n"
 	"	# <enCarré> 30A6 30A9 30F3"},
-/* 3307 */ { "ESUKÛDO DISPOSÉ EN CARRÉ","	* escudo (devise portugaise)\n"
+/* 3307 */ { "ESUKÛDO DISPOSÉ EN CARRÉ","	* escudo (ancienne monnaie du Portugal)\n"
 	"	# <enCarré> 30A8 30B9 30AF 30FC 30C9"},
 /* 3308 */ { "ÊKÂ DISPOSÉ EN CARRÉ","	* acre, arpent\n"
 	"	# <enCarré> 30A8 30FC 30AB 30FC"},
@@ -16761,15 +16727,15 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 	"	# <enCarré> 30B0 30E9 30E0"},
 /* 3319 */ { "GURAMUTON DISPOSÉ EN CARRÉ","	* gramme par tonne\n"
 	"	# <enCarré> 30B0 30E9 30E0 30C8 30F3"},
-/* 331A */ { "KURUZEIRO DISPOSÉ EN CARRÉ","	* cruzeiro (devise brésilienne)\n"
+/* 331A */ { "KURUZEIRO DISPOSÉ EN CARRÉ","	* cruzeiro (monnaie du Brésil)\n"
 	"	# <enCarré> 30AF 30EB 30BC 30A4 30ED"},
 /* 331B */ { "KURÔNE DISPOSÉ EN CARRÉ","	* krone, couronne scandinave\n"
 	"	# <enCarré> 30AF 30ED 30FC 30CD"},
 /* 331C */ { "KÊSU DISPOSÉ EN CARRÉ","	* caisse\n"
 	"	# <enCarré> 30B1 30FC 30B9"},
-/* 331D */ { "KORUNA DISPOSÉ EN CARRÉ","	* koruna, couronne (devise tchèque)\n"
+/* 331D */ { "KORUNA DISPOSÉ EN CARRÉ","	* koruna, couronne (monnaie tchèque)\n"
 	"	# <enCarré> 30B3 30EB 30CA"},
-/* 331E */ { "KÔPO DISPOSÉ EN CARRÉ","	* coop\n"
+/* 331E */ { "KÔPO DISPOSÉ EN CARRÉ","	* coopérative\n"
 	"	# <enCarré> 30B3 30FC 30DD"},
 /* 331F */ { "SAIKURU DISPOSÉ EN CARRÉ","	* cycle\n"
 	"	# <enCarré> 30B5 30A4 30AF 30EB"},
@@ -16779,7 +16745,7 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 	"	# <enCarré> 30B7 30EA 30F3 30B0"},
 /* 3322 */ { "SENTI DISPOSÉ EN CARRÉ","	* centi-\n"
 	"	# <enCarré> 30BB 30F3 30C1"},
-/* 3323 */ { "SENTO DISPOSÉ EN CARRÉ","	* cent(ime)\n"
+/* 3323 */ { "SENTO DISPOSÉ EN CARRÉ","	* cent, centime\n"
 	"	# <enCarré> 30BB 30F3 30C8"},
 /* 3324 */ { "DÂSU DISPOSÉ EN CARRÉ","	* douzaine\n"
 	"	# <enCarré> 30C0 30FC 30B9"},
@@ -16797,7 +16763,7 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 	"	# <enCarré> 30CF 30A4 30C4"},
 /* 332B */ { "PÂSENTO DISPOSÉ EN CARRÉ","	* pour cent\n"
 	"	# <enCarré> 30D1 30FC 30BB 30F3 30C8"},
-/* 332C */ { "PÂTU DISPOSÉ EN CARRÉ","	* une représentation erronée et inusitée initialement destinée pour le symbole monétaire thaï baht\n"
+/* 332C */ { "PÂTU DISPOSÉ EN CARRÉ","	* une représentation erronée et inusitée prévue initialement pour le symbole monétaire thaï baht\n"
 	"	x (symbole monétaire thaï baht - 0E3F)\n"
 	"	# <enCarré> 30D1 30FC 30C4"},
 /* 332D */ { "BÂRERU DISPOSÉ EN CARRÉ","	* baril\n"
@@ -16870,7 +16836,7 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 	"	# <enCarré> 30E4 30FC 30C9"},
 /* 334F */ { "YÂRU DISPOSÉ EN CARRÉ","	* yard, verge\n"
 	"	# <enCarré> 30E4 30FC 30EB"},
-/* 3350 */ { "YUAN DISPOSÉ EN CARRÉ","	* yuan (devise chinoise)\n"
+/* 3350 */ { "YUAN DISPOSÉ EN CARRÉ","	* yuan (devise nationale de la Chine)\n"
 	"	# <enCarré> 30E6 30A2 30F3"},
 /* 3351 */ { "RITTORU DISPOSÉ EN CARRÉ","	* litre\n"
 	"	# <enCarré> 30EA 30C3 30C8 30EB"},
@@ -16925,7 +16891,7 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 /* 337C */ { "ÈRE CHÔWA DISPOSÉ EN CARRÉ","	# <enCarré> 662D 548C"},
 /* 337D */ { "ÈRE TAÏCHÔ DISPOSÉ EN CARRÉ","	# <enCarré> 5927 6B63"},
 /* 337E */ { "ÈRE MEIJI DISPOSÉ EN CARRÉ","	# <enCarré> 660E 6CBB"},
-/* 337F */ { "SOCIÉTÉ DISPOSÉ EN CARRÉ","	= kabusiki-gaisya\n"
+/* 337F */ { "SOCIÉTÉ DISPOSÉ EN CARRÉ","	= kabushiki gaisha\n"
 	"	* société anonyme\n"
 	"	# <enCarré> 682A 5F0F 4F1A 793E"},
 /* 3380 */ { "PA AMPÈRES DISPOSÉ EN CARRÉ","	# <enCarré> 0070 0041"},
@@ -17059,7 +17025,6 @@ static const struct unicode_nameannot unaFR_00_33[] = {
 /* 33FF */ { "GAL DISPOSÉ EN CARRÉ","	# <enCarré> 0067 0061 006C"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_4D[] = {
 /* 4D00 */ { NULL,NULL},
 /* 4D01 */ { NULL,NULL},
@@ -17321,7 +17286,6 @@ static const struct unicode_nameannot unaFR_00_4D[] = {
 /* 4DFF */ { "HEXAGRAMME DE LA MARCHE VERS L'ACCOMPLISSEMENT","	= wei-tsi"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A0[] = {
 /* A000 */ { "SYLLABE YI IT",NULL},
 /* A001 */ { "SYLLABE YI IX",NULL},
@@ -17582,7 +17546,6 @@ static const struct unicode_nameannot unaFR_00_A0[] = {
 /* A0FF */ { "SYLLABE YI VYR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A1[] = {
 /* A100 */ { "SYLLABE YI DIT",NULL},
 /* A101 */ { "SYLLABE YI DIX",NULL},
@@ -17842,7 +17805,6 @@ static const struct unicode_nameannot unaFR_00_A1[] = {
 /* A1FF */ { "SYLLABE YI KAT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A2[] = {
 /* A200 */ { "SYLLABE YI KAX",NULL},
 /* A201 */ { "SYLLABE YI KA",NULL},
@@ -18102,7 +18064,6 @@ static const struct unicode_nameannot unaFR_00_A2[] = {
 /* A2FF */ { "SYLLABE YI NZU",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A3[] = {
 /* A300 */ { "SYLLABE YI NZUP",NULL},
 /* A301 */ { "SYLLABE YI NZURX",NULL},
@@ -18362,7 +18323,6 @@ static const struct unicode_nameannot unaFR_00_A3[] = {
 /* A3FF */ { "SYLLABE YI QIP",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A4[] = {
 /* A400 */ { "SYLLABE YI QIET",NULL},
 /* A401 */ { "SYLLABE YI QIEX",NULL},
@@ -18622,7 +18582,6 @@ static const struct unicode_nameannot unaFR_00_A4[] = {
 /* A4FF */ { "PONCTUATION LISSOU POINT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A5[] = {
 /* A500 */ { "SYLLABE VAÏE É",NULL},
 /* A501 */ { "SYLLABE VAÏE ÉN",NULL},
@@ -18882,7 +18841,6 @@ static const struct unicode_nameannot unaFR_00_A5[] = {
 /* A5FF */ { "SYLLABE VAÏE TCHÊ",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A6[] = {
 /* A600 */ { "SYLLABE VAÏE JÊ",NULL},
 /* A601 */ { "SYLLABE VAÏE NJÊ",NULL},
@@ -19154,7 +19112,6 @@ static const struct unicode_nameannot unaFR_00_A6[] = {
 /* A6FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A700 */ { "LETTRE MODIFICATIVE CHINOISE TON YIN PING","	* yin p'ing"},
 /* A701 */ { "LETTRE MODIFICATIVE CHINOISE TON YANG PING","	* yang p'ing"},
@@ -19436,7 +19393,6 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7FF */ { "LETTRE LATINE ÉPIGRAPHIQUE M ARCHAÏQUE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A8[] = {
 /* A800 */ { "LETTRE SYLOTÎ NÂGRÎ Â",NULL},
 /* A801 */ { "LETTRE SYLOTÎ NÂGRÎ I",NULL},
@@ -19759,7 +19715,6 @@ static const struct unicode_nameannot unaFR_00_A8[] = {
 /* A8FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_A9[] = {
 /* A900 */ { "CHIFFRE KAYAH LI ZÉRO",NULL},
 /* A901 */ { "CHIFFRE KAYAH LI UN",NULL},
@@ -20020,7 +19975,6 @@ static const struct unicode_nameannot unaFR_00_A9[] = {
 /* A9FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_AA[] = {
 /* AA00 */ { "LETTRE TCHAME A",NULL},
 /* AA01 */ { "LETTRE TCHAME I",NULL},
@@ -20282,7 +20236,6 @@ static const struct unicode_nameannot unaFR_00_AA[] = {
 /* AAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_AB[] = {
 /* AB00 */ { NULL,NULL},
 /* AB01 */ { "SYLLABE ÉTHIOPIENNE TTHU",NULL},
@@ -20549,7 +20502,6 @@ static const struct unicode_nameannot unaFR_00_AB[] = {
 /* ABFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_D7[] = {
 /* D700 */ { NULL,NULL},
 /* D701 */ { NULL,NULL},
@@ -20809,7 +20761,6 @@ static const struct unicode_nameannot unaFR_00_D7[] = {
 /* D7FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_F9[] = {
 /* F900 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F900","	: 8C48"},
 /* F901 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F901","	: 66F4"},
@@ -21073,7 +21024,6 @@ static const struct unicode_nameannot unaFR_00_F9[] = {
 /* F9FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-F9FF","	: 523A"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FA[] = {
 /* FA00 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-FA00","	: 5207"},
 /* FA01 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-FA01","	: 5EA6"},
@@ -21334,7 +21284,6 @@ static const struct unicode_nameannot unaFR_00_FA[] = {
 /* FAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FB[] = {
 /* FB00 */ { "LIGATURE MINUSCULE LATINE FF","	# 0066 0066"},
 /* FB01 */ { "LIGATURE MINUSCULE LATINE FI","	# 0066 0069"},
@@ -21597,7 +21546,6 @@ static const struct unicode_nameannot unaFR_00_FB[] = {
 /* FBFF */ { "LETTRE ARABE FARSI YA' MÉDIAL","	# <médiale> 06CC"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FC[] = {
 /* FC00 */ { "LIGATURE ARABE YA' HAMZA EN CHEF DJÎM ISOLÉ","	# <isolée> 0626 062C"},
 /* FC01 */ { "LIGATURE ARABE YA' HAMZA EN CHEF HA' ISOLÉ","	# <isolée> 0626 062D"},
@@ -21857,7 +21805,6 @@ static const struct unicode_nameannot unaFR_00_FC[] = {
 /* FCFF */ { "LIGATURE ARABE HA' ALIF MAKSOURA ISOLÉ","	# <isolée> 062D 0649"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FD[] = {
 /* FD00 */ { "LIGATURE ARABE HA' YA' ISOLÉ","	# <isolée> 062D 064A"},
 /* FD01 */ { "LIGATURE ARABE DJÎM ALIF MAKSOURA ISOLÉ","	# <isolée> 062C 0649"},
@@ -22119,7 +22066,6 @@ static const struct unicode_nameannot unaFR_00_FD[] = {
 /* FDFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FE[] = {
 /* FE00 */ { "SÉLECTEUR DE VARIANTE-1","	* ces caractères ont pour abréviation VS1, VS2, et ainsi de suite"},
 /* FE01 */ { "SÉLECTEUR DE VARIANTE-2",NULL},
@@ -22252,7 +22198,7 @@ static const struct unicode_nameannot unaFR_00_FE[] = {
 	"	# <petite> 005C"},
 /* FE69 */ { "SYMBOLE DOLLAR MINUSCULE","	# <petite> 0024"},
 /* FE6A */ { "SYMBOLE POUR CENT MINUSCULE","	# <petite> 0025"},
-/* FE6B */ { "ARROBE MINUSCULE","	= arobase, arobas, arrobas, à commercial [minuscule]\n"
+/* FE6B */ { "ARROBE MINUSCULE","	= arobase, arobas/arrobas, à commercial [minuscule]\n"
 	"	# <petite> 0040"},
 /* FE6C */ { NULL,NULL},
 /* FE6D */ { NULL,NULL},
@@ -22408,7 +22354,6 @@ static const struct unicode_nameannot unaFR_00_FE[] = {
 	"	x (<pas un caractère> - FFFE)"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_FF[] = {
 /* FF00 */ { NULL,NULL},
 /* FF01 */ { "POINT D'EXCLAMATION PLEINE CHASSE","	# <large> 0021"},
@@ -22445,7 +22390,7 @@ static const struct unicode_nameannot unaFR_00_FF[] = {
 /* FF1D */ { "SIGNE ÉGAL PLEINE CHASSE","	# <large> 003D"},
 /* FF1E */ { "SIGNE SUPÉRIEUR À PLEINE CHASSE","	# <large> 003E"},
 /* FF1F */ { "POINT D'INTERROGATION PLEINE CHASSE","	# <large> 003F"},
-/* FF20 */ { "ARROBE PLEINE CHASSE","	= arobase, arobas, arrobas, à commercial [pleine chasse]\n"
+/* FF20 */ { "ARROBE PLEINE CHASSE","	= arobase, arobas/arrobas, à commercial [pleine chasse]\n"
 	"	# <large> 0040"},
 /* FF21 */ { "LETTRE MAJUSCULE LATINE A PLEINE CHASSE","	# <large> 0041"},
 /* FF22 */ { "LETTRE MAJUSCULE LATINE B PLEINE CHASSE","	# <large> 0042"},
@@ -22682,7 +22627,6 @@ static const struct unicode_nameannot unaFR_00_FF[] = {
 /* FFFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_00[] = {
 /* 10000 */ { "SYLLABE LINÉAIRE B B008 A",NULL},
 /* 10001 */ { "SYLLABE LINÉAIRE B B038 E",NULL},
@@ -22942,7 +22886,6 @@ static const struct unicode_nameannot unaFR_01_00[] = {
 /* 100FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_01[] = {
 /* 10100 */ { "TRAIT ÉGÉEN SÉPARATEUR DE MOTS",NULL},
 /* 10101 */ { "POINT ÉGÉEN SÉPARATEUR DE MOTS",NULL},
@@ -23205,7 +23148,6 @@ static const struct unicode_nameannot unaFR_01_01[] = {
 /* 101FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_02[] = {
 /* 10200 */ { NULL,NULL},
 /* 10201 */ { NULL,NULL},
@@ -23465,7 +23407,6 @@ static const struct unicode_nameannot unaFR_01_02[] = {
 /* 102FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_03[] = {
 /* 10300 */ { "LETTRE VIEIL ITALIQUE A",NULL},
 /* 10301 */ { "LETTRE VIEIL ITALIQUE BÉ",NULL},
@@ -23725,7 +23666,6 @@ static const struct unicode_nameannot unaFR_01_03[] = {
 /* 103FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_04[] = {
 /* 10400 */ { "LETTRE MAJUSCULE DÉSÉRET I LONG",NULL},
 /* 10401 */ { "LETTRE MAJUSCULE DÉSÉRET E LONG",NULL},
@@ -23985,7 +23925,6 @@ static const struct unicode_nameannot unaFR_01_04[] = {
 /* 104FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_05[] = {
 /* 10500 */ { "LETTRE ELBASAN A",NULL},
 /* 10501 */ { "LETTRE ELBASAN BÉ",NULL},
@@ -24245,7 +24184,6 @@ static const struct unicode_nameannot unaFR_01_05[] = {
 /* 105FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_06[] = {
 /* 10600 */ { "SIGNE LINÉAIRE A AB001",NULL},
 /* 10601 */ { "SIGNE LINÉAIRE A AB002",NULL},
@@ -24523,7 +24461,6 @@ static const struct unicode_nameannot unaFR_01_06[] = {
 /* 106FF */ { "SIGNE LINÉAIRE A A594","	* 1064D ab131a, 10634 ab060"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_07[] = {
 /* 10700 */ { "SIGNE LINÉAIRE A A595","	* 1064D ab131a, 10634 ab060"},
 /* 10701 */ { "SIGNE LINÉAIRE A A596","	* 1064D ab131a, 1063E ab077"},
@@ -24785,7 +24722,6 @@ static const struct unicode_nameannot unaFR_01_07[] = {
 /* 107FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_08[] = {
 /* 10800 */ { "SYLLABE CHYPRIOTE A",NULL},
 /* 10801 */ { "SYLLABE CHYPRIOTE E",NULL},
@@ -25045,7 +24981,6 @@ static const struct unicode_nameannot unaFR_01_08[] = {
 /* 108FF */ { "NOMBRE HATRÉEN CENT",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_09[] = {
 /* 10900 */ { "LETTRE PHÉNICIENNE ALF","	x (lettre hébraïque alef - 05D0)"},
 /* 10901 */ { "LETTRE PHÉNICIENNE BÈT","	x (lettre hébraïque bèt - 05D1)"},
@@ -25310,7 +25245,6 @@ static const struct unicode_nameannot unaFR_01_09[] = {
 /* 109FF */ { "FRACTION CURSIVE MÉROÏTIQUE DIX DOUZIÈMES",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_0A[] = {
 /* 10A00 */ { "LETTRE KHAROCHTHÎ A",NULL},
 /* 10A01 */ { "DIACRITIQUE VOYELLE KHAROCHTHÎ I",NULL},
@@ -25558,8 +25492,8 @@ static const struct unicode_nameannot unaFR_01_0A[] = {
 /* 10AC2 */ { "LETTRE MANICHÉENNE BHÈT",NULL},
 /* 10AC3 */ { "LETTRE MANICHÉENNE GUIMEL",NULL},
 /* 10AC4 */ { "LETTRE MANICHÉENNE GHIMEL",NULL},
-/* 10AC5 */ { "LETTRE MANICHÉENNE DALÈT","	~ 10AC5 FE00 forme alternative (isolate)"},
-/* 10AC6 */ { "LETTRE MANICHÉENNE HÈ","	~ 10AC6 FE00 forme alternative (isolate)"},
+/* 10AC5 */ { "LETTRE MANICHÉENNE DALÈT","	~ 10AC5 FE00 forme concurrente (isolate)"},
+/* 10AC6 */ { "LETTRE MANICHÉENNE HÈ","	~ 10AC6 FE00 forme concurrente (isolate)"},
 /* 10AC7 */ { "LETTRE MANICHÉENNE WAW",NULL},
 /* 10AC8 */ { "SIGNE MANICHÉEN OUD",NULL},
 /* 10AC9 */ { "LETTRE MANICHÉENNE ZAÏN",NULL},
@@ -25575,9 +25509,9 @@ static const struct unicode_nameannot unaFR_01_0A[] = {
 /* 10AD3 */ { "LETTRE MANICHÉENNE LAMÈD",NULL},
 /* 10AD4 */ { "LETTRE MANICHÉENNE DHAMÈD",NULL},
 /* 10AD5 */ { "LETTRE MANICHÉENNE THAMÈD",NULL},
-/* 10AD6 */ { "LETTRE MANICHÉENNE MÉM","	~ 10AD6 FE00 forme alternative (isolate)\n"
-	"	~ 10AD6 FE00 forme alternative (final)"},
-/* 10AD7 */ { "LETTRE MANICHÉENNE NOUN","	~ 10AD7 FE00 forme alternative (isolate)"},
+/* 10AD6 */ { "LETTRE MANICHÉENNE MÉM","	~ 10AD6 FE00 forme concurrente (isolate)\n"
+	"	~ 10AD6 FE00 forme concurrente (final)"},
+/* 10AD7 */ { "LETTRE MANICHÉENNE NOUN","	~ 10AD7 FE00 forme concurrente (isolate)"},
 /* 10AD8 */ { "LETTRE MANICHÉENNE SAMÈKH",NULL},
 /* 10AD9 */ { "LETTRE MANICHÉENNE 'AÏN",NULL},
 /* 10ADA */ { "LETTRE MANICHÉENNE 'AAÏN",NULL},
@@ -25587,7 +25521,7 @@ static const struct unicode_nameannot unaFR_01_0A[] = {
 /* 10ADE */ { "LETTRE MANICHÉENNE QOUF",NULL},
 /* 10ADF */ { "LETTRE MANICHÉENNE XOUF",NULL},
 /* 10AE0 */ { "LETTRE MANICHÉENNE QHOUF",NULL},
-/* 10AE1 */ { "LETTRE MANICHÉENNE RÈCH","	~ 10AE1 FE00 forme alternative (isolate)"},
+/* 10AE1 */ { "LETTRE MANICHÉENNE RÈCH","	~ 10AE1 FE00 forme concurrente (isolate)"},
 /* 10AE2 */ { "LETTRE MANICHÉENNE CHINE",NULL},
 /* 10AE3 */ { "LETTRE MANICHÉENNE CCHINE",NULL},
 /* 10AE4 */ { "LETTRE MANICHÉENNE TAW",NULL},
@@ -25620,7 +25554,6 @@ static const struct unicode_nameannot unaFR_01_0A[] = {
 /* 10AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_0B[] = {
 /* 10B00 */ { "LETTRE AVESTIQUE A",NULL},
 /* 10B01 */ { "LETTRE AVESTIQUE AA",NULL},
@@ -25882,7 +25815,6 @@ static const struct unicode_nameannot unaFR_01_0B[] = {
 /* 10BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_0C[] = {
 /* 10C00 */ { "LETTRE ORKHON A",NULL},
 /* 10C01 */ { "LETTRE ORKHON IÉNISSÉI A",NULL},
@@ -26142,7 +26074,6 @@ static const struct unicode_nameannot unaFR_01_0C[] = {
 /* 10CFF */ { "NOMBRE RUNIQUE HONGROIS MILLE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_0E[] = {
 /* 10E00 */ { NULL,NULL},
 /* 10E01 */ { NULL,NULL},
@@ -26402,7 +26333,6 @@ static const struct unicode_nameannot unaFR_01_0E[] = {
 /* 10EFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_10[] = {
 /* 11000 */ { "DIACRITIQUE BRAHMI TCHANDRABINDOU",NULL},
 /* 11001 */ { "DIACRITIQUE BRAHMI ANOUSVÂRA",NULL},
@@ -26531,7 +26461,7 @@ static const struct unicode_nameannot unaFR_01_10[] = {
 /* 1107C */ { NULL,NULL},
 /* 1107D */ { NULL,NULL},
 /* 1107E */ { NULL,NULL},
-/* 1107F */ { "GLUON DE NOMBRES BRAHMI","	* un virâma utilisé pour former des ligatures entre les nombres brahmis pour indiquer la multiplication"},
+/* 1107F */ { "GLUON DE NOMBRES BRAHMI","	* un virâma utilisé pour former des ligatures entre les nombres brahmi pour indiquer la multiplication"},
 /* 11080 */ { "DIACRITIQUE KAYATHI TCHANDRABINDOU",NULL},
 /* 11081 */ { "DIACRITIQUE KAYATHI ANOUSVÂRA",NULL},
 /* 11082 */ { "DIACRITIQUE KAYATHI VISARGA",NULL},
@@ -26664,7 +26594,6 @@ static const struct unicode_nameannot unaFR_01_10[] = {
 /* 110FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_11[] = {
 /* 11100 */ { "DIACRITIQUE CHAKMA TCHANDRABINDOU","	= tchânaphoupoudâ"},
 /* 11101 */ { "DIACRITIQUE CHAKMA ANOUSVÂRA","	= ékaphoudâ"},
@@ -26877,7 +26806,7 @@ static const struct unicode_nameannot unaFR_01_11[] = {
 /* 111CA */ { "DIACRITIQUE CHARADA NOUKTA","	* pour étendre l'alphabet et former de nouvelles lettres"},
 /* 111CB */ { "DIACRITIQUE CHARADA MODIFICATEUR DE VOYELLE","	* représente la métaphonie régressive"},
 /* 111CC */ { "DIACRITIQUE CHARADA DE VOYELLE TRÈS COURTE","	* s'utilise pour l'écriture des matras"},
-/* 111CD */ { "SIGNE CHARADA SUTRA","	* utilisé pour marquer la fin d'une soutra dans le manuscrit de Bakhshali"},
+/* 111CD */ { "SIGNE CHARADA SUTRA","	* utilisé pour marquer la fin d'un soutra dans le manuscrit de Bakhshali"},
 /* 111CE */ { NULL,NULL},
 /* 111CF */ { NULL,NULL},
 /* 111D0 */ { "CHIFFRE CHARADA ZÉRO",NULL},
@@ -26933,7 +26862,6 @@ static const struct unicode_nameannot unaFR_01_11[] = {
 /* 111FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_12[] = {
 /* 11200 */ { "LETTRE KHOJKI A",NULL},
 /* 11201 */ { "LETTRE KHOJKI Â",NULL},
@@ -27195,7 +27123,6 @@ static const struct unicode_nameannot unaFR_01_12[] = {
 /* 112FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_13[] = {
 /* 11300 */ { "DIACRITIQUE GRANTHA ANOUSVÂRA SUSCRIT",NULL},
 /* 11301 */ { "DIACRITIQUE GRANTHA TCHANDRABINDOU",NULL},
@@ -27455,7 +27382,6 @@ static const struct unicode_nameannot unaFR_01_13[] = {
 /* 113FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_14[] = {
 /* 11400 */ { "LETTRE NÉWAR A",NULL},
 /* 11401 */ { "LETTRE NÉWAR Â",NULL},
@@ -27715,7 +27641,6 @@ static const struct unicode_nameannot unaFR_01_14[] = {
 /* 114FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_15[] = {
 /* 11500 */ { NULL,NULL},
 /* 11501 */ { NULL,NULL},
@@ -27976,7 +27901,6 @@ static const struct unicode_nameannot unaFR_01_15[] = {
 /* 115FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_16[] = {
 /* 11600 */ { "LETTRE MODI A",NULL},
 /* 11601 */ { "LETTRE MODI Â",NULL},
@@ -28236,7 +28160,6 @@ static const struct unicode_nameannot unaFR_01_16[] = {
 /* 116FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_17[] = {
 /* 11700 */ { "LETTRE ÂHOM KA",NULL},
 /* 11701 */ { "LETTRE ÂHOM KHA",NULL},
@@ -28496,7 +28419,6 @@ static const struct unicode_nameannot unaFR_01_17[] = {
 /* 117FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_18[] = {
 /* 11800 */ { NULL,NULL},
 /* 11801 */ { NULL,NULL},
@@ -28756,7 +28678,6 @@ static const struct unicode_nameannot unaFR_01_18[] = {
 /* 118FF */ { "OM VARANG KCHITI",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_1A[] = {
 /* 11A00 */ { "LETTRE ZANABAZAR CARRÉ A","	* s'utilise pour représenter des voyelles indépendantes en combinaison avec des signes voyelles"},
 /* 11A01 */ { "DIACRITIQUE VOYELLE ZANABAZAR CARRÉ I",NULL},
@@ -29029,7 +28950,6 @@ static const struct unicode_nameannot unaFR_01_1A[] = {
 /* 11AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_1C[] = {
 /* 11C00 */ { "LETTRE BHAIKSUKI A",NULL},
 /* 11C01 */ { "LETTRE BHAIKSUKI AA",NULL},
@@ -29289,7 +29209,6 @@ static const struct unicode_nameannot unaFR_01_1C[] = {
 /* 11CFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_1D[] = {
 /* 11D00 */ { "LETTRE GONDI DE MASARAM A",NULL},
 /* 11D01 */ { "LETTRE GONDI DE MASARAM Â",NULL},
@@ -29549,7 +29468,6 @@ static const struct unicode_nameannot unaFR_01_1D[] = {
 /* 11DFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_20[] = {
 /* 12000 */ { "SIGNE CUNÉIFORME A",NULL},
 /* 12001 */ { "SIGNE CUNÉIFORME A FOIS A",NULL},
@@ -29809,7 +29727,6 @@ static const struct unicode_nameannot unaFR_01_20[] = {
 /* 120FF */ { "SIGNE CUNÉIFORME GECHTIN FOIS KOUR",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_21[] = {
 /* 12100 */ { "SIGNE CUNÉIFORME GI",NULL},
 /* 12101 */ { "SIGNE CUNÉIFORME GI FOIS E",NULL},
@@ -30069,7 +29986,6 @@ static const struct unicode_nameannot unaFR_01_21[] = {
 /* 121FF */ { "SIGNE CUNÉIFORME LOU2 FOIS BAD",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_22[] = {
 /* 12200 */ { "SIGNE CUNÉIFORME LOU2 FOIS ECH2",NULL},
 /* 12201 */ { "SIGNE CUNÉIFORME LOU2 FOIS ECH2 TENOU",NULL},
@@ -30329,7 +30245,6 @@ static const struct unicode_nameannot unaFR_01_22[] = {
 /* 122FF */ { "SIGNE CUNÉIFORME TI TENOU",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_23[] = {
 /* 12300 */ { "SIGNE CUNÉIFORME TIL",NULL},
 /* 12301 */ { "SIGNE CUNÉIFORME TIR",NULL},
@@ -30589,7 +30504,6 @@ static const struct unicode_nameannot unaFR_01_23[] = {
 /* 123FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_24[] = {
 /* 12400 */ { "SIGNE NUMÉRAL CUNÉIFORME DEUX ACH",NULL},
 /* 12401 */ { "SIGNE NUMÉRAL CUNÉIFORME TROIS ACH",NULL},
@@ -30850,7 +30764,6 @@ static const struct unicode_nameannot unaFR_01_24[] = {
 /* 124FF */ { "SIGNE CUNÉIFORME LAK-550",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_25[] = {
 /* 12500 */ { "SIGNE CUNÉIFORME LAK-608",NULL},
 /* 12501 */ { "SIGNE CUNÉIFORME LAK-617",NULL},
@@ -31110,7 +31023,6 @@ static const struct unicode_nameannot unaFR_01_25[] = {
 /* 125FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_30[] = {
 /* 13000 */ { "HIÉROGLYPHE ÉGYPTIEN A001",NULL},
 /* 13001 */ { "HIÉROGLYPHE ÉGYPTIEN A002",NULL},
@@ -31372,7 +31284,6 @@ static const struct unicode_nameannot unaFR_01_30[] = {
 /* 130FF */ { "HIÉROGLYPHE ÉGYPTIEN F001A",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_31[] = {
 /* 13100 */ { "HIÉROGLYPHE ÉGYPTIEN F002",NULL},
 /* 13101 */ { "HIÉROGLYPHE ÉGYPTIEN F003",NULL},
@@ -31636,7 +31547,6 @@ static const struct unicode_nameannot unaFR_01_31[] = {
 /* 131FF */ { "HIÉROGLYPHE ÉGYPTIEN N017",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_32[] = {
 /* 13200 */ { "HIÉROGLYPHE ÉGYPTIEN N018",NULL},
 /* 13201 */ { "HIÉROGLYPHE ÉGYPTIEN N018A",NULL},
@@ -31901,7 +31811,6 @@ static const struct unicode_nameannot unaFR_01_32[] = {
 /* 132FF */ { "HIÉROGLYPHE ÉGYPTIEN S039",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_33[] = {
 /* 13300 */ { "HIÉROGLYPHE ÉGYPTIEN S040",NULL},
 /* 13301 */ { "HIÉROGLYPHE ÉGYPTIEN S041",NULL},
@@ -32169,7 +32078,6 @@ static const struct unicode_nameannot unaFR_01_33[] = {
 /* 133FF */ { "HIÉROGLYPHE ÉGYPTIEN Z015E","	* 6"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_34[] = {
 /* 13400 */ { "HIÉROGLYPHE ÉGYPTIEN Z015F","	* 7"},
 /* 13401 */ { "HIÉROGLYPHE ÉGYPTIEN Z015G","	* 8"},
@@ -32429,7 +32337,6 @@ static const struct unicode_nameannot unaFR_01_34[] = {
 /* 134FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_44[] = {
 /* 14400 */ { "HIÉROGLYPHE ANATOLIEN A001","	= ego"},
 /* 14401 */ { "HIÉROGLYPHE ANATOLIEN A002","	= ego2"},
@@ -32737,7 +32644,6 @@ static const struct unicode_nameannot unaFR_01_44[] = {
 /* 144FF */ { "HIÉROGLYPHE ANATOLIEN A222",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_45[] = {
 /* 14500 */ { "HIÉROGLYPHE ANATOLIEN A223","	= « sa6 » syllabique"},
 /* 14501 */ { "HIÉROGLYPHE ANATOLIEN A224","	= « ha? pa? » syllabique"},
@@ -32865,15 +32771,15 @@ static const struct unicode_nameannot unaFR_01_45[] = {
 /* 1456E */ { "HIÉROGLYPHE ANATOLIEN A327","	= sigillum\n"
 	"	= « sa5 » syllabique"},
 /* 1456F */ { "HIÉROGLYPHE ANATOLIEN A328","	= « pu » syllabique"},
-/* 14570 */ { "HIÉROGLYPHE ANATOLIEN A329","	= relative\n"
+/* 14570 */ { "HIÉROGLYPHE ANATOLIEN A329","	= rel\n"
 	"	= « kwi/a » syllabique"},
 /* 14571 */ { "HIÉROGLYPHE ANATOLIEN A329A",NULL},
 /* 14572 */ { "HIÉROGLYPHE ANATOLIEN A330","	= capere+scalprum"},
 /* 14573 */ { "HIÉROGLYPHE ANATOLIEN A331","	= avus"},
-/* 14574 */ { "HIÉROGLYPHE ANATOLIEN A332A","	= negative"},
-/* 14575 */ { "HIÉROGLYPHE ANATOLIEN A332B","	= negative2\n"
+/* 14574 */ { "HIÉROGLYPHE ANATOLIEN A332A","	= neg"},
+/* 14575 */ { "HIÉROGLYPHE ANATOLIEN A332B","	= neg2\n"
 	"	= « ná » syllabique"},
-/* 14576 */ { "HIÉROGLYPHE ANATOLIEN A332C","	= negative3"},
+/* 14576 */ { "HIÉROGLYPHE ANATOLIEN A332C","	= neg3"},
 /* 14577 */ { "HIÉROGLYPHE ANATOLIEN A333",NULL},
 /* 14578 */ { "HIÉROGLYPHE ANATOLIEN A334","	= « pa » syllabique"},
 /* 14579 */ { "HIÉROGLYPHE ANATOLIEN A335","	= « zá » syllabique"},
@@ -33040,7 +32946,6 @@ static const struct unicode_nameannot unaFR_01_45[] = {
 /* 145FF */ { "HIÉROGLYPHE ANATOLIEN A457",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_46[] = {
 /* 14600 */ { "HIÉROGLYPHE ANATOLIEN A457A",NULL},
 /* 14601 */ { "HIÉROGLYPHE ANATOLIEN A458",NULL},
@@ -33301,7 +33206,6 @@ static const struct unicode_nameannot unaFR_01_46[] = {
 /* 146FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_68[] = {
 /* 16800 */ { "LETTRE BAMOUM DE PHASE 'A' NGKÜ MFON",NULL},
 /* 16801 */ { "LETTRE BAMOUM DE PHASE 'A' GBIÉ FON",NULL},
@@ -33561,7 +33465,6 @@ static const struct unicode_nameannot unaFR_01_68[] = {
 /* 168FF */ { "LETTRE BAMOUM DE PHASE 'D' KÙETMÙN",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_69[] = {
 /* 16900 */ { "LETTRE BAMOUM DE PHASE 'D' TÙT",NULL},
 /* 16901 */ { "LETTRE BAMOUM DE PHASE 'D' SHÙE",NULL},
@@ -33821,7 +33724,6 @@ static const struct unicode_nameannot unaFR_01_69[] = {
 /* 169FF */ { "LETTRE BAMOUM DE PHASE 'E' MON",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_6A[] = {
 /* 16A00 */ { "LETTRE BAMOUM DE PHASE 'E' TÈN",NULL},
 /* 16A01 */ { "LETTRE BAMOUM DE PHASE 'E' FA'",NULL},
@@ -34081,7 +33983,6 @@ static const struct unicode_nameannot unaFR_01_6A[] = {
 /* 16AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_6B[] = {
 /* 16B00 */ { "VOYELLE PAHAWH HMONG KEEB","	= keem"},
 /* 16B01 */ { "VOYELLE PAHAWH HMONG KEEV","	= kee"},
@@ -34344,7 +34245,6 @@ static const struct unicode_nameannot unaFR_01_6B[] = {
 /* 16BFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_6F[] = {
 /* 16F00 */ { "LETTRE MIAO PA","	* utilisée pour « ba » en yi sec"},
 /* 16F01 */ { "LETTRE MIAO BA",NULL},
@@ -34604,7 +34504,6 @@ static const struct unicode_nameannot unaFR_01_6F[] = {
 /* 16FFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_88[] = {
 /* 18800 */ { "ÉLÉMENT TANGOUTE-001",NULL},
 /* 18801 */ { "ÉLÉMENT TANGOUTE-002",NULL},
@@ -34864,7 +34763,6 @@ static const struct unicode_nameannot unaFR_01_88[] = {
 /* 188FF */ { "ÉLÉMENT TANGOUTE-256",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_89[] = {
 /* 18900 */ { "ÉLÉMENT TANGOUTE-257",NULL},
 /* 18901 */ { "ÉLÉMENT TANGOUTE-258",NULL},
@@ -35124,7 +35022,6 @@ static const struct unicode_nameannot unaFR_01_89[] = {
 /* 189FF */ { "ÉLÉMENT TANGOUTE-512",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_8A[] = {
 /* 18A00 */ { "ÉLÉMENT TANGOUTE-513",NULL},
 /* 18A01 */ { "ÉLÉMENT TANGOUTE-514",NULL},
@@ -35384,7 +35281,6 @@ static const struct unicode_nameannot unaFR_01_8A[] = {
 /* 18AFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_B0[] = {
 /* 1B000 */ { "LETTRE KATAKANA E ARCHAÏQUE",NULL},
 /* 1B001 */ { "SYLLABE HENTAIGANA E-1","	* dérivé de 6C5F\n"
@@ -35645,7 +35541,6 @@ static const struct unicode_nameannot unaFR_01_B0[] = {
 /* 1B0FF */ { "SYLLABE HENTAIGANA RE-2","	* dérivé de 79AE"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_B1[] = {
 /* 1B100 */ { "SYLLABE HENTAIGANA RE-3","	* dérivé de 9023"},
 /* 1B101 */ { "SYLLABE HENTAIGANA RE-4","	* dérivé de 9E97"},
@@ -35905,7 +35800,6 @@ static const struct unicode_nameannot unaFR_01_B1[] = {
 /* 1B1FF */ { "CARACTÈRE NÜSHU-1B1FF",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_B2[] = {
 /* 1B200 */ { "CARACTÈRE NÜSHU-1B200",NULL},
 /* 1B201 */ { "CARACTÈRE NÜSHU-1B201","	x 591A"},
@@ -36165,7 +36059,6 @@ static const struct unicode_nameannot unaFR_01_B2[] = {
 /* 1B2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_BC[] = {
 /* 1BC00 */ { "LETTRE DE STÉNO DUPLOYÉ H","	* chinook, Pernin, Sloan, Perrault"},
 /* 1BC01 */ { "LETTRE DE STÉNO DUPLOYÉ X","	* langues salishennes"},
@@ -36586,7 +36479,6 @@ static const struct unicode_nameannot unaFR_01_BC[] = {
 /* 1BCFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D0[] = {
 /* 1D000 */ { "SYMBOLE MUSICAL BYZANTIN PSILI",NULL},
 /* 1D001 */ { "SYMBOLE MUSICAL BYZANTIN DASEIA",NULL},
@@ -36848,7 +36740,6 @@ static const struct unicode_nameannot unaFR_01_D0[] = {
 /* 1D0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D1[] = {
 /* 1D100 */ { "SYMBOLE MUSICAL BARRE DE MESURE SIMPLE",NULL},
 /* 1D101 */ { "SYMBOLE MUSICAL BARRE DE MESURE DOUBLE",NULL},
@@ -37058,7 +36949,7 @@ static const struct unicode_nameannot unaFR_01_D1[] = {
 /* 1D1C7 */ { "SYMBOLE MUSICAL TEMPS PARFAIT PROLATION MAJEURE","	= tempus perfectum cum prolatione perfecta"},
 /* 1D1C8 */ { "SYMBOLE MUSICAL TEMPS PARFAIT PROLATION MINEURE","	= tempus perfectum cum prolatione imperfecta"},
 /* 1D1C9 */ { "SYMBOLE MUSICAL TEMPS PARFAIT PROLATION MAJEURE DIMINUTION-1","	= tempus perfectum cum prolatione perfecta diminution-1"},
-/* 1D1CA */ { "SYMBOLE MUSICAL TEMPS IMPARFAIT PROLATION MAJEURE","	= tempus imparfectum cum prolatione perfecta"},
+/* 1D1CA */ { "SYMBOLE MUSICAL TEMPS IMPARFAIT PROLATION MAJEURE","	= tempus imperfectum cum prolatione perfecta"},
 /* 1D1CB */ { "SYMBOLE MUSICAL TEMPS IMPARFAIT PROLATION MINEURE","	= tempus imperfectum cum prolatione imperfecta"},
 /* 1D1CC */ { "SYMBOLE MUSICAL TEMPS IMPARFAIT PROLATION MINEURE DIMINUTION-1","	= tempus imperfectum cum prolatione imperfecta diminution-1"},
 /* 1D1CD */ { "SYMBOLE MUSICAL TEMPS IMPARFAIT PROLATION MINEURE DIMINUTION-2","	= tempus imperfectum cum prolatione imperfecta diminution-2"},
@@ -37114,7 +37005,6 @@ static const struct unicode_nameannot unaFR_01_D1[] = {
 /* 1D1FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D2[] = {
 /* 1D200 */ { "SYMBOLE NOTATION GRECQUE VOCALE 1","	* mi1 vocal"},
 /* 1D201 */ { "SYMBOLE NOTATION GRECQUE VOCALE 2","	* premier dièse du mi1 vocal"},
@@ -37398,7 +37288,6 @@ static const struct unicode_nameannot unaFR_01_D2[] = {
 /* 1D2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D3[] = {
 /* 1D300 */ { "MONOGRAMME DE L'HOMME","	= ren, jen\n"
 	"	* l'appellation anglaise de ce caractère est erronée\n"
@@ -37661,7 +37550,6 @@ static const struct unicode_nameannot unaFR_01_D3[] = {
 /* 1D3FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D4[] = {
 /* 1D400 */ { "MAJUSCULE MATHÉMATIQUE GRASSE A","	# <police> 0041 lettre majuscule latine a"},
 /* 1D401 */ { "MAJUSCULE MATHÉMATIQUE GRASSE B","	# <police> 0042 lettre majuscule latine b"},
@@ -37834,7 +37722,7 @@ static const struct unicode_nameannot unaFR_01_D4[] = {
 /* 1D4A8 */ { NULL,"	x (majuscule m de ronde - 2133)"},
 /* 1D4A9 */ { "MAJUSCULE MATHÉMATIQUE N DE RONDE","	# <police> 004E lettre majuscule latine n"},
 /* 1D4AA */ { "MAJUSCULE MATHÉMATIQUE O DE RONDE","	# <police> 004F lettre majuscule latine o"},
-/* 1D4AB */ { "MAJUSCULE MATHÉMATIQUE P DE RONDE","	= ensemble puissance\n"
+/* 1D4AB */ { "MAJUSCULE MATHÉMATIQUE P DE RONDE","	= ensemble des parties d'un ensemble\n"
 	"	# <police> 0050 lettre majuscule latine p"},
 /* 1D4AC */ { "MAJUSCULE MATHÉMATIQUE Q DE RONDE","	# <police> 0051 lettre majuscule latine q"},
 /* 1D4AD */ { NULL,"	x (majuscule r de ronde - 211B)"},
@@ -37923,7 +37811,6 @@ static const struct unicode_nameannot unaFR_01_D4[] = {
 /* 1D4FF */ { "MINUSCULE MATHÉMATIQUE GRASSE V DE RONDE","	# <police> 0076 lettre minuscule latine v"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D5[] = {
 /* 1D500 */ { "MINUSCULE MATHÉMATIQUE GRASSE W DE RONDE","	# <police> 0077 lettre minuscule latine w"},
 /* 1D501 */ { "MINUSCULE MATHÉMATIQUE GRASSE X DE RONDE","	# <police> 0078 lettre minuscule latine x"},
@@ -38186,7 +38073,6 @@ static const struct unicode_nameannot unaFR_01_D5[] = {
 /* 1D5FF */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT R","	# <police> 0072 lettre minuscule latine r"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D6[] = {
 /* 1D600 */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT S","	# <police> 0073 lettre minuscule latine s"},
 /* 1D601 */ { "MINUSCULE MATHÉMATIQUE GRASSE SANS EMPATTEMENT T","	# <police> 0074 lettre minuscule latine t"},
@@ -38452,7 +38338,6 @@ static const struct unicode_nameannot unaFR_01_D6[] = {
 /* 1D6FF */ { "MINUSCULE MATHÉMATIQUE ITALIQUE DELTA","	# <police> 03B4 lettre minuscule grecque delta"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D7[] = {
 /* 1D700 */ { "MINUSCULE MATHÉMATIQUE ITALIQUE EPSILON","	# <police> 03B5 lettre minuscule grecque epsilon"},
 /* 1D701 */ { "MINUSCULE MATHÉMATIQUE ITALIQUE DZÊTA","	# <police> 03B6 lettre minuscule grecque dzêta"},
@@ -38712,7 +38597,6 @@ static const struct unicode_nameannot unaFR_01_D7[] = {
 /* 1D7FF */ { "CHIFFRE MATHÉMATIQUE À CHASSE FIXE NEUF","	# <police> 0039 chiffre neuf"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D8[] = {
 /* 1D800 */ { "SIGNWRITING MAIN-POING INDEX",NULL},
 /* 1D801 */ { "SIGNWRITING MAIN-CERCLE INDEX",NULL},
@@ -38972,7 +38856,6 @@ static const struct unicode_nameannot unaFR_01_D8[] = {
 /* 1D8FF */ { "SIGNWRITING MAIN-POING POUCE SUR DEUX DOIGTS",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_D9[] = {
 /* 1D900 */ { "SIGNWRITING MAIN-POING POUCE SOUS TROIS DOIGTS",NULL},
 /* 1D901 */ { "SIGNWRITING MAIN-POING POUCE SOUS QUATRE DOIGTS",NULL},
@@ -39232,7 +39115,6 @@ static const struct unicode_nameannot unaFR_01_D9[] = {
 /* 1D9FF */ { "SIGNWRITING TÊTE",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_DA[] = {
 /* 1DA00 */ { "SIGNWRITING TÊTE BORD",NULL},
 /* 1DA01 */ { "SIGNWRITING TÊTE MOUVEMENT-PLAN VERTICAL RECTILIGNE",NULL},
@@ -39492,7 +39374,6 @@ static const struct unicode_nameannot unaFR_01_DA[] = {
 /* 1DAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_E0[] = {
 /* 1E000 */ { "DIACRITIQUE LETTRE GLAGOLITIQUE AZE",NULL},
 /* 1E001 */ { "DIACRITIQUE LETTRE GLAGOLITIQUE BOUKI",NULL},
@@ -39752,7 +39633,6 @@ static const struct unicode_nameannot unaFR_01_E0[] = {
 /* 1E0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_E8[] = {
 /* 1E800 */ { "SYLLABE MENDÉ KIKAKUI M001 KI",NULL},
 /* 1E801 */ { "SYLLABE MENDÉ KIKAKUI M002 KA",NULL},
@@ -40012,7 +39892,6 @@ static const struct unicode_nameannot unaFR_01_E8[] = {
 /* 1E8FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_E9[] = {
 /* 1E900 */ { "LETTRE MAJUSCULE ADLAM ALIF",NULL},
 /* 1E901 */ { "LETTRE MAJUSCULE ADLAM DÂLI",NULL},
@@ -40272,7 +40151,6 @@ static const struct unicode_nameannot unaFR_01_E9[] = {
 /* 1E9FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_EE[] = {
 /* 1EE00 */ { "SYMBOLE MATHÉMATIQUE ARABE ALIF","	x (lettre arabe alif isolé - FE8D)\n"
 	"	# <police> 0627 lettre arabe alif"},
@@ -40586,7 +40464,6 @@ static const struct unicode_nameannot unaFR_01_EE[] = {
 /* 1EEFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F0[] = {
 /* 1F000 */ { "TUILE DE MAJONG VENT D'EST",NULL},
 /* 1F001 */ { "TUILE DE MAJONG VENT DU SUD",NULL},
@@ -40846,7 +40723,6 @@ static const struct unicode_nameannot unaFR_01_F0[] = {
 /* 1F0FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F1[] = {
 /* 1F100 */ { "CHIFFRE ZÉRO POINT","	# 0030 002E"},
 /* 1F101 */ { "CHIFFRE ZÉRO VIRGULE","	# 0030 002C"},
@@ -41141,7 +41017,6 @@ static const struct unicode_nameannot unaFR_01_F1[] = {
 /* 1F1FF */ { "SYMBOLE INDICATEUR RÉGIONAL LETTRE Z",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F2[] = {
 /* 1F200 */ { "HIRAGANA HOKA DISPOSÉ EN CARRÉ","	= et autres\n"
 	"	# <enCarré> 307B 304B"},
@@ -41474,7 +41349,6 @@ static const struct unicode_nameannot unaFR_01_F2[] = {
 /* 1F2FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F3[] = {
 /* 1F300 */ { "CYCLONE","	= typhon, ouragan"},
 /* 1F301 */ { "BRUMEUX","	x (brouillard - 1F32B)"},
@@ -41679,7 +41553,7 @@ static const struct unicode_nameannot unaFR_01_F3[] = {
 /* 1F3AB */ { "BILLET","	* indique un événement\n"
 	"	x (billets d'entrée - 1F39F)"},
 /* 1F3AC */ { "CLAQUETTE","	= film"},
-/* 1F3AD */ { "ARTS DU SPECTACLE","	= masques de théâtre, theâtre"},
+/* 1F3AD */ { "ARTS DU SPECTACLE","	= masques de théâtre, théâtre"},
 /* 1F3AE */ { "JEU VIDÉO","	= commande de jeu vidéo"},
 /* 1F3AF */ { "COUP DIRECT","	= cible de tir à l'arc, frapper la cible\n"
 	"	x (deux cercles concentriques - 25CE)"},
@@ -41707,7 +41581,7 @@ static const struct unicode_nameannot unaFR_01_F3[] = {
 /* 1F3C0 */ { "BASKET-BALL",NULL},
 /* 1F3C1 */ { "DRAPEAU EN DAMIER","	= sports moteurs"},
 /* 1F3C2 */ { "NIVOPLANCHISTE","	= snowboardeur (déconseillé)\n"
-	"	= surf des neiges, planche à neige (Canada)"},
+	"	= surfeur des neiges, surfeuse des neiges [Canada]"},
 /* 1F3C3 */ { "COUREUR","	= course, marathon, athlétisme"},
 /* 1F3C4 */ { "SURFEUR","	= surf"},
 /* 1F3C5 */ { "MÉDAILLE SPORTIVE","	x (médaille d'or - 1F947)"},
@@ -41787,7 +41661,6 @@ static const struct unicode_nameannot unaFR_01_F3[] = {
 /* 1F3FF */ { "MODIFICATEUR D'ÉMOJI PHOTOTYPE-6",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F4[] = {
 /* 1F400 */ { "RAT","	* premier signe du zodiaque asiatique"},
 /* 1F401 */ { "SOURIS","	* premier signe du zodiaque asiatique utilisé en Perse"},
@@ -41798,11 +41671,11 @@ static const struct unicode_nameannot unaFR_01_F4[] = {
 /* 1F405 */ { "TIGRE","	* troisième signe du zodiaque asiatique"},
 /* 1F406 */ { "LÉOPARD","	* troisième signe du zodiaque asiatique utilisé en Perse"},
 /* 1F407 */ { "LAPIN","	* quatrième signe du zodiaque asiatique"},
-/* 1F408 */ { "CHAT","	* quatrième signe du zodiaque asiatiqu utilisé au Viêt Nam"},
-/* 1F409 */ { "DRAGON","	* cinqième signe du zodiaque asiatique"},
-/* 1F40A */ { "CROCODILE","	* cinqième signe du zodiaque asiatique utilisé en Perse"},
-/* 1F40B */ { "BALEINE","	* cinqième signe du zodiaque asiatique utilisé en Perse"},
-/* 1F40C */ { "ESCARGOT","	* cinqième signe du zodiaque asiatique utilisé au Kazakhstan"},
+/* 1F408 */ { "CHAT","	* quatrième signe du zodiaque asiatique utilisé au Viêt Nam"},
+/* 1F409 */ { "DRAGON","	* cinquième signe du zodiaque asiatique"},
+/* 1F40A */ { "CROCODILE","	* cinquième signe du zodiaque asiatique utilisé en Perse"},
+/* 1F40B */ { "BALEINE","	* cinquième signe du zodiaque asiatique utilisé en Perse"},
+/* 1F40C */ { "ESCARGOT","	* cinquième signe du zodiaque asiatique utilisé au Kazakhstan"},
 /* 1F40D */ { "SERPENT","	* sixième signe du zodiaque asiatique"},
 /* 1F40E */ { "CHEVAL","	= sports équestres\n"
 	"	* septième signe du zodiaque asiatique"},
@@ -41812,10 +41685,11 @@ static const struct unicode_nameannot unaFR_01_F4[] = {
 /* 1F411 */ { "MOUTON","	* huitième signe du zodiaque asiatique utilisé en Perse"},
 /* 1F412 */ { "SINGE","	* neuvième signe du zodiaque asiatique"},
 /* 1F413 */ { "COQ","	* dixième signe du zodiaque asiatique"},
-/* 1F414 */ { "POULE","	= volaille (sur la carte des menus)\n"
+/* 1F414 */ { "POULE","	= poulet, volaille (sur la carte des menus)\n"
 	"	* dixième signe du zodiaque asiatique utilisé en Perse"},
 /* 1F415 */ { "CHIEN","	* onzième signe du zodiaque asiatique"},
-/* 1F416 */ { "COCHON","	* douzième signe du zodiaque asiatique"},
+/* 1F416 */ { "COCHON","	= porc (sur la carte des menus)\n"
+	"	* douzième signe du zodiaque asiatique"},
 /* 1F417 */ { "SANGLIER","	* douzième signe du zodiaque asiatique utilisé au Japon"},
 /* 1F418 */ { "ÉLÉPHANT","	* douzième signe du zodiaque asiatique utilisé en Thaïlande"},
 /* 1F419 */ { "PIEUVRE",NULL},
@@ -42077,7 +41951,6 @@ static const struct unicode_nameannot unaFR_01_F4[] = {
 /* 1F4FF */ { "CHAPELET",NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F5[] = {
 /* 1F500 */ { "FLÈCHES VERS LA DROITE S'ENTRECROISANT","	= brouiller"},
 /* 1F501 */ { "FLÈCHES VERS LA DROITE ET VERS LA GAUCHE SENS HORAIRE EN CERCLE OUVERT","	= répéter\n"
@@ -42353,7 +42226,7 @@ static const struct unicode_nameannot unaFR_01_F5[] = {
 	"	x (clé - 1F511)"},
 /* 1F5DE */ { "JOURNAL ENROULÉ","	= informations\n"
 	"	x (journal - 1F4F0)"},
-/* 1F5DF */ { "PAGE AVEC TEXTE ENCERCLÉ","	= petite annonce, annonce classée"},
+/* 1F5DF */ { "PAGE AVEC TEXTE ENCERCLÉ","	= petite annonce"},
 /* 1F5E0 */ { "DIAGRAMME BOURSIER","	= finance\n"
 	"	x (courbe ascendante - 1F4C8)"},
 /* 1F5E1 */ { "DAGUE","	= classé pour la violence\n"
@@ -42398,7 +42271,6 @@ static const struct unicode_nameannot unaFR_01_F5[] = {
 /* 1F5FF */ { "MOYAI","	* statue de pierre japonaise, semblable aux statues monumentales (moaï) de l'île de Pâques"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F6[] = {
 /* 1F600 */ { "VISAGE RIEUR",NULL},
 /* 1F601 */ { "VISAGE RIEUR AUX YEUX RÉJOUIS",NULL},
@@ -42416,7 +42288,7 @@ static const struct unicode_nameannot unaFR_01_F6[] = {
 /* 1F60D */ { "VISAGE SOURIANT AUX YEUX EN FORME DE CŒURS",NULL},
 /* 1F60E */ { "VISAGE SOURIANT AVEC LUNETTES DE SOLEIL",NULL},
 /* 1F60F */ { "VISAGE AVEC SOURIRE NARQUOIS",NULL},
-/* 1F610 */ { "VISAGE NEUTRE","	* s'utilise pour le vent d'Ouest sur certaines tuiles de majong"},
+/* 1F610 */ { "VISAGE NEUTRE","	* s'utilise pour le vent d'ouest sur certaines tuiles de majong"},
 /* 1F611 */ { "VISAGE SANS EXPRESSION",NULL},
 /* 1F612 */ { "VISAGE CONTRARIÉ",NULL},
 /* 1F613 */ { "VISAGE AVEC SUEURS FROIDES",NULL},
@@ -42477,7 +42349,7 @@ static const struct unicode_nameannot unaFR_01_F6[] = {
 /* 1F649 */ { "SINGE DE LA SAGESSE N'ENTENDANT RIEN DE MAL",NULL},
 /* 1F64A */ { "SINGE DE LA SAGESSE NE DISANT RIEN DE MAL",NULL},
 /* 1F64B */ { "PERSONNE HEUREUSE UNE MAIN EN L'AIR",NULL},
-/* 1F64C */ { "PERSONNE EN FÊTE LEVANT LES DEUX MAINS","	= « banzai ! »"},
+/* 1F64C */ { "PERSONNE EN FÊTE LEVANT LES DEUX MAINS","	= « Banzai ! »"},
 /* 1F64D */ { "PERSONNE FRONÇANT LES SOURCILS",NULL},
 /* 1F64E */ { "PERSONNE FAISANT LA MOUE","	* dépeint la moue plutôt que la colère"},
 /* 1F64F */ { "PERSONNE LES MAINS JOINTES","	* peut désigner le chagrin, la peine ou le regret\n"
@@ -42621,12 +42493,13 @@ static const struct unicode_nameannot unaFR_01_F6[] = {
 /* 1F6CB */ { "DIVAN ET LAMPE","	= ameublement, modes de vie"},
 /* 1F6CC */ { "CENTRE D'HÉBERGEMENT","	= hôtel, chambres d'hôte\n"
 	"	x (hôtel - 1F3E8)"},
-/* 1F6CD */ { "SACS À PROVISIONS","	= course des magasins, magasinage (Canada)"},
+/* 1F6CD */ { "SACS À PROVISIONS","	= shopping, chalandage\n"
+	"	= magasinage (Canada)"},
 /* 1F6CE */ { "CLOCHE DE TABLE","	= réception, prestations de services"},
 /* 1F6CF */ { "LIT",NULL},
 /* 1F6D0 */ { "LIEU DE CULTE",NULL},
 /* 1F6D1 */ { "PANNEAU OCTOGONAL","	= panneau stop\n"
-	"	* le glyphe peut contenir un mot signifiant « stop »\n"
+	"	* le glyphe peut porter un mot signifiant « stop »\n"
 	"	x (signal de danger - 26A0)\n"
 	"	x (triangle épais blanc pointant vers le bas - 26DB)\n"
 	"	x (octogone noir horizontal - 2BC3)"},
@@ -42686,7 +42559,6 @@ static const struct unicode_nameannot unaFR_01_F6[] = {
 /* 1F6FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F7[] = {
 /* 1F700 */ { "SYMBOLE ALCHIMIQUE DE LA QUINTESSENCE",NULL},
 /* 1F701 */ { "SYMBOLE ALCHIMIQUE DE L'AIR",NULL},
@@ -42971,7 +42843,6 @@ static const struct unicode_nameannot unaFR_01_F7[] = {
 /* 1F7FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F8[] = {
 /* 1F800 */ { "FLÈCHE À PETITE TÊTE TRIANGULAIRE VERS LA GAUCHE",NULL},
 /* 1F801 */ { "FLÈCHE À PETITE TÊTE TRIANGULAIRE VERS LE HAUT",NULL},
@@ -43231,7 +43102,6 @@ static const struct unicode_nameannot unaFR_01_F8[] = {
 /* 1F8FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_F9[] = {
 /* 1F900 */ { "CROIX PATTÉE CERCLÉE AVEC QUATRE POINTS",NULL},
 /* 1F901 */ { "CROIX PATTÉE CERCLÉE AVEC DEUX POINTS",NULL},
@@ -43272,8 +43142,8 @@ static const struct unicode_nameannot unaFR_01_F9[] = {
 /* 1F924 */ { "VISAGE BAVANT",NULL},
 /* 1F925 */ { "VISAGE MENTANT",NULL},
 /* 1F926 */ { "PAUME AU VISAGE","	= frustration, incrédulité"},
-/* 1F927 */ { "VISAGE ÉTERNUANT","	= à tes souhaits, à tes amours\n"
-	"	= à vos souhaits, à vos amours"},
+/* 1F927 */ { "VISAGE ÉTERNUANT","	= « À tes souhaits », « À tes amours »\n"
+	"	= « À vos souhaits », « À vos amours »"},
 /* 1F928 */ { "VISAGE AVEC UN SOURCIL LEVÉ",NULL},
 /* 1F929 */ { "VISAGE RIEUR AUX YEUX EN FORME D'ÉTOILES",NULL},
 /* 1F92A */ { "VISAGE RIEUR AVEC UN GRAND ŒIL ET UN PETIT ŒIL",NULL},
@@ -43513,7 +43383,6 @@ static const struct unicode_nameannot unaFR_01_F9[] = {
 /* 1F9FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_02_F8[] = {
 /* 2F800 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F800","	: 4E3D"},
 /* 2F801 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F801","	: 4E38"},
@@ -43778,7 +43647,6 @@ static const struct unicode_nameannot unaFR_02_F8[] = {
 /* 2F8FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F8FF","	: 6D16"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_02_F9[] = {
 /* 2F900 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F900","	: 6D3E"},
 /* 2F901 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F901","	: 6D77"},
@@ -44044,7 +43912,6 @@ static const struct unicode_nameannot unaFR_02_F9[] = {
 /* 2F9FF */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2F9FF","	: 980B"}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_02_FA[] = {
 /* 2FA00 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2FA00","	: 9829"},
 /* 2FA01 */ { "IDÉOGRAMME DE COMPATIBILITÉ CJC-2FA01","	: 295B6"},
@@ -44304,7 +44171,6 @@ static const struct unicode_nameannot unaFR_02_FA[] = {
 /* 2FAFF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_0E_00[] = {
 /* E0000 */ { NULL,NULL},
 /* E0001 */ { "ÉTIQUETTE DE LANGUE","	* Ce caractère est obsolète et son utilisation est fortement déconseillée."},
@@ -44564,7 +44430,6 @@ static const struct unicode_nameannot unaFR_0E_00[] = {
 /* E00FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_0E_01[] = {
 /* E0100 */ { "SÉLECTEUR DE VARIANTE-17","	* ces caractères ont pour abréviation VS17, VS18, et ainsi de suite"},
 /* E0101 */ { "SÉLECTEUR DE VARIANTE-18",NULL},
@@ -44824,7 +44689,6 @@ static const struct unicode_nameannot unaFR_0E_01[] = {
 /* E01FF */ { NULL,NULL}
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const unaFR_00[] = {
 	unaFR_00_00,
 	unaFR_00_01,
@@ -45084,7 +44948,6 @@ static const struct unicode_nameannot * const unaFR_00[] = {
 	unaFR_00_FF
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const unaFR_01[] = {
 	unaFR_01_00,
 	unaFR_01_01,
@@ -45344,7 +45207,6 @@ static const struct unicode_nameannot * const unaFR_01[] = {
 	nullarray2FR
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const unaFR_02[] = {
 	nullarrayFR,
 	nullarrayFR,
@@ -45604,7 +45466,6 @@ static const struct unicode_nameannot * const unaFR_02[] = {
 	nullarray2FR
 };
 
-UN_DLL_LOCAL
 static const struct unicode_nameannot * const unaFR_0E[] = {
 	unaFR_0E_00,
 	unaFR_0E_01,

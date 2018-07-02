@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver10.0 and ListeDesNoms.txt ver10.0.
+This program is updated for Nameslist.txt ver11.0 and ListeDesNoms.txt ver10.0.
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
 
@@ -33,7 +33,6 @@ These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
 and an annotation. Either or both may be NULL. Both libraries also contain a
 (much smaller) list of all the Unicode blocks.
-
 ```c
 struct unicode_block {
     int start, end;
@@ -55,7 +54,6 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
 To keep both libraries slightly smaller, the beginning of lines starting with
 TAB can be expanded with UTF-8 character substitutions as defined below:
-
 ```c
 /* At the beginning of lines (after a tab) within the annotation string, a */
 /*  * should be replaced by a bullet U+2022 */
@@ -67,7 +65,6 @@ TAB can be expanded with UTF-8 character substitutions as defined below:
 
 With the default configure option chosen, this package will install one library
 file, one header file, and one python wrapper. The library is 'libuninameslist', and the header is `<uninameslist.h>`. You can access these fifteen functions:
-
 ```c
 const char *uniNamesList_name(unsigned long uni);
 const char *uniNamesList_annot(unsigned long uni);
@@ -87,13 +84,11 @@ const char *uniNamesList_names2anU(unsigned long uni);
 ```
 
 and for backwards compatibility for older programs that still use it, there is:
-
 ```c
 UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].name
 ```
 
 while the annotation string is:
-
 ```c
 UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
 ```
@@ -113,10 +108,9 @@ Installation and Build Instructions
 -----------------------------------
 
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
-
 ```bash
-$ wget https://github.com/fontforge/libuninameslist/archive/20170807.tar.gz
-$ tar -xzf 20170807.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20180701.tar.gz
+$ tar -xzf 20180701.tar.gz
 $ cd libuninameslist
 ```
 
@@ -155,19 +149,17 @@ $
 Added Python Wrapper
 --------------------
 
-A python wrapper is provided. To install, run
-
+A python wrapper is provided. To install, run:
 ```bash
 cd py
-# May require sudo if you're not using a virutalenv
+# May require sudo if you're not using a virtualenv
 python setup.py install
 ```
 
 The build system can optionally also build installable wheels of the package.
 To do this, pass `--enable-pylib`. Optionally, also set the `PYTHON` environment
-variable to configure which python to use. The configured python must have both
-`pip` and the `wheel` package installed.
-
+variable to configure which python to use. The configured python must have `pip`,
+`setuptools` and the `wheel` packages installed.
 ```bash
 autoreconf -fiv
 PYTHON=python2 ./configure --enable-pylib
