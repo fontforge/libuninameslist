@@ -247,7 +247,7 @@ static int test_normalize(void) {
     u = uniNamesList_names2val(2);
     w = uniNamesList_names2val(-1);
     if ( u<100 || u>10000 || w!=-1 ) {
-	printf("error with uniNamesList_names2val(code), expected 0x709,-1, Received 0x%04X %d\n", u, w );
+	printf("error with uniNamesList_names2val(code), expected 0x709,-1, Received 0x%04lX %ld\n", u, w );
 	return( -2 );
     }
 

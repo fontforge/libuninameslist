@@ -2,6 +2,8 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
+datarootdir=@datarootdir@
+mandir=@mandir@
 
 Name: libuninameslist
 Description: Unicode Names and Annotations List Library (NamesList.txt=@NL_VERSION@)

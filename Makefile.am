@@ -24,7 +24,7 @@ AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
 EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
-	py/setup.py py/uninameslist.py libuninameslist.3
+	py/setup.py py/uninameslist.py libuninameslist.3 libuninameslist-fr.3
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 buildnameslist.$(OBJEXT): buildnameslist.h
@@ -70,7 +70,7 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "http://www.unicode.org/Public/11.0.0/ucd/NamesList.txt" -O NamesList.txt
+	$(WGET) "http://www.unicode.org/Public/12.1.0/ucd/NamesList-12.1.0d1.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeNoms-10.0.0.txt" -O ListeDesNoms.txt
