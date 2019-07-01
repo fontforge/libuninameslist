@@ -10,7 +10,7 @@ The data contained in these arrays were derived from data contained in
 NamesList.txt which came from www.unicode.org. Below is the copyright
 notice for the information given:
 
-Copyright © 1991-2018 Unicode, Inc. All rights reserved.
+Copyright © 1991-2019 Unicode®, Inc. All rights reserved.
 Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Unicode data files and any associated documentation (the "Data Files")
@@ -16678,8 +16678,7 @@ static const struct unicode_nameannot una_00_32[] = {
 /* 32FC */ { "CIRCLED KATAKANA WI","	# <circle> 30F0"},
 /* 32FD */ { "CIRCLED KATAKANA WE","	# <circle> 30F1"},
 /* 32FE */ { "CIRCLED KATAKANA WO","	# <circle> 30F2"},
-/* 32FF */ { "SQUARE ERA NAME SAYUU","	* temporary placeholder for actual reign name TBD\n"
-	"	# <square> 5DE6 53F3"}
+/* 32FF */ { "SQUARE ERA NAME REIWA","	# <square> 4EE4 548C"}
 };
 
 static const struct unicode_nameannot una_00_33[] = {
@@ -30849,7 +30848,8 @@ static const struct unicode_nameannot una_01_1F[] = {
 /* 11FE0 */ { "TAMIL SIGN VARAAKAN","	* gold coin bearing boar insignia"},
 /* 11FE1 */ { "TAMIL SIGN PAARAM","	* approximately equals 500 pounds (227 kg)"},
 /* 11FE2 */ { "TAMIL SIGN KUZHI","	* equals 1 square kol, where 1 kol is approximately 11 feet (3.35 m)"},
-/* 11FE3 */ { "TAMIL SIGN VELI","	* equals 2000 kuzhi"},
+/* 11FE3 */ { "TAMIL SIGN VELI","	= veeli\n"
+	"	* equals 2000 kuzhi"},
 /* 11FE4 */ { "TAMIL WET CULTIVATION SIGN","	= nansey"},
 /* 11FE5 */ { "TAMIL DRY CULTIVATION SIGN","	= punsey"},
 /* 11FE6 */ { "TAMIL LAND SIGN","	= nilam\n"

@@ -109,8 +109,8 @@ Installation and Build Instructions
 
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 ```bash
-$ wget https://github.com/fontforge/libuninameslist/archive/20180701.tar.gz
-$ tar -xzf 20180701.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20190701.tar.gz
+$ tar -xzf 20190701.tar.gz
 $ cd libuninameslist
 ```
 

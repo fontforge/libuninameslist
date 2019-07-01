@@ -64,12 +64,12 @@ static int printcopyright2(FILE *out) {
 }
 
 static int printcopyright1(FILE *out, int is_fr) {
-/* Copyright notice for unicode NamesList.txt - 2018 */
+/* Copyright notice for unicode NamesList.txt - 2019 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2018 Unicode, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2019 Unicode®, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in http://www.unicode.org/copyright.html.\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a copy\n");
     fprintf( out, "of the Unicode data files and any associated documentation (the \"Data Files\")\n");
