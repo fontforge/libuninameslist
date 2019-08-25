@@ -68,14 +68,20 @@ _setSig(_lib.uniNamesList_names2anC, c_char_p, [c_int])
 # internal helpers
 
 class _block:
-    '''Simple class containing the name, start and end codepoints of a Unicode block'''
+    '''Provides the name, start and end codepoints of a Unicode block and provides iteration over the valid codepoints in it'''
     __slots__ = ["name", "start", "end"]
 
     def __init__(self, name, start, end):
         self.name = name; self.start = start; self.end = end
 
-    def __str__(self):
+    def __repr__(self):
         return "<‘{}’: {} - {}>".format(self.name, uplus(self.start), uplus(self.end))
+
+    def __iter__(self):
+        for cp in range(self.start, self.end + 1):
+            if _lib.uniNamesList_name(cp) is None:
+                continue
+            yield chr(cp)
 
     @staticmethod
     def _fromNum(num):
