@@ -121,8 +121,15 @@ def blocks():
         yield _block._fromNum(blockNum)
 
 def block(char):
-    '''returns the Unicode block a character is in'''
-    return _block._fromNum(_lib.uniNamesList_blockNumber(ord(char)))
+    '''returns the Unicode block a character is in, or by block name'''
+    if len(char) == 1:
+        return _block._fromNum(_lib.uniNamesList_blockNumber(ord(char)))
+    else:  # assuming input is a block name
+        name = char.upper()
+        for b in blocks():
+            if b.name.upper() == name:
+                return b
+        raise ValueError("Invalid Unicode block name: ‘{}’".format(name))
 
 # apart from what C library provides
 
