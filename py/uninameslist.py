@@ -1,9 +1,10 @@
 # libuninameslist
 #
-# Copyright (C) 2017, Shriramana Sharma
+# Copyright (c) 2019, Shriramana Sharma
 #
 # This Python wrapper is subject to the same "BSD 3-clause"-type license
 # which the wrapped C library is subject to.
+
 
 '''
 provides access to Unicode character names, annotations and block data
@@ -23,9 +24,13 @@ This Python wrapper implements:
 Run help() on the rest of the symbols for more info.
 '''
 
-__all__ = ["name", "annotation", "block",
-           "blocks", "version",
-           "name2", "uplus"]
+
+__all__ = ["version",
+           "name", "name2", "charactersWithName2",
+           "annotation",
+           "block", "blocks",
+           "valid", "uplus"]
+
 
 # connecting to the dynamic library
 
@@ -65,7 +70,9 @@ _setSig(_lib.uniNamesList_names2lnC, c_int, [c_int])
 # const char *uniNamesList_names2anC(int count);
 _setSig(_lib.uniNamesList_names2anC, c_char_p, [c_int])
 
+
 # internal helpers
+
 
 class _block:
     '''Provides the name, start and end codepoints of a Unicode block and provides iteration over the valid codepoints in it'''
@@ -89,20 +96,25 @@ class _block:
                       _lib.uniNamesList_blockStart(num),
                       _lib.uniNamesList_blockEnd(num))
 
+
 _blockCount = _lib.uniNamesList_blockCount()
+
 
 # public symbols
 
+
 '''documents the version of libuninameslist'''
 version = _lib.uniNamesList_NamesListVersion().decode()
+
 
 def name(char):
     '''returns the Unicode character name'''
     name = _lib.uniNamesList_name(ord(char))
     return "" if name is None else name.decode()
 
+
 def name2(char):
-    '''returns the normative alias if defined for correcting a Unicode character name, else just the name'''
+    '''returns the Unicode normative alias if defined for correcting a character name, else just the name'''
     name2Index = _lib.uniNamesList_names2getU(ord(char))
     if name2Index < 0:  # no normative alias
         return name(char)
@@ -110,15 +122,18 @@ def name2(char):
     normativeAliasLength = _lib.uniNamesList_names2lnC(name2Index)
     return annotationBytes[:normativeAliasLength].decode()
 
+
 def annotation(char):
     '''returns all Unicode annotations including aliases and cross-references as provided by NamesList.txt'''
     annot = _lib.uniNamesList_annot(ord(char))
     return "" if annot is None else annot.decode()
 
+
 def blocks():
     '''a generator for iterating through all defined Unicode blocks'''
     for blockNum in range(_blockCount):
         yield _block._fromNum(blockNum)
+
 
 def block(char):
     '''returns the Unicode block a character is in, or by block name'''
@@ -131,16 +146,20 @@ def block(char):
                 return b
         raise ValueError("Invalid Unicode block name: ‘{}’".format(name))
 
+
 # apart from what C library provides
+
 
 charactersWithName2 = "".join(chr(_lib.uniNamesList_names2val(i)) for i in range(_lib.uniNamesList_names2cnt()))
 
+
 def valid(char):
-    '''tests whether a character is valid'''
+    '''returns whether a character is valid (defined in Unicode)'''
     return _lib.uniNamesList_name(ord(char)) is not None
 
+
 def uplus(char):
-    '''convenience function to return the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that'''
+    '''returns the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that'''
     if type(char) is int:
         if not (0 <= char <= 0x10FFFF):
             raise ValueError("Invalid Unicode codepoint: U+{:X}".format(char))
@@ -149,19 +168,26 @@ def uplus(char):
         val = ord(char)
     return ("U+{:06X}" if val > 0xFFFF else "U+{:04X}").format(val)
 
+
 # test
+
 
 def _test():
     print("Using libuninameslist version:\n\t", version)
     print("The Unicode name of ೞ is:\n\t", name("ೞ"))
     print("The Unicode annotation of ೞ is:")
     print(annotation("ೞ"))
-    print("The Unicode name (with corrections) of ೞ is:\n\t", name2("ೞ"))
+    print("The corrected Unicode name of ೞ is:\n\t", name2("ೞ"))
     print("The Unicode block of ೞ is:\n\t", block("ೞ"))
     print("The Unicode codepoint of ೞ is:\n\t", uplus("ೞ"))
+    print("The next character to ೞ is valid:\n\t", valid(chr(ord("ೞ") + 1)))
     print()
-    print("A complete list of blocks:")
-    print("\n".join(str(block) for block in blocks()))
+    print("The characters in the Tamil block:\n\t", " ".join(c for c in block("Tamil")))
+    print()
+    from random import sample
+    print("A sample list of ten blocks:")
+    for b in sample(tuple(blocks()), 10):
+        print("\t", b)
 
 if __name__ == "__main__":
     _test()
