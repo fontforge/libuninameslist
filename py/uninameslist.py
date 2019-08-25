@@ -135,6 +135,10 @@ def block(char):
 
 charactersWithName2 = "".join(chr(_lib.uniNamesList_names2val(i)) for i in range(_lib.uniNamesList_names2cnt()))
 
+def valid(char):
+    '''tests whether a character is valid'''
+    return _lib.uniNamesList_name(ord(char)) is not None
+
 def uplus(char):
     '''convenience function to return the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that'''
     if type(char) is int:
