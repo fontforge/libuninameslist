@@ -18,7 +18,7 @@ install:
   - call %MBASH% "pacman -Suu --noconfirm"
   - call %MBASH% "pacman -Suu --noconfirm"
   - call %MBASH% "pacman $PMOPTS python2 python2-pip"
-  - call %MBASH% "pip install -U pip wheel setuptools"
+  - call %MBASH% "pip install setuptools wheel"
 build_script:
   - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
 test: off
