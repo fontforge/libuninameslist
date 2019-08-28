@@ -17,7 +17,8 @@ install:
   - call %MBASH% "pacman -Syuu --noconfirm"
   - call %MBASH% "pacman -Suu --noconfirm"
   - call %MBASH% "pacman -Suu --noconfirm"
-  - call %MBASH% "python3 -m pip install pip setuptools wheel"
+  - call %MBASH% "python -m ensurepip --default-pip"
+  - call %MBASH% "python -m pip install setuptools wheel"
 build_script:
   - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
 test: off
