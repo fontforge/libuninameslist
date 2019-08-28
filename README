@@ -4,6 +4,7 @@ LibUniNamesList
 LibUniNamesList holds www.unicode.org Nameslist.txt data which can be useful
 for programs that need Unicode "Names", "Annotations" and block definitions.
 
+
 Accessing LibUniNamesList Information
 *************************************
 
@@ -20,11 +21,13 @@ added, they will be added to the bottom of this list.
 1) const char *uniNamesList_name(unsigned long uni);
 2) const char *uniNamesList_annot(unsigned long uni);
 3) const char *uniNamesList_NamesListVersion(void);
+These functions are available in libuninameslist-0.4.20140731 and higher
 4) int uniNamesList_blockCount(void);
 5) int uniNamesList_blockNumber(unsigned long uni);
 6) long uniNamesList_blockStart(int uniBlock);
 7) long uniNamesList_blockEnd(int uniBlock);
 8) const char *uniNamesList_blockName(int uniBlock);
+These functions are available in libuninameslist-20180408 and higher
 9) int uniNamesList_names2cnt(void);
 10) long uniNamesList_names2val(int count);
 11) int uniNamesList_names2getU(unsigned long uni);
@@ -36,6 +39,7 @@ added, they will be added to the bottom of this list.
 For a better description of each function, check "uninameslist.h", and see
 an example of how to use these functions in FontForge ~ 20140101 or later.
 
+
 Building and Installing LibUniNamesList
 ***************************************
 
@@ -46,6 +50,7 @@ This package contains 2 libraries, but only 1 is built by default:
 If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is not to build it.
 	configure --enable-frenchlib
+
 
 Added Python Wrapper
 ********************
@@ -71,6 +76,7 @@ setuptools and the wheel packages installed.
 	# exit
 	$
 
+
 Build Process
 *************
 
@@ -94,6 +100,11 @@ Release versions provided by your distro may include a configure script which
 allows you to skip extra package requirements (for autotools, automake), and
 you would skip steps autoreconf -i, automake above, and start at ./configure
 
+To see what options are available before running make, type
+
+	$ ./configure --help
+
+
 NOTE: Some Distros and Operating Systems may require you to run 'ldconfig' to
 recognize LibUniNamesList if you are not rebooting your computer first before
 loading another program that depends on LibUniNamesList. To do this, you may
@@ -104,7 +115,7 @@ need to run 'ldconfig' in 'su -' mode after you have done 'make install':
 	# exit
 	$
 
-	
+
 How to Update LibUniNamesList (for maintainers)
 ***********************************************
 
@@ -145,8 +156,11 @@ Let's say the next version of NamesList is version 8.0.
 Added note: Going from Unicode 8.0 to 9.0, both of these libraries listed are
 now bumped to 1.0 since this can be seen as a large change due to the library
 compilation of the CRA being confused with Major Minor versioning.
-Backwards compatibility to accessing data still remains intact for programs
+Backwards compatibility for accessing data still remains intact for programs
 that require access using older methods.
+Users running older programs can recompile them to use the newer libraries or
+optionally use a link pointing to the new libraries if cannot recompile them.
+
 
 Adding And/Or Updating Languages (for translators)
 **************************************************
@@ -162,6 +176,7 @@ on readme files. Ask originating Authors if they want/need help if looking at
 updating existing files.
 If you are aware of translations in another format, they could be considered.
 
+
 Old Bugs Out, New Bugs In
 *************************
 
@@ -173,4 +188,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2018-Jul-01, by Joe Da Silva
+	2019-Aug-28, by Joe Da Silva

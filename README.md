@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver11.0 and ListeDesNoms.txt ver10.0.
+This program is updated for Nameslist.txt ver12.1 and ListeDesNoms.txt ver10.0.
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
 
@@ -64,16 +64,19 @@ TAB can be expanded with UTF-8 character substitutions as defined below:
 ```
 
 With the default configure option chosen, this package will install one library
-file, one header file, and one python wrapper. The library is 'libuninameslist', and the header is `<uninameslist.h>`. You can access these fifteen functions:
+file, one header file, and one library man file. The library is 'libuninameslist',
+and the header is `<uninameslist.h>`. You can access these fifteen functions:
 ```c
 const char *uniNamesList_name(unsigned long uni);
 const char *uniNamesList_annot(unsigned long uni);
 const char *uniNamesList_NamesListVersion(void);
+These functions are available in libuninameslist-0.4.20140731 and higher
 int uniNamesList_blockCount(void);
 int uniNamesList_blockNumber(unsigned long uni);
 long uniNamesList_blockStart(int uniBlock);
 long uniNamesList_blockEnd(int uniBlock);
 const char *uniNamesList_blockName(int uniBlock);
+These functions are available in libuninameslist-20180408 and higher
 int uniNamesList_names2cnt(void);
 long uniNamesList_names2val(int count);
 int uniNamesList_names2getU(unsigned long uni);
@@ -94,8 +97,8 @@ UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
 ```
 
 The name string is in ASCII, while the annotation string is in UTF-8 and is
-also intended to be modified slightly by the having any `*` characters which
-immediately follow a tab at the start of a line converted to a bullet
+also intended to be modified slightly by having any `*` characters which
+immediately follow a tab at the start of a line to be converted to a bullet
 character. Etc.
 
 If you choose to install the second library as well, then you will need to

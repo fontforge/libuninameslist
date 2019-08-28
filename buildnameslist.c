@@ -223,7 +223,7 @@ static int ReadNamesList(void) {
 	    } else if ( buffer[0]==';' ) {
 		/* comment, ignore */
 	continue;
-	    } else if ( isdigit(buffer[0]) || (buffer[0]>='A' && buffer[0]<='F') ) {
+	    } else if ( isdigit((char)(buffer[0])) || (buffer[0]>='A' && buffer[0]<='F') ) {
 		a_char = strtol(buffer,&end,16);
 		if ( *end!='\t' )
 	continue;
