@@ -152,7 +152,7 @@ $
 Added Python Wrapper
 --------------------
 
-A python wrapper is provided. To install, run:
+A Python wrapper is provided. To install, run:
 ```bash
 cd py
 # May require sudo if you're not using a virtualenv
@@ -169,6 +169,21 @@ PYTHON=python2 ./configure --enable-pylib
 make
 pip install py/dist/*.whl
 ```
+
+The Python wrapper exposes the following symbols:
+
+ * **version**: documents the version of **libuninameslist**
+ * **name(_char_)**: returns the Unicode character name
+ * **name2(_char_)**: returns the Unicode normative alias if defined for correcting a character name, else just the name
+ * **charactersWithName2**: string holding all characters with normative aliases
+ * **annotation(_char_)**: returns all Unicode annotations including aliases and cross-references as provided by NamesList.txt
+ * **block(_char_)**: returns the Unicode block a character is in, or by block name
+ * **blocks()**: a generator for iterating through all defined Unicode blocks
+ * **valid(_char_)**: returns whether the character is valid (defined in Unicode)
+ * **uplus(_char_)**: returns the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that
+ 
+Blocks can be iterated over to yield all characters encoded in them.
+
 
 See Also
 --------
