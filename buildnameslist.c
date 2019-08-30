@@ -478,9 +478,11 @@ static int dumpend(FILE *header, int is_fr) {
     fprintf( header, "\n/* Index by: UnicodeNameAnnot%s[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff] */\n", lg[l] );
     fprintf( header, "\n/* At the beginning of lines (after a tab) within the annotation string, a: */\n" );
     fprintf( header, "/*  * should be replaced by a bullet U+2022 */\n" );
+    fprintf( header, "/*  %% should be replaced by a reference mark U+203B */\n" );
     fprintf( header, "/*  x should be replaced by a right arrow U+2192 */\n" );
-    fprintf( header, "/*  : should be replaced by an equivalent U+224D */\n" );
-    fprintf( header, "/*  # should be replaced by an approximate U+2245 */\n" );
+    fprintf( header, "/*  ~ should be replaced by a swung dash U+2053 */\n" );
+    fprintf( header, "/*  : should be replaced by an equivalent U+2261 */\n" );
+    fprintf( header, "/*  # should be replaced by an approximate U+2248 */\n" );
     fprintf( header, "/*  = should remain itself */\n\n" );
 
     /* default Nameslist.txt language=EN file holds these additional functions */
