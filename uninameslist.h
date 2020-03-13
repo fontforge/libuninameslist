@@ -18,15 +18,15 @@ struct unicode_nameannot {
 
 /* NOTE: Build your program to access the functions if using multilanguage. */
 
-#define UNICODE_BLOCK_MAX	314
-#define UNICODE_EN_BLOCK_MAX	314
-extern const struct unicode_block UnicodeBlock[314];
+#define UNICODE_BLOCK_MAX	322
+#define UNICODE_EN_BLOCK_MAX	322
+extern const struct unicode_block UnicodeBlock[322];
 
 /* NOTE: These 4 constants are correct for this version of libuninameslist, */
 /* but can change for later versions of NamesList (use as an example guide) */
 #define UNICODE_NAME_MAX	100
 #define UNICODE_ANNOT_MAX	609
-#define UNICODE_EN_NAME_MAX	83
+#define UNICODE_EN_NAME_MAX	88
 #define UNICODE_EN_ANNOT_MAX	513
 extern const struct unicode_nameannot * const *const UnicodeNameAnnot[];
 
@@ -58,9 +58,9 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_MAJOR	1
-#define LIBUNINAMESLIST_MINOR	5
+#define LIBUNINAMESLIST_MINOR	6
 
-/* Return number of blocks in this NamesList (Version 12.1). */
+/* Return number of blocks in this NamesList (Version 13.0). */
 int uniNamesList_blockCount(void);
 
 /* Return block number for this unicode value (-1 if bad unicode value) */

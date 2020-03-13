@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This program is updated for Nameslist.txt ver12.1 and ListeDesNoms.txt ver10.0.
+This program is updated for Nameslist.txt ver13.0 and ListeDesNoms.txt ver10.0.
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
 
@@ -112,8 +112,8 @@ Installation and Build Instructions
 
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 ```bash
-$ wget https://github.com/fontforge/libuninameslist/archive/20190701.tar.gz
-$ tar -xzf 20190701.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20200313.tar.gz
+$ tar -xzf 20200313.tar.gz
 $ cd libuninameslist
 ```
 
@@ -181,7 +181,7 @@ The Python wrapper exposes the following symbols:
  * **blocks()**: a generator for iterating through all defined Unicode blocks
  * **valid(_char_)**: returns whether the character is valid (defined in Unicode)
  * **uplus(_char_)**: returns the Unicode codepoint for a character in the format U+XXXX for BMP and U+XXXXXX beyond that
- 
+
 Blocks can be iterated over to yield all characters encoded in them.
 
 

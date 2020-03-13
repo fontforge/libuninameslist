@@ -34,9 +34,11 @@ extern const struct unicode_nameannot * const *const UnicodeNameAnnotFR[];
 
 /* At the beginning of lines (after a tab) within the annotation string, a: */
 /*  * should be replaced by a bullet U+2022 */
+/*  % should be replaced by a reference mark U+203B */
 /*  x should be replaced by a right arrow U+2192 */
-/*  : should be replaced by an equivalent U+224D */
-/*  # should be replaced by an approximate U+2245 */
+/*  ~ should be replaced by a swung dash U+2053 */
+/*  : should be replaced by an equivalent U+2261 */
+/*  # should be replaced by an approximate U+2248 */
 /*  = should remain itself */
 
 /* Return a pointer to the name for this unicode value */
