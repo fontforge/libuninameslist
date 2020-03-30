@@ -35,10 +35,18 @@ These functions are available in libuninameslist-20180408 and higher
 13) int uniNamesList_names2lnU(unsigned long uni);
 14) const char *uniNamesList_names2anC(int count);
 15) const char *uniNamesList_names2anU(unsigned long uni);
+These functions are available in libuninameslist-20200328 and higher
+16) const char *uniNamesList_Languages(unsigned int lang);
+17) const char *uniNamesList_NamesListVersionAlt(unsigned int lang);
+18) const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang);
+19) const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang);
+20) int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **strl);
+21) int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1);
 
 For a better description of each function, check "uninameslist.h", and see
 an example of how to use these functions in FontForge ~ 20140101 or later.
 
+Alternatively, look at tests/call-test.c on how to call these functions.
 
 Building and Installing LibUniNamesList
 ***************************************
@@ -49,7 +57,10 @@ This package contains 2 libraries, but only 1 is built by default:
 	2) libuninameslist-fr - currently holds French 10.0 NamesList.txt
 If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is not to build it.
-	configure --enable-frenchlib
+NOTE: You should run 'make clean' if you ran "./configure; make" earlier.
+	./configure --enable-frenchlib
+	make clean
+	make
 
 
 Added Python Wrapper
@@ -188,4 +199,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2019-Aug-28, by Joe Da Silva
+	2020-Mar-29, by Joe Da Silva

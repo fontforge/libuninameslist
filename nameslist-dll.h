@@ -17,3 +17,10 @@
     #define UN_DLL_LOCAL
   #endif
 #endif
+
+#ifdef WANTLIBOFR
+/* make this visible to nameslist.c if adding French lib */
+extern const char *uniNamesList_NamesListVersionFR(void);
+extern const char *uniNamesList_nameFR(unsigned long uni);
+extern const char *uniNamesList_annotFR(unsigned long uni);
+#endif

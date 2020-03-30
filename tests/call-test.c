@@ -1,5 +1,5 @@
-/* Test libuninameslist library calls
-Copyright (C) 2017, Joe Da Silva
+/* call-test.c - Test and verify libuninameslist library calls
+Copyright (C) 2017...., Joe Da Silva
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include "uninameslist-fr.h"
 #else
 #include "uninameslist.h"
-#ifdef DO_CALL_TEST5
+#if defined(DO_CALL_TEST5)
 #include "uninameslist-fr.h"
 #endif
 #endif
@@ -264,6 +264,85 @@ static int test_normalize(void) {
 }
 #endif
 
+#ifdef DO_CALL_TEST7
+static int test_calls_07(void) {
+    const char *cc0, *cc1;
+
+    if ( test(0,uniNamesList_Languages(0),"EN") && \
+	 test(1,uniNamesList_Languages(1),"FR") && \
+	 uniNamesList_Languages(100)==NULL )
+	printf("test code=100,\n  ret=NULL\n  exp=NULL\n");
+    else {
+	printf("error with uniNamesList_Languages(code)\n");
+	return( -1 );
+    }
+
+    if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
+	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 10.0") && \
+	 uniNamesList_NamesListVersionAlt(100)==NULL )
+	printf("test code=100,\n  ret=NULL\n  exp=NULL\n");
+    else {
+	printf("uniNamesList_NamesListVersionAlt(code)\n");
+	return( -2 );
+    }
+
+    if ( uniNamesList_nameAlt(0x3000000, 0)==NULL && \
+	 uniNamesList_nameAlt(32, 100)==NULL && \
+	 test(32,uniNamesList_nameAlt(32, 0),"SPACE") && \
+	 test(32,uniNamesList_nameAlt(32, 1),"ESPACE") && \
+	 test(42,uniNamesList_nameAlt(42, 0),"ASTERISK") && \
+	 test(42,uniNamesList_nameAlt(42, 1),"ASTÉRISQUE") && \
+	 test(0x1fad2,uniNamesList_nameAlt(0x1fad2, 0),"OLIVE") && \
+	 test(0x1fad2,uniNamesList_nameAlt(0x1fad2, 1),"OLIVE") )
+	;
+    else {
+	printf("error with uniNamesList_nameAlt(code,lang)\n");
+	return( -3 );
+    }
+
+    if ( uniNamesList_annotAlt(0x3000000, 0)==NULL && \
+	 uniNamesList_annotAlt(32, 100)==NULL && \
+	 test(7,uniNamesList_annotAlt(7, 0),"\t= BELL") && \
+	 test(7,uniNamesList_annotAlt(7, 1),"\t= SONNERIE") && \
+	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 0),"\tx (mens symbol - 1F6B9)") && \
+	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 1),"\tx (mens symbol - 1F6B9)") )
+	;
+    else {
+	printf("error with uniNamesList_annotAlt(code,lang)\n");
+	return( -4 );
+    }
+
+    if ( uniNamesList_nameBoth(0x3000000, 0, &cc0, &cc1)==-1 && \
+	 uniNamesList_nameBoth(32, 100, &cc0, &cc1)==-1 && \
+	 uniNamesList_nameBoth(32, 0, &cc0, &cc1)==0 && \
+	 test(32,cc0,"SPACE") && test(32,cc1,"SPACE") && \
+	 uniNamesList_nameBoth(32, 1, &cc0, &cc1)==0 && \
+	 test(32,cc0,"SPACE") && test(32,cc1,"ESPACE") && \
+	 uniNamesList_nameBoth(42, 1, &cc0, &cc1)==0 && \
+	 test(42,cc0,"ASTERISK") && test(42,cc1,"ASTÉRISQUE") && \
+	 uniNamesList_nameBoth(0x1fad2, 1, &cc0, &cc1)==0 && \
+	 test(0x1fad2,cc0,"OLIVE") && test(0x1fad2,cc1,NULL) )
+	;
+    else {
+	printf("error with uniNamesList_nameBoth(code,lang,*strEnglish,*strLang)\n");
+	return( -5 );
+    }
+
+    if ( uniNamesList_annotBoth(0x3000000, 0, &cc0, &cc1)==-1 && \
+	 uniNamesList_annotBoth(33, 100, &cc0, &cc1)==-1 && \
+	 uniNamesList_annotBoth(7, 0, &cc0, &cc1)==0 && \
+	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= BELL") && \
+	 uniNamesList_annotBoth(7, 1, &cc0, &cc1)==0 && \
+	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= SONNERIE") )
+	;
+    else {
+	printf("error with uniNamesList_annotBoth(code,lang,*strEng,*strLang)\n");
+	return( -6 );
+    }
+    return( 0 );
+}
+#endif
+
 int main(int argc, char **argv) {
     int ret;
 
@@ -294,6 +373,10 @@ int main(int argc, char **argv) {
 #ifdef DO_CALL_TEST6
     /* errors happen! check a few normalized aliases. */
     ret=test_normalize();
+#endif
+#ifdef DO_CALL_TEST7
+    /* English and French libraries. Substitute test. */
+    ret=test_calls_07();
 #endif
     return ret;
 }

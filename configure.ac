@@ -109,6 +109,9 @@ AC_ARG_ENABLE([frenchlib],AS_HELP_STRING([--enable-frenchlib],[This library may 
     *) AC_MSG_ERROR([bad value ${enableval} for --enable-frenchlib]) ;;
    esac],[frenchlib=no])
 AM_CONDITIONAL([WANTLIBOFR],[test x$frenchlib = xyes])
+if test x"${frenchlib}" = xyes; then
+  AC_DEFINE([WANTLIBOFR],[1],[include building libuninameslist-fr])
+fi
 
 #-------------------------------------------
 # Python lib building

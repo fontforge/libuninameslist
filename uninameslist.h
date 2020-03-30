@@ -95,6 +95,22 @@ int uniNamesList_names2lnU(unsigned long uni);
 const char *uniNamesList_names2anC(int count);
 const char *uniNamesList_names2anU(unsigned long uni);
 
+/* These functions are available in libuninameslist-20200328 and higher */
+
+/* Return language codes available from libraries. 0=English, 1=French. */
+const char *uniNamesList_Languages(unsigned int lang);
+const char *uniNamesList_NamesListVersionAlt(unsigned int lang);
+
+/* Return pointer to name/annotation for this unicode value using lang. */
+/* Return English if language does not have information for this Ucode. */
+const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang);
+const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang);
+
+/* Returns 2 lang pointers to names/annotations for this unicode value, */
+/* Return str0=English, and str1=language_version (or NULL if no info). */
+int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **strl);
+int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1);
+
 #ifdef __cplusplus
 }
 #endif

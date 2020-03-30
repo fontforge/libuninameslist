@@ -6,13 +6,13 @@ SUBDIRS += py
 endif
 SUBDIRS += tests
 DIST_SUBDIRS = . py tests
-man_MANS = libuninameslist.3
 
 test_programs = call-test0 call-test1 call-test2
 if WANTLIBOFR
-test_programs += call-test3 call-test4 call-test5
-endif
+test_programs += call-test3 call-test4 call-test5 call-test6 call-test7
+else
 test_programs += call-test6
+endif
 
 # The braces around ACLOCAL_FLAGS below instead of parentheses are intentional!
 # Otherwise autoreconf misparses the line.
@@ -24,7 +24,8 @@ AM_LDFLAGS = $(WUNLIB) $(UN_LIB) -no-undefined
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
 EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
-	py/setup.py py/uninameslist.py libuninameslist.3 libuninameslist-fr.3
+	py/setup.py py/uninameslist.py libuninameslist.3 libuninameslist-fr.3 \
+	build.sh
 EXTRA_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c
 buildnameslist.$(OBJEXT): buildnameslist.h
@@ -35,29 +36,31 @@ nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt buildnameslist.h .git/*
 DISTCLEANFILES = libuninameslist.pc
 DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib --enable-pylib
 
-lib_LTLIBRARIES = libuninameslist.la
+lib_LTLIBRARIES =
 if WANTLIBOFR
 lib_LTLIBRARIES += libuninameslist-fr.la
 endif
+lib_LTLIBRARIES += libuninameslist.la
 
-libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(UN_VERSION)
-libuninameslist_la_SOURCES = nameslist.c
-libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h
+include_HEADERS = uninameslist.h
+libuninameslist_la_LIBADD =
+man_MANS = libuninameslist.3
+noinst_HEADERS = nameslist-dll.h
 
 if WANTLIBOFR
+include_HEADERS += uninameslist-fr.h
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
 libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h
+libuninameslist_la_LIBADD += -luninameslist-fr
 man_MANS += libuninameslist-fr.3
 else
 EXTRA_DIST += nameslist-fr.c uninameslist-fr.h libuninameslist-fr.3
 endif
 
-include_HEADERS = uninameslist.h
-if WANTLIBOFR
-include_HEADERS += uninameslist-fr.h
-endif
-noinst_HEADERS = nameslist-dll.h
+libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(UN_VERSION)
+libuninameslist_la_SOURCES = nameslist.c
+libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libuninameslist.pc

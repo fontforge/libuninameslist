@@ -84,6 +84,13 @@ int uniNamesList_names2lnC(int count);
 int uniNamesList_names2lnU(unsigned long uni);
 const char *uniNamesList_names2anC(int count);
 const char *uniNamesList_names2anU(unsigned long uni);
+These functions are available in libuninameslist-20200328 and higher
+const char *uniNamesList_Languages(unsigned int lang);
+const char *uniNamesList_NamesListVersionAlt(unsigned int lang);
+const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang);
+const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang);
+int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **strl);
+int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1);
 ```
 
 and for backwards compatibility for older programs that still use it, there is:
@@ -99,13 +106,22 @@ UnicodeNameAnnot[(uni>>16)&0x1f][(uni>>8)&0xff][uni&0xff].annot
 The name string is in ASCII, while the annotation string is in UTF-8 and is
 also intended to be modified slightly by having any `*` characters which
 immediately follow a tab at the start of a line to be converted to a bullet
-character. Etc.
+character, etc.
 
 If you choose to install the second library as well, then you will need to
-use ./configure --enable-frenchlib
+use: './configure --enable-frenchlib'
+
 This library maintains the same 'name' and 'annot' structure, but has function
 names with FR so that it is possible to open both libraries at the same time.
 The header file for the French library is `<uninameslist-fr.h>`
+
+NOTE: If you ran 'make' after running './configure' earlier, you will need to
+run 'make clean' to clear-out the earlier libuninameslist library, which is
+built without knowledge of the additional library.
+```c
+make clean
+make
+```
 
 Installation and Build Instructions
 -----------------------------------
@@ -136,6 +152,8 @@ If you need to also include libuninameslist-fr, you will want to use:
 ```bash
 $ ./configure --help
 $ ./configure --enable-frenchlib
+$ make clean
+$ make
 ```
 
 NOTE: Some Distros and Operating Systems may require you to run 'ldconfig' to

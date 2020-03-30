@@ -187,6 +187,116 @@ const char *uniNamesList_names2anU(unsigned long uni) {
 	return( uniNamesList_names2anC(uniNamesList_names2getU(uni)) );
 }
 
+
+/* These functions are available in libuninameslist-20200328 and higher */
+
+/* Return language codes available from libraries. 0=English, 1=French. */
+UN_DLL_EXPORT
+const char *uniNamesList_Languages(unsigned int lang) {
+	if ( lang==0 )
+		return( "EN" );
+#ifdef WANTLIBOFR
+	else if ( lang==1 )
+		return( "FR" );
+#endif
+	else
+		return( NULL );
+}
+
+UN_DLL_EXPORT
+const char *uniNamesList_NamesListVersionAlt(unsigned int lang) {
+#ifdef WANTLIBOFR
+	if ( lang==1 )
+		return( uniNamesList_NamesListVersionFR() );
+	else
+#endif
+	if ( lang==0 )
+		return( uniNamesList_NamesListVersion() );
+	else
+		return( NULL );
+}
+
+/* Return pointer to name/annotation for this unicode value using lang. */
+/* Return English if language does not have information for this Ucode. */
+UN_DLL_EXPORT
+const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang) {
+	const char *pt=NULL;
+#ifdef WANTLIBOFR
+	if ( uni<0x110000 && lang<=1 ) {
+		if ( lang )
+			pt=uniNamesList_nameFR(uni);
+		if ( pt==NULL )
+#else
+	if ( uni<0x110000 && lang==0 ) {
+#endif
+			pt=uniNamesList_name(uni);
+	}
+	return( pt );
+}
+
+UN_DLL_EXPORT
+const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang) {
+	const char *pt=NULL;
+#ifdef WANTLIBOFR
+	if ( uni<0x110000 && lang<=1 ) {
+		if ( lang )
+			pt=uniNamesList_annotFR(uni);
+		if ( pt==NULL )
+#else
+	if ( uni<0x110000 && lang==0 ) {
+#endif
+			pt=uniNamesList_annot(uni);
+	}
+	return( pt );
+}
+
+/* Returns 2 lang pointers to names/annotations for this unicode value, */
+/* Return str0=English, and str1=language_version (or NULL if no info). */
+UN_DLL_EXPORT
+int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {
+	int error=-1;
+	*str0=*str1=NULL;
+#ifdef WANTLIBOFR
+	if ( uni<0x110000 && lang<=1 ) {
+		error=0;
+		*str0=uniNamesList_name(uni);
+		if ( lang && *str0!=NULL )
+			*str1=uniNamesList_nameFR(uni);
+		else if ( lang==0 )
+			*str1=*str0;
+	}
+#else
+	if ( uni<0x110000 && lang==0 ) {
+		error=0;
+		*str0=*str1=uniNamesList_name(uni);
+	}
+#endif
+	return( error );
+}
+
+UN_DLL_EXPORT
+int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {
+	int error=-1;
+	*str0=*str1=NULL;
+#ifdef WANTLIBOFR
+	if ( uni<0x110000 && lang<=1 ) {
+		error=0;
+		*str0=uniNamesList_annot(uni);
+		if ( lang && *str0!=NULL )
+			*str1=uniNamesList_annotFR(uni);
+		else if ( lang==0 )
+			*str1=*str0;
+	}
+#else
+	if ( uni<0x110000 && lang==0 ) {
+		error=0;
+		*str0=*str1=uniNamesList_annot(uni);
+	}
+#endif
+	return( error );
+}
+
+
 static const struct unicode_nameannot nullarray[] = {
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
 	{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
