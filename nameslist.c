@@ -260,7 +260,7 @@ int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str
 	if ( uni<0x110000 && lang<=1 ) {
 		error=0;
 		*str0=uniNamesList_name(uni);
-		if ( lang && *str0!=NULL )
+		if ( lang )
 			*str1=uniNamesList_nameFR(uni);
 		else if ( lang==0 )
 			*str1=*str0;
@@ -282,7 +282,7 @@ int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **st
 	if ( uni<0x110000 && lang<=1 ) {
 		error=0;
 		*str0=uniNamesList_annot(uni);
-		if ( lang && *str0!=NULL )
+		if ( lang )
 			*str1=uniNamesList_annotFR(uni);
 		else if ( lang==0 )
 			*str1=*str0;

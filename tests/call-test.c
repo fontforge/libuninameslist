@@ -278,7 +278,7 @@ static int test_calls_07(void) {
     }
 
     if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
-	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 10.0") && \
+	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 13.0") && \
 	 uniNamesList_NamesListVersionAlt(100)==NULL )
 	printf("test code=100,\n  ret=NULL\n  exp=NULL\n");
     else {
@@ -292,8 +292,8 @@ static int test_calls_07(void) {
 	 test(32,uniNamesList_nameAlt(32, 1),"ESPACE") && \
 	 test(42,uniNamesList_nameAlt(42, 0),"ASTERISK") && \
 	 test(42,uniNamesList_nameAlt(42, 1),"ASTÉRISQUE") && \
-	 test(0x1fad2,uniNamesList_nameAlt(0x1fad2, 0),"OLIVE") && \
-	 test(0x1fad2,uniNamesList_nameAlt(0x1fad2, 1),"OLIVE") )
+	 test(0x1fad0,uniNamesList_nameAlt(0x1fad0, 0),"BLUEBERRIES") && \
+	 test(0x1fad0,uniNamesList_nameAlt(0x1fad0, 1),"MYRTILLES") )
 	;
     else {
 	printf("error with uniNamesList_nameAlt(code,lang)\n");
@@ -305,7 +305,7 @@ static int test_calls_07(void) {
 	 test(7,uniNamesList_annotAlt(7, 0),"\t= BELL") && \
 	 test(7,uniNamesList_annotAlt(7, 1),"\t= SONNERIE") && \
 	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 0),"\tx (mens symbol - 1F6B9)") && \
-	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 1),"\tx (mens symbol - 1F6B9)") )
+	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 1),"\tx (symbole hommes - 1F6B9)") )
 	;
     else {
 	printf("error with uniNamesList_annotAlt(code,lang)\n");
@@ -320,8 +320,8 @@ static int test_calls_07(void) {
 	 test(32,cc0,"SPACE") && test(32,cc1,"ESPACE") && \
 	 uniNamesList_nameBoth(42, 1, &cc0, &cc1)==0 && \
 	 test(42,cc0,"ASTERISK") && test(42,cc1,"ASTÉRISQUE") && \
-	 uniNamesList_nameBoth(0x1fad2, 1, &cc0, &cc1)==0 && \
-	 test(0x1fad2,cc0,"OLIVE") && test(0x1fad2,cc1,NULL) )
+	 uniNamesList_nameBoth(0x1fad6, 1, &cc0, &cc1)==0 && \
+	 test(0x1fad6,cc0,"TEAPOT") && test(0x1fad6,cc1,"THÉIÈRE") )
 	;
     else {
 	printf("error with uniNamesList_nameBoth(code,lang,*strEnglish,*strLang)\n");
@@ -333,7 +333,9 @@ static int test_calls_07(void) {
 	 uniNamesList_annotBoth(7, 0, &cc0, &cc1)==0 && \
 	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= BELL") && \
 	 uniNamesList_annotBoth(7, 1, &cc0, &cc1)==0 && \
-	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= SONNERIE") )
+	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= SONNERIE") && \
+	 uniNamesList_annotBoth(0x1fad4, 1, &cc0, &cc1)==0 && \
+	 test(0x1fad4,cc0,NULL) && test(0x1fad4,cc1,"\t= humita, huminta, hallaca, etc.") )
 	;
     else {
 	printf("error with uniNamesList_annotBoth(code,lang,*strEng,*strLang)\n");

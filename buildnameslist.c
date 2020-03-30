@@ -455,14 +455,14 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {\n" );
 	fprintf( out, "\tint error=-1;\n\t*str0=*str1=NULL;\n#ifdef WANTLIBOFR\n" );
 	fprintf( out, "\tif ( uni<0x110000 && lang<=1 ) {\n\t\terror=0;\n\t\t*str0=uniNamesList_name(uni);\n" );
-	fprintf( out, "\t\tif ( lang && *str0!=NULL )\n\t\t\t*str1=uniNamesList_nameFR(uni);\n" );
+	fprintf( out, "\t\tif ( lang )\n\t\t\t*str1=uniNamesList_nameFR(uni);\n" );
 	fprintf( out, "\t\telse if ( lang==0 )\n\t\t\t*str1=*str0;\n\t}\n#else\n" );
 	fprintf( out, "\tif ( uni<0x110000 && lang==0 ) {\n\t\terror=0;\n\t\t*str0=*str1=uniNamesList_name(uni);\n" );
 	fprintf( out, "\t}\n#endif\n\treturn( error );\n}\n\nUN_DLL_EXPORT\n" );
 	fprintf( out, "int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {\n" );
 	fprintf( out, "\tint error=-1;\n\t*str0=*str1=NULL;\n" );
 	fprintf( out, "#ifdef WANTLIBOFR\n\tif ( uni<0x110000 && lang<=1 ) {\n\t\terror=0;\n" );
-	fprintf( out, "\t\t*str0=uniNamesList_annot(uni);\n\t\tif ( lang && *str0!=NULL )\n" );
+	fprintf( out, "\t\t*str0=uniNamesList_annot(uni);\n\t\tif ( lang )\n" );
 	fprintf( out, "\t\t\t*str1=uniNamesList_annotFR(uni);\n\t\telse if ( lang==0 )\n\t\t\t*str1=*str0;\n" );
 	fprintf( out, "\t}\n#else\n\tif ( uni<0x110000 && lang==0 ) {\n\t\terror=0;\n" );
 	fprintf( out, "\t\t*str0=*str1=uniNamesList_annot(uni);\n\t}\n#endif\n\treturn( error );\n}\n\n\n" );

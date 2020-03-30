@@ -17,7 +17,7 @@ m4_define([uninameslist_libver],
 
 # These values below are kept for backwards compatibility with older programs
 # that are using the French namesList. This increments with ListeDesNoms.txt.
-m4_define([fr_major_version], [10]) dnl latest ListeDesNoms.txt = ver10.0
+m4_define([fr_major_version], [13]) dnl latest ListeDesNoms.txt = ver13.0
 m4_define([fr_minor_version], [0])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])

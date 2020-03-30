@@ -20,8 +20,8 @@ struct unicode_nameannot {
 
 /* NOTE: Build your program to access the functions if using multilanguage. */
 
-#define UNICODE_FR_BLOCK_MAX	294
-extern const struct unicode_block UnicodeBlockFR[294];
+#define UNICODE_FR_BLOCK_MAX	322
+extern const struct unicode_block UnicodeBlockFR[322];
 #define UnicodeBlock UnicodeBlockFR
 
 /* NOTE: These 2 constants are correct for this version of libuninameslist, */
@@ -60,7 +60,7 @@ const char *uniNamesList_NamesListVersionFR(void);
 #define LIBUNINAMESLIST_FR_MAJOR	1
 #define LIBUNINAMESLIST_FR_MINOR	2
 
-/* Return number of blocks in this NamesList (Version 10.0). */
+/* Return number of blocks in this NamesList (Version 13.0). */
 int uniNamesList_blockCountFR(void);
 
 /* Return block number for this unicode value (-1 if bad unicode value) */
