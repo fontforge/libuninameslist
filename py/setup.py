@@ -5,7 +5,7 @@ import sys
 
 setup(
     name='uninameslist',
-    version='0.1',
+    version='0.2',
     author='Shriramana Sharma',
     author_email='samjnaa@gmail.com',
     license='BSD-3',

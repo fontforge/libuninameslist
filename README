@@ -35,13 +35,18 @@ These functions are available in libuninameslist-20180408 and higher
 13) int uniNamesList_names2lnU(unsigned long uni);
 14) const char *uniNamesList_names2anC(int count);
 15) const char *uniNamesList_names2anU(unsigned long uni);
-These functions are available in libuninameslist-20200328 and higher
+These functions are available in libuninameslist-20200413 and higher
 16) const char *uniNamesList_Languages(unsigned int lang);
 17) const char *uniNamesList_NamesListVersionAlt(unsigned int lang);
 18) const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang);
 19) const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang);
 20) int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **strl);
 21) int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1);
+22) int uniNamesList_blockCountAlt(unsigned int lang);
+23) long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang);
+24) long uniNamesList_blockEndAlt(int uniBlock, unsigned int lang);
+25) const char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang);
+26) int uniNamesList_blockNumberBoth(unsigned long uni, unsigned int lang, int *bn0, int *bn1);
 
 For a better description of each function, check "uninameslist.h", and see
 an example of how to use these functions in FontForge ~ 20140101 or later.
@@ -54,23 +59,36 @@ Building and Installing LibUniNamesList
 Read INSTALL for details on building LibUniNamesList using this package.
 This package contains 2 libraries, but only 1 is built by default:
 	1) libuninameslist - holds NamesList.txt data from www.unicode.org
-	2) libuninameslist-fr - currently holds French 10.0 NamesList.txt
+	2) libuninameslist-fr - currently holds French 13.0 NamesList.txt
 If you need the libuninameslist-fr library then you will also need to enable
-building it since the current default is not to build it.
+building it since the current default is not to build it. This will also be
+recognized in functions 16..26 listed above as lang=1 (English=default=0).
 NOTE: You should run 'make clean' if you ran "./configure; make" earlier.
-	./configure --enable-frenchlib
-	make clean
-	make
+	$ ./configure --enable-frenchlib
+	$ make clean
+	$ make
+	$ su
+	# make install (or use 'make install-strip' for smaller libraries).
+	# exit
+	$
+
+Alternatively, if you do not have autoconf or automake available with your
+computer, you can fetch the configure-ready libuninameslist-dist version.
 
 
-Added Python Wrapper
-********************
+Added 'uninameslist.py' Python Wrapper
+**************************************
 
 A python wrapper is provided for users interested in libuninameslist access
-using python. The easiest and simplest method for users to add it is to run:
-
-	$ cd py
+using python. The easiest and simplest method for users to add it is to run
+the install in two steps, first build and install libuninameslist, then use
+python to install the wrapper:
+	$ ./configure (may need --/prefix=/usr - use --help to see options)
+	$ make clean
+	$ make
 	$ su
+	# make install
+	# cd py
 	# python setup.py install
 	# exit
 	$
@@ -80,12 +98,23 @@ To do this, pass --enable-pylib. Optionally, also set the `PYTHON` environment
 variable to configure which python to use. The configured python must have pip,
 setuptools and the wheel packages installed.
 
-	$ PYTHON=python2 ./configure --enable-pylib
+	$ PYTHON=python2 ./configure --enable-pylib (may need --/prefix=/usr)
 	$ make
 	$ su
+	# make install
 	# pip install py/dist/*.whl
 	# exit
 	$
+
+Normally, a user default library install is made into '/usr/local', but for
+some operating systems, you may need you to add '--prefix=/usr' if you will
+be adding python access to uninameslist.py
+
+This two-step install is necessary to avoid using AM_PATH_PYTHON() as part
+of './configure' which interferes with installs that cannot include python.
+
+Distro maintainers may also want to look at Adelie which has a great install:
+https://code.foxkit.us/adelie/packages/blob/master/user/libuninameslist/APKBUILD
 
 
 Build Process
@@ -102,7 +131,7 @@ The default build process can be summarized quickly like this:
 	$ ./configure
 	$ make
 	$ su
-	# make install
+	# make install-strip
 	# exit
 	$
 
@@ -184,8 +213,9 @@ If you are interested in updating an existing file, there are some references
 pointing to where latest NamesList style files were found, see in Makefile.am
 or other nameslist*.c or uninameslist*.h for possible information if not seen
 on readme files. Ask originating Authors if they want/need help if looking at
-updating existing files.
-If you are aware of translations in another format, they could be considered.
+updating existing file (this is a large file, but can be done progressively).
+If you are aware of translations in another format, they could be considered,
+and functions 16 to 26 are available for displaying alternate languages.
 
 
 Old Bugs Out, New Bugs In
@@ -199,4 +229,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2020-Mar-29, by Joe Da Silva
+	2020-Apr-13, by Joe Da Silva

@@ -267,6 +267,7 @@ static int test_normalize(void) {
 #ifdef DO_CALL_TEST7
 static int test_calls_07(void) {
     const char *cc0, *cc1;
+    int n0, n1;
 
     if ( test(0,uniNamesList_Languages(0),"EN") && \
 	 test(1,uniNamesList_Languages(1),"FR") && \
@@ -287,7 +288,7 @@ static int test_calls_07(void) {
     }
 
     if ( uniNamesList_nameAlt(0x3000000, 0)==NULL && \
-	 uniNamesList_nameAlt(32, 100)==NULL && \
+	 test(32,uniNamesList_nameAlt(32, 100),"SPACE") && \
 	 test(32,uniNamesList_nameAlt(32, 0),"SPACE") && \
 	 test(32,uniNamesList_nameAlt(32, 1),"ESPACE") && \
 	 test(42,uniNamesList_nameAlt(42, 0),"ASTERISK") && \
@@ -301,7 +302,7 @@ static int test_calls_07(void) {
     }
 
     if ( uniNamesList_annotAlt(0x3000000, 0)==NULL && \
-	 uniNamesList_annotAlt(32, 100)==NULL && \
+	 test(32,uniNamesList_annotAlt(32, 100),uniNamesList_annot(32)) && \
 	 test(7,uniNamesList_annotAlt(7, 0),"\t= BELL") && \
 	 test(7,uniNamesList_annotAlt(7, 1),"\t= SONNERIE") && \
 	 test(0x1fbc5,uniNamesList_annotAlt(0x1fbc5, 0),"\tx (mens symbol - 1F6B9)") && \
@@ -313,7 +314,7 @@ static int test_calls_07(void) {
     }
 
     if ( uniNamesList_nameBoth(0x3000000, 0, &cc0, &cc1)==-1 && \
-	 uniNamesList_nameBoth(32, 100, &cc0, &cc1)==-1 && \
+	 uniNamesList_nameBoth(32, 100, &cc0, &cc1)==0 && \
 	 uniNamesList_nameBoth(32, 0, &cc0, &cc1)==0 && \
 	 test(32,cc0,"SPACE") && test(32,cc1,"SPACE") && \
 	 uniNamesList_nameBoth(32, 1, &cc0, &cc1)==0 && \
@@ -329,7 +330,8 @@ static int test_calls_07(void) {
     }
 
     if ( uniNamesList_annotBoth(0x3000000, 0, &cc0, &cc1)==-1 && \
-	 uniNamesList_annotBoth(33, 100, &cc0, &cc1)==-1 && \
+	 uniNamesList_annotBoth(27, 100, &cc0, &cc1)==0 && \
+	 test(27,cc0,"\t= ESCAPE") && cc1==NULL && \
 	 uniNamesList_annotBoth(7, 0, &cc0, &cc1)==0 && \
 	 test(7,cc0,"\t= BELL") && test(7,cc1,"\t= BELL") && \
 	 uniNamesList_annotBoth(7, 1, &cc0, &cc1)==0 && \
@@ -341,6 +343,63 @@ static int test_calls_07(void) {
 	printf("error with uniNamesList_annotBoth(code,lang,*strEng,*strLang)\n");
 	return( -6 );
     }
+
+    /* These values are not likely to sync if versions are different */
+    if ( uniNamesList_blockCountAlt(100)==uniNamesList_blockCount() && \
+	 uniNamesList_blockCountAlt(0)==uniNamesList_blockCount() && \
+	 uniNamesList_blockCountAlt(1)>100 ) {
+	printf("standard blockcount = %d\n", uniNamesList_blockCountAlt(0) );
+	printf("French blockcount = %d\n", uniNamesList_blockCountAlt(1) );
+    } else {
+	printf("error with uniNamesList_blockCountAlt(lang)\n");
+	return( -7 );
+    }
+
+    if ( uniNamesList_blockStartAlt(0x3000000, 0)==-1 && \
+	 uniNamesList_blockStartAlt(2, 100)==0x100 && \
+	 uniNamesList_blockStartAlt(3, 0)==0x180 && \
+	 uniNamesList_blockStartAlt(4, 1)==0x250 && \
+	 uniNamesList_blockStartAlt(35,0)==uniNamesList_blockStart(35) && \
+	 uniNamesList_blockStartAlt(1,1)==uniNamesList_blockStart(1) )
+	;
+    else {
+	printf("error with uniNamesList_blockStartAlt(block,lang)\n");
+	return( -8 );
+    }
+
+    if ( uniNamesList_blockEndAlt(0x3000000, 0)==-1 && \
+	 uniNamesList_blockEndAlt(2, 100)==0x17f && \
+	 uniNamesList_blockEndAlt(1, 0)==0xff && \
+	 uniNamesList_blockEndAlt(3, 1)==0x24f && \
+	 uniNamesList_blockEndAlt(20,0)==uniNamesList_blockEnd(20) && \
+	 uniNamesList_blockEndAlt(5,1)==uniNamesList_blockEnd(5) )
+	;
+    else {
+	printf("error with uniNamesList_blockEndAlt(block,lang)\n");
+	return( -9 );
+    }
+
+    if ( uniNamesList_blockNameAlt(0x3000, 0)==NULL && \
+	 test(10,uniNamesList_blockNameAlt(10,100),uniNamesList_blockName(10)) && \
+	 test(12,uniNamesList_blockNameAlt(12,0),uniNamesList_blockName(12)) && \
+	 test(2,uniNamesList_blockNameAlt(2,1),NOBLKT) )
+	;
+    else {
+	printf("error with uniNamesList_blockNameAlt(block,lang)\n");
+	return( -10 );
+    }
+
+    if ( uniNamesList_blockNumberBoth(0x300000,0,&n0,&n1)==-1 && \
+	 uniNamesList_blockNumberBoth(33,100,&n0,&n1)==0 && \
+	 uniNamesList_blockNumberBoth(7,0,&n0,&n1)==0 && n0==0 && n1==0 && \
+	 uniNamesList_blockNumberBoth(0x100,1,&n0,&n1)==0 && n0==2 && n1==2 && \
+	 uniNamesList_blockNumberBoth(960,1,&n0,&n1)==0 && n0>5 && n1>5 ) {
+	printf("uniNamesList_blockNumberBoth(code=960,lang=1,&n0=%d,&n1=%d)\n",n0,n1);
+    } else {
+	printf("error with uniNamesList_blockNumberBoth(code,lang,&n0=%d,&n1=%d)\n",n0,n1);
+	return( -11 );
+    }
+    printf("done\n" );
     return( 0 );
 }
 #endif

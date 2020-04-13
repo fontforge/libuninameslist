@@ -18,9 +18,15 @@
   #endif
 #endif
 
+int uniNamesList_haveFR(unsigned int lang);
 #ifdef WANTLIBOFR
 /* make this visible to nameslist.c if adding French lib */
 extern const char *uniNamesList_NamesListVersionFR(void);
 extern const char *uniNamesList_nameFR(unsigned long uni);
 extern const char *uniNamesList_annotFR(unsigned long uni);
+extern int uniNamesList_blockCountFR(void);
+extern int uniNamesList_blockNumberFR(unsigned long uni);
+extern long uniNamesList_blockStartFR(int uniBlock);
+extern long uniNamesList_blockEndFR(int uniBlock);
+extern const char * uniNamesList_blockNameFR(int uniBlock);
 #endif

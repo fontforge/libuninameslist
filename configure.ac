@@ -4,13 +4,13 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20200313]) dnl yyyymmdd
+m4_define([uninameslist_package_stamp], [20200413]) dnl yyyymmdd
 m4_define([uninameslist_major_version], [13]) dnl Nameslist.txt
 m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[6])
+m4_define([uninameslist_revision],[7])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -21,7 +21,7 @@ m4_define([fr_major_version], [13]) dnl latest ListeDesNoms.txt = ver13.0
 m4_define([fr_minor_version], [0])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])
-m4_define([uninameslist_fr_revision],[2])
+m4_define([uninameslist_fr_revision],[3])
 m4_define([uninameslist_fr_age],     [0])
 m4_define([uninameslist_fr_libver],
           [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])
@@ -114,7 +114,7 @@ if test x"${frenchlib}" = xyes; then
 fi
 
 #-------------------------------------------
-# Python lib building
+# Python lib building - as installable wheel
 AC_ARG_ENABLE([pylib],
         [AS_HELP_STRING([--enable-pylib],
                 [Build the python module as an installable wheel.])],

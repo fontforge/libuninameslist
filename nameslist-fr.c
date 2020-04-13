@@ -65,8 +65,9 @@ int uniNamesList_blockCountFR(void) {
 /* Return block number for this unicode value, -1 if unlisted unicode value */
 UN_DLL_EXPORT
 int uniNamesList_blockNumberFR(unsigned long uni) {
+	int i;
+
 	if ( uni<0x110000 ) {
-		int i;
 		for (i=0; i<UNICODE_FR_BLOCK_MAX; i++) {
 			if ( uni<(unsigned long)(UnicodeBlockFR[i].start) ) break;
 			if ( uni<=(unsigned long)(UnicodeBlockFR[i].end) ) return( i );

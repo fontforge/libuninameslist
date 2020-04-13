@@ -82,8 +82,9 @@ int uniNamesList_blockCount(void) {
 /* Return block number for this unicode value, -1 if unlisted unicode value */
 UN_DLL_EXPORT
 int uniNamesList_blockNumber(unsigned long uni) {
+	int i;
+
 	if ( uni<0x110000 ) {
-		int i;
 		for (i=0; i<UNICODE_EN_BLOCK_MAX; i++) {
 			if ( uni<(unsigned long)(UnicodeBlock[i].start) ) break;
 			if ( uni<=(unsigned long)(UnicodeBlock[i].end) ) return( i );
@@ -150,6 +151,7 @@ long uniNamesList_names2val(int count) {
 UN_DLL_EXPORT
 int uniNamesList_names2getU(unsigned long uni) {
 	int i;
+
 	if ( uni<0x110000 ) for ( i=0; i<29; ++i ) {
 		if ( uni==unicode_name2code[i] ) return( i );
 		if ( uni<unicode_name2code[i] ) break;
@@ -188,32 +190,33 @@ const char *uniNamesList_names2anU(unsigned long uni) {
 }
 
 
-/* These functions are available in libuninameslist-20200328 and higher */
+/* These functions are available in libuninameslist-20200413 and higher */
+
+UN_DLL_LOCAL
+int uniNamesList_haveFR(unsigned int lang) {
+#ifdef WANTLIBOFR
+	if ( lang==1 ) return( 1 );
+#endif
+	return( 0 );
+}
 
 /* Return language codes available from libraries. 0=English, 1=French. */
 UN_DLL_EXPORT
 const char *uniNamesList_Languages(unsigned int lang) {
-	if ( lang==0 )
-		return( "EN" );
-#ifdef WANTLIBOFR
-	else if ( lang==1 )
+	if ( uniNamesList_haveFR(lang) )
 		return( "FR" );
-#endif
-	else
-		return( NULL );
+	else if ( lang==0 )
+		return( "EN" );
+	return( NULL );
 }
 
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersionAlt(unsigned int lang) {
-#ifdef WANTLIBOFR
-	if ( lang==1 )
+	if ( uniNamesList_haveFR(lang) )
 		return( uniNamesList_NamesListVersionFR() );
-	else
-#endif
-	if ( lang==0 )
+	else if ( lang==0 )
 		return( uniNamesList_NamesListVersion() );
-	else
-		return( NULL );
+	return( NULL );
 }
 
 /* Return pointer to name/annotation for this unicode value using lang. */
@@ -221,14 +224,11 @@ const char *uniNamesList_NamesListVersionAlt(unsigned int lang) {
 UN_DLL_EXPORT
 const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang) {
 	const char *pt=NULL;
-#ifdef WANTLIBOFR
-	if ( uni<0x110000 && lang<=1 ) {
-		if ( lang )
+
+	if ( uni<0x110000 ) {
+		if ( uniNamesList_haveFR(lang) )
 			pt=uniNamesList_nameFR(uni);
 		if ( pt==NULL )
-#else
-	if ( uni<0x110000 && lang==0 ) {
-#endif
 			pt=uniNamesList_name(uni);
 	}
 	return( pt );
@@ -237,14 +237,11 @@ const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang) {
 UN_DLL_EXPORT
 const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang) {
 	const char *pt=NULL;
-#ifdef WANTLIBOFR
-	if ( uni<0x110000 && lang<=1 ) {
-		if ( lang )
+
+	if ( uni<0x110000 ) {
+		if ( uniNamesList_haveFR(lang) )
 			pt=uniNamesList_annotFR(uni);
 		if ( pt==NULL )
-#else
-	if ( uni<0x110000 && lang==0 ) {
-#endif
 			pt=uniNamesList_annot(uni);
 	}
 	return( pt );
@@ -256,21 +253,15 @@ UN_DLL_EXPORT
 int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {
 	int error=-1;
 	*str0=*str1=NULL;
-#ifdef WANTLIBOFR
-	if ( uni<0x110000 && lang<=1 ) {
+
+	if ( uni<0x110000 ) {
 		error=0;
 		*str0=uniNamesList_name(uni);
-		if ( lang )
+		if ( uniNamesList_haveFR(lang) )
 			*str1=uniNamesList_nameFR(uni);
 		else if ( lang==0 )
 			*str1=*str0;
 	}
-#else
-	if ( uni<0x110000 && lang==0 ) {
-		error=0;
-		*str0=*str1=uniNamesList_name(uni);
-	}
-#endif
 	return( error );
 }
 
@@ -278,21 +269,76 @@ UN_DLL_EXPORT
 int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {
 	int error=-1;
 	*str0=*str1=NULL;
-#ifdef WANTLIBOFR
-	if ( uni<0x110000 && lang<=1 ) {
+
+	if ( uni<0x110000 ) {
 		error=0;
 		*str0=uniNamesList_annot(uni);
-		if ( lang )
+		if ( uniNamesList_haveFR(lang) )
 			*str1=uniNamesList_annotFR(uni);
 		else if ( lang==0 )
 			*str1=*str0;
 	}
-#else
-	if ( uni<0x110000 && lang==0 ) {
+	return( error );
+}
+
+/* Common access. Blocklists won't sync if they are different versions. */
+UN_DLL_EXPORT
+int uniNamesList_blockCountAlt(unsigned int lang) {
+	int c=-1;
+
+	if ( uniNamesList_haveFR(lang) )
+		c=uniNamesList_blockCountFR();
+	if ( c<0 )
+		c=UNICODE_EN_BLOCK_MAX;
+	return( c );
+}
+
+UN_DLL_EXPORT
+long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {
+	int c=-1;
+
+	if ( uniNamesList_haveFR(lang) )
+		c=uniNamesList_blockStartFR(uniBlock);
+	if ( c<0 )
+		c=uniNamesList_blockStart(uniBlock);
+	return( c );
+}
+
+UN_DLL_EXPORT
+long uniNamesList_blockEndAlt(int uniBlock, unsigned int lang) {
+	int c=-1;
+
+	if ( uniNamesList_haveFR(lang) )
+		c=uniNamesList_blockEndFR(uniBlock);
+	if ( c<0 )
+		c=uniNamesList_blockEnd(uniBlock);
+	return( c );
+}
+
+UN_DLL_EXPORT
+const char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang) {
+	const char *pt=NULL;
+
+	if ( uniNamesList_haveFR(lang) )
+		pt=uniNamesList_blockNameFR(uniBlock);
+	if ( pt==NULL )
+		pt=uniNamesList_blockName(uniBlock);
+	return( pt );
+}
+
+UN_DLL_EXPORT
+int uniNamesList_blockNumberBoth(unsigned long uni, unsigned int lang, int *bn0, int *bn1) {
+	int error=-1;
+
+	*bn0=*bn1=-1;
+	if ( uni<0x110000 ) {
 		error=0;
-		*str0=*str1=uniNamesList_annot(uni);
+		*bn0=uniNamesList_blockNumber(uni);
+		if ( uniNamesList_haveFR(lang) )
+			*bn1=uniNamesList_blockNumberFR(uni);
+		else if ( lang==0 )
+			*bn1=*bn0;
 	}
-#endif
 	return( error );
 }
 

@@ -58,7 +58,7 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_MAJOR	1
-#define LIBUNINAMESLIST_MINOR	6
+#define LIBUNINAMESLIST_MINOR	7
 
 /* Return number of blocks in this NamesList (Version 13.0). */
 int uniNamesList_blockCount(void);
@@ -95,7 +95,7 @@ int uniNamesList_names2lnU(unsigned long uni);
 const char *uniNamesList_names2anC(int count);
 const char *uniNamesList_names2anU(unsigned long uni);
 
-/* These functions are available in libuninameslist-20200328 and higher */
+/* These functions are available in libuninameslist-20200413 and higher */
 
 /* Return language codes available from libraries. 0=English, 1=French. */
 const char *uniNamesList_Languages(unsigned int lang);
@@ -110,6 +110,13 @@ const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang);
 /* Return str0=English, and str1=language_version (or NULL if no info). */
 int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **strl);
 int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1);
+
+/* Blocklists won't sync if they are different versions. 0=ok, -1=error */
+int uniNamesList_blockCountAlt(unsigned int lang);
+long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang);
+long uniNamesList_blockEndAlt(int uniBlock, unsigned int lang);
+const char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang);
+int uniNamesList_blockNumberBoth(unsigned long uni, unsigned int lang, int *bn0, int *bn1);
 
 #ifdef __cplusplus
 }
