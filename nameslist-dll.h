@@ -18,6 +18,8 @@
   #endif
 #endif
 
+#ifdef UNICODE_BLOCK_MAX
+/* Definitions used by nameslist.c for functions{16..21} */
 int uniNamesList_haveFR(unsigned int lang);
 #ifdef WANTLIBOFR
 /* make this visible to nameslist.c if adding French lib */
@@ -28,5 +30,16 @@ extern int uniNamesList_blockCountFR(void);
 extern int uniNamesList_blockNumberFR(unsigned long uni);
 extern long uniNamesList_blockStartFR(int uniBlock);
 extern long uniNamesList_blockEndFR(int uniBlock);
-extern const char * uniNamesList_blockNameFR(int uniBlock);
+extern const char *uniNamesList_blockNameFR(int uniBlock);
+#else
+/* make these internal stubs since there's no French lib */
+const char *uniNamesList_NamesListVersionFR(void);
+const char *uniNamesList_nameFR(unsigned long uni);
+const char *uniNamesList_annotFR(unsigned long uni);
+int uniNamesList_blockCountFR(void);
+int uniNamesList_blockNumberFR(unsigned long uni);
+long uniNamesList_blockStartFR(int uniBlock);
+long uniNamesList_blockEndFR(int uniBlock);
+const char *uniNamesList_blockNameFR(int uniBlock);
+#endif
 #endif

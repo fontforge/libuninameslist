@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "nameslist-dll.h"
 #include "uninameslist.h"
+#include "nameslist-dll.h"
 
 /* This file was generated using the program 'buildnameslist.c' */
 
@@ -200,6 +200,18 @@ int uniNamesList_haveFR(unsigned int lang) {
 	return( 0 );
 }
 
+#ifndef WANTLIBOFR
+/* make these internal stubs since there's no French lib */
+UN_DLL_LOCAL const char *uniNamesList_NamesListVersionFR(void) {return( NULL );}
+UN_DLL_LOCAL const char *uniNamesList_nameFR(unsigned long uni) {return( NULL );}
+UN_DLL_LOCAL const char *uniNamesList_annotFR(unsigned long uni) {return( NULL );}
+UN_DLL_LOCAL int uniNamesList_blockCountFR(void) {return( -1 );}
+UN_DLL_LOCAL int uniNamesList_blockNumberFR(unsigned long uni) {return( -1 );}
+UN_DLL_LOCAL long uniNamesList_blockStartFR(int uniBlock) {return( -1 );}
+UN_DLL_LOCAL long uniNamesList_blockEndFR(int uniBlock) {return( -1 );}
+UN_DLL_LOCAL const char *uniNamesList_blockNameFR(int uniBlock) {return( NULL );}
+#endif
+
 /* Return language codes available from libraries. 0=English, 1=French. */
 UN_DLL_EXPORT
 const char *uniNamesList_Languages(unsigned int lang) {
@@ -213,7 +225,7 @@ const char *uniNamesList_Languages(unsigned int lang) {
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersionAlt(unsigned int lang) {
 	if ( uniNamesList_haveFR(lang) )
-		return( uniNamesList_NamesListVersionFR() );
+		return( (const char *)(uniNamesList_NamesListVersionFR()) );
 	else if ( lang==0 )
 		return( uniNamesList_NamesListVersion() );
 	return( NULL );
@@ -227,7 +239,7 @@ const char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang) {
 
 	if ( uni<0x110000 ) {
 		if ( uniNamesList_haveFR(lang) )
-			pt=uniNamesList_nameFR(uni);
+			pt=(const char *)(uniNamesList_nameFR(uni));
 		if ( pt==NULL )
 			pt=uniNamesList_name(uni);
 	}
@@ -240,7 +252,7 @@ const char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang) {
 
 	if ( uni<0x110000 ) {
 		if ( uniNamesList_haveFR(lang) )
-			pt=uniNamesList_annotFR(uni);
+			pt=(const char *)(uniNamesList_annotFR(uni));
 		if ( pt==NULL )
 			pt=uniNamesList_annot(uni);
 	}
@@ -258,7 +270,7 @@ int uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str
 		error=0;
 		*str0=uniNamesList_name(uni);
 		if ( uniNamesList_haveFR(lang) )
-			*str1=uniNamesList_nameFR(uni);
+			*str1=(const char *)(uniNamesList_nameFR(uni));
 		else if ( lang==0 )
 			*str1=*str0;
 	}
@@ -274,7 +286,7 @@ int uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **st
 		error=0;
 		*str0=uniNamesList_annot(uni);
 		if ( uniNamesList_haveFR(lang) )
-			*str1=uniNamesList_annotFR(uni);
+			*str1=(const char *)(uniNamesList_annotFR(uni));
 		else if ( lang==0 )
 			*str1=*str0;
 	}
@@ -287,7 +299,7 @@ int uniNamesList_blockCountAlt(unsigned int lang) {
 	int c=-1;
 
 	if ( uniNamesList_haveFR(lang) )
-		c=uniNamesList_blockCountFR();
+		c=(int)(uniNamesList_blockCountFR());
 	if ( c<0 )
 		c=UNICODE_EN_BLOCK_MAX;
 	return( c );
@@ -298,7 +310,7 @@ long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {
 	int c=-1;
 
 	if ( uniNamesList_haveFR(lang) )
-		c=uniNamesList_blockStartFR(uniBlock);
+		c=(int)(uniNamesList_blockStartFR(uniBlock));
 	if ( c<0 )
 		c=uniNamesList_blockStart(uniBlock);
 	return( c );
@@ -309,7 +321,7 @@ long uniNamesList_blockEndAlt(int uniBlock, unsigned int lang) {
 	int c=-1;
 
 	if ( uniNamesList_haveFR(lang) )
-		c=uniNamesList_blockEndFR(uniBlock);
+		c=(int)(uniNamesList_blockEndFR(uniBlock));
 	if ( c<0 )
 		c=uniNamesList_blockEnd(uniBlock);
 	return( c );
@@ -320,7 +332,7 @@ const char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang) {
 	const char *pt=NULL;
 
 	if ( uniNamesList_haveFR(lang) )
-		pt=uniNamesList_blockNameFR(uniBlock);
+		pt=(const char *)(uniNamesList_blockNameFR(uniBlock));
 	if ( pt==NULL )
 		pt=uniNamesList_blockName(uniBlock);
 	return( pt );
@@ -335,7 +347,7 @@ int uniNamesList_blockNumberBoth(unsigned long uni, unsigned int lang, int *bn0,
 		error=0;
 		*bn0=uniNamesList_blockNumber(uni);
 		if ( uniNamesList_haveFR(lang) )
-			*bn1=uniNamesList_blockNumberFR(uni);
+			*bn1=(int)(uniNamesList_blockNumberFR(uni));
 		else if ( lang==0 )
 			*bn1=*bn0;
 	}

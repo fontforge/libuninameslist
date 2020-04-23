@@ -301,11 +301,11 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     l = is_fr; if ( is_fr<0 ) l = 0;
 
     fprintf( out, "#include <stdio.h>\n" );
-    fprintf( out, "#include \"nameslist-dll.h\"\n" );
     if ( is_fr<1 )
-	fprintf( out, "#include \"uninameslist.h\"\n\n" );
+	fprintf( out, "#include \"uninameslist.h\"\n" );
     else
-	fprintf( out, "#include \"uninameslist-fr.h\"\n\n" );
+	fprintf( out, "#include \"uninameslist-fr.h\"\n" );
+    fprintf( out, "#include \"nameslist-dll.h\"\n\n" );
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
 
@@ -432,54 +432,63 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "/* These functions are available in libuninameslist-20200413 and higher */\n\n" );
 	fprintf( out, "UN_DLL_LOCAL\nint uniNamesList_haveFR(unsigned int lang) {\n" );
 	fprintf( out, "#ifdef WANTLIBOFR\n\tif ( lang==1 ) return( 1 );\n#endif\n\treturn( 0 );\n}\n\n" );
-	fprintf( out, "/* Return language codes available from libraries. 0=English, 1=French. */\n" );
+	fprintf( out, "#ifndef WANTLIBOFR\n/* make these internal stubs since there's no French lib */\n" );
+	fprintf( out, "UN_DLL_LOCAL const char *uniNamesList_NamesListVersionFR(void) {return( NULL );}\n" );
+	fprintf( out, "UN_DLL_LOCAL const char *uniNamesList_nameFR(unsigned long uni) {return( NULL );}\n" );
+	fprintf( out, "UN_DLL_LOCAL const char *uniNamesList_annotFR(unsigned long uni) {return( NULL );}\n" );
+	fprintf( out, "UN_DLL_LOCAL int uniNamesList_blockCountFR(void) {return( -1 );}\n" );
+	fprintf( out, "UN_DLL_LOCAL int uniNamesList_blockNumberFR(unsigned long uni) {return( -1 );}\n" );
+	fprintf( out, "UN_DLL_LOCAL long uniNamesList_blockStartFR(int uniBlock) {return( -1 );}\n" );
+	fprintf( out, "UN_DLL_LOCAL long uniNamesList_blockEndFR(int uniBlock) {return( -1 );}\n" );
+	fprintf( out, "UN_DLL_LOCAL const char *uniNamesList_blockNameFR(int uniBlock) {return( NULL );}\n" );
+	fprintf( out, "#endif\n\n/* Return language codes available from libraries. 0=English, 1=French. */\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_Languages(unsigned int lang) {\n" );
 	fprintf( out, "\tif ( uniNamesList_haveFR(lang) )\n\t\treturn( \"FR\" );\n" );
 	fprintf( out, "\telse if ( lang==0 )\n\t\treturn( \"EN\" );\n\treturn( NULL );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_NamesListVersionAlt(unsigned int lang) {\n" );
-	fprintf( out, "\tif ( uniNamesList_haveFR(lang) )\n\t\treturn( uniNamesList_NamesListVersionFR() );\n" );
+	fprintf( out, "\tif ( uniNamesList_haveFR(lang) )\n\t\treturn( (const char *)(uniNamesList_NamesListVersionFR()) );\n" );
 	fprintf( out, "\telse if ( lang==0 )\n\t\treturn( uniNamesList_NamesListVersion() );\n\treturn( NULL );\n}\n\n" );
 	fprintf( out, "/* Return pointer to name/annotation for this unicode value using lang. */\n" );
 	fprintf( out, "/* Return English if language does not have information for this Ucode. */\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_nameAlt(unsigned long uni, unsigned int lang) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n\tif ( uni<0x110000 ) {\n" );
-	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\tpt=uniNamesList_nameFR(uni);\n" );
+	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\tpt=(const char *)(uniNamesList_nameFR(uni));\n" );
 	fprintf( out, "\t\tif ( pt==NULL )\n\t\t\tpt=uniNamesList_name(uni);\n\t}\n\treturn( pt );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_annotAlt(unsigned long uni, unsigned int lang) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n\tif ( uni<0x110000 ) {\n" );
-	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\tpt=uniNamesList_annotFR(uni);\n" );
+	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\tpt=(const char *)(uniNamesList_annotFR(uni));\n" );
 	fprintf( out, "\t\tif ( pt==NULL )\n\t\t\tpt=uniNamesList_annot(uni);\n\t}\n\treturn( pt );\n}\n\n" );
 	fprintf( out, "/* Returns 2 lang pointers to names/annotations for this unicode value, */\n" );
 	fprintf( out, "/* Return str0=English, and str1=language_version (or NULL if no info). */\n" );
 	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_nameBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {\n" );
 	fprintf( out, "\tint error=-1;\n\t*str0=*str1=NULL;\n\n\tif ( uni<0x110000 ) {\n" );
 	fprintf( out, "\t\terror=0;\n\t\t*str0=uniNamesList_name(uni);\n" );
-	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*str1=uniNamesList_nameFR(uni);\n" );
+	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*str1=(const char *)(uniNamesList_nameFR(uni));\n" );
 	fprintf( out, "\t\telse if ( lang==0 )\n\t\t\t*str1=*str0;\n\t}\n\treturn( error );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_annotBoth(unsigned long uni, unsigned int lang, const char **str0, const char **str1) {\n" );
 	fprintf( out, "\tint error=-1;\n\t*str0=*str1=NULL;\n\n" );
 	fprintf( out, "\tif ( uni<0x110000 ) {\n\t\terror=0;\n\t\t*str0=uniNamesList_annot(uni);\n" );
-	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*str1=uniNamesList_annotFR(uni);\n" );
+	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*str1=(const char *)(uniNamesList_annotFR(uni));\n" );
 	fprintf( out, "\t\telse if ( lang==0 )\n\t\t\t*str1=*str0;\n\t}\n\treturn( error );\n}\n\n" );
 	fprintf( out, "/* Common access. Blocklists won't sync if they are different versions. */\n" );
 	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockCountAlt(unsigned int lang) {\n" );
-	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=uniNamesList_blockCountFR();\n" );
+	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=(int)(uniNamesList_blockCountFR());\n" );
 	fprintf( out, "\tif ( c<0 )\n\t\tc=UNICODE_EN_BLOCK_MAX;\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {\n" );
-	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=uniNamesList_blockStartFR(uniBlock);\n" );
+	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=(int)(uniNamesList_blockStartFR(uniBlock));\n" );
 	fprintf( out, "\tif ( c<0 )\n\t\tc=uniNamesList_blockStart(uniBlock);\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockEndAlt(int uniBlock, unsigned int lang) {\n" );
 	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n" );
-	fprintf( out, "\t\tc=uniNamesList_blockEndFR(uniBlock);\n\tif ( c<0 )\n" );
+	fprintf( out, "\t\tc=(int)(uniNamesList_blockEndFR(uniBlock));\n\tif ( c<0 )\n" );
 	fprintf( out, "\t\tc=uniNamesList_blockEnd(uniBlock);\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n\tif ( uniNamesList_haveFR(lang) )\n" );
-	fprintf( out, "\t\tpt=uniNamesList_blockNameFR(uniBlock);\n\tif ( pt==NULL )\n" );
+	fprintf( out, "\t\tpt=(const char *)(uniNamesList_blockNameFR(uniBlock));\n\tif ( pt==NULL )\n" );
 	fprintf( out, "\t\tpt=uniNamesList_blockName(uniBlock);\n\treturn( pt );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nint uniNamesList_blockNumberBoth(unsigned long uni, unsigned int lang, int *bn0, int *bn1) {\n" );
 	fprintf( out, "\tint error=-1;\n\n\t*bn0=*bn1=-1;\n\tif ( uni<0x110000 ) {\n" );
 	fprintf( out, "\t\terror=0;\n\t\t*bn0=uniNamesList_blockNumber(uni);\n" );
-	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*bn1=uniNamesList_blockNumberFR(uni);\n" );
+	fprintf( out, "\t\tif ( uniNamesList_haveFR(lang) )\n\t\t\t*bn1=(int)(uniNamesList_blockNumberFR(uni));\n" );
 	fprintf( out, "\t\telse if ( lang==0 )\n\t\t\t*bn1=*bn0;\n\t}\n\treturn( error );\n}\n\n\n" );
     }
 
