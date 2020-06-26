@@ -6,7 +6,7 @@
 # you need to modify pythondir for your install and uninstall.
 
 EXTRA_DIST = setup.py uninameslist.py
-GENERATED = build wheel uninameslist.egg-info
+GENERATED = build wheel uninameslist.egg-info dist __pycache
 
 wheel: $(EXTRA_DIST)
 	$(PYTHON) $(srcdir)/setup.py sdist --dist-dir wheel bdist_wheel --universal --dist-dir wheel
