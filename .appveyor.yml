@@ -1,4 +1,4 @@
-
+image: Visual Studio 2019
 platform:
   - x64
 branches:
@@ -14,7 +14,6 @@ matrix:
   fast_finish: true
 
 install:
-  - call %MBASH% "pacman -S base"
   - call %MBASH% "pacman -Syuu --noconfirm"
   - call %MBASH% "pacman -Suu --noconfirm"
   - call %MBASH% "pacman -Suu --noconfirm"
