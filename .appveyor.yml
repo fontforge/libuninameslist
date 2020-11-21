@@ -17,8 +17,14 @@ install:
   - call %MBASH% "pacman --noconfirm -S --needed base-devel"
   - call %MBASH% "python -m ensurepip --default-pip"
   - call %MBASH% "python -m pip install setuptools wheel"
+before_build:
+  - cd $APPVEYOR_BUILD_FOLDER
+  - call %MBASH% "autoreconf -fiv"
+  - call %MBASH% "mkdir build"
+  - call %MBASH% "chdir build"
+  - call %MBASH% "./configure"
 build_script:
-  - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
+  - call %MBASH% "make check -j4 && make install"
 test: off
 artifacts:
   - path: build\py\wheel\*.whl
