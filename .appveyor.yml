@@ -18,10 +18,10 @@ install:
   - call %MBASH% "python -m ensurepip --default-pip"
   - call %MBASH% "python -m pip install setuptools wheel"
 before_build:
-  - cd %APPVEYOR_BUILD_FOLDER%
+  - call %MBASH% "chdir $APPVEYOR_BUILD_FOLDER"
   - call %MBASH% "autoreconf -fiv"
-  - md build
-  - cd build
+  - call %MBASH% "mkdir build"
+  - call %MBASH% "chdir build"
   - call %MBASH% "./configure --enable-frenchlib"
 build_script:
   - call %MBASH% "make check -j4 && make install"

@@ -37,7 +37,7 @@ before_install:
 
 script:
   - autoreconf -fiv
-  - ./configure --enable-pylib --prefix=$TRAVIS_BUILD_DIR/target
+  - ./configure --enable-frenchlib --enable-pylib --prefix=$TRAVIS_BUILD_DIR/target
   - make check
   - make install
 
