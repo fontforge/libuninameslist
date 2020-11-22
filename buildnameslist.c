@@ -475,11 +475,11 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=(int)(uniNamesList_blockCountFR());\n" );
 	fprintf( out, "\tif ( c<0 )\n\t\tc=UNICODE_EN_BLOCK_MAX;\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {\n" );
-	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=(int)(uniNamesList_blockStartFR(uniBlock));\n" );
+	fprintf( out, "\tlong c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n\t\tc=(long)(uniNamesList_blockStartFR(uniBlock));\n" );
 	fprintf( out, "\tif ( c<0 )\n\t\tc=uniNamesList_blockStart(uniBlock);\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nlong uniNamesList_blockEndAlt(int uniBlock, unsigned int lang) {\n" );
-	fprintf( out, "\tint c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n" );
-	fprintf( out, "\t\tc=(int)(uniNamesList_blockEndFR(uniBlock));\n\tif ( c<0 )\n" );
+	fprintf( out, "\tlong c=-1;\n\n\tif ( uniNamesList_haveFR(lang) )\n" );
+	fprintf( out, "\t\tc=(long)(uniNamesList_blockEndFR(uniBlock));\n\tif ( c<0 )\n" );
 	fprintf( out, "\t\tc=uniNamesList_blockEnd(uniBlock);\n\treturn( c );\n}\n\n" );
 	fprintf( out, "UN_DLL_EXPORT\nconst char *uniNamesList_blockNameAlt(int uniBlock, unsigned int lang) {\n" );
 	fprintf( out, "\tconst char *pt=NULL;\n\n\tif ( uniNamesList_haveFR(lang) )\n" );

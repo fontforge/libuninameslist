@@ -307,10 +307,10 @@ int uniNamesList_blockCountAlt(unsigned int lang) {
 
 UN_DLL_EXPORT
 long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {
-	int c=-1;
+	long c=-1;
 
 	if ( uniNamesList_haveFR(lang) )
-		c=(int)(uniNamesList_blockStartFR(uniBlock));
+		c=(long)(uniNamesList_blockStartFR(uniBlock));
 	if ( c<0 )
 		c=uniNamesList_blockStart(uniBlock);
 	return( c );
@@ -318,10 +318,10 @@ long uniNamesList_blockStartAlt(int uniBlock, unsigned int lang) {
 
 UN_DLL_EXPORT
 long uniNamesList_blockEndAlt(int uniBlock, unsigned int lang) {
-	int c=-1;
+	long c=-1;
 
 	if ( uniNamesList_haveFR(lang) )
-		c=(int)(uniNamesList_blockEndFR(uniBlock));
+		c=(long)(uniNamesList_blockEndFR(uniBlock));
 	if ( c<0 )
 		c=uniNamesList_blockEnd(uniBlock);
 	return( c );

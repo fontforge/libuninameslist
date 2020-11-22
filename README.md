@@ -165,15 +165,6 @@ $ make
 $ sudo make install
 ```
 
-If you need to also include libuninameslist-fr, you will want to use:
-```bash
-$ ./configure --help
-$ ./configure --enable-frenchlib
-$ make clean
-$ make
-$ sudo make install
-```
-
 NOTE: Some Distros and Operating Systems may require you to run 'ldconfig' to
 recognize LibUniNamesList if you are not rebooting your computer first before
 loading another program that depends on LibUniNamesList. To do this, you may
@@ -187,6 +178,40 @@ $
 
 NOTE: Users who do not have autoconf and automake available will want to
 download the '-dist-' version found in the releases directory.
+
+Optional French Library
+-----------------------
+
+The French library was build as a separate library to maintain backwards with
+older (...2012) versions of FontForge. If you want to add libuninameslist-fr,
+you will want to use:
+```bash
+$ ./configure --help
+$ ./configure --enable-frenchlib
+$ make clean
+$ make
+$ sudo make install
+```
+
+NOTE: Some platforms may have trouble when you run 'make check' or 'make'.
+For example, the s390x platform had trouble with 'make check', but was okay
+with 'make install' and then running 'make check' because the French library
+was now installed and visible with -luninameslist-fr when you checked.
+Another example, the ARM platform complained of an error with 'make' but was
+fine with the later steps of 'make install' and then also 'make check'.
+```bash
+$ ./configure --help
+$ ./configure --enable-frenchlib
+$ make clean
+$ make
+$ sudo make install
+$ make check
+```
+The explanation for this odd 'make' behaviour is that we are building two
+libraries at the same time, where the uninameslist library also depends
+on the French library, while at the same time older programs (like older
+FontForge) would load these independently (the dependency is to allow for
+substitutions if/where/when necessary).
 
 Added Python Wrapper
 --------------------

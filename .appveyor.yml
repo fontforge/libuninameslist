@@ -1,3 +1,4 @@
+image: Visual Studio 2019
 
 platform:
   - x64
@@ -14,9 +15,7 @@ matrix:
   fast_finish: true
 
 install:
-  - call %MBASH% "pacman -Syuu --noconfirm"
-  - call %MBASH% "pacman -Suu --noconfirm"
-  - call %MBASH% "pacman -Suu --noconfirm"
+  - call %MBASH% "pacman --noconfirm -S --needed base-devel"
   - call %MBASH% "python -m ensurepip --default-pip"
   - call %MBASH% "python -m pip install setuptools wheel"
 build_script:

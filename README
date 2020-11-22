@@ -53,6 +53,7 @@ an example of how to use these functions in FontForge ~ 20140101 or later.
 
 Alternatively, look at tests/call-test.c on how to call these functions.
 
+
 Building and Installing LibUniNamesList
 ***************************************
 
@@ -63,6 +64,26 @@ This package contains 2 libraries, but only 1 is built by default:
 If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is not to build it. This will also be
 recognized in functions 16..26 listed above as lang=1 (English=default=0).
+	$ ./configure
+	$ make
+	$ su
+	# make install (or use 'make install-strip' for smaller libraries).
+	# exit
+	$
+
+Alternatively, if you do not have autoconf or automake available with your
+computer, you can fetch the configure-ready libuninameslist-dist version.
+
+
+Building and Installing LibUniNamesList and LibUniNamesList-fr
+**************************************************************
+
+The French library was build with the intention of maintaining backwards
+compatibility with older programs (like FontForge 20120731), so it is a
+separate library, but in this case, it is also linked to the base library.
+If you ran 'configure' and 'make' earlier, you need to run 'make clean'
+to remove the earlier libuninameslist (which won't link to this library).
+
 NOTE: You should run 'make clean' if you ran "./configure; make" earlier.
 	$ ./configure --enable-frenchlib
 	$ make clean
@@ -72,8 +93,35 @@ NOTE: You should run 'make clean' if you ran "./configure; make" earlier.
 	# exit
 	$
 
-Alternatively, if you do not have autoconf or automake available with your
-computer, you can fetch the configure-ready libuninameslist-dist version.
+Some platforms will work fine with the commands above, while others will
+have trouble with not finding the French library because it does not exist
+yet in your libraries. Here are three different variations:
+Linux install (recent x86/amd64 distro):
+	$ ./configure --enable-frenchlib
+	$ make check
+	$ sudo make install
+	$
+
+Linux install (recent s390x distro):
+	$ ./configure --enable-frenchlib
+	$ make
+	$ sudo make install
+	$ make check
+	$
+This is a bit of a cheat - we install the French libuninameslist-fr so it
+is found by our 'to_check' libuninameslist when it uses -luninameslist-fr
+
+Linux install (recent arm64 distro):
+	$ ./configure --enable-frenchlib
+	$ make
+	$ sudo make install
+	$ make check
+	$
+This fails make because of not finding the French libuninameslist, but will
+pass 'make check' after both libraries are installed.
+
+libuninameslist needs further improvements to avoid the above 'make' quirk,
+but both libraries appear usable after being built and installed.
 
 
 Added 'uninameslist.py' Python Wrapper
@@ -117,8 +165,8 @@ Distro maintainers may also want to look at Adelie which has a great install:
 https://code.foxkit.us/adelie/packages/blob/master/user/libuninameslist/APKBUILD
 
 
-Build Process
-*************
+Default Build Process
+*********************
 
 The default build process can be summarized quickly like this:
 
@@ -229,4 +277,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2020-Apr-13, by Joe Da Silva
+	2020-Nov-21, by Joe Da Silva
