@@ -33,7 +33,7 @@ addons:
     packages: [autoconf, automake, autotools-dev, gcc-7, libtool]
 
 before_install:
-   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | sudo python && pip install wheel; fi
+   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then curl --silent --show-error --retry 5 https://bootstrap.pypa.io/pip/2.7/get-pip.py | sudo python && pip install wheel; fi
 
 script:
   - autoreconf -fiv
