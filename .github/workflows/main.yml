@@ -1,0 +1,48 @@
+name: C
+on: [push,pull_request]
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    env:
+      PYTHON: python3
+    strategy:
+      matrix:
+        choiceL: [--disable-silent-rules, --enable-frenchlib, --enable-pylib]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create configure
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install autoconf automake libtool gcc
+          autoreconf -i
+          automake
+      - name: Choose configure
+        run: ./configure ${{ matrix.choiceL }}
+      - name: Make library
+        run: make
+      - name: Test library
+        run: make check
+      - name: Test make distcheck
+        if: matrix.choiceL == '--disable-silent-rules'
+        run: make distcheck
+  macos:
+    runs-on: macos-latest
+    env:
+      PYTHON: python3
+    strategy:
+      matrix:
+        choiceM: [--disable-silent-rules, --enable-frenchlib, --enable-pylib]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create configure
+        run: |
+          brew install autoconf automake libtool gcc
+          autoreconf -i
+          automake
+      - name: Choose configure
+        run: ./configure ${{ matrix.choiceM }}
+      - name: Make library
+        run: make
+      - name: Test library
+        run: make check
