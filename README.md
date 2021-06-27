@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This library is updated for Nameslist.txt ver13.0 and ListeDesNoms.txt ver13.0
+This library is updated for Nameslist.txt ver14.0_beta and ListeDesNoms.txt ver13.0
 and includes python wrapper 'uninameslist.py'
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
@@ -126,7 +126,7 @@ The header file for the French library is `<uninameslist-fr.h>`
 This library will also be linked to the main libuninameslist so that it can
 be used through the main library (as lang=1) for functions 16 to 26.
 
-NOTE: If you ran 'make' after running './configure' earlier, you will need to
+NOTE: If you ran 'make' after running './configure' earlier, you may need to
 run 'make clean' to clear-out the earlier libuninameslist library, which is
 built without knowledge of the additional library.
 ```c
@@ -145,8 +145,8 @@ Installation and Build Instructions
 
 Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
 ```bash
-$ wget https://github.com/fontforge/libuninameslist/archive/20200413.tar.gz
-$ tar -xzf 20200413.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20210626.tar.gz
+$ tar -xzf 20210626.tar.gz
 $ cd libuninameslist
 ```
 

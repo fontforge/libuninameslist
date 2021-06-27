@@ -34,7 +34,7 @@ buildnameslist.$(OBJEXT): buildnameslist.h
 nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt buildnameslist.h .git/*
 
 DISTCLEANFILES = libuninameslist.pc
-DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib --enable-pylib
+DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib --enable-pylib --disable-silent-rules
 
 lib_LTLIBRARIES =
 if WANTLIBOFR
@@ -51,7 +51,7 @@ if WANTLIBOFR
 include_HEADERS += uninameslist-fr.h
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
-libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h
+libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h buildnameslist.h
 man_MANS += libuninameslist-fr.3
 LIBADD += -luninameslist-fr
 else
@@ -60,7 +60,7 @@ endif
 
 libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) $(LIBADD) -version-info $(UN_VERSION)
 libuninameslist_la_SOURCES = nameslist.c
-libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h
+libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h buildnameslist.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libuninameslist.pc
@@ -73,7 +73,7 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "https://www.unicode.org/Public/13.0.0/ucd/NamesList.txt" -O NamesList.txt
+	$(WGET) "https://www.unicode.org/Public/14.0.0/ucd/NamesList-14.0.0d9.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeNoms-13.0.0.txt" -O ListeDesNoms.txt
@@ -85,7 +85,10 @@ test:	$(TEST_PROGS)
 # run make test as part of make check
 check-local: test
 
-CLEANFILES = NamesList.txt ListeDesNoms.latin1 ListeDesNoms.txt buildnameslist buildnameslist.h
+GENERATED = NamesList.txt ListeDesNoms.latin1 ListeDesNoms.txt buildnameslist buildnameslist.h
+
+clean-local:
+	rm -rf $(GENERATED)
 
 MAINTAINERCLEANFILES = \
 	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \

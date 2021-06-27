@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "call-test.h"
 #if defined(DO_CALL_TEST3) || defined(DO_CALL_TEST4)
 #include "uninameslist-fr.h"
 #else
@@ -278,8 +279,10 @@ static int test_calls_07(void) {
 	return( -1 );
     }
 
+/*    if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
+	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 13.0") && \ */
     if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
-	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 13.0") && \
+	 test(1,uniNamesList_NamesListVersionAlt(1),NFR_VERSION) && \
 	 uniNamesList_NamesListVersionAlt(100)==NULL )
 	printf("test code=100,\n  ret=NULL\n  exp=NULL\n");
     else {

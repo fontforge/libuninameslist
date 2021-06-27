@@ -78,13 +78,13 @@ computer, you can fetch the configure-ready libuninameslist-dist version.
 Building and Installing LibUniNamesList and LibUniNamesList-fr
 **************************************************************
 
-The French library was build with the intention of maintaining backwards
+The French library was built with the intention of maintaining backwards
 compatibility with older programs (like FontForge 20120731), so it is a
 separate library, but in this case, it is also linked to the base library.
 If you ran 'configure' and 'make' earlier, you need to run 'make clean'
 to remove the earlier libuninameslist (which won't link to this library).
 
-NOTE: You should run 'make clean' if you ran "./configure; make" earlier.
+NOTE: You may need to run 'make clean' if you ran "./configure; make" earlier.
 	$ ./configure --enable-frenchlib
 	$ make clean
 	$ make
@@ -241,6 +241,38 @@ Let's say the next version of NamesList is version 8.0.
 	make clean
 	make
 
+Some operating systems have older or incomplete autoconf, automake, autotools
+and it is best to provide a release that already contains ./configure without
+needing autotools.
+
+To build a release version containing ./configure it is best to clone a copy
+into a fresh directory, and then remove all hidden files and directories to
+reduce the final release size. You should also fetch the latest config.guess
+and config.sub because your computer may have an older version - example:
+
+	$ git tag 20210626
+	$ git push origin
+	$ git push origin --tags
+	$ cd ~
+	$ cp -pR libuninameslist_master libuninames_release
+	$ cd libuninames_release
+	$ rm -fR .git .github .appveyor.yml .travis.yml
+	$ wget -O config.guess 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
+	$ wget -O config.sub 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
+	$ autoreconf -i
+	$ automake --foreign
+	$ ./configure
+	$ make dist
+	$ make distcheck
+	$ ls -l libuninameslist*.tar.gz
+
+When done, there will be a *.tar.gz file created in your directory. To avoid
+confusing the downloadable github version from the release version containing
+./configure it is best to rename this *.tar.gz file with the added '-dist'
+
+	$ mv libuninameslist-20210626.tar.gz libuninameslist-dist-20210626.tar.gz
+
+
 Added note: Going from Unicode 8.0 to 9.0, both of these libraries listed are
 now bumped to 1.0 since this can be seen as a large change due to the library
 compilation of the CRA being confused with Major Minor versioning.
@@ -277,4 +309,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2020-Nov-21, by Joe Da Silva
+	2021-Jun-26, by Joe Da Silva

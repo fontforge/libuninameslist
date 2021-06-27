@@ -4,13 +4,13 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20200413]) dnl yyyymmdd
+m4_define([uninameslist_package_stamp], [20210626]) dnl yyyymmdd
 m4_define([uninameslist_major_version], [13]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [0])
+m4_define([uninameslist_minor_version], [9])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[7])
+m4_define([uninameslist_revision],[8])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -221,6 +221,13 @@ AC_SUBST([UN_CFLAGS])
 AC_SUBST([UN_LIB])
 AC_SUBST([WCFLAGS])
 AC_SUBST([WUNLIB])
+
+#-------------------------------------------
+# Ensure fresh timestamps if run ./configure
+echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
+echo 'const char NFR_VERSION[[]] = "uninameslist_fr_nameslist_ver";' >> buildnameslist.h
+echo 'const char NL_VERSION[[]] = "Nameslist-Version: uninameslist_nameslist_ver";' > tests/call-test.h
+echo 'const char NFR_VERSION[[]] = "Nameslist-Version: uninameslist_fr_nameslist_ver";' >> tests/call-test.h
 
 #-------------------------------------------
 AC_PROG_LIBTOOL

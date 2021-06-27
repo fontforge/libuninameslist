@@ -69,12 +69,12 @@ static int printcopyright2(FILE *out) {
 }
 
 static int printcopyright1(FILE *out, int is_fr) {
-    /* Copyright notice for unicode NamesList.txt - 2020 */
+    /* Copyright notice for unicode NamesList.txt - 2021 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2020 Unicode®, Inc. All rights reserved.\n");
+    fprintf( out, "Copyright © 1991-2021 Unicode®, Inc. All rights reserved.\n");
     fprintf( out, "Distributed under the Terms of Use in https://www.unicode.org/copyright.html.\n\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining\n");
     fprintf( out, "a copy of the Unicode data files and any associated documentation\n");
@@ -164,8 +164,8 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
-	"http://hapax.qc.ca/ListeNoms-10.0.0-20170716.txt (latin base char set)"
+	"https://www.unicode.org/versions/Unicode14.0.0/UNIDATA/NamesList-14.0.0d9.txt",
+	"http://hapax.qc.ca/ListeNoms-13.0.0.txt (latin base char set)"
     };
 
     buffer[sizeof(buffer)-1]=0;
