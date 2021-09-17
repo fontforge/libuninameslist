@@ -11,6 +11,7 @@
 #include "buildnameslist.h"
 
 #define UNUSED_PARAMETER(x) ((void)x)
+#define BBUFFSIZE 2000
 
 /* Build this program using: make buildnameslist		      */
 
@@ -135,7 +136,7 @@ static void InitArrays(void) {
     int i,j;
     for (i=0; i<2; i++) for (j=0; j<17*65536; j++) {
 	uninames[i][j] = uniannot[i][j] = NULL;
-	names2pt[i][j] = names2ln[i][j] = -1;
+	names2pt[i][j] = names2ln[i][j] = (char)(127);
     }
     names2cnt[0] = names2cnt[1] = 0;
 }
@@ -156,7 +157,7 @@ static void FreeArrays(void) {
 }
 
 static int ReadNamesList(void) {
-    char buffer[2000];
+    char buffer[BBUFFSIZE];
     FILE *nl;
     long int a_char = -1, first, last;
     char *end, *namestart, *pt, *temp;
@@ -164,7 +165,7 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"https://www.unicode.org/versions/Unicode14.0.0/UNIDATA/NamesList-14.0.0d9.txt",
+	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
 	"http://hapax.qc.ca/ListeNoms-13.0.0.txt (latin base char set)"
     };
 
@@ -175,7 +176,7 @@ static int ReadNamesList(void) {
 	    fprintf( stderr, "Cannot find %s. Please copy it from\n\t%s\n", nameslistfiles[i], nameslistlocs[i] );
 	    goto errorReadNamesListFO;
 	}
-	while ( myfgets(buffer,sizeof(buffer),nl)!=NULL ) {
+	while ( myfgets(buffer,BBUFFSIZE-1,nl)!=NULL ) {
 	    if ( buffer[0]=='@' ) {
 		if ( buffer[1]=='+' && buffer[2]=='\t' ) {
 		    /* This is a Notice_line, @+ */
@@ -260,7 +261,7 @@ static int ReadNamesList(void) {
 	    pt = uniannot[i][a_char];
 	    if ( *pt=='\t' && *++pt=='%' && *++pt==' ' ) {
 		for ( j=-1; *pt!='\n' && *pt!='\0'; ++j,++pt );
-		if ( j>0 && j<128 ) {
+		if ( j>0 && j<127 ) {
 		    names2pt[i][a_char] = 3;
 		    names2ln[i][a_char] = (char)(j);
 		    names2cnt[i]++;
@@ -305,6 +306,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "#include \"uninameslist.h\"\n" );
     else
 	fprintf( out, "#include \"uninameslist-fr.h\"\n" );
+    /* note dll follows uninameslist*.h file */
     fprintf( out, "#include \"nameslist-dll.h\"\n\n" );
 
     fprintf( out, "/* This file was generated using the program 'buildnameslist.c' */\n\n" );
@@ -361,7 +363,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
     if ( names2cnt[l]>0 ) {
 	fprintf( out, "static const unsigned long unicode_name2code%s[] = {", lg[l] );
 	for ( i=0,a_char=0; i<names2cnt[l] && a_char<0x110000; ++a_char ) {
-	    if ( names2pt[l][a_char]>=0 ) {
+	    if ( names2pt[l][a_char]>=0 && names2pt[l][a_char]<127) {
 		if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
 		if ( a_char<=0xffff )
 		    fprintf( out, "0x%04X", (int)(a_char) );
@@ -374,7 +376,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 
 	fprintf( out, "static const char unicode_name2vals%s[] = {", lg[l] );
 	for ( i=0,a_char=0; i<names2cnt[l] && a_char<0x110000; ++a_char ) {
-	    if ( names2pt[l][a_char]>=0 ) {
+	    if ( names2pt[l][a_char]>=0 && names2pt[l][a_char]<127) {
 		if ( i&7 ) fprintf( out, " " ); else fprintf( out, "\n\t" );
 		fprintf( out, "%d,%d%s", names2pt[l][a_char], names2ln[l][a_char], ++i!=names2cnt[l]?",":"" );
 	    }

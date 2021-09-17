@@ -4,13 +4,13 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20210626]) dnl yyyymmdd
-m4_define([uninameslist_major_version], [13]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [9])
+m4_define([uninameslist_package_stamp], [20210917]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [14]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[8])
+m4_define([uninameslist_revision],[9])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -18,10 +18,10 @@ m4_define([uninameslist_libver],
 # These values below are kept for backwards compatibility with older programs
 # that are using the French namesList. This increments with ListeDesNoms.txt.
 m4_define([fr_major_version], [13]) dnl latest ListeDesNoms.txt = ver13.0
-m4_define([fr_minor_version], [0])
+m4_define([fr_minor_version], [1])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])
-m4_define([uninameslist_fr_revision],[3])
+m4_define([uninameslist_fr_revision],[4])
 m4_define([uninameslist_fr_age],     [0])
 m4_define([uninameslist_fr_libver],
           [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])
@@ -171,16 +171,17 @@ AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],[WCFLAGS="$WCFLAGS -Wmissing-protot
 AX_CHECK_COMPILE_FLAG([-Wmissing-declarations],[WCFLAGS="$WCFLAGS -Wmissing-declarations"])
 AX_CHECK_COMPILE_FLAG([-Wstrict-prototypes],[WCFLAGS="$WCFLAGS -Wstrict-prototypes"])
 AX_CHECK_COMPILE_FLAG([-Wunused],[WCFLAGS="$WCFLAGS -Wunused"])
+AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
+AX_CHECK_COMPILE_FLAG([-Wtype-limits],[WCFLAGS="$WCFLAGS -Wtype-limits"])
+AX_CHECK_COMPILE_FLAG([-Wpointer-arith],[WCFLAGS="$WCFLAGS -Wpointer-arith"])
+AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
+AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
+AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
 
 dnl currently for extra testing
 dnl   AX_CHECK_COMPILE_FLAG([-fPIC],[WCFLAGS="$WCFLAGS -fPIC"])
 dnl   AX_CHECK_COMPILE_FLAG([-fstack-protector-strong],[WCFLAGS="$WCFLAGS -fstack-protector-strong"])
 dnl   AX_CHECK_COMPILE_FLAG([-Wstrict-overflow],[WCFLAGS="$WCFLAGS -Wstrict-overflow"])
-dnl   AX_CHECK_COMPILE_FLAG([-Wpointer-arith],[WCFLAGS="$WCFLAGS -Wpointer-arith"])
-dnl   AX_CHECK_COMPILE_FLAG([-Wcast-qual],[WCFLAGS="$WCFLAGS -Wcast-qual"])
-dnl   AX_CHECK_COMPILE_FLAG([-Wcast-align],[WCFLAGS="$WCFLAGS -Wcast-align"])
-dnl   AX_CHECK_COMPILE_FLAG([-Wpadded],[WCFLAGS="$WCFLAGS -Wpadded"])
-dnl   AX_CHECK_COMPILE_FLAG([-Woverlength-strings],[WCFLAGS="$WCFLAGS -Woverlength-strings"])
 
 dnl reduce exported symbol list for dynamic library
 dnl AX_CHECK_COMPILE_FLAG([-fvisibility=hidden],[WCFLAGS="$WCFLAGS -fvisibility=hidden"])

@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "nameslist-dll.h"
 #include "uninameslist-fr.h"
+#include "nameslist-dll.h"
 
 /* This file was generated using the program 'buildnameslist.c' */
 
 
 /*
-; Standard Unicode 13.0 ou
+; Standard Unicode 13.1 ou
 ;	Norme internationale ISO/CEI 10646:2017
 ;
 ; Ces noms français sont utilisés pour confectionner
@@ -16,7 +16,7 @@
 ;	est normative. La présente liste est informative, jusqu’à ce que
 ;	l’ISO/CEI 10646 ait été remise à niveau en français.
 ;
-; Contributions à la version 13.0 française des noms de caractère :
+; Contributions à la version 13.1 française des noms de caractère :
 ;	Jacques André, France
 ;	Patrick Andries, Canada (Québec)
 ;	Bernard Chauvois, France
@@ -50,7 +50,7 @@ const char *uniNamesList_annotFR(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersionFR(void) {
-	return( "Nameslist-Version: 13.0" );
+	return( "Nameslist-Version: 13.1" );
 }
 
 
@@ -401,7 +401,7 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x2300, 0x23ff, "Signes techniques divers" },
 	{ 0x2400, 0x243f, "Pictogrammes de commande" },
 	{ 0x2440, 0x245f, "Reconnaissance optique de caractères" },
-	{ 0x2460, 0x24ff, "Symboles alphanumériques bornés ou entourés" },
+	{ 0x2460, 0x24ff, "Symboles alphanumériques délimités" },
 	{ 0x2500, 0x257f, "Filets" },
 	{ 0x2580, 0x259f, "Pavés" },
 	{ 0x25a0, 0x25ff, "Formes géométriques" },
@@ -434,7 +434,7 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x31a0, 0x31bf, "Bopomofo étendu" },
 	{ 0x31c0, 0x31ef, "Traits CJC" },
 	{ 0x31f0, 0x31ff, "Supplément phonétique katakana" },
-	{ 0x3200, 0x32ff, "Lettres et mois CJC bornés ou entourés" },
+	{ 0x3200, 0x32ff, "Lettres et mois CJC délimités" },
 	{ 0x3300, 0x33ff, "Compatibilité CJC" },
 	{ 0x3400, 0x4dbf, "Supplément A aux idéogrammes unifiés CJC" },
 	{ 0x4dc0, 0x4dff, "Hexagrammes du Classique des mutations ou Yi-king" },
@@ -603,8 +603,8 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x1f000, 0x1f02f, "Tuiles de majong" },
 	{ 0x1f030, 0x1f09f, "Dominos" },
 	{ 0x1f0a0, 0x1f0ff, "Cartes à jouer" },
-	{ 0x1f100, 0x1f1ff, "Supplément de symboles alphanumériques bornés ou entourés" },
-	{ 0x1f200, 0x1f2ff, "Supplément d’idéogrammes bornés ou entourés" },
+	{ 0x1f100, 0x1f1ff, "Supplément de symboles alphanumériques délimités" },
+	{ 0x1f200, 0x1f2ff, "Supplément d’idéogrammes délimités" },
 	{ 0x1f300, 0x1f5ff, "Divers symboles et pictogrammes" },
 	{ 0x1f600, 0x1f64f, "Émoticônes" },
 	{ 0x1f650, 0x1f67f, "Casseau ornemental" },
@@ -2257,13 +2257,13 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 
 static const struct unicode_nameannot unaFR_00_03[] = {
 /* 0300 */ { "DIACRITIQUE ACCENT GRAVE","	= accent grave grec (varia)\n"
-	"	* Pinyin : marque le quatrième ton du chinois mandarin\n"
+	"	* pinyin : marque le quatrième ton du chinois mandarin\n"
 	"	x (accent grave - 0060)\n"
 	"	x (lettre modificative accent grave - 02CB)"},
 /* 0301 */ { "DIACRITIQUE ACCENT AIGU","	= accent tonique\n"
 	"	= accent aigu grec (du système polytonique)\n"
 	"	= accent grec (du système monotonique)\n"
-	"	* Pinyin : marque le deuxième ton du chinois mandarin\n"
+	"	* pinyin : marque le deuxième ton du chinois mandarin\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (accent aigu - 00B4)\n"
 	"	x (lettre modificative prime - 02B9)\n"
@@ -2277,7 +2277,7 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	x (tilde - 007E)\n"
 	"	x (petit tilde - 02DC)"},
 /* 0304 */ { "DIACRITIQUE MACRON","	= long\n"
-	"	* Pinyin : marque le premier ton du chinois mandarin\n"
+	"	* pinyin : marque le premier ton du chinois mandarin\n"
 	"	* à distinguer du caractère suivant\n"
 	"	x (macron - 00AF)\n"
 	"	x (lettre modificative macron - 02C9)"},
@@ -2307,7 +2307,7 @@ static const struct unicode_nameannot unaFR_00_03[] = {
 	"	x (lettre modificative seconde - 02BA)\n"
 	"	x (double accent aigu - 02DD)"},
 /* 030C */ { "DIACRITIQUE CARON","	= hatchek, chevron suscrit, accent hirondelle\n"
-	"	* Pinyin : marque le troisième ton du chinois mandarin\n"
+	"	* pinyin : marque le troisième ton du chinois mandarin\n"
 	"	x (caron - 02C7)"},
 /* 030D */ { "DIACRITIQUE LIGNE VERTICALE EN CHEF","	* il ne s'agit pas de l'accent grec (tonos)\n"
 	"	* marshallais\n"
@@ -4515,11 +4515,11 @@ static const struct unicode_nameannot unaFR_00_0A[] = {
 /* 0A31 */ { NULL,NULL},
 /* 0A32 */ { "LETTRE GOURMOUKHÎ LA",NULL},
 /* 0A33 */ { "LETTRE GOURMOUKHÎ LLA","	: 0A32 0A3C\n"
-	"		Cette consonne munie d’un noukta figure dans le fichier CompositionExclusions.txt. Cela signifie qu’elle ne se recompose pas au moment de la normalisation. La forme NFC est identique à la séquence décomposée."},
+	"		Cette consonne munie d'un noukta figure dans le fichier CompositionExclusions.txt. Cela signifie qu'elle ne se recompose pas au moment de la normalisation. La forme NFC est identique à la séquence décomposée."},
 /* 0A34 */ { NULL,NULL},
 /* 0A35 */ { "LETTRE GOURMOUKHÎ VA",NULL},
 /* 0A36 */ { "LETTRE GOURMOUKHÎ ÇA","	: 0A38 0A3C\n"
-	"		Cette consonne munie d’un noukta figure dans le fichier CompositionExclusions.txt. Cela signifie qu’elle ne se recompose pas au moment de la normalisation. La forme NFC est identique à la séquence décomposée."},
+	"		Cette consonne munie d'un noukta figure dans le fichier CompositionExclusions.txt. Cela signifie qu'elle ne se recompose pas au moment de la normalisation. La forme NFC est identique à la séquence décomposée."},
 /* 0A37 */ { NULL,NULL},
 /* 0A38 */ { "LETTRE GOURMOUKHÎ SA",NULL},
 /* 0A39 */ { "LETTRE GOURMOUKHÎ HA",NULL},
@@ -6454,7 +6454,7 @@ static const struct unicode_nameannot unaFR_00_11[] = {
 /* 110B */ { "TCH'ÔSONG HANGÛL IÛNG","	* zéro phonique"},
 /* 110C */ { "TCH'ÔSONG HANGÛL TCHIÛTCH","	= TCH\n"
 	"	* affriquée alvéolaire sourde ou sonore lenis"},
-/* 110D */ { "TCH'ÔSONG HANGÛL SSANGTCHIÛTCH","	= TCHTCH\n"
+/* 110D */ { "TCH'ÔSONG HANGÛL SSANGTCHIÛTCH","	= TTCH\n"
 	"	* affriquée alvéolaire sourde non aspirée fortis"},
 /* 110E */ { "TCH'ÔSONG HANGÛL TCH'IÛTCH'","	= TCH'\n"
 	"	* affriquée alvéolaire sourde aspirée"},
@@ -13829,7 +13829,7 @@ static const struct unicode_nameannot unaFR_00_29[] = {
 /* 29BE */ { "PUCE BLANCHE CERCLÉE","	x (opérateur rond cerclé - 229A)\n"
 	"	x (symbole de fonction apl beigne - 233E)\n"
 	"	x (deux cercles concentriques - 25CE)"},
-/* 29BF */ { "PUCE CERCLÉE","	* fait partie d'un jeu étalonné de cercles dont le cercle noir intérieur varie en taille\n"
+/* 29BF */ { "PUCE CERCLÉE","	* fait partie d'un jeu étalonné de cercles dont le cercle plein intérieur varie en taille\n"
 	"	x (opérateur point cerclé - 2299)\n"
 	"	x (cercle blanc évidé - 25C9)\n"
 	"	x (opérateur point cerclé n-aire - 2A00)"},
@@ -19306,7 +19306,7 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7F6 */ { "LETTRE MINUSCULE LATINE MOITIÉ DE H RÉFLÉCHIE",NULL},
 /* A7F7 */ { "LETTRE LATINE ÉPIGRAPHIQUE I COUCHÉ","	* inscriptions celtiques"},
 /* A7F8 */ { "LETTRE MODIFICATIVE MAJUSCULE H BARRÉ","	# <exp> 0126\n"
-	"		Une distinction typographique entre les formes majuscule et petite capitale n’a aucune fonction de différenciation dans cette utilisation de l’API.\n"
+	"		Une distinction typographique entre les formes majuscule et petite capitale n'a aucune fonction de différenciation dans cette utilisation de l'API.\n"
 	"	x (lettre latine petite capitale h - 029C)"},
 /* A7F9 */ { "LETTRE MODIFICATIVE MINUSCULE LIGATURE OE","	# <exp> 0153"},
 /* A7FA */ { "LETTRE LATINE PETITE CAPITALE M CULBUTÉ",NULL},
@@ -29259,7 +29259,7 @@ static const struct unicode_nameannot unaFR_01_19[] = {
 /* 11922 */ { "LETTRE DIVES AKURU BA",NULL},
 /* 11923 */ { "LETTRE DIVES AKURU BHA",NULL},
 /* 11924 */ { "LETTRE DIVES AKURU MA",NULL},
-/* 11925 */ { "LETTRE DIVES AKURU YA","	* également utilisé comme support de voyelle"},
+/* 11925 */ { "LETTRE DIVES AKURU YA","	* également utilisée comme support de voyelle"},
 /* 11926 */ { "LETTRE DIVES AKURU YYA",NULL},
 /* 11927 */ { "LETTRE DIVES AKURU RA",NULL},
 /* 11928 */ { "LETTRE DIVES AKURU LA",NULL},

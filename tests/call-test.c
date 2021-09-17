@@ -123,7 +123,6 @@ static int test_calls_03(void) {
 #ifdef DO_CALL_TEST2
 static int test_calls_04(void) {
     int ret;
-    const char *cc;
 
     ret = uniNamesList_blockCount();
     printf("test, return=%d=uniNamesList_blockCount(void);\n",ret);
@@ -236,7 +235,7 @@ static int test_calls_both(void) {
 
 #ifdef DO_CALL_TEST6
 static int test_normalize(void) {
-    int a,b,c;
+    int a,c;
     long u,w;
     const char *p;
 
@@ -261,6 +260,13 @@ static int test_normalize(void) {
 	return( -3 );
     }
 
+    if ( test(-1,uniNamesList_names2anC(10000),NULL) )
+	;
+    else {
+	printf("error with uniNamesList_names2anC(code), entered nonsense, expected NULL\n");
+	return( -4 );
+    }
+
     return( 0 );
 }
 #endif
@@ -279,8 +285,6 @@ static int test_calls_07(void) {
 	return( -1 );
     }
 
-/*    if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
-	 test(1,uniNamesList_NamesListVersionAlt(1),"Nameslist-Version: 13.0") && \ */
     if ( test(0,uniNamesList_NamesListVersionAlt(0),uniNamesList_NamesListVersion()) && \
 	 test(1,uniNamesList_NamesListVersionAlt(1),NFR_VERSION) && \
 	 uniNamesList_NamesListVersionAlt(100)==NULL )
