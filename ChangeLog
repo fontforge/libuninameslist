@@ -1,3 +1,7 @@
+- 2021-Nov-14
+    * Version 1.10, Unicode 14.0 and French version 1.5 now is at 14.0.
+    * Gentoo Bug 781716 & Debian Bug 989173, -O0 patch by Naohiro Aota.
+
 - 2021-Sep-17
     * Version 1.9, Unicode 14.0. French version 1.4 is at Unicode 13.1.
       Unicode has changed cadence to release later for this year. This

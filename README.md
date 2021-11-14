@@ -1,6 +1,6 @@
 libuninameslist – A Library of Unicode names and annotation data
 ================================================================
-[![Build Status](https://travis-ci.org/fontforge/libuninameslist.svg?branch=master)](https://travis-ci.org/fontforge/libuninameslist) [![Build status](https://ci.appveyor.com/api/projects/status/qseac73evm9leu0g?svg=true)](https://ci.appveyor.com/project/fontforge/libuninameslist) [![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
+[![Build status](https://ci.appveyor.com/api/projects/status/qseac73evm9leu0g?svg=true)](https://ci.appveyor.com/project/fontforge/libuninameslist) [![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
 
 - [Description](#description)
 - [Installation and Build Instructions](#installation-and-build-instructions)
@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This library is updated for Nameslist.txt ver14.0_beta and ListeDesNoms.txt ver13.0
+This library is updated for Nameslist.txt ver14.0 and ListeDesNoms.txt ver14.0
 and includes python wrapper 'uninameslist.py'
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
@@ -30,7 +30,7 @@ quickly and easily.
 ListeDesNoms.txt
 Is a seperate file which is translated from Nameslist.txt and was outdated for
 a period of time but was recently updated by a group of developers who have
-updated it up to version 13. Contributors to that file are listed in that file.
+updated it up to version 14. Contributors to that file are listed in that file.
 
 These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name

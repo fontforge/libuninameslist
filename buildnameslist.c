@@ -63,7 +63,7 @@ static int printcopyright2credits(FILE *out) {
 static int printcopyright2(FILE *out) {
     fprintf( out, "\n/*\n");
     fprintf( out, "; Standard Unicode %s ou\n", NFR_VERSION);
-    fprintf( out, ";	Norme internationale ISO/CEI 10646:2017\n;\n");
+    fprintf( out, ";	Norme internationale ISO/CEI 10646\n;\n");
     printcopyright2credits(out);
     fprintf( out, "*/\n\n");
     return( 1 );
@@ -166,7 +166,7 @@ static int ReadNamesList(void) {
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
 	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
-	"http://hapax.qc.ca/ListeNoms-13.0.0.txt (latin base char set)"
+	"http://hapax.qc.ca/ListeNoms-14.0.0.txt (latin base char set)"
     };
 
     buffer[sizeof(buffer)-1]=0;
