@@ -46,3 +46,34 @@ jobs:
         run: make
       - name: Test library
         run: make check
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        include: [
+          { msystem: MINGW64, toolchain: mingw-w64-x86_64-toolchain },
+          { msystem: MINGW32, toolchain: mingw-w64-i686-toolchain },
+          { msystem: UCRT64, toolchain: mingw-w64-ucrt-x86_64-toolchain },
+          { msystem: CLANG64, toolchain: mingw-w64-clang-x86_64-toolchain },
+      ]
+    name: ${{ matrix.msystem }}
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{ matrix.msystem }}
+          update: true
+          install: autotools base-devel git ${{ matrix.toolchain }}
+      - name: Create configure
+        run: |
+          autoreconf -i
+          automake
+      - name: Choose configure
+        run: ./configure
+      - name: Make library
+        run: make
+      - name: Test library
+        run: make check
