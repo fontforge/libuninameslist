@@ -51,10 +51,13 @@ static int test(long val, const char *result, const char *expect) {
 	}
 	printf("  return=NULL value\n");
 	return( 1 );
+    } else if ( expect==NULL ) {
+	printf("\n  ret=\"%s\"\n  exp=NULL.\n",result);
+	return( 0 );
     }
 
     printf("\n  ret=\"%s\"\n  exp=\"%s\"\n",result,expect);
-    return( (int)(strcmp(result,expect)==0 || NOTCMP==expect || NOBLKT==expect ? 1:0) );
+    return( (int)(strcmp(result,expect)==0 || NOTCMP==expect || (NOBLKT==expect ? 1:0)) );
 }
 
 #if defined(DO_CALL_TEST0) || defined(DO_CALL_TEST3)

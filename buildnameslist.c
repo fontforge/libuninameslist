@@ -494,12 +494,12 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\t\telse if ( lang==0 )\n\t\t\t*bn1=*bn0;\n\t}\n\treturn( error );\n}\n\n\n" );
     }
 
-    fprintf( out, "static const struct unicode_nameannot nullarray%s[] = {\n", lg[l] );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray%s[] = {\n", lg[l] );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }\n" );
     fprintf( out, "};\n\n" );
-    fprintf( out, "static const struct unicode_nameannot nullarray2%s[] = {\n", lg[l] );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot nullarray2%s[] = {\n", lg[l] );
     for ( i=0; i<256/4 ; ++i )
 	fprintf( out, "\t{ NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL },\n" );
     fprintf( out, "\t{ NULL, NULL }, { NULL, NULL },\n" );
@@ -511,7 +511,7 @@ static int dumpinit(FILE *out, FILE *header, int is_fr) {
 	fprintf( out, "\t{ NULL, \"\t* the value ?FFFF is guaranteed not to be a Unicode character at all\" },\n" );
     }
     fprintf( out, "};\n\n" );
-    fprintf( out, "static const struct unicode_nameannot * const nullnullarray%s[] = {\n", lg[l] );
+    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const nullnullarray%s[] = {\n", lg[l] );
     for ( i=0; i<256/8 ; ++i )
 	fprintf( out, "\tnullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s, nullarray%s,\n", \
 			lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l], lg[l] );
@@ -691,7 +691,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	    }
 	    if ( t==256 || (j==0xff && t==0xfe -1))
 	continue;	/* Empty sub-plane */
-	    fprintf( out, "static const struct unicode_nameannot %s%s_%02X_%02X[] = {\n", prefix, lg[l], i, j );
+	    fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot %s%s_%02X_%02X[] = {\n", prefix, lg[l], i, j );
 	    for ( k=0; k<256; ++k ) {
 		fprintf( out, "/* %04X */ { ", (i<<16) + (j<<8) + k );
 		if ( uninames[is_fr][(i<<16) + (j<<8) + k]==NULL )
@@ -715,7 +715,7 @@ static int dumparrays(FILE *out, FILE *header, int is_fr ) {
 	break;
 	if ( t==0xFFFE )
     continue;		/* Empty plane */
-	fprintf( out, "static const struct unicode_nameannot * const %s%s_%02X[] = {\n", prefix, lg[l], i );
+	fprintf( out, "UN_DLL_LOCAL\nstatic const struct unicode_nameannot * const %s%s_%02X[] = {\n", prefix, lg[l], i );
 	for ( j=0; j<256; ++j ) {
 	    for ( t=0; t<256; ++t ) {
 		if ( uninames[is_fr][(i<<16) + (j<<8) + t]!=NULL || uniannot[is_fr][(i<<16) + (j<<8) + t]!=NULL )
