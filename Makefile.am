@@ -44,25 +44,21 @@ lib_LTLIBRARIES += libuninameslist.la
 
 include_HEADERS = uninameslist.h
 libuninameslist_la_LIBADD =
-EXTRA_libuninameslist_la_DEPENDENCIES =
 man_MANS = libuninameslist.3
 noinst_HEADERS = nameslist-dll.h
-LIBADD =
 
 if WANTLIBOFR
 include_HEADERS += uninameslist-fr.h
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
 libuninameslist_fr_la_SOURCES = nameslist-fr.c
 libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h buildnameslist.h
-libuninameslist_la_LIBADD += -luninameslist-fr
-EXTRA_libuninameslist_la_DEPENDENCIES += libuninameslist-fr.la
+libuninameslist_la_LIBADD += libuninameslist-fr.la
 man_MANS += libuninameslist-fr.3
-LIBADD += -luninameslist-fr
 else
 EXTRA_DIST += nameslist-fr.c uninameslist-fr.h libuninameslist-fr.3
 endif
 
-libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) $(LIBADD) -version-info $(UN_VERSION)
+libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(UN_VERSION)
 libuninameslist_la_SOURCES = nameslist.c
 libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h buildnameslist.h
 
