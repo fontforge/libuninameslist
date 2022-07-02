@@ -16,6 +16,7 @@ matrix:
 
 install:
   - call %MBASH% "pacman --noconfirm -S --needed base-devel"
+  - call %MBASH% "pacman --noconfirm -S autoconf automake libtool"
   - call %MBASH% "python -m ensurepip --default-pip"
   - call %MBASH% "python -m pip install setuptools wheel"
 build_script:

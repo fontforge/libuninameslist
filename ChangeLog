@@ -1,3 +1,9 @@
+- 2022-Jul-01
+    * Unicode 15.0_Beta (Nameslist.txt 15_Beta for review until Jul12).
+    * Biswapriyo Nath added Windows MSYS2 build (used by github tests),
+      this also helped identify some more nameslist-dll.h clang fixes.
+    * orbea fixed Makefile.am bug fixing Gentoo Bugs 779670 and 792474.
+
 - 2021-Nov-14
     * Version 1.10, Unicode 14.0 and French version 1.5 now is at 14.0.
     * Gentoo Bug 781716 & Debian Bug 989173, -O0 patch by Naohiro Aota.

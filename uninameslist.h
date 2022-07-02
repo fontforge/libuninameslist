@@ -18,9 +18,9 @@ struct unicode_nameannot {
 
 /* NOTE: Build your program to access the functions if using multilanguage. */
 
-#define UNICODE_BLOCK_MAX	334
-#define UNICODE_EN_BLOCK_MAX	334
-extern const struct unicode_block UnicodeBlock[334];
+#define UNICODE_BLOCK_MAX	341
+#define UNICODE_EN_BLOCK_MAX	341
+extern const struct unicode_block UnicodeBlock[341];
 
 /* NOTE: These 4 constants are correct for this version of libuninameslist, */
 /* but can change for later versions of NamesList (use as an example guide) */

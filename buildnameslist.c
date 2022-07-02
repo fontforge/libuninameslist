@@ -42,13 +42,23 @@ static const char *lgv[2] = { NL_VERSION, NFR_VERSION };
 
 
 static int printcopyright2credits(FILE *out) {
-    fprintf( out, "; Ces noms français sont utilisés pour confectionner\n");
-    fprintf( out, ";\tles commentaires documentant chacun des caractères\n");
+    fprintf( out, "; Liste des noms des caractères (version en langue française)\n\n");
+    fprintf( out, "; Le Consortium Unicode entretient une collaboration étroite\n");
+    fprintf( out, ";\tet une liaison officielle avec le groupe de travail qui élabore\n");
+    fprintf( out, ";\tla norme internationale ISO/CEI 10646. Le standard Unicode, version %s,\n", NFR_VERSION);
+    fprintf( out, ";\tintègre 838 nouveaux caractères, dont neuf idéogrammes unifiés CJC.\n\n");
+    fprintf( out, "; Le présent fichier peut être utilisé librement. Toutefois, aucune\n");
+    fprintf( out, ";\tmodification n’y est autorisée ; toutes les copies doivent être\n");
+    fprintf( out, ";\trigoureusement identiques au fichier original.\n\n");
+    fprintf( out, "; Le Consortium Unicode n’est pas responsable des erreurs ou omissions\n");
+    fprintf( out, ";\tdans ce fichier.\n\n");
+    fprintf( out, "; Les noms en langue française des caractères codés sont utilisés, notamment,\n");
+    fprintf( out, ";\tpour produire les commentaires documentant chacun des caractères\n");
     fprintf( out, ";\tdont les poids de tri sont déterminés dans la table commune\n");
-    fprintf( out, ";\tde la norme internationale ISO/CEI 14651. Cette dernière table\n");
-    fprintf( out, ";\test normative. La présente liste est informative, jusqu’à ce que\n");
-    fprintf( out, ";\tl’ISO/CEI 10646 ait été remise à niveau en français.\n;\n");
-    fprintf( out, "; Contributions à la version %s française des noms de caractère :\n", NFR_VERSION);
+    fprintf( out, ";\tde la norme internationale ISO/CEI 14651. Ladite table est normative ;\n");
+    fprintf( out, ";\tla présente liste est informative, jusqu’à ce que la norme\n");
+    fprintf( out, ";\tISO/CEI 10646 ait été remise à niveau en français.\n\n");
+    fprintf( out, "; Contributions à la version en langue française : %s\n", NFR_VERSION);
     fprintf( out, ";\tJacques André, France\n");
     fprintf( out, ";\tPatrick Andries, Canada (Québec)\n");
     fprintf( out, ";\tBernard Chauvois, France\n");
@@ -165,8 +175,8 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"http://www.unicode.org/Public/UNIDATA/NamesList.txt",
-	"http://hapax.qc.ca/ListeNoms-14.0.0.txt (latin base char set)"
+	"http://www.unicode.org/Public/15.0.0/ucd/NamesList-15.0.0d5.txt",
+	"http://hapax.qc.ca/ListeNoms-14.0.0.txt (charset=UTF-8)"
     };
 
     buffer[sizeof(buffer)-1]=0;
