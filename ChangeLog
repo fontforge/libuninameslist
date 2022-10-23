@@ -1,3 +1,6 @@
+- 2022-Oct-22
+    * Version 1.12, Unicode 15.0 and French version 1.5 now is at 14.0.
+
 - 2022-Jul-01
     * Unicode 15.0_Beta (Nameslist.txt 15_Beta for review until Jul12).
     * Biswapriyo Nath added Windows MSYS2 build (used by github tests),

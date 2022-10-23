@@ -4,13 +4,13 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20220701]) dnl yyyymmdd
-m4_define([uninameslist_major_version], [14]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [9])
+m4_define([uninameslist_package_stamp], [20221022]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [15]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[11])
+m4_define([uninameslist_revision],[12])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -227,18 +227,11 @@ AC_SUBST([WUNLIB])
 
 #-------------------------------------------
 # Ensure fresh timestamps if run ./configure
-echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > $(srcdir)/buildnameslist.h
-echo 'const char NFR_VERSION[[]] = "uninameslist_fr_nameslist_ver";' >> $(srcdir)/buildnameslist.h
-echo 'const char NL_VERSION[[]] = "Nameslist-Version: uninameslist_nameslist_ver";' > $(srcdir)/tests/call-test.h
-echo 'const char NFR_VERSION[[]] = "Nameslist-Version: uninameslist_fr_nameslist_ver";' >> $(srcdir)/tests/call-test.h
-
-#-------------------------------------------
-# We need to ensure the libuninameslist core
-# library is always built whenever we modify
-# parameters by running ./configure anything
-# Example: with/without "--enable-frenchlib"
-# So we touch nameslist.c to make it recent.
-${TOUCH} $(srcdir)/nameslist.c
+echo 'const char NL_VERSION[[]] = "uninameslist_nameslist_ver";' > buildnameslist.h
+echo 'const char NFR_VERSION[[]] = "uninameslist_fr_nameslist_ver";' >> buildnameslist.h
+rm -f ${top_builddir}tests/call-test.h
+echo 'const char NL_VERSION[[]] = "Nameslist-Version: uninameslist_nameslist_ver";' > ${top_builddir}tests/call-test.h
+echo 'const char NFR_VERSION[[]] = "Nameslist-Version: uninameslist_fr_nameslist_ver";' >> ${top_builddir}tests/call-test.h
 
 #-------------------------------------------
 AC_PROG_LIBTOOL
@@ -255,8 +248,8 @@ AC_OUTPUT
 AC_MSG_NOTICE([
 
 Configuration:
-  Source code location	${srcdir}
-  Build code location	${builddir}
+  Source code location	${top_srcdir}
+  Build code location	${top_builddir}
   Destination prefix	${prefix}
   Compiler		${CC}
   Config auto WCFLAGS	"${WCFLAGS}"

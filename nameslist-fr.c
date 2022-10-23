@@ -9,14 +9,28 @@
 ; Standard Unicode 14.0 ou
 ;	Norme internationale ISO/CEI 10646
 ;
-; Ces noms français sont utilisés pour confectionner
-;	les commentaires documentant chacun des caractères
+; Liste des noms des caractères (version en langue française)
+
+; Le Consortium Unicode entretient une collaboration étroite
+;	et une liaison officielle avec le groupe de travail qui élabore
+;	la norme internationale ISO/CEI 10646. Le standard Unicode, version 14.0,
+;	intègre 838 nouveaux caractères, dont neuf idéogrammes unifiés CJC.
+
+; Le présent fichier peut être utilisé librement. Toutefois, aucune
+;	modification n’y est autorisée ; toutes les copies doivent être
+;	rigoureusement identiques au fichier original.
+
+; Le Consortium Unicode n’est pas responsable des erreurs ou omissions
+;	dans ce fichier.
+
+; Les noms en langue française des caractères codés sont utilisés, notamment,
+;	pour produire les commentaires documentant chacun des caractères
 ;	dont les poids de tri sont déterminés dans la table commune
-;	de la norme internationale ISO/CEI 14651. Cette dernière table
-;	est normative. La présente liste est informative, jusqu’à ce que
-;	l’ISO/CEI 10646 ait été remise à niveau en français.
-;
-; Contributions à la version 14.0 française des noms de caractère :
+;	de la norme internationale ISO/CEI 14651. Ladite table est normative ;
+;	la présente liste est informative, jusqu’à ce que la norme
+;	ISO/CEI 10646 ait été remise à niveau en français.
+
+; Contributions à la version en langue française : 14.0
 ;	Jacques André, France
 ;	Patrick Andries, Canada (Québec)
 ;	Bernard Chauvois, France

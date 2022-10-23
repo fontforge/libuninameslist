@@ -67,7 +67,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 14.0" );
+	return( "Nameslist-Version: 15.0" );
 }
 
 
@@ -123,27 +123,27 @@ const char * uniNamesList_blockName(int uniBlock) {
 /* Return count of how many names2 are found in this version of library */
 UN_DLL_EXPORT
 int uniNamesList_names2cnt(void) {
-	return( 31 );
+	return( 32 );
 }
 
 static const unsigned long unicode_name2code[] = {
-	0x01A2, 0x01A3, 0x0709, 0x0CDE, 0x0E9D, 0x0E9F, 0x0EA3, 0x0EA5,
-	0x0FD0, 0x11EC, 0x11ED, 0x11EE, 0x11EF, 0x1BBD, 0x2118, 0x2448,
-	0x2449, 0x2B7A, 0x2B7C, 0xA015, 0xAA6E, 0xFE18, 0xFEFF, 74452,
-	74453, 93782, 93783, 93814, 93815, 110593, 118981
+	0x01A2, 0x01A3, 0x0616, 0x0709, 0x0CDE, 0x0E9D, 0x0E9F, 0x0EA3,
+	0x0EA5, 0x0FD0, 0x11EC, 0x11ED, 0x11EE, 0x11EF, 0x1BBD, 0x2118,
+	0x2448, 0x2449, 0x2B7A, 0x2B7C, 0xA015, 0xAA6E, 0xFE18, 0xFEFF,
+	74452, 74453, 93782, 93783, 93814, 93815, 110593, 118981
 };
 
 static const char unicode_name2vals[] = {
-	3,24, 3,22, 3,34, 3,19, 3,17, 3,17, 3,13, 3,13,
-	3,35, 3,32, 3,37, 3,30, 3,33, 3,26, 3,29, 3,17,
-	3,16, 3,59, 3,60, 3,26, 3,25, 3,61, 3,15, 3,24,
-	3,42, 3,28, 3,29, 3,26, 3,27, 3,21, 3,52
+	3,24, 3,22, 3,47, 3,34, 3,19, 3,17, 3,17, 3,13,
+	3,13, 3,35, 3,32, 3,37, 3,30, 3,33, 3,26, 3,29,
+	3,17, 3,16, 3,59, 3,60, 3,26, 3,25, 3,61, 3,15,
+	3,24, 3,42, 3,28, 3,29, 3,26, 3,27, 3,21, 3,52
 };
 
 /* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
 UN_DLL_EXPORT
 long uniNamesList_names2val(int count) {
-	if ( count<0 || count>=31 ) return( -1 );
+	if ( count<0 || count>=32 ) return( -1 );
 	return( (long)(unicode_name2code[count]) );
 }
 
@@ -152,7 +152,7 @@ UN_DLL_EXPORT
 int uniNamesList_names2getU(unsigned long uni) {
 	int i;
 
-	if ( uni<0x110000 ) for ( i=0; i<31; ++i ) {
+	if ( uni<0x110000 ) for ( i=0; i<32; ++i ) {
 		if ( uni==unicode_name2code[i] ) return( i );
 		if ( uni<unicode_name2code[i] ) break;
 	}
@@ -162,7 +162,7 @@ int uniNamesList_names2getU(unsigned long uni) {
 /* Stringlength of names2. Use this if you want to truncate annotations */
 UN_DLL_EXPORT
 int uniNamesList_names2lnC(int count) {
-	if ( count<0 || count>=31 ) return( -1 );
+	if ( count<0 || count>=32 ) return( -1 );
 	return( (int)(unicode_name2vals[(count<<1)+1]) );
 }
 
@@ -177,7 +177,7 @@ const char *uniNamesList_names2anC(int count) {
 	int c;
 	const char *pt;
 
-	if ( count<0 || count>=31 ) return( NULL );
+	if ( count<0 || count>=32 ) return( NULL );
 	c = unicode_name2vals[count<<1];
 	pt = uniNamesList_annot((unsigned long)(uniNamesList_names2val(count)));
 	while ( --c>=0 ) ++pt;
@@ -3615,7 +3615,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 0614 */ { "ARABIC SIGN TAKHALLUS","	* sign placed over the name or nom-de-plume of a poet, or in some writings used to mark all proper names"},
 /* 0615 */ { "ARABIC SMALL HIGH TAH","	* marks a recommended pause position in some Qurans published in Iran and Pakistan\n"
 	"	* should not be confused with the small TAH sign used as a diacritic for some letters such as 0679"},
-/* 0616 */ { "ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH","	* early Persian"},
+/* 0616 */ { "ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH","	% ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE\n"
+	"	* early Persian"},
 /* 0617 */ { "ARABIC SMALL HIGH ZAIN",NULL},
 /* 0618 */ { "ARABIC SMALL FATHA","	* should not be confused with 064E FATHA"},
 /* 0619 */ { "ARABIC SMALL DAMMA","	* should not be confused with 064F DAMMA"},
@@ -3809,7 +3810,7 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	x (arabic letter keheh with dot above - 0762)"},
 /* 06AD */ { "ARABIC LETTER NG","	* Uyghur, Kazakh, Moroccan Arabic, early Jawi, early Persian, ..."},
 /* 06AE */ { "ARABIC LETTER KAF WITH THREE DOTS BELOW","	* Berber, early Persian\n"
-	"	* Pegon alternative for 068A"},
+	"	* Pegon alternative for 08B4"},
 /* 06AF */ { "ARABIC LETTER GAF","	* Persian, Urdu, ..."},
 /* 06B0 */ { "ARABIC LETTER GAF WITH RING","	* Lahnda"},
 /* 06B1 */ { "ARABIC LETTER NGOEH","	* Sindhi"},
@@ -9001,12 +9002,12 @@ static const struct unicode_nameannot una_00_19[] = {
 /* 19B2 */ { "NEW TAI LUE VOWEL SIGN II",NULL},
 /* 19B3 */ { "NEW TAI LUE VOWEL SIGN U",NULL},
 /* 19B4 */ { "NEW TAI LUE VOWEL SIGN UU",NULL},
-/* 19B5 */ { "NEW TAI LUE VOWEL SIGN E",NULL},
-/* 19B6 */ { "NEW TAI LUE VOWEL SIGN AE",NULL},
-/* 19B7 */ { "NEW TAI LUE VOWEL SIGN O",NULL},
+/* 19B5 */ { "NEW TAI LUE VOWEL SIGN E","	* precedes consonant in visual order"},
+/* 19B6 */ { "NEW TAI LUE VOWEL SIGN AE","	* precedes consonant in visual order"},
+/* 19B7 */ { "NEW TAI LUE VOWEL SIGN O","	* precedes consonant in visual order"},
 /* 19B8 */ { "NEW TAI LUE VOWEL SIGN OA",NULL},
 /* 19B9 */ { "NEW TAI LUE VOWEL SIGN UE",NULL},
-/* 19BA */ { "NEW TAI LUE VOWEL SIGN AY",NULL},
+/* 19BA */ { "NEW TAI LUE VOWEL SIGN AY","	* precedes consonant in visual order"},
 /* 19BB */ { "NEW TAI LUE VOWEL SIGN AAY",NULL},
 /* 19BC */ { "NEW TAI LUE VOWEL SIGN UY",NULL},
 /* 19BD */ { "NEW TAI LUE VOWEL SIGN OY",NULL},
@@ -10966,7 +10967,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 204D */ { "BLACK RIGHTWARDS BULLET",NULL},
 /* 204E */ { "LOW ASTERISK","	x (asterisk - 002A)\n"
 	"	x (combining asterisk below - 0359)"},
-/* 204F */ { "REVERSED SEMICOLON","	* also used in Sindhi\n"
+/* 204F */ { "REVERSED SEMICOLON","	* used occasionally in Sindhi when Sindhi is written in the Arabic script\n"
 	"	x (semicolon - 003B)\n"
 	"	x (arabic semicolon - 061B)"},
 /* 2050 */ { "CLOSE UP","	* editing mark\n"
@@ -11223,7 +11224,7 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	# 0061 002F 0073"},
 /* 2102 */ { "DOUBLE-STRUCK CAPITAL C","	= the set of complex numbers\n"
 	"	# <font> 0043 latin capital letter c"},
-/* 2103 */ { "DEGREE CELSIUS","	= degrees Centigrade\n"
+/* 2103 */ { "DEGREE CELSIUS","	= degrees centigrade\n"
 	"	# 00B0 0043"},
 /* 2104 */ { "CENTRE LINE SYMBOL","	= clone"},
 /* 2105 */ { "CARE OF","	# 0063 002F 006F"},
@@ -15437,7 +15438,8 @@ static const struct unicode_nameannot una_00_2E[] = {
 	"	x (double oblique hyphen - 2E17)\n"
 	"	x (katakana-hiragana double hyphen - 30A0)\n"
 	"	x (modifier letter short equals sign - A78A)"},
-/* 2E41 */ { "REVERSED COMMA","	* also used in Sindhi\n"
+/* 2E41 */ { "REVERSED COMMA","	* Old Hungarian\n"
+	"	* used occasionally in Sindhi when Sindhi is written in the Arabic script\n"
 	"	x (comma - 002C)\n"
 	"	x (arabic comma - 060C)"},
 /* 2E42 */ { "DOUBLE LOW-REVERSED-9 QUOTATION MARK","	x (double low-9 quotation mark - 201E)"},
@@ -15461,7 +15463,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 	"	x (reversed pilcrow sign - 204B)\n"
 	"	x (paragraphos - 2E0F)\n"
 	"	x (capitulum - 2E3F)"},
-/* 2E4E */ { "PUNCTUS ELEVATUS MARK","		This mark indicates a major intermediate pause where the sensus is complete but the sentence is not; this is similar in some regards to the modern use of a semicolon."},
+/* 2E4E */ { "PUNCTUS ELEVATUS MARK","		* This mark indicates a major intermediate pause where the sensus is complete but the sentence is not; this is similar in some regards to the modern use of a semicolon."},
 /* 2E4F */ { "CORNISH VERSE DIVIDER",NULL},
 /* 2E50 */ { "CROSS PATTY WITH RIGHT CROSSBAR","	x (maltese cross - 2720)\n"
 	"	x (latin capital letter half h - 2C75)"},
@@ -20497,7 +20499,7 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB2D */ { "ETHIOPIC SYLLABLE BBE",NULL},
 /* AB2E */ { "ETHIOPIC SYLLABLE BBO",NULL},
 /* AB2F */ { NULL,NULL},
-/* AB30 */ { "LATIN SMALL LETTER BARRED ALPHA",NULL},
+/* AB30 */ { "LATIN SMALL LETTER BARRED ALPHA","		* This letter is a Latin alpha with a horizontal strikethrough bar. In some font designs, the bar might not extend beyond the edge of the letter, and in such cases, the letter should not be confused with a ligature of epsilon and iota."},
 /* AB31 */ { "LATIN SMALL LETTER A REVERSED-SCHWA",NULL},
 /* AB32 */ { "LATIN SMALL LETTER BLACKLETTER E",NULL},
 /* AB33 */ { "LATIN SMALL LETTER BARRED E",NULL},
@@ -31179,7 +31181,7 @@ static const struct unicode_nameannot una_01_1F[] = {
 /* 11F3D */ { NULL,NULL},
 /* 11F3E */ { "KAWI VOWEL SIGN E",NULL},
 /* 11F3F */ { "KAWI VOWEL SIGN AI",NULL},
-/* 11F40 */ { "KAWI VOWEL SIGN EU","	* represents schwa [ǝ]"},
+/* 11F40 */ { "KAWI VOWEL SIGN EU","	* represents schwa [ə]"},
 /* 11F41 */ { "KAWI SIGN KILLER","	* vowel killer, always rendered visibly"},
 /* 11F42 */ { "KAWI CONJOINER","	* used for producing below-base and post-base conjunct forms"},
 /* 11F43 */ { "KAWI DANDA",NULL},

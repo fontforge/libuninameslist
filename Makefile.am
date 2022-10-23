@@ -28,10 +28,9 @@ EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
 	build.sh
 
 noinst_PROGRAMS = buildnameslist
-buildnameslist_SOURCES = buildnameslist.c
-buildnameslist.$(OBJEXT): buildnameslist.h
+buildnameslist_SOURCES = buildnameslist.c buildnameslist.h
 
-nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt buildnameslist.h .git/*
+nodist_EXTRA_DATA = NamesList.txt ListeDesNoms.txt buildnameslist.h .git .github .appveyor.yml .travis.yml
 
 DISTCLEANFILES = libuninameslist.pc
 DISTCHECK_CONFIGURE_FLAGS = --enable-frenchlib --enable-pylib --disable-silent-rules
@@ -50,8 +49,8 @@ noinst_HEADERS = nameslist-dll.h
 if WANTLIBOFR
 include_HEADERS += uninameslist-fr.h
 libuninameslist_fr_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(FR_VERSION)
-libuninameslist_fr_la_SOURCES = nameslist-fr.c
-libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h buildnameslist.h
+libuninameslist_fr_la_SOURCES = nameslist-fr.c buildnameslist.h
+libuninameslist_fr_la.$(OBJEXT): uninameslist-fr.h nameslist-dll.h
 libuninameslist_la_LIBADD += libuninameslist-fr.la
 man_MANS += libuninameslist-fr.3
 else
@@ -59,8 +58,8 @@ EXTRA_DIST += nameslist-fr.c uninameslist-fr.h libuninameslist-fr.3
 endif
 
 libuninameslist_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(UN_VERSION)
-libuninameslist_la_SOURCES = nameslist.c
-libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h buildnameslist.h
+libuninameslist_la_SOURCES = nameslist.c buildnameslist.h
+libuninameslist_la.$(OBJEXT): uninameslist.h nameslist-dll.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libuninameslist.pc
@@ -73,7 +72,7 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "http://www.unicode.org/Public/UNIDATA/NamesList.txt" -O NamesList.txt
+	$(WGET) "http://www.unicode.org/Public/15.0.0/ucd/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
 	$(WGET) "http://hapax.qc.ca/ListeNoms-14.0.0.txt" -O ListeDesNoms.txt
