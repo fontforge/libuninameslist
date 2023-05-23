@@ -1,3 +1,8 @@
+- 2023-May-23
+    * Unicode 15.1_Beta (Nameslist.txt 15.1Beta for review upto Jul04).
+      NOTE: This version shows as 15.0b (to maintain versions sorting).
+      French library now updated to version 15.0.
+
 - 2022-Oct-22
     * Version 1.12, Unicode 15.0 and French version 1.5 now is at 14.0.
 

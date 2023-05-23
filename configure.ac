@@ -4,24 +4,24 @@ AC_PREREQ([2.64])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20221022]) dnl yyyymmdd
+m4_define([uninameslist_package_stamp], [20230523]) dnl yyyymmdd
 m4_define([uninameslist_major_version], [15]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [0])
+m4_define([uninameslist_minor_version], [0b])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[12])
+m4_define([uninameslist_revision],[13])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
 
 # These values below are kept for backwards compatibility with older programs
 # that are using the French namesList. This increments with ListeDesNoms.txt.
-m4_define([fr_major_version], [14]) dnl latest ListeDesNoms.txt = ver14.0
+m4_define([fr_major_version], [15]) dnl latest ListeDesNoms.txt = ver15.0
 m4_define([fr_minor_version], [0])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])
-m4_define([uninameslist_fr_revision],[5])
+m4_define([uninameslist_fr_revision],[6])
 m4_define([uninameslist_fr_age],     [0])
 m4_define([uninameslist_fr_libver],
           [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])
@@ -80,6 +80,8 @@ AC_CHECK_TOOL([WGET],[wget],[:])
 AC_CHECK_TOOL([STRIP],[strip],[:])
 AC_CHECK_TOOL([TOUCH],[touch],[:])
 AC_PROG_INSTALL
+AC_PROG_LIBTOOL
+AC_ENABLE_SHARED
 
 #-------------------------------------------
 # Indicate this is a release build and that
@@ -234,8 +236,6 @@ echo 'const char NL_VERSION[[]] = "Nameslist-Version: uninameslist_nameslist_ver
 echo 'const char NFR_VERSION[[]] = "Nameslist-Version: uninameslist_fr_nameslist_ver";' >> ${top_builddir}tests/call-test.h
 
 #-------------------------------------------
-AC_PROG_LIBTOOL
-
 AC_CONFIG_FILES([
 Makefile
 py/Makefile

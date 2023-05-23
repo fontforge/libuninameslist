@@ -67,7 +67,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 15.0" );
+	return( "Nameslist-Version: 15.0b" );
 }
 
 
@@ -855,6 +855,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x2b740, 0x2b81d, "CJK Unified Ideographs Extension D" },
 	{ 0x2b820, 0x2cea1, "CJK Unified Ideographs Extension E" },
 	{ 0x2ceb0, 0x2ebe0, "CJK Unified Ideographs Extension F" },
+	{ 0x2ebf0, 0x2ee4a, "CJK Unified Ideographs Extension I" },
 	{ 0x2f800, 0x2fa1f, "CJK Compatibility Ideographs Supplement" },
 	{ 0x2ff80, 0x2ffff, "Unassigned" },
 	{ 0x30000, 0x3134a, "CJK Unified Ideographs Extension G" },
@@ -1008,6 +1009,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 002A */ { "ASTERISK","	= star\n"
 	"	* can have five or six spokes\n"
 	"	x (arabic five pointed star - 066D)\n"
+	"	x (reference mark - 203B)\n"
 	"	x (asterism - 2042)\n"
 	"	x (low asterisk - 204E)\n"
 	"	x (two asterisks aligned vertically - 2051)\n"
@@ -1022,10 +1024,11 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (heavy plus sign - 2795)\n"
 	"	x (hebrew letter alternative plus sign - FB29)\n"
 	"	x (light greek cross - 1F7A2)"},
-/* 002C */ { "COMMA","	= decimal separator\n"
+/* 002C */ { "COMMA","	= the use as decimal or thousands separator is locale dependent\n"
 	"	x (arabic comma - 060C)\n"
 	"	x (arabic decimal separator - 066B)\n"
 	"	x (single low-9 quotation mark - 201A)\n"
+	"	x (hypodiastole - 2E12)\n"
 	"	x (reversed comma - 2E41)\n"
 	"	x (medieval comma - 2E4C)\n"
 	"	x (ideographic comma - 3001)"},
@@ -1045,6 +1048,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 002E */ { "FULL STOP","	= period, dot, decimal point\n"
 	"	* the use as decimal point is locale dependent\n"
 	"	* may be rendered as a raised decimal point in old style numbers\n"
+	"	x (middle dot - 00B7)\n"
 	"	x (arabic full stop - 06D4)\n"
 	"	x (one dot leader - 2024)\n"
 	"	x (horizontal ellipsis - 2026)\n"
@@ -1060,10 +1064,12 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (dotted solidus - 2E4A)"},
 /* 0030 */ { "DIGIT ZERO","	~ 0030 FE00 short diagonal stroke form"},
 /* 0031 */ { "DIGIT ONE",NULL},
-/* 0032 */ { "DIGIT TWO",NULL},
-/* 0033 */ { "DIGIT THREE",NULL},
-/* 0034 */ { "DIGIT FOUR",NULL},
-/* 0035 */ { "DIGIT FIVE",NULL},
+/* 0032 */ { "DIGIT TWO","	x (latin letter two with stroke - 01BB)\n"
+	"	x (turned digit two - 218A)"},
+/* 0033 */ { "DIGIT THREE","	x (turned digit three - 218B)\n"
+	"	x (latin capital letter reversed open e - A7AB)"},
+/* 0034 */ { "DIGIT FOUR","	x (latin capital letter cuatrillo - A72C)"},
+/* 0035 */ { "DIGIT FIVE","	x (latin capital letter tone five - 01BC)"},
 /* 0036 */ { "DIGIT SIX",NULL},
 /* 0037 */ { "DIGIT SEVEN",NULL},
 /* 0038 */ { "DIGIT EIGHT",NULL},
@@ -1100,6 +1106,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (double hyphen - 2E40)\n"
 	"	x (katakana-hiragana double hyphen - 30A0)\n"
 	"	x (modifier letter short equals sign - A78A)\n"
+	"	x (small equals sign - FE66)\n"
 	"	x (roman sextans sign - 10190)\n"
 	"	x (heavy equals sign - 1F7F0)"},
 /* 003E */ { "GREATER-THAN SIGN","	x (modifier letter right arrowhead - 02C3)\n"
@@ -1117,15 +1124,19 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (reversed question mark - 2E2E)\n"
 	"	x (medieval question mark - 2E54)\n"
 	"	x (replacement character - FFFD)"},
-/* 0040 */ { "COMMERCIAL AT","	= at sign"},
+/* 0040 */ { "COMMERCIAL AT","	= at sign\n"
+	"	= arroba (old Spanish unit of weight)\n"
+	"	x (circled latin small letter a - 24D0)"},
 /* 0041 */ { "LATIN CAPITAL LETTER A",NULL},
 /* 0042 */ { "LATIN CAPITAL LETTER B","	x (script capital b - 212C)"},
-/* 0043 */ { "LATIN CAPITAL LETTER C","	x (double-struck capital c - 2102)\n"
+/* 0043 */ { "LATIN CAPITAL LETTER C","	x (greek capital lunate sigma symbol - 03F9)\n"
+	"	x (double-struck capital c - 2102)\n"
 	"	x (degree celsius - 2103)\n"
 	"	x (black-letter capital c - 212D)\n"
 	"	x (roman numeral one hundred - 216D)"},
 /* 0044 */ { "LATIN CAPITAL LETTER D","	x (roman numeral five hundred - 216E)"},
-/* 0045 */ { "LATIN CAPITAL LETTER E","	x (euler constant - 2107)\n"
+/* 0045 */ { "LATIN CAPITAL LETTER E","	x (latin capital letter open e - 0190)\n"
+	"	x (euler constant - 2107)\n"
 	"	x (script capital e - 2130)"},
 /* 0046 */ { "LATIN CAPITAL LETTER F","	x (degree fahrenheit - 2109)\n"
 	"	x (script capital f - 2131)\n"
@@ -1148,7 +1159,8 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 004F */ { "LATIN CAPITAL LETTER O",NULL},
 /* 0050 */ { "LATIN CAPITAL LETTER P","	x (script capital p - 2118)\n"
 	"	x (double-struck capital p - 2119)"},
-/* 0051 */ { "LATIN CAPITAL LETTER Q","	x (double-struck capital q - 211A)\n"
+/* 0051 */ { "LATIN CAPITAL LETTER Q","	x (cyrillic capital letter qa - 051A)\n"
+	"	x (double-struck capital q - 211A)\n"
 	"	x (rotated capital q - 213A)"},
 /* 0052 */ { "LATIN CAPITAL LETTER R","	x (script capital r - 211B)\n"
 	"	x (black-letter capital r - 211C)\n"
@@ -1157,7 +1169,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 0054 */ { "LATIN CAPITAL LETTER T",NULL},
 /* 0055 */ { "LATIN CAPITAL LETTER U",NULL},
 /* 0056 */ { "LATIN CAPITAL LETTER V","	x (roman numeral five - 2164)"},
-/* 0057 */ { "LATIN CAPITAL LETTER W",NULL},
+/* 0057 */ { "LATIN CAPITAL LETTER W","	x (cyrillic capital letter we - 051C)"},
 /* 0058 */ { "LATIN CAPITAL LETTER X","	x (roman numeral ten - 2169)"},
 /* 0059 */ { "LATIN CAPITAL LETTER Y",NULL},
 /* 005A */ { "LATIN CAPITAL LETTER Z","	x (double-struck capital z - 2124)\n"
@@ -1176,6 +1188,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (modifier letter circumflex accent - 02C6)\n"
 	"	x (combining circumflex accent - 0302)\n"
 	"	x (caret - 2038)\n"
+	"	x (logical and - 2227)\n"
 	"	x (up arrowhead - 2303)"},
 /* 005F */ { "LOW LINE","	= spacing underscore (1.0)\n"
 	"	* this is a spacing character\n"
@@ -1185,18 +1198,25 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (combining low line - 0332)\n"
 	"	x (double low line - 2017)\n"
 	"	x (combining conjoining macron below - FE2D)"},
-/* 0060 */ { "GRAVE ACCENT","	* this is a spacing character\n"
+/* 0060 */ { "GRAVE ACCENT","	= backtick, backquote\n"
+	"	* this is a spacing character\n"
+	"	* in some technical contexts functions as opening quote, paired with apostrophe\n"
+	"	x (acute accent - 00B4)\n"
 	"	x (modifier letter grave accent - 02CB)\n"
 	"	x (combining grave accent - 0300)\n"
+	"	x (greek varia - 1FEF)\n"
+	"	x (left single quotation mark - 2018)\n"
 	"	x (reversed prime - 2035)"},
-/* 0061 */ { "LATIN SMALL LETTER A",NULL},
+/* 0061 */ { "LATIN SMALL LETTER A","	x (latin small letter alpha - 0251)"},
 /* 0062 */ { "LATIN SMALL LETTER B",NULL},
-/* 0063 */ { "LATIN SMALL LETTER C",NULL},
-/* 0064 */ { "LATIN SMALL LETTER D",NULL},
+/* 0063 */ { "LATIN SMALL LETTER C","	x (greek lunate sigma symbol - 03F2)\n"
+	"	x (latin letter small capital c - 1D04)"},
+/* 0064 */ { "LATIN SMALL LETTER D","	x (cyrillic small letter komi de - 0501)"},
 /* 0065 */ { "LATIN SMALL LETTER E","	x (estimated symbol - 212E)\n"
 	"	x (script small e - 212F)\n"
 	"	x (latin small letter blackletter e - AB32)"},
-/* 0066 */ { "LATIN SMALL LETTER F",NULL},
+/* 0066 */ { "LATIN SMALL LETTER F","	x (latin small letter f with hook - 0192)\n"
+	"	x (latin small letter lenis f - AB35)"},
 /* 0067 */ { "LATIN SMALL LETTER G","	x (latin small letter script g - 0261)\n"
 	"	x (script small g - 210A)"},
 /* 0068 */ { "LATIN SMALL LETTER H","	x (cyrillic small letter shha - 04BB)\n"
@@ -1206,25 +1226,30 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (superscript latin small letter i - 2071)\n"
 	"	x (mathematical italic small dotless i - 1D6A4)"},
 /* 006A */ { "LATIN SMALL LETTER J","	x (latin small letter dotless j - 0237)\n"
+	"	x (greek letter yot - 03F3)\n"
 	"	x (mathematical italic small dotless j - 1D6A5)"},
 /* 006B */ { "LATIN SMALL LETTER K",NULL},
 /* 006C */ { "LATIN SMALL LETTER L","	x (script small l - 2113)\n"
 	"	x (mathematical script small l - 1D4C1)"},
 /* 006D */ { "LATIN SMALL LETTER M",NULL},
 /* 006E */ { "LATIN SMALL LETTER N","	x (superscript latin small letter n - 207F)"},
-/* 006F */ { "LATIN SMALL LETTER O","	x (script small o - 2134)\n"
+/* 006F */ { "LATIN SMALL LETTER O","	x (latin letter small capital o - 1D0F)\n"
+	"	x (script small o - 2134)\n"
 	"	x (latin small letter blackletter o - AB3D)"},
 /* 0070 */ { "LATIN SMALL LETTER P",NULL},
-/* 0071 */ { "LATIN SMALL LETTER Q",NULL},
+/* 0071 */ { "LATIN SMALL LETTER Q","	x (cyrillic small letter qa - 051B)"},
 /* 0072 */ { "LATIN SMALL LETTER R",NULL},
-/* 0073 */ { "LATIN SMALL LETTER S","	x (latin small letter long s - 017F)"},
+/* 0073 */ { "LATIN SMALL LETTER S","	x (latin small letter long s - 017F)\n"
+	"	x (latin letter small capital s - A731)"},
 /* 0074 */ { "LATIN SMALL LETTER T",NULL},
 /* 0075 */ { "LATIN SMALL LETTER U",NULL},
 /* 0076 */ { "LATIN SMALL LETTER V",NULL},
-/* 0077 */ { "LATIN SMALL LETTER W",NULL},
+/* 0077 */ { "LATIN SMALL LETTER W","	x (cyrillic small letter we - 051D)\n"
+	"	x (latin letter small capital w - 1D21)"},
 /* 0078 */ { "LATIN SMALL LETTER X","	x (multiplication sign - 00D7)"},
 /* 0079 */ { "LATIN SMALL LETTER Y",NULL},
-/* 007A */ { "LATIN SMALL LETTER Z","	x (latin small letter z with stroke - 01B6)"},
+/* 007A */ { "LATIN SMALL LETTER Z","	x (latin small letter z with stroke - 01B6)\n"
+	"	x (latin letter small capital z - 1D22)"},
 /* 007B */ { "LEFT CURLY BRACKET","	= opening curly bracket (1.0)\n"
 	"	= left brace"},
 /* 007C */ { "VERTICAL LINE","	= vertical bar, pipe\n"
@@ -1301,6 +1326,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (cedi sign - 20B5)\n"
 	"	x (musical symbol cut time - 1D135)"},
 /* 00A3 */ { "POUND SIGN","	= pound sterling, Irish punt, lira, etc.\n"
+	"	* not to be confused with the unit of weight\n"
 	"	* glyph may have one or two crossbars, in distinction from 20A4\n"
 	"	x (lira sign - 20A4)\n"
 	"	x (turkish lira sign - 20BA)\n"
@@ -1311,6 +1337,8 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00A5 */ { "YEN SIGN","	= yuan sign (renminbi)\n"
 	"	* glyph may have one or two crossbars, but the official symbol in Japan and China has two\n"
 	"	* in native context, specific ideographs may be used for units of these currencies\n"
+	"	x (latin capital letter y with stroke - 024E)\n"
+	"	x (cyrillic capital letter straight u with stroke - 04B0)\n"
 	"	x 5143\n"
 	"	x 5186"},
 /* 00A6 */ { "BROKEN BAR","	= broken vertical bar (1.0)\n"
@@ -1370,8 +1398,10 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (superscript one - 00B9)\n"
 	"	# <super> 0033"},
 /* 00B4 */ { "ACUTE ACCENT","	* this is a spacing character\n"
+	"	x (grave accent - 0060)\n"
 	"	x (modifier letter prime - 02B9)\n"
 	"	x (modifier letter acute accent - 02CA)\n"
+	"	x (double acute accent - 02DD)\n"
 	"	x (combining acute accent - 0301)\n"
 	"	x (greek tonos - 0384)\n"
 	"	x (greek oxia - 1FFD)\n"
@@ -1390,7 +1420,6 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (full stop - 002E)\n"
 	"	x (dot above - 02D9)\n"
 	"	x (greek ano teleia - 0387)\n"
-	"	x (runic single punctuation - 16EB)\n"
 	"	x (bullet - 2022)\n"
 	"	x (one dot leader - 2024)\n"
 	"	x (hyphenation point - 2027)\n"
@@ -1410,6 +1439,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	# <super> 0031"},
 /* 00BA */ { "MASCULINE ORDINAL INDICATOR","	* Spanish\n"
 	"	x (modifier letter small o - 1D52)\n"
+	"	x (superscript zero - 2070)\n"
 	"	x (numero sign - 2116)\n"
 	"	# <super> 006F"},
 /* 00BB */ { "RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK","	= right guillemet\n"
@@ -1422,6 +1452,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00BF */ { "INVERTED QUESTION MARK","	= turned question mark\n"
 	"	* Spanish\n"
 	"	x (question mark - 003F)\n"
+	"	x (inverted interrobang - 2E18)\n"
 	"	x (reversed question mark - 2E2E)"},
 /* 00C0 */ { "LATIN CAPITAL LETTER A WITH GRAVE","	: 0041 0300"},
 /* 00C1 */ { "LATIN CAPITAL LETTER A WITH ACUTE","	: 0041 0301"},
@@ -1430,7 +1461,8 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 00C4 */ { "LATIN CAPITAL LETTER A WITH DIAERESIS","	: 0041 0308"},
 /* 00C5 */ { "LATIN CAPITAL LETTER A WITH RING ABOVE","	x (angstrom sign - 212B)\n"
 	"	: 0041 030A"},
-/* 00C6 */ { "LATIN CAPITAL LETTER AE","	= latin capital ligature ae (1.1)"},
+/* 00C6 */ { "LATIN CAPITAL LETTER AE","	= latin capital ligature ae (1.1)\n"
+	"	x (cyrillic capital ligature a ie - 04D4)"},
 /* 00C7 */ { "LATIN CAPITAL LETTER C WITH CEDILLA","	: 0043 0327"},
 /* 00C8 */ { "LATIN CAPITAL LETTER E WITH GRAVE","	: 0045 0300"},
 /* 00C9 */ { "LATIN CAPITAL LETTER E WITH ACUTE","	: 0045 0301"},
@@ -1460,7 +1492,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (cancellation x - 1F5D9)\n"
 	"	x (light saltire - 1F7A9)"},
 /* 00D8 */ { "LATIN CAPITAL LETTER O WITH STROKE","	= o slash\n"
-	"	x (empty set - 2205)"},
+	"	x (latin capital letter o with middle tilde - 019F)\n"
+	"	x (empty set - 2205)\n"
+	"	x (latin capital letter o with long stroke overlay - A74A)"},
 /* 00D9 */ { "LATIN CAPITAL LETTER U WITH GRAVE","	: 0055 0300"},
 /* 00DA */ { "LATIN CAPITAL LETTER U WITH ACUTE","	: 0055 0301"},
 /* 00DB */ { "LATIN CAPITAL LETTER U WITH CIRCUMFLEX","	: 0055 0302"},
@@ -1475,7 +1509,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (latin small letter long s - 017F)\n"
 	"	x (latin small letter ezh - 0292)\n"
 	"	x (greek small letter beta - 03B2)\n"
-	"	x (latin capital letter sharp s - 1E9E)"},
+	"	x (latin capital letter sharp s - 1E9E)\n"
+	"	x (latin small letter beta - A7B5)\n"
+	"	x (latin small letter middle scots s - A7D7)"},
 /* 00E0 */ { "LATIN SMALL LETTER A WITH GRAVE","	: 0061 0300"},
 /* 00E1 */ { "LATIN SMALL LETTER A WITH ACUTE","	: 0061 0301"},
 /* 00E2 */ { "LATIN SMALL LETTER A WITH CIRCUMFLEX","	: 0061 0302"},
@@ -1488,7 +1524,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	= ash (from Old English æsc)\n"
 	"	* Danish, Norwegian, Icelandic, Faroese, Old English, French, IPA\n"
 	"	x (latin small ligature oe - 0153)\n"
-	"	x (cyrillic small ligature a ie - 04D5)"},
+	"	x (cyrillic small ligature a ie - 04D5)\n"
+	"	x (latin small letter turned ae - 1D02)\n"
+	"	x (latin small letter a reversed-schwa - AB31)"},
 /* 00E7 */ { "LATIN SMALL LETTER C WITH CEDILLA","	: 0063 0327"},
 /* 00E8 */ { "LATIN SMALL LETTER E WITH GRAVE","	: 0065 0300"},
 /* 00E9 */ { "LATIN SMALL LETTER E WITH ACUTE","	: 0065 0301"},
@@ -1503,7 +1541,9 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	* uppercase is 00D0\n"
 	"	x (latin small letter d with stroke - 0111)\n"
 	"	x (greek small letter delta - 03B4)\n"
-	"	x (partial differential - 2202)"},
+	"	x (latin small letter delta - 1E9F)\n"
+	"	x (partial differential - 2202)\n"
+	"	x (latin small letter insular d - A77A)"},
 /* 00F1 */ { "LATIN SMALL LETTER N WITH TILDE","	: 006E 0303"},
 /* 00F2 */ { "LATIN SMALL LETTER O WITH GRAVE","	: 006F 0300"},
 /* 00F3 */ { "LATIN SMALL LETTER O WITH ACUTE","	: 006F 0301"},
@@ -1516,7 +1556,6 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	* historically used as a punctuation mark to denote questionable passages in manuscripts\n"
 	"	x (syriac harklean obelus - 070B)\n"
 	"	x (commercial minus sign - 2052)\n"
-	"	x (minus sign - 2212)\n"
 	"	x (division slash - 2215)\n"
 	"	x (divides - 2223)\n"
 	"	x (ratio - 2236)\n"
@@ -1525,7 +1564,11 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (dotted obelos - 2E13)"},
 /* 00F8 */ { "LATIN SMALL LETTER O WITH STROKE","	= o slash\n"
 	"	* Danish, Norwegian, Faroese, IPA\n"
-	"	x (diameter sign - 2300)"},
+	"	x (latin small letter barred o - 0275)\n"
+	"	x (diameter sign - 2300)\n"
+	"	x (latin small letter o with long stroke overlay - A74B)\n"
+	"	x (latin small letter old polish o - A7C1)\n"
+	"	x (latin small letter blackletter o with stroke - AB3E)"},
 /* 00F9 */ { "LATIN SMALL LETTER U WITH GRAVE","	* French, Italian\n"
 	"	: 0075 0300"},
 /* 00FA */ { "LATIN SMALL LETTER U WITH ACUTE","	: 0075 0301"},
@@ -1535,7 +1578,10 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	: 0079 0301"},
 /* 00FE */ { "LATIN SMALL LETTER THORN","	* Icelandic, Old English, phonetics\n"
 	"	* Runic letter borrowed into Latin script\n"
-	"	x (runic letter thurisaz thurs thorn - 16A6)"},
+	"	* replaced by \"th\" in modern English\n"
+	"	x (greek small letter sho - 03F8)\n"
+	"	x (runic letter thurisaz thurs thorn - 16A6)\n"
+	"	x (latin small letter double thorn - A7D3)"},
 /* 00FF */ { "LATIN SMALL LETTER Y WITH DIAERESIS","	* French, medieval Hungarian orthography\n"
 	"	* uppercase is 0178\n"
 	"	: 0079 0308"}
@@ -1571,12 +1617,15 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* the form using apostrophe is preferred in typesetting\n"
 	"	: 0064 030C"},
 /* 0110 */ { "LATIN CAPITAL LETTER D WITH STROKE","	x (latin capital letter eth - 00D0)\n"
-	"	x (latin small letter d with stroke - 0111)\n"
-	"	x (latin capital letter african d - 0189)"},
-/* 0111 */ { "LATIN SMALL LETTER D WITH STROKE","	* Croatian, Serbian, Vietnamese, Sami\n"
+	"	x (latin capital letter african d - 0189)\n"
+	"	x (latin capital letter d with short stroke overlay - A7C7)"},
+/* 0111 */ { "LATIN SMALL LETTER D WITH STROKE","	* Croatian, Serbian, Vietnamese, Sami, Moro\n"
 	"	* an alternate glyph with the stroke through the bowl is used in Americanist orthographies\n"
-	"	x (latin capital letter d with stroke - 0110)\n"
-	"	x (cyrillic small letter dje - 0452)"},
+	"	x (latin small letter eth - 00F0)\n"
+	"	x (cyrillic small letter dje - 0452)\n"
+	"	x (latin small letter d with middle tilde - 1D6D)\n"
+	"	x (dong sign - 20AB)\n"
+	"	x (latin small letter d with short stroke overlay - A7C8)"},
 /* 0112 */ { "LATIN CAPITAL LETTER E WITH MACRON","	: 0045 0304"},
 /* 0113 */ { "LATIN SMALL LETTER E WITH MACRON","	* Latvian, Latin, ...\n"
 	"	: 0065 0304"},
@@ -1610,7 +1659,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 0048 0302"},
 /* 0125 */ { "LATIN SMALL LETTER H WITH CIRCUMFLEX","	* Esperanto\n"
 	"	: 0068 0302"},
-/* 0126 */ { "LATIN CAPITAL LETTER H WITH STROKE",NULL},
+/* 0126 */ { "LATIN CAPITAL LETTER H WITH STROKE","	x (modifier letter capital h with stroke - A7F8)"},
 /* 0127 */ { "LATIN SMALL LETTER H WITH STROKE","	* Maltese, IPA, ...\n"
 	"	x (cyrillic small letter tshe - 045B)\n"
 	"	x (planck constant over two pi - 210F)"},
@@ -1633,7 +1682,11 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 0049 0307"},
 /* 0131 */ { "LATIN SMALL LETTER DOTLESS I","	* Turkish, Azerbaijani\n"
 	"	* uppercase is 0049\n"
-	"	x (latin small letter i - 0069)"},
+	"	x (latin small letter i - 0069)\n"
+	"	x (latin small letter iota - 0269)\n"
+	"	x (latin letter small capital i - 026A)\n"
+	"	x (cyrillic small letter byelorussian-ukrainian i - 0456)\n"
+	"	x (mathematical italic small dotless i - 1D6A4)"},
 /* 0132 */ { "LATIN CAPITAL LIGATURE IJ","	# 0049 004A"},
 /* 0133 */ { "LATIN SMALL LIGATURE IJ","	* Dutch\n"
 	"	# 0069 006A"},
@@ -1643,7 +1696,9 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0136 */ { "LATIN CAPITAL LETTER K WITH CEDILLA","	: 004B 0327"},
 /* 0137 */ { "LATIN SMALL LETTER K WITH CEDILLA","	* Latvian\n"
 	"	: 006B 0327"},
-/* 0138 */ { "LATIN SMALL LETTER KRA","	* Greenlandic (old orthography), Labrador Inuttut"},
+/* 0138 */ { "LATIN SMALL LETTER KRA","	* Greenlandic (old orthography), Labrador Inuttut\n"
+	"	x (cyrillic small letter ka - 043A)\n"
+	"	x (latin letter small capital k - 1D0B)"},
 /* 0139 */ { "LATIN CAPITAL LETTER L WITH ACUTE","	: 004C 0301"},
 /* 013A */ { "LATIN SMALL LETTER L WITH ACUTE","	* Slovak\n"
 	"	: 006C 0301"},
@@ -1657,12 +1712,17 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006C 030C"},
 /* 013F */ { "LATIN CAPITAL LETTER L WITH MIDDLE DOT","	* some fonts show the middle dot inside the L, but the preferred form has the dot following the L\n"
 	"	# 004C 00B7"},
-/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	# 006C 00B7\n"
-	"	* Catalan legacy compatibility character for ISO/IEC 6937\n"
-	"	* preferred representation for Catalan: 006C 00B7"},
-/* 0141 */ { "LATIN CAPITAL LETTER L WITH STROKE","	x (latin capital letter l with bar - 023D)"},
-/* 0142 */ { "LATIN SMALL LETTER L WITH STROKE","	* Polish, ...\n"
-	"	x (latin small letter l with bar - 019A)"},
+/* 0140 */ { "LATIN SMALL LETTER L WITH MIDDLE DOT","	* Catalan legacy compatibility character for ISO/IEC 6937\n"
+	"	* preferred representation for Catalan: 006C 00B7\n"
+	"	# 006C 00B7"},
+/* 0141 */ { "LATIN CAPITAL LETTER L WITH STROKE","	x (latin capital letter l with bar - 023D)\n"
+	"	x (latin letter small capital l with stroke - 1D0C)\n"
+	"	x (latin capital letter l with middle tilde - 2C62)\n"
+	"	x (latin capital letter l with high stroke - A748)"},
+/* 0142 */ { "LATIN SMALL LETTER L WITH STROKE","	* Polish, Sorbian, Iñupiaq, ...\n"
+	"	* also used for Latin-based orthographies for Belarusian and Ukrainian\n"
+	"	x (latin small letter l with bar - 019A)\n"
+	"	x (latin small letter l with middle tilde - 026B)"},
 /* 0143 */ { "LATIN CAPITAL LETTER N WITH ACUTE","	: 004E 0301"},
 /* 0144 */ { "LATIN SMALL LETTER N WITH ACUTE","	* Polish, ...\n"
 	"	: 006E 0301"},
@@ -1675,12 +1735,18 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0149 */ { "LATIN SMALL LETTER N PRECEDED BY APOSTROPHE","	= latin small letter apostrophe n (1.0)\n"
 	"	* this character is deprecated and its use is strongly discouraged\n"
 	"	* Afrikaans\n"
-	"	# 02BC 006E\n"
 	"	* legacy compatibility character for ISO/IEC 6937\n"
-	"	* uppercase is 02BC 004E"},
-/* 014A */ { "LATIN CAPITAL LETTER ENG","	* glyph may also have appearance of large form of the small letter"},
+	"	* uppercase is 02BC 004E\n"
+	"	# 02BC 006E"},
+/* 014A */ { "LATIN CAPITAL LETTER ENG","	* glyph may also have appearance of large form of the small letter\n"
+	"	x (latin capital letter n with long right leg - 0220)\n"
+	"	x (latin capital letter n with descender - A790)"},
 /* 014B */ { "LATIN SMALL LETTER ENG","	= engma, angma\n"
-	"	* Sami, Mende, IPA, ..."},
+	"	* Sami, Mende, IPA, ...\n"
+	"	* velar nasal, nasalization\n"
+	"	x (latin small letter n with long right leg - 019E)\n"
+	"	x (latin small letter n with palatal hook - 1D87)\n"
+	"	x (latin small letter n with descender - A791)"},
 /* 014C */ { "LATIN CAPITAL LETTER O WITH MACRON","	: 004F 0304"},
 /* 014D */ { "LATIN SMALL LETTER O WITH MACRON","	* Latvian, Latin, ...\n"
 	"	: 006F 0304"},
@@ -1694,7 +1760,11 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 0153 */ { "LATIN SMALL LIGATURE OE","	= ethel (from Old English eðel)\n"
 	"	* French, IPA, Old Icelandic, Old English, ...\n"
 	"	x (latin small letter ae - 00E6)\n"
-	"	x (latin letter small capital oe - 0276)"},
+	"	x (latin letter small capital oe - 0276)\n"
+	"	x (latin small letter turned oe - 1D14)\n"
+	"	x (modifier letter small ligature oe - A7F9)\n"
+	"	x (latin small letter inverted oe - AB40)\n"
+	"	x (latin small letter open oe - AB62)"},
 /* 0154 */ { "LATIN CAPITAL LETTER R WITH ACUTE","	: 0052 0301"},
 /* 0155 */ { "LATIN SMALL LETTER R WITH ACUTE","	* Slovak, ...\n"
 	"	: 0072 0301"},
@@ -1729,7 +1799,8 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* the form using apostrophe is preferred in typesetting\n"
 	"	: 0074 030C"},
 /* 0166 */ { "LATIN CAPITAL LETTER T WITH STROKE",NULL},
-/* 0167 */ { "LATIN SMALL LETTER T WITH STROKE","	* Sami"},
+/* 0167 */ { "LATIN SMALL LETTER T WITH STROKE","	* Sami\n"
+	"	x (latin small letter t with middle tilde - 1D75)"},
 /* 0168 */ { "LATIN CAPITAL LETTER U WITH TILDE","	: 0055 0303"},
 /* 0169 */ { "LATIN SMALL LETTER U WITH TILDE","	* Greenlandic (old orthography), Kikuyu\n"
 	"	: 0075 0303"},
@@ -1768,19 +1839,23 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 007A 030C"},
 /* 017F */ { "LATIN SMALL LETTER LONG S","	* in common use in Roman types until the 18th century\n"
 	"	* in current use in Fraktur and Gaelic types\n"
+	"	x (latin small letter sharp s - 00DF)\n"
+	"	x (latin small ligature long s t - FB05)\n"
 	"	# 0073 latin small letter s"},
 /* 0180 */ { "LATIN SMALL LETTER B WITH STROKE","	* Americanist and Indo-Europeanist usage for phonetic beta\n"
 	"	* Americanist orthographies use an alternate glyph with the stroke through the bowl\n"
-	"	* Old Saxon\n"
+	"	* also used in Old Saxon manuscripts\n"
 	"	* uppercase is 0243\n"
 	"	x (greek small letter beta - 03B2)\n"
+	"	x (latin small letter b with middle tilde - 1D6C)\n"
 	"	x (blank symbol - 2422)"},
-/* 0181 */ { "LATIN CAPITAL LETTER B WITH HOOK","	* Zulu, Pan-Nigerian alphabet\n"
+/* 0181 */ { "LATIN CAPITAL LETTER B WITH HOOK","	* African languages\n"
 	"	* lowercase is 0253"},
-/* 0182 */ { "LATIN CAPITAL LETTER B WITH TOPBAR",NULL},
+/* 0182 */ { "LATIN CAPITAL LETTER B WITH TOPBAR","	x (cyrillic capital letter be - 0411)"},
 /* 0183 */ { "LATIN SMALL LETTER B WITH TOPBAR","	* Zhuang (old orthography)\n"
 	"	* former Soviet minority language scripts\n"
-	"	x (cyrillic capital letter be - 0411)"},
+	"	x (latin small letter b with hook - 0253)\n"
+	"	x (cyrillic small letter be - 0431)"},
 /* 0184 */ { "LATIN CAPITAL LETTER TONE SIX",NULL},
 /* 0185 */ { "LATIN SMALL LETTER TONE SIX","	* Zhuang (old orthography)\n"
 	"	* Zhuang tone three is Cyrillic ze\n"
@@ -1791,8 +1866,10 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	x (cyrillic small letter che - 0447)\n"
 	"	x (cyrillic small letter soft sign - 044C)"},
 /* 0186 */ { "LATIN CAPITAL LETTER OPEN O","	* typographically a turned C\n"
-	"	* African\n"
-	"	* lowercase is 0254"},
+	"	* African languages\n"
+	"	* lowercase is 0254\n"
+	"	x (latin letter small capital open o - 1D10)\n"
+	"	x (roman numeral reversed one hundred - 2183)"},
 /* 0187 */ { "LATIN CAPITAL LETTER C WITH HOOK",NULL},
 /* 0188 */ { "LATIN SMALL LETTER C WITH HOOK","	* African"},
 /* 0189 */ { "LATIN CAPITAL LETTER AFRICAN D","	* Ewe\n"
@@ -1807,17 +1884,21 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 018D */ { "LATIN SMALL LETTER TURNED DELTA","	= reversed Polish-hook o\n"
 	"	* archaic phonetic for labialized alveolar fricative\n"
 	"	* recommended spellings 007A 02B7 or 007A 032B"},
-/* 018E */ { "LATIN CAPITAL LETTER REVERSED E","	= turned e\n"
+/* 018E */ { "LATIN CAPITAL LETTER REVERSED E","	= turned capital e\n"
 	"	* Pan-Nigerian alphabet\n"
-	"	* lowercase is 01DD"},
+	"	* lowercase is 01DD\n"
+	"	x (there exists - 2203)\n"
+	"	x (latin letter small capital turned e - 2C7B)"},
 /* 018F */ { "LATIN CAPITAL LETTER SCHWA","	* Azerbaijani, ...\n"
 	"	* lowercase is 0259\n"
 	"	x (cyrillic capital letter schwa - 04D8)"},
-/* 0190 */ { "LATIN CAPITAL LETTER OPEN E","	= epsilon\n"
-	"	* African\n"
+/* 0190 */ { "LATIN CAPITAL LETTER OPEN E","	= capital epsilon\n"
+	"	* African languages\n"
 	"	* lowercase is 025B\n"
+	"	* not to be confused with glyph variants of capital E\n"
 	"	x (euler constant - 2107)\n"
-	"	x (turned digit three - 218B)"},
+	"	x (turned digit three - 218B)\n"
+	"	x (latin capital letter tresillo - A72A)"},
 /* 0191 */ { "LATIN CAPITAL LETTER F WITH HOOK","	* African\n"
 	"	x (latin capital letter f with stroke - A798)"},
 /* 0192 */ { "LATIN SMALL LETTER F WITH HOOK","	= script f\n"
@@ -1828,34 +1909,47 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	* lowercase is 0260"},
 /* 0194 */ { "LATIN CAPITAL LETTER GAMMA","	* African\n"
 	"	* lowercase is 0263"},
-/* 0195 */ { "LATIN SMALL LETTER HV","	* Gothic transliteration\n"
-	"	* uppercase is 01F6"},
-/* 0196 */ { "LATIN CAPITAL LETTER IOTA","	* African\n"
-	"	* lowercase is 0269"},
+/* 0195 */ { "LATIN SMALL LETTER HV","	= hwair\n"
+	"	* Gothic transliteration\n"
+	"	* uppercase is 01F6\n"
+	"	x (gothic letter hwair - 10348)"},
+/* 0196 */ { "LATIN CAPITAL LETTER IOTA","	* African languages\n"
+	"	* lowercase is 0269\n"
+	"	x (cyrillic capital letter iota - A646)"},
 /* 0197 */ { "LATIN CAPITAL LETTER I WITH STROKE","	= barred i, i bar\n"
-	"	* African\n"
+	"	* African languages\n"
 	"	* lowercase is 0268\n"
 	"	* ISO 6438 gives lowercase as 026A, not 0268\n"
-	"	x (latin letter small capital i - 026A)"},
+	"	x (latin letter small capital i - 026A)\n"
+	"	x (latin small capital letter i with stroke - 1D7B)"},
 /* 0198 */ { "LATIN CAPITAL LETTER K WITH HOOK",NULL},
 /* 0199 */ { "LATIN SMALL LETTER K WITH HOOK","	* Hausa, Pan-Nigerian alphabet"},
 /* 019A */ { "LATIN SMALL LETTER L WITH BAR","	= barred l\n"
-	"	* Americanist phonetic usage for 026C\n"
+	"	* Americanist phonetic usage for IPA ɬ\n"
 	"	* uppercase is 023D\n"
-	"	x (latin small letter l with stroke - 0142)"},
+	"	x (latin small letter l with stroke - 0142)\n"
+	"	x (latin small letter l with belt - 026C)\n"
+	"	x (latin small letter l with double bar - 2C61)\n"
+	"	x (latin small letter l with high stroke - A749)"},
 /* 019B */ { "LATIN SMALL LETTER LAMBDA WITH STROKE","	= barred lambda, lambda bar\n"
-	"	* Americanist phonetic usage"},
+	"	* Americanist phonetic usage for IPA tɬ\n"
+	"	x (greek small letter lamda - 03BB)"},
 /* 019C */ { "LATIN CAPITAL LETTER TURNED M","	* Zhuang (old orthography)\n"
-	"	* lowercase is 026F"},
+	"	* lowercase is 026F\n"
+	"	x (latin letter small capital turned m - A7FA)\n"
+	"	x (latin epigraphic letter inverted m - A7FD)"},
 /* 019D */ { "LATIN CAPITAL LETTER N WITH LEFT HOOK","	* African\n"
 	"	* lowercase is 0272"},
 /* 019E */ { "LATIN SMALL LETTER N WITH LONG RIGHT LEG","	* archaic phonetic for Japanese 3093\n"
 	"	* recommended spelling for syllabic n is 006E 0329\n"
-	"	* Lakota (indicates nasalization of vowel)\n"
-	"	* uppercase is 0220"},
+	"	* Lakota (indicates nasalization of vowel), superseded by 014B\n"
+	"	* uppercase is 0220\n"
+	"	x (latin small letter eng - 014B)\n"
+	"	x (hiragana letter n - 3093)"},
 /* 019F */ { "LATIN CAPITAL LETTER O WITH MIDDLE TILDE","	= barred o, o bar\n"
+	"	* African languages\n"
+	"	* the formal name does not describe the glyph\n"
 	"	* lowercase is 0275\n"
-	"	* African\n"
 	"	x (cyrillic capital letter barred o - 04E8)"},
 /* 01A0 */ { "LATIN CAPITAL LETTER O WITH HORN","	: 004F 031B"},
 /* 01A1 */ { "LATIN SMALL LETTER O WITH HORN","	* Vietnamese\n"
@@ -1868,27 +1962,31 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01A6 */ { "LATIN LETTER YR","	* Old Norse\n"
 	"	* from German Standard DIN 31624 and ISO 5426-2\n"
 	"	* lowercase is 0280"},
-/* 01A7 */ { "LATIN CAPITAL LETTER TONE TWO",NULL},
+/* 01A7 */ { "LATIN CAPITAL LETTER TONE TWO","	x (latin letter voiced laryngeal spirant - 1D24)\n"
+	"	x (cyrillic capital letter reversed dze - A644)\n"
+	"	x (roman sextula sign - 10193)"},
 /* 01A8 */ { "LATIN SMALL LETTER TONE TWO","	* Zhuang (old orthography)\n"
 	"	* typographically a reversed S\n"
-	"	x (latin small letter tone six - 0185)"},
-/* 01A9 */ { "LATIN CAPITAL LETTER ESH","	* African\n"
+	"	x (latin small letter tone six - 0185)\n"
+	"	x (cyrillic small letter reversed dze - A645)"},
+/* 01A9 */ { "LATIN CAPITAL LETTER ESH","	* African languages\n"
 	"	* lowercase is 0283\n"
-	"	x (greek capital letter sigma - 03A3)"},
+	"	x (greek capital letter sigma - 03A3)\n"
+	"	x (n-ary summation - 2211)"},
 /* 01AA */ { "LATIN LETTER REVERSED ESH LOOP","	* archaic phonetic for labialized palatoalveolar or palatal fricative\n"
 	"	* Twi\n"
 	"	* recommended spellings 0283 02B7, 00E7 02B7, 0068 0265, etc."},
 /* 01AB */ { "LATIN SMALL LETTER T WITH PALATAL HOOK","	* archaic phonetic for palatalized alveolar or dental stop\n"
 	"	* recommended spelling 0074 02B2"},
 /* 01AC */ { "LATIN CAPITAL LETTER T WITH HOOK","	* a glyph variant with hook at the right also occurs"},
-/* 01AD */ { "LATIN SMALL LETTER T WITH HOOK","	* African"},
-/* 01AE */ { "LATIN CAPITAL LETTER T WITH RETROFLEX HOOK","	* African\n"
+/* 01AD */ { "LATIN SMALL LETTER T WITH HOOK","	* African languages"},
+/* 01AE */ { "LATIN CAPITAL LETTER T WITH RETROFLEX HOOK","	* African languages\n"
 	"	* lowercase is 0288"},
 /* 01AF */ { "LATIN CAPITAL LETTER U WITH HORN","	: 0055 031B"},
 /* 01B0 */ { "LATIN SMALL LETTER U WITH HORN","	* Vietnamese\n"
 	"	: 0075 031B"},
-/* 01B1 */ { "LATIN CAPITAL LETTER UPSILON","	* African\n"
-	"	* typographically based on turned capital Greek omega\n"
+/* 01B1 */ { "LATIN CAPITAL LETTER UPSILON","	* African languages\n"
+	"	* typographically, turned capital Greek omega 03A9\n"
 	"	* lowercase is 028A\n"
 	"	x (inverted ohm sign - 2127)"},
 /* 01B2 */ { "LATIN CAPITAL LETTER V WITH HOOK","	= script v\n"
@@ -1899,56 +1997,61 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01B5 */ { "LATIN CAPITAL LETTER Z WITH STROKE",NULL},
 /* 01B6 */ { "LATIN SMALL LETTER Z WITH STROKE","	= barred z, z bar\n"
 	"	* Pan-Turkic Latin orthography\n"
-	"	* handwritten variant of Latin \"z\"\n"
-	"	x (latin small letter z - 007A)"},
+	"	* also a handwritten variant of Latin \"z\"\n"
+	"	x (latin small letter z - 007A)\n"
+	"	x (latin small letter z with middle tilde - 1D76)"},
 /* 01B7 */ { "LATIN CAPITAL LETTER EZH","	* African, Skolt Sami\n"
 	"	* lowercase is 0292\n"
 	"	x (latin capital letter yogh - 021C)\n"
-	"	x (cyrillic capital letter abkhasian dze - 04E0)"},
-/* 01B8 */ { "LATIN CAPITAL LETTER EZH REVERSED",NULL},
+	"	x (cyrillic capital letter abkhasian dze - 04E0)\n"
+	"	x (latin letter small capital ezh - 1D23)\n"
+	"	x (latin capital letter reversed open e - A7AB)"},
+/* 01B8 */ { "LATIN CAPITAL LETTER EZH REVERSED","	x (latin capital letter open e - 0190)"},
 /* 01B9 */ { "LATIN SMALL LETTER EZH REVERSED","	* archaic phonetic for voiced pharyngeal fricative\n"
-	"	* sometimes typographically rendered with a turned digit 3\n"
-	"	* recommended spelling 0295\n"
+	"	* sometimes typographically rendered as a turned digit 3\n"
+	"	* recommended spelling is 0295\n"
 	"	x (latin letter pharyngeal voiced fricative - 0295)\n"
 	"	x (arabic letter ain - 0639)"},
 /* 01BA */ { "LATIN SMALL LETTER EZH WITH TAIL","	* archaic phonetic for labialized voiced palatoalveolar or palatal fricative\n"
 	"	* Twi\n"
 	"	* recommended spellings 0292 02B7 or 006A 02B7"},
 /* 01BB */ { "LATIN LETTER TWO WITH STROKE","	* archaic phonetic for [dz] affricate\n"
-	"	* recommended spellings 0292 or 0064 007A"},
+	"	* recommended spellings 0292 or 0064 007A\n"
+	"	x (latin capital letter tone two - 01A7)"},
 /* 01BC */ { "LATIN CAPITAL LETTER TONE FIVE",NULL},
 /* 01BD */ { "LATIN SMALL LETTER TONE FIVE","	* Zhuang (old orthography)\n"
 	"	x (latin small letter tone six - 0185)"},
 /* 01BE */ { "LATIN LETTER INVERTED GLOTTAL STOP WITH STROKE","	* archaic phonetic for [ts] affricate\n"
 	"	* recommended spelling 0074 0073\n"
-	"	* letter form is actually derived from ligation of ts, rather than inverted glottal stop"},
+	"	* letter form is actually derived from ligation of ts, rather than inverted glottal stop\n"
+	"	x (latin letter inverted glottal stop - 0296)\n"
+	"	x (latin small letter ts digraph - 02A6)"},
 /* 01BF */ { "LATIN LETTER WYNN","	= wen\n"
 	"	* Runic letter borrowed into Latin script\n"
 	"	* replaced by \"w\" in modern transcriptions of Old English\n"
 	"	* uppercase is 01F7\n"
 	"	x (runic letter wunjo wynn w - 16B9)"},
 /* 01C0 */ { "LATIN LETTER DENTAL CLICK","	= pipe\n"
-	"	* Khoisan tradition\n"
 	"	* \"c\" in Zulu orthography\n"
 	"	x (solidus - 002F)\n"
 	"	x (vertical line - 007C)\n"
 	"	x (latin small letter turned t - 0287)\n"
 	"	x (divides - 2223)"},
 /* 01C1 */ { "LATIN LETTER LATERAL CLICK","	= double pipe\n"
-	"	* Khoisan tradition\n"
 	"	* \"x\" in Zulu orthography\n"
 	"	x (latin letter inverted glottal stop - 0296)\n"
+	"	x (double vertical line - 2016)\n"
 	"	x (parallel to - 2225)"},
 /* 01C2 */ { "LATIN LETTER ALVEOLAR CLICK","	= double-barred pipe\n"
-	"	= palatoalveolar click (IPA)\n"
-	"	* Khoisan tradition\n"
-	"	x (not equal to - 2260)"},
+	"	* palatoalveolar click (IPA)\n"
+	"	x (not equal to - 2260)\n"
+	"	x (thermodynamic - 29E7)"},
 /* 01C3 */ { "LATIN LETTER RETROFLEX CLICK","	= latin letter exclamation mark (1.0)\n"
-	"	= (post)alveolar click (IPA)\n"
-	"	* Khoisan tradition\n"
+	"	* (post)alveolar click (IPA)\n"
 	"	* \"q\" in Zulu orthography\n"
 	"	x (exclamation mark - 0021)\n"
-	"	x (latin letter stretched c - 0297)"},
+	"	x (latin letter stretched c - 0297)\n"
+	"	x (latin letter retroflex click with retroflex hook - 1DF0A)"},
 /* 01C4 */ { "LATIN CAPITAL LETTER DZ WITH CARON","	# 0044 017D"},
 /* 01C5 */ { "LATIN CAPITAL LETTER D WITH SMALL LETTER Z WITH CARON","	# 0044 017E"},
 /* 01C6 */ { "LATIN SMALL LETTER DZ WITH CARON","	x (cyrillic small letter dzhe - 045F)\n"
@@ -2024,7 +2127,9 @@ static const struct unicode_nameannot una_00_01[] = {
 /* 01F4 */ { "LATIN CAPITAL LETTER G WITH ACUTE","	: 0047 0301"},
 /* 01F5 */ { "LATIN SMALL LETTER G WITH ACUTE","	* Macedonian and Serbian transliteration\n"
 	"	: 0067 0301"},
-/* 01F6 */ { "LATIN CAPITAL LETTER HWAIR","	* lowercase is 0195"},
+/* 01F6 */ { "LATIN CAPITAL LETTER HWAIR","	* lowercase is 0195\n"
+	"	x (cyrillic capital letter komi nje - 050A)\n"
+	"	x (gothic letter hwair - 10348)"},
 /* 01F7 */ { "LATIN CAPITAL LETTER WYNN","	= wen\n"
 	"	* lowercase is 01BF"},
 /* 01F8 */ { "LATIN CAPITAL LETTER N WITH GRAVE","	: 004E 0300"},
@@ -2070,20 +2175,24 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 021A */ { "LATIN CAPITAL LETTER T WITH COMMA BELOW","	: 0054 0326"},
 /* 021B */ { "LATIN SMALL LETTER T WITH COMMA BELOW","	x (latin small letter t with cedilla - 0163)\n"
 	"	: 0074 0326"},
-/* 021C */ { "LATIN CAPITAL LETTER YOGH","	x (latin capital letter ezh - 01B7)"},
+/* 021C */ { "LATIN CAPITAL LETTER YOGH","	x (latin capital letter ezh - 01B7)\n"
+	"	x (cyrillic capital letter ze - 0417)\n"
+	"	x (latin capital letter reversed open e - A7AB)"},
 /* 021D */ { "LATIN SMALL LETTER YOGH","	* Middle English, Scots\n"
 	"	x (latin small letter ezh - 0292)\n"
-	"	x (latin small letter insular g - 1D79)"},
+	"	x (latin small letter insular g - 1D79)\n"
+	"	x (latin small letter et - A76B)"},
 /* 021E */ { "LATIN CAPITAL LETTER H WITH CARON","	: 0048 030C"},
 /* 021F */ { "LATIN SMALL LETTER H WITH CARON","	* Finnish Romany\n"
 	"	: 0068 030C"},
-/* 0220 */ { "LATIN CAPITAL LETTER N WITH LONG RIGHT LEG","	* Lakota\n"
-	"	* lowercase is 019E"},
+/* 0220 */ { "LATIN CAPITAL LETTER N WITH LONG RIGHT LEG","	* Lakota (nasalization), superseded by 014A\n"
+	"	* lowercase is 019E\n"
+	"	x (latin capital letter eng - 014A)"},
 /* 0221 */ { "LATIN SMALL LETTER D WITH CURL","	* phonetic use in Sinology"},
-/* 0222 */ { "LATIN CAPITAL LETTER OU",NULL},
+/* 0222 */ { "LATIN CAPITAL LETTER OU","	x (latin letter small capital ou - 1D15)"},
 /* 0223 */ { "LATIN SMALL LETTER OU","	* Algonquin, Huron\n"
 	"	x (digit eight - 0038)"},
-/* 0224 */ { "LATIN CAPITAL LETTER Z WITH HOOK",NULL},
+/* 0224 */ { "LATIN CAPITAL LETTER Z WITH HOOK","	x (latin capital letter z with descender - 2C6B)"},
 /* 0225 */ { "LATIN SMALL LETTER Z WITH HOOK","	* Middle High German"},
 /* 0226 */ { "LATIN CAPITAL LETTER A WITH DOT ABOVE","	: 0041 0307"},
 /* 0227 */ { "LATIN SMALL LETTER A WITH DOT ABOVE","	* Uralicist usage\n"
@@ -2104,13 +2213,21 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0234 */ { "LATIN SMALL LETTER L WITH CURL",NULL},
 /* 0235 */ { "LATIN SMALL LETTER N WITH CURL",NULL},
 /* 0236 */ { "LATIN SMALL LETTER T WITH CURL",NULL},
-/* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	x (mathematical italic small dotless j - 1D6A5)"},
+/* 0237 */ { "LATIN SMALL LETTER DOTLESS J","	* this is a non-casing letter\n"
+	"	x (greek letter yot - 03F3)\n"
+	"	x (cyrillic small letter je - 0458)\n"
+	"	x (mathematical italic small dotless j - 1D6A5)"},
 /* 0238 */ { "LATIN SMALL LETTER DB DIGRAPH",NULL},
 /* 0239 */ { "LATIN SMALL LETTER QP DIGRAPH",NULL},
 /* 023A */ { "LATIN CAPITAL LETTER A WITH STROKE","	* lowercase is 2C65"},
-/* 023B */ { "LATIN CAPITAL LETTER C WITH STROKE",NULL},
-/* 023C */ { "LATIN SMALL LETTER C WITH STROKE","	* also used in Americanist linguistics"},
-/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* lowercase is 019A"},
+/* 023B */ { "LATIN CAPITAL LETTER C WITH STROKE","	x (cedi sign - 20B5)"},
+/* 023C */ { "LATIN SMALL LETTER C WITH STROKE","	* also used in Americanist linguistics\n"
+	"	x (cent sign - 00A2)"},
+/* 023D */ { "LATIN CAPITAL LETTER L WITH BAR","	* lowercase is 019A\n"
+	"	x (latin capital letter l with stroke - 0141)\n"
+	"	x (latin capital letter l with double bar - 2C60)\n"
+	"	x (latin capital letter l with middle tilde - 2C62)\n"
+	"	x (latin capital letter l with high stroke - A748)"},
 /* 023E */ { "LATIN CAPITAL LETTER T WITH DIAGONAL STROKE","	* lowercase is 2C66"},
 /* 023F */ { "LATIN SMALL LETTER S WITH SWASH TAIL","	* voiceless labio-alveolar fricative\n"
 	"	* uppercase is 2C7E\n"
@@ -2122,9 +2239,11 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0242 */ { "LATIN SMALL LETTER GLOTTAL STOP","	* casing use in Chipewyan, Dogrib, Slavey (Canadian aboriginal orthographies)\n"
 	"	x (latin letter glottal stop - 0294)\n"
 	"	x (modifier letter glottal stop - 02C0)"},
-/* 0243 */ { "LATIN CAPITAL LETTER B WITH STROKE","	* lowercase is 0180"},
+/* 0243 */ { "LATIN CAPITAL LETTER B WITH STROKE","	* lowercase is 0180\n"
+	"	x (latin letter small capital barred b - 1D03)"},
 /* 0244 */ { "LATIN CAPITAL LETTER U BAR","	* lowercase is 0289"},
-/* 0245 */ { "LATIN CAPITAL LETTER TURNED V","	* lowercase is 028C"},
+/* 0245 */ { "LATIN CAPITAL LETTER TURNED V","	* lowercase is 028C\n"
+	"	x (greek capital letter lamda - 039B)"},
 /* 0246 */ { "LATIN CAPITAL LETTER E WITH STROKE",NULL},
 /* 0247 */ { "LATIN SMALL LETTER E WITH STROKE",NULL},
 /* 0248 */ { "LATIN CAPITAL LETTER J WITH STROKE",NULL},
@@ -2132,25 +2251,28 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 024A */ { "LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL",NULL},
 /* 024B */ { "LATIN SMALL LETTER Q WITH HOOK TAIL",NULL},
 /* 024C */ { "LATIN CAPITAL LETTER R WITH STROKE",NULL},
-/* 024D */ { "LATIN SMALL LETTER R WITH STROKE",NULL},
+/* 024D */ { "LATIN SMALL LETTER R WITH STROKE","	x (latin small letter r with middle tilde - 1D72)"},
 /* 024E */ { "LATIN CAPITAL LETTER Y WITH STROKE",NULL},
 /* 024F */ { "LATIN SMALL LETTER Y WITH STROKE",NULL},
 /* 0250 */ { "LATIN SMALL LETTER TURNED A","	* low central unrounded vowel\n"
 	"	* uppercase is 2C6F"},
 /* 0251 */ { "LATIN SMALL LETTER ALPHA","	= latin small letter script a (1.0)\n"
 	"	* low back unrounded vowel\n"
+	"	* the representative glyph appears like an allograph of Latin \"a\", but sometimes the character is rendered more like a Greek \"α\"\n"
 	"	* uppercase is 2C6D\n"
 	"	x (greek small letter alpha - 03B1)"},
 /* 0252 */ { "LATIN SMALL LETTER TURNED ALPHA","	* low back rounded vowel\n"
 	"	* uppercase is 2C70\n"
 	"	x (latin small letter inverted alpha - AB64)"},
 /* 0253 */ { "LATIN SMALL LETTER B WITH HOOK","	* implosive bilabial stop\n"
-	"	* Pan-Nigerian alphabet\n"
-	"	* uppercase is 0181"},
+	"	* uppercase is 0181\n"
+	"	x (cyrillic small letter be - 0431)"},
 /* 0254 */ { "LATIN SMALL LETTER OPEN O","	* typographically a turned c\n"
 	"	* lower-mid back rounded vowel\n"
-	"	* in older Danish usage \"0254:\" means \"that is\"\n"
-	"	* uppercase is 0186"},
+	"	* in older Danish usage \"0254:\" stands for \"that is\"\n"
+	"	* uppercase is 0186\n"
+	"	x (latin letter small capital open o - 1D10)\n"
+	"	x (latin small letter reversed c - 2184)"},
 /* 0255 */ { "LATIN SMALL LETTER C WITH CURL","	* voiceless alveolo-palatal laminal fricative\n"
 	"	* used in transcription of Mandarin Chinese\n"
 	"	* sound spelled with 015B in Polish"},
@@ -2170,12 +2292,17 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 025B */ { "LATIN SMALL LETTER OPEN E","	= epsilon\n"
 	"	* lower-mid front unrounded vowel\n"
 	"	* uppercase is 0190\n"
-	"	x (greek small letter epsilon - 03B5)"},
-/* 025C */ { "LATIN SMALL LETTER REVERSED OPEN E","	* lower-mid central unrounded vowel\n"
-	"	* uppercase is A7AB"},
+	"	x (greek small letter epsilon - 03B5)\n"
+	"	x (cyrillic small letter reversed ze - 0511)"},
+/* 025C */ { "LATIN SMALL LETTER REVERSED OPEN E","	= reversed epsilon\n"
+	"	* lower-mid central unrounded vowel\n"
+	"	* uppercase is A7AB\n"
+	"	x (cyrillic small letter ze - 0437)\n"
+	"	x (latin small letter turned open e - 1D08)"},
 /* 025D */ { "LATIN SMALL LETTER REVERSED OPEN E WITH HOOK","	* rhotacized lower-mid central vowel"},
 /* 025E */ { "LATIN SMALL LETTER CLOSED REVERSED OPEN E","	= closed reversed epsilon\n"
-	"	* lower-mid central rounded vowel"},
+	"	* lower-mid central rounded vowel\n"
+	"	x (latin small letter closed open e - 029A)"},
 /* 025F */ { "LATIN SMALL LETTER DOTLESS J WITH STROKE","	* voiced palatal stop\n"
 	"	* typographically a turned f, but better thought of as a form of j\n"
 	"	* \"gy\" in Hungarian orthography\n"
@@ -2184,7 +2311,8 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* uppercase is 0193"},
 /* 0261 */ { "LATIN SMALL LETTER SCRIPT G","	* voiced velar stop\n"
 	"	* uppercase is A7AC\n"
-	"	x (latin small letter g - 0067)"},
+	"	x (latin small letter g - 0067)\n"
+	"	x (script small g - 210A)"},
 /* 0262 */ { "LATIN LETTER SMALL CAPITAL G","	* voiced uvular stop"},
 /* 0263 */ { "LATIN SMALL LETTER GAMMA","	* voiced velar fricative\n"
 	"	* uppercase is 0194\n"
@@ -2198,32 +2326,46 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* uppercase in Nawdm is 0124\n"
 	"	x (modifier letter small h with hook - 02B1)"},
 /* 0267 */ { "LATIN SMALL LETTER HENG WITH HOOK","	* voiceless coarticulated velar and palatoalveolar fricative\n"
-	"	* \"sj\" in some Swedish dialects"},
+	"	* \"sj\" in some Swedish dialects\n"
+	"	x (latin small letter heng - A727)"},
 /* 0268 */ { "LATIN SMALL LETTER I WITH STROKE","	= barred i, i bar\n"
 	"	* high central unrounded vowel\n"
 	"	* uppercase is 0197\n"
-	"	* ISO 6438 gives lowercase of 0197 as 026A, not 0268"},
+	"	* ISO 6438 gives lowercase of 0197 as 026A, not 0268\n"
+	"	x (latin small capital letter i with stroke - 1D7B)"},
 /* 0269 */ { "LATIN SMALL LETTER IOTA","	* semi-high front unrounded vowel\n"
 	"	* obsoleted by IPA in 1989\n"
 	"	* preferred use is 026A latin letter small capital i\n"
 	"	* uppercase is 0196\n"
-	"	x (greek small letter iota - 03B9)"},
+	"	x (latin small letter dotless i - 0131)\n"
+	"	x (greek small letter iota - 03B9)\n"
+	"	x (cyrillic small letter iota - A647)\n"
+	"	x (mathematical italic small dotless i - 1D6A4)"},
 /* 026A */ { "LATIN LETTER SMALL CAPITAL I","	* semi-high front unrounded vowel\n"
 	"	* preferred IPA alternate for 0269\n"
 	"	* uppercase is A7AE\n"
-	"	* glyph should have top and bottom serifs even in sans serif IPA font designs, to avoid confusion with lowercase l"},
+	"	* ISO 6438 gives this as lowercase of 0197 instead of 0268\n"
+	"	* glyph should have top and bottom serifs even in sans serif IPA font designs, to avoid confusion with lowercase l\n"
+	"	x (latin small letter dotless i - 0131)"},
 /* 026B */ { "LATIN SMALL LETTER L WITH MIDDLE TILDE","	* velarized voiced alveolar lateral approximant\n"
-	"	* uppercase is 2C62"},
+	"	* uppercase is 2C62\n"
+	"	x (latin small letter l with stroke - 0142)\n"
+	"	x (latin small letter l with inverted lazy s - AB37)\n"
+	"	x (latin small letter l with double middle tilde - AB38)"},
 /* 026C */ { "LATIN SMALL LETTER L WITH BELT","	* voiceless alveolar lateral fricative\n"
-	"	* uppercase is A7AD"},
-/* 026D */ { "LATIN SMALL LETTER L WITH RETROFLEX HOOK","	* voiced retroflex lateral"},
+	"	* uppercase is A7AD\n"
+	"	x (latin small letter l with bar - 019A)"},
+/* 026D */ { "LATIN SMALL LETTER L WITH RETROFLEX HOOK","	* voiced retroflex lateral\n"
+	"	x (latin small letter l with retroflex hook and belt - A78E)"},
 /* 026E */ { "LATIN SMALL LETTER LEZH","	* voiced lateral fricative\n"
 	"	* \"dhl\" in Zulu orthography"},
 /* 026F */ { "LATIN SMALL LETTER TURNED M","	* high back unrounded vowel\n"
-	"	* uppercase is 019C"},
+	"	* uppercase is 019C\n"
+	"	x (latin letter small capital turned m - A7FA)"},
 /* 0270 */ { "LATIN SMALL LETTER TURNED M WITH LONG LEG","	* voiced velar approximant"},
 /* 0271 */ { "LATIN SMALL LETTER M WITH HOOK","	* voiced labiodental nasal\n"
-	"	* uppercase is 2C6E"},
+	"	* uppercase is 2C6E\n"
+	"	x (latin small letter m with palatal hook - 1D86)"},
 /* 0272 */ { "LATIN SMALL LETTER N WITH LEFT HOOK","	* voiced palatal nasal\n"
 	"	* uppercase is 019D"},
 /* 0273 */ { "LATIN SMALL LETTER N WITH RETROFLEX HOOK","	* voiced retroflex nasal"},
@@ -2236,12 +2378,16 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (cyrillic small letter barred o - 04E9)"},
 /* 0276 */ { "LATIN LETTER SMALL CAPITAL OE","	* low front rounded vowel\n"
 	"	x (latin small ligature oe - 0153)"},
-/* 0277 */ { "LATIN SMALL LETTER CLOSED OMEGA","	* semi-high back rounded vowel\n"
+/* 0277 */ { "LATIN SMALL LETTER CLOSED OMEGA","	* near-close near-back rounded vowel\n"
 	"	* obsoleted by IPA in 1989\n"
 	"	* preferred use is 028A latin small letter upsilon\n"
+	"	x (latin small letter omega - A7B7)\n"
 	"	x (greek letter small capital omega - AB65)"},
 /* 0278 */ { "LATIN SMALL LETTER PHI","	* voiceless bilabial fricative\n"
-	"	x (greek small letter phi - 03C6)"},
+	"	* this is a non-casing letter\n"
+	"	x (greek small letter phi - 03C6)\n"
+	"	x (greek phi symbol - 03D5)\n"
+	"	x (latin small letter tailless phi - 2C77)"},
 /* 0279 */ { "LATIN SMALL LETTER TURNED R","	* voiced alveolar approximant\n"
 	"	x (modifier letter small turned r - 02B4)"},
 /* 027A */ { "LATIN SMALL LETTER TURNED R WITH LONG LEG","	* voiced lateral flap"},
@@ -2249,12 +2395,16 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (modifier letter small turned r with hook - 02B5)"},
 /* 027C */ { "LATIN SMALL LETTER R WITH LONG LEG","	* voiced strident apico-alveolar trill\n"
 	"	* obsoleted by IPA in 1989\n"
-	"	* sound spelled with 0159 in Czech\n"
+	"	* this sound is spelled with 0159 in Czech\n"
 	"	* preferred phonetic representation for Czech is 0072 031D\n"
-	"	* in current use in Gaelic types (as glyph variant of 0072)"},
+	"	* in current use in Gaelic types (as glyph variant of 0072)\n"
+	"	x (latin small letter insular r - A783)\n"
+	"	x (latin small letter insular s - A785)"},
 /* 027D */ { "LATIN SMALL LETTER R WITH TAIL","	* voiced retroflex flap\n"
-	"	* uppercase is 2C64"},
-/* 027E */ { "LATIN SMALL LETTER R WITH FISHHOOK","	* voiced alveolar flap or tap"},
+	"	* uppercase is 2C64\n"
+	"	x (latin small letter turned r with tail - 2C79)"},
+/* 027E */ { "LATIN SMALL LETTER R WITH FISHHOOK","	* voiced alveolar flap or tap\n"
+	"	x (latin small letter long s - 017F)"},
 /* 027F */ { "LATIN SMALL LETTER REVERSED R WITH FISHHOOK","	= long leg turned iota (a misnomer)\n"
 	"	* apical dental vowel\n"
 	"	* used by linguists working on Chinese and other Sino-Tibetan languages\n"
@@ -2269,7 +2419,8 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* uppercase is A7C5"},
 /* 0283 */ { "LATIN SMALL LETTER ESH","	* voiceless postalveolar fricative\n"
 	"	* uppercase is 01A9\n"
-	"	x (integral - 222B)"},
+	"	x (integral - 222B)\n"
+	"	x (latin small letter baseline esh - AB4D)"},
 /* 0284 */ { "LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK","	* implosive palatal stop\n"
 	"	* typographically based on 025F, not on 0283"},
 /* 0285 */ { "LATIN SMALL LETTER SQUAT REVERSED ESH","	* apical retroflex vowel\n"
@@ -2283,11 +2434,14 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* uppercase is A7B1\n"
 	"	x (latin letter dental click - 01C0)"},
 /* 0288 */ { "LATIN SMALL LETTER T WITH RETROFLEX HOOK","	* voiceless retroflex stop\n"
-	"	* uppercase is 01AE"},
+	"	* uppercase is 01AE\n"
+	"	x (latin small letter t with hook - 01AD)\n"
+	"	x (latin small letter t with hook and retroflex hook - 1DF09)"},
 /* 0289 */ { "LATIN SMALL LETTER U BAR","	* high central rounded vowel\n"
 	"	* uppercase is 0244\n"
 	"	x (latin small capital letter u with stroke - 1D7E)"},
-/* 028A */ { "LATIN SMALL LETTER UPSILON","	* semi-high back rounded vowel\n"
+/* 028A */ { "LATIN SMALL LETTER UPSILON","	* near-close near-back rounded vowel\n"
+	"	* typographically, a turned Greek small capital omega AB65\n"
 	"	* preferred IPA alternate to 0277\n"
 	"	* uppercase is 01B1\n"
 	"	x (greek small letter upsilon - 03C5)"},
@@ -2299,7 +2453,7 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* lower-mid back unrounded vowel\n"
 	"	* uppercase is 0245\n"
 	"	x (greek capital letter lamda - 039B)\n"
-	"	x (caret - 2038)\n"
+	"	x (greek letter small capital lamda - 1D27)\n"
 	"	x (logical and - 2227)"},
 /* 028D */ { "LATIN SMALL LETTER TURNED W","	* voiceless rounded labiovelar approximant\n"
 	"	x (modifier letter small turned w - AB69)"},
@@ -2308,7 +2462,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 0290 */ { "LATIN SMALL LETTER Z WITH RETROFLEX HOOK","	* voiced retroflex fricative"},
 /* 0291 */ { "LATIN SMALL LETTER Z WITH CURL","	* voiced alveolo-palatal laminal fricative\n"
 	"	* sound spelled with 017A in Polish"},
-/* 0292 */ { "LATIN SMALL LETTER EZH","	= dram\n"
+/* 0292 */ { "LATIN SMALL LETTER EZH","	= dram sign\n"
 	"	* voiced postalveolar fricative\n"
 	"	* mistakenly named yogh in Unicode 1.0\n"
 	"	* uppercase is 01B7\n"
@@ -2316,7 +2470,8 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin small letter yogh - 021D)\n"
 	"	x (cyrillic small letter abkhasian dze - 04E1)\n"
 	"	x (ounce sign - 2125)\n"
-	"	x (alchemical symbol for half dram - 1F772)"},
+	"	x (alchemical symbol for half dram - 1F772)\n"
+	"	x 2CF01"},
 /* 0293 */ { "LATIN SMALL LETTER EZH WITH CURL","	* palatalized voiced postalveolar fricative"},
 /* 0294 */ { "LATIN LETTER GLOTTAL STOP","	* this is a caseless letter\n"
 	"	* used in IPA, other phonetic notations, and those orthographies which use a caseless glottal stop\n"
@@ -2333,20 +2488,26 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin letter retroflex click - 01C3)\n"
 	"	x (complement - 2201)"},
 /* 0298 */ { "LATIN LETTER BILABIAL CLICK","	= bullseye\n"
-	"	x (circled dot operator - 2299)"},
-/* 0299 */ { "LATIN LETTER SMALL CAPITAL B","	* bilabial trill"},
+	"	* this is a non-casing letter\n"
+	"	x (circled dot operator - 2299)\n"
+	"	x (cyrillic capital letter monocular o - A668)"},
+/* 0299 */ { "LATIN LETTER SMALL CAPITAL B","	* bilabial trill\n"
+	"	x (cyrillic small letter ve - 0432)"},
 /* 029A */ { "LATIN SMALL LETTER CLOSED OPEN E","	= closed epsilon\n"
 	"	* lower-mid front rounded vowel\n"
-	"	* non-IPA alternate for the preferred 0153"},
+	"	* non-IPA alternate for the preferred 0153\n"
+	"	x (latin small letter closed reversed open e - 025E)"},
 /* 029B */ { "LATIN LETTER SMALL CAPITAL G WITH HOOK","	* voiced uvular implosive"},
 /* 029C */ { "LATIN LETTER SMALL CAPITAL H","	* voiceless epiglottal fricative\n"
+	"	x (cyrillic small letter en - 043D)\n"
 	"	x (modifier letter capital h - 1D34)\n"
 	"	x (modifier letter capital h with stroke - A7F8)"},
 /* 029D */ { "LATIN SMALL LETTER J WITH CROSSED-TAIL","	* voiced palatal fricative\n"
 	"	* uppercase is A7B2"},
 /* 029E */ { "LATIN SMALL LETTER TURNED K","	* proposed for velar click\n"
 	"	* uppercase is A7B0\n"
-	"	* withdrawn by IPA in 1970"},
+	"	* withdrawn by IPA in 1970\n"
+	"	x (latin letter small capital turned k - 1DF10)"},
 /* 029F */ { "LATIN LETTER SMALL CAPITAL L","	* velar lateral approximant"},
 /* 02A0 */ { "LATIN SMALL LETTER Q WITH HOOK","	* voiceless uvular implosive"},
 /* 02A1 */ { "LATIN LETTER GLOTTAL STOP WITH STROKE","	* voiced epiglottal stop"},
@@ -2356,8 +2517,10 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02A4 */ { "LATIN SMALL LETTER DEZH DIGRAPH","	* voiced postalveolar affricate"},
 /* 02A5 */ { "LATIN SMALL LETTER DZ DIGRAPH WITH CURL","	* voiced alveolo-palatal affricate"},
 /* 02A6 */ { "LATIN SMALL LETTER TS DIGRAPH","	* voiceless dental affricate\n"
+	"	x (latin letter inverted glottal stop with stroke - 01BE)\n"
 	"	x (latin small letter ts digraph with retroflex hook - AB67)"},
-/* 02A7 */ { "LATIN SMALL LETTER TESH DIGRAPH","	* voiceless postalveolar affricate"},
+/* 02A7 */ { "LATIN SMALL LETTER TESH DIGRAPH","	* voiceless postalveolar affricate\n"
+	"	x (latin small letter tz - A729)"},
 /* 02A8 */ { "LATIN SMALL LETTER TC DIGRAPH WITH CURL","	* voiceless alveolo-palatal affricate"},
 /* 02A9 */ { "LATIN SMALL LETTER FENG DIGRAPH","	* velopharyngeal fricative"},
 /* 02AA */ { "LATIN SMALL LETTER LS DIGRAPH","	* lateral alveolar fricative (lisp)"},
@@ -2415,6 +2578,7 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* glottal stop, glottalization, ejective\n"
 	"	* many languages use this as a letter of their alphabets\n"
 	"	* used as a tone marker in Bodo, Dogri, and Maithili\n"
+	"	* used as a modifier letter in the Lisu script\n"
 	"	* 2019 is the preferred character for a punctuation apostrophe\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (combining comma above - 0313)\n"
@@ -2483,6 +2647,7 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* precedes letter or syllable modified\n"
 	"	x (combining vertical line below - 0329)"},
 /* 02CD */ { "MODIFIER LETTER LOW MACRON","	* low level tone\n"
+	"	* used as a modifier letter in the Lisu script\n"
 	"	x (low line - 005F)\n"
 	"	x (combining macron below - 0331)"},
 /* 02CE */ { "MODIFIER LETTER LOW GRAVE ACCENT","	* low-falling tone"},
@@ -2539,7 +2704,7 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02EA */ { "MODIFIER LETTER YIN DEPARTING TONE MARK",NULL},
 /* 02EB */ { "MODIFIER LETTER YANG DEPARTING TONE MARK",NULL},
 /* 02EC */ { "MODIFIER LETTER VOICING",NULL},
-/* 02ED */ { "MODIFIER LETTER UNASPIRATED",NULL},
+/* 02ED */ { "MODIFIER LETTER UNASPIRATED","	x (modifier letter short equals sign - A78A)"},
 /* 02EE */ { "MODIFIER LETTER DOUBLE APOSTROPHE","	* Nenets"},
 /* 02EF */ { "MODIFIER LETTER LOW DOWN ARROWHEAD",NULL},
 /* 02F0 */ { "MODIFIER LETTER LOW UP ARROWHEAD",NULL},
@@ -3872,7 +4037,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06DB */ { "ARABIC SMALL HIGH THREE DOTS",NULL},
 /* 06DC */ { "ARABIC SMALL HIGH SEEN",NULL},
 /* 06DD */ { "ARABIC END OF AYAH",NULL},
-/* 06DE */ { "ARABIC START OF RUB EL HIZB",NULL},
+/* 06DE */ { "ARABIC START OF RUB EL HIZB","	* indicates boundaries of parts of sections\n"
+	"	* typically depicted as an eight-sided symbol, which may or may not appear starlike"},
 /* 06DF */ { "ARABIC SMALL HIGH ROUNDED ZERO","	* smaller than the typical circular shape used for 0652"},
 /* 06E0 */ { "ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO","	* the term \"rectangular zero\" is a translation of the Arabic name of this sign"},
 /* 06E1 */ { "ARABIC SMALL HIGH DOTLESS HEAD OF KHAH","	= Arabic jazm\n"
@@ -3898,10 +4064,10 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06F1 */ { "EXTENDED ARABIC-INDIC DIGIT ONE",NULL},
 /* 06F2 */ { "EXTENDED ARABIC-INDIC DIGIT TWO",NULL},
 /* 06F3 */ { "EXTENDED ARABIC-INDIC DIGIT THREE",NULL},
-/* 06F4 */ { "EXTENDED ARABIC-INDIC DIGIT FOUR","	* Persian has a different glyph than Sindhi and Urdu"},
-/* 06F5 */ { "EXTENDED ARABIC-INDIC DIGIT FIVE","	* Persian, Sindhi, and Urdu share glyph different from Arabic"},
-/* 06F6 */ { "EXTENDED ARABIC-INDIC DIGIT SIX","	* Persian, Sindhi, and Urdu have glyphs different from Arabic"},
-/* 06F7 */ { "EXTENDED ARABIC-INDIC DIGIT SEVEN","	* Urdu and Sindhi have glyphs different from Arabic"},
+/* 06F4 */ { "EXTENDED ARABIC-INDIC DIGIT FOUR","	* Urdu and Kashmiri have a different glyph than Persian"},
+/* 06F5 */ { "EXTENDED ARABIC-INDIC DIGIT FIVE",NULL},
+/* 06F6 */ { "EXTENDED ARABIC-INDIC DIGIT SIX","	* Sindhi, Urdu, and Kashmiri have a different glyph than Persian"},
+/* 06F7 */ { "EXTENDED ARABIC-INDIC DIGIT SEVEN","	* Sindhi, Urdu, and Kashmiri have a different glyph than Persian"},
 /* 06F8 */ { "EXTENDED ARABIC-INDIC DIGIT EIGHT",NULL},
 /* 06F9 */ { "EXTENDED ARABIC-INDIC DIGIT NINE",NULL},
 /* 06FA */ { "ARABIC LETTER SHEEN WITH DOT BELOW",NULL},
@@ -4377,7 +4543,8 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08B1 */ { "ARABIC LETTER STRAIGHT WAW","	* Tatar"},
 /* 08B2 */ { "ARABIC LETTER ZAIN WITH INVERTED V ABOVE",NULL},
 /* 08B3 */ { "ARABIC LETTER AIN WITH THREE DOTS BELOW",NULL},
-/* 08B4 */ { "ARABIC LETTER KAF WITH DOT BELOW",NULL},
+/* 08B4 */ { "ARABIC LETTER KAF WITH DOT BELOW","	* also used in Pegon\n"
+	"	x (arabic letter kaf with three dots below - 06AE)"},
 /* 08B5 */ { "ARABIC LETTER QAF WITH DOT BELOW AND NO DOTS ABOVE",NULL},
 /* 08B6 */ { "ARABIC LETTER BEH WITH SMALL MEEM ABOVE",NULL},
 /* 08B7 */ { "ARABIC LETTER PEH WITH SMALL MEEM ABOVE",NULL},
@@ -9913,20 +10080,24 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D00 */ { "LATIN LETTER SMALL CAPITAL A",NULL},
 /* 1D01 */ { "LATIN LETTER SMALL CAPITAL AE",NULL},
 /* 1D02 */ { "LATIN SMALL LETTER TURNED AE","	* glyph can also have sideways orientation"},
-/* 1D03 */ { "LATIN LETTER SMALL CAPITAL BARRED B",NULL},
+/* 1D03 */ { "LATIN LETTER SMALL CAPITAL BARRED B","	x (latin capital letter b with stroke - 0243)"},
 /* 1D04 */ { "LATIN LETTER SMALL CAPITAL C",NULL},
 /* 1D05 */ { "LATIN LETTER SMALL CAPITAL D",NULL},
 /* 1D06 */ { "LATIN LETTER SMALL CAPITAL ETH",NULL},
 /* 1D07 */ { "LATIN LETTER SMALL CAPITAL E",NULL},
-/* 1D08 */ { "LATIN SMALL LETTER TURNED OPEN E",NULL},
+/* 1D08 */ { "LATIN SMALL LETTER TURNED OPEN E","	x (latin small letter reversed open e - 025C)\n"
+	"	x (modifier letter small turned open e - 1D4C)"},
 /* 1D09 */ { "LATIN SMALL LETTER TURNED I",NULL},
 /* 1D0A */ { "LATIN LETTER SMALL CAPITAL J",NULL},
-/* 1D0B */ { "LATIN LETTER SMALL CAPITAL K",NULL},
+/* 1D0B */ { "LATIN LETTER SMALL CAPITAL K","	x (latin small letter kra - 0138)\n"
+	"	x (cyrillic small letter ka - 043A)"},
 /* 1D0C */ { "LATIN LETTER SMALL CAPITAL L WITH STROKE",NULL},
 /* 1D0D */ { "LATIN LETTER SMALL CAPITAL M",NULL},
-/* 1D0E */ { "LATIN LETTER SMALL CAPITAL REVERSED N",NULL},
+/* 1D0E */ { "LATIN LETTER SMALL CAPITAL REVERSED N","	x (cyrillic small letter i - 0438)\n"
+	"	x (modifier letter capital reversed n - 1D3B)"},
 /* 1D0F */ { "LATIN LETTER SMALL CAPITAL O",NULL},
-/* 1D10 */ { "LATIN LETTER SMALL CAPITAL OPEN O",NULL},
+/* 1D10 */ { "LATIN LETTER SMALL CAPITAL OPEN O","	x (latin small letter open o - 0254)\n"
+	"	x (latin small letter reversed c - 2184)"},
 /* 1D11 */ { "LATIN SMALL LETTER SIDEWAYS O",NULL},
 /* 1D12 */ { "LATIN SMALL LETTER SIDEWAYS OPEN O",NULL},
 /* 1D13 */ { "LATIN SMALL LETTER SIDEWAYS O WITH STROKE",NULL},
@@ -9934,10 +10105,11 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D15 */ { "LATIN LETTER SMALL CAPITAL OU",NULL},
 /* 1D16 */ { "LATIN SMALL LETTER TOP HALF O",NULL},
 /* 1D17 */ { "LATIN SMALL LETTER BOTTOM HALF O",NULL},
-/* 1D18 */ { "LATIN LETTER SMALL CAPITAL P","	* represents a semi-voiced [p]"},
+/* 1D18 */ { "LATIN LETTER SMALL CAPITAL P","	* represents a semi-voiced [p]\n"
+	"	x (greek letter small capital rho - 1D29)"},
 /* 1D19 */ { "LATIN LETTER SMALL CAPITAL REVERSED R",NULL},
 /* 1D1A */ { "LATIN LETTER SMALL CAPITAL TURNED R",NULL},
-/* 1D1B */ { "LATIN LETTER SMALL CAPITAL T",NULL},
+/* 1D1B */ { "LATIN LETTER SMALL CAPITAL T","	x (cyrillic small letter te - 0442)"},
 /* 1D1C */ { "LATIN LETTER SMALL CAPITAL U",NULL},
 /* 1D1D */ { "LATIN SMALL LETTER SIDEWAYS U",NULL},
 /* 1D1E */ { "LATIN SMALL LETTER SIDEWAYS DIAERESIZED U","	* glyph can also have turned orientation"},
@@ -9945,13 +10117,15 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D20 */ { "LATIN LETTER SMALL CAPITAL V",NULL},
 /* 1D21 */ { "LATIN LETTER SMALL CAPITAL W",NULL},
 /* 1D22 */ { "LATIN LETTER SMALL CAPITAL Z",NULL},
-/* 1D23 */ { "LATIN LETTER SMALL CAPITAL EZH",NULL},
+/* 1D23 */ { "LATIN LETTER SMALL CAPITAL EZH","	x (cyrillic small letter abkhasian dze - 04E1)"},
 /* 1D24 */ { "LATIN LETTER VOICED LARYNGEAL SPIRANT",NULL},
-/* 1D25 */ { "LATIN LETTER AIN",NULL},
+/* 1D25 */ { "LATIN LETTER AIN","	x (arabic letter ain - 0639)\n"
+	"	x (latin small letter egyptological ain - A725)"},
 /* 1D26 */ { "GREEK LETTER SMALL CAPITAL GAMMA",NULL},
 /* 1D27 */ { "GREEK LETTER SMALL CAPITAL LAMDA",NULL},
 /* 1D28 */ { "GREEK LETTER SMALL CAPITAL PI",NULL},
-/* 1D29 */ { "GREEK LETTER SMALL CAPITAL RHO","	* represents a voiceless uvular trill"},
+/* 1D29 */ { "GREEK LETTER SMALL CAPITAL RHO","	* represents a voiceless uvular trill\n"
+	"	x (latin letter small capital p - 1D18)"},
 /* 1D2A */ { "GREEK LETTER SMALL CAPITAL PSI",NULL},
 /* 1D2B */ { "CYRILLIC LETTER SMALL CAPITAL EL","	* in italic style, the glyph is obliqued, not italicized\n"
 	"	x (cyrillic small letter el - 043B)"},
@@ -10008,7 +10182,8 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D59 */ { "MODIFIER LETTER SMALL SIDEWAYS U","	# <super> 1D1D"},
 /* 1D5A */ { "MODIFIER LETTER SMALL TURNED M","	# <super> 026F"},
 /* 1D5B */ { "MODIFIER LETTER SMALL V","	# <super> 0076"},
-/* 1D5C */ { "MODIFIER LETTER SMALL AIN","	# <super> 1D25"},
+/* 1D5C */ { "MODIFIER LETTER SMALL AIN","	x (latin small letter egyptological ain - A725)\n"
+	"	# <super> 1D25"},
 /* 1D5D */ { "MODIFIER LETTER SMALL BETA","	# <super> 03B2"},
 /* 1D5E */ { "MODIFIER LETTER SMALL GREEK GAMMA","	# <super> 03B3"},
 /* 1D5F */ { "MODIFIER LETTER SMALL DELTA","	# <super> 03B4"},
@@ -10049,7 +10224,8 @@ static const struct unicode_nameannot una_00_1D[] = {
 	"	x (latin small letter closed insular g - A7D1)"},
 /* 1D7A */ { "LATIN SMALL LETTER TH WITH STRIKETHROUGH","	* American dictionary usage\n"
 	"	x (greek small letter theta - 03B8)"},
-/* 1D7B */ { "LATIN SMALL CAPITAL LETTER I WITH STROKE","	* used with different meanings by Americanists and Oxford dictionaries"},
+/* 1D7B */ { "LATIN SMALL CAPITAL LETTER I WITH STROKE","	* used with different meanings by Americanists and Oxford dictionaries\n"
+	"	x (latin capital letter i with stroke - 0197)"},
 /* 1D7C */ { "LATIN SMALL LETTER IOTA WITH STROKE","	* used by Russianists"},
 /* 1D7D */ { "LATIN SMALL LETTER P WITH STROKE","	* used by Americanists\n"
 	"	* uppercase is 2C63"},
@@ -10062,15 +10238,16 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1D83 */ { "LATIN SMALL LETTER G WITH PALATAL HOOK",NULL},
 /* 1D84 */ { "LATIN SMALL LETTER K WITH PALATAL HOOK",NULL},
 /* 1D85 */ { "LATIN SMALL LETTER L WITH PALATAL HOOK",NULL},
-/* 1D86 */ { "LATIN SMALL LETTER M WITH PALATAL HOOK",NULL},
-/* 1D87 */ { "LATIN SMALL LETTER N WITH PALATAL HOOK",NULL},
+/* 1D86 */ { "LATIN SMALL LETTER M WITH PALATAL HOOK","	x (latin small letter m with hook - 0271)"},
+/* 1D87 */ { "LATIN SMALL LETTER N WITH PALATAL HOOK","	x (latin small letter eng - 014B)"},
 /* 1D88 */ { "LATIN SMALL LETTER P WITH PALATAL HOOK",NULL},
 /* 1D89 */ { "LATIN SMALL LETTER R WITH PALATAL HOOK",NULL},
 /* 1D8A */ { "LATIN SMALL LETTER S WITH PALATAL HOOK",NULL},
 /* 1D8B */ { "LATIN SMALL LETTER ESH WITH PALATAL HOOK",NULL},
 /* 1D8C */ { "LATIN SMALL LETTER V WITH PALATAL HOOK",NULL},
 /* 1D8D */ { "LATIN SMALL LETTER X WITH PALATAL HOOK",NULL},
-/* 1D8E */ { "LATIN SMALL LETTER Z WITH PALATAL HOOK","	* uppercase is A7C6"},
+/* 1D8E */ { "LATIN SMALL LETTER Z WITH PALATAL HOOK","	* uppercase is A7C6\n"
+	"	x (latin small letter z with hook - 0225)"},
 /* 1D8F */ { "LATIN SMALL LETTER A WITH RETROFLEX HOOK",NULL},
 /* 1D90 */ { "LATIN SMALL LETTER ALPHA WITH RETROFLEX HOOK",NULL},
 /* 1D91 */ { "LATIN SMALL LETTER D WITH HOOK AND TAIL",NULL},
@@ -10270,9 +10447,9 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E35 */ { "LATIN SMALL LETTER K WITH LINE BELOW","	: 006B 0331"},
 /* 1E36 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW","	: 004C 0323"},
 /* 1E37 */ { "LATIN SMALL LETTER L WITH DOT BELOW","	* Indic transliteration\n"
-	"	: 006C 0323\n"
 	"	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
-	"	x (combining ring below - 0325)"},
+	"	x (combining ring below - 0325)\n"
+	"	: 006C 0323"},
 /* 1E38 */ { "LATIN CAPITAL LETTER L WITH DOT BELOW AND MACRON","	: 1E36 0304"},
 /* 1E39 */ { "LATIN SMALL LETTER L WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
 	"	: 1E37 0304"},
@@ -10317,9 +10494,9 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E59 */ { "LATIN SMALL LETTER R WITH DOT ABOVE","	: 0072 0307"},
 /* 1E5A */ { "LATIN CAPITAL LETTER R WITH DOT BELOW","	: 0052 0323"},
 /* 1E5B */ { "LATIN SMALL LETTER R WITH DOT BELOW","	* Indic transliteration\n"
-	"	: 0072 0323\n"
 	"	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration\n"
-	"	x (combining ring below - 0325)"},
+	"	x (combining ring below - 0325)\n"
+	"	: 0072 0323"},
 /* 1E5C */ { "LATIN CAPITAL LETTER R WITH DOT BELOW AND MACRON","	: 1E5A 0304"},
 /* 1E5D */ { "LATIN SMALL LETTER R WITH DOT BELOW AND MACRON","	* Indic transliteration\n"
 	"	: 1E5B 0304"},
@@ -10406,8 +10583,10 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E9D */ { "LATIN SMALL LETTER LONG S WITH HIGH STROKE",NULL},
 /* 1E9E */ { "LATIN CAPITAL LETTER SHARP S","	* not used in Swiss High German\n"
 	"	* lowercase is 00DF\n"
-	"	x (latin small letter sharp s - 00DF)"},
-/* 1E9F */ { "LATIN SMALL LETTER DELTA",NULL},
+	"	x (latin small letter sharp s - 00DF)\n"
+	"	x (latin capital letter middle scots s - A7D6)"},
+/* 1E9F */ { "LATIN SMALL LETTER DELTA","	* this is a non-casing letter\n"
+	"	x (greek small letter delta - 03B4)"},
 /* 1EA0 */ { "LATIN CAPITAL LETTER A WITH DOT BELOW","	: 0041 0323"},
 /* 1EA1 */ { "LATIN SMALL LETTER A WITH DOT BELOW","	: 0061 0323"},
 /* 1EA2 */ { "LATIN CAPITAL LETTER A WITH HOOK ABOVE","	: 0041 0309"},
@@ -11083,7 +11262,8 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (euro sign - 20AC)"},
 /* 20A1 */ { "COLON SIGN","	* Costa Rica, El Salvador"},
 /* 20A2 */ { "CRUZEIRO SIGN","	* Brazil"},
-/* 20A3 */ { "FRENCH FRANC SIGN","	* France"},
+/* 20A3 */ { "FRENCH FRANC SIGN","	* France\n"
+	"	x (latin capital letter f with stroke - A798)"},
 /* 20A4 */ { "LIRA SIGN","	* intended for lira, but not widely used\n"
 	"	* preferred character for lira is 00A3\n"
 	"	x (pound sign - 00A3)\n"
@@ -11304,7 +11484,8 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 2124 */ { "DOUBLE-STRUCK CAPITAL Z","	= the set of integers\n"
 	"	# <font> 005A latin capital letter z"},
 /* 2125 */ { "OUNCE SIGN","	x (latin small letter ezh - 0292)\n"
-	"	x (alchemical symbol for half ounce - 1F773)"},
+	"	x (alchemical symbol for half ounce - 1F773)\n"
+	"	x 2CF04"},
 /* 2126 */ { "OHM SIGN","	* SI unit of resistance, named after G. S. Ohm, German physicist\n"
 	"	* preferred representation is 03A9\n"
 	"	x (ascending node - 260A)\n"
@@ -11770,8 +11951,10 @@ static const struct unicode_nameannot una_00_22[] = {
 /* 2265 */ { "GREATER-THAN OR EQUAL TO","	x (greater-than sign - 003E)"},
 /* 2266 */ { "LESS-THAN OVER EQUAL TO",NULL},
 /* 2267 */ { "GREATER-THAN OVER EQUAL TO",NULL},
-/* 2268 */ { "LESS-THAN BUT NOT EQUAL TO","	~ 2268 FE00 with vertical stroke"},
-/* 2269 */ { "GREATER-THAN BUT NOT EQUAL TO","	~ 2269 FE00 with vertical stroke"},
+/* 2268 */ { "LESS-THAN BUT NOT EQUAL TO","	x (less-than and single-line not equal to - 2A87)\n"
+	"	~ 2268 FE00 with vertical stroke"},
+/* 2269 */ { "GREATER-THAN BUT NOT EQUAL TO","	x (greater-than and single-line not equal to - 2A88)\n"
+	"	~ 2269 FE00 with vertical stroke"},
 /* 226A */ { "MUCH LESS-THAN","	x (left-pointing double angle quotation mark - 00AB)"},
 /* 226B */ { "MUCH GREATER-THAN","	x (right-pointing double angle quotation mark - 00BB)"},
 /* 226C */ { "BETWEEN","	= plaintiff, quantic"},
@@ -14906,22 +15089,26 @@ static const struct unicode_nameannot una_00_2C[] = {
 /* 2C5D */ { "GLAGOLITIC SMALL LETTER TROKUTASTI A",NULL},
 /* 2C5E */ { "GLAGOLITIC SMALL LETTER LATINATE MYSLITE",NULL},
 /* 2C5F */ { "GLAGOLITIC SMALL LETTER CAUDATE CHRIVI",NULL},
-/* 2C60 */ { "LATIN CAPITAL LETTER L WITH DOUBLE BAR",NULL},
-/* 2C61 */ { "LATIN SMALL LETTER L WITH DOUBLE BAR",NULL},
-/* 2C62 */ { "LATIN CAPITAL LETTER L WITH MIDDLE TILDE","	* lowercase is 026B"},
+/* 2C60 */ { "LATIN CAPITAL LETTER L WITH DOUBLE BAR","	x (latin capital letter l with bar - 023D)"},
+/* 2C61 */ { "LATIN SMALL LETTER L WITH DOUBLE BAR","	x (latin small letter l with bar - 019A)\n"
+	"	x (latin small letter l with double middle tilde - AB38)"},
+/* 2C62 */ { "LATIN CAPITAL LETTER L WITH MIDDLE TILDE","	* lowercase is 026B\n"
+	"	x (latin capital letter l with stroke - 0141)"},
 /* 2C63 */ { "LATIN CAPITAL LETTER P WITH STROKE","	* lowercase is 1D7D"},
 /* 2C64 */ { "LATIN CAPITAL LETTER R WITH TAIL","	* lowercase is 027D"},
 /* 2C65 */ { "LATIN SMALL LETTER A WITH STROKE","	* uppercase is 023A"},
 /* 2C66 */ { "LATIN SMALL LETTER T WITH DIAGONAL STROKE","	* uppercase is 023E"},
-/* 2C67 */ { "LATIN CAPITAL LETTER H WITH DESCENDER",NULL},
+/* 2C67 */ { "LATIN CAPITAL LETTER H WITH DESCENDER","	x (cyrillic capital letter en with descender - 04A2)"},
 /* 2C68 */ { "LATIN SMALL LETTER H WITH DESCENDER",NULL},
-/* 2C69 */ { "LATIN CAPITAL LETTER K WITH DESCENDER",NULL},
+/* 2C69 */ { "LATIN CAPITAL LETTER K WITH DESCENDER","	x (cyrillic capital letter ka with descender - 049A)"},
 /* 2C6A */ { "LATIN SMALL LETTER K WITH DESCENDER",NULL},
-/* 2C6B */ { "LATIN CAPITAL LETTER Z WITH DESCENDER",NULL},
+/* 2C6B */ { "LATIN CAPITAL LETTER Z WITH DESCENDER","	x (latin capital letter z with hook - 0224)"},
 /* 2C6C */ { "LATIN SMALL LETTER Z WITH DESCENDER",NULL},
-/* 2C6D */ { "LATIN CAPITAL LETTER ALPHA","	* lowercase is 0251"},
+/* 2C6D */ { "LATIN CAPITAL LETTER ALPHA","	= capital script a\n"
+	"	* lowercase is 0251"},
 /* 2C6E */ { "LATIN CAPITAL LETTER M WITH HOOK","	* lowercase is 0271"},
-/* 2C6F */ { "LATIN CAPITAL LETTER TURNED A","	* lowercase is 0250"},
+/* 2C6F */ { "LATIN CAPITAL LETTER TURNED A","	* lowercase is 0250\n"
+	"	x (for all - 2200)"},
 /* 2C70 */ { "LATIN CAPITAL LETTER TURNED ALPHA","	* lowercase is 0252"},
 /* 2C71 */ { "LATIN SMALL LETTER V WITH RIGHT HOOK","	* IPA: voiced labiodental flap"},
 /* 2C72 */ { "LATIN CAPITAL LETTER W WITH HOOK",NULL},
@@ -14931,15 +15118,18 @@ static const struct unicode_nameannot una_00_2C[] = {
 	"	x (turned capital f - 2132)\n"
 	"	x (roman numeral reversed one hundred - 2183)\n"
 	"	x (latin capital letter reversed half h - A7F5)"},
-/* 2C76 */ { "LATIN SMALL LETTER HALF H","	x (greek small letter heta - 0371)"},
-/* 2C77 */ { "LATIN SMALL LETTER TAILLESS PHI","	* medium rounded o"},
+/* 2C76 */ { "LATIN SMALL LETTER HALF H","	x (greek small letter heta - 0371)\n"
+	"	x (latin small letter reversed half h - A7F6)"},
+/* 2C77 */ { "LATIN SMALL LETTER TAILLESS PHI","	* medium rounded o\n"
+	"	x (greek small letter phi - 03C6)"},
 /* 2C78 */ { "LATIN SMALL LETTER E WITH NOTCH",NULL},
 /* 2C79 */ { "LATIN SMALL LETTER TURNED R WITH TAIL",NULL},
 /* 2C7A */ { "LATIN SMALL LETTER O WITH LOW RING INSIDE",NULL},
-/* 2C7B */ { "LATIN LETTER SMALL CAPITAL TURNED E",NULL},
+/* 2C7B */ { "LATIN LETTER SMALL CAPITAL TURNED E","	x (latin capital letter reversed e - 018E)"},
 /* 2C7C */ { "LATIN SUBSCRIPT SMALL LETTER J","	# <sub> 006A"},
 /* 2C7D */ { "MODIFIER LETTER CAPITAL V","	# <super> 0056"},
-/* 2C7E */ { "LATIN CAPITAL LETTER S WITH SWASH TAIL","	* lowercase is 023F"},
+/* 2C7E */ { "LATIN CAPITAL LETTER S WITH SWASH TAIL","	* lowercase is 023F\n"
+	"	x (latin capital letter s with hook - A7C5)"},
 /* 2C7F */ { "LATIN CAPITAL LETTER Z WITH SWASH TAIL","	* lowercase is 0240"},
 /* 2C80 */ { "COPTIC CAPITAL LETTER ALFA",NULL},
 /* 2C81 */ { "COPTIC SMALL LETTER ALFA",NULL},
@@ -15516,184 +15706,300 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E7D */ { NULL,NULL},
 /* 2E7E */ { NULL,NULL},
 /* 2E7F */ { NULL,NULL},
-/* 2E80 */ { "CJK RADICAL REPEAT",NULL},
-/* 2E81 */ { "CJK RADICAL CLIFF","	x 5382\n"
+/* 2E80 */ { "CJK RADICAL REPEAT","	* variant of Kangxi Radical 3"},
+/* 2E81 */ { "CJK RADICAL CLIFF","	* variant of Kangxi Radical 27\n"
+	"	x 5382\n"
 	"	x 20086"},
-/* 2E82 */ { "CJK RADICAL SECOND ONE","	x 4E5B"},
-/* 2E83 */ { "CJK RADICAL SECOND TWO","	x 4E5A"},
-/* 2E84 */ { "CJK RADICAL SECOND THREE","	x 4E59"},
-/* 2E85 */ { "CJK RADICAL PERSON","	* form used on left side\n"
+/* 2E82 */ { "CJK RADICAL SECOND ONE","	* variant of Kangxi Radical 5\n"
+	"	x 4E5B"},
+/* 2E83 */ { "CJK RADICAL SECOND TWO","	* variant of Kangxi Radical 5\n"
+	"	x 4E5A"},
+/* 2E84 */ { "CJK RADICAL SECOND THREE","	* variant of Kangxi Radical 5\n"
+	"	x 4E59"},
+/* 2E85 */ { "CJK RADICAL PERSON","	* variant of Kangxi Radical 9\n"
+	"	* form used on left side\n"
 	"	x 4EBB"},
-/* 2E86 */ { "CJK RADICAL BOX","	x 5182"},
-/* 2E87 */ { "CJK RADICAL TABLE","	x 51E0\n"
+/* 2E86 */ { "CJK RADICAL BOX","	* variant of Kangxi Radical 13\n"
+	"	x 5182"},
+/* 2E87 */ { "CJK RADICAL TABLE","	* variant of Kangxi Radical 16\n"
+	"	x 51E0\n"
 	"	x 20628"},
-/* 2E88 */ { "CJK RADICAL KNIFE ONE","	* form used at top\n"
+/* 2E88 */ { "CJK RADICAL KNIFE ONE","	* variant of Kangxi Radical 18\n"
+	"	* form used at top\n"
 	"	x 5200\n"
 	"	x 2008A"},
-/* 2E89 */ { "CJK RADICAL KNIFE TWO","	* form used on right side\n"
+/* 2E89 */ { "CJK RADICAL KNIFE TWO","	* variant of Kangxi Radical 18\n"
+	"	* form used on right side\n"
 	"	x 5202"},
-/* 2E8A */ { "CJK RADICAL DIVINATION","	* form used at top\n"
+/* 2E8A */ { "CJK RADICAL DIVINATION","	* variant of Kangxi Radical 25\n"
+	"	* form used at top\n"
 	"	x 535C"},
-/* 2E8B */ { "CJK RADICAL SEAL","	* form used at bottom\n"
+/* 2E8B */ { "CJK RADICAL SEAL","	* variant of Kangxi Radical 26\n"
+	"	* form used at bottom\n"
 	"	x 353E"},
-/* 2E8C */ { "CJK RADICAL SMALL ONE","	* form used at top\n"
+/* 2E8C */ { "CJK RADICAL SMALL ONE","	* variant of Kangxi Radical 42\n"
+	"	* form used at top\n"
 	"	x 5C0F"},
-/* 2E8D */ { "CJK RADICAL SMALL TWO","	* form used at top\n"
+/* 2E8D */ { "CJK RADICAL SMALL TWO","	* variant of Kangxi Radical 42\n"
+	"	* form used at top\n"
 	"	x 5C0F\n"
 	"	x 2D544"},
-/* 2E8E */ { "CJK RADICAL LAME ONE","	x 5C22\n"
+/* 2E8E */ { "CJK RADICAL LAME ONE","	* variant of Kangxi Radical 43\n"
+	"	x 5C22\n"
 	"	x 5140"},
-/* 2E8F */ { "CJK RADICAL LAME TWO","	x 5C23"},
-/* 2E90 */ { "CJK RADICAL LAME THREE","	x 5C22"},
-/* 2E91 */ { "CJK RADICAL LAME FOUR","	x 5C23\n"
+/* 2E8F */ { "CJK RADICAL LAME TWO","	* variant of Kangxi Radical 43\n"
+	"	x 5C23"},
+/* 2E90 */ { "CJK RADICAL LAME THREE","	* variant of Kangxi Radical 43\n"
+	"	x 5C22"},
+/* 2E91 */ { "CJK RADICAL LAME FOUR","	* variant of Kangxi Radical 43\n"
+	"	x 5C23\n"
 	"	x 21BC2"},
-/* 2E92 */ { "CJK RADICAL SNAKE","	x 5DF3"},
-/* 2E93 */ { "CJK RADICAL THREAD","	x 5E7A"},
-/* 2E94 */ { "CJK RADICAL SNOUT ONE","	x 5F51"},
-/* 2E95 */ { "CJK RADICAL SNOUT TWO","	* actually a form of the radical for hand, despite its resemblance in shape to the radical for snout\n"
+/* 2E92 */ { "CJK RADICAL SNAKE","	* variant of Kangxi Radical 49\n"
+	"	x 5DF3"},
+/* 2E93 */ { "CJK RADICAL THREAD","	* variant of Kangxi Radical 52\n"
+	"	x 5E7A"},
+/* 2E94 */ { "CJK RADICAL SNOUT ONE","	* variant of Kangxi Radical 58\n"
+	"	x 5F51"},
+/* 2E95 */ { "CJK RADICAL SNOUT TWO","	* variant of Kangxi Radical 58\n"
+	"	* actually a form of the radical for hand, despite its resemblance in shape to the radical for snout\n"
 	"	x 5F50\n"
 	"	x 2B739"},
-/* 2E96 */ { "CJK RADICAL HEART ONE","	* form used on left side\n"
+/* 2E96 */ { "CJK RADICAL HEART ONE","	* variant of Kangxi Radical 61\n"
+	"	* form used on left side\n"
 	"	x 5FC4"},
-/* 2E97 */ { "CJK RADICAL HEART TWO","	* form used at bottom\n"
+/* 2E97 */ { "CJK RADICAL HEART TWO","	* variant of Kangxi Radical 61\n"
+	"	* form used at bottom\n"
 	"	x 38FA\n"
 	"	x 5FC3"},
-/* 2E98 */ { "CJK RADICAL HAND","	* form used on left side\n"
+/* 2E98 */ { "CJK RADICAL HAND","	* variant of Kangxi Radical 64\n"
+	"	* form used on left side\n"
 	"	x 624C"},
-/* 2E99 */ { "CJK RADICAL RAP","	* form used on right side\n"
+/* 2E99 */ { "CJK RADICAL RAP","	* variant of Kangxi Radical 66\n"
+	"	* form used on right side\n"
 	"	x 6535"},
-/* 2E9A */ { NULL,NULL},
-/* 2E9B */ { "CJK RADICAL CHOKE","	x 65E1"},
-/* 2E9C */ { "CJK RADICAL SUN","	* actually a form of the radical for hat, despite its resemblance in shape to the radical for sun\n"
+/* 2E9A */ { NULL,"	x (kangxi radical not - 2F46)"},
+/* 2E9B */ { "CJK RADICAL CHOKE","	* variant of Kangxi Radical 71\n"
+	"	x 65E1"},
+/* 2E9C */ { "CJK RADICAL SUN","	* variant of Kangxi Radical 72\n"
+	"	* actually a form of the radical for hat, despite its resemblance in shape to the radical for sun\n"
 	"	x 5183\n"
 	"	x 65E5"},
-/* 2E9D */ { "CJK RADICAL MOON","	x 6708"},
-/* 2E9E */ { "CJK RADICAL DEATH","	x 6B7A"},
-/* 2E9F */ { "CJK RADICAL MOTHER","	# 6BCD"},
-/* 2EA0 */ { "CJK RADICAL CIVILIAN","	x 6C11"},
-/* 2EA1 */ { "CJK RADICAL WATER ONE","	* form used on left side\n"
+/* 2E9D */ { "CJK RADICAL MOON","	* variant of Kangxi Radical 74\n"
+	"	x 6708"},
+/* 2E9E */ { "CJK RADICAL DEATH","	* variant of Kangxi Radical 78\n"
+	"	x 6B7A"},
+/* 2E9F */ { "CJK RADICAL MOTHER","	* variant of Kangxi Radical 80\n"
+	"	# 6BCD"},
+/* 2EA0 */ { "CJK RADICAL CIVILIAN","	* variant of Kangxi Radical 83\n"
+	"	x 6C11"},
+/* 2EA1 */ { "CJK RADICAL WATER ONE","	* variant of Kangxi Radical 85\n"
+	"	* form used on left side\n"
 	"	x 6C35"},
-/* 2EA2 */ { "CJK RADICAL WATER TWO","	* form used (rarely) at bottom\n"
+/* 2EA2 */ { "CJK RADICAL WATER TWO","	* variant of Kangxi Radical 85\n"
+	"	* form used (rarely) at bottom\n"
 	"	x 6C3A"},
-/* 2EA3 */ { "CJK RADICAL FIRE","	* form used at bottom\n"
+/* 2EA3 */ { "CJK RADICAL FIRE","	* variant of Kangxi Radical 86\n"
+	"	* form used at bottom\n"
 	"	x 706C"},
-/* 2EA4 */ { "CJK RADICAL PAW ONE","	* form used at top\n"
+/* 2EA4 */ { "CJK RADICAL PAW ONE","	* variant of Kangxi Radical 87\n"
+	"	* form used at top\n"
 	"	x 722B"},
-/* 2EA5 */ { "CJK RADICAL PAW TWO","	* form used at top\n"
+/* 2EA5 */ { "CJK RADICAL PAW TWO","	* variant of Kangxi Radical 87\n"
+	"	* form used at top\n"
 	"	x 722B"},
-/* 2EA6 */ { "CJK RADICAL SIMPLIFIED HALF TREE TRUNK","	x 4E2C"},
-/* 2EA7 */ { "CJK RADICAL COW","	x 725B\n"
+/* 2EA6 */ { "CJK RADICAL SIMPLIFIED HALF TREE TRUNK","	* simplified variant of Kangxi Radical 90\n"
+	"	x 4E2C"},
+/* 2EA7 */ { "CJK RADICAL COW","	* variant of Kangxi Radical 93\n"
+	"	x 725B\n"
 	"	x 20092"},
-/* 2EA8 */ { "CJK RADICAL DOG","	* form used on left side\n"
+/* 2EA8 */ { "CJK RADICAL DOG","	* variant of Kangxi Radical 94\n"
+	"	* form used on left side\n"
 	"	x 72AD"},
-/* 2EA9 */ { "CJK RADICAL JADE","	* form used on left side\n"
+/* 2EA9 */ { "CJK RADICAL JADE","	* variant of Kangxi Radical 96\n"
+	"	* form used on left side\n"
 	"	x 738B\n"
 	"	x 248E9"},
-/* 2EAA */ { "CJK RADICAL BOLT OF CLOTH","	* form used on left side\n"
+/* 2EAA */ { "CJK RADICAL BOLT OF CLOTH","	* variant of Kangxi Radical 103\n"
+	"	* form used on left side\n"
 	"	x 758B\n"
 	"	x 24D14"},
-/* 2EAB */ { "CJK RADICAL EYE","	* form used at top\n"
+/* 2EAB */ { "CJK RADICAL EYE","	* variant of Kangxi Radical 109\n"
+	"	* variant of Kangxi Radical 122\n"
+	"	* form used at top\n"
 	"	x (cjk radical net two - 2EB2)\n"
 	"	x 76EE\n"
 	"	x 7F52"},
-/* 2EAC */ { "CJK RADICAL SPIRIT ONE","	x 793A"},
-/* 2EAD */ { "CJK RADICAL SPIRIT TWO","	x 793B"},
-/* 2EAE */ { "CJK RADICAL BAMBOO","	x 7AF9\n"
+/* 2EAC */ { "CJK RADICAL SPIRIT ONE","	* variant of Kangxi Radical 113\n"
+	"	x 793A"},
+/* 2EAD */ { "CJK RADICAL SPIRIT TWO","	* variant of Kangxi Radical 113\n"
+	"	x 793B"},
+/* 2EAE */ { "CJK RADICAL BAMBOO","	* variant of Kangxi Radical 118\n"
+	"	x 7AF9\n"
 	"	x 25AD7"},
-/* 2EAF */ { "CJK RADICAL SILK","	* form used on left side\n"
+/* 2EAF */ { "CJK RADICAL SILK","	* variant of Kangxi Radical 120\n"
+	"	* form used on left side\n"
 	"	x 7CF9"},
-/* 2EB0 */ { "CJK RADICAL C-SIMPLIFIED SILK","	* form used on left side\n"
+/* 2EB0 */ { "CJK RADICAL C-SIMPLIFIED SILK","	* simplified Chinese variant of Kangxi Radical 120\n"
+	"	* form used on left side\n"
 	"	x 7E9F"},
-/* 2EB1 */ { "CJK RADICAL NET ONE","	x 7F53"},
-/* 2EB2 */ { "CJK RADICAL NET TWO","	x (cjk radical eye - 2EAB)\n"
+/* 2EB1 */ { "CJK RADICAL NET ONE","	* variant of Kangxi Radical 122\n"
+	"	x 7F53"},
+/* 2EB2 */ { "CJK RADICAL NET TWO","	* variant of Kangxi Radical 109\n"
+	"	* variant of Kangxi Radical 122\n"
+	"	x (cjk radical eye - 2EAB)\n"
 	"	x 7F52\n"
 	"	x 26270"},
-/* 2EB3 */ { "CJK RADICAL NET THREE","	x 34C1\n"
+/* 2EB3 */ { "CJK RADICAL NET THREE","	* variant of Kangxi Radical 122\n"
+	"	x 34C1\n"
 	"	x 7F51"},
-/* 2EB4 */ { "CJK RADICAL NET FOUR","	x 34C1\n"
+/* 2EB4 */ { "CJK RADICAL NET FOUR","	* variant of Kangxi Radical 122\n"
+	"	x 34C1\n"
 	"	x 7F51"},
-/* 2EB5 */ { "CJK RADICAL MESH","	x 2626B"},
-/* 2EB6 */ { "CJK RADICAL SHEEP","	* form used on left side\n"
+/* 2EB5 */ { "CJK RADICAL MESH","	* variant of Kangxi Radical 122\n"
+	"	x 2626B"},
+/* 2EB6 */ { "CJK RADICAL SHEEP","	* variant of Kangxi Radical 123\n"
+	"	* form used on left side\n"
 	"	x 7F8A"},
-/* 2EB7 */ { "CJK RADICAL RAM","	* form used at top\n"
+/* 2EB7 */ { "CJK RADICAL RAM","	* variant of Kangxi Radical 123\n"
+	"	* form used at top\n"
 	"	x 7F8A\n"
 	"	x 2634C"},
-/* 2EB8 */ { "CJK RADICAL EWE","	x 7F8B\n"
+/* 2EB8 */ { "CJK RADICAL EWE","	* variant of Kangxi Radical 123\n"
+	"	x 7F8B\n"
 	"	x 2634B"},
-/* 2EB9 */ { "CJK RADICAL OLD","	x 8002"},
-/* 2EBA */ { "CJK RADICAL BRUSH ONE","	x 8080"},
-/* 2EBB */ { "CJK RADICAL BRUSH TWO","	x 807F"},
-/* 2EBC */ { "CJK RADICAL MEAT","	x 8089"},
-/* 2EBD */ { "CJK RADICAL MORTAR","	x 81FC\n"
+/* 2EB9 */ { "CJK RADICAL OLD","	* variant of Kangxi Radical 125\n"
+	"	x 8002"},
+/* 2EBA */ { "CJK RADICAL BRUSH ONE","	* variant of Kangxi Radical 129\n"
+	"	x 8080"},
+/* 2EBB */ { "CJK RADICAL BRUSH TWO","	* variant of Kangxi Radical 129\n"
+	"	x 807F"},
+/* 2EBC */ { "CJK RADICAL MEAT","	* variant of Kangxi Radical 130\n"
+	"	x 8089"},
+/* 2EBD */ { "CJK RADICAL MORTAR","	* variant of Kangxi Radical 134\n"
+	"	x 81FC\n"
 	"	x 26951"},
-/* 2EBE */ { "CJK RADICAL GRASS ONE","	x 8279"},
-/* 2EBF */ { "CJK RADICAL GRASS TWO","	x 8279"},
-/* 2EC0 */ { "CJK RADICAL GRASS THREE","	x 8279"},
-/* 2EC1 */ { "CJK RADICAL TIGER","	x 864E"},
-/* 2EC2 */ { "CJK RADICAL CLOTHES","	* form used on left side\n"
+/* 2EBE */ { "CJK RADICAL GRASS ONE","	* simplified variant of Kangxi Radical 140\n"
+	"	x 8279"},
+/* 2EBF */ { "CJK RADICAL GRASS TWO","	* variant of Kangxi Radical 140\n"
+	"	x 8279"},
+/* 2EC0 */ { "CJK RADICAL GRASS THREE","	* variant of Kangxi Radical 140\n"
+	"	x 8279"},
+/* 2EC1 */ { "CJK RADICAL TIGER","	* variant of Kangxi Radical 141\n"
+	"	x 864E"},
+/* 2EC2 */ { "CJK RADICAL CLOTHES","	* variant of Kangxi Radical 145\n"
+	"	* form used on left side\n"
 	"	x 8864"},
-/* 2EC3 */ { "CJK RADICAL WEST ONE","	* form used at top\n"
+/* 2EC3 */ { "CJK RADICAL WEST ONE","	* variant of Kangxi Radical 146\n"
+	"	* form used at top\n"
 	"	x 8980"},
-/* 2EC4 */ { "CJK RADICAL WEST TWO","	* form used on left side\n"
+/* 2EC4 */ { "CJK RADICAL WEST TWO","	* variant of Kangxi Radical 146\n"
+	"	* form used on left side\n"
 	"	x 897F"},
-/* 2EC5 */ { "CJK RADICAL C-SIMPLIFIED SEE","	x 89C1"},
-/* 2EC6 */ { "CJK RADICAL SIMPLIFIED HORN","	x 89D2"},
-/* 2EC7 */ { "CJK RADICAL HORN","	x 278B2"},
-/* 2EC8 */ { "CJK RADICAL C-SIMPLIFIED SPEECH","	x 8BA0"},
-/* 2EC9 */ { "CJK RADICAL C-SIMPLIFIED SHELL","	x 8D1D"},
-/* 2ECA */ { "CJK RADICAL FOOT","	* form used on left side\n"
+/* 2EC5 */ { "CJK RADICAL C-SIMPLIFIED SEE","	* simplified Chinese variant of Kangxi Radical 147\n"
+	"	x 89C1"},
+/* 2EC6 */ { "CJK RADICAL SIMPLIFIED HORN","	* simplified Chinese variant of Kangxi Radical 148\n"
+	"	x 89D2"},
+/* 2EC7 */ { "CJK RADICAL HORN","	* variant of Kangxi Radical 148\n"
+	"	x 278B2"},
+/* 2EC8 */ { "CJK RADICAL C-SIMPLIFIED SPEECH","	* simplified Chinese variant of Kangxi Radical 149\n"
+	"	x 8BA0"},
+/* 2EC9 */ { "CJK RADICAL C-SIMPLIFIED SHELL","	* simplified Chinese variant of Kangxi Radical 154\n"
+	"	x 8D1D"},
+/* 2ECA */ { "CJK RADICAL FOOT","	* variant of Kangxi Radical 157\n"
+	"	* form used on left side\n"
 	"	x 8DB3\n"
 	"	x 27FB7"},
-/* 2ECB */ { "CJK RADICAL C-SIMPLIFIED CART","	x 8F66"},
-/* 2ECC */ { "CJK RADICAL SIMPLIFIED WALK","	x 8FB6"},
-/* 2ECD */ { "CJK RADICAL WALK ONE","	x 8FB6"},
-/* 2ECE */ { "CJK RADICAL WALK TWO","	x 8FB6"},
-/* 2ECF */ { "CJK RADICAL CITY","	* form used on right side\n"
+/* 2ECB */ { "CJK RADICAL C-SIMPLIFIED CART","	* simplified Chinese variant of Kangxi Radical 159\n"
+	"	x 8F66"},
+/* 2ECC */ { "CJK RADICAL SIMPLIFIED WALK","	* simplified variant of Kangxi Radical 162\n"
+	"	x 8FB6"},
+/* 2ECD */ { "CJK RADICAL WALK ONE","	* variant of Kangxi Radical 162\n"
+	"	x 8FB6"},
+/* 2ECE */ { "CJK RADICAL WALK TWO","	* variant of Kangxi Radical 162\n"
+	"	x 8FB6"},
+/* 2ECF */ { "CJK RADICAL CITY","	* variant of Kangxi Radical 163\n"
+	"	* form used on right side\n"
 	"	x 9091"},
-/* 2ED0 */ { "CJK RADICAL C-SIMPLIFIED GOLD","	x 9485"},
-/* 2ED1 */ { "CJK RADICAL LONG ONE","	x 9577"},
-/* 2ED2 */ { "CJK RADICAL LONG TWO","	* form used on left side\n"
+/* 2ED0 */ { "CJK RADICAL C-SIMPLIFIED GOLD","	* simplified Chinese variant of Kangxi Radical 167\n"
+	"	x 9485"},
+/* 2ED1 */ { "CJK RADICAL LONG ONE","	* variant of Kangxi Radical 168\n"
+	"	x 9577"},
+/* 2ED2 */ { "CJK RADICAL LONG TWO","	* variant of Kangxi Radical 168\n"
+	"	* form used on left side\n"
 	"	x 9578"},
-/* 2ED3 */ { "CJK RADICAL C-SIMPLIFIED LONG","	x 957F"},
-/* 2ED4 */ { "CJK RADICAL C-SIMPLIFIED GATE","	x 95E8"},
-/* 2ED5 */ { "CJK RADICAL MOUND ONE","	x 961C\n"
+/* 2ED3 */ { "CJK RADICAL C-SIMPLIFIED LONG","	* simplified Chinese variant of Kangxi Radical 168\n"
+	"	x 957F"},
+/* 2ED4 */ { "CJK RADICAL C-SIMPLIFIED GATE","	* simplified Chinese variant of Kangxi Radical 169\n"
+	"	x 95E8"},
+/* 2ED5 */ { "CJK RADICAL MOUND ONE","	* variant of Kangxi Radical 170\n"
+	"	x 961C\n"
 	"	x 28E0F"},
-/* 2ED6 */ { "CJK RADICAL MOUND TWO","	* form used on left side\n"
+/* 2ED6 */ { "CJK RADICAL MOUND TWO","	* variant of Kangxi Radical 170\n"
+	"	* form used on left side\n"
 	"	x 961D"},
-/* 2ED7 */ { "CJK RADICAL RAIN","	x 96E8"},
-/* 2ED8 */ { "CJK RADICAL BLUE","	x 9752"},
-/* 2ED9 */ { "CJK RADICAL C-SIMPLIFIED TANNED LEATHER","	x 97E6"},
-/* 2EDA */ { "CJK RADICAL C-SIMPLIFIED LEAF","	x 9875"},
-/* 2EDB */ { "CJK RADICAL C-SIMPLIFIED WIND","	x 98CE"},
-/* 2EDC */ { "CJK RADICAL C-SIMPLIFIED FLY","	x 98DE"},
-/* 2EDD */ { "CJK RADICAL EAT ONE","	* form used at bottom\n"
+/* 2ED7 */ { "CJK RADICAL RAIN","	* variant of Kangxi Radical 173\n"
+	"	x 96E8"},
+/* 2ED8 */ { "CJK RADICAL BLUE","	* variant of Kangxi Radical 174\n"
+	"	x 9752"},
+/* 2ED9 */ { "CJK RADICAL C-SIMPLIFIED TANNED LEATHER","	* simplified Chinese variant of Kangxi Radical 178\n"
+	"	x 97E6"},
+/* 2EDA */ { "CJK RADICAL C-SIMPLIFIED LEAF","	* simplified Chinese variant of Kangxi Radical 181\n"
+	"	x 9875"},
+/* 2EDB */ { "CJK RADICAL C-SIMPLIFIED WIND","	* simplified Chinese variant of Kangxi Radical 182\n"
+	"	x 98CE"},
+/* 2EDC */ { "CJK RADICAL C-SIMPLIFIED FLY","	* simplified Chinese variant of Kangxi Radical 183\n"
+	"	x 98DE"},
+/* 2EDD */ { "CJK RADICAL EAT ONE","	* variant of Kangxi Radical 184\n"
+	"	* form used at bottom\n"
 	"	x 98DF"},
-/* 2EDE */ { "CJK RADICAL EAT TWO","	* form used on left side\n"
+/* 2EDE */ { "CJK RADICAL EAT TWO","	* variant of Kangxi Radical 184\n"
+	"	* form used on left side\n"
 	"	x 2967F"},
-/* 2EDF */ { "CJK RADICAL EAT THREE","	* form used on left side\n"
+/* 2EDF */ { "CJK RADICAL EAT THREE","	* variant of Kangxi Radical 184\n"
+	"	* form used on left side\n"
 	"	x 98E0"},
-/* 2EE0 */ { "CJK RADICAL C-SIMPLIFIED EAT","	* form used on left side\n"
+/* 2EE0 */ { "CJK RADICAL C-SIMPLIFIED EAT","	* simplified Chinese variant of Kangxi Radical 184\n"
+	"	* form used on left side\n"
 	"	x 9963"},
-/* 2EE1 */ { "CJK RADICAL HEAD","	x 29810"},
-/* 2EE2 */ { "CJK RADICAL C-SIMPLIFIED HORSE","	x 9A6C"},
-/* 2EE3 */ { "CJK RADICAL BONE","	x 9AA8"},
-/* 2EE4 */ { "CJK RADICAL GHOST","	x 9B3C"},
-/* 2EE5 */ { "CJK RADICAL C-SIMPLIFIED FISH","	x 9C7C"},
-/* 2EE6 */ { "CJK RADICAL C-SIMPLIFIED BIRD","	x 9E1F"},
-/* 2EE7 */ { "CJK RADICAL C-SIMPLIFIED SALT","	x 5364"},
-/* 2EE8 */ { "CJK RADICAL SIMPLIFIED WHEAT","	x 9EA6"},
-/* 2EE9 */ { "CJK RADICAL SIMPLIFIED YELLOW","	x 9EC4"},
-/* 2EEA */ { "CJK RADICAL C-SIMPLIFIED FROG","	x 9EFE"},
-/* 2EEB */ { "CJK RADICAL J-SIMPLIFIED EVEN","	x 6589"},
-/* 2EEC */ { "CJK RADICAL C-SIMPLIFIED EVEN","	x 9F50"},
-/* 2EED */ { "CJK RADICAL J-SIMPLIFIED TOOTH","	x 6B6F"},
-/* 2EEE */ { "CJK RADICAL C-SIMPLIFIED TOOTH","	x 9F7F"},
-/* 2EEF */ { "CJK RADICAL J-SIMPLIFIED DRAGON","	x 7ADC\n"
+/* 2EE1 */ { "CJK RADICAL HEAD","	* variant of Kangxi Radical 185\n"
+	"	x 29810"},
+/* 2EE2 */ { "CJK RADICAL C-SIMPLIFIED HORSE","	* simplified Chinese variant of Kangxi Radical 187\n"
+	"	x 9A6C"},
+/* 2EE3 */ { "CJK RADICAL BONE","	* simplified Chinese variant of Kangxi Radical 188\n"
+	"	x 9AA8"},
+/* 2EE4 */ { "CJK RADICAL GHOST","	* variant of Kangxi Radical 194\n"
+	"	x 9B3C"},
+/* 2EE5 */ { "CJK RADICAL C-SIMPLIFIED FISH","	* simplified Chinese variant of Kangxi Radical 195\n"
+	"	x 9C7C"},
+/* 2EE6 */ { "CJK RADICAL C-SIMPLIFIED BIRD","	* simplified Chinese variant of Kangxi Radical 196\n"
+	"	x 9E1F"},
+/* 2EE7 */ { "CJK RADICAL C-SIMPLIFIED SALT","	* simplified Chinese variant of Kangxi Radical 197\n"
+	"	x 5364"},
+/* 2EE8 */ { "CJK RADICAL SIMPLIFIED WHEAT","	* simplified variant of Kangxi Radical 199\n"
+	"	x 9EA6"},
+/* 2EE9 */ { "CJK RADICAL SIMPLIFIED YELLOW","	* simplified variant of Kangxi Radical 201\n"
+	"	x 9EC4"},
+/* 2EEA */ { "CJK RADICAL C-SIMPLIFIED FROG","	* simplified Chinese variant of Kangxi Radical 205\n"
+	"	x 9EFE"},
+/* 2EEB */ { "CJK RADICAL J-SIMPLIFIED EVEN","	* simplified Japanese variant of Kangxi Radical 210\n"
+	"	x 6589"},
+/* 2EEC */ { "CJK RADICAL C-SIMPLIFIED EVEN","	* simplified Chinese variant of Kangxi Radical 210\n"
+	"	x 9F50"},
+/* 2EED */ { "CJK RADICAL J-SIMPLIFIED TOOTH","	* simplified Japanese variant of Kangxi Radical 211\n"
+	"	x 6B6F"},
+/* 2EEE */ { "CJK RADICAL C-SIMPLIFIED TOOTH","	* simplified Chinese variant of Kangxi Radical 211\n"
+	"	x 9F7F"},
+/* 2EEF */ { "CJK RADICAL J-SIMPLIFIED DRAGON","	* simplified Japanese variant of Kangxi Radical 212\n"
+	"	x 7ADC\n"
 	"	x 9F8D"},
-/* 2EF0 */ { "CJK RADICAL C-SIMPLIFIED DRAGON","	x 9F99"},
-/* 2EF1 */ { "CJK RADICAL TURTLE","	x 9F9C"},
-/* 2EF2 */ { "CJK RADICAL J-SIMPLIFIED TURTLE","	x 4E80"},
-/* 2EF3 */ { "CJK RADICAL C-SIMPLIFIED TURTLE","	# 9F9F"},
+/* 2EF0 */ { "CJK RADICAL C-SIMPLIFIED DRAGON","	* simplified Chinese variant of Kangxi Radical 212\n"
+	"	x 9F99"},
+/* 2EF1 */ { "CJK RADICAL TURTLE","	* variant of Kangxi Radical 213\n"
+	"	x 9F9C"},
+/* 2EF2 */ { "CJK RADICAL J-SIMPLIFIED TURTLE","	* simplified Japanese variant of Kangxi Radical 213\n"
+	"	x 4E80"},
+/* 2EF3 */ { "CJK RADICAL C-SIMPLIFIED TURTLE","	* simplified Chinese variant of Kangxi Radical 213\n"
+	"	# 9F9F"},
 /* 2EF4 */ { NULL,NULL},
 /* 2EF5 */ { NULL,NULL},
 /* 2EF6 */ { NULL,NULL},
@@ -15710,221 +16016,435 @@ static const struct unicode_nameannot una_00_2E[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot una_00_2F[] = {
-/* 2F00 */ { "KANGXI RADICAL ONE","	# 4E00"},
-/* 2F01 */ { "KANGXI RADICAL LINE","	# 4E28"},
-/* 2F02 */ { "KANGXI RADICAL DOT","	# 4E36"},
-/* 2F03 */ { "KANGXI RADICAL SLASH","	# 4E3F"},
-/* 2F04 */ { "KANGXI RADICAL SECOND","	# 4E59"},
-/* 2F05 */ { "KANGXI RADICAL HOOK","	# 4E85"},
-/* 2F06 */ { "KANGXI RADICAL TWO","	# 4E8C"},
-/* 2F07 */ { "KANGXI RADICAL LID","	# 4EA0"},
-/* 2F08 */ { "KANGXI RADICAL MAN","	# 4EBA"},
-/* 2F09 */ { "KANGXI RADICAL LEGS","	# 513F"},
-/* 2F0A */ { "KANGXI RADICAL ENTER","	# 5165"},
-/* 2F0B */ { "KANGXI RADICAL EIGHT","	# 516B"},
-/* 2F0C */ { "KANGXI RADICAL DOWN BOX","	# 5182"},
-/* 2F0D */ { "KANGXI RADICAL COVER","	# 5196"},
-/* 2F0E */ { "KANGXI RADICAL ICE","	# 51AB"},
-/* 2F0F */ { "KANGXI RADICAL TABLE","	# 51E0"},
-/* 2F10 */ { "KANGXI RADICAL OPEN BOX","	# 51F5"},
-/* 2F11 */ { "KANGXI RADICAL KNIFE","	# 5200"},
-/* 2F12 */ { "KANGXI RADICAL POWER","	# 529B"},
-/* 2F13 */ { "KANGXI RADICAL WRAP","	# 52F9"},
-/* 2F14 */ { "KANGXI RADICAL SPOON","	# 5315"},
-/* 2F15 */ { "KANGXI RADICAL RIGHT OPEN BOX","	# 531A"},
-/* 2F16 */ { "KANGXI RADICAL HIDING ENCLOSURE","	# 5338"},
-/* 2F17 */ { "KANGXI RADICAL TEN","	# 5341"},
-/* 2F18 */ { "KANGXI RADICAL DIVINATION","	# 535C"},
-/* 2F19 */ { "KANGXI RADICAL SEAL","	# 5369"},
-/* 2F1A */ { "KANGXI RADICAL CLIFF","	# 5382"},
-/* 2F1B */ { "KANGXI RADICAL PRIVATE","	# 53B6"},
-/* 2F1C */ { "KANGXI RADICAL AGAIN","	# 53C8"},
-/* 2F1D */ { "KANGXI RADICAL MOUTH","	# 53E3"},
-/* 2F1E */ { "KANGXI RADICAL ENCLOSURE","	# 56D7"},
-/* 2F1F */ { "KANGXI RADICAL EARTH","	# 571F"},
-/* 2F20 */ { "KANGXI RADICAL SCHOLAR","	# 58EB"},
-/* 2F21 */ { "KANGXI RADICAL GO","	# 5902"},
-/* 2F22 */ { "KANGXI RADICAL GO SLOWLY","	# 590A"},
-/* 2F23 */ { "KANGXI RADICAL EVENING","	# 5915"},
-/* 2F24 */ { "KANGXI RADICAL BIG","	# 5927"},
-/* 2F25 */ { "KANGXI RADICAL WOMAN","	# 5973"},
-/* 2F26 */ { "KANGXI RADICAL CHILD","	# 5B50"},
-/* 2F27 */ { "KANGXI RADICAL ROOF","	# 5B80"},
-/* 2F28 */ { "KANGXI RADICAL INCH","	# 5BF8"},
-/* 2F29 */ { "KANGXI RADICAL SMALL","	# 5C0F"},
-/* 2F2A */ { "KANGXI RADICAL LAME","	x 21BC1\n"
+/* 2F00 */ { "KANGXI RADICAL ONE","	* Kangxi Radical 1\n"
+	"	# 4E00"},
+/* 2F01 */ { "KANGXI RADICAL LINE","	* Kangxi Radical 2\n"
+	"	# 4E28"},
+/* 2F02 */ { "KANGXI RADICAL DOT","	* Kangxi Radical 3\n"
+	"	# 4E36"},
+/* 2F03 */ { "KANGXI RADICAL SLASH","	* Kangxi Radical 4\n"
+	"	# 4E3F"},
+/* 2F04 */ { "KANGXI RADICAL SECOND","	* Kangxi Radical 5\n"
+	"	# 4E59"},
+/* 2F05 */ { "KANGXI RADICAL HOOK","	* Kangxi Radical 6\n"
+	"	# 4E85"},
+/* 2F06 */ { "KANGXI RADICAL TWO","	* Kangxi Radical 7\n"
+	"	# 4E8C"},
+/* 2F07 */ { "KANGXI RADICAL LID","	* Kangxi Radical 8\n"
+	"	# 4EA0"},
+/* 2F08 */ { "KANGXI RADICAL MAN","	* Kangxi Radical 9\n"
+	"	# 4EBA"},
+/* 2F09 */ { "KANGXI RADICAL LEGS","	* Kangxi Radical 10\n"
+	"	# 513F"},
+/* 2F0A */ { "KANGXI RADICAL ENTER","	* Kangxi Radical 11\n"
+	"	# 5165"},
+/* 2F0B */ { "KANGXI RADICAL EIGHT","	* Kangxi Radical 12\n"
+	"	# 516B"},
+/* 2F0C */ { "KANGXI RADICAL DOWN BOX","	* Kangxi Radical 13\n"
+	"	# 5182"},
+/* 2F0D */ { "KANGXI RADICAL COVER","	* Kangxi Radical 14\n"
+	"	# 5196"},
+/* 2F0E */ { "KANGXI RADICAL ICE","	* Kangxi Radical 15\n"
+	"	# 51AB"},
+/* 2F0F */ { "KANGXI RADICAL TABLE","	* Kangxi Radical 16\n"
+	"	# 51E0"},
+/* 2F10 */ { "KANGXI RADICAL OPEN BOX","	* Kangxi Radical 17\n"
+	"	# 51F5"},
+/* 2F11 */ { "KANGXI RADICAL KNIFE","	* Kangxi Radical 18\n"
+	"	# 5200"},
+/* 2F12 */ { "KANGXI RADICAL POWER","	* Kangxi Radical 19\n"
+	"	# 529B"},
+/* 2F13 */ { "KANGXI RADICAL WRAP","	* Kangxi Radical 20\n"
+	"	# 52F9"},
+/* 2F14 */ { "KANGXI RADICAL SPOON","	* Kangxi Radical 21\n"
+	"	# 5315"},
+/* 2F15 */ { "KANGXI RADICAL RIGHT OPEN BOX","	* Kangxi Radical 22\n"
+	"	# 531A"},
+/* 2F16 */ { "KANGXI RADICAL HIDING ENCLOSURE","	* Kangxi Radical 23\n"
+	"	# 5338"},
+/* 2F17 */ { "KANGXI RADICAL TEN","	* Kangxi Radical 24\n"
+	"	# 5341"},
+/* 2F18 */ { "KANGXI RADICAL DIVINATION","	* Kangxi Radical 25\n"
+	"	# 535C"},
+/* 2F19 */ { "KANGXI RADICAL SEAL","	* Kangxi Radical 26\n"
+	"	# 5369"},
+/* 2F1A */ { "KANGXI RADICAL CLIFF","	* Kangxi Radical 27\n"
+	"	# 5382"},
+/* 2F1B */ { "KANGXI RADICAL PRIVATE","	* Kangxi Radical 28\n"
+	"	# 53B6"},
+/* 2F1C */ { "KANGXI RADICAL AGAIN","	* Kangxi Radical 29\n"
+	"	# 53C8"},
+/* 2F1D */ { "KANGXI RADICAL MOUTH","	* Kangxi Radical 30\n"
+	"	# 53E3"},
+/* 2F1E */ { "KANGXI RADICAL ENCLOSURE","	* Kangxi Radical 31\n"
+	"	# 56D7"},
+/* 2F1F */ { "KANGXI RADICAL EARTH","	* Kangxi Radical 32\n"
+	"	# 571F"},
+/* 2F20 */ { "KANGXI RADICAL SCHOLAR","	* Kangxi Radical 33\n"
+	"	# 58EB"},
+/* 2F21 */ { "KANGXI RADICAL GO","	* Kangxi Radical 34\n"
+	"	# 5902"},
+/* 2F22 */ { "KANGXI RADICAL GO SLOWLY","	* Kangxi Radical 35\n"
+	"	# 590A"},
+/* 2F23 */ { "KANGXI RADICAL EVENING","	* Kangxi Radical 36\n"
+	"	# 5915"},
+/* 2F24 */ { "KANGXI RADICAL BIG","	* Kangxi Radical 37\n"
+	"	# 5927"},
+/* 2F25 */ { "KANGXI RADICAL WOMAN","	* Kangxi Radical 38\n"
+	"	# 5973"},
+/* 2F26 */ { "KANGXI RADICAL CHILD","	* Kangxi Radical 39\n"
+	"	# 5B50"},
+/* 2F27 */ { "KANGXI RADICAL ROOF","	* Kangxi Radical 40\n"
+	"	# 5B80"},
+/* 2F28 */ { "KANGXI RADICAL INCH","	* Kangxi Radical 41\n"
+	"	# 5BF8"},
+/* 2F29 */ { "KANGXI RADICAL SMALL","	* Kangxi Radical 42\n"
+	"	# 5C0F"},
+/* 2F2A */ { "KANGXI RADICAL LAME","	* Kangxi Radical 43\n"
+	"	x 21BC1\n"
 	"	# 5C22"},
-/* 2F2B */ { "KANGXI RADICAL CORPSE","	# 5C38"},
-/* 2F2C */ { "KANGXI RADICAL SPROUT","	# 5C6E"},
-/* 2F2D */ { "KANGXI RADICAL MOUNTAIN","	# 5C71"},
-/* 2F2E */ { "KANGXI RADICAL RIVER","	# 5DDB"},
-/* 2F2F */ { "KANGXI RADICAL WORK","	# 5DE5"},
-/* 2F30 */ { "KANGXI RADICAL ONESELF","	# 5DF1"},
-/* 2F31 */ { "KANGXI RADICAL TURBAN","	# 5DFE"},
-/* 2F32 */ { "KANGXI RADICAL DRY","	# 5E72"},
-/* 2F33 */ { "KANGXI RADICAL SHORT THREAD","	# 5E7A"},
-/* 2F34 */ { "KANGXI RADICAL DOTTED CLIFF","	# 5E7F"},
-/* 2F35 */ { "KANGXI RADICAL LONG STRIDE","	# 5EF4"},
-/* 2F36 */ { "KANGXI RADICAL TWO HANDS","	# 5EFE"},
-/* 2F37 */ { "KANGXI RADICAL SHOOT","	# 5F0B"},
-/* 2F38 */ { "KANGXI RADICAL BOW","	# 5F13"},
-/* 2F39 */ { "KANGXI RADICAL SNOUT","	# 5F50"},
-/* 2F3A */ { "KANGXI RADICAL BRISTLE","	# 5F61"},
-/* 2F3B */ { "KANGXI RADICAL STEP","	# 5F73"},
-/* 2F3C */ { "KANGXI RADICAL HEART","	# 5FC3"},
-/* 2F3D */ { "KANGXI RADICAL HALBERD","	# 6208"},
-/* 2F3E */ { "KANGXI RADICAL DOOR","	# 6236"},
-/* 2F3F */ { "KANGXI RADICAL HAND","	# 624B"},
-/* 2F40 */ { "KANGXI RADICAL BRANCH","	# 652F"},
-/* 2F41 */ { "KANGXI RADICAL RAP","	# 6534"},
-/* 2F42 */ { "KANGXI RADICAL SCRIPT","	# 6587"},
-/* 2F43 */ { "KANGXI RADICAL DIPPER","	# 6597"},
-/* 2F44 */ { "KANGXI RADICAL AXE","	# 65A4"},
-/* 2F45 */ { "KANGXI RADICAL SQUARE","	# 65B9"},
-/* 2F46 */ { "KANGXI RADICAL NOT","	# 65E0"},
-/* 2F47 */ { "KANGXI RADICAL SUN","	# 65E5"},
-/* 2F48 */ { "KANGXI RADICAL SAY","	# 66F0"},
-/* 2F49 */ { "KANGXI RADICAL MOON","	# 6708"},
-/* 2F4A */ { "KANGXI RADICAL TREE","	# 6728"},
-/* 2F4B */ { "KANGXI RADICAL LACK","	# 6B20"},
-/* 2F4C */ { "KANGXI RADICAL STOP","	# 6B62"},
-/* 2F4D */ { "KANGXI RADICAL DEATH","	# 6B79"},
-/* 2F4E */ { "KANGXI RADICAL WEAPON","	# 6BB3"},
-/* 2F4F */ { "KANGXI RADICAL DO NOT","	# 6BCB"},
-/* 2F50 */ { "KANGXI RADICAL COMPARE","	# 6BD4"},
-/* 2F51 */ { "KANGXI RADICAL FUR","	# 6BDB"},
-/* 2F52 */ { "KANGXI RADICAL CLAN","	# 6C0F"},
-/* 2F53 */ { "KANGXI RADICAL STEAM","	# 6C14"},
-/* 2F54 */ { "KANGXI RADICAL WATER","	# 6C34"},
-/* 2F55 */ { "KANGXI RADICAL FIRE","	# 706B"},
-/* 2F56 */ { "KANGXI RADICAL CLAW","	# 722A"},
-/* 2F57 */ { "KANGXI RADICAL FATHER","	# 7236"},
-/* 2F58 */ { "KANGXI RADICAL DOUBLE X","	# 723B"},
-/* 2F59 */ { "KANGXI RADICAL HALF TREE TRUNK","	# 723F"},
-/* 2F5A */ { "KANGXI RADICAL SLICE","	# 7247"},
-/* 2F5B */ { "KANGXI RADICAL FANG","	# 7259"},
-/* 2F5C */ { "KANGXI RADICAL COW","	# 725B"},
-/* 2F5D */ { "KANGXI RADICAL DOG","	# 72AC"},
-/* 2F5E */ { "KANGXI RADICAL PROFOUND","	# 7384"},
-/* 2F5F */ { "KANGXI RADICAL JADE","	# 7389"},
-/* 2F60 */ { "KANGXI RADICAL MELON","	# 74DC"},
-/* 2F61 */ { "KANGXI RADICAL TILE","	# 74E6"},
-/* 2F62 */ { "KANGXI RADICAL SWEET","	# 7518"},
-/* 2F63 */ { "KANGXI RADICAL LIFE","	# 751F"},
-/* 2F64 */ { "KANGXI RADICAL USE","	# 7528"},
-/* 2F65 */ { "KANGXI RADICAL FIELD","	# 7530"},
-/* 2F66 */ { "KANGXI RADICAL BOLT OF CLOTH","	# 758B"},
-/* 2F67 */ { "KANGXI RADICAL SICKNESS","	# 7592"},
-/* 2F68 */ { "KANGXI RADICAL DOTTED TENT","	# 7676"},
-/* 2F69 */ { "KANGXI RADICAL WHITE","	# 767D"},
-/* 2F6A */ { "KANGXI RADICAL SKIN","	# 76AE"},
-/* 2F6B */ { "KANGXI RADICAL DISH","	# 76BF"},
-/* 2F6C */ { "KANGXI RADICAL EYE","	# 76EE"},
-/* 2F6D */ { "KANGXI RADICAL SPEAR","	# 77DB"},
-/* 2F6E */ { "KANGXI RADICAL ARROW","	# 77E2"},
-/* 2F6F */ { "KANGXI RADICAL STONE","	# 77F3"},
-/* 2F70 */ { "KANGXI RADICAL SPIRIT","	# 793A"},
-/* 2F71 */ { "KANGXI RADICAL TRACK","	# 79B8"},
-/* 2F72 */ { "KANGXI RADICAL GRAIN","	# 79BE"},
-/* 2F73 */ { "KANGXI RADICAL CAVE","	# 7A74"},
-/* 2F74 */ { "KANGXI RADICAL STAND","	# 7ACB"},
-/* 2F75 */ { "KANGXI RADICAL BAMBOO","	# 7AF9"},
-/* 2F76 */ { "KANGXI RADICAL RICE","	# 7C73"},
-/* 2F77 */ { "KANGXI RADICAL SILK","	# 7CF8"},
-/* 2F78 */ { "KANGXI RADICAL JAR","	# 7F36"},
-/* 2F79 */ { "KANGXI RADICAL NET","	# 7F51"},
-/* 2F7A */ { "KANGXI RADICAL SHEEP","	# 7F8A"},
-/* 2F7B */ { "KANGXI RADICAL FEATHER","	# 7FBD"},
-/* 2F7C */ { "KANGXI RADICAL OLD","	# 8001"},
-/* 2F7D */ { "KANGXI RADICAL AND","	# 800C"},
-/* 2F7E */ { "KANGXI RADICAL PLOW","	# 8012"},
-/* 2F7F */ { "KANGXI RADICAL EAR","	# 8033"},
-/* 2F80 */ { "KANGXI RADICAL BRUSH","	# 807F"},
-/* 2F81 */ { "KANGXI RADICAL MEAT","	# 8089"},
-/* 2F82 */ { "KANGXI RADICAL MINISTER","	# 81E3"},
-/* 2F83 */ { "KANGXI RADICAL SELF","	# 81EA"},
-/* 2F84 */ { "KANGXI RADICAL ARRIVE","	# 81F3"},
-/* 2F85 */ { "KANGXI RADICAL MORTAR","	# 81FC"},
-/* 2F86 */ { "KANGXI RADICAL TONGUE","	# 820C"},
-/* 2F87 */ { "KANGXI RADICAL OPPOSE","	# 821B"},
-/* 2F88 */ { "KANGXI RADICAL BOAT","	# 821F"},
-/* 2F89 */ { "KANGXI RADICAL STOPPING","	# 826E"},
-/* 2F8A */ { "KANGXI RADICAL COLOR","	# 8272"},
-/* 2F8B */ { "KANGXI RADICAL GRASS","	# 8278"},
-/* 2F8C */ { "KANGXI RADICAL TIGER","	# 864D"},
-/* 2F8D */ { "KANGXI RADICAL INSECT","	# 866B"},
-/* 2F8E */ { "KANGXI RADICAL BLOOD","	# 8840"},
-/* 2F8F */ { "KANGXI RADICAL WALK ENCLOSURE","	# 884C"},
-/* 2F90 */ { "KANGXI RADICAL CLOTHES","	# 8863"},
-/* 2F91 */ { "KANGXI RADICAL WEST","	# 897E"},
-/* 2F92 */ { "KANGXI RADICAL SEE","	# 898B"},
-/* 2F93 */ { "KANGXI RADICAL HORN","	# 89D2"},
-/* 2F94 */ { "KANGXI RADICAL SPEECH","	# 8A00"},
-/* 2F95 */ { "KANGXI RADICAL VALLEY","	# 8C37"},
-/* 2F96 */ { "KANGXI RADICAL BEAN","	# 8C46"},
-/* 2F97 */ { "KANGXI RADICAL PIG","	# 8C55"},
-/* 2F98 */ { "KANGXI RADICAL BADGER","	# 8C78"},
-/* 2F99 */ { "KANGXI RADICAL SHELL","	# 8C9D"},
-/* 2F9A */ { "KANGXI RADICAL RED","	# 8D64"},
-/* 2F9B */ { "KANGXI RADICAL RUN","	# 8D70"},
-/* 2F9C */ { "KANGXI RADICAL FOOT","	# 8DB3"},
-/* 2F9D */ { "KANGXI RADICAL BODY","	# 8EAB"},
-/* 2F9E */ { "KANGXI RADICAL CART","	# 8ECA"},
-/* 2F9F */ { "KANGXI RADICAL BITTER","	# 8F9B"},
-/* 2FA0 */ { "KANGXI RADICAL MORNING","	# 8FB0"},
-/* 2FA1 */ { "KANGXI RADICAL WALK","	# 8FB5"},
-/* 2FA2 */ { "KANGXI RADICAL CITY","	# 9091"},
-/* 2FA3 */ { "KANGXI RADICAL WINE","	# 9149"},
-/* 2FA4 */ { "KANGXI RADICAL DISTINGUISH","	# 91C6"},
-/* 2FA5 */ { "KANGXI RADICAL VILLAGE","	# 91CC"},
-/* 2FA6 */ { "KANGXI RADICAL GOLD","	# 91D1"},
-/* 2FA7 */ { "KANGXI RADICAL LONG","	# 9577"},
-/* 2FA8 */ { "KANGXI RADICAL GATE","	# 9580"},
-/* 2FA9 */ { "KANGXI RADICAL MOUND","	# 961C"},
-/* 2FAA */ { "KANGXI RADICAL SLAVE","	# 96B6"},
-/* 2FAB */ { "KANGXI RADICAL SHORT TAILED BIRD","	# 96B9"},
-/* 2FAC */ { "KANGXI RADICAL RAIN","	# 96E8"},
-/* 2FAD */ { "KANGXI RADICAL BLUE","	# 9751"},
-/* 2FAE */ { "KANGXI RADICAL WRONG","	# 975E"},
-/* 2FAF */ { "KANGXI RADICAL FACE","	# 9762"},
-/* 2FB0 */ { "KANGXI RADICAL LEATHER","	# 9769"},
-/* 2FB1 */ { "KANGXI RADICAL TANNED LEATHER","	# 97CB"},
-/* 2FB2 */ { "KANGXI RADICAL LEEK","	# 97ED"},
-/* 2FB3 */ { "KANGXI RADICAL SOUND","	# 97F3"},
-/* 2FB4 */ { "KANGXI RADICAL LEAF","	# 9801"},
-/* 2FB5 */ { "KANGXI RADICAL WIND","	# 98A8"},
-/* 2FB6 */ { "KANGXI RADICAL FLY","	# 98DB"},
-/* 2FB7 */ { "KANGXI RADICAL EAT","	# 98DF"},
-/* 2FB8 */ { "KANGXI RADICAL HEAD","	# 9996"},
-/* 2FB9 */ { "KANGXI RADICAL FRAGRANT","	# 9999"},
-/* 2FBA */ { "KANGXI RADICAL HORSE","	# 99AC"},
-/* 2FBB */ { "KANGXI RADICAL BONE","	# 9AA8"},
-/* 2FBC */ { "KANGXI RADICAL TALL","	# 9AD8"},
-/* 2FBD */ { "KANGXI RADICAL HAIR","	# 9ADF"},
-/* 2FBE */ { "KANGXI RADICAL FIGHT","	# 9B25"},
-/* 2FBF */ { "KANGXI RADICAL SACRIFICIAL WINE","	# 9B2F"},
-/* 2FC0 */ { "KANGXI RADICAL CAULDRON","	# 9B32"},
-/* 2FC1 */ { "KANGXI RADICAL GHOST","	# 9B3C"},
-/* 2FC2 */ { "KANGXI RADICAL FISH","	# 9B5A"},
-/* 2FC3 */ { "KANGXI RADICAL BIRD","	# 9CE5"},
-/* 2FC4 */ { "KANGXI RADICAL SALT","	# 9E75"},
-/* 2FC5 */ { "KANGXI RADICAL DEER","	# 9E7F"},
-/* 2FC6 */ { "KANGXI RADICAL WHEAT","	# 9EA5"},
-/* 2FC7 */ { "KANGXI RADICAL HEMP","	# 9EBB"},
-/* 2FC8 */ { "KANGXI RADICAL YELLOW","	# 9EC3"},
-/* 2FC9 */ { "KANGXI RADICAL MILLET","	# 9ECD"},
-/* 2FCA */ { "KANGXI RADICAL BLACK","	# 9ED1"},
-/* 2FCB */ { "KANGXI RADICAL EMBROIDERY","	# 9EF9"},
-/* 2FCC */ { "KANGXI RADICAL FROG","	# 9EFD"},
-/* 2FCD */ { "KANGXI RADICAL TRIPOD","	# 9F0E"},
-/* 2FCE */ { "KANGXI RADICAL DRUM","	# 9F13"},
-/* 2FCF */ { "KANGXI RADICAL RAT","	# 9F20"},
-/* 2FD0 */ { "KANGXI RADICAL NOSE","	# 9F3B"},
-/* 2FD1 */ { "KANGXI RADICAL EVEN","	# 9F4A"},
-/* 2FD2 */ { "KANGXI RADICAL TOOTH","	# 9F52"},
-/* 2FD3 */ { "KANGXI RADICAL DRAGON","	# 9F8D"},
-/* 2FD4 */ { "KANGXI RADICAL TURTLE","	# 9F9C"},
-/* 2FD5 */ { "KANGXI RADICAL FLUTE","	# 9FA0"},
+/* 2F2B */ { "KANGXI RADICAL CORPSE","	* Kangxi Radical 44\n"
+	"	# 5C38"},
+/* 2F2C */ { "KANGXI RADICAL SPROUT","	* Kangxi Radical 45\n"
+	"	# 5C6E"},
+/* 2F2D */ { "KANGXI RADICAL MOUNTAIN","	* Kangxi Radical 46\n"
+	"	# 5C71"},
+/* 2F2E */ { "KANGXI RADICAL RIVER","	* Kangxi Radical 47\n"
+	"	# 5DDB"},
+/* 2F2F */ { "KANGXI RADICAL WORK","	* Kangxi Radical 48\n"
+	"	# 5DE5"},
+/* 2F30 */ { "KANGXI RADICAL ONESELF","	* Kangxi Radical 49\n"
+	"	# 5DF1"},
+/* 2F31 */ { "KANGXI RADICAL TURBAN","	* Kangxi Radical 50\n"
+	"	# 5DFE"},
+/* 2F32 */ { "KANGXI RADICAL DRY","	* Kangxi Radical 51\n"
+	"	# 5E72"},
+/* 2F33 */ { "KANGXI RADICAL SHORT THREAD","	* Kangxi Radical 52\n"
+	"	# 5E7A"},
+/* 2F34 */ { "KANGXI RADICAL DOTTED CLIFF","	* Kangxi Radical 53\n"
+	"	# 5E7F"},
+/* 2F35 */ { "KANGXI RADICAL LONG STRIDE","	* Kangxi Radical 54\n"
+	"	# 5EF4"},
+/* 2F36 */ { "KANGXI RADICAL TWO HANDS","	* Kangxi Radical 55\n"
+	"	# 5EFE"},
+/* 2F37 */ { "KANGXI RADICAL SHOOT","	* Kangxi Radical 56\n"
+	"	# 5F0B"},
+/* 2F38 */ { "KANGXI RADICAL BOW","	* Kangxi Radical 57\n"
+	"	# 5F13"},
+/* 2F39 */ { "KANGXI RADICAL SNOUT","	* Kangxi Radical 58\n"
+	"	# 5F50"},
+/* 2F3A */ { "KANGXI RADICAL BRISTLE","	* Kangxi Radical 59\n"
+	"	# 5F61"},
+/* 2F3B */ { "KANGXI RADICAL STEP","	* Kangxi Radical 60\n"
+	"	# 5F73"},
+/* 2F3C */ { "KANGXI RADICAL HEART","	* Kangxi Radical 61\n"
+	"	# 5FC3"},
+/* 2F3D */ { "KANGXI RADICAL HALBERD","	* Kangxi Radical 62\n"
+	"	# 6208"},
+/* 2F3E */ { "KANGXI RADICAL DOOR","	* Kangxi Radical 63\n"
+	"	# 6236"},
+/* 2F3F */ { "KANGXI RADICAL HAND","	* Kangxi Radical 64\n"
+	"	# 624B"},
+/* 2F40 */ { "KANGXI RADICAL BRANCH","	* Kangxi Radical 65\n"
+	"	# 652F"},
+/* 2F41 */ { "KANGXI RADICAL RAP","	* Kangxi Radical 66\n"
+	"	# 6534"},
+/* 2F42 */ { "KANGXI RADICAL SCRIPT","	* Kangxi Radical 67\n"
+	"	# 6587"},
+/* 2F43 */ { "KANGXI RADICAL DIPPER","	* Kangxi Radical 68\n"
+	"	# 6597"},
+/* 2F44 */ { "KANGXI RADICAL AXE","	* Kangxi Radical 69\n"
+	"	# 65A4"},
+/* 2F45 */ { "KANGXI RADICAL SQUARE","	* Kangxi Radical 70\n"
+	"	# 65B9"},
+/* 2F46 */ { "KANGXI RADICAL NOT","	* Kangxi Radical 71\n"
+	"	# 65E0"},
+/* 2F47 */ { "KANGXI RADICAL SUN","	* Kangxi Radical 72\n"
+	"	# 65E5"},
+/* 2F48 */ { "KANGXI RADICAL SAY","	* Kangxi Radical 73\n"
+	"	# 66F0"},
+/* 2F49 */ { "KANGXI RADICAL MOON","	* Kangxi Radical 74\n"
+	"	# 6708"},
+/* 2F4A */ { "KANGXI RADICAL TREE","	* Kangxi Radical 75\n"
+	"	# 6728"},
+/* 2F4B */ { "KANGXI RADICAL LACK","	* Kangxi Radical 76\n"
+	"	# 6B20"},
+/* 2F4C */ { "KANGXI RADICAL STOP","	* Kangxi Radical 77\n"
+	"	# 6B62"},
+/* 2F4D */ { "KANGXI RADICAL DEATH","	* Kangxi Radical 78\n"
+	"	# 6B79"},
+/* 2F4E */ { "KANGXI RADICAL WEAPON","	* Kangxi Radical 79\n"
+	"	# 6BB3"},
+/* 2F4F */ { "KANGXI RADICAL DO NOT","	* Kangxi Radical 80\n"
+	"	# 6BCB"},
+/* 2F50 */ { "KANGXI RADICAL COMPARE","	* Kangxi Radical 81\n"
+	"	# 6BD4"},
+/* 2F51 */ { "KANGXI RADICAL FUR","	* Kangxi Radical 82\n"
+	"	# 6BDB"},
+/* 2F52 */ { "KANGXI RADICAL CLAN","	* Kangxi Radical 83\n"
+	"	# 6C0F"},
+/* 2F53 */ { "KANGXI RADICAL STEAM","	* Kangxi Radical 84\n"
+	"	# 6C14"},
+/* 2F54 */ { "KANGXI RADICAL WATER","	* Kangxi Radical 85\n"
+	"	# 6C34"},
+/* 2F55 */ { "KANGXI RADICAL FIRE","	* Kangxi Radical 86\n"
+	"	# 706B"},
+/* 2F56 */ { "KANGXI RADICAL CLAW","	* Kangxi Radical 87\n"
+	"	# 722A"},
+/* 2F57 */ { "KANGXI RADICAL FATHER","	* Kangxi Radical 88\n"
+	"	# 7236"},
+/* 2F58 */ { "KANGXI RADICAL DOUBLE X","	* Kangxi Radical 89\n"
+	"	# 723B"},
+/* 2F59 */ { "KANGXI RADICAL HALF TREE TRUNK","	* Kangxi Radical 90\n"
+	"	# 723F"},
+/* 2F5A */ { "KANGXI RADICAL SLICE","	* Kangxi Radical 91\n"
+	"	# 7247"},
+/* 2F5B */ { "KANGXI RADICAL FANG","	* Kangxi Radical 92\n"
+	"	# 7259"},
+/* 2F5C */ { "KANGXI RADICAL COW","	* Kangxi Radical 93\n"
+	"	# 725B"},
+/* 2F5D */ { "KANGXI RADICAL DOG","	* Kangxi Radical 94\n"
+	"	# 72AC"},
+/* 2F5E */ { "KANGXI RADICAL PROFOUND","	* Kangxi Radical 95\n"
+	"	# 7384"},
+/* 2F5F */ { "KANGXI RADICAL JADE","	* Kangxi Radical 96\n"
+	"	# 7389"},
+/* 2F60 */ { "KANGXI RADICAL MELON","	* Kangxi Radical 97\n"
+	"	# 74DC"},
+/* 2F61 */ { "KANGXI RADICAL TILE","	* Kangxi Radical 98\n"
+	"	# 74E6"},
+/* 2F62 */ { "KANGXI RADICAL SWEET","	* Kangxi Radical 99\n"
+	"	# 7518"},
+/* 2F63 */ { "KANGXI RADICAL LIFE","	* Kangxi Radical 100\n"
+	"	# 751F"},
+/* 2F64 */ { "KANGXI RADICAL USE","	* Kangxi Radical 101\n"
+	"	# 7528"},
+/* 2F65 */ { "KANGXI RADICAL FIELD","	* Kangxi Radical 102\n"
+	"	# 7530"},
+/* 2F66 */ { "KANGXI RADICAL BOLT OF CLOTH","	* Kangxi Radical 103\n"
+	"	# 758B"},
+/* 2F67 */ { "KANGXI RADICAL SICKNESS","	* Kangxi Radical 104\n"
+	"	# 7592"},
+/* 2F68 */ { "KANGXI RADICAL DOTTED TENT","	* Kangxi Radical 105\n"
+	"	# 7676"},
+/* 2F69 */ { "KANGXI RADICAL WHITE","	* Kangxi Radical 106\n"
+	"	# 767D"},
+/* 2F6A */ { "KANGXI RADICAL SKIN","	* Kangxi Radical 107\n"
+	"	# 76AE"},
+/* 2F6B */ { "KANGXI RADICAL DISH","	* Kangxi Radical 108\n"
+	"	# 76BF"},
+/* 2F6C */ { "KANGXI RADICAL EYE","	* Kangxi Radical 109\n"
+	"	# 76EE"},
+/* 2F6D */ { "KANGXI RADICAL SPEAR","	* Kangxi Radical 110\n"
+	"	# 77DB"},
+/* 2F6E */ { "KANGXI RADICAL ARROW","	* Kangxi Radical 111\n"
+	"	# 77E2"},
+/* 2F6F */ { "KANGXI RADICAL STONE","	* Kangxi Radical 112\n"
+	"	# 77F3"},
+/* 2F70 */ { "KANGXI RADICAL SPIRIT","	* Kangxi Radical 113\n"
+	"	# 793A"},
+/* 2F71 */ { "KANGXI RADICAL TRACK","	* Kangxi Radical 114\n"
+	"	# 79B8"},
+/* 2F72 */ { "KANGXI RADICAL GRAIN","	* Kangxi Radical 115\n"
+	"	# 79BE"},
+/* 2F73 */ { "KANGXI RADICAL CAVE","	* Kangxi Radical 116\n"
+	"	# 7A74"},
+/* 2F74 */ { "KANGXI RADICAL STAND","	* Kangxi Radical 117\n"
+	"	# 7ACB"},
+/* 2F75 */ { "KANGXI RADICAL BAMBOO","	* Kangxi Radical 118\n"
+	"	# 7AF9"},
+/* 2F76 */ { "KANGXI RADICAL RICE","	* Kangxi Radical 119\n"
+	"	# 7C73"},
+/* 2F77 */ { "KANGXI RADICAL SILK","	* Kangxi Radical 120\n"
+	"	# 7CF8"},
+/* 2F78 */ { "KANGXI RADICAL JAR","	* Kangxi Radical 121\n"
+	"	# 7F36"},
+/* 2F79 */ { "KANGXI RADICAL NET","	* Kangxi Radical 122\n"
+	"	# 7F51"},
+/* 2F7A */ { "KANGXI RADICAL SHEEP","	* Kangxi Radical 123\n"
+	"	# 7F8A"},
+/* 2F7B */ { "KANGXI RADICAL FEATHER","	* Kangxi Radical 124\n"
+	"	# 7FBD"},
+/* 2F7C */ { "KANGXI RADICAL OLD","	* Kangxi Radical 125\n"
+	"	# 8001"},
+/* 2F7D */ { "KANGXI RADICAL AND","	* Kangxi Radical 126\n"
+	"	# 800C"},
+/* 2F7E */ { "KANGXI RADICAL PLOW","	* Kangxi Radical 127\n"
+	"	# 8012"},
+/* 2F7F */ { "KANGXI RADICAL EAR","	* Kangxi Radical 128\n"
+	"	# 8033"},
+/* 2F80 */ { "KANGXI RADICAL BRUSH","	* Kangxi Radical 129\n"
+	"	# 807F"},
+/* 2F81 */ { "KANGXI RADICAL MEAT","	* Kangxi Radical 130\n"
+	"	# 8089"},
+/* 2F82 */ { "KANGXI RADICAL MINISTER","	* Kangxi Radical 131\n"
+	"	# 81E3"},
+/* 2F83 */ { "KANGXI RADICAL SELF","	* Kangxi Radical 132\n"
+	"	# 81EA"},
+/* 2F84 */ { "KANGXI RADICAL ARRIVE","	* Kangxi Radical 133\n"
+	"	# 81F3"},
+/* 2F85 */ { "KANGXI RADICAL MORTAR","	* Kangxi Radical 134\n"
+	"	# 81FC"},
+/* 2F86 */ { "KANGXI RADICAL TONGUE","	* Kangxi Radical 135\n"
+	"	# 820C"},
+/* 2F87 */ { "KANGXI RADICAL OPPOSE","	* Kangxi Radical 136\n"
+	"	# 821B"},
+/* 2F88 */ { "KANGXI RADICAL BOAT","	* Kangxi Radical 137\n"
+	"	# 821F"},
+/* 2F89 */ { "KANGXI RADICAL STOPPING","	* Kangxi Radical 138\n"
+	"	# 826E"},
+/* 2F8A */ { "KANGXI RADICAL COLOR","	* Kangxi Radical 139\n"
+	"	# 8272"},
+/* 2F8B */ { "KANGXI RADICAL GRASS","	* Kangxi Radical 140\n"
+	"	# 8278"},
+/* 2F8C */ { "KANGXI RADICAL TIGER","	* Kangxi Radical 141\n"
+	"	# 864D"},
+/* 2F8D */ { "KANGXI RADICAL INSECT","	* Kangxi Radical 142\n"
+	"	# 866B"},
+/* 2F8E */ { "KANGXI RADICAL BLOOD","	* Kangxi Radical 143\n"
+	"	# 8840"},
+/* 2F8F */ { "KANGXI RADICAL WALK ENCLOSURE","	* Kangxi Radical 144\n"
+	"	# 884C"},
+/* 2F90 */ { "KANGXI RADICAL CLOTHES","	* Kangxi Radical 145\n"
+	"	# 8863"},
+/* 2F91 */ { "KANGXI RADICAL WEST","	* Kangxi Radical 146\n"
+	"	# 897E"},
+/* 2F92 */ { "KANGXI RADICAL SEE","	* Kangxi Radical 147\n"
+	"	# 898B"},
+/* 2F93 */ { "KANGXI RADICAL HORN","	* Kangxi Radical 148\n"
+	"	# 89D2"},
+/* 2F94 */ { "KANGXI RADICAL SPEECH","	* Kangxi Radical 149\n"
+	"	# 8A00"},
+/* 2F95 */ { "KANGXI RADICAL VALLEY","	* Kangxi Radical 150\n"
+	"	# 8C37"},
+/* 2F96 */ { "KANGXI RADICAL BEAN","	* Kangxi Radical 151\n"
+	"	# 8C46"},
+/* 2F97 */ { "KANGXI RADICAL PIG","	* Kangxi Radical 152\n"
+	"	# 8C55"},
+/* 2F98 */ { "KANGXI RADICAL BADGER","	* Kangxi Radical 153\n"
+	"	# 8C78"},
+/* 2F99 */ { "KANGXI RADICAL SHELL","	* Kangxi Radical 154\n"
+	"	# 8C9D"},
+/* 2F9A */ { "KANGXI RADICAL RED","	* Kangxi Radical 155\n"
+	"	# 8D64"},
+/* 2F9B */ { "KANGXI RADICAL RUN","	* Kangxi Radical 156\n"
+	"	# 8D70"},
+/* 2F9C */ { "KANGXI RADICAL FOOT","	* Kangxi Radical 157\n"
+	"	# 8DB3"},
+/* 2F9D */ { "KANGXI RADICAL BODY","	* Kangxi Radical 158\n"
+	"	# 8EAB"},
+/* 2F9E */ { "KANGXI RADICAL CART","	* Kangxi Radical 159\n"
+	"	# 8ECA"},
+/* 2F9F */ { "KANGXI RADICAL BITTER","	* Kangxi Radical 160\n"
+	"	# 8F9B"},
+/* 2FA0 */ { "KANGXI RADICAL MORNING","	* Kangxi Radical 161\n"
+	"	# 8FB0"},
+/* 2FA1 */ { "KANGXI RADICAL WALK","	* Kangxi Radical 162\n"
+	"	# 8FB5"},
+/* 2FA2 */ { "KANGXI RADICAL CITY","	* Kangxi Radical 163\n"
+	"	# 9091"},
+/* 2FA3 */ { "KANGXI RADICAL WINE","	* Kangxi Radical 164\n"
+	"	# 9149"},
+/* 2FA4 */ { "KANGXI RADICAL DISTINGUISH","	* Kangxi Radical 165\n"
+	"	# 91C6"},
+/* 2FA5 */ { "KANGXI RADICAL VILLAGE","	* Kangxi Radical 166\n"
+	"	# 91CC"},
+/* 2FA6 */ { "KANGXI RADICAL GOLD","	* Kangxi Radical 167\n"
+	"	# 91D1"},
+/* 2FA7 */ { "KANGXI RADICAL LONG","	* Kangxi Radical 168\n"
+	"	# 9577"},
+/* 2FA8 */ { "KANGXI RADICAL GATE","	* Kangxi Radical 169\n"
+	"	# 9580"},
+/* 2FA9 */ { "KANGXI RADICAL MOUND","	* Kangxi Radical 170\n"
+	"	# 961C"},
+/* 2FAA */ { "KANGXI RADICAL SLAVE","	* Kangxi Radical 171\n"
+	"	# 96B6"},
+/* 2FAB */ { "KANGXI RADICAL SHORT TAILED BIRD","	* Kangxi Radical 172\n"
+	"	# 96B9"},
+/* 2FAC */ { "KANGXI RADICAL RAIN","	* Kangxi Radical 173\n"
+	"	# 96E8"},
+/* 2FAD */ { "KANGXI RADICAL BLUE","	* Kangxi Radical 174\n"
+	"	# 9751"},
+/* 2FAE */ { "KANGXI RADICAL WRONG","	* Kangxi Radical 175\n"
+	"	# 975E"},
+/* 2FAF */ { "KANGXI RADICAL FACE","	* Kangxi Radical 176\n"
+	"	# 9762"},
+/* 2FB0 */ { "KANGXI RADICAL LEATHER","	* Kangxi Radical 177\n"
+	"	# 9769"},
+/* 2FB1 */ { "KANGXI RADICAL TANNED LEATHER","	* Kangxi Radical 178\n"
+	"	# 97CB"},
+/* 2FB2 */ { "KANGXI RADICAL LEEK","	* Kangxi Radical 179\n"
+	"	# 97ED"},
+/* 2FB3 */ { "KANGXI RADICAL SOUND","	* Kangxi Radical 180\n"
+	"	# 97F3"},
+/* 2FB4 */ { "KANGXI RADICAL LEAF","	* Kangxi Radical 181\n"
+	"	# 9801"},
+/* 2FB5 */ { "KANGXI RADICAL WIND","	* Kangxi Radical 182\n"
+	"	# 98A8"},
+/* 2FB6 */ { "KANGXI RADICAL FLY","	* Kangxi Radical 183\n"
+	"	# 98DB"},
+/* 2FB7 */ { "KANGXI RADICAL EAT","	* Kangxi Radical 184\n"
+	"	# 98DF"},
+/* 2FB8 */ { "KANGXI RADICAL HEAD","	* Kangxi Radical 185\n"
+	"	# 9996"},
+/* 2FB9 */ { "KANGXI RADICAL FRAGRANT","	* Kangxi Radical 186\n"
+	"	# 9999"},
+/* 2FBA */ { "KANGXI RADICAL HORSE","	* Kangxi Radical 187\n"
+	"	# 99AC"},
+/* 2FBB */ { "KANGXI RADICAL BONE","	* Kangxi Radical 188\n"
+	"	# 9AA8"},
+/* 2FBC */ { "KANGXI RADICAL TALL","	* Kangxi Radical 189\n"
+	"	# 9AD8"},
+/* 2FBD */ { "KANGXI RADICAL HAIR","	* Kangxi Radical 190\n"
+	"	# 9ADF"},
+/* 2FBE */ { "KANGXI RADICAL FIGHT","	* Kangxi Radical 191\n"
+	"	# 9B25"},
+/* 2FBF */ { "KANGXI RADICAL SACRIFICIAL WINE","	* Kangxi Radical 192\n"
+	"	# 9B2F"},
+/* 2FC0 */ { "KANGXI RADICAL CAULDRON","	* Kangxi Radical 193\n"
+	"	# 9B32"},
+/* 2FC1 */ { "KANGXI RADICAL GHOST","	* Kangxi Radical 194\n"
+	"	# 9B3C"},
+/* 2FC2 */ { "KANGXI RADICAL FISH","	* Kangxi Radical 195\n"
+	"	# 9B5A"},
+/* 2FC3 */ { "KANGXI RADICAL BIRD","	* Kangxi Radical 196\n"
+	"	# 9CE5"},
+/* 2FC4 */ { "KANGXI RADICAL SALT","	* Kangxi Radical 197\n"
+	"	# 9E75"},
+/* 2FC5 */ { "KANGXI RADICAL DEER","	* Kangxi Radical 198\n"
+	"	# 9E7F"},
+/* 2FC6 */ { "KANGXI RADICAL WHEAT","	* Kangxi Radical 199\n"
+	"	# 9EA5"},
+/* 2FC7 */ { "KANGXI RADICAL HEMP","	* Kangxi Radical 200\n"
+	"	# 9EBB"},
+/* 2FC8 */ { "KANGXI RADICAL YELLOW","	* Kangxi Radical 201\n"
+	"	# 9EC3"},
+/* 2FC9 */ { "KANGXI RADICAL MILLET","	* Kangxi Radical 202\n"
+	"	# 9ECD"},
+/* 2FCA */ { "KANGXI RADICAL BLACK","	* Kangxi Radical 203\n"
+	"	# 9ED1"},
+/* 2FCB */ { "KANGXI RADICAL EMBROIDERY","	* Kangxi Radical 204\n"
+	"	# 9EF9"},
+/* 2FCC */ { "KANGXI RADICAL FROG","	* Kangxi Radical 205\n"
+	"	# 9EFD"},
+/* 2FCD */ { "KANGXI RADICAL TRIPOD","	* Kangxi Radical 206\n"
+	"	# 9F0E"},
+/* 2FCE */ { "KANGXI RADICAL DRUM","	* Kangxi Radical 207\n"
+	"	# 9F13"},
+/* 2FCF */ { "KANGXI RADICAL RAT","	* Kangxi Radical 208\n"
+	"	# 9F20"},
+/* 2FD0 */ { "KANGXI RADICAL NOSE","	* Kangxi Radical 209\n"
+	"	# 9F3B"},
+/* 2FD1 */ { "KANGXI RADICAL EVEN","	* Kangxi Radical 210\n"
+	"	# 9F4A"},
+/* 2FD2 */ { "KANGXI RADICAL TOOTH","	* Kangxi Radical 211\n"
+	"	# 9F52"},
+/* 2FD3 */ { "KANGXI RADICAL DRAGON","	* Kangxi Radical 212\n"
+	"	# 9F8D"},
+/* 2FD4 */ { "KANGXI RADICAL TURTLE","	* Kangxi Radical 213\n"
+	"	# 9F9C"},
+/* 2FD5 */ { "KANGXI RADICAL FLUTE","	* Kangxi Radical 214\n"
+	"	# 9FA0"},
 /* 2FD6 */ { NULL,NULL},
 /* 2FD7 */ { NULL,NULL},
 /* 2FD8 */ { NULL,NULL},
@@ -15963,10 +16483,10 @@ static const struct unicode_nameannot una_00_2F[] = {
 /* 2FF9 */ { "IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM UPPER RIGHT",NULL},
 /* 2FFA */ { "IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER LEFT",NULL},
 /* 2FFB */ { "IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID",NULL},
-/* 2FFC */ { NULL,NULL},
-/* 2FFD */ { NULL,NULL},
-/* 2FFE */ { NULL,NULL},
-/* 2FFF */ { NULL,NULL}
+/* 2FFC */ { "IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT",NULL},
+/* 2FFD */ { "IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER RIGHT",NULL},
+/* 2FFE */ { "IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION",NULL},
+/* 2FFF */ { "IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION",NULL}
 };
 
 UN_DLL_LOCAL
@@ -16543,7 +17063,7 @@ static const struct unicode_nameannot una_00_31[] = {
 /* 31EC */ { NULL,NULL},
 /* 31ED */ { NULL,NULL},
 /* 31EE */ { NULL,NULL},
-/* 31EF */ { NULL,NULL},
+/* 31EF */ { "IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION","	* used to describe a character with a stroke removed"},
 /* 31F0 */ { "KATAKANA LETTER SMALL KU",NULL},
 /* 31F1 */ { "KATAKANA LETTER SMALL SI",NULL},
 /* 31F2 */ { "KATAKANA LETTER SMALL SU",NULL},
@@ -19337,22 +19857,35 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A720 */ { "MODIFIER LETTER STRESS AND HIGH TONE",NULL},
 /* A721 */ { "MODIFIER LETTER STRESS AND LOW TONE",NULL},
 /* A722 */ { "LATIN CAPITAL LETTER EGYPTOLOGICAL ALEF",NULL},
-/* A723 */ { "LATIN SMALL LETTER EGYPTOLOGICAL ALEF",NULL},
+/* A723 */ { "LATIN SMALL LETTER EGYPTOLOGICAL ALEF","	x (hebrew letter alef - 05D0)\n"
+	"	x (arabic letter alef with hamza above - 0623)"},
 /* A724 */ { "LATIN CAPITAL LETTER EGYPTOLOGICAL AIN",NULL},
-/* A725 */ { "LATIN SMALL LETTER EGYPTOLOGICAL AIN","	* this is a case pair\n"
+/* A725 */ { "LATIN SMALL LETTER EGYPTOLOGICAL AIN","	x (modifier letter left half ring - 02BF)\n"
+	"	x (hebrew letter ayin - 05E2)\n"
+	"	x (arabic letter ain - 0639)\n"
 	"	x (latin letter ain - 1D25)\n"
 	"	x (modifier letter small ain - 1D5C)\n"
 	"	x (latin small letter glottal i - A7BD)"},
-/* A726 */ { "LATIN CAPITAL LETTER HENG",NULL},
-/* A727 */ { "LATIN SMALL LETTER HENG",NULL},
+/* A726 */ { "LATIN CAPITAL LETTER HENG","	x (cyrillic capital letter en with hook - 04C7)\n"
+	"	x (latin capital letter h with descender - 2C67)"},
+/* A727 */ { "LATIN SMALL LETTER HENG","	* uvular fricative, see 0281\n"
+	"	* also used in Bantu linguistics for the voiced alveolar lateral fricative, see 026E\n"
+	"	x (latin small letter heng with hook - 0267)\n"
+	"	x (latin small letter h with palatal hook - A795)\n"
+	"	x (modifier letter small heng - AB5C)"},
 /* A728 */ { "LATIN CAPITAL LETTER TZ",NULL},
-/* A729 */ { "LATIN SMALL LETTER TZ",NULL},
+/* A729 */ { "LATIN SMALL LETTER TZ","	= tezh digraph\n"
+	"	* palatoalveolar affricate [ts]\n"
+	"	x (latin small letter ts digraph - 02A6)\n"
+	"	x (latin small letter tesh digraph - 02A7)"},
 /* A72A */ { "LATIN CAPITAL LETTER TRESILLO",NULL},
-/* A72B */ { "LATIN SMALL LETTER TRESILLO","	x (turned digit three - 218B)"},
+/* A72B */ { "LATIN SMALL LETTER TRESILLO","	* uvular ejective stop [qʼ]\n"
+	"	x (turned digit three - 218B)"},
 /* A72C */ { "LATIN CAPITAL LETTER CUATRILLO",NULL},
-/* A72D */ { "LATIN SMALL LETTER CUATRILLO",NULL},
+/* A72D */ { "LATIN SMALL LETTER CUATRILLO","	* velar ejective stop [kʼ]\n"
+	"	x (digit four - 0034)"},
 /* A72E */ { "LATIN CAPITAL LETTER CUATRILLO WITH COMMA",NULL},
-/* A72F */ { "LATIN SMALL LETTER CUATRILLO WITH COMMA",NULL},
+/* A72F */ { "LATIN SMALL LETTER CUATRILLO WITH COMMA","	* alveolar ejective affricate [tsʼ]"},
 /* A730 */ { "LATIN LETTER SMALL CAPITAL F",NULL},
 /* A731 */ { "LATIN LETTER SMALL CAPITAL S",NULL},
 /* A732 */ { "LATIN CAPITAL LETTER AA","	x (modifier letter small capital aa - 10780)"},
@@ -19367,8 +19900,8 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A73B */ { "LATIN SMALL LETTER AV WITH HORIZONTAL BAR",NULL},
 /* A73C */ { "LATIN CAPITAL LETTER AY",NULL},
 /* A73D */ { "LATIN SMALL LETTER AY",NULL},
-/* A73E */ { "LATIN CAPITAL LETTER REVERSED C WITH DOT",NULL},
-/* A73F */ { "LATIN SMALL LETTER REVERSED C WITH DOT",NULL},
+/* A73E */ { "LATIN CAPITAL LETTER REVERSED C WITH DOT","	x (greek capital reversed dotted lunate sigma symbol - 03FF)"},
+/* A73F */ { "LATIN SMALL LETTER REVERSED C WITH DOT","	x (greek small reversed dotted lunate sigma symbol - 037D)"},
 /* A740 */ { "LATIN CAPITAL LETTER K WITH STROKE",NULL},
 /* A741 */ { "LATIN SMALL LETTER K WITH STROKE",NULL},
 /* A742 */ { "LATIN CAPITAL LETTER K WITH DIAGONAL STROKE",NULL},
@@ -19377,16 +19910,18 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A745 */ { "LATIN SMALL LETTER K WITH STROKE AND DIAGONAL STROKE",NULL},
 /* A746 */ { "LATIN CAPITAL LETTER BROKEN L",NULL},
 /* A747 */ { "LATIN SMALL LETTER BROKEN L",NULL},
-/* A748 */ { "LATIN CAPITAL LETTER L WITH HIGH STROKE",NULL},
-/* A749 */ { "LATIN SMALL LETTER L WITH HIGH STROKE",NULL},
-/* A74A */ { "LATIN CAPITAL LETTER O WITH LONG STROKE OVERLAY",NULL},
-/* A74B */ { "LATIN SMALL LETTER O WITH LONG STROKE OVERLAY",NULL},
+/* A748 */ { "LATIN CAPITAL LETTER L WITH HIGH STROKE","	x (latin capital letter l with bar - 023D)"},
+/* A749 */ { "LATIN SMALL LETTER L WITH HIGH STROKE","	x (latin small letter l with bar - 019A)"},
+/* A74A */ { "LATIN CAPITAL LETTER O WITH LONG STROKE OVERLAY","	x (latin capital letter o with middle tilde - 019F)"},
+/* A74B */ { "LATIN SMALL LETTER O WITH LONG STROKE OVERLAY","	x (latin small letter o with stroke - 00F8)\n"
+	"	x (latin small letter barred o - 0275)"},
 /* A74C */ { "LATIN CAPITAL LETTER O WITH LOOP",NULL},
 /* A74D */ { "LATIN SMALL LETTER O WITH LOOP",NULL},
 /* A74E */ { "LATIN CAPITAL LETTER OO",NULL},
-/* A74F */ { "LATIN SMALL LETTER OO",NULL},
-/* A750 */ { "LATIN CAPITAL LETTER P WITH STROKE THROUGH DESCENDER",NULL},
-/* A751 */ { "LATIN SMALL LETTER P WITH STROKE THROUGH DESCENDER",NULL},
+/* A74F */ { "LATIN SMALL LETTER OO","	x (cyrillic small letter double o - A699)"},
+/* A750 */ { "LATIN CAPITAL LETTER P WITH STROKE THROUGH DESCENDER","	x (ruble sign - 20BD)"},
+/* A751 */ { "LATIN SMALL LETTER P WITH STROKE THROUGH DESCENDER","	x (greek rho with stroke symbol - 03FC)\n"
+	"	x (latin small letter p with middle tilde - 1D71)"},
 /* A752 */ { "LATIN CAPITAL LETTER P WITH FLOURISH",NULL},
 /* A753 */ { "LATIN SMALL LETTER P WITH FLOURISH",NULL},
 /* A754 */ { "LATIN CAPITAL LETTER P WITH SQUIRREL TAIL",NULL},
@@ -19404,7 +19939,7 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A760 */ { "LATIN CAPITAL LETTER VY",NULL},
 /* A761 */ { "LATIN SMALL LETTER VY",NULL},
 /* A762 */ { "LATIN CAPITAL LETTER VISIGOTHIC Z",NULL},
-/* A763 */ { "LATIN SMALL LETTER VISIGOTHIC Z",NULL},
+/* A763 */ { "LATIN SMALL LETTER VISIGOTHIC Z","	x (latin small letter c with cedilla - 00E7)"},
 /* A764 */ { "LATIN CAPITAL LETTER THORN WITH STROKE",NULL},
 /* A765 */ { "LATIN SMALL LETTER THORN WITH STROKE","	* Old English, Old Norse\n"
 	"	* representative glyph is preferred in Old English text\n"
@@ -19413,13 +19948,14 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A767 */ { "LATIN SMALL LETTER THORN WITH STROKE THROUGH DESCENDER",NULL},
 /* A768 */ { "LATIN CAPITAL LETTER VEND",NULL},
 /* A769 */ { "LATIN SMALL LETTER VEND",NULL},
-/* A76A */ { "LATIN CAPITAL LETTER ET",NULL},
-/* A76B */ { "LATIN SMALL LETTER ET",NULL},
+/* A76A */ { "LATIN CAPITAL LETTER ET","	x (latin capital letter reversed open e - A7AB)"},
+/* A76B */ { "LATIN SMALL LETTER ET","	x (latin small letter yogh - 021D)"},
 /* A76C */ { "LATIN CAPITAL LETTER IS",NULL},
 /* A76D */ { "LATIN SMALL LETTER IS",NULL},
-/* A76E */ { "LATIN CAPITAL LETTER CON",NULL},
+/* A76E */ { "LATIN CAPITAL LETTER CON","	x (digit nine - 0039)"},
 /* A76F */ { "LATIN SMALL LETTER CON",NULL},
-/* A770 */ { "MODIFIER LETTER US","	# <super> A76F"},
+/* A770 */ { "MODIFIER LETTER US","	x (superscript nine - 2079)\n"
+	"	# <super> A76F"},
 /* A771 */ { "LATIN SMALL LETTER DUM",NULL},
 /* A772 */ { "LATIN SMALL LETTER LUM",NULL},
 /* A773 */ { "LATIN SMALL LETTER MUM",NULL},
@@ -19429,28 +19965,39 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A777 */ { "LATIN SMALL LETTER TUM",NULL},
 /* A778 */ { "LATIN SMALL LETTER UM",NULL},
 /* A779 */ { "LATIN CAPITAL LETTER INSULAR D",NULL},
-/* A77A */ { "LATIN SMALL LETTER INSULAR D",NULL},
+/* A77A */ { "LATIN SMALL LETTER INSULAR D","	* dental fricative [ð]\n"
+	"	x (latin small letter eth - 00F0)\n"
+	"	x (latin small letter delta - 1E9F)"},
 /* A77B */ { "LATIN CAPITAL LETTER INSULAR F",NULL},
 /* A77C */ { "LATIN SMALL LETTER INSULAR F",NULL},
-/* A77D */ { "LATIN CAPITAL LETTER INSULAR G","	* lowercase is 1D79"},
+/* A77D */ { "LATIN CAPITAL LETTER INSULAR G","	* lowercase is 1D79\n"
+	"	x (latin capital letter closed insular g - A7D0)"},
 /* A77E */ { "LATIN CAPITAL LETTER TURNED INSULAR G",NULL},
-/* A77F */ { "LATIN SMALL LETTER TURNED INSULAR G",NULL},
+/* A77F */ { "LATIN SMALL LETTER TURNED INSULAR G","	* velar nasal [ŋ]\n"
+	"	x (latin small letter turned g - 1D77)"},
 /* A780 */ { "LATIN CAPITAL LETTER TURNED L",NULL},
-/* A781 */ { "LATIN SMALL LETTER TURNED L",NULL},
+/* A781 */ { "LATIN SMALL LETTER TURNED L","	* voiceless alveolar lateral fricative [ɬ]"},
 /* A782 */ { "LATIN CAPITAL LETTER INSULAR R",NULL},
-/* A783 */ { "LATIN SMALL LETTER INSULAR R",NULL},
+/* A783 */ { "LATIN SMALL LETTER INSULAR R","	x (latin small letter r with long leg - 027C)"},
 /* A784 */ { "LATIN CAPITAL LETTER INSULAR S",NULL},
-/* A785 */ { "LATIN SMALL LETTER INSULAR S",NULL},
+/* A785 */ { "LATIN SMALL LETTER INSULAR S","	x (latin small letter long s - 017F)"},
 /* A786 */ { "LATIN CAPITAL LETTER INSULAR T",NULL},
-/* A787 */ { "LATIN SMALL LETTER INSULAR T",NULL},
-/* A788 */ { "MODIFIER LETTER LOW CIRCUMFLEX ACCENT","	x (modifier letter circumflex accent - 02C6)\n"
+/* A787 */ { "LATIN SMALL LETTER INSULAR T","	* voiceless dental fricative [θ]"},
+/* A788 */ { "MODIFIER LETTER LOW CIRCUMFLEX ACCENT","	* used as a tone letter for Lahu and Akha\n"
+	"	x (modifier letter circumflex accent - 02C6)\n"
+	"	x (modifier letter low up arrowhead - 02F0)\n"
 	"	x (caret - 2038)"},
 /* A789 */ { "MODIFIER LETTER COLON","	* used as a tone letter in some orthographies\n"
-	"	* Budu (Congo), Sabaot (Kenya), and several Papua New Guinea languages\n"
-	"	x (colon - 003A)"},
-/* A78A */ { "MODIFIER LETTER SHORT EQUALS SIGN","	* used as a tone letter in some orthographies\n"
-	"	* Budu (Congo)\n"
-	"	x (equals sign - 003D)"},
+	"	* Budu (Congo), Sabaot (Kenya), Grebo (Liberia), and several Papua New Guinea languages\n"
+	"	x (colon - 003A)\n"
+	"	x (modifier letter triangular colon - 02D0)\n"
+	"	x (modifier letter raised colon - 02F8)\n"
+	"	x (lisu letter tone mya jeu - A4FD)"},
+/* A78A */ { "MODIFIER LETTER SHORT EQUALS SIGN","	* used as a tone letter for Budu\n"
+	"	x (equals sign - 003D)\n"
+	"	x (modifier letter unaspirated - 02ED)\n"
+	"	x (double hyphen - 2E40)\n"
+	"	x (small equals sign - FE66)"},
 /* A78B */ { "LATIN CAPITAL LETTER SALTILLO","	* Me'phaa (Mexico)"},
 /* A78C */ { "LATIN SMALL LETTER SALTILLO","	* saltillos are used as a casing pair for glottal stop in some orthographies\n"
 	"	* the lowercase is widely used in many languages in Mexico and other regions, including Izere in Nigeria\n"
@@ -19460,22 +20007,34 @@ static const struct unicode_nameannot una_00_A7[] = {
 	"	x (modifier letter apostrophe - 02BC)\n"
 	"	x (modifier letter glottal stop - 02C0)"},
 /* A78D */ { "LATIN CAPITAL LETTER TURNED H","	* used in the Dan/Gio orthography in Liberia\n"
-	"	* lowercase is 0265"},
+	"	* also historically used in Latin-based orthographies for Abaza and Abkhaz\n"
+	"	* lowercase is 0265\n"
+	"	x (cyrillic capital letter che - 0427)"},
 /* A78E */ { "LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT","	* voiceless lateral retroflex fricative\n"
-	"	* used to transcribe Toda"},
+	"	* used to transcribe Toda\n"
+	"	x (latin small letter l with belt - 026C)"},
 /* A78F */ { "LATIN LETTER SINOLOGICAL DOT","	* used in transliteration of Phags-Pa and in phonetic transcription of Tangut\n"
-	"	x (middle dot - 00B7)"},
+	"	x (middle dot - 00B7)\n"
+	"	x (bullet - 2022)"},
 /* A790 */ { "LATIN CAPITAL LETTER N WITH DESCENDER",NULL},
-/* A791 */ { "LATIN SMALL LETTER N WITH DESCENDER","	* Janalif"},
-/* A792 */ { "LATIN CAPITAL LETTER C WITH BAR","	= Cambrian symbol"},
-/* A793 */ { "LATIN SMALL LETTER C WITH BAR","	* Nanai"},
+/* A791 */ { "LATIN SMALL LETTER N WITH DESCENDER","	* velar nasal [ŋ]\n"
+	"	* Yañalif\n"
+	"	x (latin small letter eng - 014B)\n"
+	"	x (latin small letter n with long right leg - 019E)\n"
+	"	x (cyrillic small letter en with descender - 04A3)"},
+/* A792 */ { "LATIN CAPITAL LETTER C WITH BAR","	= Cambrian symbol\n"
+	"	x (euro sign - 20AC)"},
+/* A793 */ { "LATIN SMALL LETTER C WITH BAR","	* voiceless postalveolar affricate [tʃ]\n"
+	"	* Nanai, ...\n"
+	"	x (cyrillic small letter ukrainian ie - 0454)"},
 /* A794 */ { "LATIN SMALL LETTER C WITH PALATAL HOOK","	* uppercase is A7C4"},
 /* A795 */ { "LATIN SMALL LETTER H WITH PALATAL HOOK","	x (latin small letter heng - A727)"},
 /* A796 */ { "LATIN CAPITAL LETTER B WITH FLOURISH",NULL},
 /* A797 */ { "LATIN SMALL LETTER B WITH FLOURISH",NULL},
-/* A798 */ { "LATIN CAPITAL LETTER F WITH STROKE","	x (latin capital letter f with hook - 0191)"},
+/* A798 */ { "LATIN CAPITAL LETTER F WITH STROKE","	x (latin capital letter f with hook - 0191)\n"
+	"	x (french franc sign - 20A3)"},
 /* A799 */ { "LATIN SMALL LETTER F WITH STROKE","	* old Ewe orthography\n"
-	"	* also used in German dialectology"},
+	"	* also used in the Anthropos phonetic alphabet"},
 /* A79A */ { "LATIN CAPITAL LETTER VOLAPUK AE",NULL},
 /* A79B */ { "LATIN SMALL LETTER VOLAPUK AE",NULL},
 /* A79C */ { "LATIN CAPITAL LETTER VOLAPUK OE",NULL},
@@ -19492,14 +20051,22 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7A7 */ { "LATIN SMALL LETTER R WITH OBLIQUE STROKE",NULL},
 /* A7A8 */ { "LATIN CAPITAL LETTER S WITH OBLIQUE STROKE",NULL},
 /* A7A9 */ { "LATIN SMALL LETTER S WITH OBLIQUE STROKE","	* also used in pre-1950 Lower Sorbian orthography\n"
-	"	x (latin small letter long s with diagonal stroke - 1E9C)"},
+	"	x (latin small letter long s with diagonal stroke - 1E9C)\n"
+	"	x (latin small letter s with short stroke overlay - A7CA)"},
 /* A7AA */ { "LATIN CAPITAL LETTER H WITH HOOK","	* lowercase is 0266\n"
 	"	* used in Chad"},
-/* A7AB */ { "LATIN CAPITAL LETTER REVERSED OPEN E","	* lowercase is 025C"},
+/* A7AB */ { "LATIN CAPITAL LETTER REVERSED OPEN E","	* lowercase is 025C\n"
+	"	x (latin capital letter ezh - 01B7)\n"
+	"	x (latin capital letter yogh - 021C)\n"
+	"	x (cyrillic capital letter ze - 0417)"},
 /* A7AC */ { "LATIN CAPITAL LETTER SCRIPT G","	* lowercase is 0261"},
-/* A7AD */ { "LATIN CAPITAL LETTER L WITH BELT","	* lowercase is 026C"},
+/* A7AD */ { "LATIN CAPITAL LETTER L WITH BELT","	* lowercase is 026C\n"
+	"	x (latin capital letter l with bar - 023D)\n"
+	"	x (latin letter small capital l with belt - 1DF04)"},
 /* A7AE */ { "LATIN CAPITAL LETTER SMALL CAPITAL I","	* lowercase is 026A\n"
-	"	* also used in Unifon"},
+	"	* also used in Unifon\n"
+	"	x (latin capital letter i - 0049)\n"
+	"	x (latin letter small capital i - 026A)"},
 /* A7AF */ { "LATIN LETTER SMALL CAPITAL Q","	* used to represent gemination\n"
 	"	x (modifier letter capital q - A7F4)"},
 /* A7B0 */ { "LATIN CAPITAL LETTER TURNED K","	* lowercase is 029E"},
@@ -19509,9 +20076,13 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7B3 */ { "LATIN CAPITAL LETTER CHI","	* lowercase is AB53\n"
 	"	x (greek capital letter chi - 03A7)"},
 /* A7B4 */ { "LATIN CAPITAL LETTER BETA",NULL},
-/* A7B5 */ { "LATIN SMALL LETTER BETA","	x (greek small letter beta - 03B2)"},
+/* A7B5 */ { "LATIN SMALL LETTER BETA","	x (latin small letter sharp s - 00DF)\n"
+	"	x (greek small letter beta - 03B2)"},
 /* A7B6 */ { "LATIN CAPITAL LETTER OMEGA",NULL},
-/* A7B7 */ { "LATIN SMALL LETTER OMEGA","	x (greek small letter omega - 03C9)"},
+/* A7B7 */ { "LATIN SMALL LETTER OMEGA","	x (latin small letter closed omega - 0277)\n"
+	"	x (greek small letter omega - 03C9)\n"
+	"	x (cyrillic small letter omega - 0461)\n"
+	"	x (cyrillic small letter broad omega - A64D)"},
 /* A7B8 */ { "LATIN CAPITAL LETTER U WITH STROKE",NULL},
 /* A7B9 */ { "LATIN SMALL LETTER U WITH STROKE",NULL},
 /* A7BA */ { "LATIN CAPITAL LETTER GLOTTAL A",NULL},
@@ -19530,11 +20101,13 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7C4 */ { "LATIN CAPITAL LETTER C WITH PALATAL HOOK","	* lowercase is A794"},
 /* A7C5 */ { "LATIN CAPITAL LETTER S WITH HOOK","	* lowercase is 0282"},
 /* A7C6 */ { "LATIN CAPITAL LETTER Z WITH PALATAL HOOK","	* lowercase is 1D8E"},
-/* A7C7 */ { "LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY",NULL},
+/* A7C7 */ { "LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY","	x (latin capital letter eth - 00D0)\n"
+	"	x (latin capital letter d with stroke - 0110)"},
 /* A7C8 */ { "LATIN SMALL LETTER D WITH SHORT STROKE OVERLAY","	= tau gallicum\n"
-	"	* indicates a dental affricate"},
+	"	* indicates a dental affricate\n"
+	"	x (latin small letter d with stroke - 0111)"},
 /* A7C9 */ { "LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY",NULL},
-/* A7CA */ { "LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY",NULL},
+/* A7CA */ { "LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY","	* attested in handwritten documents used in pairs as an alternate tau gallicum"},
 /* A7CB */ { NULL,NULL},
 /* A7CC */ { NULL,NULL},
 /* A7CD */ { NULL,NULL},
@@ -19582,7 +20155,7 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7F5 */ { "LATIN CAPITAL LETTER REVERSED HALF H","	= H dimidié\n"
 	"	* appears in inscriptions from the Roman provinces of Gaul\n"
 	"	x (latin capital letter half h - 2C75)"},
-/* A7F6 */ { "LATIN SMALL LETTER REVERSED HALF H",NULL},
+/* A7F6 */ { "LATIN SMALL LETTER REVERSED HALF H","	* the lowercase is not attested in inscriptions but is used by scholars when transcribing"},
 /* A7F7 */ { "LATIN EPIGRAPHIC LETTER SIDEWAYS I","	* Celtic inscriptions"},
 /* A7F8 */ { "MODIFIER LETTER CAPITAL H WITH STROKE","	# <super> 0126\n"
 	"		A typographical distinction between a capital form and a small capital form is not distinctive for this character in IPA usage.\n"
@@ -19590,12 +20163,15 @@ static const struct unicode_nameannot una_00_A7[] = {
 	"	x (latin letter small capital h - 029C)"},
 /* A7F9 */ { "MODIFIER LETTER SMALL LIGATURE OE","	* labialized: open-rounded\n"
 	"	# <super> 0153"},
-/* A7FA */ { "LATIN LETTER SMALL CAPITAL TURNED M",NULL},
-/* A7FB */ { "LATIN EPIGRAPHIC LETTER REVERSED F",NULL},
-/* A7FC */ { "LATIN EPIGRAPHIC LETTER REVERSED P",NULL},
-/* A7FD */ { "LATIN EPIGRAPHIC LETTER INVERTED M",NULL},
+/* A7FA */ { "LATIN LETTER SMALL CAPITAL TURNED M","	* voiceless closed central vowel\n"
+	"	x (latin small letter turned m - 026F)\n"
+	"	x (cyrillic small letter sha - 0448)"},
+/* A7FB */ { "LATIN EPIGRAPHIC LETTER REVERSED F","	= filia (daughter), femina (woman, female)"},
+/* A7FC */ { "LATIN EPIGRAPHIC LETTER REVERSED P","	= puella (girl)"},
+/* A7FD */ { "LATIN EPIGRAPHIC LETTER INVERTED M","	= mulier, matrona (married woman)\n"
+	"	x (latin capital letter turned m - 019C)"},
 /* A7FE */ { "LATIN EPIGRAPHIC LETTER I LONGA",NULL},
-/* A7FF */ { "LATIN EPIGRAPHIC LETTER ARCHAIC M",NULL}
+/* A7FF */ { "LATIN EPIGRAPHIC LETTER ARCHAIC M","	* logograph for the praenomen \"Manius\""}
 };
 
 UN_DLL_LOCAL
@@ -20501,19 +21077,21 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB2F */ { NULL,NULL},
 /* AB30 */ { "LATIN SMALL LETTER BARRED ALPHA","		* This letter is a Latin alpha with a horizontal strikethrough bar. In some font designs, the bar might not extend beyond the edge of the letter, and in such cases, the letter should not be confused with a ligature of epsilon and iota."},
 /* AB31 */ { "LATIN SMALL LETTER A REVERSED-SCHWA",NULL},
-/* AB32 */ { "LATIN SMALL LETTER BLACKLETTER E",NULL},
+/* AB32 */ { "LATIN SMALL LETTER BLACKLETTER E","	x (mathematical fraktur small e - 1D522)"},
 /* AB33 */ { "LATIN SMALL LETTER BARRED E",NULL},
 /* AB34 */ { "LATIN SMALL LETTER E WITH FLOURISH",NULL},
 /* AB35 */ { "LATIN SMALL LETTER LENIS F","	x (latin small letter f - 0066)"},
 /* AB36 */ { "LATIN SMALL LETTER SCRIPT G WITH CROSSED-TAIL",NULL},
 /* AB37 */ { "LATIN SMALL LETTER L WITH INVERTED LAZY S",NULL},
-/* AB38 */ { "LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE",NULL},
+/* AB38 */ { "LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE","	x (latin small letter l with middle tilde - 026B)\n"
+	"	x (latin small letter l with double bar - 2C61)"},
 /* AB39 */ { "LATIN SMALL LETTER L WITH MIDDLE RING",NULL},
 /* AB3A */ { "LATIN SMALL LETTER M WITH CROSSED-TAIL",NULL},
 /* AB3B */ { "LATIN SMALL LETTER N WITH CROSSED-TAIL",NULL},
 /* AB3C */ { "LATIN SMALL LETTER ENG WITH CROSSED-TAIL",NULL},
-/* AB3D */ { "LATIN SMALL LETTER BLACKLETTER O",NULL},
-/* AB3E */ { "LATIN SMALL LETTER BLACKLETTER O WITH STROKE",NULL},
+/* AB3D */ { "LATIN SMALL LETTER BLACKLETTER O","	x (mathematical fraktur small o - 1D52C)"},
+/* AB3E */ { "LATIN SMALL LETTER BLACKLETTER O WITH STROKE","		* This letter was encoded based on a misinterpretation of a low quality copy of Sievers 1901. It is not actually used in German dialectology.\n"
+	"	x (latin small letter o with stroke - 00F8)"},
 /* AB3F */ { "LATIN SMALL LETTER OPEN O WITH STROKE",NULL},
 /* AB40 */ { "LATIN SMALL LETTER INVERTED OE","	= latin small letter o reversed-schwa"},
 /* AB41 */ { "LATIN SMALL LETTER TURNED OE WITH STROKE",NULL},
@@ -20526,9 +21104,9 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB48 */ { "LATIN SMALL LETTER DOUBLE R",NULL},
 /* AB49 */ { "LATIN SMALL LETTER R WITH CROSSED-TAIL",NULL},
 /* AB4A */ { "LATIN SMALL LETTER DOUBLE R WITH CROSSED-TAIL",NULL},
-/* AB4B */ { "LATIN SMALL LETTER SCRIPT R",NULL},
+/* AB4B */ { "LATIN SMALL LETTER SCRIPT R","	x (mathematical script small r - 1D4C7)"},
 /* AB4C */ { "LATIN SMALL LETTER SCRIPT R WITH RING",NULL},
-/* AB4D */ { "LATIN SMALL LETTER BASELINE ESH",NULL},
+/* AB4D */ { "LATIN SMALL LETTER BASELINE ESH","	x (latin small letter esh - 0283)"},
 /* AB4E */ { "LATIN SMALL LETTER U WITH SHORT RIGHT LEG",NULL},
 /* AB4F */ { "LATIN SMALL LETTER U BAR WITH SHORT RIGHT LEG",NULL},
 /* AB50 */ { "LATIN SMALL LETTER UI",NULL},
@@ -20543,8 +21121,9 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB58 */ { "LATIN SMALL LETTER X WITH LONG LEFT LEG AND LOW RIGHT RING",NULL},
 /* AB59 */ { "LATIN SMALL LETTER X WITH LONG LEFT LEG WITH SERIF",NULL},
 /* AB5A */ { "LATIN SMALL LETTER Y WITH SHORT RIGHT LEG",NULL},
-/* AB5B */ { "MODIFIER BREVE WITH INVERTED BREVE","	x (breve - 02D8)\n"
-	"	x (close up - 2050)\n"
+/* AB5B */ { "MODIFIER BREVE WITH INVERTED BREVE","	* indicates a short vowel\n"
+	"	x (breve - 02D8)\n"
+	"	x (equivalent to - 224D)\n"
 	"	x (metrical breve - 23D1)\n"
 	"	x (inverted low kavyka with kavyka above - 2E46)"},
 /* AB5C */ { "MODIFIER LETTER SMALL HENG","	# <super> A727"},
@@ -20555,10 +21134,12 @@ static const struct unicode_nameannot una_00_AB[] = {
 /* AB61 */ { "LATIN SMALL LETTER IOTIFIED E","	x (cyrillic small letter iotified e - 0465)"},
 /* AB62 */ { "LATIN SMALL LETTER OPEN OE","	x (latin small letter open o - 0254)"},
 /* AB63 */ { "LATIN SMALL LETTER UO",NULL},
-/* AB64 */ { "LATIN SMALL LETTER INVERTED ALPHA","	x (latin small letter turned alpha - 0252)"},
+/* AB64 */ { "LATIN SMALL LETTER INVERTED ALPHA","	* unrounded low back vowel\n"
+	"	x (latin small letter turned alpha - 0252)"},
 /* AB65 */ { "GREEK LETTER SMALL CAPITAL OMEGA","	* obsolete for mid back rounded vowel\n"
+	"		Other Greek small capital letters are located in the range 1D26-1D2A.\n"
 	"	x (latin small letter closed omega - 0277)\n"
-	"	x (greek small letter omega - 03C9)"},
+	"	x (greek capital letter omega - 03A9)"},
 /* AB66 */ { "LATIN SMALL LETTER DZ DIGRAPH WITH RETROFLEX HOOK","	* voiced retroflex affricate\n"
 	"	x (latin small letter z with retroflex hook - 0290)\n"
 	"	x (latin small letter dz digraph - 02A3)"},
@@ -43058,23 +43639,24 @@ static const struct unicode_nameannot una_01_DA[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_DF[] = {
-/* 1DF00 */ { "LATIN SMALL LETTER FENG DIGRAPH WITH TRILL",NULL},
+/* 1DF00 */ { "LATIN SMALL LETTER FENG DIGRAPH WITH TRILL","	x (latin small letter feng digraph - 02A9)"},
 /* 1DF01 */ { "LATIN SMALL LETTER REVERSED SCRIPT G",NULL},
-/* 1DF02 */ { "LATIN LETTER SMALL CAPITAL TURNED G",NULL},
+/* 1DF02 */ { "LATIN LETTER SMALL CAPITAL TURNED G","	x (latin small letter turned g - 1D77)"},
 /* 1DF03 */ { "LATIN SMALL LETTER REVERSED K",NULL},
-/* 1DF04 */ { "LATIN LETTER SMALL CAPITAL L WITH BELT",NULL},
+/* 1DF04 */ { "LATIN LETTER SMALL CAPITAL L WITH BELT","	x (latin capital letter l with belt - A7AD)"},
 /* 1DF05 */ { "LATIN SMALL LETTER LEZH WITH RETROFLEX HOOK",NULL},
 /* 1DF06 */ { "LATIN SMALL LETTER TURNED Y WITH BELT",NULL},
 /* 1DF07 */ { "LATIN SMALL LETTER REVERSED ENG",NULL},
 /* 1DF08 */ { "LATIN SMALL LETTER TURNED R WITH LONG LEG AND RETROFLEX HOOK",NULL},
-/* 1DF09 */ { "LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK",NULL},
+/* 1DF09 */ { "LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK","	x (latin small letter t with hook - 01AD)"},
 /* 1DF0A */ { "LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK",NULL},
-/* 1DF0B */ { "LATIN SMALL LETTER ESH WITH DOUBLE BAR",NULL},
+/* 1DF0B */ { "LATIN SMALL LETTER ESH WITH DOUBLE BAR","	x (integral with double stroke - 2A0E)"},
 /* 1DF0C */ { "LATIN SMALL LETTER ESH WITH DOUBLE BAR AND CURL",NULL},
 /* 1DF0D */ { "LATIN SMALL LETTER TURNED T WITH CURL",NULL},
 /* 1DF0E */ { "LATIN LETTER INVERTED GLOTTAL STOP WITH CURL",NULL},
 /* 1DF0F */ { "LATIN LETTER STRETCHED C WITH CURL",NULL},
-/* 1DF10 */ { "LATIN LETTER SMALL CAPITAL TURNED K",NULL},
+/* 1DF10 */ { "LATIN LETTER SMALL CAPITAL TURNED K","	x (latin small letter turned k - 029E)\n"
+	"	x (latin capital letter turned k - A7B0)"},
 /* 1DF11 */ { "LATIN SMALL LETTER L WITH FISHHOOK",NULL},
 /* 1DF12 */ { "LATIN SMALL LETTER DEZH DIGRAPH WITH PALATAL HOOK",NULL},
 /* 1DF13 */ { "LATIN SMALL LETTER L WITH BELT AND PALATAL HOOK",NULL},

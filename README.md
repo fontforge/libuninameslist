@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This library is updated for Nameslist.txt ver15.0 and ListeDesNoms.txt ver14.0
+This library is updated for Nameslist.txt ver15.1beta and ListeDesNoms.txt ver15.0
 and includes python wrapper 'uninameslist.py'
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
