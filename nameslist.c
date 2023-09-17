@@ -67,7 +67,7 @@ const char *uniNamesList_annot(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersion(void) {
-	return( "Nameslist-Version: 15.0b" );
+	return( "Nameslist-Version: 15.1" );
 }
 
 
@@ -855,7 +855,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x2b740, 0x2b81d, "CJK Unified Ideographs Extension D" },
 	{ 0x2b820, 0x2cea1, "CJK Unified Ideographs Extension E" },
 	{ 0x2ceb0, 0x2ebe0, "CJK Unified Ideographs Extension F" },
-	{ 0x2ebf0, 0x2ee4a, "CJK Unified Ideographs Extension I" },
+	{ 0x2ebf0, 0x2ee5d, "CJK Unified Ideographs Extension I" },
 	{ 0x2f800, 0x2fa1f, "CJK Compatibility Ideographs Supplement" },
 	{ 0x2ff80, 0x2ffff, "Unassigned" },
 	{ 0x30000, 0x3134a, "CJK Unified Ideographs Extension G" },
@@ -2577,7 +2577,8 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02BC */ { "MODIFIER LETTER APOSTROPHE","	= apostrophe\n"
 	"	* glottal stop, glottalization, ejective\n"
 	"	* many languages use this as a letter of their alphabets\n"
-	"	* used as a tone marker in Bodo, Dogri, and Maithili\n"
+	"	* used as a tone marker in Bodo and Dogri\n"
+	"	* indicates vowel elongation, or various truncations and ellipsis in Maithili\n"
 	"	* used as a modifier letter in the Lisu script\n"
 	"	* 2019 is the preferred character for a punctuation apostrophe\n"
 	"	x (apostrophe - 0027)\n"
@@ -4014,7 +4015,8 @@ static const struct unicode_nameannot una_00_06[] = {
 /* 06CA */ { "ARABIC LETTER WAW WITH TWO DOTS ABOVE","	* Kurdish"},
 /* 06CB */ { "ARABIC LETTER VE","	* Uyghur, Kazakh"},
 /* 06CC */ { "ARABIC LETTER FARSI YEH","	* Arabic, Persian, Urdu, Kashmiri, ...\n"
-	"	* initial and medial forms of this letter have dots\n"
+	"	* initial and medial forms of this letter have two horizontal dots below\n"
+	"	* retains its dots in initial and medial forms when used in combination with 0654\n"
 	"	x (arabic letter alef maksura - 0649)\n"
 	"	x (arabic letter yeh - 064A)"},
 /* 06CD */ { "ARABIC LETTER YEH WITH TAIL","	* Pashto, Sindhi"},
@@ -15612,6 +15614,7 @@ static const struct unicode_nameannot una_00_2E[] = {
 /* 2E39 */ { "TOP HALF SECTION SIGN","	* indicates pronunciation on one side of the mouth only\n"
 	"	x (section sign - 00A7)"},
 /* 2E3A */ { "TWO-EM DASH","	= omission dash\n"
+	"	* may be used in Chinese for abrupt change of thought, inserting new content, or continuation of tone or sound\n"
 	"	x (em dash - 2014)"},
 /* 2E3B */ { "THREE-EM DASH",NULL},
 /* 2E3C */ { "STENOGRAPHIC FULL STOP","	* used in shorthands and stenographies\n"

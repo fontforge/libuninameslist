@@ -58,9 +58,9 @@ const char *uniNamesList_NamesListVersion(void);
 
 /* Version information for this <uninameslist.h> include file */
 #define LIBUNINAMESLIST_MAJOR	1
-#define LIBUNINAMESLIST_MINOR	13
+#define LIBUNINAMESLIST_MINOR	14
 
-/* Return number of blocks in this NamesList (Version 15.0b). */
+/* Return number of blocks in this NamesList (Version 15.1). */
 int uniNamesList_blockCount(void);
 
 /* Return block number for this unicode value (-1 if bad unicode value) */

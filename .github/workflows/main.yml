@@ -37,6 +37,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create configure
         run: |
+          python --version
+          pip --version
+          easy_install --version
+          pip install setuptools
+          python -m pip install setuptools
+          python3 -m pip install -U wheel setuptools
           brew install autoconf automake libtool gcc
           autoreconf -i
           automake
