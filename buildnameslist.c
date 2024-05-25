@@ -46,9 +46,9 @@ static int printcopyright2credits(FILE *out) {
     fprintf( out, "; Le Consortium Unicode entretient une collaboration étroite\n");
     fprintf( out, ";\tet une liaison officielle avec le groupe de travail qui élabore\n");
     fprintf( out, ";\tla norme internationale ISO/CEI 10646. La version %s du standard Unicode\n", NFR_VERSION);
-    fprintf( out, ";\tintègre 4.489 nouveaux caractères (dont 4.193 idéogrammes unifiés CJC\n");
-    fprintf( out, ";\tet 20 émojis), portant le total à 149.186 caractères.\n\n");
-    fprintf( out, "; Le présent fichier peut être utilisé librement. Toutefois, aucune\n");
+    fprintf( out, ";\tintègre 627 nouveaux caractères (dont 622 idéogrammes unifiés CJC),\n");
+    fprintf( out, ";\tportant le total à 149.813 caractères.\n\n");
+    fprintf( out, "; LLe présent fichier peut être utilisé librement. Toutefois, aucune\n");
     fprintf( out, ";\tmodification n’y est autorisée ; toutes les copies doivent être\n");
     fprintf( out, ";\trigoureusement identiques au fichier original.\n\n");
     fprintf( out, "; Le Consortium Unicode n’est pas responsable des erreurs ou omissions\n");
@@ -60,7 +60,7 @@ static int printcopyright2credits(FILE *out) {
     fprintf( out, ";\tla présente liste est informative, jusqu’à ce que la norme\n");
     fprintf( out, ";\tISO/CEI 10646 ait été remise à niveau en français.\n\n");
     fprintf( out, "; Version originale (en anglais) de la liste des noms des caractères :\n");
-    fprintf( out, ";\thttps://www.unicode.org/Public/15.0.0/ucd/NamesList.txt\n\n");
+    fprintf( out, ";\thttps://www.unicode.org/Public/15.1.0/ucd/NamesList.txt\n\n");
     fprintf( out, "; Contributions à la version en langue française :\n");
     fprintf( out, ";\tJacques André, France\n");
     fprintf( out, ";\tPatrick Andries, Canada (Québec)\n");

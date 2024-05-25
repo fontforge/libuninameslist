@@ -75,7 +75,7 @@ NamesList.txt:
 	$(WGET) "https://www.unicode.org/Public/UCD/latest/ucd/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
-	$(WGET) "http://hapax.qc.ca/ListeNoms-15.0.0.txt" -O ListeDesNoms.txt
+	$(WGET) "http://hapax.qc.ca/ListeNoms-15.1.0.txt" -O ListeDesNoms.txt
 
 # test: run all tests in cwd and subdirs
 test:	$(TEST_PROGS)

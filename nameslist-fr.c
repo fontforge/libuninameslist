@@ -6,18 +6,18 @@
 
 
 /*
-; Standard Unicode 15.0 ou
+; Standard Unicode 15.1 ou
 ;	Norme internationale ISO/CEI 10646
 ;
 ; Liste des noms des caractères (version en langue française)
 
 ; Le Consortium Unicode entretient une collaboration étroite
 ;	et une liaison officielle avec le groupe de travail qui élabore
-;	la norme internationale ISO/CEI 10646. La version 15.0 du standard Unicode
-;	intègre 4.489 nouveaux caractères (dont 4.193 idéogrammes unifiés CJC
-;	et 20 émojis), portant le total à 149.186 caractères.
+;	la norme internationale ISO/CEI 10646. La version 15.1 du standard Unicode
+;	intègre 627 nouveaux caractères (dont 622 idéogrammes unifiés CJC),
+;	portant le total à 149.813 caractères.
 
-; Le présent fichier peut être utilisé librement. Toutefois, aucune
+; LLe présent fichier peut être utilisé librement. Toutefois, aucune
 ;	modification n’y est autorisée ; toutes les copies doivent être
 ;	rigoureusement identiques au fichier original.
 
@@ -32,7 +32,7 @@
 ;	ISO/CEI 10646 ait été remise à niveau en français.
 
 ; Version originale (en anglais) de la liste des noms des caractères :
-;	https://www.unicode.org/Public/15.0.0/ucd/NamesList.txt
+;	https://www.unicode.org/Public/15.1.0/ucd/NamesList.txt
 
 ; Contributions à la version en langue française :
 ;	Jacques André, France
@@ -68,7 +68,7 @@ const char *uniNamesList_annotFR(unsigned long uni) {
 /* Retrieve Nameslist.txt version number. */
 UN_DLL_EXPORT
 const char *uniNamesList_NamesListVersionFR(void) {
-	return( "Nameslist-Version: 15.0" );
+	return( "Nameslist-Version: 15.1" );
 }
 
 
@@ -661,6 +661,7 @@ const struct unicode_block UnicodeBlockFR[] = {
 	{ 0x2b740, 0x2b81d, "Supplément D aux idéogrammes unifiés CJC" },
 	{ 0x2b820, 0x2cea1, "Supplément E aux idéogrammes unifiés CJC" },
 	{ 0x2ceb0, 0x2ebe0, "Supplément F aux idéogrammes unifiés CJC" },
+	{ 0x2ebf0, 0x2ee5d, "Supplément I aux idéogrammes unifiés CJC" },
 	{ 0x2f800, 0x2fa1f, "Supplément aux idéogrammes de compatibilité CJC" },
 	{ 0x2ff80, 0x2ffff, "Points de code non attribués" },
 	{ 0x30000, 0x3134a, "Supplément G aux idéogrammes unifiés CJC" },
@@ -817,6 +818,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 002A */ { "ASTÉRISQUE","	= étoile\n"
 	"	* peut avoir cinq ou six branches\n"
 	"	x (étoile à cinq branches arabe - 066D)\n"
+	"	x (marque de référence - 203B)\n"
 	"	x (astérisme - 2042)\n"
 	"	x (astérisque baissé - 204E)\n"
 	"	x (deux astérisques alignés verticalement - 2051)\n"
@@ -826,23 +828,23 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (gros astérisque - 2731)\n"
 	"	x (astérisque slavon - A673)\n"
 	"	x (astérisque à six branches demi-gras - 1F7B6)"},
-/* 002B */ { "SIGNE PLUS","	= addition\n"
-	"	x (lettre modificative signe plus - 02D6)\n"
+/* 002B */ { "SIGNE PLUS","	x (lettre modificative signe plus - 02D6)\n"
 	"	x (signe moins - 2212)\n"
 	"	x (signe plus épais - 2795)\n"
 	"	x (lettre hébraïque alternative signe plus - FB29)\n"
 	"	x (croix grecque fine - 1F7A2)"},
-/* 002C */ { "VIRGULE","	= séparateur décimal\n"
+/* 002C */ { "VIRGULE","	= son emploi comme séparateur décimal ou comme séparateur de milliers est lié aux paramètres régionaux\n"
 	"	x (virgule arabe - 060C)\n"
 	"	x (séparateur décimal arabe - 066B)\n"
 	"	x (guillemet-virgule inférieur - 201A)\n"
+	"	x (hypodiastole - 2E12)\n"
 	"	x (virgule réfléchie - 2E41)\n"
 	"	x (virgule médiévale - 2E4C)\n"
 	"	x (virgule idéographique - 3001)"},
 /* 002D */ { "TRAIT D'UNION-SIGNE MOINS","	= trait d'union, tiret\n"
 	"	= signe moins\n"
 	"	* appelé « division » par les typographes\n"
-	"	* le caractère recommandé pour le signe moins est 2212\n"
+	"	* utilisé de manière générique pour le trait d'union, le signe moins ou le tiret demi-cadratin, qui ont chacun un caractère dédié\n"
 	"	x (trait d'union conditionnel - 00AD)\n"
 	"	x (lettre modificative signe moins - 02D7)\n"
 	"	x (trait d'union - 2010)\n"
@@ -854,8 +856,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (signe moins - 2212)\n"
 	"	x (symbole romain once - 10191)"},
 /* 002E */ { "POINT","	= point final, séparateur de milliers, point décimal anglo-saxon\n"
-	"	* l'emploi comme point décimal est lié aux paramètres régionaux (ou « locales »)\n"
+	"	* son emploi comme point décimal ou comme séparateur de milliers est lié aux paramètres régionaux\n"
 	"	* peut apparaître haussé pour les chiffres elzéviriens\n"
+	"	x (point médian - 00B7)\n"
 	"	x (point arabe - 06D4)\n"
 	"	x (point de conduite simple - 2024)\n"
 	"	x (points de suspension - 2026)\n"
@@ -871,10 +874,12 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (barre oblique pointée - 2E4A)"},
 /* 0030 */ { "CHIFFRE ZÉRO","	~ 0030 FE00 forme à barre diagonale courte"},
 /* 0031 */ { "CHIFFRE UN",NULL},
-/* 0032 */ { "CHIFFRE DEUX",NULL},
-/* 0033 */ { "CHIFFRE TROIS",NULL},
-/* 0034 */ { "CHIFFRE QUATRE",NULL},
-/* 0035 */ { "CHIFFRE CINQ",NULL},
+/* 0032 */ { "CHIFFRE DEUX","	x (lettre latine deux barré - 01BB)\n"
+	"	x (chiffre deux culbuté - 218A)"},
+/* 0033 */ { "CHIFFRE TROIS","	x (chiffre trois culbuté - 218B)\n"
+	"	x (lettre majuscule latine e ouvert réfléchi - A7AB)"},
+/* 0034 */ { "CHIFFRE QUATRE","	x (lettre majuscule latine cuatrillo - A72C)"},
+/* 0035 */ { "CHIFFRE CINQ","	x (lettre majuscule latine cinquième ton - 01BC)"},
 /* 0036 */ { "CHIFFRE SIX",NULL},
 /* 0037 */ { "CHIFFRE SEPT",NULL},
 /* 0038 */ { "CHIFFRE HUIT",NULL},
@@ -913,6 +918,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (trait d'union double - 2E40)\n"
 	"	x (double trait katakana-hiragana - 30A0)\n"
 	"	x (lettre modificative signe égal court - A78A)\n"
+	"	x (signe égal minuscule - FE66)\n"
 	"	x (symbole romain sextant - 10190)\n"
 	"	x (signe égal épais - 1F7F0)"},
 /* 003E */ { "SIGNE SUPÉRIEUR À","	= crochet brisé fermant, crochet oblique fermant\n"
@@ -932,16 +938,19 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (point d'interrogation médiéval - 2E54)\n"
 	"	x (caractère de remplacement - FFFD)"},
 /* 0040 */ { "ARROBE","	= arobase, arobas/arrobas, à commercial\n"
+	"	= arroba (ancienne mesure de poids espagnole)\n"
 	"	* a reçu des dénominations imagées dans de nombreuses langues\n"
-	"	* ancienne mesure de poids espagnole"},
+	"	x (lettre minuscule latine a cerclée - 24D0)"},
 /* 0041 */ { "LETTRE MAJUSCULE LATINE A",NULL},
 /* 0042 */ { "LETTRE MAJUSCULE LATINE B","	x (majuscule b de ronde - 212C)"},
-/* 0043 */ { "LETTRE MAJUSCULE LATINE C","	x (majuscule c ajouré - 2102)\n"
+/* 0043 */ { "LETTRE MAJUSCULE LATINE C","	x (symbole grec sigma lunaire majuscule - 03F9)\n"
+	"	x (majuscule c ajouré - 2102)\n"
 	"	x (degré celsius - 2103)\n"
 	"	x (majuscule c gothique - 212D)\n"
 	"	x (chiffre romain cent - 216D)"},
 /* 0044 */ { "LETTRE MAJUSCULE LATINE D","	x (chiffre romain cinq cents - 216E)"},
-/* 0045 */ { "LETTRE MAJUSCULE LATINE E","	x (constante d'euler - 2107)\n"
+/* 0045 */ { "LETTRE MAJUSCULE LATINE E","	x (lettre majuscule latine e ouvert - 0190)\n"
+	"	x (constante d'euler - 2107)\n"
 	"	x (majuscule e de ronde - 2130)"},
 /* 0046 */ { "LETTRE MAJUSCULE LATINE F","	x (degré fahrenheit - 2109)\n"
 	"	x (majuscule f de ronde - 2131)\n"
@@ -964,7 +973,8 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 004F */ { "LETTRE MAJUSCULE LATINE O",NULL},
 /* 0050 */ { "LETTRE MAJUSCULE LATINE P","	x (symbole fonction elliptique de weierstrass - 2118)\n"
 	"	x (majuscule p ajouré - 2119)"},
-/* 0051 */ { "LETTRE MAJUSCULE LATINE Q","	x (majuscule q ajouré - 211A)\n"
+/* 0051 */ { "LETTRE MAJUSCULE LATINE Q","	x (lettre majuscule cyrillique qa - 051A)\n"
+	"	x (majuscule q ajouré - 211A)\n"
 	"	x (majuscule q couché - 213A)"},
 /* 0052 */ { "LETTRE MAJUSCULE LATINE R","	x (majuscule r de ronde - 211B)\n"
 	"	x (majuscule r gothique - 211C)\n"
@@ -973,7 +983,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 0054 */ { "LETTRE MAJUSCULE LATINE T",NULL},
 /* 0055 */ { "LETTRE MAJUSCULE LATINE U",NULL},
 /* 0056 */ { "LETTRE MAJUSCULE LATINE V","	x (chiffre romain cinq - 2164)"},
-/* 0057 */ { "LETTRE MAJUSCULE LATINE W",NULL},
+/* 0057 */ { "LETTRE MAJUSCULE LATINE W","	x (lettre majuscule cyrillique wé - 051C)"},
 /* 0058 */ { "LETTRE MAJUSCULE LATINE X","	x (chiffre romain dix - 2169)"},
 /* 0059 */ { "LETTRE MAJUSCULE LATINE Y",NULL},
 /* 005A */ { "LETTRE MAJUSCULE LATINE Z","	x (majuscule z ajouré - 2124)\n"
@@ -992,6 +1002,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (lettre modificative accent circonflexe - 02C6)\n"
 	"	x (diacritique accent circonflexe - 0302)\n"
 	"	x (chevron d'insertion - 2038)\n"
+	"	x (et logique - 2227)\n"
 	"	x (pointe de flèche vers le haut - 2303)"},
 /* 005F */ { "TIRET BAS","	= trait de soulignement, souligné\n"
 	"	* ce caractère chasse\n"
@@ -1002,17 +1013,23 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (double tiret bas - 2017)\n"
 	"	x (diacritique macron souscrit jointif - FE2D)"},
 /* 0060 */ { "ACCENT GRAVE","	* ce caractère chasse\n"
+	"	* dans certains contextes techniques, sert de guillemet ouvrant, couplé avec une apostrophe\n"
+	"	x (accent aigu - 00B4)\n"
 	"	x (lettre modificative accent grave - 02CB)\n"
 	"	x (diacritique accent grave - 0300)\n"
+	"	x (accent grave grec - 1FEF)\n"
+	"	x (guillemet-apostrophe culbuté - 2018)\n"
 	"	x (prime réfléchi - 2035)"},
-/* 0061 */ { "LETTRE MINUSCULE LATINE A",NULL},
+/* 0061 */ { "LETTRE MINUSCULE LATINE A","	x (lettre minuscule latine alpha - 0251)"},
 /* 0062 */ { "LETTRE MINUSCULE LATINE B",NULL},
-/* 0063 */ { "LETTRE MINUSCULE LATINE C",NULL},
-/* 0064 */ { "LETTRE MINUSCULE LATINE D",NULL},
+/* 0063 */ { "LETTRE MINUSCULE LATINE C","	x (symbole grec sigma lunaire - 03F2)\n"
+	"	x (lettre latine petite capitale c - 1D04)"},
+/* 0064 */ { "LETTRE MINUSCULE LATINE D","	x (lettre minuscule cyrillique dé komi - 0501)"},
 /* 0065 */ { "LETTRE MINUSCULE LATINE E","	x (symbole estimé - 212E)\n"
 	"	x (minuscule e de ronde - 212F)\n"
 	"	x (lettre minuscule latine e gothique - AB32)"},
-/* 0066 */ { "LETTRE MINUSCULE LATINE F",NULL},
+/* 0066 */ { "LETTRE MINUSCULE LATINE F","	x (lettre minuscule latine f hameçon - 0192)\n"
+	"	x (lettre minuscule latine f doux - AB35)"},
 /* 0067 */ { "LETTRE MINUSCULE LATINE G","	x (lettre minuscule latine g cursif - 0261)\n"
 	"	x (minuscule g de ronde - 210A)"},
 /* 0068 */ { "LETTRE MINUSCULE LATINE H","	x (lettre minuscule cyrillique hé - 04BB)\n"
@@ -1022,25 +1039,30 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (exposant lettre minuscule latine i - 2071)\n"
 	"	x (minuscule mathématique italique i sans point - 1D6A4)"},
 /* 006A */ { "LETTRE MINUSCULE LATINE J","	x (lettre minuscule latine j sans point - 0237)\n"
+	"	x (lettre grecque yot - 03F3)\n"
 	"	x (minuscule mathématique italique j sans point - 1D6A5)"},
 /* 006B */ { "LETTRE MINUSCULE LATINE K",NULL},
 /* 006C */ { "LETTRE MINUSCULE LATINE L","	x (minuscule l de ronde - 2113)\n"
 	"	x (minuscule mathématique l de ronde - 1D4C1)"},
 /* 006D */ { "LETTRE MINUSCULE LATINE M",NULL},
 /* 006E */ { "LETTRE MINUSCULE LATINE N","	x (exposant lettre minuscule latine n - 207F)"},
-/* 006F */ { "LETTRE MINUSCULE LATINE O","	x (minuscule o de ronde - 2134)\n"
+/* 006F */ { "LETTRE MINUSCULE LATINE O","	x (lettre latine petite capitale o - 1D0F)\n"
+	"	x (minuscule o de ronde - 2134)\n"
 	"	x (lettre minuscule latine o gothique - AB3D)"},
 /* 0070 */ { "LETTRE MINUSCULE LATINE P",NULL},
-/* 0071 */ { "LETTRE MINUSCULE LATINE Q",NULL},
+/* 0071 */ { "LETTRE MINUSCULE LATINE Q","	x (lettre minuscule cyrillique qa - 051B)"},
 /* 0072 */ { "LETTRE MINUSCULE LATINE R",NULL},
-/* 0073 */ { "LETTRE MINUSCULE LATINE S","	x (lettre minuscule latine s long - 017F)"},
+/* 0073 */ { "LETTRE MINUSCULE LATINE S","	x (lettre minuscule latine s long - 017F)\n"
+	"	x (lettre latine petite capitale s - A731)"},
 /* 0074 */ { "LETTRE MINUSCULE LATINE T",NULL},
 /* 0075 */ { "LETTRE MINUSCULE LATINE U",NULL},
 /* 0076 */ { "LETTRE MINUSCULE LATINE V",NULL},
-/* 0077 */ { "LETTRE MINUSCULE LATINE W",NULL},
+/* 0077 */ { "LETTRE MINUSCULE LATINE W","	x (lettre minuscule cyrillique wé - 051D)\n"
+	"	x (lettre latine petite capitale w - 1D21)"},
 /* 0078 */ { "LETTRE MINUSCULE LATINE X","	x (signe de multiplication - 00D7)"},
 /* 0079 */ { "LETTRE MINUSCULE LATINE Y",NULL},
-/* 007A */ { "LETTRE MINUSCULE LATINE Z","	x (lettre minuscule latine z barré - 01B6)"},
+/* 007A */ { "LETTRE MINUSCULE LATINE Z","	x (lettre minuscule latine z barré - 01B6)\n"
+	"	x (lettre latine petite capitale z - 1D22)"},
 /* 007B */ { "ACCOLADE GAUCHE","	= accolade ouvrante (1.0)"},
 /* 007C */ { "BARRE VERTICALE","	* utilisée par paire pour indiquer une valeur absolue\n"
 	"	* également utilisée comme séparateur non apparié ou comme clôture\n"
@@ -1123,6 +1145,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (symbole cedi - 20B5)\n"
 	"	x (symbole musical mesure à deux-deux - 1D135)"},
 /* 00A3 */ { "SYMBOLE LIVRE","	= livre sterling, punt irlandaise, lire, etc.\n"
+	"	* à ne pas confondre avec l'unité de poids\n"
 	"	* le glyphe peut comporter une ou deux barres transversales, ce qui le distingue de 20A4\n"
 	"	x (symbole lire - 20A4)\n"
 	"	x (symbole lire turque - 20BA)\n"
@@ -1134,6 +1157,8 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	* il n'y a pas d'autre caractère défini pour distinguer le yuan et le yen\n"
 	"	* le glyphe peut comporter une ou deux barres transversales, mais le symbole officiel au Japon et en Chine en comporte deux\n"
 	"	* dans le contexte local, des idéogrammes spécifiques peuvent être utilisés pour les unités de ces monnaies\n"
+	"	x (lettre majuscule latine y barré - 024E)\n"
+	"	x (lettre majuscule cyrillique ou droit barré - 04B0)\n"
 	"	x 5143\n"
 	"	x 5186"},
 /* 00A6 */ { "BARRE BRISÉE","	= barre verticale brisée (1.0)\n"
@@ -1193,8 +1218,10 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (exposant un - 00B9)\n"
 	"	# <exp> 0033"},
 /* 00B4 */ { "ACCENT AIGU","	* ce caractère chasse\n"
+	"	x (accent grave - 0060)\n"
 	"	x (lettre modificative prime - 02B9)\n"
 	"	x (lettre modificative accent aigu - 02CA)\n"
+	"	x (double accent aigu - 02DD)\n"
 	"	x (diacritique accent aigu - 0301)\n"
 	"	x (accent grec - 0384)\n"
 	"	x (accent aigu grec - 1FFD)\n"
@@ -1215,7 +1242,6 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (point - 002E)\n"
 	"	x (point en chef - 02D9)\n"
 	"	x (ano teleia grec - 0387)\n"
-	"	x (ponctuation runique simple - 16EB)\n"
 	"	x (puce - 2022)\n"
 	"	x (point de conduite simple - 2024)\n"
 	"	x (point de coupure de mot - 2027)\n"
@@ -1235,6 +1261,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	# <exp> 0031"},
 /* 00BA */ { "INDICATEUR ORDINAL MASCULIN","	* castillan\n"
 	"	x (lettre modificative minuscule o - 1D52)\n"
+	"	x (exposant zéro - 2070)\n"
 	"	x (symbole numéro - 2116)\n"
 	"	# <exp> 006F"},
 /* 00BB */ { "GUILLEMET DROIT","	= guillemet chevron pointant vers la droite\n"
@@ -1247,6 +1274,7 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 /* 00BF */ { "POINT D'INTERROGATION RENVERSÉ","	= point d'interrogation inversé\n"
 	"	* castillan\n"
 	"	x (point d'interrogation - 003F)\n"
+	"	x (point exclarrogatif culbuté - 2E18)\n"
 	"	x (point d'interrogation réfléchi - 2E2E)"},
 /* 00C0 */ { "LETTRE MAJUSCULE LATINE A ACCENT GRAVE","	: 0041 0300"},
 /* 00C1 */ { "LETTRE MAJUSCULE LATINE A ACCENT AIGU","	: 0041 0301"},
@@ -1257,7 +1285,8 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	: 0041 030A"},
 /* 00C6 */ { "LETTRE MAJUSCULE LATINE AE","	= digramme soudé ae majuscule, ligature ae majuscule\n"
 	"	= e dans l'a majuscule\n"
-	"	= ash majuscule (du vieil anglais æsc)"},
+	"	= ash majuscule (du vieil anglais « æsc »)\n"
+	"	x (ligature majuscule cyrillique a ié - 04D4)"},
 /* 00C7 */ { "LETTRE MAJUSCULE LATINE C CÉDILLE","	: 0043 0327"},
 /* 00C8 */ { "LETTRE MAJUSCULE LATINE E ACCENT GRAVE","	: 0045 0300"},
 /* 00C9 */ { "LETTRE MAJUSCULE LATINE E ACCENT AIGU","	: 0045 0301"},
@@ -1288,7 +1317,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (produit vectoriel - 2A2F)\n"
 	"	x (x d'annulation - 1F5D9)\n"
 	"	x (sautoir fin - 1F7A9)"},
-/* 00D8 */ { "LETTRE MAJUSCULE LATINE O BARRÉ OBLIQUEMENT","	x (ensemble vide - 2205)"},
+/* 00D8 */ { "LETTRE MAJUSCULE LATINE O BARRÉ OBLIQUEMENT","	x (lettre majuscule latine o tilde médian - 019F)\n"
+	"	x (ensemble vide - 2205)\n"
+	"	x (lettre majuscule latine o à long trait couvrant - A74A)"},
 /* 00D9 */ { "LETTRE MAJUSCULE LATINE U ACCENT GRAVE","	: 0055 0300"},
 /* 00DA */ { "LETTRE MAJUSCULE LATINE U ACCENT AIGU","	: 0055 0301"},
 /* 00DB */ { "LETTRE MAJUSCULE LATINE U ACCENT CIRCONFLEXE","	: 0055 0302"},
@@ -1303,7 +1334,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (lettre minuscule latine s long - 017F)\n"
 	"	x (lettre minuscule latine ej - 0292)\n"
 	"	x (lettre minuscule grecque bêta - 03B2)\n"
-	"	x (lettre majuscule latine s dur - 1E9E)"},
+	"	x (lettre majuscule latine s dur - 1E9E)\n"
+	"	x (lettre minuscule latine bêta - A7B5)\n"
+	"	x (lettre minuscule latine s moyen scots - A7D7)"},
 /* 00E0 */ { "LETTRE MINUSCULE LATINE A ACCENT GRAVE","	: 0061 0300"},
 /* 00E1 */ { "LETTRE MINUSCULE LATINE A ACCENT AIGU","	: 0061 0301"},
 /* 00E2 */ { "LETTRE MINUSCULE LATINE A ACCENT CIRCONFLEXE","	: 0061 0302"},
@@ -1314,10 +1347,12 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	: 0061 030A"},
 /* 00E6 */ { "LETTRE MINUSCULE LATINE AE","	= digramme soudé ae minuscule, ligature ae minuscule\n"
 	"	= e dans l'a minuscule\n"
-	"	= ash minuscule (du vieil anglais æsc)\n"
+	"	= ash minuscule (du vieil anglais « æsc »)\n"
 	"	* danois, norvégien, islandais, féroïen, vieil anglais, français, API\n"
 	"	x (digramme soudé minuscule latin oe - 0153)\n"
-	"	x (ligature minuscule cyrillique a ié - 04D5)"},
+	"	x (ligature minuscule cyrillique a ié - 04D5)\n"
+	"	x (lettre minuscule latine ae culbuté - 1D02)\n"
+	"	x (lettre minuscule latine a schwa réfléchi - AB31)"},
 /* 00E7 */ { "LETTRE MINUSCULE LATINE C CÉDILLE","	: 0063 0327"},
 /* 00E8 */ { "LETTRE MINUSCULE LATINE E ACCENT GRAVE","	: 0065 0300"},
 /* 00E9 */ { "LETTRE MINUSCULE LATINE E ACCENT AIGU","	: 0065 0301"},
@@ -1333,7 +1368,9 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	* la majuscule est 00D0\n"
 	"	x (lettre minuscule latine d barré - 0111)\n"
 	"	x (lettre minuscule grecque delta - 03B4)\n"
-	"	x (dérivée partielle - 2202)"},
+	"	x (lettre minuscule latine delta - 1E9F)\n"
+	"	x (dérivée partielle - 2202)\n"
+	"	x (lettre minuscule latine d insulaire - A77A)"},
 /* 00F1 */ { "LETTRE MINUSCULE LATINE N TILDE","	: 006E 0303"},
 /* 00F2 */ { "LETTRE MINUSCULE LATINE O ACCENT GRAVE","	: 006F 0300"},
 /* 00F3 */ { "LETTRE MINUSCULE LATINE O ACCENT AIGU","	: 006F 0301"},
@@ -1345,7 +1382,6 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	* autrefois utilisé comme un signe de ponctuation pour indiquer des passages douteux dans les manuscrits\n"
 	"	x (obèle syriaque héracléen - 070B)\n"
 	"	x (signe moins commercial - 2052)\n"
-	"	x (signe moins - 2212)\n"
 	"	x (barre oblique de division - 2215)\n"
 	"	x (est un diviseur de - 2223)\n"
 	"	x (rapport - 2236)\n"
@@ -1353,7 +1389,11 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	x (potence de division - 27CC)\n"
 	"	x (obèle pointé - 2E13)"},
 /* 00F8 */ { "LETTRE MINUSCULE LATINE O BARRÉ OBLIQUEMENT","	* danois, norvégien, féroïen, API\n"
-	"	x (symbole diamètre - 2300)"},
+	"	x (lettre minuscule latine o barré - 0275)\n"
+	"	x (symbole diamètre - 2300)\n"
+	"	x (lettre minuscule latine o à long trait couvrant - A74B)\n"
+	"	x (lettre minuscule latine o polonais ancien - A7C1)\n"
+	"	x (lettre minuscule latine o gothique barré - AB3E)"},
 /* 00F9 */ { "LETTRE MINUSCULE LATINE U ACCENT GRAVE","	* français, italien\n"
 	"	: 0075 0300"},
 /* 00FA */ { "LETTRE MINUSCULE LATINE U ACCENT AIGU","	: 0075 0301"},
@@ -1363,7 +1403,10 @@ static const struct unicode_nameannot unaFR_00_00[] = {
 	"	: 0079 0301"},
 /* 00FE */ { "LETTRE MINUSCULE LATINE THORN","	* islandais, vieil anglais, phonétique\n"
 	"	* lettre latine empruntée à l'alphabet runique\n"
-	"	x (lettre runique thurisaz thorn thurs th - 16A6)"},
+	"	* remplacé par « th » en anglais moderne\n"
+	"	x (lettre minuscule grecque cho - 03F8)\n"
+	"	x (lettre runique thurisaz thorn thurs th - 16A6)\n"
+	"	x (lettre minuscule latine double thorn - A7D3)"},
 /* 00FF */ { "LETTRE MINUSCULE LATINE Y TRÉMA","	* français, orthographe hongroise médiévale\n"
 	"	* la majuscule est 0178\n"
 	"	: 0079 0308"}
@@ -1401,12 +1444,15 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* pour la composition, on recommande la forme avec l'apostrophe\n"
 	"	: 0064 030C"},
 /* 0110 */ { "LETTRE MAJUSCULE LATINE D BARRÉ","	x (lettre majuscule latine ed - 00D0)\n"
-	"	x (lettre minuscule latine d barré - 0111)\n"
-	"	x (lettre majuscule latine d africain - 0189)"},
-/* 0111 */ { "LETTRE MINUSCULE LATINE D BARRÉ","	* croate, serbe, vietnamien, same\n"
+	"	x (lettre majuscule latine d africain - 0189)\n"
+	"	x (lettre majuscule latine d à petit trait couvrant - A7C7)"},
+/* 0111 */ { "LETTRE MINUSCULE LATINE D BARRÉ","	* croate, serbe, vietnamien, same, moro\n"
 	"	* les américanistes utilisent une variante de glyphe avec une barre traversant la panse\n"
-	"	x (lettre majuscule latine d barré - 0110)\n"
-	"	x (lettre minuscule cyrillique dié - 0452)"},
+	"	x (lettre minuscule latine ed - 00F0)\n"
+	"	x (lettre minuscule cyrillique dié - 0452)\n"
+	"	x (lettre minuscule latine d tilde médian - 1D6D)\n"
+	"	x (symbole dong - 20AB)\n"
+	"	x (lettre minuscule latine d à petit trait couvrant - A7C8)"},
 /* 0112 */ { "LETTRE MAJUSCULE LATINE E MACRON","	: 0045 0304"},
 /* 0113 */ { "LETTRE MINUSCULE LATINE E MACRON","	* letton, latin, etc.\n"
 	"	: 0065 0304"},
@@ -1441,7 +1487,7 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	: 0048 0302"},
 /* 0125 */ { "LETTRE MINUSCULE LATINE H ACCENT CIRCONFLEXE","	* espéranto\n"
 	"	: 0068 0302"},
-/* 0126 */ { "LETTRE MAJUSCULE LATINE H BARRÉ",NULL},
+/* 0126 */ { "LETTRE MAJUSCULE LATINE H BARRÉ","	x (lettre modificative majuscule h barré - A7F8)"},
 /* 0127 */ { "LETTRE MINUSCULE LATINE H BARRÉ","	* maltais, API, etc.\n"
 	"	x (lettre minuscule cyrillique tié - 045B)\n"
 	"	x (constante de planck sur deux pi - 210F)"},
@@ -1464,7 +1510,11 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	: 0049 0307"},
 /* 0131 */ { "LETTRE MINUSCULE LATINE I SANS POINT","	* turc, azéri\n"
 	"	* la majuscule est 0049\n"
-	"	x (lettre minuscule latine i - 0069)"},
+	"	x (lettre minuscule latine i - 0069)\n"
+	"	x (lettre minuscule latine iota - 0269)\n"
+	"	x (lettre latine petite capitale i - 026A)\n"
+	"	x (lettre minuscule cyrillique i biélorusse-ukrainien - 0456)\n"
+	"	x (minuscule mathématique italique i sans point - 1D6A4)"},
 /* 0132 */ { "DIGRAMME SOUDÉ MAJUSCULE LATIN IJ","	# 0049 004A"},
 /* 0133 */ { "DIGRAMME SOUDÉ MINUSCULE LATIN IJ","	= ligature ij\n"
 	"	* néerlandais\n"
@@ -1475,7 +1525,9 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 0136 */ { "LETTRE MAJUSCULE LATINE K CÉDILLE","	: 004B 0327"},
 /* 0137 */ { "LETTRE MINUSCULE LATINE K CÉDILLE","	* letton\n"
 	"	: 006B 0327"},
-/* 0138 */ { "LETTRE MINUSCULE LATINE KRA","	* groenlandais (ancienne orthographe), inuttut du Labrador"},
+/* 0138 */ { "LETTRE MINUSCULE LATINE KRA","	* groenlandais (ancienne orthographe), inuttut du Labrador\n"
+	"	x (lettre minuscule cyrillique ka - 043A)\n"
+	"	x (lettre latine petite capitale k - 1D0B)"},
 /* 0139 */ { "LETTRE MAJUSCULE LATINE L ACCENT AIGU","	: 004C 0301"},
 /* 013A */ { "LETTRE MINUSCULE LATINE L ACCENT AIGU","	* slovaque\n"
 	"	: 006C 0301"},
@@ -1490,12 +1542,17 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	: 006C 030C"},
 /* 013F */ { "LETTRE MAJUSCULE LATINE L POINT MÉDIAN","	* certaines polices affichent le point médian à l'intérieur du L, mais la forme avec le point qui suit le L est recommandée\n"
 	"	# 004C 00B7"},
-/* 0140 */ { "LETTRE MINUSCULE LATINE L POINT MÉDIAN","	# 006C 00B7\n"
-	"	* caractère de compatibilité catalan pour ISO/CEI 6937\n"
-	"	* représentation recommandée pour le catalan : 006C 00B7"},
-/* 0141 */ { "LETTRE MAJUSCULE LATINE L BARRÉ","	x (lettre majuscule latine l rayé - 023D)"},
-/* 0142 */ { "LETTRE MINUSCULE LATINE L BARRÉ","	* polonais, etc.\n"
-	"	x (lettre minuscule latine l rayé - 019A)"},
+/* 0140 */ { "LETTRE MINUSCULE LATINE L POINT MÉDIAN","	* caractère de compatibilité catalan hérité de la norme ISO/CEI 6937\n"
+	"	* représentation recommandée pour le catalan : 006C 00B7\n"
+	"	# 006C 00B7"},
+/* 0141 */ { "LETTRE MAJUSCULE LATINE L BARRÉ","	x (lettre majuscule latine l rayé - 023D)\n"
+	"	x (lettre latine petite capitale l barré obliquement - 1D0C)\n"
+	"	x (lettre majuscule latine l tilde médian - 2C62)\n"
+	"	x (lettre majuscule latine l à trait élevé - A748)"},
+/* 0142 */ { "LETTRE MINUSCULE LATINE L BARRÉ","	* polonais, sorabe, inupiaq, etc.\n"
+	"	* également utilisée pour les orthographes latines du biélorusse et de l'ukrainien\n"
+	"	x (lettre minuscule latine l rayé - 019A)\n"
+	"	x (lettre minuscule latine l tilde médian - 026B)"},
 /* 0143 */ { "LETTRE MAJUSCULE LATINE N ACCENT AIGU","	: 004E 0301"},
 /* 0144 */ { "LETTRE MINUSCULE LATINE N ACCENT AIGU","	* polonais, etc.\n"
 	"	: 006E 0301"},
@@ -1510,12 +1567,18 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* ce caractère est obsolète et son utilisation est fortement déconseillée\n"
 	"	* afrikaans\n"
 	"	* il ne s'agit pas en fait d'une lettre unique, mais d'une forme typographique courante de l'article indéfini\n"
-	"	# 02BC 006E\n"
-	"	* caractère de compatibilité pour ISO/CEI 6937\n"
-	"	* la majuscule est 02BC 004E"},
+	"	* caractère de compatibilité hérité de la norme ISO/CEI 6937\n"
+	"	* la majuscule est 02BC 004E\n"
+	"	# 02BC 006E"},
 /* 014A */ { "LETTRE MAJUSCULE LATINE ENG","	* same\n"
-	"	* le glyphe peut aussi avoir l'apparence d'une grande minuscule"},
-/* 014B */ { "LETTRE MINUSCULE LATINE ENG","	* same, mendé, API, etc."},
+	"	* le glyphe peut aussi avoir l'apparence d'une grande minuscule\n"
+	"	x (lettre majuscule latine n à long fût à droite - 0220)\n"
+	"	x (lettre majuscule latine n crampon - A790)"},
+/* 014B */ { "LETTRE MINUSCULE LATINE ENG","	* same, mendé, API, etc.\n"
+	"	* nasale vélaire, nasalisation\n"
+	"	x (lettre minuscule latine n à long fût à droite - 019E)\n"
+	"	x (lettre minuscule latine n hameçon palatal - 1D87)\n"
+	"	x (lettre minuscule latine n crampon - A791)"},
 /* 014C */ { "LETTRE MAJUSCULE LATINE O MACRON","	: 004F 0304"},
 /* 014D */ { "LETTRE MINUSCULE LATINE O MACRON","	* letton, latin, etc.\n"
 	"	: 006F 0304"},
@@ -1528,10 +1591,14 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 0152 */ { "DIGRAMME SOUDÉ MAJUSCULE LATIN OE",NULL},
 /* 0153 */ { "DIGRAMME SOUDÉ MINUSCULE LATIN OE","	= ligature oe\n"
 	"	= e dans l'o\n"
-	"	= ethel (du vieil anglais eðel)\n"
+	"	= ethel (du vieil anglais « eðel »)\n"
 	"	* français, API, vieil islandais, vieil anglais, etc.\n"
 	"	x (lettre minuscule latine ae - 00E6)\n"
-	"	x (lettre latine petite capitale oe - 0276)"},
+	"	x (lettre latine petite capitale oe - 0276)\n"
+	"	x (lettre minuscule latine oe culbuté - 1D14)\n"
+	"	x (lettre modificative minuscule ligature oe - A7F9)\n"
+	"	x (lettre minuscule latine oe renversé - AB40)\n"
+	"	x (lettre latine minuscule oe ouvert - AB62)"},
 /* 0154 */ { "LETTRE MAJUSCULE LATINE R ACCENT AIGU","	: 0052 0301"},
 /* 0155 */ { "LETTRE MINUSCULE LATINE R ACCENT AIGU","	* slovaque, etc.\n"
 	"	: 0072 0301"},
@@ -1569,7 +1636,8 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* pour la composition, on recommande la forme avec l'apostrophe\n"
 	"	: 0074 030C"},
 /* 0166 */ { "LETTRE MAJUSCULE LATINE T BARRÉ",NULL},
-/* 0167 */ { "LETTRE MINUSCULE LATINE T BARRÉ","	* same"},
+/* 0167 */ { "LETTRE MINUSCULE LATINE T BARRÉ","	* same\n"
+	"	x (lettre minuscule latine t tilde médian - 1D75)"},
 /* 0168 */ { "LETTRE MAJUSCULE LATINE U TILDE","	: 0055 0303"},
 /* 0169 */ { "LETTRE MINUSCULE LATINE U TILDE","	* groenlandais (ancienne orthographe), kikouyou\n"
 	"	: 0075 0303"},
@@ -1609,19 +1677,23 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	: 007A 030C"},
 /* 017F */ { "LETTRE MINUSCULE LATINE S LONG","	* fréquemment utilisée avec les caractères romains et italiques jusqu'au XVIIIe siècle\n"
 	"	* utilisée aujourd'hui avec les caractères gothiques et gaéliques\n"
+	"	x (lettre minuscule latine s dur - 00DF)\n"
+	"	x (ligature minuscule latine s long t - FB05)\n"
 	"	# 0073 lettre minuscule latine s"},
 /* 0180 */ { "LETTRE MINUSCULE LATINE B BARRÉ","	* forme américaniste et indo-européaniste pour le bêta phonétique\n"
 	"	* les américanistes utilisent une variante de glyphe avec une barre traversant la panse\n"
-	"	* vieux saxon\n"
+	"	* également utilisée dans des manuscrits en vieux saxon\n"
 	"	* sa majuscule est 0243\n"
 	"	x (lettre minuscule grecque bêta - 03B2)\n"
+	"	x (lettre minuscule latine b tilde médian - 1D6C)\n"
 	"	x (symbole blanc - 2422)"},
-/* 0181 */ { "LETTRE MAJUSCULE LATINE B CROSSE","	* zoulou, alphabet pan-nigérian\n"
+/* 0181 */ { "LETTRE MAJUSCULE LATINE B CROSSE","	* langues africaines\n"
 	"	* la minuscule est 0253"},
-/* 0182 */ { "LETTRE MAJUSCULE LATINE B POTENCE",NULL},
+/* 0182 */ { "LETTRE MAJUSCULE LATINE B POTENCE","	x (lettre majuscule cyrillique bé - 0411)"},
 /* 0183 */ { "LETTRE MINUSCULE LATINE B POTENCE","	* ancienne graphie du tchouang (zhuang)\n"
 	"	* écritures de langues minoritaires dans l'ancienne Union soviétique\n"
-	"	x (lettre majuscule cyrillique bé - 0411)"},
+	"	x (lettre minuscule latine b crosse - 0253)\n"
+	"	x (lettre minuscule cyrillique bé - 0431)"},
 /* 0184 */ { "LETTRE MAJUSCULE LATINE SIXIÈME TON",NULL},
 /* 0185 */ { "LETTRE MINUSCULE LATINE SIXIÈME TON","	* ancienne graphie du tchouang (zhuang)\n"
 	"	* le troisième ton tchouang correspond au cyrillique zé\n"
@@ -1633,7 +1705,9 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	x (lettre minuscule cyrillique signe mou - 044C)"},
 /* 0186 */ { "LETTRE MAJUSCULE LATINE O OUVERT","	* typographiquement, un C réfléchi\n"
 	"	* langues africaines\n"
-	"	* la minuscule est 0254"},
+	"	* la minuscule est 0254\n"
+	"	x (lettre latine petite capitale o ouvert - 1D10)\n"
+	"	x (chiffre romain cent réfléchi - 2183)"},
 /* 0187 */ { "LETTRE MAJUSCULE LATINE C CROSSE",NULL},
 /* 0188 */ { "LETTRE MINUSCULE LATINE C CROSSE","	* langues africaines"},
 /* 0189 */ { "LETTRE MAJUSCULE LATINE D AFRICAIN","	* éwé\n"
@@ -1648,17 +1722,21 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 018D */ { "LETTRE MINUSCULE LATINE DELTA CULBUTÉ","	= o crochet polonais réfléchi, o hameçon réfléchi\n"
 	"	* symbole phonétique désuet de la fricative alvéolaire labialisée\n"
 	"	* orthographe recommandée : 007A 02B7 ou 007A 032B"},
-/* 018E */ { "LETTRE MAJUSCULE LATINE E CULBUTÉ","	= e réfléchi\n"
+/* 018E */ { "LETTRE MAJUSCULE LATINE E CULBUTÉ","	= e majuscule réfléchi\n"
 	"	* alphabet pan-nigérian\n"
-	"	* la minuscule est 01DD"},
+	"	* la minuscule est 01DD\n"
+	"	x (il existe - 2203)\n"
+	"	x (lettre latine petite capitale e culbuté - 2C7B)"},
 /* 018F */ { "LETTRE MAJUSCULE LATINE SCHWA","	* azéri, etc.\n"
 	"	* la minuscule est 0259\n"
 	"	x (lettre majuscule cyrillique schwa - 04D8)"},
-/* 0190 */ { "LETTRE MAJUSCULE LATINE E OUVERT","	= epsilon\n"
+/* 0190 */ { "LETTRE MAJUSCULE LATINE E OUVERT","	= epsilon majuscule\n"
 	"	* langues africaines\n"
 	"	* la minuscule est 025B\n"
+	"	* à ne pas confondre avec des variantes de glyphes de la majuscule E\n"
 	"	x (constante d'euler - 2107)\n"
-	"	x (chiffre trois culbuté - 218B)"},
+	"	x (chiffre trois culbuté - 218B)\n"
+	"	x (lettre majuscule latine tresillo - A72A)"},
 /* 0191 */ { "LETTRE MAJUSCULE LATINE F HAMEÇON","	* langues africaines\n"
 	"	x (lettre majuscule latine f barré - A798)"},
 /* 0192 */ { "LETTRE MINUSCULE LATINE F HAMEÇON","	= f cursif\n"
@@ -1670,51 +1748,67 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* la minuscule est 0263"},
 /* 0195 */ { "LETTRE MINUSCULE LATINE HV","	= hwair\n"
 	"	* translittération du gotique\n"
-	"	* la majuscule est 01F6"},
+	"	* la majuscule est 01F6\n"
+	"	x (lettre gotique hw - 10348)"},
 /* 0196 */ { "LETTRE MAJUSCULE LATINE IOTA","	* langues africaines\n"
-	"	* la minuscule est 0269"},
+	"	* la minuscule est 0269\n"
+	"	x (lettre majuscule cyrillique iota - A646)"},
 /* 0197 */ { "LETTRE MAJUSCULE LATINE I BARRÉ","	= i barre\n"
 	"	* langues africaines\n"
 	"	* la minuscule est 0268\n"
 	"	* ISO 6438 indique comme minuscule 026A, non 0268\n"
-	"	x (lettre latine petite capitale i - 026A)"},
+	"	x (lettre latine petite capitale i - 026A)\n"
+	"	x (lettre latine petite capitale i barré - 1D7B)"},
 /* 0198 */ { "LETTRE MAJUSCULE LATINE K CROSSE",NULL},
 /* 0199 */ { "LETTRE MINUSCULE LATINE K CROSSE","	* haoussa, alphabet pan-nigérian"},
 /* 019A */ { "LETTRE MINUSCULE LATINE L RAYÉ","	= l barré, l barre, l barre horizontale\n"
-	"	* phonétique américaniste en lieu et place de 026C\n"
+	"	* usage phonétique américaniste pour le caractère API ɬ\n"
 	"	* la majuscule est 023D\n"
-	"	x (lettre minuscule latine l barré - 0142)"},
+	"	x (lettre minuscule latine l barré - 0142)\n"
+	"	x (lettre minuscule latine l sanglé - 026C)\n"
+	"	x (lettre minuscule latine l à double barre - 2C61)\n"
+	"	x (lettre minuscule latine l à trait élevé - A749)"},
 /* 019B */ { "LETTRE MINUSCULE LATINE LAMBDA BARRÉ","	= lambda barre\n"
-	"	* phonétique américaniste"},
+	"	* usage phonétique américaniste pour le caractère API tɬ\n"
+	"	x (lettre minuscule grecque lambda - 03BB)"},
 /* 019C */ { "LETTRE MAJUSCULE LATINE M CULBUTÉ","	* ancienne graphie du tchouang (zhuang)\n"
-	"	* la minuscule est 026F"},
+	"	* la minuscule est 026F\n"
+	"	x (lettre latine petite capitale m culbuté - A7FA)\n"
+	"	x (lettre latine épigraphique m culbuté - A7FD)"},
 /* 019D */ { "LETTRE MAJUSCULE LATINE N HAMEÇON À GAUCHE","	* langues africaines\n"
 	"	* la minuscule est 0272"},
 /* 019E */ { "LETTRE MINUSCULE LATINE N À LONG FÛT À DROITE","	* symbole désuet du signe japonais 3093\n"
 	"	* orthographe recommandée du « n » syllabique : 006E 0329\n"
-	"	* indique la nasalisation d'une voyelle en teton (sioux lakota)\n"
-	"	* la majuscule est 0220"},
+	"	* lakota (indique la nasalisation de la voyelle), supplantée par 014B\n"
+	"	* la majuscule est 0220\n"
+	"	x (lettre minuscule latine eng - 014B)\n"
+	"	x (caractère hiragana n - 3093)"},
 /* 019F */ { "LETTRE MAJUSCULE LATINE O TILDE MÉDIAN","	= o barré, o barre\n"
-	"	* la minuscule est 0275\n"
 	"	* langues africaines\n"
+	"	* le nom officiel ne décrit pas le glyphe\n"
+	"	* la minuscule est 0275\n"
 	"	x (lettre majuscule cyrillique o barré - 04E8)"},
 /* 01A0 */ { "LETTRE MAJUSCULE LATINE O CORNU","	: 004F 031B"},
 /* 01A1 */ { "LETTRE MINUSCULE LATINE O CORNU","	* vietnamien\n"
 	"	: 006F 031B"},
-/* 01A2 */ { "LETTRE MAJUSCULE LATINE GHA",NULL},
-/* 01A3 */ { "LETTRE MINUSCULE LATINE GHA","	* alphabets romanisés panturcs"},
+/* 01A2 */ { "LETTRE MAJUSCULE LATINE GHA","	* l'appellation en anglais de ce caractère est erronée"},
+/* 01A3 */ { "LETTRE MINUSCULE LATINE GHA","	* l'appellation en anglais de ce caractère est erronée"},
 /* 01A4 */ { "LETTRE MAJUSCULE LATINE P CROSSE",NULL},
 /* 01A5 */ { "LETTRE MINUSCULE LATINE P CROSSE","	* langues africaines"},
 /* 01A6 */ { "LETTRE LATINE YR","	* norrois\n"
-	"	* tiré de la norme allemande DIN 31624 et d'ISO 5246-2\n"
+	"	* tiré de la norme allemande DIN 31624 et de la norme ISO 5426-2\n"
 	"	* la minuscule est 0280"},
-/* 01A7 */ { "LETTRE MAJUSCULE LATINE DEUXIÈME TON",NULL},
+/* 01A7 */ { "LETTRE MAJUSCULE LATINE DEUXIÈME TON","	x (lettre latine spirante laryngale sonore - 1D24)\n"
+	"	x (lettre majuscule cyrillique dzé réfléchi - A644)\n"
+	"	x (symbole romain sextule - 10193)"},
 /* 01A8 */ { "LETTRE MINUSCULE LATINE DEUXIÈME TON","	* ancienne graphie du tchouang (zhuang)\n"
 	"	* typographiquement, un S réfléchi\n"
-	"	x (lettre minuscule latine sixième ton - 0185)"},
+	"	x (lettre minuscule latine sixième ton - 0185)\n"
+	"	x (lettre minuscule cyrillique dzé réfléchi - A645)"},
 /* 01A9 */ { "LETTRE MAJUSCULE LATINE ECH","	* langues africaines\n"
 	"	* la minuscule est 0283\n"
-	"	x (lettre majuscule grecque sigma - 03A3)"},
+	"	x (lettre majuscule grecque sigma - 03A3)\n"
+	"	x (sommation de la famille - 2211)"},
 /* 01AA */ { "LETTRE LATINE ECH RÉFLÉCHI BOUCLÉ","	* symbole phonétique désuet de la fricative palato-alvéolaire sourde labialisée\n"
 	"	* twi\n"
 	"	* orthographes recommandées : 0283 02B7, 00E7 02B7, 0068 0265, etc."},
@@ -1728,7 +1822,7 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 01B0 */ { "LETTRE MINUSCULE LATINE U CORNU","	* vietnamien\n"
 	"	: 0075 031B"},
 /* 01B1 */ { "LETTRE MAJUSCULE LATINE UPSILON","	* langues africaines\n"
-	"	* typographiquement, une adaptation d'un oméga majuscule culbuté\n"
+	"	* typographiquement, oméga grec majuscule 03A9 culbuté\n"
 	"	* la minuscule est 028A\n"
 	"	x (symbole ohm renversé - 2127)"},
 /* 01B2 */ { "LETTRE MAJUSCULE LATINE V CROSSE","	= v cursif\n"
@@ -1739,15 +1833,18 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 01B5 */ { "LETTRE MAJUSCULE LATINE Z BARRÉ",NULL},
 /* 01B6 */ { "LETTRE MINUSCULE LATINE Z BARRÉ","	= z barre\n"
 	"	* alphabets romanisés panturcs\n"
-	"	* variante manuscrite du « z » latin\n"
-	"	x (lettre minuscule latine z - 007A)"},
+	"	* aussi une variante manuscrite du « z » latin\n"
+	"	x (lettre minuscule latine z - 007A)\n"
+	"	x (lettre minuscule latine z tilde médian - 1D76)"},
 /* 01B7 */ { "LETTRE MAJUSCULE LATINE EJ","	* langues africaines, same skolt\n"
 	"	* la minuscule est 0292\n"
 	"	x (lettre majuscule latine yogh - 021C)\n"
-	"	x (lettre majuscule cyrillique dzé abkhaze - 04E0)"},
-/* 01B8 */ { "LETTRE MAJUSCULE LATINE EJ RÉFLÉCHI",NULL},
+	"	x (lettre majuscule cyrillique dzé abkhaze - 04E0)\n"
+	"	x (lettre latine petite capitale ej - 1D23)\n"
+	"	x (lettre majuscule latine e ouvert réfléchi - A7AB)"},
+/* 01B8 */ { "LETTRE MAJUSCULE LATINE EJ RÉFLÉCHI","	x (lettre majuscule latine e ouvert - 0190)"},
 /* 01B9 */ { "LETTRE MINUSCULE LATINE EJ RÉFLÉCHI","	* symbole phonétique désuet de la fricative pharyngale sonore\n"
-	"	* sur le plan typographique, parfois restitué à l'aide d'un 3 culbuté\n"
+	"	* sur le plan typographique, parfois restitué comme un 3 culbuté\n"
 	"	* orthographe recommandée : 0295\n"
 	"	x (lettre latine fricative pharyngale sonore - 0295)\n"
 	"	x (lettre arabe 'aïn - 0639)"},
@@ -1755,37 +1852,42 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 	"	* twi\n"
 	"	* orthographes recommandées : 0292 02B7 ou 006A 02B7"},
 /* 01BB */ { "LETTRE LATINE DEUX BARRÉ","	* symbole désuet de l'affriquée [dz]\n"
-	"	* orthographes recommandées : 0292 ou 0064 007A"},
+	"	* orthographes recommandées : 0292 ou 0064 007A\n"
+	"	x (lettre majuscule latine deuxième ton - 01A7)"},
 /* 01BC */ { "LETTRE MAJUSCULE LATINE CINQUIÈME TON",NULL},
 /* 01BD */ { "LETTRE MINUSCULE LATINE CINQUIÈME TON","	* ancienne graphie du tchouang (zhuang)\n"
 	"	x (lettre minuscule latine sixième ton - 0185)"},
 /* 01BE */ { "LETTRE LATINE COUP DE GLOTTE BARRÉ RÉFLÉCHI","	* symbole phonétique désuet de l'affriquée [ts]\n"
 	"	* orthographe recommandée : 0074 0073\n"
-	"	* la forme de la lettre dérive de la ligature du ts plutôt que du coup de glotte réfléchi"},
+	"	* la forme de la lettre dérive de la ligature du ts plutôt que du coup de glotte réfléchi\n"
+	"	x (lettre latine coup de glotte réfléchi - 0296)\n"
+	"	x (lettre minuscule latine digramme ts - 02A6)"},
 /* 01BF */ { "LETTRE LATINE WYNN","	= wen\n"
 	"	* lettre latine empruntée à l'alphabet runique\n"
 	"	* remplacée par « w » dans les transcriptions modernes du vieil anglais\n"
 	"	* la majuscule est 01F7\n"
 	"	x (lettre runique wunjo wynn w - 16B9)"},
-/* 01C0 */ { "LETTRE LATINE CLIC DENTAL","	* tradition khoisan\n"
+/* 01C0 */ { "LETTRE LATINE CLIC DENTAL","	= barre verticale\n"
 	"	* « c » en zoulou\n"
 	"	x (barre oblique - 002F)\n"
 	"	x (barre verticale - 007C)\n"
 	"	x (lettre minuscule latine t culbuté - 0287)\n"
 	"	x (est un diviseur de - 2223)"},
-/* 01C1 */ { "LETTRE LATINE CLIC LATÉRAL","	* tradition khoisan\n"
+/* 01C1 */ { "LETTRE LATINE CLIC LATÉRAL","	= double barre verticale\n"
 	"	* « x » en zoulou\n"
 	"	x (lettre latine coup de glotte réfléchi - 0296)\n"
+	"	x (double ligne verticale - 2016)\n"
 	"	x (parallèle à - 2225)"},
-/* 01C2 */ { "LETTRE LATINE CLIC ALVÉOLAIRE","	= clic alvéolo-palatal (API)\n"
-	"	* tradition khoisan\n"
-	"	x (pas égal à - 2260)"},
+/* 01C2 */ { "LETTRE LATINE CLIC ALVÉOLAIRE","	= barre verticale doublement barrée\n"
+	"	* clic palato-alvéolaire (API)\n"
+	"	x (pas égal à - 2260)\n"
+	"	x (thermodynamique - 29E7)"},
 /* 01C3 */ { "LETTRE LATINE CLIC RÉTROFLEXE","	= lettre latine point d'exclamation (1.0)\n"
-	"	= clic (post-)alvéolaire (API)\n"
-	"	* tradition khoisan\n"
+	"	* clic (post-)alvéolaire (API)\n"
 	"	* « q » en zoulou\n"
 	"	x (point d'exclamation - 0021)\n"
-	"	x (lettre latine c étiré - 0297)"},
+	"	x (lettre latine c étiré - 0297)\n"
+	"	x (lettre latine clic rétroflexe avec hameçon rétroflexe - 1DF0A)"},
 /* 01C4 */ { "LETTRE MAJUSCULE LATINE DZ CARON","	# 0044 017D"},
 /* 01C5 */ { "LETTRE MAJUSCULE LATINE D AVEC LETTRE MINUSCULE Z CARON","	# 0044 017E"},
 /* 01C6 */ { "LETTRE MINUSCULE LATINE DZ CARON","	x (lettre minuscule cyrillique djé - 045F)\n"
@@ -1873,7 +1975,9 @@ static const struct unicode_nameannot unaFR_00_01[] = {
 /* 01F4 */ { "LETTRE MAJUSCULE LATINE G ACCENT AIGU","	: 0047 0301"},
 /* 01F5 */ { "LETTRE MINUSCULE LATINE G ACCENT AIGU","	* translittération du macédonien et du serbe\n"
 	"	: 0067 0301"},
-/* 01F6 */ { "LETTRE MAJUSCULE LATINE HWAIR","	* la minuscule est 0195"},
+/* 01F6 */ { "LETTRE MAJUSCULE LATINE HWAIR","	* la minuscule est 0195\n"
+	"	x (lettre majuscule cyrillique nié komi - 050A)\n"
+	"	x (lettre gotique hw - 10348)"},
 /* 01F7 */ { "LETTRE MAJUSCULE LATINE WYNN","	= wen\n"
 	"	* la minuscule est 01BF"},
 /* 01F8 */ { "LETTRE MAJUSCULE LATINE N ACCENT GRAVE","	: 004E 0300"},
@@ -1920,21 +2024,25 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 021A */ { "LETTRE MAJUSCULE LATINE T VIRGULE SOUSCRITE","	: 0054 0326"},
 /* 021B */ { "LETTRE MINUSCULE LATINE T VIRGULE SOUSCRITE","	x (lettre minuscule latine t cédille - 0163)\n"
 	"	: 0074 0326"},
-/* 021C */ { "LETTRE MAJUSCULE LATINE YOGH","	x (lettre majuscule latine ej - 01B7)"},
+/* 021C */ { "LETTRE MAJUSCULE LATINE YOGH","	x (lettre majuscule latine ej - 01B7)\n"
+	"	x (lettre majuscule cyrillique zé - 0417)\n"
+	"	x (lettre majuscule latine e ouvert réfléchi - A7AB)"},
 /* 021D */ { "LETTRE MINUSCULE LATINE YOGH","	* moyen anglais, scots\n"
 	"	x (lettre minuscule latine ej - 0292)\n"
-	"	x (lettre minuscule latine g insulaire - 1D79)"},
+	"	x (lettre minuscule latine g insulaire - 1D79)\n"
+	"	x (lettre minuscule latine et - A76B)"},
 /* 021E */ { "LETTRE MAJUSCULE LATINE H CARON","	: 0048 030C"},
 /* 021F */ { "LETTRE MINUSCULE LATINE H CARON","	= h chevron, h accent hirondelle\n"
 	"	* romani finlandais\n"
 	"	: 0068 030C"},
-/* 0220 */ { "LETTRE MAJUSCULE LATINE N À LONG FÛT À DROITE","	* teton (sioux lakota)\n"
-	"	* la minuscule est 019E"},
+/* 0220 */ { "LETTRE MAJUSCULE LATINE N À LONG FÛT À DROITE","	* lakota (nasalisation), supplantée par 014A\n"
+	"	* la minuscule est 019E\n"
+	"	x (lettre majuscule latine eng - 014A)"},
 /* 0221 */ { "LETTRE MINUSCULE LATINE D BOUCLÉ","	* emploi phonétique en sinologie"},
-/* 0222 */ { "LETTRE MAJUSCULE LATINE OU",NULL},
+/* 0222 */ { "LETTRE MAJUSCULE LATINE OU","	x (lettre latine petite capitale ou - 1D15)"},
 /* 0223 */ { "LETTRE MINUSCULE LATINE OU","	* algonquien, huron\n"
 	"	x (chiffre huit - 0038)"},
-/* 0224 */ { "LETTRE MAJUSCULE LATINE Z HAMEÇON",NULL},
+/* 0224 */ { "LETTRE MAJUSCULE LATINE Z HAMEÇON","	x (lettre majuscule latine z crampon - 2C6B)"},
 /* 0225 */ { "LETTRE MINUSCULE LATINE Z HAMEÇON","	* moyen haut-allemand"},
 /* 0226 */ { "LETTRE MAJUSCULE LATINE A POINT EN CHEF","	: 0041 0307"},
 /* 0227 */ { "LETTRE MINUSCULE LATINE A POINT EN CHEF","	* tradition ouraliciste\n"
@@ -1955,13 +2063,21 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0234 */ { "LETTRE MINUSCULE LATINE L BOUCLÉ",NULL},
 /* 0235 */ { "LETTRE MINUSCULE LATINE N BOUCLÉ",NULL},
 /* 0236 */ { "LETTRE MINUSCULE LATINE T BOUCLÉ",NULL},
-/* 0237 */ { "LETTRE MINUSCULE LATINE J SANS POINT","	x (minuscule mathématique italique j sans point - 1D6A5)"},
+/* 0237 */ { "LETTRE MINUSCULE LATINE J SANS POINT","	* lettre à casse unique\n"
+	"	x (lettre grecque yot - 03F3)\n"
+	"	x (lettre minuscule cyrillique yé - 0458)\n"
+	"	x (minuscule mathématique italique j sans point - 1D6A5)"},
 /* 0238 */ { "LIGATURE MINUSCULE LATINE DB",NULL},
 /* 0239 */ { "LIGATURE MINUSCULE LATINE QP",NULL},
 /* 023A */ { "LETTRE MAJUSCULE LATINE A BARRÉ","	* la minuscule est 2C65"},
-/* 023B */ { "LETTRE MAJUSCULE LATINE C BARRÉ",NULL},
-/* 023C */ { "LETTRE MINUSCULE LATINE C BARRÉ","	* utilisée en linguistique américaniste"},
-/* 023D */ { "LETTRE MAJUSCULE LATINE L RAYÉ","	* la minuscule est 019A"},
+/* 023B */ { "LETTRE MAJUSCULE LATINE C BARRÉ","	x (symbole cedi - 20B5)"},
+/* 023C */ { "LETTRE MINUSCULE LATINE C BARRÉ","	* utilisée en linguistique américaniste\n"
+	"	x (symbole centime - 00A2)"},
+/* 023D */ { "LETTRE MAJUSCULE LATINE L RAYÉ","	* la minuscule est 019A\n"
+	"	x (lettre majuscule latine l barré - 0141)\n"
+	"	x (lettre majuscule latine l à double barre - 2C60)\n"
+	"	x (lettre majuscule latine l tilde médian - 2C62)\n"
+	"	x (lettre majuscule latine l à trait élevé - A748)"},
 /* 023E */ { "LETTRE MAJUSCULE LATINE T BARRÉ DIAGONALEMENT","	* la minuscule est 2C66"},
 /* 023F */ { "LETTRE MINUSCULE LATINE S À PARAPHE","	* fricative labio-alvéolaire sourde\n"
 	"	* la majuscule est 2C7E\n"
@@ -1973,9 +2089,11 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0242 */ { "LETTRE MINUSCULE LATINE COUP DE GLOTTE","	* lettre bicamérale utilisée en tchipéwayan, flanc-de-chien, esclave (systèmes d'écriture autochtones canadiens)\n"
 	"	x (lettre latine coup de glotte - 0294)\n"
 	"	x (lettre modificative coup de glotte - 02C0)"},
-/* 0243 */ { "LETTRE MAJUSCULE LATINE B BARRÉ","	* la minuscule est 0180"},
+/* 0243 */ { "LETTRE MAJUSCULE LATINE B BARRÉ","	* la minuscule est 0180\n"
+	"	x (lettre latine petite capitale b barré - 1D03)"},
 /* 0244 */ { "LETTRE MAJUSCULE LATINE U BARRÉ","	* la minuscule est 0289"},
-/* 0245 */ { "LETTRE MAJUSCULE LATINE V CULBUTÉ","	* la minuscule est 028C"},
+/* 0245 */ { "LETTRE MAJUSCULE LATINE V CULBUTÉ","	* la minuscule est 028C\n"
+	"	x (lettre majuscule grecque lambda - 039B)"},
 /* 0246 */ { "LETTRE MAJUSCULE LATINE E BARRÉ",NULL},
 /* 0247 */ { "LETTRE MINUSCULE LATINE E BARRÉ",NULL},
 /* 0248 */ { "LETTRE MAJUSCULE LATINE J BARRÉ",NULL},
@@ -1983,25 +2101,28 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 024A */ { "LETTRE MAJUSCULE LATINE PETIT Q HAMEÇON RÉTROFLEXE",NULL},
 /* 024B */ { "LETTRE MINUSCULE LATINE Q HAMEÇON RÉTROFLEXE",NULL},
 /* 024C */ { "LETTRE MAJUSCULE LATINE R BARRÉ",NULL},
-/* 024D */ { "LETTRE MINUSCULE LATINE R BARRÉ",NULL},
+/* 024D */ { "LETTRE MINUSCULE LATINE R BARRÉ","	x (lettre minuscule latine r tilde médian - 1D72)"},
 /* 024E */ { "LETTRE MAJUSCULE LATINE Y BARRÉ",NULL},
 /* 024F */ { "LETTRE MINUSCULE LATINE Y BARRÉ",NULL},
 /* 0250 */ { "LETTRE MINUSCULE LATINE A CULBUTÉ","	* voyelle pré-ouverte centrale\n"
 	"	* la majuscule est 2C6F"},
 /* 0251 */ { "LETTRE MINUSCULE LATINE ALPHA","	= lettre minuscule latine a cursif (1.0)\n"
 	"	* voyelle ouverte postérieure non arrondie\n"
+	"	* le glyphe représentatif apparaît comme un allographe du « a » latin, mais parfois le caractère est rendu plutôt comme un « α » grec\n"
 	"	* la majuscule est 2C6D\n"
 	"	x (lettre minuscule grecque alpha - 03B1)"},
 /* 0252 */ { "LETTRE MINUSCULE LATINE ALPHA CULBUTÉ","	* voyelle ouverte postérieure arrondie\n"
 	"	* la majuscule est 2C70\n"
 	"	x (lettre minuscule latine alpha renversé - AB64)"},
 /* 0253 */ { "LETTRE MINUSCULE LATINE B CROSSE","	* occlusive injective bilabiale sonore\n"
-	"	* alphabet pan-nigérian\n"
-	"	* la majuscule est 0181"},
+	"	* la majuscule est 0181\n"
+	"	x (lettre minuscule cyrillique bé - 0431)"},
 /* 0254 */ { "LETTRE MINUSCULE LATINE O OUVERT","	* typographiquement, un c réfléchi\n"
 	"	* voyelle mi-ouverte postérieure arrondie\n"
 	"	* dans un usage danois ancien, « ɔ: » signifie « c'est-à-dire »\n"
-	"	* la majuscule est 0186"},
+	"	* la majuscule est 0186\n"
+	"	x (lettre latine petite capitale o ouvert - 1D10)\n"
+	"	x (lettre minuscule latine c réfléchi - 2184)"},
 /* 0255 */ { "LETTRE MINUSCULE LATINE C BOUCLÉ","	* fricative alvéolo-palatale sourde\n"
 	"	* utilisée dans les transcriptions du mandarin\n"
 	"	* ce son est écrit à l'aide de 015B en polonais"},
@@ -2020,21 +2141,27 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 025B */ { "LETTRE MINUSCULE LATINE E OUVERT","	= epsilon\n"
 	"	* voyelle mi-ouverte antérieure non arrondie\n"
 	"	* la majuscule est 0190\n"
-	"	x (lettre minuscule grecque epsilon - 03B5)"},
-/* 025C */ { "LETTRE MINUSCULE LATINE E OUVERT RÉFLÉCHI","	* voyelle mi-ouverte centrale non arrondie\n"
-	"	* la majuscule est A7AB"},
+	"	x (lettre minuscule grecque epsilon - 03B5)\n"
+	"	x (lettre minuscule cyrillique zé réfléchi - 0511)"},
+/* 025C */ { "LETTRE MINUSCULE LATINE E OUVERT RÉFLÉCHI","	= epsilon réfléchi\n"
+	"	* voyelle mi-ouverte centrale non arrondie\n"
+	"	* la majuscule est A7AB\n"
+	"	x (lettre minuscule cyrillique zé - 0437)\n"
+	"	x (lettre minuscule latine e ouvert culbuté - 1D08)"},
 /* 025D */ { "LETTRE MINUSCULE LATINE E OUVERT RÉFLÉCHI CROCHET","	* voyelle mi-ouverte centrale non arrondie rhotacisée"},
 /* 025E */ { "LETTRE MINUSCULE LATINE E OUVERT RÉFLÉCHI FERMÉ","	= epsilon réfléchi fermé\n"
-	"	* voyelle mi-ouverte centrale arrondie"},
+	"	* voyelle mi-ouverte centrale arrondie\n"
+	"	x (lettre minuscule latine e ouvert fermé - 029A)"},
 /* 025F */ { "LETTRE MINUSCULE LATINE J SANS POINT BARRÉ","	* occlusive palatale sonore\n"
 	"	* typographiquement un f culbuté, mais mieux perçue comme une forme de j\n"
-	"	* transcrit par « gy » en hongrois\n"
+	"	* transcrite par « gy » en hongrois\n"
 	"	* également le symbole désuet de l'affriquée palato-alvéolaire 02A4"},
 /* 0260 */ { "LETTRE MINUSCULE LATINE G CROSSE","	* occlusive injective vélaire\n"
 	"	* la majuscule est 0193"},
 /* 0261 */ { "LETTRE MINUSCULE LATINE G CURSIF","	* occlusive vélaire sonore\n"
 	"	* la majuscule est A7AC\n"
-	"	x (lettre minuscule latine g - 0067)"},
+	"	x (lettre minuscule latine g - 0067)\n"
+	"	x (minuscule g de ronde - 210A)"},
 /* 0262 */ { "LETTRE LATINE PETITE CAPITALE G","	* occlusive uvulaire sonore"},
 /* 0263 */ { "LETTRE MINUSCULE LATINE GAMMA","	* fricative vélaire sonore\n"
 	"	* la majuscule est 0194\n"
@@ -2048,33 +2175,47 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* la majuscule en nawdm est 0124\n"
 	"	x (lettre modificative minuscule h crosse - 02B1)"},
 /* 0267 */ { "LETTRE MINUSCULE LATINE HENG CROSSE","	* fricative post-alvéolo-vélaire sourde\n"
-	"	* la plupart des dialectes du suédois possèdent cette consonne, connue comme le « son sj » (« sj-ljudet », en suédois)"},
+	"	* la plupart des dialectes du suédois possèdent cette consonne, connue comme le « son sj » (« sj-ljudet », en suédois)\n"
+	"	x (lettre minuscule latine heng - A727)"},
 /* 0268 */ { "LETTRE MINUSCULE LATINE I BARRÉ","	= i barre\n"
 	"	* voyelle fermée centrale non arrondie\n"
 	"	* la majuscule est 0197\n"
-	"	* ISO 6438 donne 026A et non 0268 comme la minuscule de 0197"},
+	"	* ISO 6438 indique que la minuscule de 0197 est 026A, et non 0268\n"
+	"	x (lettre latine petite capitale i barré - 1D7B)"},
 /* 0269 */ { "LETTRE MINUSCULE LATINE IOTA","	* voyelle pré-fermée antérieure non arrondie\n"
 	"	* rendue obsolète par l'API en 1989\n"
 	"	* l'API recommande l'emploi de 026A (lettre latine petite capitale i)\n"
 	"	* la majuscule est 0196\n"
-	"	x (lettre minuscule grecque iota - 03B9)"},
+	"	x (lettre minuscule latine i sans point - 0131)\n"
+	"	x (lettre minuscule grecque iota - 03B9)\n"
+	"	x (lettre minuscule cyrillique iota - A647)\n"
+	"	x (minuscule mathématique italique i sans point - 1D6A4)"},
 /* 026A */ { "LETTRE LATINE PETITE CAPITALE I","	* voyelle pré-fermée antérieure non arrondie\n"
 	"	* forme recommandée par l'API en lieu et place de 0269\n"
 	"	* la majuscule est A7AE\n"
-	"	* le glyphe devrait présenter des empattements y compris dans des polices API sans empattements, pour éviter la confusion avec la minuscule « l »"},
+	"	* ISO 6438 donne comme minuscule 0197 au lieu de 0268\n"
+	"	* le glyphe devrait présenter des empattements y compris dans des polices API sans empattements, pour éviter la confusion avec la minuscule « l »\n"
+	"	x (lettre minuscule latine i sans point - 0131)"},
 /* 026B */ { "LETTRE MINUSCULE LATINE L TILDE MÉDIAN","	* spirante latérale alvéolaire vélarisée sonore\n"
 	"	* « l » anglais dans « table », une variété du 0142 polonais\n"
-	"	* la majuscule est 2C62"},
+	"	* la majuscule est 2C62\n"
+	"	x (lettre minuscule latine l barré - 0142)\n"
+	"	x (lettre minuscule latine l traversé d'un s renversé couché - AB37)\n"
+	"	x (lettre minuscule latine l double tilde médian - AB38)"},
 /* 026C */ { "LETTRE MINUSCULE LATINE L SANGLÉ","	* fricative latérale alvéolaire sourde\n"
-	"	* la majuscule est A7AD"},
-/* 026D */ { "LETTRE MINUSCULE LATINE L HAMEÇON RÉTROFLEXE","	* spirante latérale rétroflexe sonore"},
+	"	* la majuscule est A7AD\n"
+	"	x (lettre minuscule latine l rayé - 019A)"},
+/* 026D */ { "LETTRE MINUSCULE LATINE L HAMEÇON RÉTROFLEXE","	* spirante latérale rétroflexe sonore\n"
+	"	x (lettre minuscule latine l sanglé hameçon rétroflexe - A78E)"},
 /* 026E */ { "LETTRE MINUSCULE LATINE LEJ","	* fricative latérale alvéolaire sonore\n"
 	"	* « dl » dans l'écriture du zoulou (« dhl » avant une réforme de l'orthographe)"},
 /* 026F */ { "LETTRE MINUSCULE LATINE M CULBUTÉ","	* voyelle fermée postérieure non arrondie\n"
-	"	* la majuscule est 019C"},
+	"	* la majuscule est 019C\n"
+	"	x (lettre latine petite capitale m culbuté - A7FA)"},
 /* 0270 */ { "LETTRE MINUSCULE LATINE M CULBUTÉ À LONG FÛT","	* spirante vélaire sonore"},
 /* 0271 */ { "LETTRE MINUSCULE LATINE M HAMEÇON","	* nasale labio-dentale sonore\n"
-	"	* la majuscule est 2C6E"},
+	"	* la majuscule est 2C6E\n"
+	"	x (lettre minuscule latine m hameçon palatal - 1D86)"},
 /* 0272 */ { "LETTRE MINUSCULE LATINE N HAMEÇON À GAUCHE","	* nasale palatale sonore\n"
 	"	* « gn » en français et en italien, « ñ » en castillan\n"
 	"	* la majuscule est 019D"},
@@ -2091,9 +2232,13 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0277 */ { "LETTRE MINUSCULE LATINE OMÉGA FERMÉ","	* voyelle pré-fermée postérieure arrondie\n"
 	"	* rendue obsolète par l'API en 1989\n"
 	"	* l'API recommande l'emploi de 028A (lettre minuscule latine upsilon)\n"
+	"	x (lettre minuscule latine oméga - A7B7)\n"
 	"	x (lettre grecque petite capitale oméga - AB65)"},
 /* 0278 */ { "LETTRE MINUSCULE LATINE PHI","	* fricative bilabiale sourde\n"
-	"	x (lettre minuscule grecque phi - 03C6)"},
+	"	* lettre à casse unique\n"
+	"	x (lettre minuscule grecque phi - 03C6)\n"
+	"	x (symbole grec phi - 03D5)\n"
+	"	x (lettre minuscule latine phi sans queue - 2C77)"},
 /* 0279 */ { "LETTRE MINUSCULE LATINE R CULBUTÉ","	* spirante alvéolaire sonore\n"
 	"	x (lettre modificative minuscule r culbuté - 02B4)"},
 /* 027A */ { "LETTRE MINUSCULE LATINE R CULBUTÉ À LONG FÛT","	* battue latérale alvéolaire sonore"},
@@ -2101,12 +2246,16 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (lettre modificative minuscule r crosse culbuté - 02B5)"},
 /* 027C */ { "LETTRE MINUSCULE LATINE R À LONG FÛT","	* vibrante alvéolaire sonore rehaussée\n"
 	"	* rendue obsolète par l'API en 1989\n"
-	"	* correspond au 0159 tchèque\n"
+	"	* en tchèque, ce son est orthographié avec 0159\n"
 	"	* la représentation phonétique privilégiée pour le son tchèque est 0072 031D\n"
-	"	* en usage dans les polices d'écriture gaélique, ou écriture irlandaise insulaire, comme variante de glyphe de 0072"},
+	"	* en usage dans les polices d'écriture gaélique, ou écriture irlandaise insulaire, comme variante de glyphe de 0072\n"
+	"	x (lettre minuscule latine r insulaire - A783)\n"
+	"	x (lettre minuscule latine s insulaire - A785)"},
 /* 027D */ { "LETTRE MINUSCULE LATINE R HAMEÇON RÉTROFLEXE","	* battue rétroflexe sonore\n"
-	"	* la majuscule est 2C64"},
-/* 027E */ { "LETTRE MINUSCULE LATINE R SANS OBIT","	* battue alvéolaire sonore"},
+	"	* la majuscule est 2C64\n"
+	"	x (lettre minuscule latine r hameçon culbuté - 2C79)"},
+/* 027E */ { "LETTRE MINUSCULE LATINE R SANS OBIT","	* battue alvéolaire sonore\n"
+	"	x (lettre minuscule latine s long - 017F)"},
 /* 027F */ { "LETTRE MINUSCULE LATINE R SANS OBIT RÉFLÉCHI","	= iota culbuté à long fût (appellation inappropriée)\n"
 	"	* voyelle apicodentale\n"
 	"	* utilisée par les sinisants et autres spécialistes des langues sino-tibétaines\n"
@@ -2121,7 +2270,8 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* la majuscule est A7C5"},
 /* 0283 */ { "LETTRE MINUSCULE LATINE ECH","	* fricative palato-alvéolaire sourde\n"
 	"	* la majuscule est 01A9\n"
-	"	x (intégrale - 222B)"},
+	"	x (intégrale - 222B)\n"
+	"	x (lettre minuscule latine ech sur la ligne - AB4D)"},
 /* 0284 */ { "LETTRE MINUSCULE LATINE J SANS POINT BARRÉ CROSSE","	* occlusive injective palatale\n"
 	"	* sur le plan typographique, repose sur 025F, non sur 0283"},
 /* 0285 */ { "LETTRE MINUSCULE LATINE R SANS OBIT RÉFLÉCHI HAMEÇON RÉTROFLEXE","	* voyelle rétroflexe apicale\n"
@@ -2136,11 +2286,14 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* la majuscule est A7B1\n"
 	"	x (lettre latine clic dental - 01C0)"},
 /* 0288 */ { "LETTRE MINUSCULE LATINE T HAMEÇON RÉTROFLEXE","	* occlusive rétroflexe sourde\n"
-	"	* la majuscule est 01AE"},
+	"	* la majuscule est 01AE\n"
+	"	x (lettre minuscule latine t crosse - 01AD)\n"
+	"	x (lettre minuscule latine t crosse et hameçon rétroflexe - 1DF09)"},
 /* 0289 */ { "LETTRE MINUSCULE LATINE U BARRÉ","	* voyelle fermée centrale arrondie\n"
 	"	* la majuscule est 0244\n"
 	"	x (lettre latine petite capitale u barré - 1D7E)"},
 /* 028A */ { "LETTRE MINUSCULE LATINE UPSILON","	* voyelle pré-fermée postérieure arrondie\n"
+	"	* typographiquement, une petite capitale oméga grec 03A9 culbuté\n"
 	"	* forme recommandée par l'API en lieu et place de 0277\n"
 	"	* la majuscule est 01B1\n"
 	"	x (lettre minuscule grecque upsilon - 03C5)"},
@@ -2152,7 +2305,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* voyelle mi-ouverte postérieure non arrondie\n"
 	"	* la majuscule est 0245\n"
 	"	x (lettre majuscule grecque lambda - 039B)\n"
-	"	x (chevron d'insertion - 2038)\n"
+	"	x (lettre grecque petite capitale lambda - 1D27)\n"
 	"	x (et logique - 2227)"},
 /* 028D */ { "LETTRE MINUSCULE LATINE W CULBUTÉ","	* spirante labio-vélaire sourde\n"
 	"	x (lettre modificative minuscule w réfléchi - AB69)"},
@@ -2161,7 +2314,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 0290 */ { "LETTRE MINUSCULE LATINE Z HAMEÇON RÉTROFLEXE","	* fricative rétroflexe sonore"},
 /* 0291 */ { "LETTRE MINUSCULE LATINE Z BOUCLÉ","	* fricative alvéolo-palatale sonore\n"
 	"	* son écrit à l'aide de 017A en polonais"},
-/* 0292 */ { "LETTRE MINUSCULE LATINE EJ","	= drachme anglo-saxonne (dram)\n"
+/* 0292 */ { "LETTRE MINUSCULE LATINE EJ","	= symbole dram\n"
 	"	* fricative palato-alvéolaire sonore\n"
 	"	* portait le nom erroné de « yogh » dans Unicode 1.0\n"
 	"	* la majuscule est 01B7\n"
@@ -2169,7 +2322,8 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (lettre minuscule latine yogh - 021D)\n"
 	"	x (lettre minuscule cyrillique dzé abkhaze - 04E1)\n"
 	"	x (symbole once - 2125)\n"
-	"	x (symbole alchimique du demi-gros - 1F772)"},
+	"	x (symbole alchimique du demi-gros - 1F772)\n"
+	"	x 2CF01"},
 /* 0293 */ { "LETTRE MINUSCULE LATINE EJ BOUCLÉ","	* fricative palato-alvéolaire sonore palatalisée"},
 /* 0294 */ { "LETTRE LATINE COUP DE GLOTTE","	* lettre unicamérale\n"
 	"	* utilisée en API, dans d'autres notations phonétiques et dans les systèmes d'écriture qui utilisent un coup de glotte unicaméral\n"
@@ -2186,20 +2340,26 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (lettre latine clic rétroflexe - 01C3)\n"
 	"	x (complément - 2201)"},
 /* 0298 */ { "LETTRE LATINE CLIC BILABIAL","	= œil-de-bœuf\n"
-	"	x (opérateur point cerclé - 2299)"},
-/* 0299 */ { "LETTRE LATINE PETITE CAPITALE B","	* consonne roulée bilabiale sonore"},
+	"	* lettre à casse unique\n"
+	"	x (opérateur point cerclé - 2299)\n"
+	"	x (lettre majuscule cyrillique o monoculaire - A668)"},
+/* 0299 */ { "LETTRE LATINE PETITE CAPITALE B","	* consonne roulée bilabiale sonore\n"
+	"	x (lettre minuscule cyrillique vé - 0432)"},
 /* 029A */ { "LETTRE MINUSCULE LATINE E OUVERT FERMÉ","	= epsilon fermé\n"
 	"	* voyelle mi-ouverte antérieure arrondie\n"
-	"	* forme non API pour la représentation recommandée 0153"},
+	"	* forme non API pour la représentation recommandée 0153\n"
+	"	x (lettre minuscule latine e ouvert réfléchi fermé - 025E)"},
 /* 029B */ { "LETTRE LATINE PETITE CAPITALE G CROSSE","	* occlusive injective uvulaire"},
 /* 029C */ { "LETTRE LATINE PETITE CAPITALE H","	* fricative épiglottale sourde\n"
+	"	x (lettre minuscule cyrillique enne - 043D)\n"
 	"	x (lettre modificative majuscule h - 1D34)\n"
 	"	x (lettre modificative majuscule h barré - A7F8)"},
 /* 029D */ { "LETTRE MINUSCULE LATINE J À QUEUE CROISÉE","	* fricative palatale sonore\n"
 	"	* la majuscule est A7B2"},
 /* 029E */ { "LETTRE MINUSCULE LATINE K CULBUTÉ","	* proposée pour le clic vélaire\n"
 	"	* la majuscule est A7B0\n"
-	"	* retirée par l'API en 1970"},
+	"	* retirée par l'API en 1970\n"
+	"	x (lettre latine petite capitale k culbuté - 1DF10)"},
 /* 029F */ { "LETTRE LATINE PETITE CAPITALE L","	* spirante latérale vélaire sonore"},
 /* 02A0 */ { "LETTRE MINUSCULE LATINE Q CROSSE","	* occlusive injective uvulaire sourde"},
 /* 02A1 */ { "LETTRE LATINE COUP DE GLOTTE BARRÉ","	* occlusive épiglottale"},
@@ -2209,8 +2369,10 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 02A4 */ { "LETTRE MINUSCULE LATINE DIGRAMME DEJ","	* affriquée palato-alvéolaire sonore"},
 /* 02A5 */ { "LETTRE MINUSCULE LATINE DIGRAMME DZ BOUCLÉ","	* affriquée alvéolo-palatale sonore"},
 /* 02A6 */ { "LETTRE MINUSCULE LATINE DIGRAMME TS","	* affriquée alvéolaire sourde\n"
+	"	x (lettre latine coup de glotte barré réfléchi - 01BE)\n"
 	"	x (lettre minuscule latine digramme ts hameçon rétroflexe - AB67)"},
-/* 02A7 */ { "LETTRE MINUSCULE LATINE DIGRAMME TECH","	* affriquée palato-alvéolaire sourde"},
+/* 02A7 */ { "LETTRE MINUSCULE LATINE DIGRAMME TECH","	* affriquée palato-alvéolaire sourde\n"
+	"	x (lettre minuscule latine tz - A729)"},
 /* 02A8 */ { "LETTRE MINUSCULE LATINE DIGRAMME TC BOUCLÉ","	* affriquée alvéolo-palatale sourde"},
 /* 02A9 */ { "LETTRE MINUSCULE LATINE DIGRAMME FENG","	* fricative vélopharyngale"},
 /* 02AA */ { "LETTRE MINUSCULE LATINE DIGRAMME LS","	* fricative alvéolaire latérale (zézaiement)"},
@@ -2240,7 +2402,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (diacritique oméga souscrit - 032B)\n"
 	"	# <exp> 0077"},
 /* 02B8 */ { "LETTRE MODIFICATIVE MINUSCULE Y","	* palatalisé\n"
-	"	* utilisé par les américanistes à la place de 02B2\n"
+	"	* utilisée par les américanistes à la place de 02B2\n"
 	"	# <exp> 0079"},
 /* 02B9 */ { "LETTRE MODIFICATIVE PRIME","	* accentuation\n"
 	"	* translittération du signe mou cyrillique (palatalisation)\n"
@@ -2268,7 +2430,9 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* coup de glotte, glottalisation, éjectif\n"
 	"	* clone à chasse de l'esprit doux grec\n"
 	"	* beaucoup de langues considèrent ce caractère comme une lettre de leur alphabet\n"
-	"	* s'utilise comme une marque de ton en bodo, en dogri et en maïthili\n"
+	"	* utilisée comme signe de ton en bodo et en dogri\n"
+	"	* indique un allongement de voyelle ou diverses troncatures et ellipses en maïthili\n"
+	"	* utilisée comme une lettre modificative en lissou\n"
 	"	* 2019 est le caractère privilégié pour noter une apostrophe de ponctuation\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (diacritique virgule en chef - 0313)\n"
@@ -2310,9 +2474,8 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	x (diacritique accent circonflexe - 0302)\n"
 	"	x (lettre modificative accent circonflexe bas - A788)"},
 /* 02C7 */ { "CARON","	= hatchek, chevron\n"
-	"	* ton descendant-montant, contour montant\n"
+	"	* ton descendant-montant\n"
 	"	* troisième ton du mandarin\n"
-	"	* ce caractère chasse\n"
 	"	x (diacritique caron - 030C)"},
 /* 02C8 */ { "LETTRE MODIFICATIVE LIGNE VERTICALE","	* accent principal\n"
 	"	* précède la lettre ou la syllabe modifiée\n"
@@ -2339,13 +2502,14 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* précède la lettre ou la syllabe modifiée\n"
 	"	x (diacritique ligne verticale souscrite - 0329)"},
 /* 02CD */ { "LETTRE MODIFICATIVE MACRON BAS","	* ton bas\n"
+	"	* utilisée comme une lettre modificative en lissou\n"
 	"	x (tiret bas - 005F)\n"
 	"	x (diacritique macron souscrit - 0331)"},
 /* 02CE */ { "LETTRE MODIFICATIVE ACCENT GRAVE BAS","	* contour bas descendant, ton bas descendant"},
 /* 02CF */ { "LETTRE MODIFICATIVE ACCENT AIGU BAS","	* contour bas montant, ton bas montant\n"
 	"	x (signe numéral grec souscrit - 0375)"},
 /* 02D0 */ { "LETTRE MODIFICATIVE DEUX POINTS TRIANGULAIRES","	= chrone\n"
-	"	* marque de longueur, indique une prononciation longue\n"
+	"	* marque de longueur\n"
 	"	x (deux-points - 003A)"},
 /* 02D1 */ { "LETTRE MODIFICATIVE POINT TRIANGULAIRE","	= demi-chrone\n"
 	"	* indique une prononciation mi-longue\n"
@@ -2384,7 +2548,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 	"	* souvent ligaturée : 025A = 0259 + 02DE ; 025D = 025C + 02DE"},
 /* 02DF */ { "LETTRE MODIFICATIVE ACCENT EN CROIX","	= accent cruciforme, accent croix de saint André\n"
 	"	* accent grave suédois"},
-/* 02E0 */ { "LETTRE MODIFICATIVE MINUSCULE GAMMA","	* vélarisé\n"
+/* 02E0 */ { "LETTRE MODIFICATIVE MINUSCULE GAMMA","	* ces lettres modificatives sont parfois utilisées dans la transcription des affriquées\n"
 	"	# <exp> 0263"},
 /* 02E1 */ { "LETTRE MODIFICATIVE MINUSCULE L","	# <exp> 006C"},
 /* 02E2 */ { "LETTRE MODIFICATIVE MINUSCULE S","	# <exp> 0073"},
@@ -2398,7 +2562,7 @@ static const struct unicode_nameannot unaFR_00_02[] = {
 /* 02EA */ { "LETTRE MODIFICATIVE SIGNE DE TON DE DÉPART YIN",NULL},
 /* 02EB */ { "LETTRE MODIFICATIVE SIGNE DE TON DE DÉPART YANG",NULL},
 /* 02EC */ { "LETTRE MODIFICATIVE VOISÉE",NULL},
-/* 02ED */ { "LETTRE MODIFICATIVE NON ASPIRÉE",NULL},
+/* 02ED */ { "LETTRE MODIFICATIVE NON ASPIRÉE","	x (lettre modificative signe égal court - A78A)"},
 /* 02EE */ { "LETTRE MODIFICATIVE DOUBLE APOSTROPHE","	* nénetse"},
 /* 02EF */ { "LETTRE MODIFICATIVE POINTE DE FLÈCHE VERS LE BAS BASSE",NULL},
 /* 02F0 */ { "LETTRE MODIFICATIVE POINTE DE FLÈCHE VERS LE HAUT BASSE",NULL},
@@ -2955,7 +3119,7 @@ static const struct unicode_nameannot unaFR_00_04[] = {
 	"	: 0435 0308"},
 /* 0452 */ { "LETTRE MINUSCULE CYRILLIQUE DIÉ","	* serbe\n"
 	"	* équivalent dans l'alphabet latin de Gaj : đ\n"
-	"	* couramment transcrit par « dj » en français et dans d'autres langues\n"
+	"	* couramment transcrite par « dj » en français et dans d'autres langues\n"
 	"	x (lettre minuscule latine d barré - 0111)"},
 /* 0453 */ { "LETTRE MINUSCULE CYRILLIQUE GUIÉ","	* macédonien\n"
 	"	: 0433 0301"},
@@ -2984,7 +3148,7 @@ static const struct unicode_nameannot unaFR_00_04[] = {
 	"	: 0443 0306"},
 /* 045F */ { "LETTRE MINUSCULE CYRILLIQUE DJÉ","	* serbe, macédonien, abkhaze\n"
 	"	* équivalent dans l'alphabet latin de Gaj : dž\n"
-	"	* couramment transcrit par « dz » en français et dans d'autres langues\n"
+	"	* couramment transcrite par « dz » en français et dans d'autres langues\n"
 	"	x (lettre minuscule latine dz caron - 01C6)"},
 /* 0460 */ { "LETTRE MAJUSCULE CYRILLIQUE OMÉGA",NULL},
 /* 0461 */ { "LETTRE MINUSCULE CYRILLIQUE OMÉGA","	x (lettre minuscule cyrillique oméga large - A64D)"},
@@ -3071,9 +3235,9 @@ static const struct unicode_nameannot unaFR_00_04[] = {
 /* 04A1 */ { "LETTRE MINUSCULE CYRILLIQUE KA BACHKIR",NULL},
 /* 04A2 */ { "LETTRE MAJUSCULE CYRILLIQUE ENNE CRAMPON",NULL},
 /* 04A3 */ { "LETTRE MINUSCULE CYRILLIQUE ENNE CRAMPON","	* bachkir, etc."},
-/* 04A4 */ { "LIGATURE CYRILLIQUE MAJUSCULE ENG",NULL},
-/* 04A5 */ { "LIGATURE CYRILLIQUE MINUSCULE ENG","	* altaï, mari (ou tchérémisse), iakoute\n"
-	"	* également utilisé pour le enne doux en vieux slave\n"
+/* 04A4 */ { "LIGATURE MAJUSCULE CYRILLIQUE ENG",NULL},
+/* 04A5 */ { "LIGATURE MINUSCULE CYRILLIQUE ENG","	* altaï, mari (ou tchérémisse), iakoute\n"
+	"	* également utilisée pour le enne doux en vieux slave\n"
 	"	* il s'agit d'une ligature non décomposable"},
 /* 04A6 */ { "LETTRE MAJUSCULE CYRILLIQUE PÉ CROCHET MÉDIAN",NULL},
 /* 04A7 */ { "LETTRE MINUSCULE CYRILLIQUE PÉ CROCHET MÉDIAN","	* formes anciennes de l'abkhaze"},
@@ -3740,7 +3904,8 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06CA */ { "LETTRE ARABE WAW DEUX POINTS EN CHEF","	* kurde"},
 /* 06CB */ { "LETTRE ARABE VÉ","	* ouïgour, kazakh"},
 /* 06CC */ { "LETTRE ARABE FARSI YA'","	* arabe, persan, ourdou, cachemiri, etc.\n"
-	"	* les formes initiale et médiale de cette lettre sont pourvues de points\n"
+	"	* les formes initiale et médiale de cette lettre comportent deux points horizontaux souscrits\n"
+	"	* conserve ses points dans les formes initiale et médiale lorsqu'elle est utilisée conjointement avec 0654\n"
 	"	x (lettre arabe alif maksoura - 0649)\n"
 	"	x (lettre arabe ya' - 064A)"},
 /* 06CD */ { "LETTRE ARABE YA' À QUEUE","	* pachto, sindhi"},
@@ -3762,7 +3927,8 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06DB */ { "TROIS POINTS ARABES EN CHEF",NULL},
 /* 06DC */ { "PETIT SÎN ARABE EN CHEF",NULL},
 /* 06DD */ { "FIN D'AYA ARABE",NULL},
-/* 06DE */ { "DÉBUT DE ROUB EL HIZB ARABE",NULL},
+/* 06DE */ { "DÉBUT DE ROUB EL HIZB ARABE","	* indique les limites des parties de section\n"
+	"	* généralement représenté sous la forme d'un symbole à huit côtés, qui peut ou non ressembler à une étoile"},
 /* 06DF */ { "PETIT ZÉRO ARRONDI ARABE EN CHEF","	* plus petit que la forme circulaire utilisée pour 0652"},
 /* 06E0 */ { "PETIT ZÉRO RECTANGULAIRE VERTICAL ARABE EN CHEF","	* le terme « zéro rectangulaire » est une traduction du nom arabe de ce signe"},
 /* 06E1 */ { "PETITE TÊTE DE KHA' SANS POINT ARABE EN CHEF","	= djezm arabe\n"
@@ -3789,10 +3955,10 @@ static const struct unicode_nameannot unaFR_00_06[] = {
 /* 06F1 */ { "CHIFFRE ARABO-INDIEN ÉTENDU UN",NULL},
 /* 06F2 */ { "CHIFFRE ARABO-INDIEN ÉTENDU DEUX",NULL},
 /* 06F3 */ { "CHIFFRE ARABO-INDIEN ÉTENDU TROIS",NULL},
-/* 06F4 */ { "CHIFFRE ARABO-INDIEN ÉTENDU QUATRE","	* le glyphe persan est différent du glyphe sindhi et ourdou"},
-/* 06F5 */ { "CHIFFRE ARABO-INDIEN ÉTENDU CINQ","	* le persan, le sindhi et l'ourdou partagent un même glyphe, différent du glyphe arabe"},
-/* 06F6 */ { "CHIFFRE ARABO-INDIEN ÉTENDU SIX","	* le persan, le sindhi et l'ourdou ont des glyphes différents du glyphe arabe"},
-/* 06F7 */ { "CHIFFRE ARABO-INDIEN ÉTENDU SEPT","	* l'ourdou et le sindhi ont des glyphes différents du glyphe arabe"},
+/* 06F4 */ { "CHIFFRE ARABO-INDIEN ÉTENDU QUATRE","	* l'ourdou et le cachemiri ont un glyphe différent de celui du persan"},
+/* 06F5 */ { "CHIFFRE ARABO-INDIEN ÉTENDU CINQ",NULL},
+/* 06F6 */ { "CHIFFRE ARABO-INDIEN ÉTENDU SIX","	* le sindhi, l'ourdou et le cachemiri ont un glyphe différent de celui du persan"},
+/* 06F7 */ { "CHIFFRE ARABO-INDIEN ÉTENDU SEPT","	* le sindhi, l'ourdou et le cachemiri ont un glyphe différent de celui du persan"},
 /* 06F8 */ { "CHIFFRE ARABO-INDIEN ÉTENDU HUIT",NULL},
 /* 06F9 */ { "CHIFFRE ARABO-INDIEN ÉTENDU NEUF",NULL},
 /* 06FA */ { "LETTRE ARABE CHÎN POINT SOUSCRIT",NULL},
@@ -3814,7 +3980,8 @@ static const struct unicode_nameannot unaFR_00_07[] = {
 /* 0706 */ { "DEUX-POINTS SYRIAQUE EN BIAIS À GAUCHE","	* indique une subordonnée"},
 /* 0707 */ { "DEUX-POINTS SYRIAQUE EN BIAIS À DROITE","	* indique la fin d'une subdivision de l'apodose, la dernière partie d'un verset biblique"},
 /* 0708 */ { "DEUX-POINTS SYRIAQUE SUPRALINÉAIRE EN BIAIS À GAUCHE","	* indique une division mineure dans une proposition"},
-/* 0709 */ { "DEUX-POINTS SYRIAQUE SUBLINÉAIRE EN BIAIS À GAUCHE","	* indique la fin d'une question réelle ou oratoire"},
+/* 0709 */ { "DEUX-POINTS SYRIAQUE SUBLINÉAIRE EN BIAIS À GAUCHE","	* l'appellation en anglais de ce caractère est erronée\n"
+	"	* indique la fin d'une question réelle ou oratoire"},
 /* 070A */ { "CONTRACTION SYRIAQUE","	* signe de contraction, utilisé principalement en syriaque oriental\n"
 	"	* placée à la fin d'un mot inachevé"},
 /* 070B */ { "OBÈLE SYRIAQUE HÉRACLÉEN","	= obèle d'Harqel\n"
@@ -4271,7 +4438,8 @@ static const struct unicode_nameannot unaFR_00_08[] = {
 /* 08B1 */ { "LETTRE ARABE WAW DROIT","	* tatar"},
 /* 08B2 */ { "LETTRE ARABE ZAÏN V RENVERSÉ SUSCRIT",NULL},
 /* 08B3 */ { "LETTRE ARABE 'AÏN TROIS POINTS SOUSCRITS",NULL},
-/* 08B4 */ { "LETTRE ARABE KAF POINT SOUSCRIT",NULL},
+/* 08B4 */ { "LETTRE ARABE KAF POINT SOUSCRIT","	* également utilisée en pégon\n"
+	"	x (lettre arabe kaf trois points souscrits - 06AE)"},
 /* 08B5 */ { "LETTRE ARABE QAF AVEC POINT SOUSCRIT ET SANS POINTS SUSCRITS",NULL},
 /* 08B6 */ { "LETTRE ARABE BA' PETIT MÎM EN CHEF",NULL},
 /* 08B7 */ { "LETTRE ARABE PA' PETIT MÎM EN CHEF",NULL},
@@ -5429,7 +5597,8 @@ static const struct unicode_nameannot unaFR_00_0C[] = {
 /* 0CDD */ { "LETTRE KANNARA NAKÂRA POLLOU","	* forme de na dépourvue de voyelle\n"
 	"	x (lettre télougou nakâra pollou - 0C5D)\n"
 	"	x (lettre malayalam n tchillou - 0D7B)"},
-/* 0CDE */ { "LETTRE KANNARA LLLA","	* lettre désuète"},
+/* 0CDE */ { "LETTRE KANNARA LLLA","	* l'appellation en anglais de ce caractère est erronée\n"
+	"	* lettre désuète"},
 /* 0CDF */ { NULL,NULL},
 /* 0CE0 */ { "LETTRE KANNARA RR VOCALIQUE",NULL},
 /* 0CE1 */ { "LETTRE KANNARA LL VOCALIQUE",NULL},
@@ -6879,10 +7048,10 @@ static const struct unicode_nameannot unaFR_00_11[] = {
 /* 11E9 */ { "DJÔNGSONG HANGÛL SIÔS-RIÛL",NULL},
 /* 11EA */ { "DJÔNGSONG HANGÛL SIÔS-PIÛP",NULL},
 /* 11EB */ { "DJÔNGSONG HANGÛL PANSIÔS",NULL},
-/* 11EC */ { "DJÔNGSONG HANGÛL YESIÛNG-KIYOK",NULL},
-/* 11ED */ { "DJÔNGSONG HANGÛL YESIÛNG-SSANGKIYOK",NULL},
-/* 11EE */ { "DJÔNGSONG HANGÛL SSANGYESIÛNG",NULL},
-/* 11EF */ { "DJÔNGSONG HANGÛL YESIÛNG-K'IÛK'",NULL},
+/* 11EC */ { "DJÔNGSONG HANGÛL YESIÛNG-KIYOK","	* l'appellation en anglais de ce caractère est erronée"},
+/* 11ED */ { "DJÔNGSONG HANGÛL YESIÛNG-SSANGKIYOK","	* l'appellation en anglais de ce caractère est erronée"},
+/* 11EE */ { "DJÔNGSONG HANGÛL SSANGYESIÛNG","	* l'appellation en anglais de ce caractère est erronée"},
+/* 11EF */ { "DJÔNGSONG HANGÛL YESIÛNG-K'IÛK'","	* l'appellation en anglais de ce caractère est erronée"},
 /* 11F0 */ { "DJÔNGSONG HANGÛL YESIÛNG",NULL},
 /* 11F1 */ { "DJÔNGSONG HANGÛL YESIÛNG-SIÔS",NULL},
 /* 11F2 */ { "DJÔNGSONG HANGÛL YESIÛNG-PANSIÔS",NULL},
@@ -6910,7 +7079,7 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 1204 */ { "SYLLABE ÉTHIOPIENNE HÉ",NULL},
 /* 1205 */ { "SYLLABE ÉTHIOPIENNE HE",NULL},
 /* 1206 */ { "SYLLABE ÉTHIOPIENNE HO",NULL},
-/* 1207 */ { "SYLLABE ÉTHIOPIENNE HOÄ","	* il s'agit d'un ho au « o » ouvert"},
+/* 1207 */ { "SYLLABE ÉTHIOPIENNE HOÄ","	* « oä » dénote un « o » ouvert"},
 /* 1208 */ { "SYLLABE ÉTHIOPIENNE LÄ",NULL},
 /* 1209 */ { "SYLLABE ÉTHIOPIENNE LOU",NULL},
 /* 120A */ { "SYLLABE ÉTHIOPIENNE LI",NULL},
@@ -6918,7 +7087,7 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 120C */ { "SYLLABE ÉTHIOPIENNE LÉ",NULL},
 /* 120D */ { "SYLLABE ÉTHIOPIENNE LE",NULL},
 /* 120E */ { "SYLLABE ÉTHIOPIENNE LO",NULL},
-/* 120F */ { "SYLLABE ÉTHIOPIENNE LWA","	* le socle de la lettre sert à noter les combinaisons de consonnes avec w"},
+/* 120F */ { "SYLLABE ÉTHIOPIENNE LWA",NULL},
 /* 1210 */ { "SYLLABE ÉTHIOPIENNE HHÄ",NULL},
 /* 1211 */ { "SYLLABE ÉTHIOPIENNE HHOU",NULL},
 /* 1212 */ { "SYLLABE ÉTHIOPIENNE HHI",NULL},
@@ -6974,8 +7143,7 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 1244 */ { "SYLLABE ÉTHIOPIENNE QÉ",NULL},
 /* 1245 */ { "SYLLABE ÉTHIOPIENNE QE",NULL},
 /* 1246 */ { "SYLLABE ÉTHIOPIENNE QO",NULL},
-/* 1247 */ { "SYLLABE ÉTHIOPIENNE QOÄ","	* « oä » dénote un « o » ouvert\n"
-	"	* série pour noter le me'en, le moursi et le souri"},
+/* 1247 */ { "SYLLABE ÉTHIOPIENNE QOÄ","	* « oä » dénote un « o » ouvert"},
 /* 1248 */ { "SYLLABE ÉTHIOPIENNE QWÄ",NULL},
 /* 1249 */ { NULL,NULL},
 /* 124A */ { "SYLLABE ÉTHIOPIENNE QWI","	x (syllabe éthiopienne gouragé qwi - 1E7F0)"},
@@ -6984,7 +7152,7 @@ static const struct unicode_nameannot unaFR_00_12[] = {
 /* 124D */ { "SYLLABE ÉTHIOPIENNE QWE","	x (syllabe éthiopienne gouragé qwe - 1E7F2)"},
 /* 124E */ { NULL,NULL},
 /* 124F */ { NULL,NULL},
-/* 1250 */ { "SYLLABE ÉTHIOPIENNE QHÄ","	* la partie supérieure de la lettre se nomme parfois chapeau"},
+/* 1250 */ { "SYLLABE ÉTHIOPIENNE QHÄ","	* la partie supérieure de la lettre se nomme parfois « chapeau »"},
 /* 1251 */ { "SYLLABE ÉTHIOPIENNE QHOU",NULL},
 /* 1252 */ { "SYLLABE ÉTHIOPIENNE QHI",NULL},
 /* 1253 */ { "SYLLABE ÉTHIOPIENNE QHA",NULL},
@@ -9510,7 +9678,7 @@ static const struct unicode_nameannot unaFR_00_1B[] = {
 /* 1BBA */ { "AVAGRAHA SOUNDANAIS","	= marque de gémination"},
 /* 1BBB */ { "LETTRE SOUNDANAISE REU","	* r vocalique"},
 /* 1BBC */ { "LETTRE SOUNDANAISE LEU","	* l vocalique"},
-/* 1BBD */ { "LETTRE SOUNDANAISE I ARCHAÏQUE",NULL},
+/* 1BBD */ { "LETTRE SOUNDANAISE I ARCHAÏQUE","	* l'appellation en anglais de ce caractère est erronée"},
 /* 1BBE */ { "LETTRE SOUNDANAISE K FINAL",NULL},
 /* 1BBF */ { "LETTRE SOUNDANAISE M FINAL","	* utilisée dans un document du XXIe siècle\n"
 	"	* pour le m final réel, il faut utiliser la séquence 1B99 1BAA"},
@@ -9707,7 +9875,7 @@ static const struct unicode_nameannot unaFR_00_1C[] = {
 /* 1C78 */ { "MOU TTOUDDAG OL TCHIKI","	* marque de nasalisation"},
 /* 1C79 */ { "GÂHLÂ TTOUDDÂG OL TCHIKI","	* modificateur de voyelle"},
 /* 1C7A */ { "MOU-GÂHLÂ TTOUDDÂG OL TCHIKI",NULL},
-/* 1C7B */ { "RÉLÂ OL TCHIKI","	* marque de longueur, indique une prononciation longue"},
+/* 1C7B */ { "RÉLÂ OL TCHIKI","	* marque de longueur"},
 /* 1C7C */ { "PHÂRKÂ OL TCHIKI",NULL},
 /* 1C7D */ { "AHAD OL TCHIKI",NULL},
 /* 1C7E */ { "PONCTUATION OL TCHIKI MOUTCHÂD",NULL},
@@ -9861,20 +10029,24 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D00 */ { "LETTRE LATINE PETITE CAPITALE A",NULL},
 /* 1D01 */ { "LETTRE LATINE PETITE CAPITALE AE",NULL},
 /* 1D02 */ { "LETTRE MINUSCULE LATINE AE CULBUTÉ","	* le glyphe peut également apparaître de biais"},
-/* 1D03 */ { "LETTRE LATINE PETITE CAPITALE B BARRÉ",NULL},
+/* 1D03 */ { "LETTRE LATINE PETITE CAPITALE B BARRÉ","	x (lettre majuscule latine b barré - 0243)"},
 /* 1D04 */ { "LETTRE LATINE PETITE CAPITALE C",NULL},
 /* 1D05 */ { "LETTRE LATINE PETITE CAPITALE D",NULL},
 /* 1D06 */ { "LETTRE LATINE PETITE CAPITALE ETH",NULL},
 /* 1D07 */ { "LETTRE LATINE PETITE CAPITALE E",NULL},
-/* 1D08 */ { "LETTRE MINUSCULE LATINE E OUVERT CULBUTÉ",NULL},
+/* 1D08 */ { "LETTRE MINUSCULE LATINE E OUVERT CULBUTÉ","	x (lettre minuscule latine e ouvert réfléchi - 025C)\n"
+	"	x (lettre modificative minuscule e ouvert culbuté - 1D4C)"},
 /* 1D09 */ { "LETTRE MINUSCULE LATINE I CULBUTÉ",NULL},
 /* 1D0A */ { "LETTRE LATINE PETITE CAPITALE J",NULL},
-/* 1D0B */ { "LETTRE LATINE PETITE CAPITALE K",NULL},
+/* 1D0B */ { "LETTRE LATINE PETITE CAPITALE K","	x (lettre minuscule latine kra - 0138)\n"
+	"	x (lettre minuscule cyrillique ka - 043A)"},
 /* 1D0C */ { "LETTRE LATINE PETITE CAPITALE L BARRÉ OBLIQUEMENT",NULL},
 /* 1D0D */ { "LETTRE LATINE PETITE CAPITALE M",NULL},
-/* 1D0E */ { "LETTRE LATINE PETITE CAPITALE N RÉFLÉCHI",NULL},
+/* 1D0E */ { "LETTRE LATINE PETITE CAPITALE N RÉFLÉCHI","	x (lettre minuscule cyrillique i - 0438)\n"
+	"	x (lettre modificative majuscule n réfléchi - 1D3B)"},
 /* 1D0F */ { "LETTRE LATINE PETITE CAPITALE O",NULL},
-/* 1D10 */ { "LETTRE LATINE PETITE CAPITALE O OUVERT",NULL},
+/* 1D10 */ { "LETTRE LATINE PETITE CAPITALE O OUVERT","	x (lettre minuscule latine o ouvert - 0254)\n"
+	"	x (lettre minuscule latine c réfléchi - 2184)"},
 /* 1D11 */ { "LETTRE MINUSCULE LATINE O COUCHÉ",NULL},
 /* 1D12 */ { "LETTRE MINUSCULE LATINE O OUVERT COUCHÉ",NULL},
 /* 1D13 */ { "LETTRE MINUSCULE LATINE O COUCHÉ BARRÉ OBLIQUEMENT",NULL},
@@ -9882,10 +10054,11 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D15 */ { "LETTRE LATINE PETITE CAPITALE OU",NULL},
 /* 1D16 */ { "LETTRE MINUSCULE LATINE MOITIÉ SUPÉRIEURE DE O",NULL},
 /* 1D17 */ { "LETTRE MINUSCULE LATINE MOITIÉ INFÉRIEURE DE O",NULL},
-/* 1D18 */ { "LETTRE LATINE PETITE CAPITALE P","	* représente un [p] semi-sonore"},
+/* 1D18 */ { "LETTRE LATINE PETITE CAPITALE P","	* représente un [p] semi-sonore\n"
+	"	x (lettre grecque petite capitale rhô - 1D29)"},
 /* 1D19 */ { "LETTRE LATINE PETITE CAPITALE R RÉFLÉCHI",NULL},
 /* 1D1A */ { "LETTRE LATINE PETITE CAPITALE R CULBUTÉ",NULL},
-/* 1D1B */ { "LETTRE LATINE PETITE CAPITALE T",NULL},
+/* 1D1B */ { "LETTRE LATINE PETITE CAPITALE T","	x (lettre minuscule cyrillique té - 0442)"},
 /* 1D1C */ { "LETTRE LATINE PETITE CAPITALE U",NULL},
 /* 1D1D */ { "LETTRE MINUSCULE LATINE U COUCHÉ",NULL},
 /* 1D1E */ { "LETTRE MINUSCULE LATINE U TRÉMA COUCHÉ","	* le glyphe peut également apparaître de biais"},
@@ -9893,13 +10066,15 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D20 */ { "LETTRE LATINE PETITE CAPITALE V",NULL},
 /* 1D21 */ { "LETTRE LATINE PETITE CAPITALE W",NULL},
 /* 1D22 */ { "LETTRE LATINE PETITE CAPITALE Z",NULL},
-/* 1D23 */ { "LETTRE LATINE PETITE CAPITALE EJ",NULL},
+/* 1D23 */ { "LETTRE LATINE PETITE CAPITALE EJ","	x (lettre minuscule cyrillique dzé abkhaze - 04E1)"},
 /* 1D24 */ { "LETTRE LATINE SPIRANTE LARYNGALE SONORE",NULL},
-/* 1D25 */ { "LETTRE LATINE 'AÏN",NULL},
+/* 1D25 */ { "LETTRE LATINE 'AÏN","	x (lettre arabe 'aïn - 0639)\n"
+	"	x (lettre minuscule latine 'aïn égyptologique - A725)"},
 /* 1D26 */ { "LETTRE GRECQUE PETITE CAPITALE GAMMA",NULL},
 /* 1D27 */ { "LETTRE GRECQUE PETITE CAPITALE LAMBDA",NULL},
 /* 1D28 */ { "LETTRE GRECQUE PETITE CAPITALE PI",NULL},
-/* 1D29 */ { "LETTRE GRECQUE PETITE CAPITALE RHÔ","	* représente une vibrante uvulaire sourde"},
+/* 1D29 */ { "LETTRE GRECQUE PETITE CAPITALE RHÔ","	* représente une vibrante uvulaire sourde\n"
+	"	x (lettre latine petite capitale p - 1D18)"},
 /* 1D2A */ { "LETTRE GRECQUE PETITE CAPITALE PSI",NULL},
 /* 1D2B */ { "LETTRE CYRILLIQUE PETITE CAPITALE ELLE","	* dans un contexte italique, cette lettre est penchée au lieu d'avoir un tracé italique\n"
 	"	x (lettre minuscule cyrillique elle - 043B)"},
@@ -9956,7 +10131,8 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D59 */ { "LETTRE MODIFICATIVE MINUSCULE U COUCHÉ","	# <exp> 1D1D"},
 /* 1D5A */ { "LETTRE MODIFICATIVE MINUSCULE M CULBUTÉ","	# <exp> 026F"},
 /* 1D5B */ { "LETTRE MODIFICATIVE MINUSCULE V","	# <exp> 0076"},
-/* 1D5C */ { "LETTRE MODIFICATIVE MINUSCULE 'AÏN","	# <exp> 1D25"},
+/* 1D5C */ { "LETTRE MODIFICATIVE MINUSCULE 'AÏN","	x (lettre minuscule latine 'aïn égyptologique - A725)\n"
+	"	# <exp> 1D25"},
 /* 1D5D */ { "LETTRE MODIFICATIVE MINUSCULE BÊTA","	# <exp> 03B2"},
 /* 1D5E */ { "LETTRE MODIFICATIVE MINUSCULE GRECQUE GAMMA","	# <exp> 03B3"},
 /* 1D5F */ { "LETTRE MODIFICATIVE MINUSCULE DELTA","	# <exp> 03B4"},
@@ -9997,7 +10173,8 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 	"	x (lettre minuscule latine g insulaire fermé - A7D1)"},
 /* 1D7A */ { "LETTRE MINUSCULE LATINE TH BARRÉ OBLIQUEMENT","	* usage lexicographique américain\n"
 	"	x (lettre minuscule grecque thêta - 03B8)"},
-/* 1D7B */ { "LETTRE LATINE PETITE CAPITALE I BARRÉ","	* a des sens différents pour les américanistes et les dictionnaires Oxford"},
+/* 1D7B */ { "LETTRE LATINE PETITE CAPITALE I BARRÉ","	* a des sens différents pour les américanistes et les dictionnaires Oxford\n"
+	"	x (lettre majuscule latine i barré - 0197)"},
 /* 1D7C */ { "LETTRE MINUSCULE LATINE IOTA BARRÉ","	* utilisée par les russistes"},
 /* 1D7D */ { "LETTRE MINUSCULE LATINE P BARRÉ","	* utilisée par les américanistes\n"
 	"	* la majuscule est 2C63"},
@@ -10010,15 +10187,16 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1D83 */ { "LETTRE MINUSCULE LATINE G HAMEÇON PALATAL",NULL},
 /* 1D84 */ { "LETTRE MINUSCULE LATINE K HAMEÇON PALATAL",NULL},
 /* 1D85 */ { "LETTRE MINUSCULE LATINE L HAMEÇON PALATAL",NULL},
-/* 1D86 */ { "LETTRE MINUSCULE LATINE M HAMEÇON PALATAL",NULL},
-/* 1D87 */ { "LETTRE MINUSCULE LATINE N HAMEÇON PALATAL",NULL},
+/* 1D86 */ { "LETTRE MINUSCULE LATINE M HAMEÇON PALATAL","	x (lettre minuscule latine m hameçon - 0271)"},
+/* 1D87 */ { "LETTRE MINUSCULE LATINE N HAMEÇON PALATAL","	x (lettre minuscule latine eng - 014B)"},
 /* 1D88 */ { "LETTRE MINUSCULE LATINE P HAMEÇON PALATAL",NULL},
 /* 1D89 */ { "LETTRE MINUSCULE LATINE R HAMEÇON PALATAL",NULL},
 /* 1D8A */ { "LETTRE MINUSCULE LATINE S HAMEÇON PALATAL",NULL},
 /* 1D8B */ { "LETTRE MINUSCULE LATINE ECH HAMEÇON PALATAL",NULL},
 /* 1D8C */ { "LETTRE MINUSCULE LATINE V HAMEÇON PALATAL",NULL},
 /* 1D8D */ { "LETTRE MINUSCULE LATINE X HAMEÇON PALATAL",NULL},
-/* 1D8E */ { "LETTRE MINUSCULE LATINE Z HAMEÇON PALATAL","	* la majuscule est A7C6"},
+/* 1D8E */ { "LETTRE MINUSCULE LATINE Z HAMEÇON PALATAL","	* la majuscule est A7C6\n"
+	"	x (lettre minuscule latine z hameçon - 0225)"},
 /* 1D8F */ { "LETTRE MINUSCULE LATINE A HAMEÇON RÉTROFLEXE",NULL},
 /* 1D90 */ { "LETTRE MINUSCULE LATINE ALPHA HAMEÇON RÉTROFLEXE",NULL},
 /* 1D91 */ { "LETTRE MINUSCULE LATINE D CROSSE ET HAMEÇON RÉTROFLEXE",NULL},
@@ -10146,7 +10324,7 @@ static const struct unicode_nameannot unaFR_00_1D[] = {
 /* 1DFA */ { "DIACRITIQUE POINT SOUSCRIT À GAUCHE","	* utilisé en syriaque comme un point de désambiguïsation"},
 /* 1DFB */ { "DIACRITIQUE DE SUPPRESSION",NULL},
 /* 1DFC */ { "DIACRITIQUE DOUBLE BRÈVE RENVERSÉE SOUSCRITE",NULL},
-/* 1DFD */ { "DIACRITIQUE SOUSCRIT PRESQUE ÉGAL À","	* indique une voyelle stridente dans les langues de la famille khoisan"},
+/* 1DFD */ { "DIACRITIQUE SOUSCRIT PRESQUE ÉGAL À","	* indique une voyelle stridente dans les langues de la famille khoïsane"},
 /* 1DFE */ { "DIACRITIQUE POINTE DE FLÈCHE VERS LA GAUCHE EN CHEF",NULL},
 /* 1DFF */ { "DIACRITIQUE POINTES DE FLÈCHE VERS LA DROITE ET VERS LE BAS SOUSCRITES",NULL}
 };
@@ -10218,9 +10396,9 @@ static const struct unicode_nameannot unaFR_00_1E[] = {
 /* 1E35 */ { "LETTRE MINUSCULE LATINE K LIGNE SOUSCRITE","	: 006B 0331"},
 /* 1E36 */ { "LETTRE MAJUSCULE LATINE L POINT SOUSCRIT","	: 004C 0323"},
 /* 1E37 */ { "LETTRE MINUSCULE LATINE L POINT SOUSCRIT","	* translittération des écritures indiennes\n"
-	"	: 006C 0323\n"
-	"	* voir la norme ISO 15919 pour la distinction entre le point souscrit et le rond souscrit dans les translittérations des écritures indiennes\n"
-	"	x (diacritique rond souscrit - 0325)"},
+	"	* voir la norme ISO 15919 sur l'utilisation du point souscrit par opposition au rond souscrit dans la translittération des écritures indiennes\n"
+	"	x (diacritique rond souscrit - 0325)\n"
+	"	: 006C 0323"},
 /* 1E38 */ { "LETTRE MAJUSCULE LATINE L POINT SOUSCRIT ET MACRON","	: 1E36 0304"},
 /* 1E39 */ { "LETTRE MINUSCULE LATINE L POINT SOUSCRIT ET MACRON","	* translittération des écritures indiennes\n"
 	"	: 1E37 0304"},
@@ -10265,9 +10443,9 @@ static const struct unicode_nameannot unaFR_00_1E[] = {
 /* 1E59 */ { "LETTRE MINUSCULE LATINE R POINT EN CHEF","	: 0072 0307"},
 /* 1E5A */ { "LETTRE MAJUSCULE LATINE R POINT SOUSCRIT","	: 0052 0323"},
 /* 1E5B */ { "LETTRE MINUSCULE LATINE R POINT SOUSCRIT","	* translittération des écritures indiennes\n"
-	"	: 0072 0323\n"
-	"	* voir la norme ISO 15919 pour la distinction entre le point souscrit et le rond souscrit dans les translittérations des écritures indiennes\n"
-	"	x (diacritique rond souscrit - 0325)"},
+	"	* voir la norme ISO 15919 sur l'utilisation du point souscrit par opposition au rond souscrit dans la translittération des écritures indiennes\n"
+	"	x (diacritique rond souscrit - 0325)\n"
+	"	: 0072 0323"},
 /* 1E5C */ { "LETTRE MAJUSCULE LATINE R POINT SOUSCRIT ET MACRON","	: 1E5A 0304"},
 /* 1E5D */ { "LETTRE MINUSCULE LATINE R POINT SOUSCRIT ET MACRON","	* translittération des écritures indiennes\n"
 	"	: 1E5B 0304"},
@@ -10354,8 +10532,10 @@ static const struct unicode_nameannot unaFR_00_1E[] = {
 /* 1E9D */ { "LETTRE MINUSCULE LATINE S LONG À BARRE HAUTE",NULL},
 /* 1E9E */ { "LETTRE MAJUSCULE LATINE S DUR","	* inutilisée en allemand standard suisse (« haut-allemand » suisse)\n"
 	"	* la minuscule est 00DF\n"
-	"	x (lettre minuscule latine s dur - 00DF)"},
-/* 1E9F */ { "LETTRE MINUSCULE LATINE DELTA",NULL},
+	"	x (lettre minuscule latine s dur - 00DF)\n"
+	"	x (lettre majuscule latine s moyen scots - A7D6)"},
+/* 1E9F */ { "LETTRE MINUSCULE LATINE DELTA","	* lettre à casse unique\n"
+	"	x (lettre minuscule grecque delta - 03B4)"},
 /* 1EA0 */ { "LETTRE MAJUSCULE LATINE A POINT SOUSCRIT","	: 0041 0323"},
 /* 1EA1 */ { "LETTRE MINUSCULE LATINE A POINT SOUSCRIT","	: 0061 0323"},
 /* 1EA2 */ { "LETTRE MAJUSCULE LATINE A CROCHET EN CHEF","	: 0041 0309"},
@@ -10901,7 +11081,7 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 2049 */ { "POINT D'EXCLAMATION-INTERROGATION","	# 0021 003F"},
 /* 204A */ { "NOTE TIRONIENNE ET","	* gaélique irlandais, vieil anglais\n"
 	"	x (perluète - 0026)\n"
-	"	x (note majuscule tironienne et - 2E52)\n"
+	"	x (note tironienne majuscule et - 2E52)\n"
 	"	x (ornement ligature et cursif - 1F670)"},
 /* 204B */ { "PIED-DE-MOUCHE RÉFLÉCHI","	x (pied-de-mouche - 00B6)\n"
 	"	x (signe paragraphus - 2E4D)"},
@@ -11024,7 +11204,8 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 	"	x (symbole euro - 20AC)"},
 /* 20A1 */ { "SYMBOLE COLON","	* Costa Rica, Salvador"},
 /* 20A2 */ { "SYMBOLE CRUZEIRO","	* Brésil"},
-/* 20A3 */ { "SYMBOLE FRANC FRANÇAIS","	* France"},
+/* 20A3 */ { "SYMBOLE FRANC FRANÇAIS","	* France\n"
+	"	x (lettre majuscule latine f barré - A798)"},
 /* 20A4 */ { "SYMBOLE LIRE","	* destiné à représenter la lire, mais le symbole est peu utilisé\n"
 	"	* le caractère recommandé pour la lire est 00A3\n"
 	"	x (symbole livre - 00A3)\n"
@@ -11119,8 +11300,7 @@ static const struct unicode_nameannot unaFR_00_20[] = {
 /* 20E0 */ { "DIACRITIQUE CERCLE ENGLOBANT ET BARRE OBLIQUE INVERSÉE","	* interdiction\n"
 	"	x (symbole d'interdiction - 1F6C7)"},
 /* 20E1 */ { "DIACRITIQUE FLÈCHE GAUCHE-DROITE EN CHEF","	* tenseur"},
-/* 20E2 */ { "DIACRITIQUE ÉCRAN ENGLOBANT","	* s'utilise pour composer les symboles complets suivants d'ISO/CEI 9995-7\n"
-	"	x (symbole effacer écran - 239A)\n"
+/* 20E2 */ { "DIACRITIQUE ÉCRAN ENGLOBANT","	x (symbole effacer écran - 239A)\n"
 	"	x (écran - 1F5B5)"},
 /* 20E3 */ { "DIACRITIQUE TOUCHE ENGLOBANTE",NULL},
 /* 20E4 */ { "DIACRITIQUE TRIANGLE ENGLOBANT POINTANT VERS LE HAUT","	x (triangle blanc pointant vers le haut - 25B3)"},
@@ -11171,7 +11351,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 2102 */ { "MAJUSCULE C AJOURÉ","	= majuscule c éclairé\n"
 	"	= l'ensemble des nombres complexes\n"
 	"	# <police> 0043 lettre majuscule latine c"},
-/* 2103 */ { "DEGRÉ CELSIUS","	* on sépare ce symbole du nombre qui le précède à l'aide d'une espace, alors que le symbole degré non suivi par l'abréviation précisant l'échelle utilisée (00B0) suit immédiatement son nombre ; on composera, par exemple, « 20 °C » (mais « 20° »)\n"
+/* 2103 */ { "DEGRÉ CELSIUS","	* on sépare ce symbole du nombre qui le précède à l'aide d'une espace, alors que le symbole degré (00B0) non suivi par l'abréviation précisant l'échelle utilisée suit immédiatement son nombre ; on composera, par exemple, « 20 °C » (mais « 20° »)\n"
 	"	# 00B0 0043"},
 /* 2104 */ { "SYMBOLE LIGNE DE CENTRE","	= clone"},
 /* 2105 */ { "CARE OF","	* en français : a/s (aux soins de), et l'on utilise 2101\n"
@@ -11183,7 +11363,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 2107 */ { "CONSTANTE D'EULER","	x (lettre majuscule latine e - 0045)\n"
 	"	# 0190 lettre majuscule latine e ouvert"},
 /* 2108 */ { "SCRUPULE",NULL},
-/* 2109 */ { "DEGRÉ FAHRENHEIT","	* on sépare ce symbole du nombre qui le précède à l'aide d'une espace, alors que le symbole degré non suivi par l'abréviation précisant l'échelle utilisée (00B0) suit immédiatement son nombre ; on composera, par exemple, « 68 °F » (mais « 68° »)\n"
+/* 2109 */ { "DEGRÉ FAHRENHEIT","	* on sépare ce symbole du nombre qui le précède à l'aide d'une espace, alors que le symbole degré (00B0) non suivi par l'abréviation précisant l'échelle utilisée suit immédiatement son nombre ; on composera, par exemple, « 68 °F » (mais « 68° »)\n"
 	"	# 00B0 0046"},
 /* 210A */ { "MINUSCULE G DE RONDE","	= symbole nombre réel\n"
 	"	# <police> 0067 lettre minuscule latine g"},
@@ -11226,7 +11406,8 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	# 004E 006F"},
 /* 2117 */ { "COPYRIGHT DE PHONOGRAMME","	x (symbole copyright - 00A9)\n"
 	"	x (lettre majuscule latine p cerclée - 24C5)"},
-/* 2118 */ { "SYMBOLE FONCTION ELLIPTIQUE DE WEIERSTRASS","	* ce symbole a la forme d'un p calligraphique minuscule"},
+/* 2118 */ { "SYMBOLE FONCTION ELLIPTIQUE DE WEIERSTRASS","	* l'appellation en anglais de ce caractère est erronée\n"
+	"	* ce symbole a la forme d'un p calligraphique minuscule"},
 /* 2119 */ { "MAJUSCULE P AJOURÉ","	= majuscule p éclairé\n"
 	"	# <police> 0050 lettre majuscule latine p"},
 /* 211A */ { "MAJUSCULE Q AJOURÉ","	= majuscule q éclairé\n"
@@ -11256,7 +11437,8 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	= l'ensemble des nombres entiers relatifs\n"
 	"	# <police> 005A lettre majuscule latine z"},
 /* 2125 */ { "SYMBOLE ONCE","	x (lettre minuscule latine ej - 0292)\n"
-	"	x (symbole alchimique de la demi-once - 1F773)"},
+	"	x (symbole alchimique de la demi-once - 1F773)\n"
+	"	x 2CF04"},
 /* 2126 */ { "SYMBOLE OHM","	* unité SI de la résistance électrique, du nom du physicien allemand Georg Ohm\n"
 	"	* 03A9 est la représentation recommandée\n"
 	"	x (nœud ascendant - 260A)\n"
@@ -11324,7 +11506,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 	"	x (symbole source d'information cerclé - 1F6C8)\n"
 	"	# <police> 0069 lettre minuscule latine i"},
 /* 213A */ { "MAJUSCULE Q COUCHÉ","	* marque de cahier en reliure, indice de collationnement\n"
-	"	* tiré d'ISO 5426-2:1996"},
+	"	* tiré de la norme ISO 5426-2:1996"},
 /* 213B */ { "SYMBOLE TÉLÉCOPIE","	* le symbole peut être présenté sous la forme d'une minuscule, d'une petite capitale ou d'une lettre suscrite\n"
 	"	x (symbole téléphone - 2121)\n"
 	"	x (télécopieur - 1F4E0)\n"
@@ -11545,7 +11727,7 @@ static const struct unicode_nameannot unaFR_00_21[] = {
 /* 21EA */ { "FLÈCHE BLANCHE D'UN TAQUET VERS LE HAUT","	= verrouillage des majuscules"},
 /* 21EB */ { "FLÈCHE BLANCHE VERS LE HAUT SUR SOCLE","	= verrouillage niveau 2"},
 /* 21EC */ { "FLÈCHE BLANCHE VERS LE HAUT SUR SOCLE ET TRAIT HORIZONTAL","	= verrouillage des majuscules\n"
-	"	* pour l'ISO/CEI 9995-7, cette fonction est l'équivalent de 21EB sur certains claviers et pour certaines touches\n"
+	"	* pour la norme ISO/CEI 9995-7, cette fonction est l'équivalent de 21EB sur certains claviers et pour certaines touches\n"
 	"	x (flèche blanche d'un taquet vers le haut barrée horizontalement - 2BB8)"},
 /* 21ED */ { "FLÈCHE BLANCHE VERS LE HAUT SUR SOCLE ET BARRE VERTICALE","	= verrouillage numérique"},
 /* 21EE */ { "DOUBLE FLÈCHE BLANCHE VERS LE HAUT","	= sélection du niveau 3"},
@@ -11696,7 +11878,7 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 	"	x (signe négation - 00AC)\n"
 	"	x (petit tilde - 02DC)"},
 /* 223D */ { "OPÉRATEUR TILDE RÉFLÉCHI","	= s couché\n"
-	"	* le tilde renversé et le s couché sont des variantes de glyphe"},
+	"	* le tilde renversé et le s couché sont des variantes de glyphes"},
 /* 223E */ { "S COUCHÉ RENVERSÉ","	= le plus positif"},
 /* 223F */ { "SINUSOÏDE","	= courant alternatif"},
 /* 2240 */ { "PRODUIT EN COURONNE",NULL},
@@ -11712,7 +11894,7 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 2249 */ { "NON PRESQUE ÉGAL À","	: 2248 0338"},
 /* 224A */ { "PRESQUE ÉGAL OU ÉGAL À",NULL},
 /* 224B */ { "TRIPLE TILDE",NULL},
-/* 224C */ { "ENTIÈREMENT ÉGAL À","	* le tilde renversé et le s couché sont des variantes de glyphe"},
+/* 224C */ { "ENTIÈREMENT ÉGAL À","	* le tilde renversé et le s couché sont des variantes de glyphes"},
 /* 224D */ { "ÉQUIVALENT À",NULL},
 /* 224E */ { "GÉOMÉTRIQUEMENT ÉQUIVALENT À",NULL},
 /* 224F */ { "DIFFÉRENCE ENTRE",NULL},
@@ -11743,8 +11925,10 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 2265 */ { "SUPÉRIEUR OU ÉGAL À","	x (signe supérieur à - 003E)"},
 /* 2266 */ { "INFÉRIEUR À SUR ÉGAL À",NULL},
 /* 2267 */ { "SUPÉRIEUR À SUR ÉGAL À",NULL},
-/* 2268 */ { "INFÉRIEUR MAIS PAS ÉGAL À","	~ 2268 FE00 avec une barre verticale"},
-/* 2269 */ { "SUPÉRIEUR MAIS PAS ÉGAL À","	~ 2269 FE00 avec une barre verticale"},
+/* 2268 */ { "INFÉRIEUR MAIS PAS ÉGAL À","	x (inférieur à et pas égal à en une ligne - 2A87)\n"
+	"	~ 2268 FE00 avec une barre verticale"},
+/* 2269 */ { "SUPÉRIEUR MAIS PAS ÉGAL À","	x (supérieur à et pas égal à en une ligne - 2A88)\n"
+	"	~ 2269 FE00 avec une barre verticale"},
 /* 226A */ { "TRÈS INFÉRIEUR À","	x (guillemet gauche - 00AB)"},
 /* 226B */ { "TRÈS SUPÉRIEUR À","	x (guillemet droit - 00BB)"},
 /* 226C */ { "ENTRE",NULL},
@@ -11817,7 +12001,7 @@ static const struct unicode_nameannot unaFR_00_22[] = {
 /* 229A */ { "OPÉRATEUR ROND CERCLÉ","	x (symbole de fonction apl beigne - 233E)\n"
 	"	x (deux cercles concentriques - 25CE)"},
 /* 229B */ { "OPÉRATEUR ASTÉRISQUE CERCLÉ","	x (symbole de fonction apl citron - 235F)"},
-/* 229C */ { "ÉGAL CERCLÉ","	= pas de modification (symbole utilisé pour les licenses Creative Commons)\n"
+/* 229C */ { "ÉGAL CERCLÉ","	= pas de modification (symbole utilisé pour les licences Creative Commons)\n"
 	"	x (cc cerclé - 1F16D)\n"
 	"	~ 229C FE00 avec un signe égal touchant le cercle"},
 /* 229D */ { "TIRET CERCLÉ",NULL},
@@ -11952,7 +12136,7 @@ UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_23[] = {
 /* 2300 */ { "SYMBOLE DIAMÈTRE","	x (lettre minuscule latine o barré obliquement - 00F8)\n"
 	"	x (ensemble vide - 2205)"},
-/* 2301 */ { "FLÈCHE ÉLECTRIQUE","	* tiré d'ISO 2047\n"
+/* 2301 */ { "FLÈCHE ÉLECTRIQUE","	* tiré de la norme ISO 2047\n"
 	"	* symbole représentant la fin de transmission"},
 /* 2302 */ { "MAISON",NULL},
 /* 2303 */ { "POINTE DE FLÈCHE VERS LE HAUT","	x (accent circonflexe - 005E)\n"
@@ -12057,7 +12241,7 @@ static const struct unicode_nameannot unaFR_00_23[] = {
 /* 2347 */ { "SYMBOLE DE FONCTION APL QUADRAT LIBÉRAL",NULL},
 /* 2348 */ { "SYMBOLE DE FONCTION APL QUADRAT CONSERVATEUR",NULL},
 /* 2349 */ { "SYMBOLE DE FONCTION APL SATURNE","	x (ensemble vide réfléchi - 29B0)"},
-/* 234A */ { "SYMBOLE DE FONCTION APL TAQUET VERS LE HAUT SOULIGNÉ","	* l'appellation recommandée pour les taquets APL suit maintenant la Convention de Londres dans la norme ISO/CEI 13751:2000 (APL étendu)\n"
+/* 234A */ { "SYMBOLE DE FONCTION APL TAQUET VERS LE HAUT SOULIGNÉ","	* l'appellation recommandée pour les taquets APL suit maintenant la convention de Londres dans la norme ISO/CEI 13751:2000 (APL étendu)\n"
 	"	x (taquet vers le haut - 22A5)"},
 /* 234B */ { "SYMBOLE DE FONCTION APL SAPIN","	= parapluie"},
 /* 234C */ { "SYMBOLE DE FONCTION APL QUADRAT CIRCONFLEXE RENVERSÉ",NULL},
@@ -12108,14 +12292,14 @@ static const struct unicode_nameannot unaFR_00_23[] = {
 /* 2378 */ { "SYMBOLE DE FONCTION APL IOTA SOULIGNÉ",NULL},
 /* 2379 */ { "SYMBOLE DE FONCTION APL OMÉGA SOULIGNÉ",NULL},
 /* 237A */ { "SYMBOLE DE FONCTION APL ALPHA",NULL},
-/* 237B */ { "SIGNE DE NON-VÉRIFICATION","	* tiré d'ISO 2047\n"
+/* 237B */ { "SIGNE DE NON-VÉRIFICATION","	* tiré de la norme ISO 2047\n"
 	"	* symbole pour « accusé de réception négatif »"},
 /* 237C */ { "ANGLE DROIT AVEC FLÈCHE EN ZIGZAG VERS LE BAS",NULL},
-/* 237D */ { "BOÎTE OUVERTE À ÉPAULEMENT","	* tiré d'ISO 9995-7\n"
+/* 237D */ { "BOÎTE OUVERTE À ÉPAULEMENT","	* tiré de la norme ISO 9995-7\n"
 	"	* symbole de touche pour « espace insécable »\n"
 	"	x (boîte ouverte - 2423)"},
-/* 237E */ { "SYMBOLE SONNERIE","	* tiré d'ISO 2047"},
-/* 237F */ { "LIGNE VERTICALE À POINT MÉDIAN","	* tiré d'ISO 2047\n"
+/* 237E */ { "SYMBOLE SONNERIE","	* tiré de la norme ISO 2047"},
+/* 237F */ { "LIGNE VERTICALE À POINT MÉDIAN","	* tiré de la norme ISO 2047\n"
 	"	* symbole pour « fin de support »"},
 /* 2380 */ { "SYMBOLE INSERTION",NULL},
 /* 2381 */ { "SYMBOLE SOULIGNEMENT CONTINU",NULL},
@@ -12322,9 +12506,9 @@ static const struct unicode_nameannot unaFR_00_24[] = {
 /* 2423 */ { "BOÎTE OUVERTE","	* symbole visuel pour l'espace\n"
 	"	x (alésage - 2334)"},
 /* 2424 */ { "SYMBOLE POUR NOUVELLE LIGNE",NULL},
-/* 2425 */ { "SYMBOLE POUR SUPPRESSION FORME DEUX","	* tiré d'ISO 9995-7\n"
+/* 2425 */ { "SYMBOLE POUR SUPPRESSION FORME DEUX","	* tiré de la norme ISO 9995-7\n"
 	"	* symbole sur le clavier pour la suppression irréversible"},
-/* 2426 */ { "SYMBOLE POUR SUBSTITUTION FORME DEUX","	* tiré d'ISO 2047\n"
+/* 2426 */ { "SYMBOLE POUR SUBSTITUTION FORME DEUX","	* tiré de la norme ISO 2047\n"
 	"	x (point d'interrogation arabe - 061F)"},
 /* 2427 */ { NULL,NULL},
 /* 2428 */ { NULL,NULL},
@@ -12359,8 +12543,10 @@ static const struct unicode_nameannot unaFR_00_24[] = {
 /* 2445 */ { "NŒUD PAPILLON ROC","	x (nœud papillon - 22C8)"},
 /* 2446 */ { "IDENTIFICATION DE SUCCURSALE BANCAIRE ROC","	= domiciliation"},
 /* 2447 */ { "MONTANT DU CHÈQUE ROC","	= montant"},
-/* 2448 */ { "SYMBOLE RCEM SUR NOUS","	= sur nous"},
-/* 2449 */ { "SYMBOLE RCEM TIRET","	= tiret"},
+/* 2448 */ { "SYMBOLE RCEM SUR NOUS","	= sur nous\n"
+	"	* l'appellation en anglais de ce caractère est erronée"},
+/* 2449 */ { "SYMBOLE RCEM TIRET","	= tiret\n"
+	"	* l'appellation en anglais de ce caractère est erronée"},
 /* 244A */ { "DOUBLE BARRE OBLIQUE INVERSÉE ROC","	= double contre-oblique ROC, double contre-cotice ROC"},
 /* 244B */ { NULL,NULL},
 /* 244C */ { NULL,NULL},
@@ -14629,9 +14815,9 @@ static const struct unicode_nameannot unaFR_00_2B[] = {
 /* 2B77 */ { "FLÈCHE À POINTE EN TRIANGLE NORD-EST JUSQU'À UN TAQUET",NULL},
 /* 2B78 */ { "FLÈCHE À POINTE EN TRIANGLE SUD-EST JUSQU'À UN TAQUET","	= fin"},
 /* 2B79 */ { "FLÈCHE À POINTE EN TRIANGLE SUD-OUEST JUSQU'À UN TAQUET",NULL},
-/* 2B7A */ { "FLÈCHE À POINTE EN TRIANGLE VERS LA GAUCHE À DOUBLE TRAIT VERTICAL",NULL},
+/* 2B7A */ { "FLÈCHE À POINTE EN TRIANGLE VERS LA GAUCHE À DOUBLE TRAIT VERTICAL","	* l'appellation en anglais de ce caractère est erronée"},
 /* 2B7B */ { "FLÈCHE À POINTE EN TRIANGLE VERS LE HAUT À DOUBLE TRAIT HORIZONTAL","	= page précédente"},
-/* 2B7C */ { "FLÈCHE À POINTE EN TRIANGLE VERS LA DROITE À DOUBLE TRAIT VERTICAL",NULL},
+/* 2B7C */ { "FLÈCHE À POINTE EN TRIANGLE VERS LA DROITE À DOUBLE TRAIT VERTICAL","	* l'appellation en anglais de ce caractère est erronée"},
 /* 2B7D */ { "FLÈCHE À POINTE EN TRIANGLE VERS LE BAS À DOUBLE TRAIT HORIZONTAL","	= page suivante"},
 /* 2B7E */ { "TOUCHE DE TABULATION HORIZONTALE","	x (flèche vers la gauche jusqu'à un taquet sur flèche vers la droite jusqu'à un taquet - 21B9)"},
 /* 2B7F */ { "TOUCHE DE TABULATION VERTICALE",NULL},
@@ -14883,22 +15069,26 @@ static const struct unicode_nameannot unaFR_00_2C[] = {
 /* 2C5D */ { "LETTRE MINUSCULE GLAGOLITIQUE A TROKOUTAST",NULL},
 /* 2C5E */ { "LETTRE MINUSCULE GLAGOLITIQUE MYSLÉTÉ LATINISANT",NULL},
 /* 2C5F */ { "LETTRE MINUSCULE GLAGOLITIQUE TCHERV CAUDÉ",NULL},
-/* 2C60 */ { "LETTRE MAJUSCULE LATINE L À DOUBLE BARRE",NULL},
-/* 2C61 */ { "LETTRE MINUSCULE LATINE L À DOUBLE BARRE",NULL},
-/* 2C62 */ { "LETTRE MAJUSCULE LATINE L TILDE MÉDIAN","	* la minuscule est 026B"},
+/* 2C60 */ { "LETTRE MAJUSCULE LATINE L À DOUBLE BARRE","	x (lettre majuscule latine l rayé - 023D)"},
+/* 2C61 */ { "LETTRE MINUSCULE LATINE L À DOUBLE BARRE","	x (lettre minuscule latine l rayé - 019A)\n"
+	"	x (lettre minuscule latine l double tilde médian - AB38)"},
+/* 2C62 */ { "LETTRE MAJUSCULE LATINE L TILDE MÉDIAN","	* la minuscule est 026B\n"
+	"	x (lettre majuscule latine l barré - 0141)"},
 /* 2C63 */ { "LETTRE MAJUSCULE LATINE P BARRÉ","	* la minuscule est 1D7D"},
 /* 2C64 */ { "LETTRE MAJUSCULE LATINE R HAMEÇON RÉTROFLEXE","	* la minuscule est 027D"},
 /* 2C65 */ { "LETTRE MINUSCULE LATINE A BARRÉ","	* la majuscule est 023A"},
 /* 2C66 */ { "LETTRE MINUSCULE LATINE T BARRÉ DIAGONALEMENT","	* la majuscule est 023E"},
-/* 2C67 */ { "LETTRE MAJUSCULE LATINE H CRAMPON",NULL},
+/* 2C67 */ { "LETTRE MAJUSCULE LATINE H CRAMPON","	x (lettre majuscule cyrillique enne crampon - 04A2)"},
 /* 2C68 */ { "LETTRE MINUSCULE LATINE H CRAMPON",NULL},
-/* 2C69 */ { "LETTRE MAJUSCULE LATINE K CRAMPON",NULL},
+/* 2C69 */ { "LETTRE MAJUSCULE LATINE K CRAMPON","	x (lettre majuscule cyrillique ka crampon - 049A)"},
 /* 2C6A */ { "LETTRE MINUSCULE LATINE K CRAMPON",NULL},
-/* 2C6B */ { "LETTRE MAJUSCULE LATINE Z CRAMPON",NULL},
+/* 2C6B */ { "LETTRE MAJUSCULE LATINE Z CRAMPON","	x (lettre majuscule latine z hameçon - 0224)"},
 /* 2C6C */ { "LETTRE MINUSCULE LATINE Z CRAMPON",NULL},
-/* 2C6D */ { "LETTRE MAJUSCULE LATINE ALPHA","	* la minuscule est 0251"},
+/* 2C6D */ { "LETTRE MAJUSCULE LATINE ALPHA","	= a cursif majuscule\n"
+	"	* la minuscule est 0251"},
 /* 2C6E */ { "LETTRE MAJUSCULE LATINE M HAMEÇON","	* la minuscule est 0271"},
-/* 2C6F */ { "LETTRE MAJUSCULE LATINE A CULBUTÉ","	* la minuscule est 0250"},
+/* 2C6F */ { "LETTRE MAJUSCULE LATINE A CULBUTÉ","	* la minuscule est 0250\n"
+	"	x (pour tout - 2200)"},
 /* 2C70 */ { "LETTRE MAJUSCULE LATINE ALPHA CULBUTÉ","	* la minuscule est 0252"},
 /* 2C71 */ { "LETTRE MINUSCULE LATINE V CROSSE À DROITE","	* API : consonne battue labio-dentale sonore"},
 /* 2C72 */ { "LETTRE MAJUSCULE LATINE W CROSSE",NULL},
@@ -14908,15 +15098,18 @@ static const struct unicode_nameannot unaFR_00_2C[] = {
 	"	x (majuscule f culbuté - 2132)\n"
 	"	x (chiffre romain cent réfléchi - 2183)\n"
 	"	x (lettre majuscule latine moitié de h réfléchie - A7F5)"},
-/* 2C76 */ { "LETTRE MINUSCULE LATINE MOITIÉ DE H","	x (lettre minuscule grecque hêta - 0371)"},
-/* 2C77 */ { "LETTRE MINUSCULE LATINE PHI SANS QUEUE","	* o moyen arrondi"},
+/* 2C76 */ { "LETTRE MINUSCULE LATINE MOITIÉ DE H","	x (lettre minuscule grecque hêta - 0371)\n"
+	"	x (lettre minuscule latine moitié de h réfléchie - A7F6)"},
+/* 2C77 */ { "LETTRE MINUSCULE LATINE PHI SANS QUEUE","	* o moyen arrondi\n"
+	"	x (lettre minuscule grecque phi - 03C6)"},
 /* 2C78 */ { "LETTRE MINUSCULE LATINE E À CRAN",NULL},
 /* 2C79 */ { "LETTRE MINUSCULE LATINE R HAMEÇON CULBUTÉ",NULL},
 /* 2C7A */ { "LETTRE MINUSCULE LATINE O À PETIT ROND INSCRIT",NULL},
-/* 2C7B */ { "LETTRE LATINE PETITE CAPITALE E CULBUTÉ",NULL},
+/* 2C7B */ { "LETTRE LATINE PETITE CAPITALE E CULBUTÉ","	x (lettre majuscule latine e culbuté - 018E)"},
 /* 2C7C */ { "INDICE LETTRE MINUSCULE LATINE J","	# <souscrite> 006A"},
 /* 2C7D */ { "LETTRE MODIFICATIVE MAJUSCULE V","	# <exp> 0056"},
-/* 2C7E */ { "LETTRE MAJUSCULE LATINE S À PARAPHE","	* la minuscule est 023F"},
+/* 2C7E */ { "LETTRE MAJUSCULE LATINE S À PARAPHE","	* la minuscule est 023F\n"
+	"	x (lettre majuscule latine s hameçon rétroflexe - A7C5)"},
 /* 2C7F */ { "LETTRE MAJUSCULE LATINE Z À PARAPHE","	* la minuscule est 0240"},
 /* 2C80 */ { "LETTRE MAJUSCULE COPTE ALPHA",NULL},
 /* 2C81 */ { "LETTRE MINUSCULE COPTE ALPHA",NULL},
@@ -15329,14 +15522,14 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2E0B */ { "CARRÉ ÉLEVÉ","	* s'utilise comme parenthèse d'omission ouvrante surélevée"},
 /* 2E0C */ { "OBLIQUE D'OMISSION GAUCHE ÉLEVÉE","	* s'utilise comme parenthèse d'omission ouvrante ou fermante surélevée"},
 /* 2E0D */ { "OBLIQUE D'OMISSION DROITE ÉLEVÉE","	* s'utilise comme parenthèse d'omission ouvrante surélevée"},
-/* 2E0E */ { "CORONIS ÉDITORIALE","	* connaît de nombreuses variantes de glyphe\n"
+/* 2E0E */ { "CORONIS ÉDITORIALE","	* connaît de nombreuses variantes de glyphes\n"
 	"	* indique la fin d'un poème ou d'une section\n"
 	"	x (coronis grecque - 1FBD)"},
 /* 2E0F */ { "PARAGRAPHOS","	* changement de locuteur ou de strophe"},
 /* 2E10 */ { "PARAGRAPHOS FOURCHU",NULL},
 /* 2E11 */ { "PARAGRAPHOS FOURCHU RÉFLÉCHI",NULL},
 /* 2E12 */ { "HYPODIASTOLE",NULL},
-/* 2E13 */ { "OBÈLE POINTÉ","	* les variantes de glyphe peuvent ressembler à 00F7 ou à 2238\n"
+/* 2E13 */ { "OBÈLE POINTÉ","	* les variantes de glyphes peuvent ressembler à 00F7 ou à 2238\n"
 	"	x (signe moins commercial - 2052)"},
 /* 2E14 */ { "ANCORA VERS LE HAUT","	* l'appellation en anglais de ce caractère est erronée"},
 /* 2E15 */ { "ANCORA VERS LE BAS","	* l'appellation en anglais de ce caractère est erronée"},
@@ -15399,7 +15592,8 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 	"	x (obèle - 2020)"},
 /* 2E39 */ { "MOITIÉ SUPÉRIEURE DE PARAGRAPHE","	* indique une prononciation réalisée d'un seul côté de la bouche\n"
 	"	x (paragraphe - 00A7)"},
-/* 2E3A */ { "TIRET DOUBLE CADRATIN","	x (tiret cadratin - 2014)"},
+/* 2E3A */ { "TIRET DOUBLE CADRATIN","	* peut être utilisé en chinois pour un changement brusque de pensée, l'insertion d'un nouveau contenu ou la poursuite d'un ton ou d'un son\n"
+	"	x (tiret cadratin - 2014)"},
 /* 2E3B */ { "TIRET TRIPLE CADRATIN",NULL},
 /* 2E3C */ { "POINT STÉNOGRAPHIQUE","	* utilisé en sténographie\n"
 	"	x (point - 002E)\n"
@@ -15445,7 +15639,7 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2E50 */ { "CROIX PATTÉE À BRAS HORIZONTAL DROIT","	x (croix de malte - 2720)\n"
 	"	x (lettre majuscule latine moitié de h - 2C75)"},
 /* 2E51 */ { "CROIX PATTÉE À BRAS HORIZONTAL GAUCHE","	x (lettre majuscule latine moitié de h réfléchie - A7F5)"},
-/* 2E52 */ { "NOTE MAJUSCULE TIRONIENNE ET","	x (note tironienne et - 204A)"},
+/* 2E52 */ { "NOTE TIRONIENNE MAJUSCULE ET","	x (note tironienne et - 204A)"},
 /* 2E53 */ { "POINT D'EXCLAMATION MÉDIÉVAL",NULL},
 /* 2E54 */ { "POINT D'INTERROGATION MÉDIÉVAL",NULL},
 /* 2E55 */ { "CROCHET GAUCHE AVEC BARRE","	* ellipse optionnelle\n"
@@ -15493,185 +15687,301 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 /* 2E7D */ { NULL,NULL},
 /* 2E7E */ { NULL,NULL},
 /* 2E7F */ { NULL,NULL},
-/* 2E80 */ { "CLÉ CJC BIS",NULL},
-/* 2E81 */ { "CLÉ CJC FALAISE","	x 5382\n"
+/* 2E80 */ { "CLÉ CJC BIS","	* variante de la clé 3 du Kangxi"},
+/* 2E81 */ { "CLÉ CJC FALAISE","	* variante de la clé 27 du Kangxi\n"
+	"	x 5382\n"
 	"	x 20086"},
-/* 2E82 */ { "CLÉ CJC SECOND UN","	x 4E5B"},
-/* 2E83 */ { "CLÉ CJC SECOND DEUX","	x 4E5A"},
-/* 2E84 */ { "CLÉ CJC SECOND TROIS","	x 4E59"},
-/* 2E85 */ { "CLÉ CJC HOMME","	* forme utilisée à gauche\n"
+/* 2E82 */ { "CLÉ CJC SECOND UN","	* variante de la clé 5 du Kangxi\n"
+	"	x 4E5B"},
+/* 2E83 */ { "CLÉ CJC SECOND DEUX","	* variante de la clé 5 du Kangxi\n"
+	"	x 4E5A"},
+/* 2E84 */ { "CLÉ CJC SECOND TROIS","	* variante de la clé 5 du Kangxi\n"
+	"	x 4E59"},
+/* 2E85 */ { "CLÉ CJC HOMME","	* variante de la clé 9 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 4EBB"},
-/* 2E86 */ { "CLÉ CJC PLACE","	x 5182"},
-/* 2E87 */ { "CLÉ CJC TABLE BASSE","	x 51E0\n"
+/* 2E86 */ { "CLÉ CJC PLACE","	* variante de la clé 13 du Kangxi\n"
+	"	x 5182"},
+/* 2E87 */ { "CLÉ CJC TABLE BASSE","	* variante de la clé 16 du Kangxi\n"
+	"	x 51E0\n"
 	"	x 20628"},
-/* 2E88 */ { "CLÉ CJC COUTEAU UN","	* forme utilisée au-dessus\n"
+/* 2E88 */ { "CLÉ CJC COUTEAU UN","	* variante de la clé 18 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 5200\n"
 	"	x 2008A"},
-/* 2E89 */ { "CLÉ CJC COUTEAU DEUX","	* forme utilisée à droite\n"
+/* 2E89 */ { "CLÉ CJC COUTEAU DEUX","	* variante de la clé 18 du Kangxi\n"
+	"	* forme utilisée à droite\n"
 	"	x 5202"},
-/* 2E8A */ { "CLÉ CJC DIVINATION","	* forme utilisée au-dessus\n"
+/* 2E8A */ { "CLÉ CJC DIVINATION","	* variante de la clé 25 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 535C"},
-/* 2E8B */ { "CLÉ CJC SCEAU","	* forme utilisée en dessous\n"
+/* 2E8B */ { "CLÉ CJC SCEAU","	* variante de la clé 26 du Kangxi\n"
+	"	* forme utilisée en dessous\n"
 	"	x 353E"},
-/* 2E8C */ { "CLÉ CJC PETIT UN","	* forme utilisée au-dessus\n"
+/* 2E8C */ { "CLÉ CJC PETIT UN","	* variante de la clé 42 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 5C0F"},
-/* 2E8D */ { "CLÉ CJC PETIT DEUX","	* forme utilisée au-dessus\n"
+/* 2E8D */ { "CLÉ CJC PETIT DEUX","	* variante de la clé 42 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 5C0F\n"
 	"	x 2D544"},
-/* 2E8E */ { "CLÉ CJC BOITEUX UN","	x 5C22\n"
+/* 2E8E */ { "CLÉ CJC BOITEUX UN","	* variante de la clé 43 du Kangxi\n"
+	"	x 5C22\n"
 	"	x 5140"},
-/* 2E8F */ { "CLÉ CJC BOITEUX DEUX","	x 5C23"},
-/* 2E90 */ { "CLÉ CJC BOITEUX TROIS","	x 5C22"},
-/* 2E91 */ { "CLÉ CJC BOITEUX QUATRE","	x 5C23\n"
+/* 2E8F */ { "CLÉ CJC BOITEUX DEUX","	* variante de la clé 43 du Kangxi\n"
+	"	x 5C23"},
+/* 2E90 */ { "CLÉ CJC BOITEUX TROIS","	* variante de la clé 43 du Kangxi\n"
+	"	x 5C22"},
+/* 2E91 */ { "CLÉ CJC BOITEUX QUATRE","	* variante de la clé 43 du Kangxi\n"
+	"	x 5C23\n"
 	"	x 21BC2"},
-/* 2E92 */ { "CLÉ CJC SIGNE DU SERPENT","	x 5DF3"},
-/* 2E93 */ { "CLÉ CJC FIL","	x 5E7A"},
-/* 2E94 */ { "CLÉ CJC GROIN UN","	x 5F51"},
-/* 2E95 */ { "CLÉ CJC GROIN DEUX","	* en réalité, une variante du radical pour la main, en dépit de sa ressemblance avec le radical pour le groin\n"
+/* 2E92 */ { "CLÉ CJC SIGNE DU SERPENT","	* variante de la clé 49 du Kangxi\n"
+	"	x 5DF3"},
+/* 2E93 */ { "CLÉ CJC FIL","	* variante de la clé 52 du Kangxi\n"
+	"	x 5E7A"},
+/* 2E94 */ { "CLÉ CJC GROIN UN","	* variante de la clé 58 du Kangxi\n"
+	"	x 5F51"},
+/* 2E95 */ { "CLÉ CJC GROIN DEUX","	* variante de la clé 58 du Kangxi\n"
+	"	* en réalité, une variante du radical pour la main, en dépit de sa ressemblance avec le radical pour le groin\n"
 	"	x 5F50\n"
 	"	x 2B739"},
-/* 2E96 */ { "CLÉ CJC CŒUR UN","	* forme utilisée à gauche\n"
+/* 2E96 */ { "CLÉ CJC CŒUR UN","	* variante de la clé 61 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 5FC4"},
-/* 2E97 */ { "CLÉ CJC CŒUR DEUX","	* forme utilisée en dessous\n"
+/* 2E97 */ { "CLÉ CJC CŒUR DEUX","	* variante de la clé 61 du Kangxi\n"
+	"	* forme utilisée en dessous\n"
 	"	x 38FA\n"
 	"	x 5FC3"},
-/* 2E98 */ { "CLÉ CJC MAIN","	* forme utilisée à gauche\n"
+/* 2E98 */ { "CLÉ CJC MAIN","	* variante de la clé 64 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 624C"},
-/* 2E99 */ { "CLÉ CJC TAPER","	* forme utilisée à droite\n"
+/* 2E99 */ { "CLÉ CJC TAPER","	* variante de la clé 66 du Kangxi\n"
+	"	* forme utilisée à droite\n"
 	"	x 6535"},
-/* 2E9A */ { NULL,NULL},
-/* 2E9B */ { "CLÉ CJC ÉTRANGLER","	x 65E1"},
-/* 2E9C */ { "CLÉ CJC SOLEIL","	* en réalité, une forme de la clé pour « chapeau », malgré sa ressemblance avec la clé pour « soleil »\n"
+/* 2E9A */ { NULL,"	x (clé chinoise sans - 2F46)"},
+/* 2E9B */ { "CLÉ CJC ÉTRANGLER","	* variante de la clé 71 du Kangxi\n"
+	"	x 65E1"},
+/* 2E9C */ { "CLÉ CJC SOLEIL","	* variante de la clé 72 du Kangxi\n"
+	"	* en réalité, une forme de la clé pour « chapeau », malgré sa ressemblance avec la clé pour « soleil »\n"
 	"	x 5183\n"
 	"	x 65E5"},
-/* 2E9D */ { "CLÉ CJC LUNE","	x 6708"},
-/* 2E9E */ { "CLÉ CJC MAUVAIS","	x 6B7A"},
-/* 2E9F */ { "CLÉ CJC MÈRE","	# 6BCD"},
-/* 2EA0 */ { "CLÉ CJC CIVIL","	x 6C11"},
-/* 2EA1 */ { "CLÉ CJC EAU UN","	* forme utilisée à gauche\n"
+/* 2E9D */ { "CLÉ CJC LUNE","	* variante de la clé 74 du Kangxi\n"
+	"	x 6708"},
+/* 2E9E */ { "CLÉ CJC MAUVAIS","	* variante de la clé 78 du Kangxi\n"
+	"	x 6B7A"},
+/* 2E9F */ { "CLÉ CJC MÈRE","	* variante de la clé 80 du Kangxi\n"
+	"	# 6BCD"},
+/* 2EA0 */ { "CLÉ CJC CIVIL","	* variante de la clé 83 du Kangxi\n"
+	"	x 6C11"},
+/* 2EA1 */ { "CLÉ CJC EAU UN","	* variante de la clé 85 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 6C35"},
-/* 2EA2 */ { "CLÉ CJC EAU DEUX","	* forme utilisée (rarement) en dessous\n"
+/* 2EA2 */ { "CLÉ CJC EAU DEUX","	* variante de la clé 85 du Kangxi\n"
+	"	* forme utilisée (rarement) en dessous\n"
 	"	x 6C3A"},
-/* 2EA3 */ { "CLÉ CJC FEU","	* forme utilisée en dessous\n"
+/* 2EA3 */ { "CLÉ CJC FEU","	* variante de la clé 86 du Kangxi\n"
+	"	* forme utilisée en dessous\n"
 	"	x 706C"},
-/* 2EA4 */ { "CLÉ CJC PATTE UN","	* forme utilisée au-dessus\n"
+/* 2EA4 */ { "CLÉ CJC PATTE UN","	* variante de la clé 87 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 722B"},
-/* 2EA5 */ { "CLÉ CJC PATTE DEUX","	* forme utilisée au-dessus\n"
+/* 2EA5 */ { "CLÉ CJC PATTE DEUX","	* variante de la clé 87 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 722B"},
-/* 2EA6 */ { "CLÉ CJC MOITIÉ DE TRONC FORME SIMPLIFIÉE","	x 4E2C"},
-/* 2EA7 */ { "CLÉ CJC BŒUF","	x 725B\n"
+/* 2EA6 */ { "CLÉ CJC MOITIÉ DE TRONC FORME SIMPLIFIÉE","	* variante simplifiée de la clé 90 du Kangxi\n"
+	"	x 4E2C"},
+/* 2EA7 */ { "CLÉ CJC BŒUF","	* variante de la clé 93 du Kangxi\n"
+	"	x 725B\n"
 	"	x 20092"},
-/* 2EA8 */ { "CLÉ CJC CHIEN","	* forme utilisée à gauche\n"
+/* 2EA8 */ { "CLÉ CJC CHIEN","	* variante de la clé 94 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 72AD"},
-/* 2EA9 */ { "CLÉ CJC JADE","	* forme utilisée à gauche\n"
+/* 2EA9 */ { "CLÉ CJC JADE","	* variante de la clé 96 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 738B\n"
 	"	x 248E9"},
 /* 2EAA */ { "CLÉ CJC PIÈCE D'ÉTOFFE","	= clé CJC rouleau de tissu\n"
+	"	* variante de la clé 103 du Kangxi\n"
 	"	* forme utilisée à gauche\n"
 	"	x 758B\n"
 	"	x 24D14"},
-/* 2EAB */ { "CLÉ CJC ŒIL","	* forme utilisée au-dessus\n"
+/* 2EAB */ { "CLÉ CJC ŒIL","	* variante de la clé 109 du Kangxi\n"
+	"	* variante de la clé 122 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x (clé cjc filet deux - 2EB2)\n"
 	"	x 76EE\n"
 	"	x 7F52"},
-/* 2EAC */ { "CLÉ CJC ESPRIT UN","	x 793A"},
-/* 2EAD */ { "CLÉ CJC ESPRIT DEUX","	x 793B"},
-/* 2EAE */ { "CLÉ CJC BAMBOU","	x 7AF9\n"
+/* 2EAC */ { "CLÉ CJC ESPRIT UN","	* variante de la clé 113 du Kangxi\n"
+	"	x 793A"},
+/* 2EAD */ { "CLÉ CJC ESPRIT DEUX","	* variante de la clé 113 du Kangxi\n"
+	"	x 793B"},
+/* 2EAE */ { "CLÉ CJC BAMBOU","	* variante de la clé 118 du Kangxi\n"
+	"	x 7AF9\n"
 	"	x 25AD7"},
-/* 2EAF */ { "CLÉ CJC SOIE","	* forme utilisée à gauche\n"
+/* 2EAF */ { "CLÉ CJC SOIE","	* variante de la clé 120 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 7CF9"},
-/* 2EB0 */ { "CLÉ CJC SOIE FORME CHINOISE SIMPLIFIÉE","	* forme utilisée à gauche\n"
+/* 2EB0 */ { "CLÉ CJC SOIE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 120 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 7E9F"},
-/* 2EB1 */ { "CLÉ CJC FILET UN","	x 7F53"},
-/* 2EB2 */ { "CLÉ CJC FILET DEUX","	x (clé cjc œil - 2EAB)\n"
+/* 2EB1 */ { "CLÉ CJC FILET UN","	* variante de la clé 122 du Kangxi\n"
+	"	x 7F53"},
+/* 2EB2 */ { "CLÉ CJC FILET DEUX","	* variante de la clé 109 du Kangxi\n"
+	"	* variante de la clé 122 du Kangxi\n"
+	"	x (clé cjc œil - 2EAB)\n"
 	"	x 7F52\n"
 	"	x 26270"},
-/* 2EB3 */ { "CLÉ CJC FILET TROIS","	x 34C1\n"
+/* 2EB3 */ { "CLÉ CJC FILET TROIS","	* variante de la clé 122 du Kangxi\n"
+	"	x 34C1\n"
 	"	x 7F51"},
-/* 2EB4 */ { "CLÉ CJC FILET QUATRE","	x 34C1\n"
+/* 2EB4 */ { "CLÉ CJC FILET QUATRE","	* variante de la clé 122 du Kangxi\n"
+	"	x 34C1\n"
 	"	x 7F51"},
-/* 2EB5 */ { "CLÉ CJC MAILLE","	x 2626B"},
-/* 2EB6 */ { "CLÉ CJC MOUTON","	* forme utilisée à gauche\n"
+/* 2EB5 */ { "CLÉ CJC MAILLE","	* variante de la clé 122 du Kangxi\n"
+	"	x 2626B"},
+/* 2EB6 */ { "CLÉ CJC MOUTON","	* variante de la clé 123 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 7F8A"},
-/* 2EB7 */ { "CLÉ CJC BÉLIER","	* forme utilisée au-dessus\n"
+/* 2EB7 */ { "CLÉ CJC BÉLIER","	* variante de la clé 123 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 7F8A\n"
 	"	x 2634C"},
-/* 2EB8 */ { "CLÉ CJC BREBIS","	x 7F8B\n"
+/* 2EB8 */ { "CLÉ CJC BREBIS","	* variante de la clé 123 du Kangxi\n"
+	"	x 7F8B\n"
 	"	x 2634B"},
-/* 2EB9 */ { "CLÉ CJC VIEUX","	x 8002"},
-/* 2EBA */ { "CLÉ CJC PINCEAU UN","	x 8080"},
-/* 2EBB */ { "CLÉ CJC PINCEAU DEUX","	x 807F"},
-/* 2EBC */ { "CLÉ CJC VIANDE","	x 8089"},
-/* 2EBD */ { "CLÉ CJC MORTIER","	x 81FC\n"
+/* 2EB9 */ { "CLÉ CJC VIEUX","	* variante de la clé 125 du Kangxi\n"
+	"	x 8002"},
+/* 2EBA */ { "CLÉ CJC PINCEAU UN","	* variante de la clé 129 du Kangxi\n"
+	"	x 8080"},
+/* 2EBB */ { "CLÉ CJC PINCEAU DEUX","	* variante de la clé 129 du Kangxi\n"
+	"	x 807F"},
+/* 2EBC */ { "CLÉ CJC VIANDE","	* variante de la clé 130 du Kangxi\n"
+	"	x 8089"},
+/* 2EBD */ { "CLÉ CJC MORTIER","	* variante de la clé 134 du Kangxi\n"
+	"	x 81FC\n"
 	"	x 26951"},
-/* 2EBE */ { "CLÉ CJC HERBE UN","	x 8279"},
-/* 2EBF */ { "CLÉ CJC HERBE DEUX","	x 8279"},
-/* 2EC0 */ { "CLÉ CJC HERBE TROIS","	x 8279"},
-/* 2EC1 */ { "CLÉ CJC TIGRE","	x 864E"},
-/* 2EC2 */ { "CLÉ CJC HABITS","	* forme utilisée à gauche\n"
+/* 2EBE */ { "CLÉ CJC HERBE UN","	* variante simplifiée de la clé 140 du Kangxi\n"
+	"	x 8279"},
+/* 2EBF */ { "CLÉ CJC HERBE DEUX","	* variante de la clé 140 du Kangxi\n"
+	"	x 8279"},
+/* 2EC0 */ { "CLÉ CJC HERBE TROIS","	* variante de la clé 140 du Kangxi\n"
+	"	x 8279"},
+/* 2EC1 */ { "CLÉ CJC TIGRE","	* variante de la clé 141 du Kangxi\n"
+	"	x 864E"},
+/* 2EC2 */ { "CLÉ CJC HABITS","	* variante de la clé 145 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 8864"},
-/* 2EC3 */ { "CLÉ CJC OUEST UN","	* forme utilisée au-dessus\n"
+/* 2EC3 */ { "CLÉ CJC OUEST UN","	* variante de la clé 146 du Kangxi\n"
+	"	* forme utilisée au-dessus\n"
 	"	x 8980"},
-/* 2EC4 */ { "CLÉ CJC OUEST DEUX","	* forme utilisée à gauche\n"
+/* 2EC4 */ { "CLÉ CJC OUEST DEUX","	* variante de la clé 146 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 897F"},
-/* 2EC5 */ { "CLÉ CJC VOIR FORME CHINOISE SIMPLIFIÉE","	x 89C1"},
-/* 2EC6 */ { "CLÉ CJC CORNE FORME SIMPLIFIÉE","	x 89D2"},
-/* 2EC7 */ { "CLÉ CJC CORNE","	x 278B2"},
-/* 2EC8 */ { "CLÉ CJC PAROLE FORME CHINOISE SIMPLIFIÉE","	x 8BA0"},
-/* 2EC9 */ { "CLÉ CJC COQUILLAGE FORME CHINOISE SIMPLIFIÉE","	x 8D1D"},
-/* 2ECA */ { "CLÉ CJC PIED","	* forme utilisée à gauche\n"
+/* 2EC5 */ { "CLÉ CJC VOIR FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 147 du Kangxi\n"
+	"	x 89C1"},
+/* 2EC6 */ { "CLÉ CJC CORNE FORME SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 148 du Kangxi\n"
+	"	x 89D2"},
+/* 2EC7 */ { "CLÉ CJC CORNE","	* variante de la clé 148 du Kangxi\n"
+	"	x 278B2"},
+/* 2EC8 */ { "CLÉ CJC PAROLE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 149 du Kangxi\n"
+	"	x 8BA0"},
+/* 2EC9 */ { "CLÉ CJC COQUILLAGE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 154 du Kangxi\n"
+	"	x 8D1D"},
+/* 2ECA */ { "CLÉ CJC PIED","	* variante de la clé 157 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 8DB3\n"
 	"	x 27FB7"},
-/* 2ECB */ { "CLÉ CJC VÉHICULE FORME CHINOISE SIMPLIFIÉE","	x 8F66"},
-/* 2ECC */ { "CLÉ CJC MARCHE À PIED FORME SIMPLIFIÉE","	x 8FB6"},
-/* 2ECD */ { "CLÉ CJC MARCHE À PIED UN","	x 8FB6"},
-/* 2ECE */ { "CLÉ CJC MARCHE À PIED DEUX","	x 8FB6"},
-/* 2ECF */ { "CLÉ CJC VILLE","	* forme utilisée à droite\n"
+/* 2ECB */ { "CLÉ CJC VÉHICULE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 159 du Kangxi\n"
+	"	x 8F66"},
+/* 2ECC */ { "CLÉ CJC MARCHE À PIED FORME SIMPLIFIÉE","	* variante simplifiée de la clé 162 du Kangxi\n"
+	"	x 8FB6"},
+/* 2ECD */ { "CLÉ CJC MARCHE À PIED UN","	* variante de la clé 162 du Kangxi\n"
+	"	x 8FB6"},
+/* 2ECE */ { "CLÉ CJC MARCHE À PIED DEUX","	* variante de la clé 162 du Kangxi\n"
+	"	x 8FB6"},
+/* 2ECF */ { "CLÉ CJC VILLE","	* variante de la clé 163 du Kangxi\n"
+	"	* forme utilisée à droite\n"
 	"	x 9091"},
-/* 2ED0 */ { "CLÉ CJC OR FORME CHINOISE SIMPLIFIÉE","	x 9485"},
-/* 2ED1 */ { "CLÉ CJC LONG UN","	x 9577"},
-/* 2ED2 */ { "CLÉ CJC LONG DEUX","	* forme utilisée à gauche\n"
+/* 2ED0 */ { "CLÉ CJC OR FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 167 du Kangxi\n"
+	"	x 9485"},
+/* 2ED1 */ { "CLÉ CJC LONG UN","	* variante de la clé 168 du Kangxi\n"
+	"	x 9577"},
+/* 2ED2 */ { "CLÉ CJC LONG DEUX","	* variante de la clé 168 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 9578"},
-/* 2ED3 */ { "CLÉ CJC LONG FORME CHINOISE SIMPLIFIÉE","	x 957F"},
-/* 2ED4 */ { "CLÉ CJC PORTAIL FORME CHINOISE SIMPLIFIÉE","	x 95E8"},
-/* 2ED5 */ { "CLÉ CJC TERTRE UN","	x 961C\n"
+/* 2ED3 */ { "CLÉ CJC LONG FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 168 du Kangxi\n"
+	"	x 957F"},
+/* 2ED4 */ { "CLÉ CJC PORTAIL FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 169 du Kangxi\n"
+	"	x 95E8"},
+/* 2ED5 */ { "CLÉ CJC TERTRE UN","	* variante de la clé 170 du Kangxi\n"
+	"	x 961C\n"
 	"	x 28E0F"},
-/* 2ED6 */ { "CLÉ CJC TERTRE DEUX","	* forme utilisée à gauche\n"
+/* 2ED6 */ { "CLÉ CJC TERTRE DEUX","	* variante de la clé 170 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 961D"},
-/* 2ED7 */ { "CLÉ CJC PLUIE","	x 96E8"},
-/* 2ED8 */ { "CLÉ CJC BLEU","	x 9752"},
-/* 2ED9 */ { "CLÉ CJC CUIR TANNÉ FORME CHINOISE SIMPLIFIÉE","	x 97E6"},
-/* 2EDA */ { "CLÉ CJC FEUILLE FORME CHINOISE SIMPLIFIÉE","	x 9875"},
-/* 2EDB */ { "CLÉ CJC VENT FORME CHINOISE SIMPLIFIÉE","	x 98CE"},
-/* 2EDC */ { "CLÉ CJC S'ENVOLER FORME CHINOISE SIMPLIFIÉE","	x 98DE"},
-/* 2EDD */ { "CLÉ CJC MANGER UN","	* forme utilisée en dessous\n"
+/* 2ED7 */ { "CLÉ CJC PLUIE","	* variante de la clé 173 du Kangxi\n"
+	"	x 96E8"},
+/* 2ED8 */ { "CLÉ CJC BLEU","	* variante de la clé 174 du Kangxi\n"
+	"	x 9752"},
+/* 2ED9 */ { "CLÉ CJC CUIR TANNÉ FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 178 du Kangxi\n"
+	"	x 97E6"},
+/* 2EDA */ { "CLÉ CJC FEUILLE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 181 du Kangxi\n"
+	"	x 9875"},
+/* 2EDB */ { "CLÉ CJC VENT FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 182 du Kangxi\n"
+	"	x 98CE"},
+/* 2EDC */ { "CLÉ CJC S'ENVOLER FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 183 du Kangxi\n"
+	"	x 98DE"},
+/* 2EDD */ { "CLÉ CJC MANGER UN","	* variante de la clé 184 du Kangxi\n"
+	"	* forme utilisée en dessous\n"
 	"	x 98DF"},
-/* 2EDE */ { "CLÉ CJC MANGER DEUX","	* forme utilisée à gauche\n"
+/* 2EDE */ { "CLÉ CJC MANGER DEUX","	* variante de la clé 184 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 2967F"},
-/* 2EDF */ { "CLÉ CJC MANGER TROIS","	* forme utilisée à gauche\n"
+/* 2EDF */ { "CLÉ CJC MANGER TROIS","	* variante de la clé 184 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 98E0"},
-/* 2EE0 */ { "CLÉ CJC MANGER FORME CHINOISE SIMPLIFIÉE","	* forme utilisée à gauche\n"
+/* 2EE0 */ { "CLÉ CJC MANGER FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 184 du Kangxi\n"
+	"	* forme utilisée à gauche\n"
 	"	x 9963"},
-/* 2EE1 */ { "CLÉ CJC TÊTE","	x 29810"},
-/* 2EE2 */ { "CLÉ CJC CHEVAL FORME CHINOISE SIMPLIFIÉE","	x 9A6C"},
-/* 2EE3 */ { "CLÉ CJC OS","	x 9AA8"},
-/* 2EE4 */ { "CLÉ CJC DÉMON","	x 9B3C"},
-/* 2EE5 */ { "CLÉ CJC POISSON FORME CHINOISE SIMPLIFIÉE","	x 9C7C"},
-/* 2EE6 */ { "CLÉ CJC OISEAU FORME CHINOISE SIMPLIFIÉE","	x 9E1F"},
-/* 2EE7 */ { "CLÉ CJC SEL FORME CHINOISE SIMPLIFIÉE","	x 5364"},
-/* 2EE8 */ { "CLÉ CJC BLÉ FORME SIMPLIFIÉE","	x 9EA6"},
-/* 2EE9 */ { "CLÉ CJC JAUNE FORME SIMPLIFIÉE","	x 9EC4"},
-/* 2EEA */ { "CLÉ CJC GRENOUILLE FORME CHINOISE SIMPLIFIÉE","	x 9EFE"},
-/* 2EEB */ { "CLÉ CJC RÉGULIER FORME JAPONAISE SIMPLIFIÉE","	x 6589"},
-/* 2EEC */ { "CLÉ CJC RÉGULIER FORME CHINOISE SIMPLIFIÉE","	x 9F50"},
-/* 2EED */ { "CLÉ CJC DENT FORME JAPONAISE SIMPLIFIÉE","	x 6B6F"},
-/* 2EEE */ { "CLÉ CJC DENT FORME CHINOISE SIMPLIFIÉE","	x 9F7F"},
-/* 2EEF */ { "CLÉ CJC DRAGON FORME JAPONAISE SIMPLIFIÉE","	x 7ADC\n"
+/* 2EE1 */ { "CLÉ CJC TÊTE","	* variante de la clé 185 du Kangxi\n"
+	"	x 29810"},
+/* 2EE2 */ { "CLÉ CJC CHEVAL FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 187 du Kangxi\n"
+	"	x 9A6C"},
+/* 2EE3 */ { "CLÉ CJC OS","	* variante chinoise simplifiée de la clé 188 du Kangxi\n"
+	"	x 9AA8"},
+/* 2EE4 */ { "CLÉ CJC DÉMON","	* variante de la clé 194 du Kangxi\n"
+	"	x 9B3C"},
+/* 2EE5 */ { "CLÉ CJC POISSON FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 195 du Kangxi\n"
+	"	x 9C7C"},
+/* 2EE6 */ { "CLÉ CJC OISEAU FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 196 du Kangxi\n"
+	"	x 9E1F"},
+/* 2EE7 */ { "CLÉ CJC SEL FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 197 du Kangxi\n"
+	"	x 5364"},
+/* 2EE8 */ { "CLÉ CJC BLÉ FORME SIMPLIFIÉE","	* variante simplifiée de la clé 199 du Kangxi\n"
+	"	x 9EA6"},
+/* 2EE9 */ { "CLÉ CJC JAUNE FORME SIMPLIFIÉE","	* variante simplifiée de la clé 201 du Kangxi\n"
+	"	x 9EC4"},
+/* 2EEA */ { "CLÉ CJC GRENOUILLE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 205 du Kangxi\n"
+	"	x 9EFE"},
+/* 2EEB */ { "CLÉ CJC RÉGULIER FORME JAPONAISE SIMPLIFIÉE","	* variante japonaise simplifiée de la clé 210 du Kangxi\n"
+	"	x 6589"},
+/* 2EEC */ { "CLÉ CJC RÉGULIER FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 210 du Kangxi\n"
+	"	x 9F50"},
+/* 2EED */ { "CLÉ CJC DENT FORME JAPONAISE SIMPLIFIÉE","	* variante japonaise simplifiée de la clé 211 du Kangxi\n"
+	"	x 6B6F"},
+/* 2EEE */ { "CLÉ CJC DENT FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 211 du Kangxi\n"
+	"	x 9F7F"},
+/* 2EEF */ { "CLÉ CJC DRAGON FORME JAPONAISE SIMPLIFIÉE","	* variante japonaise simplifiée de la clé 212 du Kangxi\n"
+	"	x 7ADC\n"
 	"	x 9F8D"},
-/* 2EF0 */ { "CLÉ CJC DRAGON FORME CHINOISE SIMPLIFIÉE","	x 9F99"},
-/* 2EF1 */ { "CLÉ CJC TORTUE","	x 9F9C"},
-/* 2EF2 */ { "CLÉ CJC TORTUE FORME JAPONAISE SIMPLIFIÉE","	x 4E80"},
-/* 2EF3 */ { "CLÉ CJC TORTUE FORME CHINOISE SIMPLIFIÉE","	# 9F9F"},
+/* 2EF0 */ { "CLÉ CJC DRAGON FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 212 du Kangxi\n"
+	"	x 9F99"},
+/* 2EF1 */ { "CLÉ CJC TORTUE","	* variante de la clé 213 du Kangxi\n"
+	"	x 9F9C"},
+/* 2EF2 */ { "CLÉ CJC TORTUE FORME JAPONAISE SIMPLIFIÉE","	* variante japonaise simplifiée de la clé 213 du Kangxi\n"
+	"	x 4E80"},
+/* 2EF3 */ { "CLÉ CJC TORTUE FORME CHINOISE SIMPLIFIÉE","	* variante chinoise simplifiée de la clé 213 du Kangxi\n"
+	"	# 9F9F"},
 /* 2EF4 */ { NULL,NULL},
 /* 2EF5 */ { NULL,NULL},
 /* 2EF6 */ { NULL,NULL},
@@ -15688,270 +15998,484 @@ static const struct unicode_nameannot unaFR_00_2E[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_00_2F[] = {
-/* 2F00 */ { "CLÉ CHINOISE UN","	# 4E00"},
-/* 2F01 */ { "CLÉ CHINOISE TRAIT VERTICAL","	# 4E28"},
-/* 2F02 */ { "CLÉ CHINOISE POINT","	# 4E36"},
-/* 2F03 */ { "CLÉ CHINOISE TRAIT OBLIQUE","	# 4E3F"},
-/* 2F04 */ { "CLÉ CHINOISE SECOND","	# 4E59"},
-/* 2F05 */ { "CLÉ CHINOISE CROCHET","	# 4E85"},
-/* 2F06 */ { "CLÉ CHINOISE DEUX","	# 4E8C"},
-/* 2F07 */ { "CLÉ CHINOISE COUVERCLE","	# 4EA0"},
-/* 2F08 */ { "CLÉ CHINOISE HOMME","	# 4EBA"},
-/* 2F09 */ { "CLÉ CHINOISE JAMBES","	# 513F"},
-/* 2F0A */ { "CLÉ CHINOISE ENTRER","	# 5165"},
-/* 2F0B */ { "CLÉ CHINOISE HUIT","	# 516B"},
-/* 2F0C */ { "CLÉ CHINOISE PLACE","	* ce caractère prend des significations telles que « campagne » ou « espace »\n"
+/* 2F00 */ { "CLÉ CHINOISE UN","	* clé 1 du Kangxi\n"
+	"	# 4E00"},
+/* 2F01 */ { "CLÉ CHINOISE TRAIT VERTICAL","	* clé 2 du Kangxi\n"
+	"	# 4E28"},
+/* 2F02 */ { "CLÉ CHINOISE POINT","	* clé 3 du Kangxi\n"
+	"	# 4E36"},
+/* 2F03 */ { "CLÉ CHINOISE TRAIT OBLIQUE","	* clé 4 du Kangxi\n"
+	"	# 4E3F"},
+/* 2F04 */ { "CLÉ CHINOISE SECOND","	* clé 5 du Kangxi\n"
+	"	# 4E59"},
+/* 2F05 */ { "CLÉ CHINOISE CROCHET","	* clé 6 du Kangxi\n"
+	"	# 4E85"},
+/* 2F06 */ { "CLÉ CHINOISE DEUX","	* clé 7 du Kangxi\n"
+	"	# 4E8C"},
+/* 2F07 */ { "CLÉ CHINOISE COUVERCLE","	* clé 8 du Kangxi\n"
+	"	# 4EA0"},
+/* 2F08 */ { "CLÉ CHINOISE HOMME","	* clé 9 du Kangxi\n"
+	"	# 4EBA"},
+/* 2F09 */ { "CLÉ CHINOISE JAMBES","	* clé 10 du Kangxi\n"
+	"	# 513F"},
+/* 2F0A */ { "CLÉ CHINOISE ENTRER","	* clé 11 du Kangxi\n"
+	"	# 5165"},
+/* 2F0B */ { "CLÉ CHINOISE HUIT","	* clé 12 du Kangxi\n"
+	"	# 516B"},
+/* 2F0C */ { "CLÉ CHINOISE PLACE","	* clé 13 du Kangxi\n"
+	"	* ce caractère prend des significations telles que « campagne » ou « espace »\n"
 	"	# 5182"},
-/* 2F0D */ { "CLÉ CHINOISE COUVRIR","	* en combinaison avec d'autres caractères, il prend des significations telles que « couverture » ou « couvre-chef »\n"
+/* 2F0D */ { "CLÉ CHINOISE COUVRIR","	* clé 14 du Kangxi\n"
+	"	* en combinaison avec d'autres caractères, il prend des significations telles que « couverture » ou « couvre-chef »\n"
 	"	# 5196"},
-/* 2F0E */ { "CLÉ CHINOISE GLACE","	# 51AB"},
-/* 2F0F */ { "CLÉ CHINOISE TABLE BASSE","	# 51E0"},
-/* 2F10 */ { "CLÉ CHINOISE FOSSE","	* en combinaison avec d'autres caractères, il prend historiquement des significations telles que « bouche ouverte », « cadre », « trou » ou « réceptacle »\n"
+/* 2F0E */ { "CLÉ CHINOISE GLACE","	* clé 15 du Kangxi\n"
+	"	# 51AB"},
+/* 2F0F */ { "CLÉ CHINOISE TABLE BASSE","	* clé 16 du Kangxi\n"
+	"	# 51E0"},
+/* 2F10 */ { "CLÉ CHINOISE FOSSE","	* clé 17 du Kangxi\n"
+	"	* en combinaison avec d'autres caractères, il prend historiquement des significations telles que « bouche ouverte », « cadre », « trou » ou « réceptacle »\n"
 	"	# 51F5"},
-/* 2F11 */ { "CLÉ CHINOISE COUTEAU","	# 5200"},
-/* 2F12 */ { "CLÉ CHINOISE FORCE","	# 529B"},
-/* 2F13 */ { "CLÉ CHINOISE ENVELOPPER","	# 52F9"},
-/* 2F14 */ { "CLÉ CHINOISE CUILLÈRE","	# 5315"},
-/* 2F15 */ { "CLÉ CHINOISE COFFRE","	# 531A"},
-/* 2F16 */ { "CLÉ CHINOISE CACHETTE","	# 5338"},
-/* 2F17 */ { "CLÉ CHINOISE DIX","	# 5341"},
-/* 2F18 */ { "CLÉ CHINOISE DIVINATION","	# 535C"},
-/* 2F19 */ { "CLÉ CHINOISE SCEAU","	# 5369"},
+/* 2F11 */ { "CLÉ CHINOISE COUTEAU","	* clé 18 du Kangxi\n"
+	"	# 5200"},
+/* 2F12 */ { "CLÉ CHINOISE FORCE","	* clé 19 du Kangxi\n"
+	"	# 529B"},
+/* 2F13 */ { "CLÉ CHINOISE ENVELOPPER","	* clé 20 du Kangxi\n"
+	"	# 52F9"},
+/* 2F14 */ { "CLÉ CHINOISE CUILLÈRE","	* clé 21 du Kangxi\n"
+	"	# 5315"},
+/* 2F15 */ { "CLÉ CHINOISE COFFRE","	* clé 22 du Kangxi\n"
+	"	# 531A"},
+/* 2F16 */ { "CLÉ CHINOISE CACHETTE","	* clé 23 du Kangxi\n"
+	"	# 5338"},
+/* 2F17 */ { "CLÉ CHINOISE DIX","	* clé 24 du Kangxi\n"
+	"	# 5341"},
+/* 2F18 */ { "CLÉ CHINOISE DIVINATION","	* clé 25 du Kangxi\n"
+	"	# 535C"},
+/* 2F19 */ { "CLÉ CHINOISE SCEAU","	* clé 26 du Kangxi\n"
+	"	# 5369"},
 /* 2F1A */ { "CLÉ CHINOISE FALAISE","	= clé chinoise escarpement\n"
+	"	* clé 27 du Kangxi\n"
 	"	# 5382"},
-/* 2F1B */ { "CLÉ CHINOISE PRIVÉ","	# 53B6"},
-/* 2F1C */ { "CLÉ CHINOISE ENCORE","	# 53C8"},
-/* 2F1D */ { "CLÉ CHINOISE BOUCHE","	# 53E3"},
+/* 2F1B */ { "CLÉ CHINOISE PRIVÉ","	* clé 28 du Kangxi\n"
+	"	# 53B6"},
+/* 2F1C */ { "CLÉ CHINOISE ENCORE","	* clé 29 du Kangxi\n"
+	"	# 53C8"},
+/* 2F1D */ { "CLÉ CHINOISE BOUCHE","	* clé 30 du Kangxi\n"
+	"	# 53E3"},
 /* 2F1E */ { "CLÉ CHINOISE ENCEINTE","	= clé chinoise clôture, bordure\n"
+	"	* clé 31 du Kangxi\n"
 	"	# 56D7"},
-/* 2F1F */ { "CLÉ CHINOISE TERRE","	# 571F"},
-/* 2F20 */ { "CLÉ CHINOISE LETTRÉ","	# 58EB"},
-/* 2F21 */ { "CLÉ CHINOISE ALLER","	* ce caractère prend aussi le sens de « suivre » (marcher sur les traces laissées par quelqu'un)\n"
+/* 2F1F */ { "CLÉ CHINOISE TERRE","	* clé 32 du Kangxi\n"
+	"	# 571F"},
+/* 2F20 */ { "CLÉ CHINOISE LETTRÉ","	* clé 33 du Kangxi\n"
+	"	# 58EB"},
+/* 2F21 */ { "CLÉ CHINOISE ALLER","	* clé 34 du Kangxi\n"
+	"	* ce caractère prend aussi le sens de « suivre » (marcher sur les traces laissées par quelqu'un)\n"
 	"	# 5902"},
-/* 2F22 */ { "CLÉ CHINOISE SE TRAÎNER","	# 590A"},
-/* 2F23 */ { "CLÉ CHINOISE SOIR","	# 5915"},
-/* 2F24 */ { "CLÉ CHINOISE GRAND","	# 5927"},
-/* 2F25 */ { "CLÉ CHINOISE FEMME","	# 5973"},
-/* 2F26 */ { "CLÉ CHINOISE ENFANT","	# 5B50"},
-/* 2F27 */ { "CLÉ CHINOISE TOIT","	# 5B80"},
-/* 2F28 */ { "CLÉ CHINOISE POUCE","	* le pouce (cùn) désigne une unité de longueur traditionnelle chinoise dont la mesure était à l'origine la largeur du pouce d'une personne à l'articulation\n"
+/* 2F22 */ { "CLÉ CHINOISE SE TRAÎNER","	* clé 35 du Kangxi\n"
+	"	# 590A"},
+/* 2F23 */ { "CLÉ CHINOISE SOIR","	* clé 36 du Kangxi\n"
+	"	# 5915"},
+/* 2F24 */ { "CLÉ CHINOISE GRAND","	* clé 37 du Kangxi\n"
+	"	# 5927"},
+/* 2F25 */ { "CLÉ CHINOISE FEMME","	* clé 38 du Kangxi\n"
+	"	# 5973"},
+/* 2F26 */ { "CLÉ CHINOISE ENFANT","	* clé 39 du Kangxi\n"
+	"	# 5B50"},
+/* 2F27 */ { "CLÉ CHINOISE TOIT","	* clé 40 du Kangxi\n"
+	"	# 5B80"},
+/* 2F28 */ { "CLÉ CHINOISE POUCE","	* clé 41 du Kangxi\n"
+	"	* le pouce (cùn) désigne une unité de longueur traditionnelle chinoise dont la mesure était à l'origine la largeur du pouce d'une personne à l'articulation\n"
 	"	# 5BF8"},
-/* 2F29 */ { "CLÉ CHINOISE PETIT","	# 5C0F"},
-/* 2F2A */ { "CLÉ CHINOISE BOITEUX","	x 21BC1\n"
+/* 2F29 */ { "CLÉ CHINOISE PETIT","	* clé 42 du Kangxi\n"
+	"	# 5C0F"},
+/* 2F2A */ { "CLÉ CHINOISE BOITEUX","	* clé 43 du Kangxi\n"
+	"	x 21BC1\n"
 	"	# 5C22"},
 /* 2F2B */ { "CLÉ CHINOISE CADAVRE","	= clé chinoise dépouille\n"
+	"	* clé 44 du Kangxi\n"
 	"	# 5C38"},
 /* 2F2C */ { "CLÉ CHINOISE PLANTULE","	= clé chinoise jeune pousse\n"
+	"	* clé 45 du Kangxi\n"
 	"	# 5C6E"},
-/* 2F2D */ { "CLÉ CHINOISE MONTAGNE","	# 5C71"},
+/* 2F2D */ { "CLÉ CHINOISE MONTAGNE","	* clé 46 du Kangxi\n"
+	"	# 5C71"},
 /* 2F2E */ { "CLÉ CHINOISE RIVIÈRE","	= clé chinoise ruisseau\n"
+	"	* clé 47 du Kangxi\n"
 	"	# 5DDB"},
-/* 2F2F */ { "CLÉ CHINOISE TRAVAIL","	# 5DE5"},
-/* 2F30 */ { "CLÉ CHINOISE SOI-MÊME","	# 5DF1"},
-/* 2F31 */ { "CLÉ CHINOISE SERVIETTE","	* désigne un morceau d'étoffe (un foulard, une écharpe, un turban)\n"
+/* 2F2F */ { "CLÉ CHINOISE TRAVAIL","	* clé 48 du Kangxi\n"
+	"	# 5DE5"},
+/* 2F30 */ { "CLÉ CHINOISE SOI-MÊME","	* clé 49 du Kangxi\n"
+	"	# 5DF1"},
+/* 2F31 */ { "CLÉ CHINOISE SERVIETTE","	* clé 50 du Kangxi\n"
+	"	* désigne un morceau d'étoffe (un foulard, une écharpe, un turban)\n"
 	"	# 5DFE"},
-/* 2F32 */ { "CLÉ CHINOISE SEC","	# 5E72"},
-/* 2F33 */ { "CLÉ CHINOISE PETIT FIL","	* ce caractère a pris le sens de « ténu » ou de « tendre »\n"
+/* 2F32 */ { "CLÉ CHINOISE SEC","	* clé 51 du Kangxi\n"
+	"	# 5E72"},
+/* 2F33 */ { "CLÉ CHINOISE PETIT FIL","	* clé 52 du Kangxi\n"
+	"	* ce caractère a pris le sens de « ténu » ou de « tendre »\n"
 	"	# 5E7A"},
-/* 2F34 */ { "CLÉ CHINOISE APPENTIS","	* ce signe avait autrefois le sens d'« abri » ou de « hangar » ; aujourd'hui, il prend des significations telles que « vaste », « étendu » ou « large »\n"
+/* 2F34 */ { "CLÉ CHINOISE APPENTIS","	* clé 53 du Kangxi\n"
+	"	* ce signe avait autrefois le sens d'« abri » ou de « hangar » ; aujourd'hui, il prend des significations telles que « vaste », « étendu » ou « large »\n"
 	"	# 5E7F"},
-/* 2F35 */ { "CLÉ CHINOISE LONGUE FOULÉE","	* traduit généralement l'idée d'une progression (avancer à grands pas) et peut être utilisé parfois dans le sens de « progrès »\n"
+/* 2F35 */ { "CLÉ CHINOISE LONGUE FOULÉE","	* clé 54 du Kangxi\n"
+	"	* traduit généralement l'idée d'une progression (avancer à grands pas) et peut être utilisé parfois dans le sens de « progrès »\n"
 	"	# 5EF4"},
-/* 2F36 */ { "CLÉ CHINOISE DEUX MAINS","	* prend des significations telles que « ensemble », « collaboration » ou « union »\n"
+/* 2F36 */ { "CLÉ CHINOISE DEUX MAINS","	* clé 55 du Kangxi\n"
+	"	* prend des significations telles que « ensemble », « collaboration » ou « union »\n"
 	"	# 5EFE"},
-/* 2F37 */ { "CLÉ CHINOISE TIRER","	# 5F0B"},
-/* 2F38 */ { "CLÉ CHINOISE ARC","	# 5F13"},
-/* 2F39 */ { "CLÉ CHINOISE GROIN","	# 5F50"},
-/* 2F3A */ { "CLÉ CHINOISE POIL","	* prend aussi le sens de « barbe »\n"
+/* 2F37 */ { "CLÉ CHINOISE TIRER","	* clé 56 du Kangxi\n"
+	"	# 5F0B"},
+/* 2F38 */ { "CLÉ CHINOISE ARC","	* clé 57 du Kangxi\n"
+	"	# 5F13"},
+/* 2F39 */ { "CLÉ CHINOISE GROIN","	* clé 58 du Kangxi\n"
+	"	# 5F50"},
+/* 2F3A */ { "CLÉ CHINOISE POIL","	* clé 59 du Kangxi\n"
+	"	* prend aussi le sens de « barbe »\n"
 	"	# 5F61"},
-/* 2F3B */ { "CLÉ CHINOISE PAS","	* prend aussi le sens de « se promener »\n"
+/* 2F3B */ { "CLÉ CHINOISE PAS","	* clé 60 du Kangxi\n"
+	"	* prend aussi le sens de « se promener »\n"
 	"	# 5F73"},
-/* 2F3C */ { "CLÉ CHINOISE CŒUR","	# 5FC3"},
-/* 2F3D */ { "CLÉ CHINOISE HALLEBARDE","	# 6208"},
+/* 2F3C */ { "CLÉ CHINOISE CŒUR","	* clé 61 du Kangxi\n"
+	"	# 5FC3"},
+/* 2F3D */ { "CLÉ CHINOISE HALLEBARDE","	* clé 62 du Kangxi\n"
+	"	# 6208"},
 /* 2F3E */ { "CLÉ CHINOISE PORTE","	= clé chinoise huis\n"
+	"	* clé 63 du Kangxi\n"
 	"	* désigne aussi la famille, le foyer, la maison\n"
 	"	# 6236"},
-/* 2F3F */ { "CLÉ CHINOISE MAIN","	# 624B"},
-/* 2F40 */ { "CLÉ CHINOISE BRANCHE","	# 652F"},
+/* 2F3F */ { "CLÉ CHINOISE MAIN","	* clé 64 du Kangxi\n"
+	"	# 624B"},
+/* 2F40 */ { "CLÉ CHINOISE BRANCHE","	* clé 65 du Kangxi\n"
+	"	# 652F"},
 /* 2F41 */ { "CLÉ CHINOISE TAPER","	= clé chinoise frapper, battre\n"
+	"	* clé 66 du Kangxi\n"
 	"	# 6534"},
-/* 2F42 */ { "CLÉ CHINOISE ÉCRITURE","	# 6587"},
-/* 2F43 */ { "CLÉ CHINOISE BOISSEAU","	# 6597"},
-/* 2F44 */ { "CLÉ CHINOISE HACHE","	# 65A4"},
-/* 2F45 */ { "CLÉ CHINOISE CARRÉ","	# 65B9"},
-/* 2F46 */ { "CLÉ CHINOISE SANS","	* marque la négation (non, pas)\n"
+/* 2F42 */ { "CLÉ CHINOISE ÉCRITURE","	* clé 67 du Kangxi\n"
+	"	# 6587"},
+/* 2F43 */ { "CLÉ CHINOISE BOISSEAU","	* clé 68 du Kangxi\n"
+	"	# 6597"},
+/* 2F44 */ { "CLÉ CHINOISE HACHE","	* clé 69 du Kangxi\n"
+	"	# 65A4"},
+/* 2F45 */ { "CLÉ CHINOISE CARRÉ","	* clé 70 du Kangxi\n"
+	"	# 65B9"},
+/* 2F46 */ { "CLÉ CHINOISE SANS","	* clé 71 du Kangxi\n"
+	"	* marque la négation (non, pas)\n"
 	"	# 65E0"},
-/* 2F47 */ { "CLÉ CHINOISE SOLEIL","	* désigne aussi le jour\n"
+/* 2F47 */ { "CLÉ CHINOISE SOLEIL","	* clé 72 du Kangxi\n"
+	"	* désigne aussi le jour\n"
 	"	# 65E5"},
-/* 2F48 */ { "CLÉ CHINOISE DIRE","	# 66F0"},
-/* 2F49 */ { "CLÉ CHINOISE LUNE","	* désigne aussi le mois\n"
+/* 2F48 */ { "CLÉ CHINOISE DIRE","	* clé 73 du Kangxi\n"
+	"	# 66F0"},
+/* 2F49 */ { "CLÉ CHINOISE LUNE","	* clé 74 du Kangxi\n"
+	"	* désigne aussi le mois\n"
 	"	# 6708"},
-/* 2F4A */ { "CLÉ CHINOISE ARBRE","	# 6728"},
+/* 2F4A */ { "CLÉ CHINOISE ARBRE","	* clé 75 du Kangxi\n"
+	"	# 6728"},
 /* 2F4B */ { "CLÉ CHINOISE MANQUE","	= clé chinoise pénurie, carence\n"
+	"	* clé 76 du Kangxi\n"
 	"	* désigne aussi le bâillement\n"
 	"	# 6B20"},
-/* 2F4C */ { "CLÉ CHINOISE ARRÊT","	# 6B62"},
-/* 2F4D */ { "CLÉ CHINOISE MORT","	* prend aussi le sens de « décomposition »\n"
+/* 2F4C */ { "CLÉ CHINOISE ARRÊT","	* clé 77 du Kangxi\n"
+	"	# 6B62"},
+/* 2F4D */ { "CLÉ CHINOISE MORT","	* clé 78 du Kangxi\n"
+	"	* prend aussi le sens de « décomposition »\n"
 	"	# 6B79"},
-/* 2F4E */ { "CLÉ CHINOISE ARME","	# 6BB3"},
-/* 2F4F */ { "CLÉ CHINOISE NE PAS","	* n'avoir pas, ne pas faire, ne pas pouvoir, etc.\n"
+/* 2F4E */ { "CLÉ CHINOISE ARME","	* clé 79 du Kangxi\n"
+	"	# 6BB3"},
+/* 2F4F */ { "CLÉ CHINOISE NE PAS","	* clé 80 du Kangxi\n"
+	"	* n'avoir pas, ne pas faire, ne pas pouvoir, etc.\n"
 	"	# 6BCB"},
 /* 2F50 */ { "CLÉ CHINOISE COMPARER","	= clé chinoise confronter\n"
+	"	* clé 81 du Kangxi\n"
 	"	# 6BD4"},
-/* 2F51 */ { "CLÉ CHINOISE PELAGE","	# 6BDB"},
-/* 2F52 */ { "CLÉ CHINOISE CLAN","	# 6C0F"},
-/* 2F53 */ { "CLÉ CHINOISE VAPEUR","	# 6C14"},
-/* 2F54 */ { "CLÉ CHINOISE EAU","	# 6C34"},
-/* 2F55 */ { "CLÉ CHINOISE FEU","	# 706B"},
-/* 2F56 */ { "CLÉ CHINOISE GRIFFE","	# 722A"},
-/* 2F57 */ { "CLÉ CHINOISE PÈRE","	# 7236"},
-/* 2F58 */ { "CLÉ CHINOISE ENTRELACÉ","	* prend des significations telles que « nouer » ou « tresser »\n"
+/* 2F51 */ { "CLÉ CHINOISE PELAGE","	* clé 82 du Kangxi\n"
+	"	# 6BDB"},
+/* 2F52 */ { "CLÉ CHINOISE CLAN","	* clé 83 du Kangxi\n"
+	"	# 6C0F"},
+/* 2F53 */ { "CLÉ CHINOISE VAPEUR","	* clé 84 du Kangxi\n"
+	"	# 6C14"},
+/* 2F54 */ { "CLÉ CHINOISE EAU","	* clé 85 du Kangxi\n"
+	"	# 6C34"},
+/* 2F55 */ { "CLÉ CHINOISE FEU","	* clé 86 du Kangxi\n"
+	"	# 706B"},
+/* 2F56 */ { "CLÉ CHINOISE GRIFFE","	* clé 87 du Kangxi\n"
+	"	# 722A"},
+/* 2F57 */ { "CLÉ CHINOISE PÈRE","	* clé 88 du Kangxi\n"
+	"	# 7236"},
+/* 2F58 */ { "CLÉ CHINOISE ENTRELACÉ","	* clé 89 du Kangxi\n"
+	"	* prend des significations telles que « nouer » ou « tresser »\n"
 	"	# 723B"},
-/* 2F59 */ { "CLÉ CHINOISE MOITIÉ DE TRONC","	* prend aussi le sens de « bois fendu »\n"
+/* 2F59 */ { "CLÉ CHINOISE MOITIÉ DE TRONC","	* clé 90 du Kangxi\n"
+	"	* prend aussi le sens de « bois fendu »\n"
 	"	# 723F"},
-/* 2F5A */ { "CLÉ CHINOISE TRANCHE","	# 7247"},
-/* 2F5B */ { "CLÉ CHINOISE CROC","	# 7259"},
-/* 2F5C */ { "CLÉ CHINOISE BŒUF","	* désigne aussi le buffle ou le taureau\n"
+/* 2F5A */ { "CLÉ CHINOISE TRANCHE","	* clé 91 du Kangxi\n"
+	"	# 7247"},
+/* 2F5B */ { "CLÉ CHINOISE CROC","	* clé 92 du Kangxi\n"
+	"	# 7259"},
+/* 2F5C */ { "CLÉ CHINOISE BŒUF","	* clé 93 du Kangxi\n"
+	"	* désigne aussi le buffle ou le taureau\n"
 	"	# 725B"},
-/* 2F5D */ { "CLÉ CHINOISE CHIEN","	# 72AC"},
+/* 2F5D */ { "CLÉ CHINOISE CHIEN","	* clé 94 du Kangxi\n"
+	"	# 72AC"},
 /* 2F5E */ { "CLÉ CHINOISE OBSCUR","	= clé chinoise sombre, mystérieux\n"
+	"	* clé 95 du Kangxi\n"
 	"	# 7384"},
-/* 2F5F */ { "CLÉ CHINOISE JADE","	# 7389"},
-/* 2F60 */ { "CLÉ CHINOISE MELON","	# 74DC"},
-/* 2F61 */ { "CLÉ CHINOISE TUILE","	# 74E6"},
-/* 2F62 */ { "CLÉ CHINOISE DOUX","	* agréable au goût, savoureux ; s'applique plus généralement à tout ce qui plaît aux cinq sens\n"
+/* 2F5F */ { "CLÉ CHINOISE JADE","	* clé 96 du Kangxi\n"
+	"	# 7389"},
+/* 2F60 */ { "CLÉ CHINOISE MELON","	* clé 97 du Kangxi\n"
+	"	# 74DC"},
+/* 2F61 */ { "CLÉ CHINOISE TUILE","	* clé 98 du Kangxi\n"
+	"	# 74E6"},
+/* 2F62 */ { "CLÉ CHINOISE DOUX","	* clé 99 du Kangxi\n"
+	"	* agréable au goût, savoureux ; s'applique plus généralement à tout ce qui plaît aux cinq sens\n"
 	"	# 7518"},
-/* 2F63 */ { "CLÉ CHINOISE NAÎTRE","	# 751F"},
-/* 2F64 */ { "CLÉ CHINOISE UTILISER","	# 7528"},
-/* 2F65 */ { "CLÉ CHINOISE CHAMP","	# 7530"},
+/* 2F63 */ { "CLÉ CHINOISE NAÎTRE","	* clé 100 du Kangxi\n"
+	"	# 751F"},
+/* 2F64 */ { "CLÉ CHINOISE UTILISER","	* clé 101 du Kangxi\n"
+	"	# 7528"},
+/* 2F65 */ { "CLÉ CHINOISE CHAMP","	* clé 102 du Kangxi\n"
+	"	# 7530"},
 /* 2F66 */ { "CLÉ CHINOISE PIÈCE D'ÉTOFFE","	= clé chinoise rouleau de tissu\n"
+	"	* clé 103 du Kangxi\n"
 	"	# 758B"},
-/* 2F67 */ { "CLÉ CHINOISE MALADIE","	# 7592"},
-/* 2F68 */ { "CLÉ CHINOISE MONTER","	* prend aussi des significations telles que « empreintes de pas », « divergence » ou « séparation »\n"
+/* 2F67 */ { "CLÉ CHINOISE MALADIE","	* clé 104 du Kangxi\n"
+	"	# 7592"},
+/* 2F68 */ { "CLÉ CHINOISE MONTER","	* clé 105 du Kangxi\n"
+	"	* prend aussi des significations telles que « empreintes de pas », « divergence » ou « séparation »\n"
 	"	# 7676"},
-/* 2F69 */ { "CLÉ CHINOISE BLANC","	# 767D"},
-/* 2F6A */ { "CLÉ CHINOISE PEAU","	# 76AE"},
-/* 2F6B */ { "CLÉ CHINOISE VAISSELLE","	# 76BF"},
-/* 2F6C */ { "CLÉ CHINOISE ŒIL","	# 76EE"},
-/* 2F6D */ { "CLÉ CHINOISE LANCE","	# 77DB"},
-/* 2F6E */ { "CLÉ CHINOISE FLÈCHE","	# 77E2"},
-/* 2F6F */ { "CLÉ CHINOISE PIERRE","	# 77F3"},
-/* 2F70 */ { "CLÉ CHINOISE ESPRIT","	* prend aussi le sens d'« ancêtre »\n"
+/* 2F69 */ { "CLÉ CHINOISE BLANC","	* clé 106 du Kangxi\n"
+	"	# 767D"},
+/* 2F6A */ { "CLÉ CHINOISE PEAU","	* clé 107 du Kangxi\n"
+	"	# 76AE"},
+/* 2F6B */ { "CLÉ CHINOISE VAISSELLE","	* clé 108 du Kangxi\n"
+	"	# 76BF"},
+/* 2F6C */ { "CLÉ CHINOISE ŒIL","	* clé 109 du Kangxi\n"
+	"	# 76EE"},
+/* 2F6D */ { "CLÉ CHINOISE LANCE","	* clé 110 du Kangxi\n"
+	"	# 77DB"},
+/* 2F6E */ { "CLÉ CHINOISE FLÈCHE","	* clé 111 du Kangxi\n"
+	"	# 77E2"},
+/* 2F6F */ { "CLÉ CHINOISE PIERRE","	* clé 112 du Kangxi\n"
+	"	# 77F3"},
+/* 2F70 */ { "CLÉ CHINOISE ESPRIT","	* clé 113 du Kangxi\n"
+	"	* prend aussi le sens d'« ancêtre »\n"
 	"	# 793A"},
-/* 2F71 */ { "CLÉ CHINOISE TRACES","	# 79B8"},
+/* 2F71 */ { "CLÉ CHINOISE TRACES","	* clé 114 du Kangxi\n"
+	"	# 79B8"},
 /* 2F72 */ { "CLÉ CHINOISE CÉRÉALES","	= clé chinoise grain\n"
+	"	* clé 115 du Kangxi\n"
 	"	# 79BE"},
 /* 2F73 */ { "CLÉ CHINOISE CAVERNE","	= clé chinoise grotte, cavité\n"
+	"	* clé 116 du Kangxi\n"
 	"	# 7A74"},
 /* 2F74 */ { "CLÉ CHINOISE DEBOUT","	= clé chinoise se tenir debout, se lever\n"
+	"	* clé 117 du Kangxi\n"
 	"	# 7ACB"},
-/* 2F75 */ { "CLÉ CHINOISE BAMBOU","	# 7AF9"},
-/* 2F76 */ { "CLÉ CHINOISE RIZ","	# 7C73"},
-/* 2F77 */ { "CLÉ CHINOISE SOIE","	# 7CF8"},
+/* 2F75 */ { "CLÉ CHINOISE BAMBOU","	* clé 118 du Kangxi\n"
+	"	# 7AF9"},
+/* 2F76 */ { "CLÉ CHINOISE RIZ","	* clé 119 du Kangxi\n"
+	"	# 7C73"},
+/* 2F77 */ { "CLÉ CHINOISE SOIE","	* clé 120 du Kangxi\n"
+	"	# 7CF8"},
 /* 2F78 */ { "CLÉ CHINOISE POTERIE","	= clé chinoise jarre, cruche\n"
+	"	* clé 121 du Kangxi\n"
 	"	# 7F36"},
-/* 2F79 */ { "CLÉ CHINOISE FILET","	# 7F51"},
-/* 2F7A */ { "CLÉ CHINOISE MOUTON","	# 7F8A"},
-/* 2F7B */ { "CLÉ CHINOISE PLUME","	# 7FBD"},
-/* 2F7C */ { "CLÉ CHINOISE VIEUX","	# 8001"},
-/* 2F7D */ { "CLÉ CHINOISE ET","	# 800C"},
+/* 2F79 */ { "CLÉ CHINOISE FILET","	* clé 122 du Kangxi\n"
+	"	# 7F51"},
+/* 2F7A */ { "CLÉ CHINOISE MOUTON","	* clé 123 du Kangxi\n"
+	"	# 7F8A"},
+/* 2F7B */ { "CLÉ CHINOISE PLUME","	* clé 124 du Kangxi\n"
+	"	# 7FBD"},
+/* 2F7C */ { "CLÉ CHINOISE VIEUX","	* clé 125 du Kangxi\n"
+	"	# 8001"},
+/* 2F7D */ { "CLÉ CHINOISE ET","	* clé 126 du Kangxi\n"
+	"	# 800C"},
 /* 2F7E */ { "CLÉ CHINOISE CHARRUE","	= clé chinoise herse\n"
+	"	* clé 127 du Kangxi\n"
 	"	# 8012"},
-/* 2F7F */ { "CLÉ CHINOISE OREILLE","	# 8033"},
-/* 2F80 */ { "CLÉ CHINOISE PINCEAU","	# 807F"},
-/* 2F81 */ { "CLÉ CHINOISE VIANDE","	# 8089"},
-/* 2F82 */ { "CLÉ CHINOISE MINISTRE","	# 81E3"},
-/* 2F83 */ { "CLÉ CHINOISE SOI","	# 81EA"},
-/* 2F84 */ { "CLÉ CHINOISE ARRIVER","	# 81F3"},
-/* 2F85 */ { "CLÉ CHINOISE MORTIER","	# 81FC"},
-/* 2F86 */ { "CLÉ CHINOISE LANGUE","	* désigne l'organe\n"
+/* 2F7F */ { "CLÉ CHINOISE OREILLE","	* clé 128 du Kangxi\n"
+	"	# 8033"},
+/* 2F80 */ { "CLÉ CHINOISE PINCEAU","	* clé 129 du Kangxi\n"
+	"	# 807F"},
+/* 2F81 */ { "CLÉ CHINOISE VIANDE","	* clé 130 du Kangxi\n"
+	"	# 8089"},
+/* 2F82 */ { "CLÉ CHINOISE MINISTRE","	* clé 131 du Kangxi\n"
+	"	# 81E3"},
+/* 2F83 */ { "CLÉ CHINOISE SOI","	* clé 132 du Kangxi\n"
+	"	# 81EA"},
+/* 2F84 */ { "CLÉ CHINOISE ARRIVER","	* clé 133 du Kangxi\n"
+	"	# 81F3"},
+/* 2F85 */ { "CLÉ CHINOISE MORTIER","	* clé 134 du Kangxi\n"
+	"	# 81FC"},
+/* 2F86 */ { "CLÉ CHINOISE LANGUE","	* clé 135 du Kangxi\n"
+	"	* désigne l'organe\n"
 	"	# 820C"},
-/* 2F87 */ { "CLÉ CHINOISE S'OPPOSER","	# 821B"},
-/* 2F88 */ { "CLÉ CHINOISE BATEAU","	# 821F"},
-/* 2F89 */ { "CLÉ CHINOISE S'ARRÊTER","	* désigne aussi l'immobilité\n"
+/* 2F87 */ { "CLÉ CHINOISE S'OPPOSER","	* clé 136 du Kangxi\n"
+	"	# 821B"},
+/* 2F88 */ { "CLÉ CHINOISE BATEAU","	* clé 137 du Kangxi\n"
+	"	# 821F"},
+/* 2F89 */ { "CLÉ CHINOISE S'ARRÊTER","	* clé 138 du Kangxi\n"
+	"	* désigne aussi l'immobilité\n"
 	"	# 826E"},
-/* 2F8A */ { "CLÉ CHINOISE COULEUR","	# 8272"},
-/* 2F8B */ { "CLÉ CHINOISE HERBE","	# 8278"},
-/* 2F8C */ { "CLÉ CHINOISE TIGRE","	# 864D"},
-/* 2F8D */ { "CLÉ CHINOISE INSECTE","	# 866B"},
-/* 2F8E */ { "CLÉ CHINOISE SANG","	# 8840"},
-/* 2F8F */ { "CLÉ CHINOISE DÉFILER","	* prend aussi des significations telles que « marcher », « voyager » ou « faire »\n"
+/* 2F8A */ { "CLÉ CHINOISE COULEUR","	* clé 139 du Kangxi\n"
+	"	# 8272"},
+/* 2F8B */ { "CLÉ CHINOISE HERBE","	* clé 140 du Kangxi\n"
+	"	# 8278"},
+/* 2F8C */ { "CLÉ CHINOISE TIGRE","	* clé 141 du Kangxi\n"
+	"	# 864D"},
+/* 2F8D */ { "CLÉ CHINOISE INSECTE","	* clé 142 du Kangxi\n"
+	"	# 866B"},
+/* 2F8E */ { "CLÉ CHINOISE SANG","	* clé 143 du Kangxi\n"
+	"	# 8840"},
+/* 2F8F */ { "CLÉ CHINOISE DÉFILER","	* clé 144 du Kangxi\n"
+	"	* prend aussi des significations telles que « marcher », « voyager » ou « faire »\n"
 	"	# 884C"},
-/* 2F90 */ { "CLÉ CHINOISE HABITS","	# 8863"},
-/* 2F91 */ { "CLÉ CHINOISE OUEST","	# 897E"},
-/* 2F92 */ { "CLÉ CHINOISE VOIR","	# 898B"},
-/* 2F93 */ { "CLÉ CHINOISE CORNE","	# 89D2"},
-/* 2F94 */ { "CLÉ CHINOISE PAROLE","	# 8A00"},
-/* 2F95 */ { "CLÉ CHINOISE VALLÉE","	# 8C37"},
-/* 2F96 */ { "CLÉ CHINOISE HARICOT","	# 8C46"},
-/* 2F97 */ { "CLÉ CHINOISE COCHON","	# 8C55"},
-/* 2F98 */ { "CLÉ CHINOISE ANIMAL À POILS","	# 8C78"},
-/* 2F99 */ { "CLÉ CHINOISE COQUILLAGE","	# 8C9D"},
-/* 2F9A */ { "CLÉ CHINOISE ROUGE","	# 8D64"},
-/* 2F9B */ { "CLÉ CHINOISE COURIR","	# 8D70"},
-/* 2F9C */ { "CLÉ CHINOISE PIED","	# 8DB3"},
-/* 2F9D */ { "CLÉ CHINOISE CORPS","	# 8EAB"},
-/* 2F9E */ { "CLÉ CHINOISE VÉHICULE","	# 8ECA"},
-/* 2F9F */ { "CLÉ CHINOISE ÂCRE","	# 8F9B"},
-/* 2FA0 */ { "CLÉ CHINOISE MATIN","	# 8FB0"},
-/* 2FA1 */ { "CLÉ CHINOISE MARCHE À PIED","	# 8FB5"},
-/* 2FA2 */ { "CLÉ CHINOISE VILLE","	# 9091"},
-/* 2FA3 */ { "CLÉ CHINOISE VIN","	* prend aussi le sens d'« alcool »\n"
+/* 2F90 */ { "CLÉ CHINOISE HABITS","	* clé 145 du Kangxi\n"
+	"	# 8863"},
+/* 2F91 */ { "CLÉ CHINOISE OUEST","	* clé 146 du Kangxi\n"
+	"	# 897E"},
+/* 2F92 */ { "CLÉ CHINOISE VOIR","	* clé 147 du Kangxi\n"
+	"	# 898B"},
+/* 2F93 */ { "CLÉ CHINOISE CORNE","	* clé 148 du Kangxi\n"
+	"	# 89D2"},
+/* 2F94 */ { "CLÉ CHINOISE PAROLE","	* clé 149 du Kangxi\n"
+	"	# 8A00"},
+/* 2F95 */ { "CLÉ CHINOISE VALLÉE","	* clé 150 du Kangxi\n"
+	"	# 8C37"},
+/* 2F96 */ { "CLÉ CHINOISE HARICOT","	* clé 151 du Kangxi\n"
+	"	# 8C46"},
+/* 2F97 */ { "CLÉ CHINOISE COCHON","	* clé 152 du Kangxi\n"
+	"	# 8C55"},
+/* 2F98 */ { "CLÉ CHINOISE ANIMAL À POILS","	* clé 153 du Kangxi\n"
+	"	# 8C78"},
+/* 2F99 */ { "CLÉ CHINOISE COQUILLAGE","	* clé 154 du Kangxi\n"
+	"	# 8C9D"},
+/* 2F9A */ { "CLÉ CHINOISE ROUGE","	* clé 155 du Kangxi\n"
+	"	# 8D64"},
+/* 2F9B */ { "CLÉ CHINOISE COURIR","	* clé 156 du Kangxi\n"
+	"	# 8D70"},
+/* 2F9C */ { "CLÉ CHINOISE PIED","	* clé 157 du Kangxi\n"
+	"	# 8DB3"},
+/* 2F9D */ { "CLÉ CHINOISE CORPS","	* clé 158 du Kangxi\n"
+	"	# 8EAB"},
+/* 2F9E */ { "CLÉ CHINOISE VÉHICULE","	* clé 159 du Kangxi\n"
+	"	# 8ECA"},
+/* 2F9F */ { "CLÉ CHINOISE ÂCRE","	* clé 160 du Kangxi\n"
+	"	# 8F9B"},
+/* 2FA0 */ { "CLÉ CHINOISE MATIN","	* clé 161 du Kangxi\n"
+	"	# 8FB0"},
+/* 2FA1 */ { "CLÉ CHINOISE MARCHE À PIED","	* clé 162 du Kangxi\n"
+	"	# 8FB5"},
+/* 2FA2 */ { "CLÉ CHINOISE VILLE","	* clé 163 du Kangxi\n"
+	"	# 9091"},
+/* 2FA3 */ { "CLÉ CHINOISE VIN","	* clé 164 du Kangxi\n"
+	"	* prend aussi le sens d'« alcool »\n"
 	"	# 9149"},
 /* 2FA4 */ { "CLÉ CHINOISE DISTINGUER","	= clé chinoise choisir\n"
+	"	* clé 165 du Kangxi\n"
 	"	# 91C6"},
-/* 2FA5 */ { "CLÉ CHINOISE HAMEAU","	* désigne aussi le li (unité de mesure chinoise)\n"
+/* 2FA5 */ { "CLÉ CHINOISE HAMEAU","	* clé 166 du Kangxi\n"
+	"	* désigne aussi le li (unité de mesure chinoise)\n"
 	"	# 91CC"},
-/* 2FA6 */ { "CLÉ CHINOISE OR","	# 91D1"},
-/* 2FA7 */ { "CLÉ CHINOISE LONG","	# 9577"},
-/* 2FA8 */ { "CLÉ CHINOISE PORTAIL","	# 9580"},
-/* 2FA9 */ { "CLÉ CHINOISE TERTRE","	* prend aussi le sens de « barrage »\n"
+/* 2FA6 */ { "CLÉ CHINOISE OR","	* clé 167 du Kangxi\n"
+	"	# 91D1"},
+/* 2FA7 */ { "CLÉ CHINOISE LONG","	* clé 168 du Kangxi\n"
+	"	# 9577"},
+/* 2FA8 */ { "CLÉ CHINOISE PORTAIL","	* clé 169 du Kangxi\n"
+	"	# 9580"},
+/* 2FA9 */ { "CLÉ CHINOISE TERTRE","	* clé 170 du Kangxi\n"
+	"	* prend aussi le sens de « barrage »\n"
 	"	# 961C"},
-/* 2FAA */ { "CLÉ CHINOISE ESCLAVE","	# 96B6"},
-/* 2FAB */ { "CLÉ CHINOISE OISEAU À QUEUE COURTE","	# 96B9"},
-/* 2FAC */ { "CLÉ CHINOISE PLUIE","	# 96E8"},
-/* 2FAD */ { "CLÉ CHINOISE BLEU","	# 9751"},
-/* 2FAE */ { "CLÉ CHINOISE TORT","	# 975E"},
-/* 2FAF */ { "CLÉ CHINOISE VISAGE","	# 9762"},
-/* 2FB0 */ { "CLÉ CHINOISE CUIR","	# 9769"},
-/* 2FB1 */ { "CLÉ CHINOISE CUIR TANNÉ","	# 97CB"},
-/* 2FB2 */ { "CLÉ CHINOISE CIBOULETTE","	# 97ED"},
-/* 2FB3 */ { "CLÉ CHINOISE SON","	# 97F3"},
-/* 2FB4 */ { "CLÉ CHINOISE FEUILLE","	# 9801"},
-/* 2FB5 */ { "CLÉ CHINOISE VENT","	# 98A8"},
-/* 2FB6 */ { "CLÉ CHINOISE S'ENVOLER","	# 98DB"},
-/* 2FB7 */ { "CLÉ CHINOISE MANGER","	# 98DF"},
-/* 2FB8 */ { "CLÉ CHINOISE TÊTE","	# 9996"},
-/* 2FB9 */ { "CLÉ CHINOISE PARFUM","	# 9999"},
-/* 2FBA */ { "CLÉ CHINOISE CHEVAL","	# 99AC"},
-/* 2FBB */ { "CLÉ CHINOISE OS","	# 9AA8"},
-/* 2FBC */ { "CLÉ CHINOISE HAUT","	# 9AD8"},
-/* 2FBD */ { "CLÉ CHINOISE CHEVELURE","	# 9ADF"},
-/* 2FBE */ { "CLÉ CHINOISE LUTTE","	# 9B25"},
-/* 2FBF */ { "CLÉ CHINOISE VIN SACRIFICIEL","	# 9B2F"},
-/* 2FC0 */ { "CLÉ CHINOISE CHAUDRON","	# 9B32"},
-/* 2FC1 */ { "CLÉ CHINOISE DÉMON","	# 9B3C"},
-/* 2FC2 */ { "CLÉ CHINOISE POISSON","	# 9B5A"},
-/* 2FC3 */ { "CLÉ CHINOISE OISEAU","	# 9CE5"},
-/* 2FC4 */ { "CLÉ CHINOISE SEL","	# 9E75"},
-/* 2FC5 */ { "CLÉ CHINOISE CERF","	# 9E7F"},
-/* 2FC6 */ { "CLÉ CHINOISE BLÉ","	# 9EA5"},
-/* 2FC7 */ { "CLÉ CHINOISE CHANVRE","	# 9EBB"},
-/* 2FC8 */ { "CLÉ CHINOISE JAUNE","	# 9EC3"},
-/* 2FC9 */ { "CLÉ CHINOISE MILLET","	# 9ECD"},
-/* 2FCA */ { "CLÉ CHINOISE NOIR","	# 9ED1"},
-/* 2FCB */ { "CLÉ CHINOISE BRODERIE","	# 9EF9"},
-/* 2FCC */ { "CLÉ CHINOISE GRENOUILLE","	# 9EFD"},
-/* 2FCD */ { "CLÉ CHINOISE TRIPODE","	# 9F0E"},
-/* 2FCE */ { "CLÉ CHINOISE TAMBOUR","	# 9F13"},
-/* 2FCF */ { "CLÉ CHINOISE RAT","	# 9F20"},
-/* 2FD0 */ { "CLÉ CHINOISE NEZ","	# 9F3B"},
+/* 2FAA */ { "CLÉ CHINOISE ESCLAVE","	* clé 171 du Kangxi\n"
+	"	# 96B6"},
+/* 2FAB */ { "CLÉ CHINOISE OISEAU À QUEUE COURTE","	* clé 172 du Kangxi\n"
+	"	# 96B9"},
+/* 2FAC */ { "CLÉ CHINOISE PLUIE","	* clé 173 du Kangxi\n"
+	"	# 96E8"},
+/* 2FAD */ { "CLÉ CHINOISE BLEU","	* clé 174 du Kangxi\n"
+	"	# 9751"},
+/* 2FAE */ { "CLÉ CHINOISE TORT","	* clé 175 du Kangxi\n"
+	"	# 975E"},
+/* 2FAF */ { "CLÉ CHINOISE VISAGE","	* clé 176 du Kangxi\n"
+	"	# 9762"},
+/* 2FB0 */ { "CLÉ CHINOISE CUIR","	* clé 177 du Kangxi\n"
+	"	# 9769"},
+/* 2FB1 */ { "CLÉ CHINOISE CUIR TANNÉ","	* clé 178 du Kangxi\n"
+	"	# 97CB"},
+/* 2FB2 */ { "CLÉ CHINOISE CIBOULETTE","	* clé 179 du Kangxi\n"
+	"	# 97ED"},
+/* 2FB3 */ { "CLÉ CHINOISE SON","	* clé 180 du Kangxi\n"
+	"	# 97F3"},
+/* 2FB4 */ { "CLÉ CHINOISE FEUILLE","	* clé 181 du Kangxi\n"
+	"	# 9801"},
+/* 2FB5 */ { "CLÉ CHINOISE VENT","	* clé 182 du Kangxi\n"
+	"	# 98A8"},
+/* 2FB6 */ { "CLÉ CHINOISE S'ENVOLER","	* clé 183 du Kangxi\n"
+	"	# 98DB"},
+/* 2FB7 */ { "CLÉ CHINOISE MANGER","	* clé 184 du Kangxi\n"
+	"	# 98DF"},
+/* 2FB8 */ { "CLÉ CHINOISE TÊTE","	* clé 185 du Kangxi\n"
+	"	# 9996"},
+/* 2FB9 */ { "CLÉ CHINOISE PARFUM","	* clé 186 du Kangxi\n"
+	"	# 9999"},
+/* 2FBA */ { "CLÉ CHINOISE CHEVAL","	* clé 187 du Kangxi\n"
+	"	# 99AC"},
+/* 2FBB */ { "CLÉ CHINOISE OS","	* clé 188 du Kangxi\n"
+	"	# 9AA8"},
+/* 2FBC */ { "CLÉ CHINOISE HAUT","	* clé 189 du Kangxi\n"
+	"	# 9AD8"},
+/* 2FBD */ { "CLÉ CHINOISE CHEVELURE","	* clé 190 du Kangxi\n"
+	"	# 9ADF"},
+/* 2FBE */ { "CLÉ CHINOISE LUTTE","	* clé 191 du Kangxi\n"
+	"	# 9B25"},
+/* 2FBF */ { "CLÉ CHINOISE VIN SACRIFICIEL","	* clé 192 du Kangxi\n"
+	"	# 9B2F"},
+/* 2FC0 */ { "CLÉ CHINOISE CHAUDRON","	* clé 193 du Kangxi\n"
+	"	# 9B32"},
+/* 2FC1 */ { "CLÉ CHINOISE DÉMON","	* clé 194 du Kangxi\n"
+	"	# 9B3C"},
+/* 2FC2 */ { "CLÉ CHINOISE POISSON","	* clé 195 du Kangxi\n"
+	"	# 9B5A"},
+/* 2FC3 */ { "CLÉ CHINOISE OISEAU","	* clé 196 du Kangxi\n"
+	"	# 9CE5"},
+/* 2FC4 */ { "CLÉ CHINOISE SEL","	* clé 197 du Kangxi\n"
+	"	# 9E75"},
+/* 2FC5 */ { "CLÉ CHINOISE CERF","	* clé 198 du Kangxi\n"
+	"	# 9E7F"},
+/* 2FC6 */ { "CLÉ CHINOISE BLÉ","	* clé 199 du Kangxi\n"
+	"	# 9EA5"},
+/* 2FC7 */ { "CLÉ CHINOISE CHANVRE","	* clé 200 du Kangxi\n"
+	"	# 9EBB"},
+/* 2FC8 */ { "CLÉ CHINOISE JAUNE","	* clé 201 du Kangxi\n"
+	"	# 9EC3"},
+/* 2FC9 */ { "CLÉ CHINOISE MILLET","	* clé 202 du Kangxi\n"
+	"	# 9ECD"},
+/* 2FCA */ { "CLÉ CHINOISE NOIR","	* clé 203 du Kangxi\n"
+	"	# 9ED1"},
+/* 2FCB */ { "CLÉ CHINOISE BRODERIE","	* clé 204 du Kangxi\n"
+	"	# 9EF9"},
+/* 2FCC */ { "CLÉ CHINOISE GRENOUILLE","	* clé 205 du Kangxi\n"
+	"	# 9EFD"},
+/* 2FCD */ { "CLÉ CHINOISE TRIPODE","	* clé 206 du Kangxi\n"
+	"	# 9F0E"},
+/* 2FCE */ { "CLÉ CHINOISE TAMBOUR","	* clé 207 du Kangxi\n"
+	"	# 9F13"},
+/* 2FCF */ { "CLÉ CHINOISE RAT","	* clé 208 du Kangxi\n"
+	"	# 9F20"},
+/* 2FD0 */ { "CLÉ CHINOISE NEZ","	* clé 209 du Kangxi\n"
+	"	# 9F3B"},
 /* 2FD1 */ { "CLÉ CHINOISE RÉGULIER","	= clé chinoise uniforme, homogène\n"
+	"	* clé 210 du Kangxi\n"
 	"	# 9F4A"},
-/* 2FD2 */ { "CLÉ CHINOISE DENT","	# 9F52"},
-/* 2FD3 */ { "CLÉ CHINOISE DRAGON","	# 9F8D"},
-/* 2FD4 */ { "CLÉ CHINOISE TORTUE","	# 9F9C"},
-/* 2FD5 */ { "CLÉ CHINOISE FLÛTE","	# 9FA0"},
+/* 2FD2 */ { "CLÉ CHINOISE DENT","	* clé 211 du Kangxi\n"
+	"	# 9F52"},
+/* 2FD3 */ { "CLÉ CHINOISE DRAGON","	* clé 212 du Kangxi\n"
+	"	# 9F8D"},
+/* 2FD4 */ { "CLÉ CHINOISE TORTUE","	* clé 213 du Kangxi\n"
+	"	# 9F9C"},
+/* 2FD5 */ { "CLÉ CHINOISE FLÛTE","	* clé 214 du Kangxi\n"
+	"	# 9FA0"},
 /* 2FD6 */ { NULL,NULL},
 /* 2FD7 */ { NULL,NULL},
 /* 2FD8 */ { NULL,NULL},
@@ -15978,22 +16502,22 @@ static const struct unicode_nameannot unaFR_00_2F[] = {
 /* 2FED */ { NULL,NULL},
 /* 2FEE */ { NULL,NULL},
 /* 2FEF */ { NULL,NULL},
-/* 2FF0 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE GAUCHE À DROITE",NULL},
+/* 2FF0 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DE GAUCHE À DROITE",NULL},
 /* 2FF1 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DE HAUT EN BAS",NULL},
-/* 2FF2 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DE LA GAUCHE AU MILIEU PUIS À LA DROITE",NULL},
-/* 2FF3 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DU HAUT AU MILIEU PUIS EN BAS",NULL},
-/* 2FF4 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE TOUT AUTOUR",NULL},
-/* 2FF5 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR DU HAUT",NULL},
-/* 2FF6 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR DU BAS",NULL},
-/* 2FF7 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR DE LA GAUCHE",NULL},
-/* 2FF8 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR D'EN HAUT À GAUCHE",NULL},
-/* 2FF9 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR D'EN HAUT À DROITE",NULL},
-/* 2FFA */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE AUTOUR À PARTIR D'EN BAS À GAUCHE",NULL},
-/* 2FFB */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE CHEVAUCHEMENT",NULL},
-/* 2FFC */ { NULL,NULL},
-/* 2FFD */ { NULL,NULL},
-/* 2FFE */ { NULL,NULL},
-/* 2FFF */ { NULL,NULL}
+/* 2FF2 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DE GAUCHE AU MILIEU ET À DROITE",NULL},
+/* 2FF3 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE DU HAUT AU MILIEU ET EN BAS",NULL},
+/* 2FF4 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER INTÉGRALEMENT",NULL},
+/* 2FF5 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE HAUT",NULL},
+/* 2FF6 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE BAS",NULL},
+/* 2FF7 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LA GAUCHE",NULL},
+/* 2FF8 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE COIN SUPÉRIEUR GAUCHE",NULL},
+/* 2FF9 */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE COIN SUPÉRIEUR DROIT",NULL},
+/* 2FFA */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE COIN INFÉRIEUR GAUCHE",NULL},
+/* 2FFB */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE SUPERPOSÉ",NULL},
+/* 2FFC */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LA DROITE",NULL},
+/* 2FFD */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ENTOURER PAR LE COIN INFÉRIEUR DROIT",NULL},
+/* 2FFE */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE RÉFLEXION HORIZONTALE",NULL},
+/* 2FFF */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE ROTATION",NULL}
 };
 
 UN_DLL_LOCAL
@@ -16567,7 +17091,7 @@ static const struct unicode_nameannot unaFR_00_31[] = {
 /* 31EC */ { NULL,NULL},
 /* 31ED */ { NULL,NULL},
 /* 31EE */ { NULL,NULL},
-/* 31EF */ { NULL,NULL},
+/* 31EF */ { "CARACTÈRE DE DESCRIPTION IDÉOGRAPHIQUE SOUSTRACTION","	* utilisé pour décrire un caractère dont un trait a été supprimé"},
 /* 31F0 */ { "CARACTÈRE KATAKANA PETIT KU",NULL},
 /* 31F1 */ { "CARACTÈRE KATAKANA PETIT SI",NULL},
 /* 31F2 */ { "CARACTÈRE KATAKANA PETIT SU",NULL},
@@ -17512,7 +18036,7 @@ static const struct unicode_nameannot unaFR_00_A0[] = {
 /* A012 */ { "SYLLABE YI OP",NULL},
 /* A013 */ { "SYLLABE YI EX",NULL},
 /* A014 */ { "SYLLABE YI E",NULL},
-/* A015 */ { "MARQUE D'ITÉRATION SYLLABIQUE YI",NULL},
+/* A015 */ { "MARQUE D'ITÉRATION SYLLABIQUE YI","	* l'appellation en anglais de ce caractère est erronée"},
 /* A016 */ { "SYLLABE YI BIT",NULL},
 /* A017 */ { "SYLLABE YI BIX",NULL},
 /* A018 */ { "SYLLABE YI BI",NULL},
@@ -19357,22 +19881,36 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A71F */ { "LETTRE MODIFICATIVE POINT D'EXCLAMATION RENVERSÉ BAS",NULL},
 /* A720 */ { "LETTRE MODIFICATIVE ACCENT D'INTENSITÉ ET TON HAUT",NULL},
 /* A721 */ { "LETTRE MODIFICATIVE ACCENT D'INTENSITÉ ET TON BAS",NULL},
-/* A722 */ { "LETTRE MAJUSCULE LATINE ÉGYPTOLOGIQUE ALEF",NULL},
-/* A723 */ { "LETTRE MINUSCULE LATINE ÉGYPTOLOGIQUE ALEF",NULL},
-/* A724 */ { "LETTRE MAJUSCULE LATINE ÉGYPTOLOGIQUE 'AÏN",NULL},
-/* A725 */ { "LETTRE MINUSCULE LATINE ÉGYPTOLOGIQUE 'AÏN","	x (lettre latine 'aïn - 1D25)\n"
+/* A722 */ { "LETTRE MAJUSCULE LATINE ALEF ÉGYPTOLOGIQUE",NULL},
+/* A723 */ { "LETTRE MINUSCULE LATINE ALEF ÉGYPTOLOGIQUE","	x (lettre hébraïque alef - 05D0)\n"
+	"	x (lettre arabe alif hamza en chef - 0623)"},
+/* A724 */ { "LETTRE MAJUSCULE LATINE 'AÏN ÉGYPTOLOGIQUE",NULL},
+/* A725 */ { "LETTRE MINUSCULE LATINE 'AÏN ÉGYPTOLOGIQUE","	x (lettre modificative demi-rond gauche - 02BF)\n"
+	"	x (lettre hébraïque 'aïn - 05E2)\n"
+	"	x (lettre arabe 'aïn - 0639)\n"
+	"	x (lettre latine 'aïn - 1D25)\n"
 	"	x (lettre modificative minuscule 'aïn - 1D5C)\n"
 	"	x (lettre minuscule latine i glottal - A7BD)"},
-/* A726 */ { "LETTRE MAJUSCULE LATINE HENG",NULL},
-/* A727 */ { "LETTRE MINUSCULE LATINE HENG",NULL},
+/* A726 */ { "LETTRE MAJUSCULE LATINE HENG","	x (lettre majuscule cyrillique enne hameçon - 04C7)\n"
+	"	x (lettre majuscule latine h crampon - 2C67)"},
+/* A727 */ { "LETTRE MINUSCULE LATINE HENG","	* fricative uvulaire, voir 0281\n"
+	"	* également utilisée en linguistique bantoue pour la fricative latérale alvéolaire sonore, voir 026E\n"
+	"	x (lettre minuscule latine heng crosse - 0267)\n"
+	"	x (lettre minuscule latine h hameçon palatal - A795)\n"
+	"	x (lettre modificative minuscule heng - AB5C)"},
 /* A728 */ { "LETTRE MAJUSCULE LATINE TZ",NULL},
-/* A729 */ { "LETTRE MINUSCULE LATINE TZ",NULL},
+/* A729 */ { "LETTRE MINUSCULE LATINE TZ","	= digramme tezh\n"
+	"	* affriquée palato-alvéolaire [ts]\n"
+	"	x (lettre minuscule latine digramme ts - 02A6)\n"
+	"	x (lettre minuscule latine digramme tech - 02A7)"},
 /* A72A */ { "LETTRE MAJUSCULE LATINE TRESILLO",NULL},
-/* A72B */ { "LETTRE MINUSCULE LATINE TRESILLO","	x (chiffre trois culbuté - 218B)"},
+/* A72B */ { "LETTRE MINUSCULE LATINE TRESILLO","	* occlusive éjective uvulaire [qʼ]\n"
+	"	x (chiffre trois culbuté - 218B)"},
 /* A72C */ { "LETTRE MAJUSCULE LATINE CUATRILLO",NULL},
-/* A72D */ { "LETTRE MINUSCULE LATINE CUATRILLO",NULL},
+/* A72D */ { "LETTRE MINUSCULE LATINE CUATRILLO","	* occlusive éjective vélaire [kʼ]\n"
+	"	x (chiffre quatre - 0034)"},
 /* A72E */ { "LETTRE MAJUSCULE LATINE CUATRILLO À VIRGULE",NULL},
-/* A72F */ { "LETTRE MINUSCULE LATINE CUATRILLO À VIRGULE",NULL},
+/* A72F */ { "LETTRE MINUSCULE LATINE CUATRILLO À VIRGULE","	* affriquée éjective alvéolaire [tsʼ]"},
 /* A730 */ { "LETTRE LATINE PETITE CAPITALE F",NULL},
 /* A731 */ { "LETTRE LATINE PETITE CAPITALE S",NULL},
 /* A732 */ { "LETTRE MAJUSCULE LATINE AA","	x (lettre modificative petite capitale aa - 10780)"},
@@ -19387,8 +19925,8 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A73B */ { "LETTRE MINUSCULE LATINE AV À BARRE HORIZONTALE",NULL},
 /* A73C */ { "LETTRE MAJUSCULE LATINE AY",NULL},
 /* A73D */ { "LETTRE MINUSCULE LATINE AY",NULL},
-/* A73E */ { "LETTRE MAJUSCULE LATINE C RÉFLÉCHI POINTÉ",NULL},
-/* A73F */ { "LETTRE MINUSCULE LATINE C RÉFLÉCHI POINTÉ",NULL},
+/* A73E */ { "LETTRE MAJUSCULE LATINE C RÉFLÉCHI POINTÉ","	x (symbole grec sigma lunaire majuscule pointé réfléchi - 03FF)"},
+/* A73F */ { "LETTRE MINUSCULE LATINE C RÉFLÉCHI POINTÉ","	x (symbole grec sigma lunaire minuscule pointé réfléchi - 037D)"},
 /* A740 */ { "LETTRE MAJUSCULE LATINE K À TRAIT HORIZONTAL",NULL},
 /* A741 */ { "LETTRE MINUSCULE LATINE K À TRAIT HORIZONTAL",NULL},
 /* A742 */ { "LETTRE MAJUSCULE LATINE K BARRÉ",NULL},
@@ -19397,16 +19935,18 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A745 */ { "LETTRE MINUSCULE LATINE K BARRÉ À TRAIT HORIZONTAL",NULL},
 /* A746 */ { "LETTRE MAJUSCULE LATINE L BRISÉ",NULL},
 /* A747 */ { "LETTRE MINUSCULE LATINE L BRISÉ",NULL},
-/* A748 */ { "LETTRE MAJUSCULE LATINE L À TRAIT ÉLEVÉ",NULL},
-/* A749 */ { "LETTRE MINUSCULE LATINE L À TRAIT ÉLEVÉ",NULL},
-/* A74A */ { "LETTRE MAJUSCULE LATINE O À LONG TRAIT COUVRANT",NULL},
-/* A74B */ { "LETTRE MINUSCULE LATINE O À LONG TRAIT COUVRANT",NULL},
+/* A748 */ { "LETTRE MAJUSCULE LATINE L À TRAIT ÉLEVÉ","	x (lettre majuscule latine l rayé - 023D)"},
+/* A749 */ { "LETTRE MINUSCULE LATINE L À TRAIT ÉLEVÉ","	x (lettre minuscule latine l rayé - 019A)"},
+/* A74A */ { "LETTRE MAJUSCULE LATINE O À LONG TRAIT COUVRANT","	x (lettre majuscule latine o tilde médian - 019F)"},
+/* A74B */ { "LETTRE MINUSCULE LATINE O À LONG TRAIT COUVRANT","	x (lettre minuscule latine o barré obliquement - 00F8)\n"
+	"	x (lettre minuscule latine o barré - 0275)"},
 /* A74C */ { "LETTRE MAJUSCULE LATINE O BOUCLÉ",NULL},
 /* A74D */ { "LETTRE MINUSCULE LATINE O BOUCLÉ",NULL},
 /* A74E */ { "LETTRE MAJUSCULE LATINE OO",NULL},
-/* A74F */ { "LETTRE MINUSCULE LATINE OO",NULL},
-/* A750 */ { "LETTRE MAJUSCULE LATINE P À JAMBAGE BARRÉ",NULL},
-/* A751 */ { "LETTRE MINUSCULE LATINE P À JAMBAGE BARRÉ",NULL},
+/* A74F */ { "LETTRE MINUSCULE LATINE OO","	x (lettre minuscule cyrillique double o - A699)"},
+/* A750 */ { "LETTRE MAJUSCULE LATINE P À JAMBAGE BARRÉ","	x (symbole rouble - 20BD)"},
+/* A751 */ { "LETTRE MINUSCULE LATINE P À JAMBAGE BARRÉ","	x (symbole grec rhô barré - 03FC)\n"
+	"	x (lettre minuscule latine p tilde médian - 1D71)"},
 /* A752 */ { "LETTRE MAJUSCULE LATINE P À FIORITURE",NULL},
 /* A753 */ { "LETTRE MINUSCULE LATINE P À FIORITURE",NULL},
 /* A754 */ { "LETTRE MAJUSCULE LATINE P À QUEUE D'ÉCUREUIL",NULL},
@@ -19424,7 +19964,7 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A760 */ { "LETTRE MAJUSCULE LATINE VY",NULL},
 /* A761 */ { "LETTRE MINUSCULE LATINE VY",NULL},
 /* A762 */ { "LETTRE MAJUSCULE LATINE Z VISIGOTHIQUE",NULL},
-/* A763 */ { "LETTRE MINUSCULE LATINE Z VISIGOTHIQUE",NULL},
+/* A763 */ { "LETTRE MINUSCULE LATINE Z VISIGOTHIQUE","	x (lettre minuscule latine c cédille - 00E7)"},
 /* A764 */ { "LETTRE MAJUSCULE LATINE THORN À TRAIT",NULL},
 /* A765 */ { "LETTRE MINUSCULE LATINE THORN À TRAIT","	* vieil anglais, norrois\n"
 	"	* le glyphe représentatif est privilégié dans des textes en vieil anglais\n"
@@ -19433,13 +19973,14 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A767 */ { "LETTRE MINUSCULE LATINE THORN À DESCENDANTE BARRÉE",NULL},
 /* A768 */ { "LETTRE MAJUSCULE LATINE VEND",NULL},
 /* A769 */ { "LETTRE MINUSCULE LATINE VEND",NULL},
-/* A76A */ { "LETTRE MAJUSCULE LATINE ET",NULL},
-/* A76B */ { "LETTRE MINUSCULE LATINE ET",NULL},
+/* A76A */ { "LETTRE MAJUSCULE LATINE ET","	x (lettre majuscule latine e ouvert réfléchi - A7AB)"},
+/* A76B */ { "LETTRE MINUSCULE LATINE ET","	x (lettre minuscule latine yogh - 021D)"},
 /* A76C */ { "LETTRE MAJUSCULE LATINE IS",NULL},
 /* A76D */ { "LETTRE MINUSCULE LATINE IS",NULL},
-/* A76E */ { "LETTRE MAJUSCULE LATINE CON",NULL},
+/* A76E */ { "LETTRE MAJUSCULE LATINE CON","	x (chiffre neuf - 0039)"},
 /* A76F */ { "LETTRE MINUSCULE LATINE CON",NULL},
-/* A770 */ { "LETTRE MODIFICATIVE US","	# <exp> A76F"},
+/* A770 */ { "LETTRE MODIFICATIVE US","	x (exposant neuf - 2079)\n"
+	"	# <exp> A76F"},
 /* A771 */ { "LETTRE MINUSCULE LATINE DUM",NULL},
 /* A772 */ { "LETTRE MINUSCULE LATINE LUM",NULL},
 /* A773 */ { "LETTRE MINUSCULE LATINE MUM",NULL},
@@ -19449,28 +19990,39 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A777 */ { "LETTRE MINUSCULE LATINE TUM",NULL},
 /* A778 */ { "LETTRE MINUSCULE LATINE UM",NULL},
 /* A779 */ { "LETTRE MAJUSCULE LATINE D INSULAIRE",NULL},
-/* A77A */ { "LETTRE MINUSCULE LATINE D INSULAIRE",NULL},
+/* A77A */ { "LETTRE MINUSCULE LATINE D INSULAIRE","	* fricative dentale [ð]\n"
+	"	x (lettre minuscule latine ed - 00F0)\n"
+	"	x (lettre minuscule latine delta - 1E9F)"},
 /* A77B */ { "LETTRE MAJUSCULE LATINE F INSULAIRE",NULL},
 /* A77C */ { "LETTRE MINUSCULE LATINE F INSULAIRE",NULL},
-/* A77D */ { "LETTRE MAJUSCULE LATINE G INSULAIRE","	* la minuscule est 1D79"},
+/* A77D */ { "LETTRE MAJUSCULE LATINE G INSULAIRE","	* la minuscule est 1D79\n"
+	"	x (lettre majuscule latine g insulaire fermé - A7D0)"},
 /* A77E */ { "LETTRE MAJUSCULE LATINE G INSULAIRE CULBUTÉ",NULL},
-/* A77F */ { "LETTRE MINUSCULE LATINE G INSULAIRE CULBUTÉ",NULL},
+/* A77F */ { "LETTRE MINUSCULE LATINE G INSULAIRE CULBUTÉ","	* nasale vélaire [ŋ]\n"
+	"	x (lettre minuscule latine g culbuté - 1D77)"},
 /* A780 */ { "LETTRE MAJUSCULE LATINE L CULBUTÉ",NULL},
-/* A781 */ { "LETTRE MINUSCULE LATINE L CULBUTÉ",NULL},
+/* A781 */ { "LETTRE MINUSCULE LATINE L CULBUTÉ","	* fricative latérale alvéolaire sourde [ɬ]"},
 /* A782 */ { "LETTRE MAJUSCULE LATINE R INSULAIRE",NULL},
-/* A783 */ { "LETTRE MINUSCULE LATINE R INSULAIRE",NULL},
+/* A783 */ { "LETTRE MINUSCULE LATINE R INSULAIRE","	x (lettre minuscule latine r à long fût - 027C)"},
 /* A784 */ { "LETTRE MAJUSCULE LATINE S INSULAIRE",NULL},
-/* A785 */ { "LETTRE MINUSCULE LATINE S INSULAIRE",NULL},
+/* A785 */ { "LETTRE MINUSCULE LATINE S INSULAIRE","	x (lettre minuscule latine s long - 017F)"},
 /* A786 */ { "LETTRE MAJUSCULE LATINE T INSULAIRE",NULL},
-/* A787 */ { "LETTRE MINUSCULE LATINE T INSULAIRE",NULL},
-/* A788 */ { "LETTRE MODIFICATIVE ACCENT CIRCONFLEXE BAS","	x (lettre modificative accent circonflexe - 02C6)\n"
+/* A787 */ { "LETTRE MINUSCULE LATINE T INSULAIRE","	* fricative dentale sourde [θ]"},
+/* A788 */ { "LETTRE MODIFICATIVE ACCENT CIRCONFLEXE BAS","	* utilisée comme une lettre de ton pour le lahu et l'akha\n"
+	"	x (lettre modificative accent circonflexe - 02C6)\n"
+	"	x (lettre modificative pointe de flèche vers le haut basse - 02F0)\n"
 	"	x (chevron d'insertion - 2038)"},
 /* A789 */ { "LETTRE MODIFICATIVE DEUX-POINTS","	* s'utilise comme une lettre de ton dans certaines écritures\n"
-	"	* budu (RDC), sabaot (Kenya) et plusieurs langues de Papouasie-Nouvelle-Guinée\n"
-	"	x (deux-points - 003A)"},
-/* A78A */ { "LETTRE MODIFICATIVE SIGNE ÉGAL COURT","	* s'utilise comme une lettre de ton dans certaines écritures\n"
-	"	* budu (RDC)\n"
-	"	x (signe égal - 003D)"},
+	"	* budu (Congo), sabaot (Kenya), grebo (Liberia) et plusieurs langues de Papouasie-Nouvelle-Guinée\n"
+	"	x (deux-points - 003A)\n"
+	"	x (lettre modificative deux points triangulaires - 02D0)\n"
+	"	x (lettre modificative deux-points élevé - 02F8)\n"
+	"	x (lettre lissou ton mya djeu - A4FD)"},
+/* A78A */ { "LETTRE MODIFICATIVE SIGNE ÉGAL COURT","	* utilisée comme une lettre de ton pour le budu\n"
+	"	x (signe égal - 003D)\n"
+	"	x (lettre modificative non aspirée - 02ED)\n"
+	"	x (trait d'union double - 2E40)\n"
+	"	x (signe égal minuscule - FE66)"},
 /* A78B */ { "LETTRE MAJUSCULE LATINE SALTILLO","	* tlapanèque ou me'phaa (Mexique)"},
 /* A78C */ { "LETTRE MINUSCULE LATINE SALTILLO","	* ces deux lettres sont utilisés dans quelques langues pour l'écriture du coup de glotte\n"
 	"	* la forme minuscule est largement utilisée dans de nombreuses langues du Mexique et dans d'autres régions\n"
@@ -19480,22 +20032,34 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 	"	x (lettre modificative apostrophe - 02BC)\n"
 	"	x (lettre modificative coup de glotte - 02C0)"},
 /* A78D */ { "LETTRE MAJUSCULE LATINE H CULBUTÉ","	* s'utilise dans l'écriture du dan (ou gio, ou yacouba) au Liberia\n"
-	"	* la minuscule est 0265"},
+	"	* également utilisée historiquement dans les orthographes latines pour l'abaza et l'abkhaze\n"
+	"	* la minuscule est 0265\n"
+	"	x (lettre majuscule cyrillique tché - 0427)"},
 /* A78E */ { "LETTRE MINUSCULE LATINE L SANGLÉ HAMEÇON RÉTROFLEXE","	* consonne fricative latérale rétroflexe sourde\n"
-	"	* s'utilise pour la transcription du toda"},
+	"	* s'utilise pour la transcription du toda\n"
+	"	x (lettre minuscule latine l sanglé - 026C)"},
 /* A78F */ { "LETTRE LATINE POINT SINOLOGIQUE","	* s'utilise dans la translittération du phags-pa et dans la transcription phonétique du tangoute\n"
-	"	x (point médian - 00B7)"},
+	"	x (point médian - 00B7)\n"
+	"	x (puce - 2022)"},
 /* A790 */ { "LETTRE MAJUSCULE LATINE N CRAMPON",NULL},
-/* A791 */ { "LETTRE MINUSCULE LATINE N CRAMPON","	* yanalif"},
-/* A792 */ { "LETTRE MAJUSCULE LATINE C RAYÉ","	= symbole cambrien"},
-/* A793 */ { "LETTRE MINUSCULE LATINE C RAYÉ","	* nanaï"},
+/* A791 */ { "LETTRE MINUSCULE LATINE N CRAMPON","	* nasale vélaire [ŋ]\n"
+	"	* yanalif\n"
+	"	x (lettre minuscule latine eng - 014B)\n"
+	"	x (lettre minuscule latine n à long fût à droite - 019E)\n"
+	"	x (lettre minuscule cyrillique enne crampon - 04A3)"},
+/* A792 */ { "LETTRE MAJUSCULE LATINE C RAYÉ","	= symbole cambrien\n"
+	"	x (symbole euro - 20AC)"},
+/* A793 */ { "LETTRE MINUSCULE LATINE C RAYÉ","	* affriquée palato-alvéolaire sourde [tʃ]\n"
+	"	* nanaï, etc.\n"
+	"	x (lettre minuscule cyrillique ié ukrainien - 0454)"},
 /* A794 */ { "LETTRE MINUSCULE LATINE C HAMEÇON PALATAL","	* la majuscule est A7C4"},
 /* A795 */ { "LETTRE MINUSCULE LATINE H HAMEÇON PALATAL","	x (lettre minuscule latine heng - A727)"},
 /* A796 */ { "LETTRE MAJUSCULE LATINE B À FIORITURE",NULL},
 /* A797 */ { "LETTRE MINUSCULE LATINE B À FIORITURE",NULL},
-/* A798 */ { "LETTRE MAJUSCULE LATINE F BARRÉ","	x (lettre majuscule latine f hameçon - 0191)"},
+/* A798 */ { "LETTRE MAJUSCULE LATINE F BARRÉ","	x (lettre majuscule latine f hameçon - 0191)\n"
+	"	x (symbole franc français - 20A3)"},
 /* A799 */ { "LETTRE MINUSCULE LATINE F BARRÉ","	* ancienne orthographe éwé\n"
-	"	* s'utilise aussi dans la dialectologie allemande"},
+	"	* également utilisée dans l'alphabet phonétique Anthropos"},
 /* A79A */ { "LETTRE MAJUSCULE LATINE VOLAPÜK AE",NULL},
 /* A79B */ { "LETTRE MINUSCULE LATINE VOLAPÜK AE",NULL},
 /* A79C */ { "LETTRE MAJUSCULE LATINE VOLAPÜK OE",NULL},
@@ -19512,14 +20076,22 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7A7 */ { "LETTRE MINUSCULE LATINE R BARRE OBLIQUE",NULL},
 /* A7A8 */ { "LETTRE MAJUSCULE LATINE S BARRE OBLIQUE",NULL},
 /* A7A9 */ { "LETTRE MINUSCULE LATINE S BARRE OBLIQUE","	* s'utilise aussi dans l'orthographe du bas-sorabe d'avant 1950\n"
-	"	x (lettre minuscule latine s long à barre diagonale - 1E9C)"},
+	"	x (lettre minuscule latine s long à barre diagonale - 1E9C)\n"
+	"	x (lettre minuscule latine s à petit trait couvrant - A7CA)"},
 /* A7AA */ { "LETTRE MAJUSCULE LATINE H CROSSE","	* la minuscule est 0266\n"
 	"	* utilisée au Tchad"},
-/* A7AB */ { "LETTRE MAJUSCULE LATINE E OUVERT RÉFLÉCHI","	* la minuscule est 025C"},
+/* A7AB */ { "LETTRE MAJUSCULE LATINE E OUVERT RÉFLÉCHI","	* la minuscule est 025C\n"
+	"	x (lettre majuscule latine ej - 01B7)\n"
+	"	x (lettre majuscule latine yogh - 021C)\n"
+	"	x (lettre majuscule cyrillique zé - 0417)"},
 /* A7AC */ { "LETTRE MAJUSCULE LATINE G CURSIF","	* la minuscule est 0261"},
-/* A7AD */ { "LETTRE MAJUSCULE LATINE L SANGLÉ","	* la minuscule est 026C"},
+/* A7AD */ { "LETTRE MAJUSCULE LATINE L SANGLÉ","	* la minuscule est 026C\n"
+	"	x (lettre majuscule latine l rayé - 023D)\n"
+	"	x (lettre latine petite capitale l sanglé - 1DF04)"},
 /* A7AE */ { "LETTRE MAJUSCULE LATINE PETITE CAPITALE I","	* la minuscule est 026A\n"
-	"	* utilisée aussi dans Unifon"},
+	"	* utilisée aussi dans Unifon\n"
+	"	x (lettre majuscule latine i - 0049)\n"
+	"	x (lettre latine petite capitale i - 026A)"},
 /* A7AF */ { "LETTRE LATINE PETITE CAPITALE Q","	* s'utilise pour représenter la gémination\n"
 	"	x (lettre modificative majuscule q - A7F4)"},
 /* A7B0 */ { "LETTRE MAJUSCULE LATINE K CULBUTÉ","	* la minuscule est 029E"},
@@ -19529,17 +20101,21 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7B3 */ { "LETTRE MAJUSCULE LATINE KHI","	* la minuscule est AB53\n"
 	"	x (lettre majuscule grecque khi - 03A7)"},
 /* A7B4 */ { "LETTRE MAJUSCULE LATINE BÊTA",NULL},
-/* A7B5 */ { "LETTRE MINUSCULE LATINE BÊTA","	x (lettre minuscule grecque bêta - 03B2)"},
+/* A7B5 */ { "LETTRE MINUSCULE LATINE BÊTA","	x (lettre minuscule latine s dur - 00DF)\n"
+	"	x (lettre minuscule grecque bêta - 03B2)"},
 /* A7B6 */ { "LETTRE MAJUSCULE LATINE OMÉGA",NULL},
-/* A7B7 */ { "LETTRE MINUSCULE LATINE OMÉGA","	x (lettre minuscule grecque oméga - 03C9)"},
+/* A7B7 */ { "LETTRE MINUSCULE LATINE OMÉGA","	x (lettre minuscule latine oméga fermé - 0277)\n"
+	"	x (lettre minuscule grecque oméga - 03C9)\n"
+	"	x (lettre minuscule cyrillique oméga - 0461)\n"
+	"	x (lettre minuscule cyrillique oméga large - A64D)"},
 /* A7B8 */ { "LETTRE MAJUSCULE LATINE U BARRÉ OBLIQUEMENT",NULL},
 /* A7B9 */ { "LETTRE MINUSCULE LATINE U BARRÉ OBLIQUEMENT",NULL},
 /* A7BA */ { "LETTRE MAJUSCULE LATINE A GLOTTAL",NULL},
 /* A7BB */ { "LETTRE MINUSCULE LATINE A GLOTTAL",NULL},
 /* A7BC */ { "LETTRE MAJUSCULE LATINE I GLOTTAL",NULL},
 /* A7BD */ { "LETTRE MINUSCULE LATINE I GLOTTAL","	= yod égyptologique\n"
-	"	x (lettre minuscule latine égyptologique alef - A723)\n"
-	"	x (lettre minuscule latine égyptologique 'aïn - A725)"},
+	"	x (lettre minuscule latine alef égyptologique - A723)\n"
+	"	x (lettre minuscule latine 'aïn égyptologique - A725)"},
 /* A7BE */ { "LETTRE MAJUSCULE LATINE U GLOTTAL",NULL},
 /* A7BF */ { "LETTRE MINUSCULE LATINE U GLOTTAL",NULL},
 /* A7C0 */ { "LETTRE MAJUSCULE LATINE O POLONAIS ANCIEN",NULL},
@@ -19550,11 +20126,13 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7C4 */ { "LETTRE MAJUSCULE LATINE C HAMEÇON PALATAL","	* la minuscule est A794"},
 /* A7C5 */ { "LETTRE MAJUSCULE LATINE S HAMEÇON RÉTROFLEXE","	* la minuscule est 0282"},
 /* A7C6 */ { "LETTRE MAJUSCULE LATINE Z HAMEÇON PALATAL","	* la minuscule est 1D8E"},
-/* A7C7 */ { "LETTRE MAJUSCULE LATINE D À PETIT TRAIT COUVRANT",NULL},
+/* A7C7 */ { "LETTRE MAJUSCULE LATINE D À PETIT TRAIT COUVRANT","	x (lettre majuscule latine ed - 00D0)\n"
+	"	x (lettre majuscule latine d barré - 0110)"},
 /* A7C8 */ { "LETTRE MINUSCULE LATINE D À PETIT TRAIT COUVRANT","	= tau gallicum\n"
-	"	* indique une affriquée dentale"},
+	"	* indique une affriquée dentale\n"
+	"	x (lettre minuscule latine d barré - 0111)"},
 /* A7C9 */ { "LETTRE MAJUSCULE LATINE S À PETIT TRAIT COUVRANT",NULL},
-/* A7CA */ { "LETTRE MINUSCULE LATINE S À PETIT TRAIT COUVRANT",NULL},
+/* A7CA */ { "LETTRE MINUSCULE LATINE S À PETIT TRAIT COUVRANT","	* attestée dans des documents manuscrits, utilisée par paire comme un substitut du tau gallicum"},
 /* A7CB */ { NULL,NULL},
 /* A7CC */ { NULL,NULL},
 /* A7CD */ { NULL,NULL},
@@ -19602,18 +20180,21 @@ static const struct unicode_nameannot unaFR_00_A7[] = {
 /* A7F5 */ { "LETTRE MAJUSCULE LATINE MOITIÉ DE H RÉFLÉCHIE","	= H dimidié\n"
 	"	* apparaît dans des inscriptions des provinces romaines de la Gaule\n"
 	"	x (lettre majuscule latine moitié de h - 2C75)"},
-/* A7F6 */ { "LETTRE MINUSCULE LATINE MOITIÉ DE H RÉFLÉCHIE",NULL},
+/* A7F6 */ { "LETTRE MINUSCULE LATINE MOITIÉ DE H RÉFLÉCHIE","	* la minuscule n'est pas attestée dans les inscriptions mais est utilisée par les chercheurs lors de la transcription"},
 /* A7F7 */ { "LETTRE LATINE ÉPIGRAPHIQUE I COUCHÉ","	* inscriptions celtiques"},
 /* A7F8 */ { "LETTRE MODIFICATIVE MAJUSCULE H BARRÉ","	# <exp> 0126\n"
 	"		Une différence typographique entre une majuscule et une petite capitale ne constitue pas un signe distinctif pour ce caractère dans le contexte de l'alphabet phonétique international.\n"
 	"	x (lettre latine petite capitale h - 029C)"},
 /* A7F9 */ { "LETTRE MODIFICATIVE MINUSCULE LIGATURE OE","	# <exp> 0153"},
-/* A7FA */ { "LETTRE LATINE PETITE CAPITALE M CULBUTÉ",NULL},
-/* A7FB */ { "LETTRE LATINE ÉPIGRAPHIQUE F RÉFLÉCHI",NULL},
-/* A7FC */ { "LETTRE LATINE ÉPIGRAPHIQUE P RÉFLÉCHI",NULL},
-/* A7FD */ { "LETTRE LATINE ÉPIGRAPHIQUE M CULBUTÉ",NULL},
+/* A7FA */ { "LETTRE LATINE PETITE CAPITALE M CULBUTÉ","	* voyelle fermée centrale sourde\n"
+	"	x (lettre minuscule latine m culbuté - 026F)\n"
+	"	x (lettre minuscule cyrillique cha - 0448)"},
+/* A7FB */ { "LETTRE LATINE ÉPIGRAPHIQUE F RÉFLÉCHI","	= filia (fille), femina (femme, femelle)"},
+/* A7FC */ { "LETTRE LATINE ÉPIGRAPHIQUE P RÉFLÉCHI","	= puella (jeune fille)"},
+/* A7FD */ { "LETTRE LATINE ÉPIGRAPHIQUE M CULBUTÉ","	= mulier, matrona (femme mariée)\n"
+	"	x (lettre majuscule latine m culbuté - 019C)"},
 /* A7FE */ { "LETTRE LATINE ÉPIGRAPHIQUE I ALLONGÉ",NULL},
-/* A7FF */ { "LETTRE LATINE ÉPIGRAPHIQUE M ARCHAÏQUE",NULL}
+/* A7FF */ { "LETTRE LATINE ÉPIGRAPHIQUE M ARCHAÏQUE","	* logogramme pour le prénom « Manius »"}
 };
 
 UN_DLL_LOCAL
@@ -19921,7 +20502,7 @@ static const struct unicode_nameannot unaFR_00_A8[] = {
 /* A8F6 */ { "SIGNE DÉVANÂGARÎ TCHANDRABINDOU TROIS","	= vaïdika anousvâra tchandrabindou sa-tri"},
 /* A8F7 */ { "SIGNE DÉVANÂGARÎ TCHANDRABINDOU AVAGRAHA","	= vaïdika anousvâra tchandrabindou sa-avagraha"},
 /* A8F8 */ { "SIGNE DÉVANÂGARÎ POUSHPIKA","	= vaïdika poushpikâ\n"
-	"	* utilisé comme un marque-place ou un remplissage\n"
+	"	* utilisé comme support ou bouche-trou\n"
 	"	* souvent flanqué de doubles dandas"},
 /* A8F9 */ { "BOURRE D'ÉCART DÉVANÂGARÎ","	* s'utilise pour indiquer qu'un blanc ou un écart dans un manuscrit ou un texte n'est pas une lacune"},
 /* A8FA */ { "CHEVRON DÉVANÂGARÎ","	= vaïdika troutikâ\n"
@@ -20323,7 +20904,7 @@ static const struct unicode_nameannot unaFR_00_AA[] = {
 /* AA6B */ { "LETTRE BIRMANE KHAMTI NA","	~ AA6B FE00 forme pointée"},
 /* AA6C */ { "LETTRE BIRMANE KHAMTI SA","	~ AA6C FE00 forme pointée"},
 /* AA6D */ { "LETTRE BIRMANE KHAMTI HA",NULL},
-/* AA6E */ { "LETTRE BIRMANE KHAMTI HHA",NULL},
+/* AA6E */ { "LETTRE BIRMANE KHAMTI LLA","	* l'appellation en anglais de ce caractère est erronée"},
 /* AA6F */ { "LETTRE BIRMANE KHAMTI FA","	~ AA6F FE00 forme pointée"},
 /* AA70 */ { "LETTRE MODIFICATIVE BIRMANE KHAMTI RÉDUPLICATION","	x (lettre modificative birmane chan réduplication - A9E6)"},
 /* AA71 */ { "LETTRE BIRMANE KHAMTI XA",NULL},
@@ -20525,34 +21106,36 @@ static const struct unicode_nameannot unaFR_00_AB[] = {
 /* AB2F */ { NULL,NULL},
 /* AB30 */ { "LETTRE MINUSCULE LATINE ALPHA BARRÉ","		* Cette lettre est un alpha latin traversé en son milieu par une ligne horizontale. Dans certaines polices, la ligne peut ne pas dépasser le bord de la lettre – en ce cas, il ne faut pas confondre cette lettre avec une ligature formée de l'epsilon et du iota."},
 /* AB31 */ { "LETTRE MINUSCULE LATINE A SCHWA RÉFLÉCHI",NULL},
-/* AB32 */ { "LETTRE MINUSCULE LATINE E GOTHIQUE",NULL},
+/* AB32 */ { "LETTRE MINUSCULE LATINE E GOTHIQUE","	x (minuscule mathématique gothique e - 1D522)"},
 /* AB33 */ { "LETTRE MINUSCULE LATINE E BARRÉ HORIZONTALEMENT",NULL},
 /* AB34 */ { "LETTRE MINUSCULE LATINE E À FIORITURE",NULL},
 /* AB35 */ { "LETTRE MINUSCULE LATINE F DOUX","	x (lettre minuscule latine f - 0066)"},
 /* AB36 */ { "LETTRE MINUSCULE LATINE G CURSIF À QUEUE CROISÉE",NULL},
 /* AB37 */ { "LETTRE MINUSCULE LATINE L TRAVERSÉ D'UN S RENVERSÉ COUCHÉ",NULL},
-/* AB38 */ { "LETTRE MINUSCULE LATINE L DOUBLE TILDE MÉDIAN",NULL},
+/* AB38 */ { "LETTRE MINUSCULE LATINE L DOUBLE TILDE MÉDIAN","	x (lettre minuscule latine l tilde médian - 026B)\n"
+	"	x (lettre minuscule latine l à double barre - 2C61)"},
 /* AB39 */ { "LETTRE MINUSCULE LATINE L ROND MÉDIAN",NULL},
 /* AB3A */ { "LETTRE MINUSCULE LATINE M À QUEUE CROISÉE",NULL},
 /* AB3B */ { "LETTRE MINUSCULE LATINE N À QUEUE CROISÉE",NULL},
 /* AB3C */ { "LETTRE MINUSCULE LATINE ENG À QUEUE CROISÉE",NULL},
-/* AB3D */ { "LETTRE MINUSCULE LATINE O GOTHIQUE",NULL},
-/* AB3E */ { "LETTRE MINUSCULE LATINE O GOTHIQUE BARRÉ",NULL},
+/* AB3D */ { "LETTRE MINUSCULE LATINE O GOTHIQUE","	x (minuscule mathématique gothique o - 1D52C)"},
+/* AB3E */ { "LETTRE MINUSCULE LATINE O GOTHIQUE BARRÉ","		* Cette lettre a été encodée sur la base d’une interprétation erronée d’une copie de mauvaise qualité de Sievers 1901. En réalité, elle n’est pas utilisée dans la dialectologie allemande.\n"
+	"	x (lettre minuscule latine o barré obliquement - 00F8)"},
 /* AB3F */ { "LETTRE MINUSCULE LATINE O OUVERT BARRÉ",NULL},
 /* AB40 */ { "LETTRE MINUSCULE LATINE OE RENVERSÉ","	= lettre minuscule latine o schwa réfléchi"},
 /* AB41 */ { "LETTRE MINUSCULE LATINE OE CULBUTÉ BARRÉ",NULL},
 /* AB42 */ { "LETTRE MINUSCULE LATINE OE CULBUTÉ TRAIT HORIZONTAL",NULL},
-/* AB43 */ { "LETTRE MINUSCULE LATINE O CULBUTÉ O OUVERT",NULL},
-/* AB44 */ { "LETTRE MINUSCULE LATINE O CULBUTÉ O OUVERT BARRÉ",NULL},
+/* AB43 */ { "LETTRE MINUSCULE LATINE O O OUVERT CULBUTÉ",NULL},
+/* AB44 */ { "LETTRE MINUSCULE LATINE O O OUVERT CULBUTÉ BARRÉ",NULL},
 /* AB45 */ { "LETTRE MINUSCULE LATINE R ÉTRIER",NULL},
 /* AB46 */ { "LETTRE LATINE PETITE CAPITALE R À JAMBAGE À DROITE",NULL},
 /* AB47 */ { "LETTRE MINUSCULE LATINE R SANS ANSE",NULL},
 /* AB48 */ { "LETTRE MINUSCULE LATINE DOUBLE R",NULL},
 /* AB49 */ { "LETTRE MINUSCULE LATINE R À QUEUE CROISÉE",NULL},
 /* AB4A */ { "LETTRE MINUSCULE LATINE DOUBLE R À QUEUE CROISÉE",NULL},
-/* AB4B */ { "LETTRE MINUSCULE LATINE R CURSIF",NULL},
+/* AB4B */ { "LETTRE MINUSCULE LATINE R CURSIF","	x (minuscule mathématique r de ronde - 1D4C7)"},
 /* AB4C */ { "LETTRE MINUSCULE LATINE R CURSIF ROND",NULL},
-/* AB4D */ { "LETTRE MINUSCULE LATINE ECH SUR LA LIGNE",NULL},
+/* AB4D */ { "LETTRE MINUSCULE LATINE ECH SUR LA LIGNE","	x (lettre minuscule latine ech - 0283)"},
 /* AB4E */ { "LETTRE MINUSCULE LATINE U À FÛT COURT À DROITE",NULL},
 /* AB4F */ { "LETTRE MINUSCULE LATINE U BARRÉ À FÛT COURT À DROITE",NULL},
 /* AB50 */ { "LETTRE MINUSCULE LATINE UI",NULL},
@@ -20567,8 +21150,9 @@ static const struct unicode_nameannot unaFR_00_AB[] = {
 /* AB58 */ { "LETTRE MINUSCULE LATINE X À DIAGONALE LONGUE À GAUCHE ET ROND BAS À DROITE",NULL},
 /* AB59 */ { "LETTRE MINUSCULE LATINE X À DIAGONALE LONGUE À GAUCHE AVEC EMPATTEMENT",NULL},
 /* AB5A */ { "LETTRE MINUSCULE LATINE Y À FÛT COURT À DROITE",NULL},
-/* AB5B */ { "BRÈVE MODIFICATIVE ET BRÈVE RENVERSÉE","	x (brève - 02D8)\n"
-	"	x (resserrer - 2050)\n"
+/* AB5B */ { "BRÈVE MODIFICATIVE ET BRÈVE RENVERSÉE","	* indique une voyelle brève\n"
+	"	x (brève - 02D8)\n"
+	"	x (équivalent à - 224D)\n"
 	"	x (brève métrique - 23D1)\n"
 	"	x (kavyka bas renversé kavyka par-dessus - 2E46)"},
 /* AB5C */ { "LETTRE MODIFICATIVE MINUSCULE HENG","	# <exp> A727"},
@@ -20580,10 +21164,12 @@ static const struct unicode_nameannot unaFR_00_AB[] = {
 /* AB61 */ { "LETTRE LATINE MINUSCULE É YODISÉ","	x (lettre minuscule cyrillique é yodisé - 0465)"},
 /* AB62 */ { "LETTRE LATINE MINUSCULE OE OUVERT","	x (lettre minuscule latine o ouvert - 0254)"},
 /* AB63 */ { "LETTRE LATINE MINUSCULE UO",NULL},
-/* AB64 */ { "LETTRE MINUSCULE LATINE ALPHA RENVERSÉ","	x (lettre minuscule latine alpha culbuté - 0252)"},
+/* AB64 */ { "LETTRE MINUSCULE LATINE ALPHA RENVERSÉ","	* voyelle ouverte postérieure non arrondie\n"
+	"	x (lettre minuscule latine alpha culbuté - 0252)"},
 /* AB65 */ { "LETTRE GRECQUE PETITE CAPITALE OMÉGA","	* obsolète pour désigner une voyelle moyenne postérieure arrondie\n"
+	"		D’autres lettres petites capitales grecques se trouvent dans l’intervalle 1D26-1D2A.\n"
 	"	x (lettre minuscule latine oméga fermé - 0277)\n"
-	"	x (lettre minuscule grecque oméga - 03C9)"},
+	"	x (lettre majuscule grecque oméga - 03A9)"},
 /* AB66 */ { "LETTRE MINUSCULE LATINE DIGRAMME DZ HAMEÇON RÉTROFLEXE","	* affriquée rétroflexe sonore\n"
 	"	x (lettre minuscule latine z hameçon rétroflexe - 0290)\n"
 	"	x (lettre minuscule latine digramme dz - 02A3)"},
@@ -22606,6 +23192,7 @@ static const struct unicode_nameannot unaFR_00_FE[] = {
 /* FEFD */ { NULL,NULL},
 /* FEFE */ { NULL,NULL},
 /* FEFF */ { "INDICATEUR D'ORDRE DES OCTETS","	= IOO, BOM (byte order mark)\n"
+	"	* l'appellation en anglais de ce caractère est erronée\n"
 	"	* permet de détecter l'ordre des octets par opposition à FFFE, qui n'est associé à aucun caractère\n"
 	"	* l'utilisation de ce caractère comme une espace insécable sans chasse (« zero width no-break space », communément abrégé en ZWNBSP) est obsolète ; la solution pour cet emploi est fournie par 2060\n"
 	"	x (espace sans chasse - 200B)\n"
@@ -22890,7 +23477,7 @@ static const struct unicode_nameannot unaFR_00_FF[] = {
 /* FFF9 */ { "ANCRE D'ANNOTATION INTERLINÉAIRE","	* indique le début d'un texte annoté"},
 /* FFFA */ { "SÉPARATEUR D'ANNOTATION INTERLINÉAIRE","	* indique le début des caractères d'annotation"},
 /* FFFB */ { "TERMINATEUR D'ANNOTATION INTERLINÉAIRE","	* indique la fin du bloc d'annotation"},
-/* FFFC */ { "CARACTÈRE DE REMPLACEMENT D'OBJET","	* utilisé dans un texte en tant que caractère marque-place destiné à être remplacé par un objet non spécifié"},
+/* FFFC */ { "CARACTÈRE DE REMPLACEMENT D'OBJET","	* utilisé dans un texte comme substitut d'un objet qui n'est pas spécifié par ailleurs"},
 /* FFFD */ { "CARACTÈRE DE REMPLACEMENT","	* s'emploie pour remplacer un caractère entrant dont la valeur est inconnue ou qui ne peut pas être représenté en Unicode\n"
 	"	* comparez l'utilisation de 001A en tant que caractère de commande indiquant la fonction de substitution\n"
 	"	x (signe d'incertitude - 2BD1)\n"
@@ -32160,8 +32747,8 @@ static const struct unicode_nameannot unaFR_01_22[] = {
 /* 122D1 */ { "SIGNE CUNÉIFORME CHIM FOIS SAL",NULL},
 /* 122D2 */ { "SIGNE CUNÉIFORME CHINIG",NULL},
 /* 122D3 */ { "SIGNE CUNÉIFORME CHIR",NULL},
-/* 122D4 */ { "SIGNE CUNÉIFORME NOU11 TENOU",NULL},
-/* 122D5 */ { "SIGNE CUNÉIFORME NOU11 SUR NOU11 BOUR SUR BOUR",NULL},
+/* 122D4 */ { "SIGNE CUNÉIFORME NOU11 TENOU","	* l'appellation en anglais de ce caractère est erronée"},
+/* 122D5 */ { "SIGNE CUNÉIFORME NOU11 SUR NOU11 BOUR SUR BOUR","	* l'appellation en anglais de ce caractère est erronée"},
 /* 122D6 */ { "SIGNE CUNÉIFORME CHITA",NULL},
 /* 122D7 */ { "SIGNE CUNÉIFORME CHOU",NULL},
 /* 122D8 */ { "SIGNE CUNÉIFORME CHOU SUR CHOU RENVERSÉ",NULL},
@@ -36677,8 +37264,8 @@ static const struct unicode_nameannot unaFR_01_6E[] = {
 /* 16E53 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE YOU",NULL},
 /* 16E54 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE L",NULL},
 /* 16E55 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE Q",NULL},
-/* 16E56 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE H",NULL},
-/* 16E57 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE NG",NULL},
+/* 16E56 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE H","	* l'appellation en anglais de ce caractère est erronée"},
+/* 16E57 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE NG","	* l'appellation en anglais de ce caractère est erronée"},
 /* 16E58 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE X",NULL},
 /* 16E59 */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE D",NULL},
 /* 16E5A */ { "LETTRE MAJUSCULE MÉDÉFAÏDRINE E","	* représente la voyelle o ouvert"},
@@ -36709,8 +37296,8 @@ static const struct unicode_nameannot unaFR_01_6E[] = {
 /* 16E73 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE YOU",NULL},
 /* 16E74 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE L",NULL},
 /* 16E75 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE Q",NULL},
-/* 16E76 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE H",NULL},
-/* 16E77 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE NG",NULL},
+/* 16E76 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE H","	* l'appellation en anglais de ce caractère est erronée"},
+/* 16E77 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE NG","	* l'appellation en anglais de ce caractère est erronée"},
 /* 16E78 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE X",NULL},
 /* 16E79 */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE D",NULL},
 /* 16E7A */ { "LETTRE MINUSCULE MÉDÉFAÏDRINE E","	* représente la voyelle o ouvert"},
@@ -38675,7 +39262,8 @@ static const struct unicode_nameannot unaFR_01_AF[] = {
 UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_B0[] = {
 /* 1B000 */ { "CARACTÈRE KATAKANA E ARCHAÏQUE",NULL},
-/* 1B001 */ { "CARACTÈRE HENTAIGANA E-1","	* dérivé de 6C5F"},
+/* 1B001 */ { "CARACTÈRE HENTAIGANA E-1","	* l'appellation en anglais de ce caractère est erronée\n"
+	"	* dérivé de 6C5F"},
 /* 1B002 */ { "CARACTÈRE HENTAIGANA A-1","	* dérivé de 5B89"},
 /* 1B003 */ { "CARACTÈRE HENTAIGANA A-2","	* dérivé de 611B"},
 /* 1B004 */ { "CARACTÈRE HENTAIGANA A-3","	* dérivé de 963F"},
@@ -43078,23 +43666,24 @@ static const struct unicode_nameannot unaFR_01_DA[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot unaFR_01_DF[] = {
-/* 1DF00 */ { "LETTRE MINUSCULE LATINE DIGRAMME FENG AVEC TRILLE",NULL},
+/* 1DF00 */ { "LETTRE MINUSCULE LATINE DIGRAMME FENG AVEC TRILLE","	x (lettre minuscule latine digramme feng - 02A9)"},
 /* 1DF01 */ { "LETTRE MINUSCULE LATINE G CURSIF RÉFLÉCHI",NULL},
-/* 1DF02 */ { "LETTRE LATINE PETITE CAPITALE G CULBUTÉ",NULL},
+/* 1DF02 */ { "LETTRE LATINE PETITE CAPITALE G CULBUTÉ","	x (lettre minuscule latine g culbuté - 1D77)"},
 /* 1DF03 */ { "LETTRE MINUSCULE LATINE K RÉFLÉCHI",NULL},
-/* 1DF04 */ { "LETTRE LATINE PETITE CAPITALE L SANGLÉ",NULL},
+/* 1DF04 */ { "LETTRE LATINE PETITE CAPITALE L SANGLÉ","	x (lettre majuscule latine l sanglé - A7AD)"},
 /* 1DF05 */ { "LETTRE MINUSCULE LATINE LEJ HAMEÇON RÉTROFLEXE",NULL},
 /* 1DF06 */ { "LETTRE MINUSCULE LATINE Y SANGLÉ CULBUTÉ",NULL},
 /* 1DF07 */ { "LETTRE MINUSCULE LATINE ENG RÉFLÉCHI",NULL},
 /* 1DF08 */ { "LETTRE MINUSCULE LATINE R CULBUTÉ À LONG FÛT HAMEÇON RÉTROFLEXE",NULL},
-/* 1DF09 */ { "LETTRE MINUSCULE LATINE T CROSSE ET HAMEÇON RÉTROFLEXE",NULL},
+/* 1DF09 */ { "LETTRE MINUSCULE LATINE T CROSSE ET HAMEÇON RÉTROFLEXE","	x (lettre minuscule latine t crosse - 01AD)"},
 /* 1DF0A */ { "LETTRE LATINE CLIC RÉTROFLEXE AVEC HAMEÇON RÉTROFLEXE",NULL},
-/* 1DF0B */ { "LETTRE MINUSCULE LATINE ECH DOUBLE BARRE",NULL},
+/* 1DF0B */ { "LETTRE MINUSCULE LATINE ECH DOUBLE BARRE","	x (intégrale avec deux barres horizontales - 2A0E)"},
 /* 1DF0C */ { "LETTRE MINUSCULE LATINE ECH BOUCLÉ DOUBLE BARRE",NULL},
 /* 1DF0D */ { "LETTRE MINUSCULE LATINE T BOUCLÉ CULBUTÉ",NULL},
 /* 1DF0E */ { "LETTRE LATINE COUP DE GLOTTE BOUCLÉ RÉFLÉCHI",NULL},
 /* 1DF0F */ { "LETTRE LATINE C BOUCLÉ ÉTIRÉ",NULL},
-/* 1DF10 */ { "LETTRE LATINE PETITE CAPITALE K CULBUTÉ",NULL},
+/* 1DF10 */ { "LETTRE LATINE PETITE CAPITALE K CULBUTÉ","	x (lettre minuscule latine k culbuté - 029E)\n"
+	"	x (lettre majuscule latine k culbuté - A7B0)"},
 /* 1DF11 */ { "LETTRE MINUSCULE LATINE L HAMEÇON",NULL},
 /* 1DF12 */ { "LETTRE MINUSCULE LATINE DIGRAMME DEJ HAMEÇON PALATAL",NULL},
 /* 1DF13 */ { "LETTRE MINUSCULE LATINE L SANGLÉ HAMEÇON PALATAL",NULL},
@@ -46488,7 +47077,7 @@ static const struct unicode_nameannot unaFR_01_F1[] = {
 /* 1F1AA */ { "SHV ENCADRÉ","	= super high vision"},
 /* 1F1AB */ { "UHD ENCADRÉ","	= ultra-high definition (ultra haute définition)"},
 /* 1F1AC */ { "VOD ENCADRÉ","	= video on demand (vidéo à la demande)"},
-/* 1F1AD */ { "SYMBOLE DE TOPOGRAPHIE DE CIRCUIT INTÉGRÉ","	* signale la protection de la propriété intellectuelle pour les configurations des circuits électroniques (topographies) incorporés dans des produits de circuits intégrés ou des schémas de montage ; en anglais, ces configurations sont appelées « mask work » du fait que les multiples couches gravées dans les circuits intégrés sont chacune créées en utilisant un masque photographique\n"
+/* 1F1AD */ { "SYMBOLE DE TOPOGRAPHIE DE CIRCUIT INTÉGRÉ","	* signale la protection de la propriété intellectuelle pour les configurations des circuits électroniques (topographies) incorporés dans des produits de circuits intégrés ou des schémas de montage ; en anglais, ces configurations sont appelées « mask work » du fait que les multiples couches gravées dans les circuits intégrés sont créées en utilisant un masque photographique\n"
 	"	x (symbole copyright - 00A9)\n"
 	"	x (lettre majuscule latine m cerclée - 24C2)"},
 /* 1F1AE */ { NULL,NULL},
@@ -48750,7 +49339,7 @@ static const struct unicode_nameannot unaFR_01_F9[] = {
 /* 1F92F */ { "VISAGE CHOQUÉ AVEC LA TÊTE QUI ÉCLATE",NULL},
 /* 1F930 */ { "FEMME ENCEINTE","	x (personne enceinte - 1FAC4)"},
 /* 1F931 */ { "ALLAITEMENT MATERNEL",NULL},
-/* 1F932 */ { "PAUMES DRESSÉES ENSEMBLE","	* utilisé pour la prière dans certaines cultures"},
+/* 1F932 */ { "PAUMES DRESSÉES ENSEMBLE","	* symbole utilisé pour la prière dans certaines cultures"},
 /* 1F933 */ { "ÉGOPORTRAIT","	* souvent utilisé avec une figure (visage, personne) sur la gauche"},
 /* 1F934 */ { "PRINCE","	x (princesse - 1F478)"},
 /* 1F935 */ { "HOMME EN SMOKING","	= homme en tenue de soirée\n"
