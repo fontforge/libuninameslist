@@ -17,8 +17,7 @@ matrix:
 install:
   - call %MBASH% "pacman --noconfirm -S --needed base-devel"
   - call %MBASH% "pacman --noconfirm -S autoconf automake libtool"
-  - call %MBASH% "python -m ensurepip --default-pip"
-  - call %MBASH% "python -m pip install setuptools wheel"
+  - call %MBASH% "python -m pip install ."
 build_script:
   - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
 test: off

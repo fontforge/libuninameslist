@@ -1,3 +1,8 @@
+- 2024-Sep-10
+    * Introducing Unicode 16.0 (libuninameslist=version1.15) and French
+      Unicode 15.1 translation (libuninameslist-fr=version1.7).
+    * Upgraded configure.ac from 2.64 to 2.69.
+
 - 2024-May-24
     * Version 1.14, Unicode 15.1 and French version 1.7 now is at 15.1.
 

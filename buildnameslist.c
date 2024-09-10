@@ -40,7 +40,6 @@ static const char *lg[2] = { "", "FR" };
 static const char *lgb[2] = { "UNICODE_EN_BLOCK_MAX", "UNICODE_FR_BLOCK_MAX" };
 static const char *lgv[2] = { NL_VERSION, NFR_VERSION };
 
-
 static int printcopyright2credits(FILE *out) {
     fprintf( out, "; Liste des noms des caractères (version en langue française)\n\n");
     fprintf( out, "; Le Consortium Unicode entretient une collaboration étroite\n");
@@ -83,39 +82,43 @@ static int printcopyright2(FILE *out) {
 }
 
 static int printcopyright1(FILE *out, int is_fr) {
-    /* Copyright notice for unicode NamesList.txt - 2021 */
+    /* Copyright notice for unicode NamesList.txt - 2024 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
-    fprintf( out, "Copyright © 1991-2021 Unicode®, Inc. All rights reserved.\n");
-    fprintf( out, "Distributed under the Terms of Use in https://www.unicode.org/copyright.html.\n\n");
-    fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining\n");
-    fprintf( out, "a copy of the Unicode data files and any associated documentation\n");
-    fprintf( out, "(the \"Data Files\") or Unicode software and any associated documentation\n");
-    fprintf( out, "(the \"Software\") to deal in the Data Files or Software\n");
-    fprintf( out, "without restriction, including without limitation the rights to use,\n");
-    fprintf( out, "copy, modify, merge, publish, distribute, and/or sell copies of\n");
-    fprintf( out, "the Data Files or Software, and to permit persons to whom the Data Files\n");
-    fprintf( out, "or Software are furnished to do so, provided that either\n");
-    fprintf( out, "(a) this copyright and permission notice appear with all copies\n");
-    fprintf( out, "of the Data Files or Software, or\n");
-    fprintf( out, "(b) this copyright and permission notice appear in associated\n");
-    fprintf( out, "Documentation.\n\n");
-    fprintf( out, "THE DATA FILES AND SOFTWARE ARE PROVIDED \"AS IS\", WITHOUT WARRANTY OF\n");
-    fprintf( out, "ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE\n");
-    fprintf( out, "WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n");
-    fprintf( out, "NONINFRINGEMENT OF THIRD PARTY RIGHTS.\n");
-    fprintf( out, "IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS\n");
-    fprintf( out, "NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL\n");
-    fprintf( out, "DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,\n");
-    fprintf( out, "DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER\n");
-    fprintf( out, "TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR\n");
-    fprintf( out, "PERFORMANCE OF THE DATA FILES OR SOFTWARE.\n\n");
-    fprintf( out, "Except as contained in this notice, the name of a copyright holder\n");
-    fprintf( out, "shall not be used in advertising or otherwise to promote the sale,\n");
-    fprintf( out, "use or other dealings in these Data Files or Software without prior\n");
-    fprintf( out, "written authorization of the copyright holder.\n\n");
+    fprintf( out, "UNICODE LICENSE V3\n\n");
+    fprintf( out, "COPYRIGHT AND PERMISSION NOTICE\n\n");
+    fprintf( out, "Copyright © 1991-2024 Unicode, Inc.\n\n");
+    fprintf( out, "NOTICE TO USER: Carefully read the following legal agreement. BY\n");
+    fprintf( out, "DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING DATA FILES, AND/OR\n");
+    fprintf( out, "SOFTWARE, YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE\n");
+    fprintf( out, "TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT\n");
+    fprintf( out, "DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.\n");
+    fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a\n");
+    fprintf( out, "copy of data files and any associated documentation (the \"Data Files\") or\n");
+    fprintf( out, "software and any associated documentation (the \"Software\") to deal in the\n");
+    fprintf( out, "Data Files or Software without restriction, including without limitation\n");
+    fprintf( out, "the rights to use, copy, modify, merge, publish, distribute, and/or sell\n");
+    fprintf( out, "copies of the Data Files or Software, and to permit persons to whom the\n");
+    fprintf( out, "Data Files or Software are furnished to do so, provided that either (a)\n");
+    fprintf( out, "this copyright and permission notice appear with all copies of the Data\n");
+    fprintf( out, "Files or Software, or (b) this copyright and permission notice appear in\n");
+    fprintf( out, "associated Documentation.\n\n");
+    fprintf( out, "THE DATA FILES AND SOFTWARE ARE PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY\n");
+    fprintf( out, "KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n");
+    fprintf( out, "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF\n");
+    fprintf( out, "THIRD PARTY RIGHTS.\n\n");
+    fprintf( out, "IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE\n");
+    fprintf( out, "BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES,\n");
+    fprintf( out, "OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,\n");
+    fprintf( out, "WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,\n");
+    fprintf( out, "ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA\n");
+    fprintf( out, "FILES OR SOFTWARE.\n\n");
+    fprintf( out, "Except as contained in this notice, the name of a copyright holder shall\n");
+    fprintf( out, "not be used in advertising or otherwise to promote the sale, use or other\n");
+    fprintf( out, "dealings in these Data Files or Software without prior written\n");
+    fprintf( out, "authorization of the copyright holder.\n\n");
     if ( is_fr<0 || is_fr==1 ) {
 	fprintf( out, "\n");
 	printcopyright2credits(out);

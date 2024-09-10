@@ -1,16 +1,16 @@
 # -*- Autoconf -*-
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.64])
+AC_PREREQ([2.69])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20240524]) dnl yyyymmdd
-m4_define([uninameslist_major_version], [15]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [1])
+m4_define([uninameslist_package_stamp], [20240910]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [16]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[14])
+m4_define([uninameslist_revision],[15])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -53,8 +53,7 @@ m4_define([uninameslist_fr_libver],
 m4_define([uninameslist_package_name], [libuninameslist])
 
 #-------------------------------------------
-AC_INIT([uninameslist],[uninameslist_package_stamp],[fontforge-devel@lists.sourceforge.net],
-	[uninameslist_package_name],[https://github.com/fontforge/libuninameslist])
+AC_INIT([uninameslist],[uninameslist_package_stamp],[fontforge-devel@lists.sourceforge.net],[uninameslist_package_name],[https://github.com/fontforge/libuninameslist])
 AC_CONFIG_SRCDIR([buildnameslist.c])
 #-------------------------------------------
 AC_CONFIG_MACRO_DIR([m4])
@@ -80,7 +79,15 @@ AC_CHECK_TOOL([WGET],[wget],[:])
 AC_CHECK_TOOL([STRIP],[strip],[:])
 AC_CHECK_TOOL([TOUCH],[touch],[:])
 AC_PROG_INSTALL
-AC_PROG_LIBTOOL
+case "$host" in
+ *-pc-cygwin*)
+   AC_DEFINE(__CygWin,1)
+   LT_INIT([win32-dll])
+   ;;
+ *)
+   LT_INIT()
+   ;;
+esac
 AC_ENABLE_SHARED
 
 #-------------------------------------------
@@ -139,14 +146,6 @@ if test x$enable_pylib = xyes ; then
     AC_SUBST(PYTHON, "${PYTHON}")
 fi
 AM_CONDITIONAL([ENABLE_PYLIB],[test x"${enable_pylib}" = xyes])
-
-#-------------------------------------------
-# Platform specific stuff, AC_CANONICAL_HOST
-case "$host" in
- *-pc-cygwin*)
-   AC_DEFINE(__CygWin,1)
-   AC_LIBTOOL_WIN32_DLL
-esac
 
 #-------------------------------------------
 # Compiler and Linker flags to override auto
