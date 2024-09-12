@@ -1,5 +1,5 @@
 image: Visual Studio 2019
-stack: python 3.12
+
 platform:
   - x64
 branches:
@@ -17,7 +17,7 @@ matrix:
 install:
   - call %MBASH% "pacman --noconfirm -S --needed base-devel"
   - call %MBASH% "pacman --noconfirm -S autoconf automake libtool"
-  - call %MBASH% "python -m pip install -U pip"
+  - call %MBASH% "pacman --noconfirm -S python-setuptools"
   - call %MBASH% "python -m pip install setuptools wheel"
 build_script:
   - call %MBASH% "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; autoreconf -fiv && mkdir build && cd build && ../configure --enable-pylib && make check -j4 && make install"
