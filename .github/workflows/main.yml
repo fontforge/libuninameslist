@@ -66,11 +66,10 @@ jobs:
         with:
           msystem: ${{ matrix.msystem }}
           update: true
-          install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools
+          install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools {{matrix.tools}}-python3-pip
       - name: Create configure
         run: |
           python --version
-          python get-pip.py
           python -m pip install --upgrade pip
           pip --version
           pip install setuptools wheel
