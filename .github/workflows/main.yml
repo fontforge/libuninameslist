@@ -69,7 +69,9 @@ jobs:
           install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools
       - name: Create configure
         run: |
-          python -m install setuptools wheel
+          python --version
+          pip --version
+          pip install setuptools wheel
           autoreconf -i
           automake
       - name: Choose configure
