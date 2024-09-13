@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create configure
         run: |
-          brew install autoconf automake libtool gcc python-setuptools
+          brew install autoconf automake libtool gcc python-setuptools python-build
           autoreconf -i
           automake
       - name: Choose configure
@@ -72,7 +72,7 @@ jobs:
           python --version
           python -m ensurepip --default-pip
           pip --version
-          pip install setuptools wheel
+          pip install setuptools wheel build
           autoreconf -i
           automake
       - name: Choose configure
