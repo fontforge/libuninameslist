@@ -130,29 +130,29 @@ const char * uniNamesList_blockName(int uniBlock) {
 /* Return count of how many names2 are found in this version of library */
 UN_DLL_EXPORT
 int uniNamesList_names2cnt(void) {
-	return( 36 );
+	return( 40 );
 }
 
 static const unsigned long unicode_name2code[] = {
 	0x01A2, 0x01A3, 0x0616, 0x0709, 0x0CDE, 0x0E9D, 0x0E9F, 0x0EA3,
 	0x0EA5, 0x0FD0, 0x11EC, 0x11ED, 0x11EE, 0x11EF, 0x1BBD, 0x2118,
 	0x2448, 0x2449, 0x2B7A, 0x2B7C, 0xA015, 0xAA6E, 0xFE18, 0xFEFF,
-	74452, 74453, 74535, 92171, 93782, 93783, 93814, 93815,
-	110593, 118981, 125081, 125082
+	74452, 74453, 74535, 92171, 92289, 92302, 92380, 92541,
+	93782, 93783, 93814, 93815, 110593, 118981, 125081, 125082
 };
 
 static const char unicode_name2vals[] = {
 	3,24, 3,22, 3,47, 3,34, 3,19, 3,17, 3,17, 3,13,
 	3,13, 3,35, 3,32, 3,37, 3,30, 3,33, 3,26, 3,29,
 	3,17, 3,16, 3,59, 3,60, 3,26, 3,25, 3,61, 3,15,
-	3,24, 3,42, 3,20, 3,30, 3,28, 3,29, 3,26, 3,27,
-	3,21, 3,52, 3,31, 3,32
+	3,24, 3,42, 3,20, 3,30, 3,29, 3,26, 3,28, 3,26,
+	3,28, 3,29, 3,26, 3,27, 3,21, 3,52, 3,31, 3,32
 };
 
 /* Return unicode value with names2 (0<=count<uniNamesList_names2cnt(). */
 UN_DLL_EXPORT
 long uniNamesList_names2val(int count) {
-	if ( count<0 || count>=36 ) return( -1 );
+	if ( count<0 || count>=40 ) return( -1 );
 	return( (long)(unicode_name2code[count]) );
 }
 
@@ -161,7 +161,7 @@ UN_DLL_EXPORT
 int uniNamesList_names2getU(unsigned long uni) {
 	int i;
 
-	if ( uni<0x110000 ) for ( i=0; i<36; ++i ) {
+	if ( uni<0x110000 ) for ( i=0; i<40; ++i ) {
 		if ( uni==unicode_name2code[i] ) return( i );
 		if ( uni<unicode_name2code[i] ) break;
 	}
@@ -171,7 +171,7 @@ int uniNamesList_names2getU(unsigned long uni) {
 /* Stringlength of names2. Use this if you want to truncate annotations */
 UN_DLL_EXPORT
 int uniNamesList_names2lnC(int count) {
-	if ( count<0 || count>=36 ) return( -1 );
+	if ( count<0 || count>=40 ) return( -1 );
 	return( (int)(unicode_name2vals[(count<<1)+1]) );
 }
 
@@ -186,7 +186,7 @@ const char *uniNamesList_names2anC(int count) {
 	int c;
 	const char *pt;
 
-	if ( count<0 || count>=36 ) return( NULL );
+	if ( count<0 || count>=40 ) return( NULL );
 	c = unicode_name2vals[count<<1];
 	pt = uniNamesList_annot((unsigned long)(uniNamesList_names2val(count)));
 	while ( --c>=0 ) ++pt;
@@ -738,6 +738,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x108e0, 0x108ff, "Hatran" },
 	{ 0x10900, 0x1091f, "Phoenician" },
 	{ 0x10920, 0x1093f, "Lydian" },
+	{ 0x10940, 0x1095f, "Sidetic" },
 	{ 0x10980, 0x1099f, "Meroitic Hieroglyphs" },
 	{ 0x109a0, 0x109ff, "Meroitic Cursive" },
 	{ 0x10a00, 0x10a5f, "Kharoshthi" },
@@ -789,11 +790,13 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x11ab0, 0x11abf, "Unified Canadian Aboriginal Syllabics Extended-A" },
 	{ 0x11ac0, 0x11aff, "Pau Cin Hau" },
 	{ 0x11b00, 0x11b5f, "Devanagari Extended-A" },
+	{ 0x11b60, 0x11b7f, "Sharada Supplement" },
 	{ 0x11bc0, 0x11bff, "Sunuwar" },
 	{ 0x11c00, 0x11c6f, "Bhaiksuki" },
 	{ 0x11c70, 0x11cbf, "Marchen" },
 	{ 0x11d00, 0x11d5f, "Masaram Gondi" },
 	{ 0x11d60, 0x11daf, "Gunjala Gondi" },
+	{ 0x11db0, 0x11def, "Tolong Siki" },
 	{ 0x11ee0, 0x11eff, "Makasar" },
 	{ 0x11f00, 0x11f5f, "Kawi" },
 	{ 0x11fb0, 0x11fbf, "Lisu Supplement" },
@@ -813,13 +816,16 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x16ad0, 0x16aff, "Bassa Vah" },
 	{ 0x16b00, 0x16b8f, "Pahawh Hmong" },
 	{ 0x16d40, 0x16d7f, "Kirat Rai" },
+	{ 0x16d80, 0x16daf, "Chisoi" },
 	{ 0x16e40, 0x16e9f, "Medefaidrin" },
+	{ 0x16ea0, 0x16edf, "Beria Erfe" },
 	{ 0x16f00, 0x16f9f, "Miao" },
 	{ 0x16fe0, 0x16fff, "Ideographic Symbols and Punctuation" },
-	{ 0x17000, 0x187f7, "Tangut" },
+	{ 0x17000, 0x187ff, "Tangut" },
 	{ 0x18800, 0x18aff, "Tangut Components" },
 	{ 0x18b00, 0x18cff, "Khitan Small Script" },
-	{ 0x18d00, 0x18d08, "Tangut Supplement" },
+	{ 0x18d00, 0x18d1e, "Tangut Supplement" },
+	{ 0x18d80, 0x18dff, "Tangut Components Supplement" },
 	{ 0x1aff0, 0x1afff, "Kana Extended-B" },
 	{ 0x1b000, 0x1b0ff, "Kana Supplement" },
 	{ 0x1b100, 0x1b12f, "Kana Extended-A" },
@@ -828,6 +834,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1bc00, 0x1bc9f, "Duployan" },
 	{ 0x1bca0, 0x1bcaf, "Shorthand Format Controls" },
 	{ 0x1cc00, 0x1cebf, "Symbols for Legacy Computing Supplement" },
+	{ 0x1cec0, 0x1ceff, "Miscellaneous Symbols Supplement" },
 	{ 0x1cf00, 0x1cfcf, "Znamenny Musical Notation" },
 	{ 0x1d000, 0x1d0ff, "Byzantine Musical Symbols" },
 	{ 0x1d100, 0x1d1ff, "Musical Symbols" },
@@ -846,6 +853,7 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1e2c0, 0x1e2ff, "Wancho" },
 	{ 0x1e4d0, 0x1e4ff, "Nag Mundari" },
 	{ 0x1e5d0, 0x1e5ff, "Ol Onal" },
+	{ 0x1e6c0, 0x1e6ff, "Tai Yo" },
 	{ 0x1e7e0, 0x1e7ff, "Ethiopic Extended-B" },
 	{ 0x1e800, 0x1e8df, "Mende Kikakui" },
 	{ 0x1e900, 0x1e95f, "Adlam" },
@@ -870,15 +878,16 @@ const struct unicode_block UnicodeBlock[] = {
 	{ 0x1fb00, 0x1fbff, "Symbols for Legacy Computing" },
 	{ 0x1ff80, 0x1ffff, "Unassigned" },
 	{ 0x20000, 0x2a6df, "CJK Unified Ideographs Extension B" },
-	{ 0x2a700, 0x2b739, "CJK Unified Ideographs Extension C" },
+	{ 0x2a700, 0x2b73f, "CJK Unified Ideographs Extension C" },
 	{ 0x2b740, 0x2b81d, "CJK Unified Ideographs Extension D" },
-	{ 0x2b820, 0x2cea1, "CJK Unified Ideographs Extension E" },
+	{ 0x2b820, 0x2cead, "CJK Unified Ideographs Extension E" },
 	{ 0x2ceb0, 0x2ebe0, "CJK Unified Ideographs Extension F" },
 	{ 0x2ebf0, 0x2ee5d, "CJK Unified Ideographs Extension I" },
 	{ 0x2f800, 0x2fa1f, "CJK Compatibility Ideographs Supplement" },
 	{ 0x2ff80, 0x2ffff, "Unassigned" },
 	{ 0x30000, 0x3134a, "CJK Unified Ideographs Extension G" },
 	{ 0x31350, 0x323af, "CJK Unified Ideographs Extension H" },
+	{ 0x323b0, 0x33479, "CJK Unified Ideographs Extension J" },
 	{ 0x3ff80, 0x3ffff, "Unassigned" },
 	{ 0x4ff80, 0x4ffff, "Unassigned" },
 	{ 0x5ff80, 0x5ffff, "Unassigned" },
@@ -1106,7 +1115,7 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (ratio - 2236)\n"
 	"	x (modifier letter colon - A789)\n"
 	"	x (presentation form for vertical two dot leader - FE30)"},
-/* 003B */ { "SEMICOLON","	* this, and not 037E, is the preferred character for 'Greek question mark'\n"
+/* 003B */ { "SEMICOLON","	* this, and not 037E, is the preferred character for \"Greek question mark\"\n"
 	"	x (greek question mark - 037E)\n"
 	"	x (arabic semicolon - 061B)\n"
 	"	x (reversed semicolon - 204F)\n"
@@ -1329,6 +1338,7 @@ static const struct unicode_nameannot una_00_00[] = {
 /* 009E */ { NULL,"	= PRIVACY MESSAGE"},
 /* 009F */ { NULL,"	= APPLICATION PROGRAM COMMAND"},
 /* 00A0 */ { "NO-BREAK SPACE","	* commonly abbreviated as NBSP\n"
+	"	* should be the same width as the space 0020\n"
 	"	x (space - 0020)\n"
 	"	x (figure space - 2007)\n"
 	"	x (narrow no-break space - 202F)\n"
@@ -1408,7 +1418,8 @@ static const struct unicode_nameannot una_00_00[] = {
 	"	x (degree fahrenheit - 2109)\n"
 	"	x (ring operator - 2218)"},
 /* 00B1 */ { "PLUS-MINUS SIGN","	= biquintile (astrological aspect: 144°)\n"
-	"	x (minus-or-plus sign - 2213)"},
+	"	x (minus-or-plus sign - 2213)\n"
+	"	x (division times - 22C7)"},
 /* 00B2 */ { "SUPERSCRIPT TWO","	= squared\n"
 	"	* other superscript digit characters: 2070-2079\n"
 	"	x (superscript one - 00B9)\n"
@@ -1715,6 +1726,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006A 0302"},
 /* 0136 */ { "LATIN CAPITAL LETTER K WITH CEDILLA","	: 004B 0327"},
 /* 0137 */ { "LATIN SMALL LETTER K WITH CEDILLA","	* Latvian\n"
+	"	* despite their names, this pair of characters should normally be displayed with a comma below\n"
 	"	: 006B 0327"},
 /* 0138 */ { "LATIN SMALL LETTER KRA","	* Greenlandic (old orthography), Labrador Inuttut\n"
 	"	x (cyrillic small letter ka - 043A)\n"
@@ -1724,6 +1736,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006C 0301"},
 /* 013B */ { "LATIN CAPITAL LETTER L WITH CEDILLA","	: 004C 0327"},
 /* 013C */ { "LATIN SMALL LETTER L WITH CEDILLA","	* Latvian\n"
+	"	* despite their names, this pair of characters should normally be displayed with a comma below\n"
 	"	: 006C 0327"},
 /* 013D */ { "LATIN CAPITAL LETTER L WITH CARON","	* the form using apostrophe is preferred in typesetting\n"
 	"	: 004C 030C"},
@@ -1748,6 +1761,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006E 0301"},
 /* 0145 */ { "LATIN CAPITAL LETTER N WITH CEDILLA","	: 004E 0327"},
 /* 0146 */ { "LATIN SMALL LETTER N WITH CEDILLA","	* Latvian\n"
+	"	* despite their names, this pair of characters should normally be displayed with a comma below\n"
 	"	: 006E 0327"},
 /* 0147 */ { "LATIN CAPITAL LETTER N WITH CARON","	: 004E 030C"},
 /* 0148 */ { "LATIN SMALL LETTER N WITH CARON","	* Czech, Slovak\n"
@@ -1790,6 +1804,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 0072 0301"},
 /* 0156 */ { "LATIN CAPITAL LETTER R WITH CEDILLA","	: 0052 0327"},
 /* 0157 */ { "LATIN SMALL LETTER R WITH CEDILLA","	* Livonian\n"
+	"	* despite their names, this pair of characters should normally be displayed with a comma below\n"
 	"	: 0072 0327"},
 /* 0158 */ { "LATIN CAPITAL LETTER R WITH CARON","	: 0052 030C"},
 /* 0159 */ { "LATIN SMALL LETTER R WITH CARON","	* Czech, ...\n"
@@ -1977,7 +1992,7 @@ static const struct unicode_nameannot una_00_01[] = {
 	"	: 006F 031B"},
 /* 01A2 */ { "LATIN CAPITAL LETTER OI","	% LATIN CAPITAL LETTER GHA"},
 /* 01A3 */ { "LATIN SMALL LETTER OI","	% LATIN SMALL LETTER GHA\n"
-	"	* Pan-Turkic Latin alphabets"},
+	"	* Pan-Turkic Latin alphabets, Tajik"},
 /* 01A4 */ { "LATIN CAPITAL LETTER P WITH HOOK",NULL},
 /* 01A5 */ { "LATIN SMALL LETTER P WITH HOOK","	* African"},
 /* 01A6 */ { "LATIN LETTER YR","	* Old Norse\n"
@@ -2428,10 +2443,11 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin small letter turned r with tail - 2C79)"},
 /* 027E */ { "LATIN SMALL LETTER R WITH FISHHOOK","	* voiced alveolar flap or tap\n"
 	"	x (latin small letter long s - 017F)"},
-/* 027F */ { "LATIN SMALL LETTER REVERSED R WITH FISHHOOK","	= long leg turned iota (a misnomer)\n"
+/* 027F */ { "LATIN SMALL LETTER REVERSED R WITH FISHHOOK","	= long i with left hook\n"
+	"	= long leg turned iota (a misnomer)\n"
 	"	* apical dental vowel\n"
-	"	* used by linguists working on Chinese and other Sino-Tibetan languages\n"
 	"	* IPA spelling - 007A 0329\n"
+	"	* this character is not actually a reversed 027E\n"
 	"	* preferred presentation is with a descender"},
 /* 0280 */ { "LATIN LETTER SMALL CAPITAL R","	* voiced uvular trill\n"
 	"	* Germanic, Old Norse\n"
@@ -2446,10 +2462,10 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	x (latin small letter baseline esh - AB4D)"},
 /* 0284 */ { "LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK","	* implosive palatal stop\n"
 	"	* typographically based on 025F, not on 0283"},
-/* 0285 */ { "LATIN SMALL LETTER SQUAT REVERSED ESH","	* apical retroflex vowel\n"
-	"	* used by linguists working on Chinese and other Sino-Tibetan languages\n"
+/* 0285 */ { "LATIN SMALL LETTER SQUAT REVERSED ESH","	= long i with left hook and tail\n"
+	"	* apical retroflex vowel\n"
 	"	* IPA spelling - 0290 0329\n"
-	"	* in origin 027F plus the retroflex hook 0322, despite its name\n"
+	"	* this character is not actually a reversed esh\n"
 	"	* preferred presentation is with a descender"},
 /* 0286 */ { "LATIN SMALL LETTER ESH WITH CURL","	* palatalized voiceless postalveolar fricative\n"
 	"	* suggested spelling - 0283 02B2"},
@@ -2504,7 +2520,8 @@ static const struct unicode_nameannot una_00_02[] = {
 	"	* voiced pharyngeal fricative\n"
 	"	* ain\n"
 	"	x (latin small letter ezh reversed - 01B9)\n"
-	"	x (modifier letter reversed glottal stop - 02C1)"},
+	"	x (modifier letter reversed glottal stop - 02C1)\n"
+	"	x (latin small letter pharyngeal voiced fricative - A7CF)"},
 /* 0296 */ { "LATIN LETTER INVERTED GLOTTAL STOP","	* lateral click\n"
 	"	x (latin letter lateral click - 01C1)"},
 /* 0297 */ { "LATIN LETTER STRETCHED C","	* palatal (or alveolar) click\n"
@@ -2550,8 +2567,10 @@ static const struct unicode_nameannot una_00_02[] = {
 /* 02AB */ { "LATIN SMALL LETTER LZ DIGRAPH","	* voiced lateral alveolar fricative"},
 /* 02AC */ { "LATIN LETTER BILABIAL PERCUSSIVE","	* audible lip smack"},
 /* 02AD */ { "LATIN LETTER BIDENTAL PERCUSSIVE","	* audible teeth gnashing"},
-/* 02AE */ { "LATIN SMALL LETTER TURNED H WITH FISHHOOK",NULL},
-/* 02AF */ { "LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL",NULL},
+/* 02AE */ { "LATIN SMALL LETTER TURNED H WITH FISHHOOK","	= turned h with left hook\n"
+	"	* labialized apical dental vowel"},
+/* 02AF */ { "LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL","	= turned h with left hook and tail\n"
+	"	* labialized apical retroflex vowel"},
 /* 02B0 */ { "MODIFIER LETTER SMALL H","	* aspiration\n"
 	"	# <super> 0068"},
 /* 02B1 */ { "MODIFIER LETTER SMALL H WITH HOOK","	* breathy voiced, murmured\n"
@@ -2768,13 +2787,16 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	x (modifier letter circumflex accent - 02C6)"},
 /* 0303 */ { "COMBINING TILDE","	* IPA: nasalization\n"
 	"	* Vietnamese tone mark\n"
+	"	* distinguished from the Middle Vietnamese \"apex\" diacritic\n"
 	"	x (tilde - 007E)\n"
-	"	x (small tilde - 02DC)"},
+	"	x (small tilde - 02DC)\n"
+	"	x (combining macron-acute - 1DC4)"},
 /* 0304 */ { "COMBINING MACRON","	= long\n"
 	"	* Pinyin: marks Mandarin Chinese first tone\n"
 	"	* distinguish from the following\n"
 	"	x (macron - 00AF)\n"
-	"	x (modifier letter macron - 02C9)"},
+	"	x (modifier letter macron - 02C9)\n"
+	"	x (combining minus sign above - 1AE2)"},
 /* 0305 */ { "COMBINING OVERLINE","	= overscore, vinculum\n"
 	"	* connects on left and right\n"
 	"	x (macron - 00AF)"},
@@ -2826,22 +2848,27 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0315 */ { "COMBINING COMMA ABOVE RIGHT","	x (modifier letter apostrophe - 02BC)"},
 /* 0316 */ { "COMBINING GRAVE ACCENT BELOW",NULL},
 /* 0317 */ { "COMBINING ACUTE ACCENT BELOW",NULL},
-/* 0318 */ { "COMBINING LEFT TACK BELOW","	x (modifier letter left tack - AB6A)"},
-/* 0319 */ { "COMBINING RIGHT TACK BELOW","	x (modifier letter right tack - AB6B)"},
+/* 0318 */ { "COMBINING LEFT TACK BELOW","	x (combining left tack above - 1AE0)\n"
+	"	x (modifier letter left tack - AB6A)"},
+/* 0319 */ { "COMBINING RIGHT TACK BELOW","	x (combining right tack above - 1AE1)\n"
+	"	x (modifier letter right tack - AB6B)"},
 /* 031A */ { "COMBINING LEFT ANGLE ABOVE","	* IPA: unreleased stop"},
 /* 031B */ { "COMBINING HORN","	* Vietnamese"},
 /* 031C */ { "COMBINING LEFT HALF RING BELOW","	* IPA: open variety of vowel\n"
 	"	x (modifier letter down tack - 02D5)"},
 /* 031D */ { "COMBINING UP TACK BELOW","	* IPA: vowel raising or closing\n"
-	"	x (modifier letter up tack - 02D4)"},
+	"	x (modifier letter up tack - 02D4)\n"
+	"	x (combining up tack above - 1DF5)"},
 /* 031E */ { "COMBINING DOWN TACK BELOW","	* IPA: vowel lowering or opening\n"
-	"	x (modifier letter down tack - 02D5)"},
+	"	x (modifier letter down tack - 02D5)\n"
+	"	x (combining down tack above - 1ADB)"},
 /* 031F */ { "COMBINING PLUS SIGN BELOW","	* IPA: advanced or fronted articulation\n"
 	"	x (modifier letter plus sign - 02D6)\n"
 	"	x (combining plus sign above - 1AC8)"},
 /* 0320 */ { "COMBINING MINUS SIGN BELOW","	* IPA: retracted or backed articulation\n"
 	"	* glyph may have small end-serifs\n"
-	"	x (modifier letter minus sign - 02D7)"},
+	"	x (modifier letter minus sign - 02D7)\n"
+	"	x (combining minus sign above - 1AE2)"},
 /* 0321 */ { "COMBINING PALATALIZED HOOK BELOW","	* IPA: palatalization\n"
 	"	x (modifier letter small j - 02B2)"},
 /* 0322 */ { "COMBINING RETROFLEX HOOK BELOW","	* IPA: retroflexion"},
@@ -2871,7 +2898,8 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	* may attach or not; shape may vary by local preferences\n"
 	"	x (modifier letter low vertical line - 02CC)"},
 /* 032A */ { "COMBINING BRIDGE BELOW","	* IPA: dental"},
-/* 032B */ { "COMBINING INVERTED DOUBLE ARCH BELOW","	* IPA: labialization\n"
+/* 032B */ { "COMBINING INVERTED DOUBLE ARCH BELOW","	= omega below\n"
+	"	* IPA: labialization\n"
 	"	x (modifier letter small w - 02B7)\n"
 	"	x (combining inverted double arch above - 1AC7)"},
 /* 032C */ { "COMBINING CARON BELOW","	* IPA: voiced"},
@@ -2897,10 +2925,13 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0338 */ { "COMBINING LONG SOLIDUS OVERLAY","	= long slash overlay"},
 /* 0339 */ { "COMBINING RIGHT HALF RING BELOW",NULL},
 /* 033A */ { "COMBINING INVERTED BRIDGE BELOW","	* IPA: apical\n"
+	"	x (combining inverted bridge above - 1AE3)\n"
 	"	x (combining wide inverted bridge below - 1DF9)"},
 /* 033B */ { "COMBINING SQUARE BELOW","	* IPA: laminal\n"
-	"	* preferred glyph shape is a horizontal rectangle for IPA usage"},
-/* 033C */ { "COMBINING SEAGULL BELOW","	* IPA: linguolabial"},
+	"	* preferred glyph shape is a horizontal rectangle for IPA usage\n"
+	"	x (combining square above - 1AE4)"},
+/* 033C */ { "COMBINING SEAGULL BELOW","	* IPA: linguolabial\n"
+	"	x (combining seagull above - 1AE5)"},
 /* 033D */ { "COMBINING X ABOVE",NULL},
 /* 033E */ { "COMBINING VERTICAL TILDE","	= yerik\n"
 	"	* used for Cyrillic yerik, indicates an omitted jer\n"
@@ -2912,7 +2943,7 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0340 */ { "COMBINING GRAVE TONE MARK","	: 0300 combining grave accent"},
 /* 0341 */ { "COMBINING ACUTE TONE MARK","	: 0301 combining acute accent"},
 /* 0342 */ { "COMBINING GREEK PERISPOMENI","	* Greek-specific form of circumflex for rising-falling accent\n"
-	"	* alternative glyph is similar to an inverted breve\n"
+	"	* alternative glyphs may be similar to an inverted breve, a circumflex, a tilde, or occasionally a macron\n"
 	"	x (combining tilde - 0303)\n"
 	"	x (combining inverted breve - 0311)"},
 /* 0343 */ { "COMBINING GREEK KORONIS","	: 0313 combining comma above"},
@@ -2923,24 +2954,27 @@ static const struct unicode_nameannot una_00_03[] = {
 	"	* note special casing issues\n"
 	"	x (greek ypogegrammeni - 037A)\n"
 	"	x (greek capital letter iota - 0399)"},
-/* 0346 */ { "COMBINING BRIDGE ABOVE","	* IPA: dentolabial\n"
+/* 0346 */ { "COMBINING BRIDGE ABOVE","	* ExtIPA: dentolabial\n"
 	"	x (combining wide bridge above - 20E9)"},
-/* 0347 */ { "COMBINING EQUALS SIGN BELOW","	* IPA: alveolar"},
+/* 0347 */ { "COMBINING EQUALS SIGN BELOW","	* IPA: alveolar\n"
+	"	x (combining equals sign above - 1AE8)"},
 /* 0348 */ { "COMBINING DOUBLE VERTICAL LINE BELOW","	* IPA: strong articulation"},
-/* 0349 */ { "COMBINING LEFT ANGLE BELOW","	* IPA: weak articulation"},
+/* 0349 */ { "COMBINING LEFT ANGLE BELOW","	* IPA: weak articulation\n"
+	"	x (combining left angle centred above - 1AE9)"},
 /* 034A */ { "COMBINING NOT TILDE ABOVE","	* IPA: denasal"},
 /* 034B */ { "COMBINING HOMOTHETIC ABOVE","	* IPA: nasal escape"},
 /* 034C */ { "COMBINING ALMOST EQUAL TO ABOVE","	* IPA: velopharyngeal friction"},
-/* 034D */ { "COMBINING LEFT RIGHT ARROW BELOW","	* IPA: labial spreading"},
-/* 034E */ { "COMBINING UPWARDS ARROW BELOW","	* IPA: whistled articulation"},
+/* 034D */ { "COMBINING LEFT RIGHT ARROW BELOW","	* IPA: labial spreading\n"
+	"	x (combining left right arrow above - 20E1)"},
+/* 034E */ { "COMBINING UPWARDS ARROW BELOW","	* IPA: whistled articulation\n"
+	"	x (combining upwards arrow above - 1AEA)"},
 /* 034F */ { "COMBINING GRAPHEME JOINER","	* commonly abbreviated as CGJ\n"
-	"	* has no visible glyph\n"
-	"	* the name of this character is misleading; it does not actually join graphemes"},
+	"	* has no visible glyph"},
 /* 0350 */ { "COMBINING RIGHT ARROWHEAD ABOVE",NULL},
 /* 0351 */ { "COMBINING LEFT HALF RING ABOVE",NULL},
 /* 0352 */ { "COMBINING FERMATA",NULL},
 /* 0353 */ { "COMBINING X BELOW",NULL},
-/* 0354 */ { "COMBINING LEFT ARROWHEAD BELOW",NULL},
+/* 0354 */ { "COMBINING LEFT ARROWHEAD BELOW","	x (combining left arrowhead above - 1DFE)"},
 /* 0355 */ { "COMBINING RIGHT ARROWHEAD BELOW",NULL},
 /* 0356 */ { "COMBINING RIGHT ARROWHEAD AND UP ARROWHEAD BELOW",NULL},
 /* 0357 */ { "COMBINING RIGHT HALF RING ABOVE",NULL},
@@ -2960,7 +2994,8 @@ static const struct unicode_nameannot una_00_03[] = {
 /* 0360 */ { "COMBINING DOUBLE TILDE","	x (combining double tilde left half - FE22)"},
 /* 0361 */ { "COMBINING DOUBLE INVERTED BREVE","	= ligature tie\n"
 	"	x (combining ligature left half - FE20)"},
-/* 0362 */ { "COMBINING DOUBLE RIGHTWARDS ARROW BELOW","	* IPA: sliding articulation"},
+/* 0362 */ { "COMBINING DOUBLE RIGHTWARDS ARROW BELOW","	* IPA: sliding articulation\n"
+	"	x (combining double rightwards arrow above - 1AEB)"},
 /* 0363 */ { "COMBINING LATIN SMALL LETTER A",NULL},
 /* 0364 */ { "COMBINING LATIN SMALL LETTER E",NULL},
 /* 0365 */ { "COMBINING LATIN SMALL LETTER I",NULL},
@@ -3343,8 +3378,12 @@ static const struct unicode_nameannot una_00_04[] = {
 /* 0484 */ { "COMBINING CYRILLIC PALATALIZATION","	* not used for kamora\n"
 	"	x (modifier letter apostrophe - 02BC)\n"
 	"	x (combining inverted breve - 0311)"},
-/* 0485 */ { "COMBINING CYRILLIC DASIA PNEUMATA","	x (combining reversed comma above - 0314)"},
-/* 0486 */ { "COMBINING CYRILLIC PSILI PNEUMATA","	x (combining comma above - 0313)"},
+/* 0485 */ { "COMBINING CYRILLIC DASIA PNEUMATA","	x (combining reversed comma above - 0314)\n"
+	"	x (combining right tack above - 1AE1)\n"
+	"	x (coptic combining spiritus asper - 2CF0)"},
+/* 0486 */ { "COMBINING CYRILLIC PSILI PNEUMATA","	x (combining comma above - 0313)\n"
+	"	x (combining left tack above - 1AE0)\n"
+	"	x (coptic combining spiritus lenis - 2CF1)"},
 /* 0487 */ { "COMBINING CYRILLIC POKRYTIE","	* used only with titlo letters\n"
 	"	* also attested in Glagolitic\n"
 	"	x (combining inverted breve - 0311)\n"
@@ -3876,7 +3915,7 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	x (arabic letter yeh with two dots below and hamza above - 08A8)"},
 /* 064B */ { "ARABIC FATHATAN",NULL},
 /* 064C */ { "ARABIC DAMMATAN","	* a common alternative form is written as two intertwined dammas, one of which is turned 180 degrees"},
-/* 064D */ { "ARABIC KASRATAN",NULL},
+/* 064D */ { "ARABIC KASRATAN","	x (arabic double vertical bar below - 10EFA)"},
 /* 064E */ { "ARABIC FATHA",NULL},
 /* 064F */ { "ARABIC DAMMA",NULL},
 /* 0650 */ { "ARABIC KASRA",NULL},
@@ -3931,7 +3970,8 @@ static const struct unicode_nameannot una_00_06[] = {
 	"	* this character is deprecated and its use is strongly discouraged\n"
 	"	* use the sequence 0627 065F instead"},
 /* 0674 */ { "ARABIC LETTER HIGH HAMZA","	* Kazakh, Jawi\n"
-	"	* forms digraphs"},
+	"	* forms digraphs\n"
+	"	* in Jawi this character uses the fullsize hamza shape positioned at three-quarter height"},
 /* 0675 */ { "ARABIC LETTER HIGH HAMZA ALEF","	* preferred spelling is 0674 0627\n"
 	"	# 0627 0674"},
 /* 0676 */ { "ARABIC LETTER HIGH HAMZA WAW","	* preferred spelling is 0674 0648\n"
@@ -4529,7 +4569,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 088D */ { "ARABIC LETTER KEHEH WITH TWO DOTS VERTICALLY BELOW","	* Sundanese Pegon"},
 /* 088E */ { "ARABIC VERTICAL TAIL","	* mark used to indicate abbreviations in early movable type texts from Iran \n"
 	"	* only attested in final form"},
-/* 088F */ { NULL,NULL},
+/* 088F */ { "ARABIC LETTER NOON WITH RING ABOVE","	= arnoon"},
 /* 0890 */ { "ARABIC POUND MARK ABOVE","	* Egyptian pound"},
 /* 0891 */ { "ARABIC PIASTRE MARK ABOVE","	* Egyptian piastre"},
 /* 0892 */ { NULL,NULL},
@@ -4605,7 +4645,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08C8 */ { "ARABIC LETTER GRAF",NULL},
 /* 08C9 */ { "ARABIC SMALL FARSI YEH",NULL},
 /* 08CA */ { "ARABIC SMALL HIGH FARSI YEH",NULL},
-/* 08CB */ { "ARABIC SMALL HIGH YEH BARREE WITH TWO DOTS BELOW",NULL},
+/* 08CB */ { "ARABIC SMALL HIGH YEH BARREE WITH TWO DOTS BELOW","	x (arabic small yeh barree with two dots below - 10EC5)"},
 /* 08CC */ { "ARABIC SMALL HIGH WORD SAH","	= sign of waqf"},
 /* 08CD */ { "ARABIC SMALL HIGH ZAH",NULL},
 /* 08CE */ { "ARABIC LARGE ROUND DOT ABOVE",NULL},
@@ -4619,7 +4659,7 @@ static const struct unicode_nameannot una_00_08[] = {
 /* 08D6 */ { "ARABIC SMALL HIGH AIN",NULL},
 /* 08D7 */ { "ARABIC SMALL HIGH QAF",NULL},
 /* 08D8 */ { "ARABIC SMALL HIGH NOON WITH KASRA",NULL},
-/* 08D9 */ { "ARABIC SMALL LOW NOON WITH KASRA",NULL},
+/* 08D9 */ { "ARABIC SMALL LOW NOON WITH KASRA","	x (arabic small low noon - 10EFB)"},
 /* 08DA */ { "ARABIC SMALL HIGH WORD ATH-THALATHA",NULL},
 /* 08DB */ { "ARABIC SMALL HIGH WORD AS-SAJDA",NULL},
 /* 08DC */ { "ARABIC SMALL HIGH WORD AN-NISF",NULL},
@@ -4946,7 +4986,7 @@ static const struct unicode_nameannot una_00_09[] = {
 	"	x (bengali sign avagraha - 09BD)\n"
 	"	x (sharada sandhi mark - 111C9)\n"
 	"	x (newa sandhi mark - 1145E)"},
-/* 09FF */ { NULL,NULL}
+/* 09FF */ { "BENGALI LETTER SANSKRIT BA",NULL}
 };
 
 UN_DLL_LOCAL
@@ -5301,8 +5341,8 @@ static const struct unicode_nameannot una_00_0B[] = {
 /* 0B50 */ { NULL,NULL},
 /* 0B51 */ { NULL,NULL},
 /* 0B52 */ { NULL,NULL},
-/* 0B53 */ { NULL,NULL},
-/* 0B54 */ { NULL,NULL},
+/* 0B53 */ { "ORIYA SIGN DOT ABOVE","	* Kui"},
+/* 0B54 */ { "ORIYA SIGN DOUBLE DOT ABOVE","	* Kui"},
 /* 0B55 */ { "ORIYA SIGN OVERLINE","	* Kuvi, Kui"},
 /* 0B56 */ { "ORIYA AI LENGTH MARK",NULL},
 /* 0B57 */ { "ORIYA AU LENGTH MARK",NULL},
@@ -5592,7 +5632,8 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0C59 */ { "TELUGU LETTER DZA",NULL},
 /* 0C5A */ { "TELUGU LETTER RRRA","	* letter for an alveolar consonant whose exact phonetic value is not known"},
 /* 0C5B */ { NULL,NULL},
-/* 0C5C */ { NULL,NULL},
+/* 0C5C */ { "TELUGU ARCHAIC SHRII","	* auspicious word shrii\n"
+	"	* does not combine with other letters"},
 /* 0C5D */ { "TELUGU LETTER NAKAARA POLLU","	* vowelless form of na\n"
 	"	x (kannada letter nakaara pollu - 0CDD)\n"
 	"	x (malayalam letter chillu n - 0D7B)"},
@@ -5728,7 +5769,8 @@ static const struct unicode_nameannot una_00_0C[] = {
 /* 0CD9 */ { NULL,NULL},
 /* 0CDA */ { NULL,NULL},
 /* 0CDB */ { NULL,NULL},
-/* 0CDC */ { NULL,NULL},
+/* 0CDC */ { "KANNADA ARCHAIC SHRII","	* auspicious word shrii\n"
+	"	* does not combine with other letters"},
 /* 0CDD */ { "KANNADA LETTER NAKAARA POLLU","	* vowelless form of na\n"
 	"	x (telugu letter nakaara pollu - 0C5D)\n"
 	"	x (malayalam letter chillu n - 0D7B)"},
@@ -9462,7 +9504,8 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1AB0 */ { "COMBINING DOUBLED CIRCUMFLEX ACCENT",NULL},
 /* 1AB1 */ { "COMBINING DIAERESIS-RING",NULL},
 /* 1AB2 */ { "COMBINING INFINITY",NULL},
-/* 1AB3 */ { "COMBINING DOWNWARDS ARROW",NULL},
+/* 1AB3 */ { "COMBINING DOWNWARDS ARROW","	* originally a misconstrual of a caron-acute sequence in Croatian dialectology\n"
+	"	* for Croatian dialectology use the sequence 030C 0301, instead"},
 /* 1AB4 */ { "COMBINING TRIPLE DOT",NULL},
 /* 1AB5 */ { "COMBINING X-X BELOW",NULL},
 /* 1AB6 */ { "COMBINING WIGGLY LINE BELOW",NULL},
@@ -9486,7 +9529,8 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1AC5 */ { "COMBINING SQUARE BRACKETS ABOVE","	* intended to surround a diacritic above\n"
 	"	* used to indicate cancellation of an accent in Japanese transliteration"},
 /* 1AC6 */ { "COMBINING NUMBER SIGN ABOVE","	= superscript octothorp"},
-/* 1AC7 */ { "COMBINING INVERTED DOUBLE ARCH ABOVE","	x (combining inverted double arch below - 032B)\n"
+/* 1AC7 */ { "COMBINING INVERTED DOUBLE ARCH ABOVE","	= omega above\n"
+	"	x (combining inverted double arch below - 032B)\n"
 	"	x (combining latin small letter w - 1DF1)"},
 /* 1AC8 */ { "COMBINING PLUS SIGN ABOVE","	x (combining plus sign below - 031F)"},
 /* 1AC9 */ { "COMBINING DOUBLE PLUS SIGN ABOVE",NULL},
@@ -9495,35 +9539,43 @@ static const struct unicode_nameannot una_00_1A[] = {
 /* 1ACC */ { "COMBINING LATIN SMALL LETTER INSULAR G",NULL},
 /* 1ACD */ { "COMBINING LATIN SMALL LETTER INSULAR R",NULL},
 /* 1ACE */ { "COMBINING LATIN SMALL LETTER INSULAR T",NULL},
-/* 1ACF */ { NULL,NULL},
-/* 1AD0 */ { NULL,NULL},
-/* 1AD1 */ { NULL,NULL},
-/* 1AD2 */ { NULL,NULL},
-/* 1AD3 */ { NULL,NULL},
-/* 1AD4 */ { NULL,NULL},
-/* 1AD5 */ { NULL,NULL},
-/* 1AD6 */ { NULL,NULL},
-/* 1AD7 */ { NULL,NULL},
-/* 1AD8 */ { NULL,NULL},
-/* 1AD9 */ { NULL,NULL},
-/* 1ADA */ { NULL,NULL},
-/* 1ADB */ { NULL,NULL},
-/* 1ADC */ { NULL,NULL},
-/* 1ADD */ { NULL,NULL},
+/* 1ACF */ { "COMBINING DOUBLE CARON",NULL},
+/* 1AD0 */ { "COMBINING VERTICAL-LINE-ACUTE",NULL},
+/* 1AD1 */ { "COMBINING GRAVE-VERTICAL-LINE",NULL},
+/* 1AD2 */ { "COMBINING VERTICAL-LINE-GRAVE",NULL},
+/* 1AD3 */ { "COMBINING ACUTE-VERTICAL-LINE",NULL},
+/* 1AD4 */ { "COMBINING VERTICAL-LINE-MACRON",NULL},
+/* 1AD5 */ { "COMBINING MACRON-VERTICAL-LINE",NULL},
+/* 1AD6 */ { "COMBINING VERTICAL-LINE-ACUTE-GRAVE",NULL},
+/* 1AD7 */ { "COMBINING VERTICAL-LINE-GRAVE-ACUTE",NULL},
+/* 1AD8 */ { "COMBINING MACRON-ACUTE-GRAVE",NULL},
+/* 1AD9 */ { "COMBINING SHARP SIGN",NULL},
+/* 1ADA */ { "COMBINING FLAT SIGN",NULL},
+/* 1ADB */ { "COMBINING DOWN TACK ABOVE","	x (combining down tack below - 031E)"},
+/* 1ADC */ { "COMBINING DIAERESIS WITH RAISED LEFT DOT",NULL},
+/* 1ADD */ { "COMBINING DOT-AND-RING BELOW",NULL},
 /* 1ADE */ { NULL,NULL},
 /* 1ADF */ { NULL,NULL},
-/* 1AE0 */ { NULL,NULL},
-/* 1AE1 */ { NULL,NULL},
-/* 1AE2 */ { NULL,NULL},
-/* 1AE3 */ { NULL,NULL},
-/* 1AE4 */ { NULL,NULL},
-/* 1AE5 */ { NULL,NULL},
-/* 1AE6 */ { NULL,NULL},
-/* 1AE7 */ { NULL,NULL},
-/* 1AE8 */ { NULL,NULL},
-/* 1AE9 */ { NULL,NULL},
-/* 1AEA */ { NULL,NULL},
-/* 1AEB */ { NULL,NULL},
+/* 1AE0 */ { "COMBINING LEFT TACK ABOVE","	x (combining left tack below - 0318)\n"
+	"	x (combining cyrillic psili pneumata - 0486)\n"
+	"	x (coptic combining spiritus lenis - 2CF1)"},
+/* 1AE1 */ { "COMBINING RIGHT TACK ABOVE","	x (combining right tack below - 0319)\n"
+	"	x (combining cyrillic dasia pneumata - 0485)\n"
+	"	x (coptic combining spiritus asper - 2CF0)"},
+/* 1AE2 */ { "COMBINING MINUS SIGN ABOVE","	x (combining macron - 0304)\n"
+	"	x (combining minus sign below - 0320)"},
+/* 1AE3 */ { "COMBINING INVERTED BRIDGE ABOVE","	x (combining inverted bridge below - 033A)"},
+/* 1AE4 */ { "COMBINING SQUARE ABOVE","	x (combining square below - 033B)"},
+/* 1AE5 */ { "COMBINING SEAGULL ABOVE","	x (combining seagull below - 033C)"},
+/* 1AE6 */ { "COMBINING DOUBLE ARCH BELOW","	= turned omega below\n"
+	"	x (combining inverted double arch below - 032B)\n"
+	"	x (combining seagull below - 033C)"},
+/* 1AE7 */ { "COMBINING DOUBLE ARCH ABOVE","	= turned omega above"},
+/* 1AE8 */ { "COMBINING EQUALS SIGN ABOVE","	x (combining equals sign below - 0347)"},
+/* 1AE9 */ { "COMBINING LEFT ANGLE CENTRED ABOVE","	x (combining left angle above - 031A)\n"
+	"	x (combining left angle below - 0349)"},
+/* 1AEA */ { "COMBINING UPWARDS ARROW ABOVE","	x (combining upwards arrow below - 034E)"},
+/* 1AEB */ { "COMBINING DOUBLE RIGHTWARDS ARROW ABOVE","	x (combining double rightwards arrow below - 0362)"},
 /* 1AEC */ { NULL,NULL},
 /* 1AED */ { NULL,NULL},
 /* 1AEE */ { NULL,NULL},
@@ -10342,9 +10394,10 @@ static const struct unicode_nameannot una_00_1D[] = {
 	"	x (combining greek dialytika tonos - 0344)\n"
 	"	x (greek dialytika and oxia - 1FEE)"},
 /* 1DC2 */ { "COMBINING SNAKE BELOW",NULL},
-/* 1DC3 */ { "COMBINING SUSPENSION MARK","	* Glagolitic\n"
+/* 1DC3 */ { "COMBINING SUSPENSION MARK","	* abbreviation mark in Glagolitic\n"
 	"	x (combining breve - 0306)"},
-/* 1DC4 */ { "COMBINING MACRON-ACUTE",NULL},
+/* 1DC4 */ { "COMBINING MACRON-ACUTE","	* also used to represent the Middle Vietnamese \"apex\" diacritic (dấu sóng)\n"
+	"	x (combining tilde - 0303)"},
 /* 1DC5 */ { "COMBINING GRAVE-MACRON",NULL},
 /* 1DC6 */ { "COMBINING MACRON-GRAVE",NULL},
 /* 1DC7 */ { "COMBINING ACUTE-MACRON",NULL},
@@ -10394,7 +10447,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DF2 */ { "COMBINING LATIN SMALL LETTER A WITH DIAERESIS",NULL},
 /* 1DF3 */ { "COMBINING LATIN SMALL LETTER O WITH DIAERESIS",NULL},
 /* 1DF4 */ { "COMBINING LATIN SMALL LETTER U WITH DIAERESIS",NULL},
-/* 1DF5 */ { "COMBINING UP TACK ABOVE",NULL},
+/* 1DF5 */ { "COMBINING UP TACK ABOVE","	x (combining up tack below - 031D)"},
 /* 1DF6 */ { "COMBINING KAVYKA ABOVE RIGHT",NULL},
 /* 1DF7 */ { "COMBINING KAVYKA ABOVE LEFT","	x (combining cyrillic kavyka - A67C)"},
 /* 1DF8 */ { "COMBINING DOT ABOVE LEFT","	* used in Syriac as a disambiguation dot\n"
@@ -10408,7 +10461,7 @@ static const struct unicode_nameannot una_00_1D[] = {
 /* 1DFB */ { "COMBINING DELETION MARK","	* used for \"mhusaa\" in Newa scribal tradition"},
 /* 1DFC */ { "COMBINING DOUBLE INVERTED BREVE BELOW",NULL},
 /* 1DFD */ { "COMBINING ALMOST EQUAL TO BELOW","	* diacritic indicating a strident vowel in Khoisan languages"},
-/* 1DFE */ { "COMBINING LEFT ARROWHEAD ABOVE",NULL},
+/* 1DFE */ { "COMBINING LEFT ARROWHEAD ABOVE","	x (combining left arrowhead below - 0354)"},
 /* 1DFF */ { "COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW",NULL}
 };
 
@@ -10435,6 +10488,7 @@ static const struct unicode_nameannot una_00_1E[] = {
 /* 1E0F */ { "LATIN SMALL LETTER D WITH LINE BELOW","	: 0064 0331"},
 /* 1E10 */ { "LATIN CAPITAL LETTER D WITH CEDILLA","	: 0044 0327"},
 /* 1E11 */ { "LATIN SMALL LETTER D WITH CEDILLA","	* Livonian\n"
+	"	* despite their names, this pair of characters should normally be displayed with a comma below\n"
 	"	: 0064 0327"},
 /* 1E12 */ { "LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW","	: 0044 032D"},
 /* 1E13 */ { "LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW","	: 0064 032D"},
@@ -10998,15 +11052,16 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	# 0020 space"},
 /* 2006 */ { "SIX-PER-EM SPACE","	* in computer typography sometimes equated to thin space\n"
 	"	# 0020 space"},
-/* 2007 */ { "FIGURE SPACE","	* space equal to tabular width of a font\n"
+/* 2007 */ { "FIGURE SPACE","	* space equal to tabular width of a font, typically set to the same width as digit zero 0030\n"
 	"	* this is equivalent to the digit width of fonts with fixed-width digits\n"
 	"	# <noBreak> 0020"},
-/* 2008 */ { "PUNCTUATION SPACE","	* space equal to narrow punctuation of a font\n"
+/* 2008 */ { "PUNCTUATION SPACE","	* space equal to narrow punctuation of a font, typically set to the same width as full stop 002E\n"
 	"	# 0020 space"},
-/* 2009 */ { "THIN SPACE","	* a fifth of an em (or sometimes a sixth)\n"
+/* 2009 */ { "THIN SPACE","	= narrow space\n"
+	"	* this should be much narrower than space 0020; typically set to 1/5 or 1/6 em\n"
 	"	x (narrow no-break space - 202F)\n"
 	"	# 0020 space"},
-/* 200A */ { "HAIR SPACE","	* thinner than a thin space\n"
+/* 200A */ { "HAIR SPACE","	* thinner than a thin space; typically set to 1/10 to 1/16 em\n"
 	"	* in traditional typography, the thinnest space available\n"
 	"	# 0020 space"},
 /* 200B */ { "ZERO WIDTH SPACE","	* commonly abbreviated ZWSP\n"
@@ -11040,14 +11095,16 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (modifier letter turned comma - 02BB)\n"
 	"	x (heavy single turned comma quotation mark ornament - 275B)\n"
 	"	~ 2018 FE00 non-fullwidth form\n"
-	"	~ 2018 FE01 right-justified fullwidth form"},
+	"	~ 2018 FE01 right-justified fullwidth form\n"
+	"	~ 2018 FE02 Sibe form"},
 /* 2019 */ { "RIGHT SINGLE QUOTATION MARK","	= single comma quotation mark\n"
 	"	* this is the preferred character to use for apostrophe\n"
 	"	x (apostrophe - 0027)\n"
 	"	x (modifier letter apostrophe - 02BC)\n"
 	"	x (heavy single comma quotation mark ornament - 275C)\n"
 	"	~ 2019 FE00 non-fullwidth form\n"
-	"	~ 2019 FE01 left-justified fullwidth form"},
+	"	~ 2019 FE01 left-justified fullwidth form\n"
+	"	~ 2019 FE02 Sibe form"},
 /* 201A */ { "SINGLE LOW-9 QUOTATION MARK","	= low single comma quotation mark\n"
 	"	* used as opening single quotation mark in some languages"},
 /* 201B */ { "SINGLE HIGH-REVERSED-9 QUOTATION MARK","	= single reversed comma quotation mark\n"
@@ -11059,14 +11116,16 @@ static const struct unicode_nameannot una_00_20[] = {
 	"	x (heavy double turned comma quotation mark ornament - 275D)\n"
 	"	x (reversed double prime quotation mark - 301D)\n"
 	"	~ 201C FE00 non-fullwidth form\n"
-	"	~ 201C FE01 right-justified fullwidth form"},
+	"	~ 201C FE01 right-justified fullwidth form\n"
+	"	~ 201C FE02 Sibe form"},
 /* 201D */ { "RIGHT DOUBLE QUOTATION MARK","	= double comma quotation mark\n"
 	"	x (quotation mark - 0022)\n"
 	"	x (double prime - 2033)\n"
 	"	x (heavy double comma quotation mark ornament - 275E)\n"
 	"	x (double prime quotation mark - 301E)\n"
 	"	~ 201D FE00 non-fullwidth form\n"
-	"	~ 201D FE01 left-justified fullwidth form"},
+	"	~ 201D FE01 left-justified fullwidth form\n"
+	"	~ 201D FE02 Sibe form"},
 /* 201E */ { "DOUBLE LOW-9 QUOTATION MARK","	= low double comma quotation mark\n"
 	"	* used as opening double quotation mark in some languages\n"
 	"	x (double low-reversed-9 quotation mark - 2E42)\n"
@@ -11103,8 +11162,9 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 202C */ { "POP DIRECTIONAL FORMATTING","	* commonly abbreviated PDF"},
 /* 202D */ { "LEFT-TO-RIGHT OVERRIDE","	* commonly abbreviated LRO"},
 /* 202E */ { "RIGHT-TO-LEFT OVERRIDE","	* commonly abbreviated RLO"},
-/* 202F */ { "NARROW NO-BREAK SPACE","	* commonly abbreviated NNBSP\n"
-	"	* a narrow form of a no-break space, typically the width of a thin space or a mid space\n"
+/* 202F */ { "NARROW NO-BREAK SPACE","	= no-break thin space\n"
+	"	* commonly abbreviated NNBSP\n"
+	"	* a narrow form of a no-break space; should be the same width as thin space 2009\n"
 	"	x (no-break space - 00A0)\n"
 	"	x (four-per-em space - 2005)\n"
 	"	x (thin space - 2009)\n"
@@ -11358,7 +11418,7 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20BE */ { "LARI SIGN","	* Georgia"},
 /* 20BF */ { "BITCOIN SIGN","	* a cryptocurrency"},
 /* 20C0 */ { "SOM SIGN","	* Kyrgyzstan"},
-/* 20C1 */ { NULL,NULL},
+/* 20C1 */ { "SAUDI RIYAL SIGN","	* Saudi Arabia"},
 /* 20C2 */ { NULL,NULL},
 /* 20C3 */ { NULL,NULL},
 /* 20C4 */ { NULL,NULL},
@@ -11395,7 +11455,8 @@ static const struct unicode_nameannot una_00_20[] = {
 /* 20DF */ { "COMBINING ENCLOSING DIAMOND","	x (white diamond - 25C7)"},
 /* 20E0 */ { "COMBINING ENCLOSING CIRCLE BACKSLASH","	* prohibition\n"
 	"	x (prohibited sign - 1F6C7)"},
-/* 20E1 */ { "COMBINING LEFT RIGHT ARROW ABOVE","	* tensor"},
+/* 20E1 */ { "COMBINING LEFT RIGHT ARROW ABOVE","	* tensor\n"
+	"	x (combining left right arrow below - 034D)"},
 /* 20E2 */ { "COMBINING ENCLOSING SCREEN","	x (clear screen symbol - 239A)\n"
 	"	x (screen - 1F5B5)"},
 /* 20E3 */ { "COMBINING ENCLOSING KEYCAP",NULL},
@@ -11574,14 +11635,10 @@ static const struct unicode_nameannot una_00_21[] = {
 	"	# <font> 004D latin capital letter m"},
 /* 2134 */ { "SCRIPT SMALL O","	= order, of inferior order to\n"
 	"	# <font> 006F latin small letter o"},
-/* 2135 */ { "ALEF SYMBOL","	= first transfinite cardinal (countable)\n"
-	"	# 05D0 hebrew letter alef"},
-/* 2136 */ { "BET SYMBOL","	= second transfinite cardinal (the continuum)\n"
-	"	# 05D1 hebrew letter bet"},
-/* 2137 */ { "GIMEL SYMBOL","	= third transfinite cardinal (functions of a real variable)\n"
-	"	# 05D2 hebrew letter gimel"},
-/* 2138 */ { "DALET SYMBOL","	= fourth transfinite cardinal\n"
-	"	# 05D3 hebrew letter dalet"},
+/* 2135 */ { "ALEF SYMBOL","	# 05D0 hebrew letter alef"},
+/* 2136 */ { "BET SYMBOL","	# 05D1 hebrew letter bet"},
+/* 2137 */ { "GIMEL SYMBOL","	# 05D2 hebrew letter gimel"},
+/* 2138 */ { "DALET SYMBOL","	# 05D3 hebrew letter dalet"},
 /* 2139 */ { "INFORMATION SOURCE","	* intended for use with 20DD\n"
 	"	x (circled information source - 1F6C8)\n"
 	"	# <font> 0069 latin small letter i"},
@@ -11755,7 +11812,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 21C1 */ { "RIGHTWARDS HARPOON WITH BARB DOWNWARDS",NULL},
 /* 21C2 */ { "DOWNWARDS HARPOON WITH BARB RIGHTWARDS",NULL},
 /* 21C3 */ { "DOWNWARDS HARPOON WITH BARB LEFTWARDS",NULL},
-/* 21C4 */ { "RIGHTWARDS ARROW OVER LEFTWARDS ARROW",NULL},
+/* 21C4 */ { "RIGHTWARDS ARROW OVER LEFTWARDS ARROW","	x (long rightwards arrow over long leftwards arrow - 1F8D0)"},
 /* 21C5 */ { "UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW",NULL},
 /* 21C6 */ { "LEFTWARDS ARROW OVER RIGHTWARDS ARROW",NULL},
 /* 21C7 */ { "LEFTWARDS PAIRED ARROWS",NULL},
@@ -11763,7 +11820,7 @@ static const struct unicode_nameannot una_00_21[] = {
 /* 21C9 */ { "RIGHTWARDS PAIRED ARROWS",NULL},
 /* 21CA */ { "DOWNWARDS PAIRED ARROWS",NULL},
 /* 21CB */ { "LEFTWARDS HARPOON OVER RIGHTWARDS HARPOON",NULL},
-/* 21CC */ { "RIGHTWARDS HARPOON OVER LEFTWARDS HARPOON",NULL},
+/* 21CC */ { "RIGHTWARDS HARPOON OVER LEFTWARDS HARPOON","	x (long rightwards harpoon over long leftwards harpoon - 1F8D1)"},
 /* 21CD */ { "LEFTWARDS DOUBLE ARROW WITH STROKE","	* negation of 21D0\n"
 	"	: 21D0 0338"},
 /* 21CE */ { "LEFT RIGHT DOUBLE ARROW WITH STROKE","	* negation of 21D4\n"
@@ -12139,7 +12196,9 @@ static const struct unicode_nameannot una_00_22[] = {
 	"	x (arabic five pointed star - 066D)\n"
 	"	x (black star - 2605)\n"
 	"	x (white medium star - 2B50)"},
-/* 22C7 */ { "DIVISION TIMES","	x (multiplication sign - 00D7)\n"
+/* 22C7 */ { "DIVISION TIMES","	* ambiguous sign conflating two operators\n"
+	"	x (plus-minus sign - 00B1)\n"
+	"	x (multiplication sign - 00D7)\n"
 	"	x (division sign - 00F7)\n"
 	"	x (multiplication x - 2715)"},
 /* 22C8 */ { "BOWTIE","	x (ocr bow tie - 2445)"},
@@ -12372,7 +12431,8 @@ static const struct unicode_nameannot una_00_23[] = {
 /* 237D */ { "SHOULDERED OPEN BOX","	* from ISO 9995-7\n"
 	"	* keyboard symbol for No Break Space\n"
 	"	x (open box - 2423)"},
-/* 237E */ { "BELL SYMBOL","	* from ISO 2047"},
+/* 237E */ { "BELL SYMBOL","	* from ISO 2047\n"
+	"	x (alarm bell symbol - 1FBFA)"},
 /* 237F */ { "VERTICAL LINE WITH MIDDLE DOT","	* from ISO 2047\n"
 	"	* symbol for End of Medium"},
 /* 2380 */ { "INSERTION SYMBOL",NULL},
@@ -13265,7 +13325,8 @@ static const struct unicode_nameannot una_00_26[] = {
 	"	x (mens symbol - 1F6B9)"},
 /* 2643 */ { "JUPITER","	= alchemical symbol for tin"},
 /* 2644 */ { "SATURN","	= alchemical symbol for lead"},
-/* 2645 */ { "URANUS","	x (astronomical symbol for uranus - 26E2)"},
+/* 2645 */ { "URANUS","	= alchemical symbol for platinum\n"
+	"	x (astronomical symbol for uranus - 26E2)"},
 /* 2646 */ { "NEPTUNE","	= alchemical symbol for bismuth/tinglass\n"
 	"	x (neptune form two - 2BC9)"},
 /* 2647 */ { "PLUTO","	x (pluto form two - 2BD3)"},
@@ -13425,7 +13486,7 @@ static const struct unicode_nameannot una_00_26[] = {
 /* 26B3 */ { "CERES",NULL},
 /* 26B4 */ { "PALLAS",NULL},
 /* 26B5 */ { "JUNO",NULL},
-/* 26B6 */ { "VESTA",NULL},
+/* 26B6 */ { "VESTA","	x (vesta form two - 1F777)"},
 /* 26B7 */ { "CHIRON",NULL},
 /* 26B8 */ { "BLACK MOON LILITH",NULL},
 /* 26B9 */ { "SEXTILE","	* an aspect of 60 degrees\n"
@@ -14337,8 +14398,8 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29B2 */ { "EMPTY SET WITH SMALL CIRCLE ABOVE",NULL},
 /* 29B3 */ { "EMPTY SET WITH RIGHT ARROW ABOVE",NULL},
 /* 29B4 */ { "EMPTY SET WITH LEFT ARROW ABOVE",NULL},
-/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	* used in superscripted form to mean standard state (chemistry)\n"
-	"	x (circled minus - 2296)"},
+/* 29B5 */ { "CIRCLE WITH HORIZONTAL BAR","	x (circled minus - 2296)\n"
+	"	x (medium small white circle with horizontal bar - 1CEF0)"},
 /* 29B6 */ { "CIRCLED VERTICAL BAR","	x (alchemical symbol for nitre - 1F715)"},
 /* 29B7 */ { "CIRCLED PARALLEL",NULL},
 /* 29B8 */ { "CIRCLED REVERSE SOLIDUS",NULL},
@@ -14379,7 +14440,8 @@ static const struct unicode_nameannot una_00_29[] = {
 /* 29D5 */ { "TIMES WITH RIGHT HALF BLACK","	x (right normal factor semidirect product - 22CA)"},
 /* 29D6 */ { "WHITE HOURGLASS","	= vertical bowtie\n"
 	"	= white framus\n"
-	"	x (hourglass - 231B)"},
+	"	x (hourglass - 231B)\n"
+	"	x (alchemical symbol for hour - 1F76E)"},
 /* 29D7 */ { "BLACK HOURGLASS","	x (upper and lower triangular half block - 1FB9A)"},
 /* 29D8 */ { "LEFT WIGGLY FENCE","	x (presentation form for vertical wavy low line - FE34)"},
 /* 29D9 */ { "RIGHT WIGGLY FENCE",NULL},
@@ -14909,7 +14971,7 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2B94 */ { "FOUR CORNER ARROWS CIRCLING ANTICLOCKWISE","	= loop"},
 /* 2B95 */ { "RIGHTWARDS BLACK ARROW","	x (black rightwards arrow - 27A1)\n"
 	"	x (leftwards black arrow - 2B05)"},
-/* 2B96 */ { NULL,NULL},
+/* 2B96 */ { "EQUALS SIGN WITH INFINITY ABOVE","	= with compensation for the material"},
 /* 2B97 */ { "SYMBOL FOR TYPE A ELECTRONICS","	* for type B electronics use 3036\n"
 	"	x (circled postal mark - 3036)"},
 /* 2B98 */ { "THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD",NULL},
@@ -14984,9 +15046,9 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2BD5 */ { "PLUTO FORM FOUR",NULL},
 /* 2BD6 */ { "PLUTO FORM FIVE",NULL},
 /* 2BD7 */ { "TRANSPLUTO",NULL},
-/* 2BD8 */ { "PROSERPINA",NULL},
-/* 2BD9 */ { "ASTRAEA",NULL},
-/* 2BDA */ { "HYGIEA",NULL},
+/* 2BD8 */ { "PROSERPINA","	x (astronomical symbol for asteroid proserpina - 1CECD)"},
+/* 2BD9 */ { "ASTRAEA","	x (astraea form two - 1F778)"},
+/* 2BDA */ { "HYGIEA","	x (hygiea form two - 1F779)"},
 /* 2BDB */ { "PHOLUS",NULL},
 /* 2BDC */ { "NESSUS",NULL},
 /* 2BDD */ { "WHITE MOON SELENA",NULL},
@@ -15018,7 +15080,8 @@ static const struct unicode_nameannot una_00_2B[] = {
 /* 2BF6 */ { "RUSSIAN ASTROLOGICAL SYMBOL BINOVILE","	* the binovile aspect is usually represented by the term N²"},
 /* 2BF7 */ { "RUSSIAN ASTROLOGICAL SYMBOL SENTAGON","	* represents a 100-degree aspect"},
 /* 2BF8 */ { "RUSSIAN ASTROLOGICAL SYMBOL TREDECILE","	* the tredecile aspect is usually represented by the term D³"},
-/* 2BF9 */ { "EQUALS SIGN WITH INFINITY BELOW","	= with compensation for the material"},
+/* 2BF9 */ { "EQUALS SIGN WITH INFINITY BELOW","	= with compensation for the material\n"
+	"	x (equals sign with infinity above - 2B96)"},
 /* 2BFA */ { "UNITED SYMBOL","	= united pawns\n"
 	"	x (divorce symbol - 26AE)\n"
 	"	x (two rings aligned horizontally - 1CC88)"},
@@ -16608,7 +16671,9 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 3023 */ { "HANGZHOU NUMERAL THREE",NULL},
 /* 3024 */ { "HANGZHOU NUMERAL FOUR",NULL},
 /* 3025 */ { "HANGZHOU NUMERAL FIVE",NULL},
-/* 3026 */ { "HANGZHOU NUMERAL SIX",NULL},
+/* 3026 */ { "HANGZHOU NUMERAL SIX","	= yangqin sign slow one\n"
+	"	* represents one half beat in the yangqin tempo marking system\n"
+	"	x (yangqin sign slow one beat - 16FF4)"},
 /* 3027 */ { "HANGZHOU NUMERAL SEVEN",NULL},
 /* 3028 */ { "HANGZHOU NUMERAL EIGHT",NULL},
 /* 3029 */ { "HANGZHOU NUMERAL NINE",NULL},
@@ -16737,7 +16802,8 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 309C */ { "KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK","	# 0020 309A"},
 /* 309D */ { "HIRAGANA ITERATION MARK",NULL},
 /* 309E */ { "HIRAGANA VOICED ITERATION MARK","	: 309D 3099"},
-/* 309F */ { "HIRAGANA DIGRAPH YORI","	* historically used in vertical contexts, but now found also in horizontal layout\n"
+/* 309F */ { "HIRAGANA DIGRAPH YORI","	* represents the Japanese word \"yori\" (from or than)\n"
+	"	* historically used in vertical contexts, but now found also in horizontal layout\n"
 	"	# <vertical> 3088 308A"},
 /* 30A0 */ { "KATAKANA-HIRAGANA DOUBLE HYPHEN","	x (equals sign - 003D)\n"
 	"	x (double hyphen - 2E40)"},
@@ -16838,7 +16904,8 @@ static const struct unicode_nameannot una_00_30[] = {
 /* 30FC */ { "KATAKANA-HIRAGANA PROLONGED SOUND MARK","	x (em dash - 2014)"},
 /* 30FD */ { "KATAKANA ITERATION MARK",NULL},
 /* 30FE */ { "KATAKANA VOICED ITERATION MARK","	: 30FD 3099"},
-/* 30FF */ { "KATAKANA DIGRAPH KOTO","	* historically used in vertical contexts, but now found also in horizontal layout\n"
+/* 30FF */ { "KATAKANA DIGRAPH KOTO","	* represents the Japanese word \"koto\" (thing)\n"
+	"	* historically used in vertical contexts, but now found also in horizontal layout\n"
 	"	# <vertical> 30B3 30C8"}
 };
 
@@ -20155,13 +20222,13 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7CB */ { "LATIN CAPITAL LETTER RAMS HORN","	* lowercase is 0264"},
 /* A7CC */ { "LATIN CAPITAL LETTER S WITH DIAGONAL STROKE",NULL},
 /* A7CD */ { "LATIN SMALL LETTER S WITH DIAGONAL STROKE",NULL},
-/* A7CE */ { NULL,NULL},
-/* A7CF */ { NULL,NULL},
+/* A7CE */ { "LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE",NULL},
+/* A7CF */ { "LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE","	x (latin letter pharyngeal voiced fricative - 0295)"},
 /* A7D0 */ { "LATIN CAPITAL LETTER CLOSED INSULAR G",NULL},
 /* A7D1 */ { "LATIN SMALL LETTER CLOSED INSULAR G","	x (latin small letter insular g - 1D79)"},
-/* A7D2 */ { NULL,NULL},
+/* A7D2 */ { "LATIN CAPITAL LETTER DOUBLE THORN",NULL},
 /* A7D3 */ { "LATIN SMALL LETTER DOUBLE THORN","	x (latin small letter thorn - 00FE)"},
-/* A7D4 */ { NULL,NULL},
+/* A7D4 */ { "LATIN CAPITAL LETTER DOUBLE WYNN",NULL},
 /* A7D5 */ { "LATIN SMALL LETTER DOUBLE WYNN","	x (latin letter wynn - 01BF)"},
 /* A7D6 */ { "LATIN CAPITAL LETTER MIDDLE SCOTS S",NULL},
 /* A7D7 */ { "LATIN SMALL LETTER MIDDLE SCOTS S","	* used in Middle Scots for s, ss, ser, sir, is, sis, etc.\n"
@@ -20191,7 +20258,7 @@ static const struct unicode_nameannot una_00_A7[] = {
 /* A7EE */ { NULL,NULL},
 /* A7EF */ { NULL,NULL},
 /* A7F0 */ { NULL,NULL},
-/* A7F1 */ { NULL,NULL},
+/* A7F1 */ { "MODIFIER LETTER CAPITAL S","	# <super> 0053"},
 /* A7F2 */ { "MODIFIER LETTER CAPITAL C","	# <super> 0043"},
 /* A7F3 */ { "MODIFIER LETTER CAPITAL F","	# <super> 0046"},
 /* A7F4 */ { "MODIFIER LETTER CAPITAL Q","	x (latin letter small capital q - A7AF)\n"
@@ -22337,22 +22404,22 @@ static const struct unicode_nameannot una_00_FB[] = {
 /* FBC0 */ { "ARABIC SYMBOL SMALL TAH ABOVE","	* Urdu"},
 /* FBC1 */ { "ARABIC SYMBOL SMALL TAH BELOW","	* Urdu"},
 /* FBC2 */ { "ARABIC SYMBOL WASLA ABOVE","	x (arabic letter alef wasla - 0671)"},
-/* FBC3 */ { NULL,NULL},
-/* FBC4 */ { NULL,NULL},
-/* FBC5 */ { NULL,NULL},
-/* FBC6 */ { NULL,NULL},
-/* FBC7 */ { NULL,NULL},
-/* FBC8 */ { NULL,NULL},
-/* FBC9 */ { NULL,NULL},
-/* FBCA */ { NULL,NULL},
-/* FBCB */ { NULL,NULL},
-/* FBCC */ { NULL,NULL},
-/* FBCD */ { NULL,NULL},
-/* FBCE */ { NULL,NULL},
-/* FBCF */ { NULL,NULL},
-/* FBD0 */ { NULL,NULL},
-/* FBD1 */ { NULL,NULL},
-/* FBD2 */ { NULL,NULL},
+/* FBC3 */ { "ARABIC LIGATURE JALLA WA-ALAA",NULL},
+/* FBC4 */ { "ARABIC LIGATURE DAAMAT BARAKAATUHUM",NULL},
+/* FBC5 */ { "ARABIC LIGATURE RAHMATU ALLAAHI TAAALAA ALAYH",NULL},
+/* FBC6 */ { "ARABIC LIGATURE RAHMATU ALLAAHI ALAYHIM",NULL},
+/* FBC7 */ { "ARABIC LIGATURE RAHMATU ALLAAHI ALAYHIMAA",NULL},
+/* FBC8 */ { "ARABIC LIGATURE RAHIMAHUM ALLAAHU TAAALAA",NULL},
+/* FBC9 */ { "ARABIC LIGATURE RAHIMAHUMAA ALLAAH",NULL},
+/* FBCA */ { "ARABIC LIGATURE RAHIMAHUMAA ALLAAHU TAAALAA",NULL},
+/* FBCB */ { "ARABIC LIGATURE RADI ALLAAHU TAAALAA ANHUM",NULL},
+/* FBCC */ { "ARABIC LIGATURE HAFIZAHU ALLAAH",NULL},
+/* FBCD */ { "ARABIC LIGATURE HAFIZAHU ALLAAHU TAAALAA",NULL},
+/* FBCE */ { "ARABIC LIGATURE HAFIZAHUM ALLAAHU TAAALAA",NULL},
+/* FBCF */ { "ARABIC LIGATURE HAFIZAHUMAA ALLAAHU TAAALAA",NULL},
+/* FBD0 */ { "ARABIC LIGATURE SALLALLAAHU TAAALAA ALAYHI WA-SALLAM",NULL},
+/* FBD1 */ { "ARABIC LIGATURE AJJAL ALLAAHU FARAJAHU ASH-SHAREEF",NULL},
+/* FBD2 */ { "ARABIC LIGATURE ALAYHI AR-RAHMAH",NULL},
 /* FBD3 */ { "ARABIC LETTER NG ISOLATED FORM","	# <isolated> 06AD"},
 /* FBD4 */ { "ARABIC LETTER NG FINAL FORM","	# <final> 06AD"},
 /* FBD5 */ { "ARABIC LETTER NG INITIAL FORM","	# <initial> 06AD"},
@@ -22815,8 +22882,8 @@ static const struct unicode_nameannot una_00_FD[] = {
 /* FD8D */ { "ARABIC LIGATURE MEEM WITH JEEM WITH MEEM INITIAL FORM","	# <initial> 0645 062C 0645"},
 /* FD8E */ { "ARABIC LIGATURE MEEM WITH KHAH WITH JEEM INITIAL FORM","	# <initial> 0645 062E 062C"},
 /* FD8F */ { "ARABIC LIGATURE MEEM WITH KHAH WITH MEEM INITIAL FORM","	# <initial> 0645 062E 0645"},
-/* FD90 */ { NULL,NULL},
-/* FD91 */ { NULL,NULL},
+/* FD90 */ { "ARABIC LIGATURE RAHMATU ALLAAHI ALAYH",NULL},
+/* FD91 */ { "ARABIC LIGATURE RAHMATU ALLAAHI ALAYHAA",NULL},
 /* FD92 */ { "ARABIC LIGATURE MEEM WITH JEEM WITH KHAH INITIAL FORM","	# <initial> 0645 062C 062E"},
 /* FD93 */ { "ARABIC LIGATURE HEH WITH MEEM WITH JEEM INITIAL FORM","	# <initial> 0647 0645 062C"},
 /* FD94 */ { "ARABIC LIGATURE HEH WITH MEEM WITH MEEM INITIAL FORM","	# <initial> 0647 0645 0645"},
@@ -22871,13 +22938,13 @@ static const struct unicode_nameannot una_00_FD[] = {
 /* FDC5 */ { "ARABIC LIGATURE SAD WITH MEEM WITH MEEM INITIAL FORM","	# <initial> 0635 0645 0645"},
 /* FDC6 */ { "ARABIC LIGATURE SEEN WITH KHAH WITH YEH FINAL FORM","	# <final> 0633 062E 064A"},
 /* FDC7 */ { "ARABIC LIGATURE NOON WITH JEEM WITH YEH FINAL FORM","	# <final> 0646 062C 064A"},
-/* FDC8 */ { NULL,NULL},
-/* FDC9 */ { NULL,NULL},
-/* FDCA */ { NULL,NULL},
-/* FDCB */ { NULL,NULL},
-/* FDCC */ { NULL,NULL},
-/* FDCD */ { NULL,NULL},
-/* FDCE */ { NULL,NULL},
+/* FDC8 */ { "ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA",NULL},
+/* FDC9 */ { "ARABIC LIGATURE RADI ALLAAHU TAAALAA ANH",NULL},
+/* FDCA */ { "ARABIC LIGATURE RADI ALLAAHU TAAALAA ANHAA",NULL},
+/* FDCB */ { "ARABIC LIGATURE RADI ALLAAHU TAAALAA ANHUMAA",NULL},
+/* FDCC */ { "ARABIC LIGATURE SALLALLAHU ALAYHI WA-ALAA AALIHEE WA-SALLAM",NULL},
+/* FDCD */ { "ARABIC LIGATURE AJJAL ALLAAHU TAAALAA FARAJAHU ASH-SHAREEF",NULL},
+/* FDCE */ { "ARABIC LIGATURE KARRAMA ALLAAHU WAJHAH",NULL},
 /* FDCF */ { "ARABIC LIGATURE SALAAMUHU ALAYNAA","	* his blessing on us\n"
 	"	* used in Christian texts"},
 /* FDD0 */ { NULL,NULL},
@@ -25941,32 +26008,32 @@ static const struct unicode_nameannot una_01_09[] = {
 /* 1093D */ { NULL,NULL},
 /* 1093E */ { NULL,NULL},
 /* 1093F */ { "LYDIAN TRIANGULAR MARK",NULL},
-/* 10940 */ { NULL,NULL},
-/* 10941 */ { NULL,NULL},
-/* 10942 */ { NULL,NULL},
-/* 10943 */ { NULL,NULL},
-/* 10944 */ { NULL,NULL},
-/* 10945 */ { NULL,NULL},
-/* 10946 */ { NULL,NULL},
-/* 10947 */ { NULL,NULL},
-/* 10948 */ { NULL,NULL},
-/* 10949 */ { NULL,NULL},
-/* 1094A */ { NULL,NULL},
-/* 1094B */ { NULL,NULL},
-/* 1094C */ { NULL,NULL},
-/* 1094D */ { NULL,NULL},
-/* 1094E */ { NULL,NULL},
-/* 1094F */ { NULL,NULL},
-/* 10950 */ { NULL,NULL},
-/* 10951 */ { NULL,NULL},
-/* 10952 */ { NULL,NULL},
-/* 10953 */ { NULL,NULL},
-/* 10954 */ { NULL,NULL},
-/* 10955 */ { NULL,NULL},
-/* 10956 */ { NULL,NULL},
-/* 10957 */ { NULL,NULL},
-/* 10958 */ { NULL,NULL},
-/* 10959 */ { NULL,NULL},
+/* 10940 */ { "SIDETIC LETTER N01","	* vowel a"},
+/* 10941 */ { "SIDETIC LETTER N02","	* vowel e"},
+/* 10942 */ { "SIDETIC LETTER N03","	* vowel i"},
+/* 10943 */ { "SIDETIC LETTER N04","	* vowel o"},
+/* 10944 */ { "SIDETIC LETTER N05","	* vowel u"},
+/* 10945 */ { "SIDETIC LETTER N06","	* semivowel w"},
+/* 10946 */ { "SIDETIC LETTER N07","	* semivowel y"},
+/* 10947 */ { "SIDETIC LETTER N08","	* consonant p"},
+/* 10948 */ { "SIDETIC LETTER N09","	* consonant d2"},
+/* 10949 */ { "SIDETIC LETTER N10","	* consonant m"},
+/* 1094A */ { "SIDETIC LETTER N11","	* consonant t"},
+/* 1094B */ { "SIDETIC LETTER N12","	* consonant d"},
+/* 1094C */ { "SIDETIC LETTER N13","	* consonant θ"},
+/* 1094D */ { "SIDETIC LETTER N14","	* fricative consonant s"},
+/* 1094E */ { "SIDETIC LETTER N15","	* fricative consonant s2"},
+/* 1094F */ { "SIDETIC LETTER N16","	* consonant n"},
+/* 10950 */ { "SIDETIC LETTER N17","	* consonant l"},
+/* 10951 */ { "SIDETIC LETTER N18","	* consonant"},
+/* 10952 */ { "SIDETIC LETTER N19","	* consonant g"},
+/* 10953 */ { "SIDETIC LETTER N20","	* Greek chi"},
+/* 10954 */ { "SIDETIC LETTER N21","	* consonant r"},
+/* 10955 */ { "SIDETIC LETTER N22","	* vowel"},
+/* 10956 */ { "SIDETIC LETTER N23","	* consonant k"},
+/* 10957 */ { "SIDETIC LETTER N24","	* consonant b"},
+/* 10958 */ { "SIDETIC LETTER N25","	* consonant n2"},
+/* 10959 */ { "SIDETIC LETTER N26","	* consonant z"},
 /* 1095A */ { NULL,NULL},
 /* 1095B */ { NULL,NULL},
 /* 1095C */ { NULL,NULL},
@@ -27492,9 +27559,11 @@ static const struct unicode_nameannot una_01_0E[] = {
 /* 10EC2 */ { "ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW",NULL},
 /* 10EC3 */ { "ARABIC LETTER TAH WITH TWO DOTS VERTICALLY BELOW",NULL},
 /* 10EC4 */ { "ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW",NULL},
-/* 10EC5 */ { NULL,NULL},
-/* 10EC6 */ { NULL,NULL},
-/* 10EC7 */ { NULL,NULL},
+/* 10EC5 */ { "ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW","	* used to mark unwritten yeh in Uthmanic rasm\n"
+	"	x (arabic small yeh - 06E6)\n"
+	"	x (arabic small high yeh barree with two dots below - 08CB)"},
+/* 10EC6 */ { "ARABIC LETTER THIN NOON","	* only medial form is attested"},
+/* 10EC7 */ { "ARABIC LETTER YEH WITH FOUR DOTS BELOW",NULL},
 /* 10EC8 */ { NULL,NULL},
 /* 10EC9 */ { NULL,NULL},
 /* 10ECA */ { NULL,NULL},
@@ -27503,15 +27572,15 @@ static const struct unicode_nameannot una_01_0E[] = {
 /* 10ECD */ { NULL,NULL},
 /* 10ECE */ { NULL,NULL},
 /* 10ECF */ { NULL,NULL},
-/* 10ED0 */ { NULL,NULL},
-/* 10ED1 */ { NULL,NULL},
-/* 10ED2 */ { NULL,NULL},
-/* 10ED3 */ { NULL,NULL},
-/* 10ED4 */ { NULL,NULL},
-/* 10ED5 */ { NULL,NULL},
-/* 10ED6 */ { NULL,NULL},
-/* 10ED7 */ { NULL,NULL},
-/* 10ED8 */ { NULL,NULL},
+/* 10ED0 */ { "ARABIC BIBLICAL END OF VERSE","	* used as end of verse marker in Urdu"},
+/* 10ED1 */ { "ARABIC LIGATURE ALAYHAA AS-SALAATU WAS-SALAAM",NULL},
+/* 10ED2 */ { "ARABIC LIGATURE ALAYHIM AS-SALAATU WAS-SALAAM",NULL},
+/* 10ED3 */ { "ARABIC LIGATURE ALAYHIMAA AS-SALAATU WAS-SALAAM",NULL},
+/* 10ED4 */ { "ARABIC LIGATURE QADDASA ALLAAHU SIRRAH",NULL},
+/* 10ED5 */ { "ARABIC LIGATURE QUDDISA SIRRUHUM",NULL},
+/* 10ED6 */ { "ARABIC LIGATURE QUDDISA SIRRUHUMAA",NULL},
+/* 10ED7 */ { "ARABIC LIGATURE QUDDISAT ASRAARUHUM",NULL},
+/* 10ED8 */ { "ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH",NULL},
 /* 10ED9 */ { NULL,NULL},
 /* 10EDA */ { NULL,NULL},
 /* 10EDB */ { NULL,NULL},
@@ -27545,8 +27614,8 @@ static const struct unicode_nameannot una_01_0E[] = {
 /* 10EF7 */ { NULL,NULL},
 /* 10EF8 */ { NULL,NULL},
 /* 10EF9 */ { NULL,NULL},
-/* 10EFA */ { NULL,NULL},
-/* 10EFB */ { NULL,NULL},
+/* 10EFA */ { "ARABIC DOUBLE VERTICAL BAR BELOW","	x (arabic kasratan - 064D)"},
+/* 10EFB */ { "ARABIC SMALL LOW NOON","	x (arabic small low noon with kasra - 08D9)"},
 /* 10EFC */ { "ARABIC COMBINING ALEF OVERLAY",NULL},
 /* 10EFD */ { "ARABIC SMALL LOW WORD SAKTA","	x (arabic small high word sakta - 08DD)"},
 /* 10EFE */ { "ARABIC SMALL LOW WORD QASR",NULL},
@@ -30806,14 +30875,14 @@ static const struct unicode_nameannot una_01_1B[] = {
 /* 11B5D */ { NULL,NULL},
 /* 11B5E */ { NULL,NULL},
 /* 11B5F */ { NULL,NULL},
-/* 11B60 */ { NULL,NULL},
-/* 11B61 */ { NULL,NULL},
-/* 11B62 */ { NULL,NULL},
-/* 11B63 */ { NULL,NULL},
-/* 11B64 */ { NULL,NULL},
-/* 11B65 */ { NULL,NULL},
-/* 11B66 */ { NULL,NULL},
-/* 11B67 */ { NULL,NULL},
+/* 11B60 */ { "SHARADA VOWEL SIGN OE","	x (devanagari vowel sign oe - 093A)"},
+/* 11B61 */ { "SHARADA VOWEL SIGN OOE","	x (devanagari vowel sign ooe - 093B)"},
+/* 11B62 */ { "SHARADA VOWEL SIGN UE","	x (devanagari vowel sign ue - 0956)"},
+/* 11B63 */ { "SHARADA VOWEL SIGN UUE","	x (devanagari vowel sign uue - 0957)"},
+/* 11B64 */ { "SHARADA VOWEL SIGN SHORT E","	x (devanagari vowel sign short e - 0946)"},
+/* 11B65 */ { "SHARADA VOWEL SIGN SHORT O","	x (devanagari vowel sign short o - 094A)"},
+/* 11B66 */ { "SHARADA VOWEL SIGN CANDRA E","	x (devanagari vowel sign candra e - 0945)"},
+/* 11B67 */ { "SHARADA VOWEL SIGN CANDRA O","	x (devanagari vowel sign candra o - 0949)"},
 /* 11B68 */ { NULL,NULL},
 /* 11B69 */ { NULL,NULL},
 /* 11B6A */ { NULL,NULL},
@@ -31406,64 +31475,65 @@ static const struct unicode_nameannot una_01_1D[] = {
 /* 11DAD */ { NULL,NULL},
 /* 11DAE */ { NULL,NULL},
 /* 11DAF */ { NULL,NULL},
-/* 11DB0 */ { NULL,NULL},
-/* 11DB1 */ { NULL,NULL},
-/* 11DB2 */ { NULL,NULL},
-/* 11DB3 */ { NULL,NULL},
-/* 11DB4 */ { NULL,NULL},
-/* 11DB5 */ { NULL,NULL},
-/* 11DB6 */ { NULL,NULL},
-/* 11DB7 */ { NULL,NULL},
-/* 11DB8 */ { NULL,NULL},
-/* 11DB9 */ { NULL,NULL},
-/* 11DBA */ { NULL,NULL},
-/* 11DBB */ { NULL,NULL},
-/* 11DBC */ { NULL,NULL},
-/* 11DBD */ { NULL,NULL},
-/* 11DBE */ { NULL,NULL},
-/* 11DBF */ { NULL,NULL},
-/* 11DC0 */ { NULL,NULL},
-/* 11DC1 */ { NULL,NULL},
-/* 11DC2 */ { NULL,NULL},
-/* 11DC3 */ { NULL,NULL},
-/* 11DC4 */ { NULL,NULL},
-/* 11DC5 */ { NULL,NULL},
-/* 11DC6 */ { NULL,NULL},
-/* 11DC7 */ { NULL,NULL},
-/* 11DC8 */ { NULL,NULL},
-/* 11DC9 */ { NULL,NULL},
-/* 11DCA */ { NULL,NULL},
-/* 11DCB */ { NULL,NULL},
-/* 11DCC */ { NULL,NULL},
-/* 11DCD */ { NULL,NULL},
-/* 11DCE */ { NULL,NULL},
-/* 11DCF */ { NULL,NULL},
-/* 11DD0 */ { NULL,NULL},
-/* 11DD1 */ { NULL,NULL},
-/* 11DD2 */ { NULL,NULL},
-/* 11DD3 */ { NULL,NULL},
-/* 11DD4 */ { NULL,NULL},
-/* 11DD5 */ { NULL,NULL},
-/* 11DD6 */ { NULL,NULL},
-/* 11DD7 */ { NULL,NULL},
-/* 11DD8 */ { NULL,NULL},
-/* 11DD9 */ { NULL,NULL},
-/* 11DDA */ { NULL,NULL},
-/* 11DDB */ { NULL,NULL},
+/* 11DB0 */ { "TOLONG SIKI LETTER I",NULL},
+/* 11DB1 */ { "TOLONG SIKI LETTER E",NULL},
+/* 11DB2 */ { "TOLONG SIKI LETTER U",NULL},
+/* 11DB3 */ { "TOLONG SIKI LETTER O",NULL},
+/* 11DB4 */ { "TOLONG SIKI LETTER A",NULL},
+/* 11DB5 */ { "TOLONG SIKI LETTER AA",NULL},
+/* 11DB6 */ { "TOLONG SIKI LETTER P",NULL},
+/* 11DB7 */ { "TOLONG SIKI LETTER PH",NULL},
+/* 11DB8 */ { "TOLONG SIKI LETTER B",NULL},
+/* 11DB9 */ { "TOLONG SIKI LETTER BH",NULL},
+/* 11DBA */ { "TOLONG SIKI LETTER M",NULL},
+/* 11DBB */ { "TOLONG SIKI LETTER T",NULL},
+/* 11DBC */ { "TOLONG SIKI LETTER TH",NULL},
+/* 11DBD */ { "TOLONG SIKI LETTER D",NULL},
+/* 11DBE */ { "TOLONG SIKI LETTER DH",NULL},
+/* 11DBF */ { "TOLONG SIKI LETTER N",NULL},
+/* 11DC0 */ { "TOLONG SIKI LETTER TT",NULL},
+/* 11DC1 */ { "TOLONG SIKI LETTER TTH",NULL},
+/* 11DC2 */ { "TOLONG SIKI LETTER DD",NULL},
+/* 11DC3 */ { "TOLONG SIKI LETTER DDH",NULL},
+/* 11DC4 */ { "TOLONG SIKI LETTER NN",NULL},
+/* 11DC5 */ { "TOLONG SIKI LETTER C",NULL},
+/* 11DC6 */ { "TOLONG SIKI LETTER CH",NULL},
+/* 11DC7 */ { "TOLONG SIKI LETTER J",NULL},
+/* 11DC8 */ { "TOLONG SIKI LETTER JH",NULL},
+/* 11DC9 */ { "TOLONG SIKI LETTER NY",NULL},
+/* 11DCA */ { "TOLONG SIKI LETTER K",NULL},
+/* 11DCB */ { "TOLONG SIKI LETTER KH",NULL},
+/* 11DCC */ { "TOLONG SIKI LETTER G",NULL},
+/* 11DCD */ { "TOLONG SIKI LETTER GH",NULL},
+/* 11DCE */ { "TOLONG SIKI LETTER NG",NULL},
+/* 11DCF */ { "TOLONG SIKI LETTER Y",NULL},
+/* 11DD0 */ { "TOLONG SIKI LETTER R",NULL},
+/* 11DD1 */ { "TOLONG SIKI LETTER L",NULL},
+/* 11DD2 */ { "TOLONG SIKI LETTER V",NULL},
+/* 11DD3 */ { "TOLONG SIKI LETTER NNY",NULL},
+/* 11DD4 */ { "TOLONG SIKI LETTER S",NULL},
+/* 11DD5 */ { "TOLONG SIKI LETTER H",NULL},
+/* 11DD6 */ { "TOLONG SIKI LETTER X",NULL},
+/* 11DD7 */ { "TOLONG SIKI LETTER RR",NULL},
+/* 11DD8 */ { "TOLONG SIKI LETTER RRH",NULL},
+/* 11DD9 */ { "TOLONG SIKI SIGN SELA","	= vowel length mark"},
+/* 11DDA */ { "TOLONG SIKI SIGN HECAKA","	= tala\n"
+	"	* represents a glottal stop"},
+/* 11DDB */ { "TOLONG SIKI UNGGA",NULL},
 /* 11DDC */ { NULL,NULL},
 /* 11DDD */ { NULL,NULL},
 /* 11DDE */ { NULL,NULL},
 /* 11DDF */ { NULL,NULL},
-/* 11DE0 */ { NULL,NULL},
-/* 11DE1 */ { NULL,NULL},
-/* 11DE2 */ { NULL,NULL},
-/* 11DE3 */ { NULL,NULL},
-/* 11DE4 */ { NULL,NULL},
-/* 11DE5 */ { NULL,NULL},
-/* 11DE6 */ { NULL,NULL},
-/* 11DE7 */ { NULL,NULL},
-/* 11DE8 */ { NULL,NULL},
-/* 11DE9 */ { NULL,NULL},
+/* 11DE0 */ { "TOLONG SIKI DIGIT ZERO",NULL},
+/* 11DE1 */ { "TOLONG SIKI DIGIT ONE",NULL},
+/* 11DE2 */ { "TOLONG SIKI DIGIT TWO",NULL},
+/* 11DE3 */ { "TOLONG SIKI DIGIT THREE",NULL},
+/* 11DE4 */ { "TOLONG SIKI DIGIT FOUR",NULL},
+/* 11DE5 */ { "TOLONG SIKI DIGIT FIVE",NULL},
+/* 11DE6 */ { "TOLONG SIKI DIGIT SIX",NULL},
+/* 11DE7 */ { "TOLONG SIKI DIGIT SEVEN",NULL},
+/* 11DE8 */ { "TOLONG SIKI DIGIT EIGHT",NULL},
+/* 11DE9 */ { "TOLONG SIKI DIGIT NINE",NULL},
 /* 11DEA */ { NULL,NULL},
 /* 11DEB */ { NULL,NULL},
 /* 11DEC */ { NULL,NULL},
@@ -32089,13 +32159,17 @@ static const struct unicode_nameannot una_01_20[] = {
 /* 12035 */ { "CUNEIFORM SIGN ARAD TIMES KUR",NULL},
 /* 12036 */ { "CUNEIFORM SIGN ARKAB",NULL},
 /* 12037 */ { "CUNEIFORM SIGN ASAL2",NULL},
-/* 12038 */ { "CUNEIFORM SIGN ASH",NULL},
-/* 12039 */ { "CUNEIFORM SIGN ASH ZIDA TENU",NULL},
+/* 12038 */ { "CUNEIFORM SIGN ASH","	= 1 aš\n"
+	"	x (cuneiform numeric sign two ash - 12400)"},
+/* 12039 */ { "CUNEIFORM SIGN ASH ZIDA TENU","	= 1 aš tenû\n"
+	"	= 1 diš tenû\n"
+	"	= 1/2 iku\n"
+	"	x (cuneiform numeric sign two ash tenu - 1244A)"},
 /* 1203A */ { "CUNEIFORM SIGN ASH KABA TENU",NULL},
 /* 1203B */ { "CUNEIFORM SIGN ASH OVER ASH TUG2 OVER TUG2 TUG2 OVER TUG2 PAP",NULL},
 /* 1203C */ { "CUNEIFORM SIGN ASH OVER ASH OVER ASH",NULL},
 /* 1203D */ { "CUNEIFORM SIGN ASH OVER ASH OVER ASH CROSSING ASH OVER ASH OVER ASH",NULL},
-/* 1203E */ { "CUNEIFORM SIGN ASH2",NULL},
+/* 1203E */ { "CUNEIFORM SIGN ASH2","	x (cuneiform numeric sign four ban2 variant form - 12453)"},
 /* 1203F */ { "CUNEIFORM SIGN ASHGAB",NULL},
 /* 12040 */ { "CUNEIFORM SIGN BA",NULL},
 /* 12041 */ { "CUNEIFORM SIGN BAD",NULL},
@@ -32154,7 +32228,11 @@ static const struct unicode_nameannot una_01_20[] = {
 /* 12076 */ { "CUNEIFORM SIGN DIM2",NULL},
 /* 12077 */ { "CUNEIFORM SIGN DIN",NULL},
 /* 12078 */ { "CUNEIFORM SIGN DIN KASKAL U GUNU DISH",NULL},
-/* 12079 */ { "CUNEIFORM SIGN DISH",NULL},
+/* 12079 */ { "CUNEIFORM SIGN DISH","	= 1 diš\n"
+	"	= 1 bariga\n"
+	"	x (cuneiform numeric sign three dish - 12408)\n"
+	"	x (cuneiform numeric sign nigidamin - 12456)\n"
+	"	x (cuneiform numeric sign nigidaesh - 12457)"},
 /* 1207A */ { "CUNEIFORM SIGN DU",NULL},
 /* 1207B */ { "CUNEIFORM SIGN DU OVER DU",NULL},
 /* 1207C */ { "CUNEIFORM SIGN DU GUNU",NULL},
@@ -32591,12 +32669,14 @@ static const struct unicode_nameannot una_01_22[] = {
 /* 12223 */ { "CUNEIFORM SIGN MA2",NULL},
 /* 12224 */ { "CUNEIFORM SIGN MAH",NULL},
 /* 12225 */ { "CUNEIFORM SIGN MAR",NULL},
-/* 12226 */ { "CUNEIFORM SIGN MASH",NULL},
+/* 12226 */ { "CUNEIFORM SIGN MASH","	= 1/2 diš\n"
+	"	x (cuneiform numeric sign one ban2 - 1244F)"},
 /* 12227 */ { "CUNEIFORM SIGN MASH2",NULL},
 /* 12228 */ { "CUNEIFORM SIGN ME",NULL},
 /* 12229 */ { "CUNEIFORM SIGN MES",NULL},
 /* 1222A */ { "CUNEIFORM SIGN MI",NULL},
-/* 1222B */ { "CUNEIFORM SIGN MIN",NULL},
+/* 1222B */ { "CUNEIFORM SIGN MIN","	= 2 diš\n"
+	"	x (cuneiform numeric sign three dish - 12408)"},
 /* 1222C */ { "CUNEIFORM SIGN MU",NULL},
 /* 1222D */ { "CUNEIFORM SIGN MU OVER MU",NULL},
 /* 1222E */ { "CUNEIFORM SIGN MUG",NULL},
@@ -32675,7 +32755,7 @@ static const struct unicode_nameannot una_01_22[] = {
 /* 12277 */ { "CUNEIFORM SIGN NUNUZ AB2 TIMES U2",NULL},
 /* 12278 */ { "CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI",NULL},
 /* 12279 */ { "CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI U",NULL},
-/* 1227A */ { "CUNEIFORM SIGN PA",NULL},
+/* 1227A */ { "CUNEIFORM SIGN PA","	x (cuneiform numeric sign two ban2 - 12450)"},
 /* 1227B */ { "CUNEIFORM SIGN PAD",NULL},
 /* 1227C */ { "CUNEIFORM SIGN PAN",NULL},
 /* 1227D */ { "CUNEIFORM SIGN PAP",NULL},
@@ -32738,7 +32818,11 @@ static const struct unicode_nameannot una_01_22[] = {
 /* 122B6 */ { "CUNEIFORM SIGN SHA3 TIMES U PLUS A",NULL},
 /* 122B7 */ { "CUNEIFORM SIGN SHA6",NULL},
 /* 122B8 */ { "CUNEIFORM SIGN SHAB6",NULL},
-/* 122B9 */ { "CUNEIFORM SIGN SHAR2","	* formed by making a circular indentation with the end of the stylus"},
+/* 122B9 */ { "CUNEIFORM SIGN SHAR2","	= 1 šar₂\n"
+	"	* same glyph as 1212D HI in all but the most archaizing texts\n"
+	"	* the archaic reference glyph is formed by making a circular indentation with the end of the stylus\n"
+	"	* used for logographic šar₂ and cuneiform 1 šar₂\n"
+	"	x (cuneiform numeric sign two shar2 - 12423)"},
 /* 122BA */ { "CUNEIFORM SIGN SHE",NULL},
 /* 122BB */ { "CUNEIFORM SIGN SHE HU",NULL},
 /* 122BC */ { "CUNEIFORM SIGN SHE OVER SHE GAD OVER GAD GAR OVER GAR",NULL},
@@ -32824,9 +32908,13 @@ static const struct unicode_nameannot una_01_23[] = {
 /* 12308 */ { "CUNEIFORM SIGN TUM",NULL},
 /* 12309 */ { "CUNEIFORM SIGN TUR",NULL},
 /* 1230A */ { "CUNEIFORM SIGN TUR OVER TUR ZA OVER ZA",NULL},
-/* 1230B */ { "CUNEIFORM SIGN U",NULL},
+/* 1230B */ { "CUNEIFORM SIGN U","	= 1 u\n"
+	"	= 1 bur₃\n"
+	"	x (cuneiform numeric sign four u - 1240F)"},
 /* 1230C */ { "CUNEIFORM SIGN U GUD",NULL},
-/* 1230D */ { "CUNEIFORM SIGN U U U",NULL},
+/* 1230D */ { "CUNEIFORM SIGN U U U","	= 3 u\n"
+	"	= 3 bur₃\n"
+	"	x (cuneiform numeric sign four u - 1240F)"},
 /* 1230E */ { "CUNEIFORM SIGN U OVER U PA OVER PA GAR OVER GAR",NULL},
 /* 1230F */ { "CUNEIFORM SIGN U OVER U SUR OVER SUR",NULL},
 /* 12310 */ { "CUNEIFORM SIGN U OVER U U REVERSED OVER U REVERSED",NULL},
@@ -32907,8 +32995,8 @@ static const struct unicode_nameannot una_01_23[] = {
 /* 1235A */ { "CUNEIFORM SIGN UZ3",NULL},
 /* 1235B */ { "CUNEIFORM SIGN UZ3 TIMES KASKAL",NULL},
 /* 1235C */ { "CUNEIFORM SIGN UZU",NULL},
-/* 1235D */ { "CUNEIFORM SIGN ZA",NULL},
-/* 1235E */ { "CUNEIFORM SIGN ZA TENU",NULL},
+/* 1235D */ { "CUNEIFORM SIGN ZA","	x (cuneiform numeric sign four dish - 12409)"},
+/* 1235E */ { "CUNEIFORM SIGN ZA TENU","	x (cuneiform numeric sign four ash tenu - 1244C)"},
 /* 1235F */ { "CUNEIFORM SIGN ZA SQUARED TIMES KUR",NULL},
 /* 12360 */ { "CUNEIFORM SIGN ZAG",NULL},
 /* 12361 */ { "CUNEIFORM SIGN ZAMX",NULL},
@@ -32967,7 +33055,9 @@ static const struct unicode_nameannot una_01_23[] = {
 /* 12396 */ { "CUNEIFORM SIGN SAG TIMES IGI GUNU",NULL},
 /* 12397 */ { "CUNEIFORM SIGN TI2",NULL},
 /* 12398 */ { "CUNEIFORM SIGN UM TIMES ME",NULL},
-/* 12399 */ { "CUNEIFORM SIGN U U",NULL},
+/* 12399 */ { "CUNEIFORM SIGN U U","	= 2 u\n"
+	"	= 2 bur₃\n"
+	"	x (cuneiform numeric sign four u - 1240F)"},
 /* 1239A */ { NULL,NULL},
 /* 1239B */ { NULL,NULL},
 /* 1239C */ { NULL,NULL},
@@ -33074,7 +33164,8 @@ static const struct unicode_nameannot una_01_23[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_24[] = {
-/* 12400 */ { "CUNEIFORM NUMERIC SIGN TWO ASH",NULL},
+/* 12400 */ { "CUNEIFORM NUMERIC SIGN TWO ASH","	= 2 iku\n"
+	"	x (cuneiform sign ash - 12038)"},
 /* 12401 */ { "CUNEIFORM NUMERIC SIGN THREE ASH",NULL},
 /* 12402 */ { "CUNEIFORM NUMERIC SIGN FOUR ASH",NULL},
 /* 12403 */ { "CUNEIFORM NUMERIC SIGN FIVE ASH",NULL},
@@ -33082,14 +33173,18 @@ static const struct unicode_nameannot una_01_24[] = {
 /* 12405 */ { "CUNEIFORM NUMERIC SIGN SEVEN ASH",NULL},
 /* 12406 */ { "CUNEIFORM NUMERIC SIGN EIGHT ASH",NULL},
 /* 12407 */ { "CUNEIFORM NUMERIC SIGN NINE ASH",NULL},
-/* 12408 */ { "CUNEIFORM NUMERIC SIGN THREE DISH",NULL},
-/* 12409 */ { "CUNEIFORM NUMERIC SIGN FOUR DISH",NULL},
+/* 12408 */ { "CUNEIFORM NUMERIC SIGN THREE DISH","	x (cuneiform sign dish - 12079)\n"
+	"	x (cuneiform sign min - 1222B)"},
+/* 12409 */ { "CUNEIFORM NUMERIC SIGN FOUR DISH","	= 4 bariga"},
 /* 1240A */ { "CUNEIFORM NUMERIC SIGN FIVE DISH",NULL},
 /* 1240B */ { "CUNEIFORM NUMERIC SIGN SIX DISH",NULL},
 /* 1240C */ { "CUNEIFORM NUMERIC SIGN SEVEN DISH",NULL},
 /* 1240D */ { "CUNEIFORM NUMERIC SIGN EIGHT DISH",NULL},
 /* 1240E */ { "CUNEIFORM NUMERIC SIGN NINE DISH",NULL},
-/* 1240F */ { "CUNEIFORM NUMERIC SIGN FOUR U",NULL},
+/* 1240F */ { "CUNEIFORM NUMERIC SIGN FOUR U","	= 4 bur₃\n"
+	"	x (cuneiform sign u - 1230B)\n"
+	"	x (cuneiform sign u u - 12399)\n"
+	"	x (cuneiform sign u u u - 1230D)"},
 /* 12410 */ { "CUNEIFORM NUMERIC SIGN FIVE U",NULL},
 /* 12411 */ { "CUNEIFORM NUMERIC SIGN SIX U",NULL},
 /* 12412 */ { "CUNEIFORM NUMERIC SIGN SEVEN U",NULL},
@@ -33109,7 +33204,7 @@ static const struct unicode_nameannot una_01_24[] = {
 /* 12420 */ { "CUNEIFORM NUMERIC SIGN THREE GESHU",NULL},
 /* 12421 */ { "CUNEIFORM NUMERIC SIGN FOUR GESHU",NULL},
 /* 12422 */ { "CUNEIFORM NUMERIC SIGN FIVE GESHU",NULL},
-/* 12423 */ { "CUNEIFORM NUMERIC SIGN TWO SHAR2",NULL},
+/* 12423 */ { "CUNEIFORM NUMERIC SIGN TWO SHAR2","	x (cuneiform sign shar2 - 122B9)"},
 /* 12424 */ { "CUNEIFORM NUMERIC SIGN THREE SHAR2",NULL},
 /* 12425 */ { "CUNEIFORM NUMERIC SIGN THREE SHAR2 VARIANT FORM",NULL},
 /* 12426 */ { "CUNEIFORM NUMERIC SIGN FOUR SHAR2",NULL},
@@ -33148,33 +33243,39 @@ static const struct unicode_nameannot una_01_24[] = {
 /* 12447 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU3",NULL},
 /* 12448 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU4",NULL},
 /* 12449 */ { "CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A",NULL},
-/* 1244A */ { "CUNEIFORM NUMERIC SIGN TWO ASH TENU",NULL},
+/* 1244A */ { "CUNEIFORM NUMERIC SIGN TWO ASH TENU","	= 2 diš tenû\n"
+	"	x (cuneiform sign ash zida tenu - 12039)"},
 /* 1244B */ { "CUNEIFORM NUMERIC SIGN THREE ASH TENU",NULL},
 /* 1244C */ { "CUNEIFORM NUMERIC SIGN FOUR ASH TENU",NULL},
 /* 1244D */ { "CUNEIFORM NUMERIC SIGN FIVE ASH TENU",NULL},
 /* 1244E */ { "CUNEIFORM NUMERIC SIGN SIX ASH TENU",NULL},
-/* 1244F */ { "CUNEIFORM NUMERIC SIGN ONE BAN2",NULL},
+/* 1244F */ { "CUNEIFORM NUMERIC SIGN ONE BAN2","	* 12226 should be used for 1/2 diš\n"
+	"	x (cuneiform sign mash - 12226)"},
 /* 12450 */ { "CUNEIFORM NUMERIC SIGN TWO BAN2",NULL},
 /* 12451 */ { "CUNEIFORM NUMERIC SIGN THREE BAN2",NULL},
 /* 12452 */ { "CUNEIFORM NUMERIC SIGN FOUR BAN2",NULL},
 /* 12453 */ { "CUNEIFORM NUMERIC SIGN FOUR BAN2 VARIANT FORM",NULL},
 /* 12454 */ { "CUNEIFORM NUMERIC SIGN FIVE BAN2",NULL},
 /* 12455 */ { "CUNEIFORM NUMERIC SIGN FIVE BAN2 VARIANT FORM",NULL},
-/* 12456 */ { "CUNEIFORM NUMERIC SIGN NIGIDAMIN",NULL},
-/* 12457 */ { "CUNEIFORM NUMERIC SIGN NIGIDAESH",NULL},
+/* 12456 */ { "CUNEIFORM NUMERIC SIGN NIGIDAMIN","	= 2 bariga\n"
+	"	x (cuneiform sign dish - 12079)"},
+/* 12457 */ { "CUNEIFORM NUMERIC SIGN NIGIDAESH","	= 3 bariga"},
 /* 12458 */ { "CUNEIFORM NUMERIC SIGN ONE ESHE3",NULL},
 /* 12459 */ { "CUNEIFORM NUMERIC SIGN TWO ESHE3",NULL},
 /* 1245A */ { "CUNEIFORM NUMERIC SIGN ONE THIRD DISH",NULL},
 /* 1245B */ { "CUNEIFORM NUMERIC SIGN TWO THIRDS DISH",NULL},
 /* 1245C */ { "CUNEIFORM NUMERIC SIGN FIVE SIXTHS DISH",NULL},
-/* 1245D */ { "CUNEIFORM NUMERIC SIGN ONE THIRD VARIANT FORM A",NULL},
-/* 1245E */ { "CUNEIFORM NUMERIC SIGN TWO THIRDS VARIANT FORM A",NULL},
-/* 1245F */ { "CUNEIFORM NUMERIC SIGN ONE EIGHTH ASH",NULL},
-/* 12460 */ { "CUNEIFORM NUMERIC SIGN ONE QUARTER ASH",NULL},
+/* 1245D */ { "CUNEIFORM NUMERIC SIGN ONE THIRD VARIANT FORM A","	= 1/3 aš curved\n"
+	"	= 1/3 diš curved"},
+/* 1245E */ { "CUNEIFORM NUMERIC SIGN TWO THIRDS VARIANT FORM A","	= 2/3 aš curved\n"
+	"	= 2/3 diš curved"},
+/* 1245F */ { "CUNEIFORM NUMERIC SIGN ONE EIGHTH ASH","	= 1/8 iku"},
+/* 12460 */ { "CUNEIFORM NUMERIC SIGN ONE QUARTER ASH","	= 1/4 iku"},
 /* 12461 */ { "CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE SIXTH",NULL},
 /* 12462 */ { "CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER",NULL},
-/* 12463 */ { "CUNEIFORM NUMERIC SIGN ONE QUARTER GUR",NULL},
-/* 12464 */ { "CUNEIFORM NUMERIC SIGN ONE HALF GUR",NULL},
+/* 12463 */ { "CUNEIFORM NUMERIC SIGN ONE QUARTER GUR","	= 1 bariga variant form"},
+/* 12464 */ { "CUNEIFORM NUMERIC SIGN ONE HALF GUR","	= 2 bariga variant form\n"
+	"	* the sequence 12464 12463 is used for 3/4 gur"},
 /* 12465 */ { "CUNEIFORM NUMERIC SIGN ELAMITE ONE THIRD",NULL},
 /* 12466 */ { "CUNEIFORM NUMERIC SIGN ELAMITE TWO THIRDS",NULL},
 /* 12467 */ { "CUNEIFORM NUMERIC SIGN ELAMITE FORTY",NULL},
@@ -33873,7 +33974,8 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 1300F */ { "EGYPTIAN HIEROGLYPH A013","	* classifier rebel/enemy "},
 /* 13010 */ { "EGYPTIAN HIEROGLYPH A014","	* classifier rebel, opponent : rḳ"},
 /* 13011 */ { "EGYPTIAN HIEROGLYPH A014A","	* classifier death : mt"},
-/* 13012 */ { "EGYPTIAN HIEROGLYPH A015","	* logogram (to fall) : ḫr"},
+/* 13012 */ { "EGYPTIAN HIEROGLYPH A015","	* logogram (to fall) : ḫr\n"
+	"	~ 13012 FE03 rotated approximately 30 degrees"},
 /* 13013 */ { "EGYPTIAN HIEROGLYPH A016","	* classifier bowing"},
 /* 13014 */ { "EGYPTIAN HIEROGLYPH A017","	* classifier youth/child"},
 /* 13015 */ { "EGYPTIAN HIEROGLYPH A017A","	* classifier youth/child"},
@@ -33888,7 +33990,7 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 1301E */ { "EGYPTIAN HIEROGLYPH A026","	* logogram (vocative interjection) : ꞽ"},
 /* 1301F */ { "EGYPTIAN HIEROGLYPH A027","	* phonemogram/classifier messenger : ꞽn"},
 /* 13020 */ { "EGYPTIAN HIEROGLYPH A028","	* logogram (to be high) : ḳꜣꞽ"},
-/* 13021 */ { "EGYPTIAN HIEROGLYPH A029","	* classifier upside down : sḫd"},
+/* 13021 */ { "EGYPTIAN HIEROGLYPH A029","	* classifier upside-down : sḫd"},
 /* 13022 */ { "EGYPTIAN HIEROGLYPH A030","	* classifier adoration"},
 /* 13023 */ { "EGYPTIAN HIEROGLYPH A031","	* classifier turning away"},
 /* 13024 */ { "EGYPTIAN HIEROGLYPH A032","	* classifier dancing : ḫbꞽ"},
@@ -33907,7 +34009,7 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 13031 */ { "EGYPTIAN HIEROGLYPH A042A","	* logogram (first person singular) : ꞽ"},
 /* 13032 */ { "EGYPTIAN HIEROGLYPH A043","	* classifier king"},
 /* 13033 */ { "EGYPTIAN HIEROGLYPH A043A","	* logogram (king of UE) : n.y-sw.t"},
-/* 13034 */ { "EGYPTIAN HIEROGLYPH A044","	* classsifier king : n.y-sw.t"},
+/* 13034 */ { "EGYPTIAN HIEROGLYPH A044","	* classifier king : n.y-sw.t"},
 /* 13035 */ { "EGYPTIAN HIEROGLYPH A045","	* classifier king : bꞽ.ty"},
 /* 13036 */ { "EGYPTIAN HIEROGLYPH A045A","	* classifier king : n.y-sw.t"},
 /* 13037 */ { "EGYPTIAN HIEROGLYPH A046","	* classifier king : bꞽ.tyw"},
@@ -33940,7 +34042,7 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 13052 */ { "EGYPTIAN HIEROGLYPH B003","	* classifier birth : msꞽ"},
 /* 13053 */ { "EGYPTIAN HIEROGLYPH B004","	* classifier birth : msꞽ"},
 /* 13054 */ { "EGYPTIAN HIEROGLYPH B005","	* classifier nursing, rearing : rnn"},
-/* 13055 */ { "EGYPTIAN HIEROGLYPH B005A","	* logogram weaver or  nurse : ? | mnḫ.t"},
+/* 13055 */ { "EGYPTIAN HIEROGLYPH B005A","	* logogram weaver or nurse : ? | mnḫ.t"},
 /* 13056 */ { "EGYPTIAN HIEROGLYPH B006","	* classifier nursing, rearing : rnn"},
 /* 13057 */ { "EGYPTIAN HIEROGLYPH B007","	* classifier female royalty"},
 /* 13058 */ { "EGYPTIAN HIEROGLYPH B008","	* classifier human being (together with A1) : ḥr.w-nb"},
@@ -34007,7 +34109,7 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 13090 */ { "EGYPTIAN HIEROGLYPH D026","	* classifier blood : snf"},
 /* 13091 */ { "EGYPTIAN HIEROGLYPH D027","	* classifier breast : mnḏ\n"
 	"	~ 13091 FE00 rotated 90 degrees"},
-/* 13092 */ { "EGYPTIAN HIEROGLYPH D027A",NULL},
+/* 13092 */ { "EGYPTIAN HIEROGLYPH D027A","	* variant of 13091"},
 /* 13093 */ { "EGYPTIAN HIEROGLYPH D028","	* logogram (spirit, essence) : kꜣ\n"
 	"	~ 13093 FE01 rotated 180 degrees"},
 /* 13094 */ { "EGYPTIAN HIEROGLYPH D029","	* logogram (spirit, essence) : kꜣ"},
@@ -34052,9 +34154,11 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 130B6 */ { "EGYPTIAN HIEROGLYPH D050I","	* \\50000"},
 /* 130B7 */ { "EGYPTIAN HIEROGLYPH D051","	* not to be confused with 130AD\n"
 	"	* classifier taking : ṯꜣꞽ"},
-/* 130B8 */ { "EGYPTIAN HIEROGLYPH D052","	* phonemogram : bꜣḥ"},
+/* 130B8 */ { "EGYPTIAN HIEROGLYPH D052","	* phonemogram : bꜣḥ\n"
+	"	~ 130B8 FE03 rotated approximately 25 degrees"},
 /* 130B9 */ { "EGYPTIAN HIEROGLYPH D052A","	* phonemogram : sšm"},
-/* 130BA */ { "EGYPTIAN HIEROGLYPH D053","	* phonemogram : bꜣḥ"},
+/* 130BA */ { "EGYPTIAN HIEROGLYPH D053","	* phonemogram : bꜣḥ\n"
+	"	~ 130BA FE03 rotated approximately 25 degrees"},
 /* 130BB */ { "EGYPTIAN HIEROGLYPH D054","	* classifier movement"},
 /* 130BC */ { "EGYPTIAN HIEROGLYPH D054A","	* logogram (to come) : ꞽwꞽ"},
 /* 130BD */ { "EGYPTIAN HIEROGLYPH D055","	* classifier reverse movement"},
@@ -34120,8 +34224,8 @@ static const struct unicode_nameannot una_01_30[] = {
 /* 130F7 */ { "EGYPTIAN HIEROGLYPH E032","	* classifier rage, fury : ḳnd"},
 /* 130F8 */ { "EGYPTIAN HIEROGLYPH E033","	* classifier monkey : gf"},
 /* 130F9 */ { "EGYPTIAN HIEROGLYPH E034","	* phonemogram : wn"},
-/* 130FA */ { "EGYPTIAN HIEROGLYPH E034A","	* stylistic variant, use of 130F9 is preferred"},
-/* 130FB */ { "EGYPTIAN HIEROGLYPH E036","	* classifier monkey (divinity) : wpt"},
+/* 130FA */ { "EGYPTIAN HIEROGLYPH E034A","	* variant of 130F9"},
+/* 130FB */ { "EGYPTIAN HIEROGLYPH E036","	* logogram (Thot) : ḏḥwty"},
 /* 130FC */ { "EGYPTIAN HIEROGLYPH E037","	* logogram (symbol of the cycle of time) : wnšb"},
 /* 130FD */ { "EGYPTIAN HIEROGLYPH E038","	* cow\n"
 	"	* not to be confused with 130D2"},
@@ -34143,11 +34247,12 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 13109 */ { "EGYPTIAN HIEROGLYPH F011","	* classifier throat associated action : ꜥm"},
 /* 1310A */ { "EGYPTIAN HIEROGLYPH F012","	* phonemogram : wsr"},
 /* 1310B */ { "EGYPTIAN HIEROGLYPH F013","	* phonemogram : wp"},
-/* 1310C */ { "EGYPTIAN HIEROGLYPH F013A","	* stylistic variant, use of 1310B is preferred"},
+/* 1310C */ { "EGYPTIAN HIEROGLYPH F013A","	* variant of 1310B"},
 /* 1310D */ { "EGYPTIAN HIEROGLYPH F014","	* logogram (new years day) : wp-rnp.t"},
 /* 1310E */ { "EGYPTIAN HIEROGLYPH F015","	* logogram (new years day) : wp-rnp.t"},
 /* 1310F */ { "EGYPTIAN HIEROGLYPH F016","	* logogram (horn) : ꜥb\n"
-	"	~ 1310F FE00 rotated 90 degrees"},
+	"	~ 1310F FE00 rotated 90 degrees\n"
+	"	~ 1310F FE03 rotated approximately 30 degrees"},
 /* 13110 */ { "EGYPTIAN HIEROGLYPH F017","	* logogram purification : ꜥb.w"},
 /* 13111 */ { "EGYPTIAN HIEROGLYPH F018","	* phonemogram : ḥ"},
 /* 13112 */ { "EGYPTIAN HIEROGLYPH F019","	* classifier jaw : ꜥr"},
@@ -34187,7 +34292,9 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 1312C */ { "EGYPTIAN HIEROGLYPH F041","	* classifier slaughter/evil : šꜥ.t"},
 /* 1312D */ { "EGYPTIAN HIEROGLYPH F042","	* classifier rib : spr"},
 /* 1312E */ { "EGYPTIAN HIEROGLYPH F043","	* classifier ribs (meat of ribs) : spḥ.t"},
-/* 1312F */ { "EGYPTIAN HIEROGLYPH F044","	* phono-repeater : ꞽwꜥ"},
+/* 1312F */ { "EGYPTIAN HIEROGLYPH F044","	* phono-repeater : ꞽwꜥ\n"
+	"	~ 1312F FE03 rotated approximately 40 degrees [but not yet vertical]\n"
+	"	~ 1312F FE06 rotated approximately 325 degrees [horizontal]"},
 /* 13130 */ { "EGYPTIAN HIEROGLYPH F045","	* logogram (uterus, womb) : ꞽd.t"},
 /* 13131 */ { "EGYPTIAN HIEROGLYPH F045A","	* phonemogram : m"},
 /* 13132 */ { "EGYPTIAN HIEROGLYPH F046","	* logogram (to go round, to turn round) : pẖr\n"
@@ -34205,7 +34312,11 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 13139 */ { "EGYPTIAN HIEROGLYPH F051","	* phonemogram : f\n"
 	"	~ 13139 FE00 rotated 90 degrees\n"
 	"	~ 13139 FE01 rotated 180 degrees\n"
-	"	~ 13139 FE02 rotated 270 degrees"},
+	"	~ 13139 FE02 rotated 270 degrees\n"
+	"	~ 13139 FE03 rotated approximately 45 degrees [vertical]\n"
+	"	~ 13139 FE04 rotated approximately 135 degrees [horizontal]\n"
+	"	~ 13139 FE05 rotated approximately 225 degrees [vertical]\n"
+	"	~ 13139 FE06 rotated approximately 315 degrees [horizontal]"},
 /* 1313A */ { "EGYPTIAN HIEROGLYPH F051A","	* classifier part of a body : ḥꜥ.w"},
 /* 1313B */ { "EGYPTIAN HIEROGLYPH F051B","	* variant of 1313A\n"
 	"	* logogram (limbs, body) : ḥꜥ.w"},
@@ -34260,9 +34371,9 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 13166 */ { "EGYPTIAN HIEROGLYPH G034","	* classifier ostrich : nꞽw"},
 /* 13167 */ { "EGYPTIAN HIEROGLYPH G035","	* phonemogram : ꜥḳ"},
 /* 13168 */ { "EGYPTIAN HIEROGLYPH G036","	* phonemogram : wr"},
-/* 13169 */ { "EGYPTIAN HIEROGLYPH G036A","	* stylistic variant, use of 13168 is preferred"},
+/* 13169 */ { "EGYPTIAN HIEROGLYPH G036A","	* variant of 13168"},
 /* 1316A */ { "EGYPTIAN HIEROGLYPH G037","	* classifier negative, bad : ꞽsf.t"},
-/* 1316B */ { "EGYPTIAN HIEROGLYPH G037A","	* stylistic variant, use of 1316A is preferred"},
+/* 1316B */ { "EGYPTIAN HIEROGLYPH G037A","	* variant of 1316A"},
 /* 1316C */ { "EGYPTIAN HIEROGLYPH G038","	* goose\n"
 	"	* phonemogram : gb"},
 /* 1316D */ { "EGYPTIAN HIEROGLYPH G039","	* duck\n"
@@ -34290,7 +34401,9 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 13182 */ { "EGYPTIAN HIEROGLYPH H004","	* classifier people : rmṯ"},
 /* 13183 */ { "EGYPTIAN HIEROGLYPH H005","	* classifier wing : ḏnḥ\n"
 	"	~ 13183 FE02 rotated 270 degrees"},
-/* 13184 */ { "EGYPTIAN HIEROGLYPH H006","	* phonemogram : šw"},
+/* 13184 */ { "EGYPTIAN HIEROGLYPH H006","	* phonemogram : šw\n"
+	"	~ 13184 FE03 rotated approximately 25 degrees\n"
+	"	~ 13184 FE06 rotated approximately 335 degrees"},
 /* 13185 */ { "EGYPTIAN HIEROGLYPH H006A","	* from hieratic\n"
 	"	* phonemogram : šw"},
 /* 13186 */ { "EGYPTIAN HIEROGLYPH H007","	* classifier claw : ꞽꜣf.t"},
@@ -34317,10 +34430,13 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 13199 */ { "EGYPTIAN HIEROGLYPH I014","	* classifier coiling, winding : ḳꜣb"},
 /* 1319A */ { "EGYPTIAN HIEROGLYPH I015","	* classifier snake/uraeus : ꞽꜥr.t"},
 /* 1319B */ { "EGYPTIAN HIEROGLYPH K001","	* phonemogram : ꞽn"},
-/* 1319C */ { "EGYPTIAN HIEROGLYPH K002","	* phono-repeater : bw"},
-/* 1319D */ { "EGYPTIAN HIEROGLYPH K003","	* logogram (fish) : rm"},
+/* 1319C */ { "EGYPTIAN HIEROGLYPH K002","	* phono-repeater : bw\n"
+	"	~ 1319C FE03 rotated approximately 45 degrees"},
+/* 1319D */ { "EGYPTIAN HIEROGLYPH K003","	* logogram (fish) : rm\n"
+	"	~ 1319D FE03 rotated approximately 30 degrees"},
 /* 1319E */ { "EGYPTIAN HIEROGLYPH K004","	* phonemogram : ẖꜣ"},
-/* 1319F */ { "EGYPTIAN HIEROGLYPH K005","	* phono-repeater : bs"},
+/* 1319F */ { "EGYPTIAN HIEROGLYPH K005","	* phono-repeater : bs\n"
+	"	~ 1319F FE03 rotated approximately 30 degrees"},
 /* 131A0 */ { "EGYPTIAN HIEROGLYPH K006","	* logogram (scale) : nšm.t\n"
 	"	~ 131A0 FE00 rotated 90 degrees\n"
 	"	~ 131A0 FE02 rotated 270 degrees"},
@@ -34342,7 +34458,8 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 131B0 */ { "EGYPTIAN HIEROGLYPH M002","	* phonemogram : ḥn"},
 /* 131B1 */ { "EGYPTIAN HIEROGLYPH M003","	* phonemogram : ḫt\n"
 	"	~ 131B1 FE00 rotated 90 degrees\n"
-	"	~ 131B1 FE01 rotated 180 degrees"},
+	"	~ 131B1 FE01 rotated 180 degrees\n"
+	"	~ 131B1 FE03 rotated approximately 45 degrees"},
 /* 131B2 */ { "EGYPTIAN HIEROGLYPH M003A","	* phonemogram : m-ḫt"},
 /* 131B3 */ { "EGYPTIAN HIEROGLYPH M004","	* logogram (year) : rnp.t"},
 /* 131B4 */ { "EGYPTIAN HIEROGLYPH M005","	* logogram (time/season) : tr"},
@@ -34384,7 +34501,7 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 131CE */ { "EGYPTIAN HIEROGLYPH M019","	* phonemogram : ꜥꜣb"},
 /* 131CF */ { "EGYPTIAN HIEROGLYPH M020","	* logogram (marshland, country) : sḫ.t"},
 /* 131D0 */ { "EGYPTIAN HIEROGLYPH M021","	* logogram (herb, plant) : sm"},
-/* 131D1 */ { "EGYPTIAN HIEROGLYPH M022","	* classifier 'bud, lotus bud'\n"
+/* 131D1 */ { "EGYPTIAN HIEROGLYPH M022","	* classifier \"bud, lotus bud\"\n"
 	"	* phonemogram : nḫb"},
 /* 131D2 */ { "EGYPTIAN HIEROGLYPH M022A","	* phonemogram : nn"},
 /* 131D3 */ { "EGYPTIAN HIEROGLYPH M023","	* logogram (King of UE) : n(.y)-sw.t"},
@@ -34395,7 +34512,9 @@ static const struct unicode_nameannot una_01_31[] = {
 /* 131D8 */ { "EGYPTIAN HIEROGLYPH M027","	* logogram (Upper Egypt) : šmꜥ.w"},
 /* 131D9 */ { "EGYPTIAN HIEROGLYPH M028","	* logogram (the 10 of UE) : mḏ-šmꜥ.w"},
 /* 131DA */ { "EGYPTIAN HIEROGLYPH M028A","	* logogram (Upper Egypt) : šmꜥ.w"},
-/* 131DB */ { "EGYPTIAN HIEROGLYPH M029","	* logogram (to be sweet) : nḏm"},
+/* 131DB */ { "EGYPTIAN HIEROGLYPH M029","	* logogram (to be sweet) : nḏm\n"
+	"	~ 131DB FE03 rotated approximately 20 degrees\n"
+	"	~ 131DB FE06 rotated approximately 340 degrees"},
 /* 131DC */ { "EGYPTIAN HIEROGLYPH M030","	* logogram (to be sweet) : bnr/bnꞽ"},
 /* 131DD */ { "EGYPTIAN HIEROGLYPH M031","	* classifier growing : srd"},
 /* 131DE */ { "EGYPTIAN HIEROGLYPH M031A","	* classifier growing : srd"},
@@ -34423,7 +34542,8 @@ static const struct unicode_nameannot una_01_31[] = {
 	"	* not to be confused with 133DA\n"
 	"	* phonemogram : spd\n"
 	"	~ 131EE FE01 rotated 180 degrees\n"
-	"	~ 131EE FE02 rotated 270 degrees"},
+	"	~ 131EE FE02 rotated 270 degrees\n"
+	"	~ 131EE FE06 rotated approximately 330 degrees"},
 /* 131EF */ { "EGYPTIAN HIEROGLYPH N001","	* logogram (sky) : p.t"},
 /* 131F0 */ { "EGYPTIAN HIEROGLYPH N002","	* classifier night : grḥ"},
 /* 131F1 */ { "EGYPTIAN HIEROGLYPH N003","	* older variant of 131F0\n"
@@ -34461,12 +34581,14 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 13202 */ { "EGYPTIAN HIEROGLYPH N018B",NULL},
 /* 13203 */ { "EGYPTIAN HIEROGLYPH N019","	* logogram (horizon-dweller) : ꜣḫ.ty"},
 /* 13204 */ { "EGYPTIAN HIEROGLYPH N020","	* classifier riverbank : wḏb"},
-/* 13205 */ { "EGYPTIAN HIEROGLYPH N021","	* logogram (riverbank) : ꞽdb"},
+/* 13205 */ { "EGYPTIAN HIEROGLYPH N021","	* logogram (riverbank) : ꞽdb\n"
+	"	~ 13205 FE03 rotated approximately 30 degrees [but not yet vertical]\n"
+	"	~ 13205 FE06 rotated approximately 330 degrees [horizontal]"},
 /* 13206 */ { "EGYPTIAN HIEROGLYPH N022","	* logogram (riverbank) : ꞽdb"},
 /* 13207 */ { "EGYPTIAN HIEROGLYPH N023","	* classifier geographical location : dmꞽ"},
 /* 13208 */ { "EGYPTIAN HIEROGLYPH N024","	* logogram (nome, district) : spꜣ.t"},
 /* 13209 */ { "EGYPTIAN HIEROGLYPH N025","	* classifier foreign land, desert : ḫꜣs.t"},
-/* 1320A */ { "EGYPTIAN HIEROGLYPH N025A","	* stylistic variant, use of 13209 is preferred"},
+/* 1320A */ { "EGYPTIAN HIEROGLYPH N025A","	* variant of 13209"},
 /* 1320B */ { "EGYPTIAN HIEROGLYPH N026","	* phonemogram : ḏw"},
 /* 1320C */ { "EGYPTIAN HIEROGLYPH N027","	* logogram (horizon) : ꜣḫ.t"},
 /* 1320D */ { "EGYPTIAN HIEROGLYPH N028","	* phonemogram : ḫꜥ"},
@@ -34484,7 +34606,7 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 13213 */ { "EGYPTIAN HIEROGLYPH N033A","	* not to be confused with 133E7\n"
 	"	* classifier medicaments, incense, oil : ꜥn.tyw"},
 /* 13214 */ { "EGYPTIAN HIEROGLYPH N034","	* classifier metal objects : ꞽḳḥ.w"},
-/* 13215 */ { "EGYPTIAN HIEROGLYPH N034A","	* stylistic variant, use of 13214 is preferred\n"
+/* 13215 */ { "EGYPTIAN HIEROGLYPH N034A","	* variant of 13214\n"
 	"	* logogram (metal) : bꞽꜣ"},
 /* 13216 */ { "EGYPTIAN HIEROGLYPH N035","	* phonemogram : n\n"
 	"	~ 13216 FE02 rotated 270 degrees"},
@@ -34588,7 +34710,7 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 1326D */ { "EGYPTIAN HIEROGLYPH O019","	* classifier shrine : pr-wr"},
 /* 1326E */ { "EGYPTIAN HIEROGLYPH O019A","	* logogram (shrine, row of shrines) : ꞽtr.t"},
 /* 1326F */ { "EGYPTIAN HIEROGLYPH O020","	* classifier sanctuary, shrine : ꞽtr.ty"},
-/* 13270 */ { "EGYPTIAN HIEROGLYPH O020A",NULL},
+/* 13270 */ { "EGYPTIAN HIEROGLYPH O020A","	* variant of 1326F"},
 /* 13271 */ { "EGYPTIAN HIEROGLYPH O021","	* logogram (pavilion, hall, booth) : sḥ"},
 /* 13272 */ { "EGYPTIAN HIEROGLYPH O022","	* classifier booth : sḥ"},
 /* 13273 */ { "EGYPTIAN HIEROGLYPH O023","	* logogram (jubilee, sed-festival) : ḥb-sd"},
@@ -34602,7 +34724,7 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 1327B */ { "EGYPTIAN HIEROGLYPH O029","	* phonemogram : ꜥꜣ\n"
 	"	~ 1327B FE00 rotated 90 degrees\n"
 	"	~ 1327B FE02 rotated 270 degrees"},
-/* 1327C */ { "EGYPTIAN HIEROGLYPH O029A","	* rotated variant of 1327B\n"
+/* 1327C */ { "EGYPTIAN HIEROGLYPH O029A","	* rotated version of 1327B\n"
 	"	* phonemogram : ꜥꜣ"},
 /* 1327D */ { "EGYPTIAN HIEROGLYPH O030","	* not to be confused with 13361\n"
 	"	* logogram (pole, support) : sḫn.t"},
@@ -34624,7 +34746,8 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 13288 */ { "EGYPTIAN HIEROGLYPH O036C","	* beginning of fortified wall enclosure"},
 /* 13289 */ { "EGYPTIAN HIEROGLYPH O036D","	* end of fortified wall enclosure"},
 /* 1328A */ { "EGYPTIAN HIEROGLYPH O037","	* classifier overthrow, demolish : whn"},
-/* 1328B */ { "EGYPTIAN HIEROGLYPH O038","	* classifier passage : ꜥrr.yt"},
+/* 1328B */ { "EGYPTIAN HIEROGLYPH O038","	* classifier passage : ꜥrr.yt\n"
+	"	~ 1328B FE01 rotated 180 degrees"},
 /* 1328C */ { "EGYPTIAN HIEROGLYPH O039","	* not to be confused with 13219\n"
 	"	* classifier stone, brick, pebble : mꜣṯ\n"
 	"	~ 1328C FE00 rotated 90 degrees"},
@@ -34638,11 +34761,11 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 13293 */ { "EGYPTIAN HIEROGLYPH O046","	* logogram (harim, inner chamber) : ꞽp.t"},
 /* 13294 */ { "EGYPTIAN HIEROGLYPH O047","	* logogram (Hierakonpolis) : nḫn"},
 /* 13295 */ { "EGYPTIAN HIEROGLYPH O048","	* logogram (time, occasion) : sp"},
-/* 13296 */ { "EGYPTIAN HIEROGLYPH O049","	* logogram (city, village) : nꞽw.t"},
+/* 13296 */ { "EGYPTIAN HIEROGLYPH O049","	* logogram (city, village) : nꞽw.t\n"
+	"	~ 13296 FE03 rotated 45 degrees [= 135, 225, 315 degrees]"},
 /* 13297 */ { "EGYPTIAN HIEROGLYPH O050","	* classifier treshing floor : sp.t"},
-/* 13298 */ { "EGYPTIAN HIEROGLYPH O050A",NULL},
-/* 13299 */ { "EGYPTIAN HIEROGLYPH O050B","	* mirrored version of 13298\n"
-	"	* phono-repeater/classifier (time, occasion) : sp"},
+/* 13298 */ { "EGYPTIAN HIEROGLYPH O050A","	* mirrored version of 13299"},
+/* 13299 */ { "EGYPTIAN HIEROGLYPH O050B","	* phono-repeater/classifier (time, occasion) : sp"},
 /* 1329A */ { "EGYPTIAN HIEROGLYPH O051","	* logogram (granary) : šnw.t"},
 /* 1329B */ { "EGYPTIAN HIEROGLYPH P001","	* classifier movement : ḫnt"},
 /* 1329C */ { "EGYPTIAN HIEROGLYPH P001A","	* classifier to upset, to overturn : pnꜥ"},
@@ -34655,7 +34778,8 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 132A3 */ { "EGYPTIAN HIEROGLYPH P007","	* phonemogram : ꜥḥꜥ"},
 /* 132A4 */ { "EGYPTIAN HIEROGLYPH P008","	* phonemogram : ḫrw\n"
 	"	~ 132A4 FE01 rotated 180 degrees\n"
-	"	~ 132A4 FE02 rotated 270 degrees"},
+	"	~ 132A4 FE02 rotated 270 degrees\n"
+	"	~ 132A4 FE06 rotated approximately 315 degrees"},
 /* 132A5 */ { "EGYPTIAN HIEROGLYPH P009","	* phonemogram : ḫrw=f(y)"},
 /* 132A6 */ { "EGYPTIAN HIEROGLYPH P010","	* logogram (steering oar) : ḥmw"},
 /* 132A7 */ { "EGYPTIAN HIEROGLYPH P011","	* not to be confused with 131E9 or 1342A\n"
@@ -34731,7 +34855,8 @@ static const struct unicode_nameannot una_01_32[] = {
 	"	~ 132E7 FE02 rotated 270 degrees"},
 /* 132E8 */ { "EGYPTIAN HIEROGLYPH S019","	* logogram (sealbearer) : ḫtm.w/y"},
 /* 132E9 */ { "EGYPTIAN HIEROGLYPH S020","	* logogram (seal, lock, sealing) : ḫtm\n"
-	"	~ 132E9 FE02 rotated 270 degrees"},
+	"	~ 132E9 FE02 rotated 270 degrees\n"
+	"	~ 132E9 FE06 rotated approximately 300 degrees"},
 /* 132EA */ { "EGYPTIAN HIEROGLYPH S021","	* logogram (necklace, collar) : wsḫ"},
 /* 132EB */ { "EGYPTIAN HIEROGLYPH S022","	* phonemogram : sṯ"},
 /* 132EC */ { "EGYPTIAN HIEROGLYPH S023","	* logogram (to unite, to assemble) : dmḏ"},
@@ -34740,7 +34865,7 @@ static const struct unicode_nameannot una_01_32[] = {
 /* 132EF */ { "EGYPTIAN HIEROGLYPH S026","	* classifier kilt, royal apron : šnḏ.wt"},
 /* 132F0 */ { "EGYPTIAN HIEROGLYPH S026A","	* not to be confused with 13200, 133D4, or 133F3\n"
 	"	* logogram (loincloth, garment) : dꜣꞽ.w"},
-/* 132F1 */ { "EGYPTIAN HIEROGLYPH S026B",NULL},
+/* 132F1 */ { "EGYPTIAN HIEROGLYPH S026B","	* variant of 132F0"},
 /* 132F2 */ { "EGYPTIAN HIEROGLYPH S027","	* logogram (clothing) : mnḫ.t"},
 /* 132F3 */ { "EGYPTIAN HIEROGLYPH S028","	* classifier clothing : ḥbs"},
 /* 132F4 */ { "EGYPTIAN HIEROGLYPH S029","	x (egyptian hieroglyph o034 - 13283)\n"
@@ -34831,7 +34956,8 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 13328 */ { "EGYPTIAN HIEROGLYPH T028","	* phonemogram : ẖr"},
 /* 13329 */ { "EGYPTIAN HIEROGLYPH T029","	* logogram (place of slaughter)"},
 /* 1332A */ { "EGYPTIAN HIEROGLYPH T030","	* classifier cutting, slaughter : ds"},
-/* 1332B */ { "EGYPTIAN HIEROGLYPH T031","	* phonemogram : sšm"},
+/* 1332B */ { "EGYPTIAN HIEROGLYPH T031","	* phonemogram : sšm\n"
+	"	~ 1332B FE06 rotated approximately 340 degrees [horizontal]"},
 /* 1332C */ { "EGYPTIAN HIEROGLYPH T032","	* phonemogram : sšm"},
 /* 1332D */ { "EGYPTIAN HIEROGLYPH T032A","	* phonemogram : sšm"},
 /* 1332E */ { "EGYPTIAN HIEROGLYPH T033","	* older variant of 13326\n"
@@ -34853,12 +34979,11 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 13338 */ { "EGYPTIAN HIEROGLYPH U006","	* phonemogram : mr\n"
 	"	~ 13338 FE03 rotated approximately 30 degrees\n"
 	"	~ 13338 FE06 rotated approximately 320 degrees [horizontal]"},
-/* 13339 */ { "EGYPTIAN HIEROGLYPH U006A","	* stylistic variant of 13338"},
+/* 13339 */ { "EGYPTIAN HIEROGLYPH U006A","	* rotated version of 13338"},
 /* 1333A */ { "EGYPTIAN HIEROGLYPH U006B","	* mirrored version of 13339"},
-/* 1333B */ { "EGYPTIAN HIEROGLYPH U007","	* variant of 13338\n"
+/* 1333B */ { "EGYPTIAN HIEROGLYPH U007","	* rotated version of 13338\n"
 	"	* phonemogram : mr"},
-/* 1333C */ { "EGYPTIAN HIEROGLYPH U008","	* variant of 1333B\n"
-	"	* phonemogram : ḥn\n"
+/* 1333C */ { "EGYPTIAN HIEROGLYPH U008","	* phonemogram : ḥn\n"
 	"	~ 1333C FE00 rotated 90 degrees"},
 /* 1333D */ { "EGYPTIAN HIEROGLYPH U009","	* classifier grain/barley : sšr"},
 /* 1333E */ { "EGYPTIAN HIEROGLYPH U010","	* logogram (harvest, crop) : šm.w"},
@@ -34907,7 +35032,7 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 13361 */ { "EGYPTIAN HIEROGLYPH U042","	* not to be confused with 1327D\n"
 	"	* logogram (staff) : ms.t\n"
 	"	~ 13361 FE02 rotated 270 degrees"},
-/* 13362 */ { "EGYPTIAN HIEROGLYPH V001","	* classifier 'cord, rope'\n"
+/* 13362 */ { "EGYPTIAN HIEROGLYPH V001","	* classifier \"cord, rope\"\n"
 	"	* not to be confused with 133F2\n"
 	"	* logogram (100) : šn.t"},
 /* 13363 */ { "EGYPTIAN HIEROGLYPH V001A","	* 200"},
@@ -34923,8 +35048,10 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 1336D */ { "EGYPTIAN HIEROGLYPH V002A","	* phonemogram : stꜣ/sṯꜣ"},
 /* 1336E */ { "EGYPTIAN HIEROGLYPH V003","	* phonemogram : sṯꜣ.w"},
 /* 1336F */ { "EGYPTIAN HIEROGLYPH V004","	* phonemogram : wꜣ"},
-/* 13370 */ { "EGYPTIAN HIEROGLYPH V005","	* logogram (foundation) : snṯ"},
-/* 13371 */ { "EGYPTIAN HIEROGLYPH V006","	* phonemogram : šs"},
+/* 13370 */ { "EGYPTIAN HIEROGLYPH V005","	* logogram (foundation) : snṯ\n"
+	"	~ 13370 FE06 rotated approximately 320 degrees"},
+/* 13371 */ { "EGYPTIAN HIEROGLYPH V006","	* phonemogram : šs\n"
+	"	~ 13371 FE06 rotated approximately 315 degrees"},
 /* 13372 */ { "EGYPTIAN HIEROGLYPH V007","	* phonemogram : šn"},
 /* 13373 */ { "EGYPTIAN HIEROGLYPH V007A","	* classifier cloth : ꞽꜣḳs\n"
 	"	~ 13373 FE02 rotated 270 degrees"},
@@ -34993,11 +35120,11 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 1339D */ { "EGYPTIAN HIEROGLYPH V029","	* phonemogram : wꜣḥ"},
 /* 1339E */ { "EGYPTIAN HIEROGLYPH V029A","	* phonemogram : sk"},
 /* 1339F */ { "EGYPTIAN HIEROGLYPH V030","	* phonemogram : nb"},
-/* 133A0 */ { "EGYPTIAN HIEROGLYPH V030A","	* stylistic variant, use of 1339F is preferred"},
+/* 133A0 */ { "EGYPTIAN HIEROGLYPH V030A","	* variant of 1339F"},
 /* 133A1 */ { "EGYPTIAN HIEROGLYPH V031","	x (hebrew letter kaf - 05DB)\n"
 	"	x (arabic letter kaf - 0643)\n"
 	"	* phonemogram : k"},
-/* 133A2 */ { "EGYPTIAN HIEROGLYPH V031A","	* from hieratic\n"
+/* 133A2 */ { "EGYPTIAN HIEROGLYPH V031A","	* mirrored version of 133A1\n"
 	"	* phonemogram : k"},
 /* 133A3 */ { "EGYPTIAN HIEROGLYPH V032","	* phonemogram : msn"},
 /* 133A4 */ { "EGYPTIAN HIEROGLYPH V033","	* classifier linen : sšr"},
@@ -35020,7 +35147,7 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 133B0 */ { "EGYPTIAN HIEROGLYPH W002","	* phonemogram : bꜣs\n"
 	"	~ 133B0 FE02 rotated 270 degrees"},
 /* 133B1 */ { "EGYPTIAN HIEROGLYPH W003","	* logogram (festival) : ḥ(ꜣ)b"},
-/* 133B2 */ { "EGYPTIAN HIEROGLYPH W003A","	* stylistic variant, use of 133B1 is preferred"},
+/* 133B2 */ { "EGYPTIAN HIEROGLYPH W003A","	* variant of 133B1"},
 /* 133B3 */ { "EGYPTIAN HIEROGLYPH W004","	* logogram (festival) : h(ꜣ)b"},
 /* 133B4 */ { "EGYPTIAN HIEROGLYPH W005","	* logogram (lector priest) : ẖr.y-ḥ(ꜣ)b.t"},
 /* 133B5 */ { "EGYPTIAN HIEROGLYPH W006","	* classifier cauldron : ḥw.t"},
@@ -35068,7 +35195,7 @@ static const struct unicode_nameannot una_01_33[] = {
 	"	* variant of 133D4\n"
 	"	* phono-repeater : sn"},
 /* 133D6 */ { "EGYPTIAN HIEROGLYPH X006","	* classifier offering, cake, loaf : t-ꜣsr"},
-/* 133D7 */ { "EGYPTIAN HIEROGLYPH X006A",NULL},
+/* 133D7 */ { "EGYPTIAN HIEROGLYPH X006A","	* variant of 133D6"},
 /* 133D8 */ { "EGYPTIAN HIEROGLYPH X007","	* not to be confused with 1320E\n"
 	"	* classifier food : gs"},
 /* 133D9 */ { "EGYPTIAN HIEROGLYPH X008","	* phonemogram : ḏꞽ > dꞽ"},
@@ -35077,7 +35204,7 @@ static const struct unicode_nameannot una_01_33[] = {
 	"	* classifier bread : t-ḥḏ"},
 /* 133DB */ { "EGYPTIAN HIEROGLYPH Y001","	* classifier abstract words : sspd.w\n"
 	"	~ 133DB FE02 rotated 270 degrees"},
-/* 133DC */ { "EGYPTIAN HIEROGLYPH Y001A","	* rotated variant of 133DB\n"
+/* 133DC */ { "EGYPTIAN HIEROGLYPH Y001A","	* rotated version of 133DB\n"
 	"	* logogram (papyrus scroll, book) : mḏꜣ.t"},
 /* 133DD */ { "EGYPTIAN HIEROGLYPH Y002","	* older variant of 133DB\n"
 	"	* classifier writing, things written : mdw\n"
@@ -35090,7 +35217,8 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 133E2 */ { "EGYPTIAN HIEROGLYPH Y007","	* classifier harp : bn.t"},
 /* 133E3 */ { "EGYPTIAN HIEROGLYPH Y008","	* classifier sistrum : sḫm"},
 /* 133E4 */ { "EGYPTIAN HIEROGLYPH Z001","	* not to be confused with 133FA\n"
-	"	* classifier semogram"},
+	"	* classifier semogram\n"
+	"	~ 133E4 FE00 rotated 90 degrees [= 270 degrees]"},
 /* 133E5 */ { "EGYPTIAN HIEROGLYPH Z002","	* not to be confused with 133FC\n"
 	"	* classifier plural\n"
 	"	~ 133E5 FE00 rotated 90 degrees [= 270 degrees]"},
@@ -35100,21 +35228,19 @@ static const struct unicode_nameannot una_01_33[] = {
 /* 133E8 */ { "EGYPTIAN HIEROGLYPH Z002C","	* variant of 133E6\n"
 	"	* classifier plural\n"
 	"	~ 133E8 FE01 rotated 180 degrees"},
-/* 133E9 */ { "EGYPTIAN HIEROGLYPH Z002D","	* variant of 133E8\n"
+/* 133E9 */ { "EGYPTIAN HIEROGLYPH Z002D","	* rotated version of 133E8\n"
 	"	* classifier plural"},
 /* 133EA */ { "EGYPTIAN HIEROGLYPH Z003","	* variant of 133E5\n"
 	"	* classifier plural"},
-/* 133EB */ { "EGYPTIAN HIEROGLYPH Z003A","	* variant of 133EA\n"
+/* 133EB */ { "EGYPTIAN HIEROGLYPH Z003A","	* rotated version of 133E5\n"
 	"	* classifier plural"},
-/* 133EC */ { "EGYPTIAN HIEROGLYPH Z003B","	* variant of 133E7"},
+/* 133EC */ { "EGYPTIAN HIEROGLYPH Z003B","	* rotated version of 133E7"},
 /* 133ED */ { "EGYPTIAN HIEROGLYPH Z004","	* classifier 'dual'\n"
 	"	x (egyptian hieroglyph m017a - 131CC)\n"
 	"	* phonemogram : y"},
-/* 133EE */ { "EGYPTIAN HIEROGLYPH Z004A","	* variant of 133ED\n"
-	"	* classifier 'dual'\n"
-	"	* transliterated as y\n"
-	"	* not to be confused with 133FB\n"
-	"	* logogram (2) : sn.w"},
+/* 133EE */ { "EGYPTIAN HIEROGLYPH Z004A","	* not to be confused with 133FB\n"
+	"	* logogram (2) : sn.w\n"
+	"	~ 133EE FE00 rotated 90 degrees [= 270 degrees]"},
 /* 133EF */ { "EGYPTIAN HIEROGLYPH Z005","	* substitute for dangerous signs"},
 /* 133F0 */ { "EGYPTIAN HIEROGLYPH Z005A","	* variant of 133EF\n"
 	"	* classifier divinity (replacing G7)"},
@@ -35153,7 +35279,8 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 13400 */ { "EGYPTIAN HIEROGLYPH Z015F","	* logogram (seven) : sfḫ"},
 /* 13401 */ { "EGYPTIAN HIEROGLYPH Z015G","	* logogram (eight) : ḫmn"},
 /* 13402 */ { "EGYPTIAN HIEROGLYPH Z015H","	* logogram (nine) : psḏ"},
-/* 13403 */ { "EGYPTIAN HIEROGLYPH Z015I","	* logogram (five) : dꞽw"},
+/* 13403 */ { "EGYPTIAN HIEROGLYPH Z015I","	* variant of 133FE\n"
+	"	* logogram (five) : dꞽw"},
 /* 13404 */ { "EGYPTIAN HIEROGLYPH Z016","	* logogram (one, sole) : wꜥ"},
 /* 13405 */ { "EGYPTIAN HIEROGLYPH Z016A","	* logogram (two) : sn.w"},
 /* 13406 */ { "EGYPTIAN HIEROGLYPH Z016B","	* logogram (three) : ḫmt"},
@@ -35165,7 +35292,8 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 1340C */ { "EGYPTIAN HIEROGLYPH Z016H","	* logogram (nine) : psḏ"},
 /* 1340D */ { "EGYPTIAN HIEROGLYPH AA001","	* transliterated as 1E2B\n"
 	"	x (arabic letter khah - 062E)\n"
-	"	* phonemogram : ḫ"},
+	"	* phonemogram : ḫ\n"
+	"	~ 1340D FE04 rotated approximately 135 degrees [= 315 degrees]"},
 /* 1340E */ { "EGYPTIAN HIEROGLYPH AA002","	* classifier bad/evil : nḥꜣ"},
 /* 1340F */ { "EGYPTIAN HIEROGLYPH AA003","	* classifier efflux, smell (i.e., excrement) : ḥs"},
 /* 13410 */ { "EGYPTIAN HIEROGLYPH AA004","	* phonemogram : bꜣ"},
@@ -35182,7 +35310,9 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 13419 */ { "EGYPTIAN HIEROGLYPH AA011","	* phonemogram : mꜣꜥ\n"
 	"	~ 13419 FE00 rotated 90 degrees\n"
 	"	~ 13419 FE01 rotated 180 degrees\n"
-	"	~ 13419 FE02 rotated 270 degrees"},
+	"	~ 13419 FE02 rotated 270 degrees\n"
+	"	~ 13419 FE03 rotated approximately 15 degrees\n"
+	"	~ 13419 FE06 rotated approximately 345 degrees"},
 /* 1341A */ { "EGYPTIAN HIEROGLYPH AA012","	* older variant of 13419\n"
 	"	* phonemogram : mꜣꜥ\n"
 	"	~ 1341A FE00 rotated 90 degrees"},
@@ -35307,7 +35437,7 @@ static const struct unicode_nameannot una_01_34[] = {
 /* 13486 */ { "EGYPTIAN HIEROGLYPH-13486","	* classifier bald : ꞽꜣs"},
 /* 13487 */ { "EGYPTIAN HIEROGLYPH-13487","	* classifier music : ꞽḥy"},
 /* 13488 */ { "EGYPTIAN HIEROGLYPH-13488",NULL},
-/* 13489 */ { "EGYPTIAN HIEROGLYPH-13489","	* classifier  to totter : mss"},
+/* 13489 */ { "EGYPTIAN HIEROGLYPH-13489","	* classifier to totter : mss"},
 /* 1348A */ { "EGYPTIAN HIEROGLYPH-1348A","	* classifier foreigner (nubian) : nḥs.y"},
 /* 1348B */ { "EGYPTIAN HIEROGLYPH-1348B","	* logogram (to fraternize) : snsn"},
 /* 1348C */ { "EGYPTIAN HIEROGLYPH-1348C","	* logogram (to fraternize) : snsn "},
@@ -35801,16 +35931,16 @@ static const struct unicode_nameannot una_01_36[] = {
 /* 1366C */ { "EGYPTIAN HIEROGLYPH-1366C","	* classifier personal name"},
 /* 1366D */ { "EGYPTIAN HIEROGLYPH-1366D","	* classifier statue : ꞽrw"},
 /* 1366E */ { "EGYPTIAN HIEROGLYPH-1366E","	* classifier praying, worshipping : smnḥ"},
-/* 1366F */ { "EGYPTIAN HIEROGLYPH-1366F","	* classsifier king : n.y-sw.t"},
+/* 1366F */ { "EGYPTIAN HIEROGLYPH-1366F","	* classifier king : n.y-sw.t"},
 /* 13670 */ { "EGYPTIAN HIEROGLYPH-13670","	* classifier divinity : kꜣ-ḥtp"},
-/* 13671 */ { "EGYPTIAN HIEROGLYPH-13671","	* classsifier king : n.y-sw.t"},
+/* 13671 */ { "EGYPTIAN HIEROGLYPH-13671","	* classifier king : n.y-sw.t"},
 /* 13672 */ { "EGYPTIAN HIEROGLYPH-13672","	* classifier divinity : ḫnt.y-ꞽmn.tyw"},
-/* 13673 */ { "EGYPTIAN HIEROGLYPH-13673","	* classsifier king : n.y-sw.t"},
-/* 13674 */ { "EGYPTIAN HIEROGLYPH-13674","	* classsifier king : n.y-sw.t"},
+/* 13673 */ { "EGYPTIAN HIEROGLYPH-13673","	* classifier king : n.y-sw.t"},
+/* 13674 */ { "EGYPTIAN HIEROGLYPH-13674","	* classifier king : n.y-sw.t"},
 /* 13675 */ { "EGYPTIAN HIEROGLYPH-13675","	* classifier divinity : nṯr"},
 /* 13676 */ { "EGYPTIAN HIEROGLYPH-13676","	* logogram (king of UE) : n.y-sw.t"},
-/* 13677 */ { "EGYPTIAN HIEROGLYPH-13677","	* classsifier king : n.y-sw.t"},
-/* 13678 */ { "EGYPTIAN HIEROGLYPH-13678","	* classsifier king : n.y-sw.t"},
+/* 13677 */ { "EGYPTIAN HIEROGLYPH-13677","	* classifier king : n.y-sw.t"},
+/* 13678 */ { "EGYPTIAN HIEROGLYPH-13678","	* classifier king : n.y-sw.t"},
 /* 13679 */ { "EGYPTIAN HIEROGLYPH-13679","	* classifier divinity : ḫnt.y-ꞽmn.tyw"},
 /* 1367A */ { "EGYPTIAN HIEROGLYPH-1367A","	* logogram (king of UE) : n.y-sw.t"},
 /* 1367B */ { "EGYPTIAN HIEROGLYPH-1367B","	* logogram (king of UE) : n.y-sw.t"},
@@ -35820,12 +35950,12 @@ static const struct unicode_nameannot una_01_36[] = {
 /* 1367F */ { "EGYPTIAN HIEROGLYPH-1367F","	* logogram (the white crown) : ḥḏ.t"},
 /* 13680 */ { "EGYPTIAN HIEROGLYPH-13680","	* classifier divinity : wsꞽr"},
 /* 13681 */ { "EGYPTIAN HIEROGLYPH-13681","	* classifier Osiris : wsꞽr"},
-/* 13682 */ { "EGYPTIAN HIEROGLYPH-13682","	* classsifier king : n.y-sw.t"},
+/* 13682 */ { "EGYPTIAN HIEROGLYPH-13682","	* classifier king : n.y-sw.t"},
 /* 13683 */ { "EGYPTIAN HIEROGLYPH-13683",NULL},
 /* 13684 */ { "EGYPTIAN HIEROGLYPH-13684","	* logogram (king of UE) : n.y-sw.t"},
 /* 13685 */ { "EGYPTIAN HIEROGLYPH-13685","	* logogram (king of UE) : n.y-sw.t"},
-/* 13686 */ { "EGYPTIAN HIEROGLYPH-13686","	* logogram (king of UE and land, when occuring together with king of LE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ"},
-/* 13687 */ { "EGYPTIAN HIEROGLYPH-13687","	* logogram (king of UE and land when occuring together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ"},
+/* 13686 */ { "EGYPTIAN HIEROGLYPH-13686","	* logogram (king of UE and land, when occurring together with king of LE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ"},
+/* 13687 */ { "EGYPTIAN HIEROGLYPH-13687","	* logogram (king of UE and land when occurring together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ"},
 /* 13688 */ { "EGYPTIAN HIEROGLYPH-13688","	* logogram (King of UE) : n(.y)-sw.t"},
 /* 13689 */ { "EGYPTIAN HIEROGLYPH-13689","	* logogram (Osiris) : wsꞽr"},
 /* 1368A */ { "EGYPTIAN HIEROGLYPH-1368A","	* logogram (king of LE) : bꞽ.ty"},
@@ -35837,8 +35967,8 @@ static const struct unicode_nameannot una_01_36[] = {
 /* 13690 */ { "EGYPTIAN HIEROGLYPH-13690","	* logogram (king of LE) : bꞽ.ty"},
 /* 13691 */ { "EGYPTIAN HIEROGLYPH-13691","	* classifier sovereign : ꞽt.y"},
 /* 13692 */ { "EGYPTIAN HIEROGLYPH-13692","	* classifier king : n.y-sw.t"},
-/* 13693 */ { "EGYPTIAN HIEROGLYPH-13693","	* logogram (King of LE and land, when occuring together with King of UE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ"},
-/* 13694 */ { "EGYPTIAN HIEROGLYPH-13694","	* logogram (King of LE and land, when occuring together with a white crown variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ"},
+/* 13693 */ { "EGYPTIAN HIEROGLYPH-13693","	* logogram (King of LE and land, when occurring together with King of UE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ"},
+/* 13694 */ { "EGYPTIAN HIEROGLYPH-13694","	* logogram (King of LE and land, when occurring together with a white crown variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ"},
 /* 13695 */ { "EGYPTIAN HIEROGLYPH-13695","	* logogram (King of UE) : n(.y)-sw.t"},
 /* 13696 */ { "EGYPTIAN HIEROGLYPH-13696","	* logogram (to run) : pḥrr"},
 /* 13697 */ { "EGYPTIAN HIEROGLYPH-13697","	* logogram (an offering that the king gives) : ḥtp-dꞽ-n.y-sw.t"},
@@ -35854,7 +35984,7 @@ static const struct unicode_nameannot una_01_36[] = {
 /* 136A1 */ { "EGYPTIAN HIEROGLYPH-136A1","	* classifier sovereign : ꞽt.y"},
 /* 136A2 */ { "EGYPTIAN HIEROGLYPH-136A2","	* logogram (king of ULE) : n(y)-sw.t-bꞽ.ty"},
 /* 136A3 */ { "EGYPTIAN HIEROGLYPH-136A3",NULL},
-/* 136A4 */ { "EGYPTIAN HIEROGLYPH-136A4","	* pictogram prostate offering a vase of myrrh"},
+/* 136A4 */ { "EGYPTIAN HIEROGLYPH-136A4","	* pictogram prostrate offering a vase of myrrh"},
 /* 136A5 */ { "EGYPTIAN HIEROGLYPH-136A5","	* logogram (sovereign) : ꞽt.y"},
 /* 136A6 */ { "EGYPTIAN HIEROGLYPH-136A6","	* classifier sovereign : ꞽt.y"},
 /* 136A7 */ { "EGYPTIAN HIEROGLYPH-136A7","	* classifier sovereign : ꞽt.y"},
@@ -35904,7 +36034,7 @@ static const struct unicode_nameannot una_01_36[] = {
 /* 136D3 */ { "EGYPTIAN HIEROGLYPH-136D3","	* logogram (gods) : nṯr.w"},
 /* 136D4 */ { "EGYPTIAN HIEROGLYPH-136D4","	* phonemogram : ṯ"},
 /* 136D5 */ { "EGYPTIAN HIEROGLYPH-136D5","	* logogram (majesty) : ḥm.t"},
-/* 136D6 */ { "EGYPTIAN HIEROGLYPH-136D6","	* logogram (femine first person singular) : ꞽ"},
+/* 136D6 */ { "EGYPTIAN HIEROGLYPH-136D6","	* logogram (feminine first person singular) : ꞽ"},
 /* 136D7 */ { "EGYPTIAN HIEROGLYPH-136D7","	* classifier divinity : n.t"},
 /* 136D8 */ { "EGYPTIAN HIEROGLYPH-136D8",NULL},
 /* 136D9 */ { "EGYPTIAN HIEROGLYPH-136D9","	* classifier divinity : tfn.t"},
@@ -36165,7 +36295,7 @@ static const struct unicode_nameannot una_01_37[] = {
 /* 137D4 */ { "EGYPTIAN HIEROGLYPH-137D4","	* logogram (eternity) : nḥḥ"},
 /* 137D5 */ { "EGYPTIAN HIEROGLYPH-137D5","	* logogram (the sole one, unique) : wꜥ.ty"},
 /* 137D6 */ { "EGYPTIAN HIEROGLYPH-137D6","	* classifier divinity : ꞽn-ḥr.t"},
-/* 137D7 */ { "EGYPTIAN HIEROGLYPH-137D7","	* logogram (lord of the two lands, when used in connection with a seth headed figure) : nb-tꜣ.wy"},
+/* 137D7 */ { "EGYPTIAN HIEROGLYPH-137D7","	* logogram (lord of the two lands, when used in connection with a Seth headed figure) : nb-tꜣ.wy"},
 /* 137D8 */ { "EGYPTIAN HIEROGLYPH-137D8","	* classifier harpooner : ꞽ(ꜣ)w.ty"},
 /* 137D9 */ { "EGYPTIAN HIEROGLYPH-137D9",NULL},
 /* 137DA */ { "EGYPTIAN HIEROGLYPH-137DA","	* logogram (valour, strength) : ḳn.t"},
@@ -36386,7 +36516,7 @@ static const struct unicode_nameannot una_01_38[] = {
 /* 138AD */ { "EGYPTIAN HIEROGLYPH-138AD","	* logogram/phonemogram (lady) : nb.t"},
 /* 138AE */ { "EGYPTIAN HIEROGLYPH-138AE","	* classifier leonid divinity (female) : sḫm.t/bꜣs.tt"},
 /* 138AF */ { "EGYPTIAN HIEROGLYPH-138AF","	* logogram (Sekhmet) : sḫm.t"},
-/* 138B0 */ { "EGYPTIAN HIEROGLYPH-138B0","	* classifie leonid divinity (female) : sḫm.t"},
+/* 138B0 */ { "EGYPTIAN HIEROGLYPH-138B0","	* classifier leonid divinity (female) : sḫm.t"},
 /* 138B1 */ { "EGYPTIAN HIEROGLYPH-138B1",NULL},
 /* 138B2 */ { "EGYPTIAN HIEROGLYPH-138B2","	* classifier leonid divinity (male) : ḥḏ-ḥtp"},
 /* 138B3 */ { "EGYPTIAN HIEROGLYPH-138B3",NULL},
@@ -36418,7 +36548,7 @@ static const struct unicode_nameannot una_01_38[] = {
 /* 138CD */ { "EGYPTIAN HIEROGLYPH-138CD","	* logogram (Maat) : mꜣꜥ.t"},
 /* 138CE */ { "EGYPTIAN HIEROGLYPH-138CE","	* classifier divinity : mꜣꜥ.t"},
 /* 138CF */ { "EGYPTIAN HIEROGLYPH-138CF","	* classifier truth : mꜥꜣ.t"},
-/* 138D0 */ { "EGYPTIAN HIEROGLYPH-138D0","	* logogram/phonemogram  (whom truth/Maat loves) : mr(.y)-mꜣꜥ.t"},
+/* 138D0 */ { "EGYPTIAN HIEROGLYPH-138D0","	* logogram/phonemogram (whom truth/Maat loves) : mr(.y)-mꜣꜥ.t"},
 /* 138D1 */ { "EGYPTIAN HIEROGLYPH-138D1","	* logogram (Maat) : mꜣꜥ.t"},
 /* 138D2 */ { "EGYPTIAN HIEROGLYPH-138D2","	* logogram (in name Ramses II) : wsr-mꜣꜥ.t"},
 /* 138D3 */ { "EGYPTIAN HIEROGLYPH-138D3","	* logogram (in name Ramses II) : wsr-mꜣꜥ.t"},
@@ -36536,7 +36666,7 @@ static const struct unicode_nameannot una_01_39[] = {
 /* 1393F */ { "EGYPTIAN HIEROGLYPH-1393F","	* classifier child/small one : ḥwn"},
 /* 13940 */ { "EGYPTIAN HIEROGLYPH-13940","	* classifier nursing : mnꜥ"},
 /* 13941 */ { "EGYPTIAN HIEROGLYPH-13941","	* classifier dwarf/pigmy : dng"},
-/* 13942 */ { "EGYPTIAN HIEROGLYPH-13942","	* classsifier (to bow, to attack) : ꞽkꞽ"},
+/* 13942 */ { "EGYPTIAN HIEROGLYPH-13942","	* classifier (to bow, to attack) : ꞽkꞽ"},
 /* 13943 */ { "EGYPTIAN HIEROGLYPH-13943","	* classifier to fall : sḫr"},
 /* 13944 */ { "EGYPTIAN HIEROGLYPH-13944","	* classifier to call : nꞽs"},
 /* 13945 */ { "EGYPTIAN HIEROGLYPH-13945","	* classifier to rejoice : hnꞽ"},
@@ -36544,7 +36674,7 @@ static const struct unicode_nameannot una_01_39[] = {
 /* 13947 */ { "EGYPTIAN HIEROGLYPH-13947",NULL},
 /* 13948 */ { "EGYPTIAN HIEROGLYPH-13948","	* classifier to rejoice : ḥꜥꞽ"},
 /* 13949 */ { "EGYPTIAN HIEROGLYPH-13949","	* logogram (Heh, divinity) : ḥḥ"},
-/* 1394A */ { "EGYPTIAN HIEROGLYPH-1394A","	* classifier upside down : sḫdḫd"},
+/* 1394A */ { "EGYPTIAN HIEROGLYPH-1394A","	* classifier upside-down : sḫdḫd"},
 /* 1394B */ { "EGYPTIAN HIEROGLYPH-1394B","	* classifier to swim : mḥꞽ"},
 /* 1394C */ { "EGYPTIAN HIEROGLYPH-1394C",NULL},
 /* 1394D */ { "EGYPTIAN HIEROGLYPH-1394D","	* classifier swimming : nbꞽ"},
@@ -36585,7 +36715,7 @@ static const struct unicode_nameannot una_01_39[] = {
 /* 13970 */ { "EGYPTIAN HIEROGLYPH-13970","	* logogram (head covering (braid of hair?)) : (ꞽ)ꜣr.t"},
 /* 13971 */ { "EGYPTIAN HIEROGLYPH-13971","	* classifier scalp, temple : smꜣ"},
 /* 13972 */ { "EGYPTIAN HIEROGLYPH-13972","	* classifier hairlock : ḥnsk.t"},
-/* 13973 */ { "EGYPTIAN HIEROGLYPH-13973","	* logogram (to see) : Mꜥꜥ"},
+/* 13973 */ { "EGYPTIAN HIEROGLYPH-13973","	* logogram (to see) : mꜥꜥ"},
 /* 13974 */ { "EGYPTIAN HIEROGLYPH-13974","	* classifier eye-paint : smd.t"},
 /* 13975 */ { "EGYPTIAN HIEROGLYPH-13975","	* phonemogram : ꞽrꞽ-ẖr"},
 /* 13976 */ { "EGYPTIAN HIEROGLYPH-13976","	* classifier eye related actions : dgꞽ"},
@@ -36752,7 +36882,7 @@ static const struct unicode_nameannot una_01_3A[] = {
 /* 13A13 */ { "EGYPTIAN HIEROGLYPH-13A13","	* classifier to fall : ḫr"},
 /* 13A14 */ { "EGYPTIAN HIEROGLYPH-13A14","	* classifier turning back : šnꜥ"},
 /* 13A15 */ { "EGYPTIAN HIEROGLYPH-13A15","	* classifier to spread : pšš"},
-/* 13A16 */ { "EGYPTIAN HIEROGLYPH-13A16","	* classifier to be upside down : sḫd"},
+/* 13A16 */ { "EGYPTIAN HIEROGLYPH-13A16","	* classifier to be upside-down : sḫd"},
 /* 13A17 */ { "EGYPTIAN HIEROGLYPH-13A17","	* interpretant r and classifier movement : prꞽ"},
 /* 13A18 */ { "EGYPTIAN HIEROGLYPH-13A18","	* phonemogram (dental) and classifier movement : t & sḳdꞽ"},
 /* 13A19 */ { "EGYPTIAN HIEROGLYPH-13A19","	* phonemogram : wꜥr"},
@@ -36904,8 +37034,8 @@ static const struct unicode_nameannot una_01_3A[] = {
 /* 13AAB */ { "EGYPTIAN HIEROGLYPH-13AAB","	* logogram (rank, diginity) : sꜥḥ"},
 /* 13AAC */ { "EGYPTIAN HIEROGLYPH-13AAC",NULL},
 /* 13AAD */ { "EGYPTIAN HIEROGLYPH-13AAD",NULL},
-/* 13AAE */ { "EGYPTIAN HIEROGLYPH-13AAE","	* logogram (griffin) : ꜥḫḫ"},
-/* 13AAF */ { "EGYPTIAN HIEROGLYPH-13AAF","	* classifier griffin : ꜥḫḫ"},
+/* 13AAE */ { "EGYPTIAN HIEROGLYPH-13AAE","	* classifier griffin : ꜥḫḫ"},
+/* 13AAF */ { "EGYPTIAN HIEROGLYPH-13AAF","	* logogram (griffin) : ꜥḫḫ"},
 /* 13AB0 */ { "EGYPTIAN HIEROGLYPH-13AB0","	* logogram (triomphator) : dwn.ty"},
 /* 13AB1 */ { "EGYPTIAN HIEROGLYPH-13AB1","	* classifier hippopotamus goddess : ḥḏ.t"},
 /* 13AB2 */ { "EGYPTIAN HIEROGLYPH-13AB2",NULL},
@@ -36916,7 +37046,7 @@ static const struct unicode_nameannot una_01_3A[] = {
 /* 13AB7 */ { "EGYPTIAN HIEROGLYPH-13AB7","	* logogram/Phonemogram (great one (female)) : wr.t"},
 /* 13AB8 */ { "EGYPTIAN HIEROGLYPH-13AB8","	* logogram/Phonemogram (great one (female)) : wr.t "},
 /* 13AB9 */ { "EGYPTIAN HIEROGLYPH-13AB9","	* logogram (to rejoice) : bnhm"},
-/* 13ABA */ { "EGYPTIAN HIEROGLYPH-13ABA","	* logogram (first person signular, referring to Nut) : ꞽ"},
+/* 13ABA */ { "EGYPTIAN HIEROGLYPH-13ABA","	* logogram (first person singular, referring to Nut) : ꞽ"},
 /* 13ABB */ { "EGYPTIAN HIEROGLYPH-13ABB","	* classifier jackal : wnš.w"},
 /* 13ABC */ { "EGYPTIAN HIEROGLYPH-13ABC",NULL},
 /* 13ABD */ { "EGYPTIAN HIEROGLYPH-13ABD","	* phonemogram : wn"},
@@ -36962,7 +37092,7 @@ static const struct unicode_nameannot una_01_3A[] = {
 /* 13AE5 */ { "EGYPTIAN HIEROGLYPH-13AE5","	* classifier leopard : ꜣby"},
 /* 13AE6 */ { "EGYPTIAN HIEROGLYPH-13AE6","	* phonemogram/logogram (rage, anger) : ḳnd"},
 /* 13AE7 */ { "EGYPTIAN HIEROGLYPH-13AE7","	* logogram (Tefrer, geographical location) : tfrr"},
-/* 13AE8 */ { "EGYPTIAN HIEROGLYPH-13AE8","	* logogram (Thot) : ḏḥwty"},
+/* 13AE8 */ { "EGYPTIAN HIEROGLYPH-13AE8","	* classifier monkey (divinity) : wpt"},
 /* 13AE9 */ { "EGYPTIAN HIEROGLYPH-13AE9","	* logogram (Thot) : ḏḥwty"},
 /* 13AEA */ { "EGYPTIAN HIEROGLYPH-13AEA","	* logogram (King (of UE)) : n(.y)-sw.t"},
 /* 13AEB */ { "EGYPTIAN HIEROGLYPH-13AEB","	* phonemogram : bsꜣ"},
@@ -37025,7 +37155,7 @@ static const struct unicode_nameannot una_01_3B[] = {
 /* 13B20 */ { "EGYPTIAN HIEROGLYPH-13B20","	* phonemogram : m"},
 /* 13B21 */ { "EGYPTIAN HIEROGLYPH-13B21","	* logogram (lord) : nb"},
 /* 13B22 */ { "EGYPTIAN HIEROGLYPH-13B22","	* logogram (presenting myrrh) : šms ꜥntyw"},
-/* 13B23 */ { "EGYPTIAN HIEROGLYPH-13B23","	* logogram (image, refering to the king) : šsp"},
+/* 13B23 */ { "EGYPTIAN HIEROGLYPH-13B23","	* logogram (image, referring to the king) : šsp"},
 /* 13B24 */ { "EGYPTIAN HIEROGLYPH-13B24",NULL},
 /* 13B25 */ { "EGYPTIAN HIEROGLYPH-13B25","	* logogram (image) : šsp"},
 /* 13B26 */ { "EGYPTIAN HIEROGLYPH-13B26","	* logogram (lord) : nb"},
@@ -37078,7 +37208,7 @@ static const struct unicode_nameannot una_01_3B[] = {
 /* 13B55 */ { "EGYPTIAN HIEROGLYPH-13B55",NULL},
 /* 13B56 */ { "EGYPTIAN HIEROGLYPH-13B56","	* logogram (12th nome of LE) : ṯb-nṯr"},
 /* 13B57 */ { "EGYPTIAN HIEROGLYPH-13B57","	* classifier (bull) : kꜣ"},
-/* 13B58 */ { "EGYPTIAN HIEROGLYPH-13B58","	* logogram (bull, beef) : Kꜥ/ꞽḥ"},
+/* 13B58 */ { "EGYPTIAN HIEROGLYPH-13B58","	* logogram (bull, beef) : kꜥ/ꞽḥ"},
 /* 13B59 */ { "EGYPTIAN HIEROGLYPH-13B59","	* classifier divinity (Ash-spitter) : ꜣš-ssf"},
 /* 13B5A */ { "EGYPTIAN HIEROGLYPH-13B5A","	* classifier Ammet : ꜥmm.t"},
 /* 13B5B */ { "EGYPTIAN HIEROGLYPH-13B5B","	* classifier rhinoceros : šḳb"},
@@ -37102,7 +37232,7 @@ static const struct unicode_nameannot una_01_3B[] = {
 /* 13B6D */ { "EGYPTIAN HIEROGLYPH-13B6D","	* phonemogram : šsmw"},
 /* 13B6E */ { "EGYPTIAN HIEROGLYPH-13B6E","	* logogram (bull) : kꜣ"},
 /* 13B6F */ { "EGYPTIAN HIEROGLYPH-13B6F","	* classifier : ḫtn"},
-/* 13B70 */ { "EGYPTIAN HIEROGLYPH-13B70","	* classifier Ursa Major constelation : msḫt.yw"},
+/* 13B70 */ { "EGYPTIAN HIEROGLYPH-13B70","	* classifier Ursa Major constellation : msḫt.yw"},
 /* 13B71 */ { "EGYPTIAN HIEROGLYPH-13B71","	* logogram (bull) : kꜣ"},
 /* 13B72 */ { "EGYPTIAN HIEROGLYPH-13B72","	* classifier nose : fnḏ"},
 /* 13B73 */ { "EGYPTIAN HIEROGLYPH-13B73","	* classifier kissing : sn"},
@@ -37135,7 +37265,7 @@ static const struct unicode_nameannot una_01_3B[] = {
 /* 13B8E */ { "EGYPTIAN HIEROGLYPH-13B8E","	* phonemogram : dn"},
 /* 13B8F */ { "EGYPTIAN HIEROGLYPH-13B8F","	* phonemogram : ꜣt"},
 /* 13B90 */ { "EGYPTIAN HIEROGLYPH-13B90","	* phonemogram : pꜣḫt"},
-/* 13B91 */ { "EGYPTIAN HIEROGLYPH-13B91","	* logogram (to distinguish) and  (beginning, front) : ṯnꞽ ḥꜣ.t"},
+/* 13B91 */ { "EGYPTIAN HIEROGLYPH-13B91","	* logogram (to distinguish) and (beginning, front) : ṯnꞽ ḥꜣ.t"},
 /* 13B92 */ { "EGYPTIAN HIEROGLYPH-13B92","	* logogram (beginning, front) : ḥꜣ.t"},
 /* 13B93 */ { "EGYPTIAN HIEROGLYPH-13B93","	* classifier Haker festival : hꜣkr"},
 /* 13B94 */ { "EGYPTIAN HIEROGLYPH-13B94","	* logogram (Khonsu) : ḫnsw"},
@@ -37222,9 +37352,12 @@ static const struct unicode_nameannot una_01_3B[] = {
 /* 13BE5 */ { "EGYPTIAN HIEROGLYPH-13BE5","	* classifier back, backbone : psḏ"},
 /* 13BE6 */ { "EGYPTIAN HIEROGLYPH-13BE6","	* classifier cutting/slaughter : ꜥḏy.t"},
 /* 13BE7 */ { "EGYPTIAN HIEROGLYPH-13BE7","	* phono-repeater : mḥ"},
-/* 13BE8 */ { "EGYPTIAN HIEROGLYPH-13BE8","	* classifier cutting : šꜥd"},
-/* 13BE9 */ { "EGYPTIAN HIEROGLYPH-13BE9","	* classifier shreds, pieces : spꞽ"},
-/* 13BEA */ { "EGYPTIAN HIEROGLYPH-13BEA","	* phono-repeater : mḥ"},
+/* 13BE8 */ { "EGYPTIAN HIEROGLYPH-13BE8","	* classifier cutting : šꜥd\n"
+	"	~ 13BE8 FE00 rotated 90 degrees [= 270 degrees]"},
+/* 13BE9 */ { "EGYPTIAN HIEROGLYPH-13BE9","	* classifier shreds, pieces : spꞽ\n"
+	"	~ 13BE9 FE00 rotated 90 degrees [= 270 degrees]"},
+/* 13BEA */ { "EGYPTIAN HIEROGLYPH-13BEA","	* phono-repeater : mḥ\n"
+	"	~ 13BEA FE00 rotated 90 degrees [= 270 degrees]"},
 /* 13BEB */ { "EGYPTIAN HIEROGLYPH-13BEB","	* phonemogram : tꜣy"},
 /* 13BEC */ { "EGYPTIAN HIEROGLYPH-13BEC","	* phonemogram : ꞽmꜣḫ"},
 /* 13BED */ { "EGYPTIAN HIEROGLYPH-13BED",NULL},
@@ -37514,7 +37647,7 @@ static const struct unicode_nameannot una_01_3D[] = {
 /* 13D01 */ { "EGYPTIAN HIEROGLYPH-13D01",NULL},
 /* 13D02 */ { "EGYPTIAN HIEROGLYPH-13D02","	* logogram (goddess) : nṯr.t"},
 /* 13D03 */ { "EGYPTIAN HIEROGLYPH-13D03","	* logogram (Nekhbet (divinity)) : nḫb.t"},
-/* 13D04 */ { "EGYPTIAN HIEROGLYPH-13D04","	* classifier divinity  (Nekhbet) : nḫb.t"},
+/* 13D04 */ { "EGYPTIAN HIEROGLYPH-13D04","	* classifier divinity (Nekhbet) : nḫb.t"},
 /* 13D05 */ { "EGYPTIAN HIEROGLYPH-13D05","	* logogram (Mut (divinity)) : mw.t"},
 /* 13D06 */ { "EGYPTIAN HIEROGLYPH-13D06","	* classifier uraeus : wr.t"},
 /* 13D07 */ { "EGYPTIAN HIEROGLYPH-13D07","	* logogram (lady (in nb.ty)) : nb.t"},
@@ -37930,7 +38063,7 @@ static const struct unicode_nameannot una_01_3E[] = {
 /* 13E9C */ { "EGYPTIAN HIEROGLYPH-13E9C",NULL},
 /* 13E9D */ { "EGYPTIAN HIEROGLYPH-13E9D","	* logogram (to follow, to accompany) : šms"},
 /* 13E9E */ { "EGYPTIAN HIEROGLYPH-13E9E","	* classifier braided lock of hair : ḥnsk.t"},
-/* 13E9F */ { "EGYPTIAN HIEROGLYPH-13E9F","	* classifier succesfull, fortunate : mꜥr"},
+/* 13E9F */ { "EGYPTIAN HIEROGLYPH-13E9F","	* classifier succesful, fortunate : mꜥr"},
 /* 13EA0 */ { "EGYPTIAN HIEROGLYPH-13EA0","	* logogram (succesful, fortunate) : mꜥr"},
 /* 13EA1 */ { "EGYPTIAN HIEROGLYPH-13EA1","	* logogram (to be sweet) : bnr/bnꞽ"},
 /* 13EA2 */ { "EGYPTIAN HIEROGLYPH-13EA2","	* logogram (to be sweet) : bnr/bnꞽ"},
@@ -38006,8 +38139,8 @@ static const struct unicode_nameannot una_01_3E[] = {
 /* 13EE8 */ { "EGYPTIAN HIEROGLYPH-13EE8","	* logogram (the winged scarab/sundisk) : ꜥpy"},
 /* 13EE9 */ { "EGYPTIAN HIEROGLYPH-13EE9","	* classifier Horus of Edfu : bḥd.ty"},
 /* 13EEA */ { "EGYPTIAN HIEROGLYPH-13EEA","	* logogram (to go forth) : prꞽ"},
-/* 13EEB */ { "EGYPTIAN HIEROGLYPH-13EEB","	* classsifier divinity : ḏḥwty"},
-/* 13EEC */ { "EGYPTIAN HIEROGLYPH-13EEC","	* classsifier divinity : ḏḥwty"},
+/* 13EEB */ { "EGYPTIAN HIEROGLYPH-13EEB","	* classifier divinity : ḏḥwty"},
+/* 13EEC */ { "EGYPTIAN HIEROGLYPH-13EEC","	* classifier divinity : ḏḥwty"},
 /* 13EED */ { "EGYPTIAN HIEROGLYPH-13EED","	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty"},
 /* 13EEE */ { "EGYPTIAN HIEROGLYPH-13EEE","	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty"},
 /* 13EEF */ { "EGYPTIAN HIEROGLYPH-13EEF","	* logogram (to rise, to shine) : wbn"},
@@ -38050,7 +38183,7 @@ static const struct unicode_nameannot una_01_3F[] = {
 /* 13F10 */ { "EGYPTIAN HIEROGLYPH-13F10","	* logogram (21th Upper Egyptian nome) : nꜥr.t-pḥ.t"},
 /* 13F11 */ { "EGYPTIAN HIEROGLYPH-13F11","	* logogram (14th Upper Egyptian nome) : nḏf.t-pḥ.t"},
 /* 13F12 */ { "EGYPTIAN HIEROGLYPH-13F12","	* logogram (14th upper Egyptian nome) : ḫnt.y-ꞽꜣb.ty"},
-/* 13F13 */ { "EGYPTIAN HIEROGLYPH-13F13","	* logogram (18th Lower Egyptain nome (Pelusium)) : ꞽm.ty-ḫnt.y"},
+/* 13F13 */ { "EGYPTIAN HIEROGLYPH-13F13","	* logogram (18th Lower Egyptian nome (Pelusium)) : ꞽm.ty-ḫnt.y"},
 /* 13F14 */ { "EGYPTIAN HIEROGLYPH-13F14","	* logogram (12th Upper Egyptian nome) : ꜣtf.t"},
 /* 13F15 */ { "EGYPTIAN HIEROGLYPH-13F15","	* logogram (Ha (divinity)) : ḥꜣ"},
 /* 13F16 */ { "EGYPTIAN HIEROGLYPH-13F16","	* logogram (foreign land/desert) : ḫꜣs.t"},
@@ -38062,7 +38195,8 @@ static const struct unicode_nameannot una_01_3F[] = {
 /* 13F1C */ { "EGYPTIAN HIEROGLYPH-13F1C","	* logogram (12th Upper Egyptian nome) : ꜣtf.t"},
 /* 13F1D */ { "EGYPTIAN HIEROGLYPH-13F1D","	* logogram (12th Upper Egyptian nome) : ꜣtf.t"},
 /* 13F1E */ { "EGYPTIAN HIEROGLYPH-13F1E","	* logogram (Ha (divinity)) : ḥꜣ"},
-/* 13F1F */ { "EGYPTIAN HIEROGLYPH-13F1F","	* classifier medicaments, incense, oil : snṯr"},
+/* 13F1F */ { "EGYPTIAN HIEROGLYPH-13F1F","	* classifier medicaments, incense, oil : snṯr\n"
+	"	~ 13F1F FE01 rotated 180 degrees"},
 /* 13F20 */ { "EGYPTIAN HIEROGLYPH-13F20","	* logogram (eternity) : nḥḥ"},
 /* 13F21 */ { "EGYPTIAN HIEROGLYPH-13F21","	* logogram (place of execution/slaughter) : ḫb.t/nm.t"},
 /* 13F22 */ { "EGYPTIAN HIEROGLYPH-13F22",NULL},
@@ -38145,7 +38279,8 @@ static const struct unicode_nameannot una_01_3F[] = {
 /* 13F6F */ { "EGYPTIAN HIEROGLYPH-13F6F",NULL},
 /* 13F70 */ { "EGYPTIAN HIEROGLYPH-13F70",NULL},
 /* 13F71 */ { "EGYPTIAN HIEROGLYPH-13F71",NULL},
-/* 13F72 */ { "EGYPTIAN HIEROGLYPH-13F72","	* logogram (wall) : ꞽnb"},
+/* 13F72 */ { "EGYPTIAN HIEROGLYPH-13F72","	* logogram (wall) : ꞽnb\n"
+	"	~ 13F72 FE00 rotated 90 degrees [= 270 degrees]"},
 /* 13F73 */ { "EGYPTIAN HIEROGLYPH-13F73","	* classifier overthrow, demolish : snb"},
 /* 13F74 */ { "EGYPTIAN HIEROGLYPH-13F74","	* classifier overthrow, demolish : sšn"},
 /* 13F75 */ { "EGYPTIAN HIEROGLYPH-13F75","	* classifier geographical location : km-wr"},
@@ -38677,7 +38812,7 @@ static const struct unicode_nameannot una_01_41[] = {
 /* 1417B */ { "EGYPTIAN HIEROGLYPH-1417B","	* classifier crown : ḥp.t"},
 /* 1417C */ { "EGYPTIAN HIEROGLYPH-1417C","	* phonemogram : ṯn"},
 /* 1417D */ { "EGYPTIAN HIEROGLYPH-1417D","	* logogram (3rd nome of Upper Egypt) : nḫn"},
-/* 1417E */ { "EGYPTIAN HIEROGLYPH-1417E","	* classifier two halfs : p(s)š.ty"},
+/* 1417E */ { "EGYPTIAN HIEROGLYPH-1417E","	* classifier two halves : p(s)š.ty"},
 /* 1417F */ { "EGYPTIAN HIEROGLYPH-1417F","	* phonemogram : ṯn"},
 /* 14180 */ { "EGYPTIAN HIEROGLYPH-14180","	* logogram (the horizon) : ꜣḫ.t"},
 /* 14181 */ { "EGYPTIAN HIEROGLYPH-14181","	* logogram (who goes forth from the horizon) : pr-m-ꜣḫ.t"},
@@ -38927,7 +39062,11 @@ static const struct unicode_nameannot una_01_42[] = {
 /* 14271 */ { "EGYPTIAN HIEROGLYPH-14271","	* classifier net : (ꞽ)ꜣd(.t)"},
 /* 14272 */ { "EGYPTIAN HIEROGLYPH-14272","	* logogram (net) : ꞽꜣd.t"},
 /* 14273 */ { "EGYPTIAN HIEROGLYPH-14273","	* classifier fish-trap : sḳ.t"},
-/* 14274 */ { "EGYPTIAN HIEROGLYPH-14274","	* classifier cutting, slaughter : mds"},
+/* 14274 */ { "EGYPTIAN HIEROGLYPH-14274","	* classifier cutting, slaughter : mds\n"
+	"	~ 14274 FE01 rotated 180 degrees\n"
+	"	~ 14274 FE02 rotated 270 degrees\n"
+	"	~ 14274 FE05 rotated approximately 250 degrees [vertical]\n"
+	"	~ 14274 FE06 rotated approximately 340 degrees [horizontal]"},
 /* 14275 */ { "EGYPTIAN HIEROGLYPH-14275","	* logogram (flint, in ds-km, obsidian) : ds"},
 /* 14276 */ { "EGYPTIAN HIEROGLYPH-14276","	* logogram (to carve, to enscribe, to engrave) : ḫtꞽ"},
 /* 14277 */ { "EGYPTIAN HIEROGLYPH-14277","	* logogram (to carve, to enscribe, to engrave) : ḫtꞽ"},
@@ -38963,8 +39102,8 @@ static const struct unicode_nameannot una_01_42[] = {
 /* 14295 */ { "EGYPTIAN HIEROGLYPH-14295",NULL},
 /* 14296 */ { "EGYPTIAN HIEROGLYPH-14296","	* classifier harvest, crop : šm(.w)"},
 /* 14297 */ { "EGYPTIAN HIEROGLYPH-14297","	* classifier grain/barley : npt"},
-/* 14298 */ { "EGYPTIAN HIEROGLYPH-14298","	* classifier grain : Mh.w"},
-/* 14299 */ { "EGYPTIAN HIEROGLYPH-14299","	* classifier grain : Mh.w | šmꜥ.w | wꜣḥ.yt"},
+/* 14298 */ { "EGYPTIAN HIEROGLYPH-14298","	* classifier grain : mh.w"},
+/* 14299 */ { "EGYPTIAN HIEROGLYPH-14299","	* classifier grain : mh.w | šmꜥ.w | wꜣḥ.yt"},
 /* 1429A */ { "EGYPTIAN HIEROGLYPH-1429A","	* classifier grain : np(r)"},
 /* 1429B */ { "EGYPTIAN HIEROGLYPH-1429B",NULL},
 /* 1429C */ { "EGYPTIAN HIEROGLYPH-1429C","	* phonemogram : hb"},
@@ -39071,7 +39210,7 @@ static const struct unicode_nameannot una_01_42[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_43[] = {
-/* 14300 */ { "EGYPTIAN HIEROGLYPH-14300","	* classifier potters wheel : nḥb"},
+/* 14300 */ { "EGYPTIAN HIEROGLYPH-14300","	* classifier potter's wheel : nḥb"},
 /* 14301 */ { "EGYPTIAN HIEROGLYPH-14301",NULL},
 /* 14302 */ { "EGYPTIAN HIEROGLYPH-14302",NULL},
 /* 14303 */ { "EGYPTIAN HIEROGLYPH-14303","	* logogram (Chesemu (divinity)) : šsmw"},
@@ -39099,7 +39238,7 @@ static const struct unicode_nameannot una_01_43[] = {
 /* 14319 */ { "EGYPTIAN HIEROGLYPH-14319","	* classifier flame"},
 /* 1431A */ { "EGYPTIAN HIEROGLYPH-1431A","	* classifier sweeping, wiping : sk"},
 /* 1431B */ { "EGYPTIAN HIEROGLYPH-1431B","	* classifier saw : tfꜣ"},
-/* 1431C */ { "EGYPTIAN HIEROGLYPH-1431C","	* classifier (upright of an ladder) : mꜥꜣꜥ"},
+/* 1431C */ { "EGYPTIAN HIEROGLYPH-1431C","	* classifier (upright of a ladder) : mꜥꜣꜥ"},
 /* 1431D */ { "EGYPTIAN HIEROGLYPH-1431D","	* phonemogram : ḳd"},
 /* 1431E */ { "EGYPTIAN HIEROGLYPH-1431E",NULL},
 /* 1431F */ { "EGYPTIAN HIEROGLYPH-1431F","	* logogram (field, arable land) : ꜣḥ.t"},
@@ -40594,7 +40733,7 @@ static const struct unicode_nameannot una_01_68[] = {
 /* 1687E */ { "BAMUM LETTER PHASE-B MBEURI",NULL},
 /* 1687F */ { "BAMUM LETTER PHASE-B MONTIEEN",NULL},
 /* 16880 */ { "BAMUM LETTER PHASE-B NYAEMAE",NULL},
-/* 16881 */ { "BAMUM LETTER PHASE-B PUNGAAM",NULL},
+/* 16881 */ { "BAMUM LETTER PHASE-B PUNGAAM","	% BAMUM LETTER PHASE-B PUNGGAAM"},
 /* 16882 */ { "BAMUM LETTER PHASE-B MEUT NGGEET",NULL},
 /* 16883 */ { "BAMUM LETTER PHASE-B FEUX",NULL},
 /* 16884 */ { "BAMUM LETTER PHASE-B MBUOQ",NULL},
@@ -40607,7 +40746,7 @@ static const struct unicode_nameannot una_01_68[] = {
 /* 1688B */ { "BAMUM LETTER PHASE-B NSEN",NULL},
 /* 1688C */ { "BAMUM LETTER PHASE-B MA",NULL},
 /* 1688D */ { "BAMUM LETTER PHASE-B KIQ",NULL},
-/* 1688E */ { "BAMUM LETTER PHASE-B NGOM",NULL},
+/* 1688E */ { "BAMUM LETTER PHASE-B NGOM","	% BAMUM LETTER PHASE-B NGGOM"},
 /* 1688F */ { "BAMUM LETTER PHASE-C NGKUE MAEMBA",NULL},
 /* 16890 */ { "BAMUM LETTER PHASE-C NZA",NULL},
 /* 16891 */ { "BAMUM LETTER PHASE-C YUM",NULL},
@@ -40685,7 +40824,7 @@ static const struct unicode_nameannot una_01_68[] = {
 /* 168D9 */ { "BAMUM LETTER PHASE-C YAA",NULL},
 /* 168DA */ { "BAMUM LETTER PHASE-C NDAP",NULL},
 /* 168DB */ { "BAMUM LETTER PHASE-C SHUEQ",NULL},
-/* 168DC */ { "BAMUM LETTER PHASE-C SETFON",NULL},
+/* 168DC */ { "BAMUM LETTER PHASE-C SETFON","	% BAMUM LETTER PHASE-C SHETFON"},
 /* 168DD */ { "BAMUM LETTER PHASE-C MBI",NULL},
 /* 168DE */ { "BAMUM LETTER PHASE-C MAEMBA",NULL},
 /* 168DF */ { "BAMUM LETTER PHASE-C MBANYI",NULL},
@@ -40850,7 +40989,7 @@ static const struct unicode_nameannot una_01_69[] = {
 /* 1697A */ { "BAMUM LETTER PHASE-E KUOP",NULL},
 /* 1697B */ { "BAMUM LETTER PHASE-E LOM",NULL},
 /* 1697C */ { "BAMUM LETTER PHASE-E NSHIEE",NULL},
-/* 1697D */ { "BAMUM LETTER PHASE-E NGOP",NULL},
+/* 1697D */ { "BAMUM LETTER PHASE-E NGOP","	% BAMUM LETTER PHASE-E NGGOP"},
 /* 1697E */ { "BAMUM LETTER PHASE-E MAEM",NULL},
 /* 1697F */ { "BAMUM LETTER PHASE-E NGKEUX",NULL},
 /* 16980 */ { "BAMUM LETTER PHASE-E NGOQ",NULL},
@@ -41637,48 +41776,48 @@ static const struct unicode_nameannot una_01_6D[] = {
 /* 16D7D */ { NULL,NULL},
 /* 16D7E */ { NULL,NULL},
 /* 16D7F */ { NULL,NULL},
-/* 16D80 */ { NULL,NULL},
-/* 16D81 */ { NULL,NULL},
-/* 16D82 */ { NULL,NULL},
-/* 16D83 */ { NULL,NULL},
-/* 16D84 */ { NULL,NULL},
-/* 16D85 */ { NULL,NULL},
-/* 16D86 */ { NULL,NULL},
-/* 16D87 */ { NULL,NULL},
-/* 16D88 */ { NULL,NULL},
-/* 16D89 */ { NULL,NULL},
-/* 16D8A */ { NULL,NULL},
-/* 16D8B */ { NULL,NULL},
-/* 16D8C */ { NULL,NULL},
-/* 16D8D */ { NULL,NULL},
-/* 16D8E */ { NULL,NULL},
-/* 16D8F */ { NULL,NULL},
-/* 16D90 */ { NULL,NULL},
-/* 16D91 */ { NULL,NULL},
-/* 16D92 */ { NULL,NULL},
-/* 16D93 */ { NULL,NULL},
-/* 16D94 */ { NULL,NULL},
-/* 16D95 */ { NULL,NULL},
-/* 16D96 */ { NULL,NULL},
-/* 16D97 */ { NULL,NULL},
-/* 16D98 */ { NULL,NULL},
-/* 16D99 */ { NULL,NULL},
-/* 16D9A */ { NULL,NULL},
-/* 16D9B */ { NULL,NULL},
-/* 16D9C */ { NULL,NULL},
-/* 16D9D */ { NULL,NULL},
+/* 16D80 */ { "CHISOI LETTER A",NULL},
+/* 16D81 */ { "CHISOI LETTER BA",NULL},
+/* 16D82 */ { "CHISOI LETTER AI",NULL},
+/* 16D83 */ { "CHISOI LETTER AA",NULL},
+/* 16D84 */ { "CHISOI LETTER GA",NULL},
+/* 16D85 */ { "CHISOI LETTER TA",NULL},
+/* 16D86 */ { "CHISOI LETTER E",NULL},
+/* 16D87 */ { "CHISOI LETTER SA",NULL},
+/* 16D88 */ { "CHISOI LETTER NA",NULL},
+/* 16D89 */ { "CHISOI LETTER I",NULL},
+/* 16D8A */ { "CHISOI LETTER KA",NULL},
+/* 16D8B */ { "CHISOI LETTER RA",NULL},
+/* 16D8C */ { "CHISOI LETTER MA",NULL},
+/* 16D8D */ { "CHISOI LETTER HA",NULL},
+/* 16D8E */ { "CHISOI LETTER RRA",NULL},
+/* 16D8F */ { "CHISOI LETTER U",NULL},
+/* 16D90 */ { "CHISOI LETTER DA",NULL},
+/* 16D91 */ { "CHISOI LETTER LA",NULL},
+/* 16D92 */ { "CHISOI LETTER O",NULL},
+/* 16D93 */ { "CHISOI LETTER NYA",NULL},
+/* 16D94 */ { "CHISOI LETTER NGA",NULL},
+/* 16D95 */ { "CHISOI LETTER CA",NULL},
+/* 16D96 */ { "CHISOI LETTER JA",NULL},
+/* 16D97 */ { "CHISOI LETTER PA",NULL},
+/* 16D98 */ { "CHISOI SIGN ANUSVARA",NULL},
+/* 16D99 */ { "CHISOI LETTER YA",NULL},
+/* 16D9A */ { "CHISOI LETTER DDA",NULL},
+/* 16D9B */ { "CHISOI LETTER TTA",NULL},
+/* 16D9C */ { "CHISOI LETTER JARAHA",NULL},
+/* 16D9D */ { "CHISOI SIGN SISO","	* vowel killer"},
 /* 16D9E */ { NULL,NULL},
 /* 16D9F */ { NULL,NULL},
-/* 16DA0 */ { NULL,NULL},
-/* 16DA1 */ { NULL,NULL},
-/* 16DA2 */ { NULL,NULL},
-/* 16DA3 */ { NULL,NULL},
-/* 16DA4 */ { NULL,NULL},
-/* 16DA5 */ { NULL,NULL},
-/* 16DA6 */ { NULL,NULL},
-/* 16DA7 */ { NULL,NULL},
-/* 16DA8 */ { NULL,NULL},
-/* 16DA9 */ { NULL,NULL},
+/* 16DA0 */ { "CHISOI DIGIT ZERO",NULL},
+/* 16DA1 */ { "CHISOI DIGIT ONE",NULL},
+/* 16DA2 */ { "CHISOI DIGIT TWO",NULL},
+/* 16DA3 */ { "CHISOI DIGIT THREE",NULL},
+/* 16DA4 */ { "CHISOI DIGIT FOUR",NULL},
+/* 16DA5 */ { "CHISOI DIGIT FIVE",NULL},
+/* 16DA6 */ { "CHISOI DIGIT SIX",NULL},
+/* 16DA7 */ { "CHISOI DIGIT SEVEN",NULL},
+/* 16DA8 */ { "CHISOI DIGIT EIGHT",NULL},
+/* 16DA9 */ { "CHISOI DIGIT NINE",NULL},
 /* 16DAA */ { NULL,NULL},
 /* 16DAB */ { NULL,NULL},
 /* 16DAC */ { NULL,NULL},
@@ -41929,58 +42068,58 @@ static const struct unicode_nameannot una_01_6E[] = {
 /* 16E9D */ { NULL,NULL},
 /* 16E9E */ { NULL,NULL},
 /* 16E9F */ { NULL,NULL},
-/* 16EA0 */ { NULL,NULL},
-/* 16EA1 */ { NULL,NULL},
-/* 16EA2 */ { NULL,NULL},
-/* 16EA3 */ { NULL,NULL},
-/* 16EA4 */ { NULL,NULL},
-/* 16EA5 */ { NULL,NULL},
-/* 16EA6 */ { NULL,NULL},
-/* 16EA7 */ { NULL,NULL},
-/* 16EA8 */ { NULL,NULL},
-/* 16EA9 */ { NULL,NULL},
-/* 16EAA */ { NULL,NULL},
-/* 16EAB */ { NULL,NULL},
-/* 16EAC */ { NULL,NULL},
-/* 16EAD */ { NULL,NULL},
-/* 16EAE */ { NULL,NULL},
-/* 16EAF */ { NULL,NULL},
-/* 16EB0 */ { NULL,NULL},
-/* 16EB1 */ { NULL,NULL},
-/* 16EB2 */ { NULL,NULL},
-/* 16EB3 */ { NULL,NULL},
-/* 16EB4 */ { NULL,NULL},
-/* 16EB5 */ { NULL,NULL},
-/* 16EB6 */ { NULL,NULL},
-/* 16EB7 */ { NULL,NULL},
-/* 16EB8 */ { NULL,NULL},
+/* 16EA0 */ { "BERIA ERFE CAPITAL LETTER ARKAB",NULL},
+/* 16EA1 */ { "BERIA ERFE CAPITAL LETTER BASIGNA",NULL},
+/* 16EA2 */ { "BERIA ERFE CAPITAL LETTER DARBAI",NULL},
+/* 16EA3 */ { "BERIA ERFE CAPITAL LETTER EH",NULL},
+/* 16EA4 */ { "BERIA ERFE CAPITAL LETTER FITKO",NULL},
+/* 16EA5 */ { "BERIA ERFE CAPITAL LETTER GOWAY",NULL},
+/* 16EA6 */ { "BERIA ERFE CAPITAL LETTER HIRDEABO",NULL},
+/* 16EA7 */ { "BERIA ERFE CAPITAL LETTER I",NULL},
+/* 16EA8 */ { "BERIA ERFE CAPITAL LETTER DJAI",NULL},
+/* 16EA9 */ { "BERIA ERFE CAPITAL LETTER KOBO",NULL},
+/* 16EAA */ { "BERIA ERFE CAPITAL LETTER LAKKO",NULL},
+/* 16EAB */ { "BERIA ERFE CAPITAL LETTER MERI",NULL},
+/* 16EAC */ { "BERIA ERFE CAPITAL LETTER NINI",NULL},
+/* 16EAD */ { "BERIA ERFE CAPITAL LETTER GNA",NULL},
+/* 16EAE */ { "BERIA ERFE CAPITAL LETTER NGAY",NULL},
+/* 16EAF */ { "BERIA ERFE CAPITAL LETTER OI",NULL},
+/* 16EB0 */ { "BERIA ERFE CAPITAL LETTER PI",NULL},
+/* 16EB1 */ { "BERIA ERFE CAPITAL LETTER ERIGO",NULL},
+/* 16EB2 */ { "BERIA ERFE CAPITAL LETTER ERIGO TAMURA",NULL},
+/* 16EB3 */ { "BERIA ERFE CAPITAL LETTER SERI",NULL},
+/* 16EB4 */ { "BERIA ERFE CAPITAL LETTER SHEP",NULL},
+/* 16EB5 */ { "BERIA ERFE CAPITAL LETTER TATASOUE",NULL},
+/* 16EB6 */ { "BERIA ERFE CAPITAL LETTER UI",NULL},
+/* 16EB7 */ { "BERIA ERFE CAPITAL LETTER WASSE",NULL},
+/* 16EB8 */ { "BERIA ERFE CAPITAL LETTER AY",NULL},
 /* 16EB9 */ { NULL,NULL},
 /* 16EBA */ { NULL,NULL},
-/* 16EBB */ { NULL,NULL},
-/* 16EBC */ { NULL,NULL},
-/* 16EBD */ { NULL,NULL},
-/* 16EBE */ { NULL,NULL},
-/* 16EBF */ { NULL,NULL},
-/* 16EC0 */ { NULL,NULL},
-/* 16EC1 */ { NULL,NULL},
-/* 16EC2 */ { NULL,NULL},
-/* 16EC3 */ { NULL,NULL},
-/* 16EC4 */ { NULL,NULL},
-/* 16EC5 */ { NULL,NULL},
-/* 16EC6 */ { NULL,NULL},
-/* 16EC7 */ { NULL,NULL},
-/* 16EC8 */ { NULL,NULL},
-/* 16EC9 */ { NULL,NULL},
-/* 16ECA */ { NULL,NULL},
-/* 16ECB */ { NULL,NULL},
-/* 16ECC */ { NULL,NULL},
-/* 16ECD */ { NULL,NULL},
-/* 16ECE */ { NULL,NULL},
-/* 16ECF */ { NULL,NULL},
-/* 16ED0 */ { NULL,NULL},
-/* 16ED1 */ { NULL,NULL},
-/* 16ED2 */ { NULL,NULL},
-/* 16ED3 */ { NULL,NULL},
+/* 16EBB */ { "BERIA ERFE SMALL LETTER ARKAB",NULL},
+/* 16EBC */ { "BERIA ERFE SMALL LETTER BASIGNA",NULL},
+/* 16EBD */ { "BERIA ERFE SMALL LETTER DARBAI",NULL},
+/* 16EBE */ { "BERIA ERFE SMALL LETTER EH",NULL},
+/* 16EBF */ { "BERIA ERFE SMALL LETTER FITKO",NULL},
+/* 16EC0 */ { "BERIA ERFE SMALL LETTER GOWAY",NULL},
+/* 16EC1 */ { "BERIA ERFE SMALL LETTER HIRDEABO",NULL},
+/* 16EC2 */ { "BERIA ERFE SMALL LETTER I",NULL},
+/* 16EC3 */ { "BERIA ERFE SMALL LETTER DJAI",NULL},
+/* 16EC4 */ { "BERIA ERFE SMALL LETTER KOBO",NULL},
+/* 16EC5 */ { "BERIA ERFE SMALL LETTER LAKKO",NULL},
+/* 16EC6 */ { "BERIA ERFE SMALL LETTER MERI",NULL},
+/* 16EC7 */ { "BERIA ERFE SMALL LETTER NINI",NULL},
+/* 16EC8 */ { "BERIA ERFE SMALL LETTER GNA",NULL},
+/* 16EC9 */ { "BERIA ERFE SMALL LETTER NGAY",NULL},
+/* 16ECA */ { "BERIA ERFE SMALL LETTER OI",NULL},
+/* 16ECB */ { "BERIA ERFE SMALL LETTER PI",NULL},
+/* 16ECC */ { "BERIA ERFE SMALL LETTER ERIGO",NULL},
+/* 16ECD */ { "BERIA ERFE SMALL LETTER ERIGO TAMURA",NULL},
+/* 16ECE */ { "BERIA ERFE SMALL LETTER SERI",NULL},
+/* 16ECF */ { "BERIA ERFE SMALL LETTER SHEP",NULL},
+/* 16ED0 */ { "BERIA ERFE SMALL LETTER TATASOUE",NULL},
+/* 16ED1 */ { "BERIA ERFE SMALL LETTER UI",NULL},
+/* 16ED2 */ { "BERIA ERFE SMALL LETTER WASSE",NULL},
+/* 16ED3 */ { "BERIA ERFE SMALL LETTER AY",NULL},
 /* 16ED4 */ { NULL,NULL},
 /* 16ED5 */ { NULL,NULL},
 /* 16ED6 */ { NULL,NULL},
@@ -42274,11 +42413,11 @@ static const struct unicode_nameannot una_01_6F[] = {
 /* 16FF0 */ { "VIETNAMESE ALTERNATE READING MARK CA","	x 4E2A\n"
 	"	x 4E87"},
 /* 16FF1 */ { "VIETNAMESE ALTERNATE READING MARK NHAY","	x 21FE8"},
-/* 16FF2 */ { NULL,NULL},
-/* 16FF3 */ { NULL,NULL},
-/* 16FF4 */ { NULL,NULL},
-/* 16FF5 */ { NULL,NULL},
-/* 16FF6 */ { NULL,NULL},
+/* 16FF2 */ { "CHINESE SMALL SIMPLIFIED ER","	x 513F"},
+/* 16FF3 */ { "CHINESE SMALL TRADITIONAL ER","	x 5152"},
+/* 16FF4 */ { "YANGQIN SIGN SLOW ONE BEAT","	x (hangzhou numeral six - 3026)"},
+/* 16FF5 */ { "YANGQIN SIGN SLOW THREE HALF BEATS",NULL},
+/* 16FF6 */ { "YANGQIN SIGN SLOW TWO BEATS",NULL},
 /* 16FF7 */ { NULL,NULL},
 /* 16FF8 */ { NULL,NULL},
 /* 16FF9 */ { NULL,NULL},
@@ -43588,6 +43727,266 @@ static const struct unicode_nameannot una_01_8C[] = {
 /* 18CFD */ { NULL,NULL},
 /* 18CFE */ { NULL,NULL},
 /* 18CFF */ { "KHITAN SMALL SCRIPT CHARACTER-18CFF","	* represents a lost or illegible character"}
+};
+
+UN_DLL_LOCAL
+static const struct unicode_nameannot una_01_8D[] = {
+/* 18D00 */ { NULL,NULL},
+/* 18D01 */ { NULL,NULL},
+/* 18D02 */ { NULL,NULL},
+/* 18D03 */ { NULL,NULL},
+/* 18D04 */ { NULL,NULL},
+/* 18D05 */ { NULL,NULL},
+/* 18D06 */ { NULL,NULL},
+/* 18D07 */ { NULL,NULL},
+/* 18D08 */ { NULL,NULL},
+/* 18D09 */ { NULL,NULL},
+/* 18D0A */ { NULL,NULL},
+/* 18D0B */ { NULL,NULL},
+/* 18D0C */ { NULL,NULL},
+/* 18D0D */ { NULL,NULL},
+/* 18D0E */ { NULL,NULL},
+/* 18D0F */ { NULL,NULL},
+/* 18D10 */ { NULL,NULL},
+/* 18D11 */ { NULL,NULL},
+/* 18D12 */ { NULL,NULL},
+/* 18D13 */ { NULL,NULL},
+/* 18D14 */ { NULL,NULL},
+/* 18D15 */ { NULL,NULL},
+/* 18D16 */ { NULL,NULL},
+/* 18D17 */ { NULL,NULL},
+/* 18D18 */ { NULL,NULL},
+/* 18D19 */ { NULL,NULL},
+/* 18D1A */ { NULL,NULL},
+/* 18D1B */ { NULL,NULL},
+/* 18D1C */ { NULL,NULL},
+/* 18D1D */ { NULL,NULL},
+/* 18D1E */ { NULL,NULL},
+/* 18D1F */ { NULL,NULL},
+/* 18D20 */ { NULL,NULL},
+/* 18D21 */ { NULL,NULL},
+/* 18D22 */ { NULL,NULL},
+/* 18D23 */ { NULL,NULL},
+/* 18D24 */ { NULL,NULL},
+/* 18D25 */ { NULL,NULL},
+/* 18D26 */ { NULL,NULL},
+/* 18D27 */ { NULL,NULL},
+/* 18D28 */ { NULL,NULL},
+/* 18D29 */ { NULL,NULL},
+/* 18D2A */ { NULL,NULL},
+/* 18D2B */ { NULL,NULL},
+/* 18D2C */ { NULL,NULL},
+/* 18D2D */ { NULL,NULL},
+/* 18D2E */ { NULL,NULL},
+/* 18D2F */ { NULL,NULL},
+/* 18D30 */ { NULL,NULL},
+/* 18D31 */ { NULL,NULL},
+/* 18D32 */ { NULL,NULL},
+/* 18D33 */ { NULL,NULL},
+/* 18D34 */ { NULL,NULL},
+/* 18D35 */ { NULL,NULL},
+/* 18D36 */ { NULL,NULL},
+/* 18D37 */ { NULL,NULL},
+/* 18D38 */ { NULL,NULL},
+/* 18D39 */ { NULL,NULL},
+/* 18D3A */ { NULL,NULL},
+/* 18D3B */ { NULL,NULL},
+/* 18D3C */ { NULL,NULL},
+/* 18D3D */ { NULL,NULL},
+/* 18D3E */ { NULL,NULL},
+/* 18D3F */ { NULL,NULL},
+/* 18D40 */ { NULL,NULL},
+/* 18D41 */ { NULL,NULL},
+/* 18D42 */ { NULL,NULL},
+/* 18D43 */ { NULL,NULL},
+/* 18D44 */ { NULL,NULL},
+/* 18D45 */ { NULL,NULL},
+/* 18D46 */ { NULL,NULL},
+/* 18D47 */ { NULL,NULL},
+/* 18D48 */ { NULL,NULL},
+/* 18D49 */ { NULL,NULL},
+/* 18D4A */ { NULL,NULL},
+/* 18D4B */ { NULL,NULL},
+/* 18D4C */ { NULL,NULL},
+/* 18D4D */ { NULL,NULL},
+/* 18D4E */ { NULL,NULL},
+/* 18D4F */ { NULL,NULL},
+/* 18D50 */ { NULL,NULL},
+/* 18D51 */ { NULL,NULL},
+/* 18D52 */ { NULL,NULL},
+/* 18D53 */ { NULL,NULL},
+/* 18D54 */ { NULL,NULL},
+/* 18D55 */ { NULL,NULL},
+/* 18D56 */ { NULL,NULL},
+/* 18D57 */ { NULL,NULL},
+/* 18D58 */ { NULL,NULL},
+/* 18D59 */ { NULL,NULL},
+/* 18D5A */ { NULL,NULL},
+/* 18D5B */ { NULL,NULL},
+/* 18D5C */ { NULL,NULL},
+/* 18D5D */ { NULL,NULL},
+/* 18D5E */ { NULL,NULL},
+/* 18D5F */ { NULL,NULL},
+/* 18D60 */ { NULL,NULL},
+/* 18D61 */ { NULL,NULL},
+/* 18D62 */ { NULL,NULL},
+/* 18D63 */ { NULL,NULL},
+/* 18D64 */ { NULL,NULL},
+/* 18D65 */ { NULL,NULL},
+/* 18D66 */ { NULL,NULL},
+/* 18D67 */ { NULL,NULL},
+/* 18D68 */ { NULL,NULL},
+/* 18D69 */ { NULL,NULL},
+/* 18D6A */ { NULL,NULL},
+/* 18D6B */ { NULL,NULL},
+/* 18D6C */ { NULL,NULL},
+/* 18D6D */ { NULL,NULL},
+/* 18D6E */ { NULL,NULL},
+/* 18D6F */ { NULL,NULL},
+/* 18D70 */ { NULL,NULL},
+/* 18D71 */ { NULL,NULL},
+/* 18D72 */ { NULL,NULL},
+/* 18D73 */ { NULL,NULL},
+/* 18D74 */ { NULL,NULL},
+/* 18D75 */ { NULL,NULL},
+/* 18D76 */ { NULL,NULL},
+/* 18D77 */ { NULL,NULL},
+/* 18D78 */ { NULL,NULL},
+/* 18D79 */ { NULL,NULL},
+/* 18D7A */ { NULL,NULL},
+/* 18D7B */ { NULL,NULL},
+/* 18D7C */ { NULL,NULL},
+/* 18D7D */ { NULL,NULL},
+/* 18D7E */ { NULL,NULL},
+/* 18D7F */ { NULL,NULL},
+/* 18D80 */ { "TANGUT COMPONENT-769","	* seven strokes"},
+/* 18D81 */ { "TANGUT COMPONENT-770","	* three strokes"},
+/* 18D82 */ { "TANGUT COMPONENT-771",NULL},
+/* 18D83 */ { "TANGUT COMPONENT-772",NULL},
+/* 18D84 */ { "TANGUT COMPONENT-773",NULL},
+/* 18D85 */ { "TANGUT COMPONENT-774",NULL},
+/* 18D86 */ { "TANGUT COMPONENT-775",NULL},
+/* 18D87 */ { "TANGUT COMPONENT-776",NULL},
+/* 18D88 */ { "TANGUT COMPONENT-777",NULL},
+/* 18D89 */ { "TANGUT COMPONENT-778",NULL},
+/* 18D8A */ { "TANGUT COMPONENT-779",NULL},
+/* 18D8B */ { "TANGUT COMPONENT-780",NULL},
+/* 18D8C */ { "TANGUT COMPONENT-781",NULL},
+/* 18D8D */ { "TANGUT COMPONENT-782",NULL},
+/* 18D8E */ { "TANGUT COMPONENT-783",NULL},
+/* 18D8F */ { "TANGUT COMPONENT-784",NULL},
+/* 18D90 */ { "TANGUT COMPONENT-785",NULL},
+/* 18D91 */ { "TANGUT COMPONENT-786",NULL},
+/* 18D92 */ { "TANGUT COMPONENT-787",NULL},
+/* 18D93 */ { "TANGUT COMPONENT-788",NULL},
+/* 18D94 */ { "TANGUT COMPONENT-789",NULL},
+/* 18D95 */ { "TANGUT COMPONENT-790",NULL},
+/* 18D96 */ { "TANGUT COMPONENT-791",NULL},
+/* 18D97 */ { "TANGUT COMPONENT-792",NULL},
+/* 18D98 */ { "TANGUT COMPONENT-793",NULL},
+/* 18D99 */ { "TANGUT COMPONENT-794",NULL},
+/* 18D9A */ { "TANGUT COMPONENT-795",NULL},
+/* 18D9B */ { "TANGUT COMPONENT-796",NULL},
+/* 18D9C */ { "TANGUT COMPONENT-797",NULL},
+/* 18D9D */ { "TANGUT COMPONENT-798",NULL},
+/* 18D9E */ { "TANGUT COMPONENT-799",NULL},
+/* 18D9F */ { "TANGUT COMPONENT-800",NULL},
+/* 18DA0 */ { "TANGUT COMPONENT-801",NULL},
+/* 18DA1 */ { "TANGUT COMPONENT-802",NULL},
+/* 18DA2 */ { "TANGUT COMPONENT-803",NULL},
+/* 18DA3 */ { "TANGUT COMPONENT-804",NULL},
+/* 18DA4 */ { "TANGUT COMPONENT-805",NULL},
+/* 18DA5 */ { "TANGUT COMPONENT-806",NULL},
+/* 18DA6 */ { "TANGUT COMPONENT-807",NULL},
+/* 18DA7 */ { "TANGUT COMPONENT-808",NULL},
+/* 18DA8 */ { "TANGUT COMPONENT-809",NULL},
+/* 18DA9 */ { "TANGUT COMPONENT-810",NULL},
+/* 18DAA */ { "TANGUT COMPONENT-811",NULL},
+/* 18DAB */ { "TANGUT COMPONENT-812",NULL},
+/* 18DAC */ { "TANGUT COMPONENT-813",NULL},
+/* 18DAD */ { "TANGUT COMPONENT-814",NULL},
+/* 18DAE */ { "TANGUT COMPONENT-815",NULL},
+/* 18DAF */ { "TANGUT COMPONENT-816",NULL},
+/* 18DB0 */ { "TANGUT COMPONENT-817",NULL},
+/* 18DB1 */ { "TANGUT COMPONENT-818",NULL},
+/* 18DB2 */ { "TANGUT COMPONENT-819",NULL},
+/* 18DB3 */ { "TANGUT COMPONENT-820",NULL},
+/* 18DB4 */ { "TANGUT COMPONENT-821",NULL},
+/* 18DB5 */ { "TANGUT COMPONENT-822",NULL},
+/* 18DB6 */ { "TANGUT COMPONENT-823",NULL},
+/* 18DB7 */ { "TANGUT COMPONENT-824",NULL},
+/* 18DB8 */ { "TANGUT COMPONENT-825",NULL},
+/* 18DB9 */ { "TANGUT COMPONENT-826",NULL},
+/* 18DBA */ { "TANGUT COMPONENT-827",NULL},
+/* 18DBB */ { "TANGUT COMPONENT-828",NULL},
+/* 18DBC */ { "TANGUT COMPONENT-829",NULL},
+/* 18DBD */ { "TANGUT COMPONENT-830",NULL},
+/* 18DBE */ { "TANGUT COMPONENT-831",NULL},
+/* 18DBF */ { "TANGUT COMPONENT-832",NULL},
+/* 18DC0 */ { "TANGUT COMPONENT-833",NULL},
+/* 18DC1 */ { "TANGUT COMPONENT-834",NULL},
+/* 18DC2 */ { "TANGUT COMPONENT-835",NULL},
+/* 18DC3 */ { "TANGUT COMPONENT-836",NULL},
+/* 18DC4 */ { "TANGUT COMPONENT-837",NULL},
+/* 18DC5 */ { "TANGUT COMPONENT-838",NULL},
+/* 18DC6 */ { "TANGUT COMPONENT-839",NULL},
+/* 18DC7 */ { "TANGUT COMPONENT-840",NULL},
+/* 18DC8 */ { "TANGUT COMPONENT-841",NULL},
+/* 18DC9 */ { "TANGUT COMPONENT-842",NULL},
+/* 18DCA */ { "TANGUT COMPONENT-843",NULL},
+/* 18DCB */ { "TANGUT COMPONENT-844",NULL},
+/* 18DCC */ { "TANGUT COMPONENT-845",NULL},
+/* 18DCD */ { "TANGUT COMPONENT-846",NULL},
+/* 18DCE */ { "TANGUT COMPONENT-847",NULL},
+/* 18DCF */ { "TANGUT COMPONENT-848",NULL},
+/* 18DD0 */ { "TANGUT COMPONENT-849",NULL},
+/* 18DD1 */ { "TANGUT COMPONENT-850",NULL},
+/* 18DD2 */ { "TANGUT COMPONENT-851",NULL},
+/* 18DD3 */ { "TANGUT COMPONENT-852",NULL},
+/* 18DD4 */ { "TANGUT COMPONENT-853",NULL},
+/* 18DD5 */ { "TANGUT COMPONENT-854",NULL},
+/* 18DD6 */ { "TANGUT COMPONENT-855",NULL},
+/* 18DD7 */ { "TANGUT COMPONENT-856",NULL},
+/* 18DD8 */ { "TANGUT COMPONENT-857",NULL},
+/* 18DD9 */ { "TANGUT COMPONENT-858",NULL},
+/* 18DDA */ { "TANGUT COMPONENT-859",NULL},
+/* 18DDB */ { "TANGUT COMPONENT-860",NULL},
+/* 18DDC */ { "TANGUT COMPONENT-861",NULL},
+/* 18DDD */ { "TANGUT COMPONENT-862",NULL},
+/* 18DDE */ { "TANGUT COMPONENT-863",NULL},
+/* 18DDF */ { "TANGUT COMPONENT-864",NULL},
+/* 18DE0 */ { "TANGUT COMPONENT-865",NULL},
+/* 18DE1 */ { "TANGUT COMPONENT-866",NULL},
+/* 18DE2 */ { "TANGUT COMPONENT-867",NULL},
+/* 18DE3 */ { "TANGUT COMPONENT-868",NULL},
+/* 18DE4 */ { "TANGUT COMPONENT-869",NULL},
+/* 18DE5 */ { "TANGUT COMPONENT-870",NULL},
+/* 18DE6 */ { "TANGUT COMPONENT-871",NULL},
+/* 18DE7 */ { "TANGUT COMPONENT-872",NULL},
+/* 18DE8 */ { "TANGUT COMPONENT-873",NULL},
+/* 18DE9 */ { "TANGUT COMPONENT-874",NULL},
+/* 18DEA */ { "TANGUT COMPONENT-875",NULL},
+/* 18DEB */ { "TANGUT COMPONENT-876",NULL},
+/* 18DEC */ { "TANGUT COMPONENT-877",NULL},
+/* 18DED */ { "TANGUT COMPONENT-878",NULL},
+/* 18DEE */ { "TANGUT COMPONENT-879",NULL},
+/* 18DEF */ { "TANGUT COMPONENT-880",NULL},
+/* 18DF0 */ { "TANGUT COMPONENT-881",NULL},
+/* 18DF1 */ { "TANGUT COMPONENT-882",NULL},
+/* 18DF2 */ { "TANGUT COMPONENT-883",NULL},
+/* 18DF3 */ { NULL,NULL},
+/* 18DF4 */ { NULL,NULL},
+/* 18DF5 */ { NULL,NULL},
+/* 18DF6 */ { NULL,NULL},
+/* 18DF7 */ { NULL,NULL},
+/* 18DF8 */ { NULL,NULL},
+/* 18DF9 */ { NULL,NULL},
+/* 18DFA */ { NULL,NULL},
+/* 18DFB */ { NULL,NULL},
+/* 18DFC */ { NULL,NULL},
+/* 18DFD */ { NULL,NULL},
+/* 18DFE */ { NULL,NULL},
+/* 18DFF */ { NULL,NULL}
 };
 
 UN_DLL_LOCAL
@@ -45305,9 +45704,9 @@ static const struct unicode_nameannot una_01_CC[] = {
 /* 1CCF7 */ { "OUTLINED DIGIT SEVEN","	# <font> 0037 digit seven"},
 /* 1CCF8 */ { "OUTLINED DIGIT EIGHT","	# <font> 0038 digit eight"},
 /* 1CCF9 */ { "OUTLINED DIGIT NINE","	# <font> 0039 digit nine"},
-/* 1CCFA */ { NULL,NULL},
-/* 1CCFB */ { NULL,NULL},
-/* 1CCFC */ { NULL,NULL},
+/* 1CCFA */ { "SNAKE SYMBOL","	x (snake - 1F40D)"},
+/* 1CCFB */ { "FLYING SAUCER SYMBOL","	x (flying saucer - 1F6F8)"},
+/* 1CCFC */ { "NOSE SYMBOL","	x (nose - 1F443)"},
 /* 1CCFD */ { NULL,NULL},
 /* 1CCFE */ { NULL,NULL},
 /* 1CCFF */ { NULL,NULL}
@@ -45761,29 +46160,30 @@ static const struct unicode_nameannot una_01_CE[] = {
 /* 1CEB7 */ { NULL,NULL},
 /* 1CEB8 */ { NULL,NULL},
 /* 1CEB9 */ { NULL,NULL},
-/* 1CEBA */ { NULL,NULL},
-/* 1CEBB */ { NULL,NULL},
-/* 1CEBC */ { NULL,NULL},
-/* 1CEBD */ { NULL,NULL},
-/* 1CEBE */ { NULL,NULL},
-/* 1CEBF */ { NULL,NULL},
-/* 1CEC0 */ { NULL,NULL},
-/* 1CEC1 */ { NULL,NULL},
-/* 1CEC2 */ { NULL,NULL},
-/* 1CEC3 */ { NULL,NULL},
-/* 1CEC4 */ { NULL,NULL},
-/* 1CEC5 */ { NULL,NULL},
-/* 1CEC6 */ { NULL,NULL},
-/* 1CEC7 */ { NULL,NULL},
-/* 1CEC8 */ { NULL,NULL},
-/* 1CEC9 */ { NULL,NULL},
-/* 1CECA */ { NULL,NULL},
-/* 1CECB */ { NULL,NULL},
-/* 1CECC */ { NULL,NULL},
-/* 1CECD */ { NULL,NULL},
-/* 1CECE */ { NULL,NULL},
-/* 1CECF */ { NULL,NULL},
-/* 1CED0 */ { NULL,NULL},
+/* 1CEBA */ { "FRAGILE SYMBOL","	x (wine glass - 1F377)"},
+/* 1CEBB */ { "OFFICE BUILDING SYMBOL","	x (office building - 1F3E2)"},
+/* 1CEBC */ { "TREE SYMBOL","	x (deciduous tree - 1F333)"},
+/* 1CEBD */ { "APPLE SYMBOL","	x (red apple - 1F34E)\n"
+	"	x (green apple - 1F34F)"},
+/* 1CEBE */ { "CHERRY SYMBOL","	x (cherries - 1F352)"},
+/* 1CEBF */ { "STRAWBERRY SYMBOL","	x (strawberry - 1F353)"},
+/* 1CEC0 */ { "HEBE",NULL},
+/* 1CEC1 */ { "IRIS",NULL},
+/* 1CEC2 */ { "FLORA",NULL},
+/* 1CEC3 */ { "METIS",NULL},
+/* 1CEC4 */ { "PARTHENOPE","	x (parthenope form two - 1F77A)"},
+/* 1CEC5 */ { "VICTORIA",NULL},
+/* 1CEC6 */ { "EGERIA",NULL},
+/* 1CEC7 */ { "IRENE",NULL},
+/* 1CEC8 */ { "EUNOMIA",NULL},
+/* 1CEC9 */ { "PSYCHE",NULL},
+/* 1CECA */ { "THETIS",NULL},
+/* 1CECB */ { "MELPOMENE",NULL},
+/* 1CECC */ { "FORTUNA",NULL},
+/* 1CECD */ { "ASTRONOMICAL SYMBOL FOR ASTEROID PROSERPINA","	x (proserpina - 2BD8)"},
+/* 1CECE */ { "BELLONA",NULL},
+/* 1CECF */ { "AMPHITRITE",NULL},
+/* 1CED0 */ { "LEUKOTHEA",NULL},
 /* 1CED1 */ { NULL,NULL},
 /* 1CED2 */ { NULL,NULL},
 /* 1CED3 */ { NULL,NULL},
@@ -45799,23 +46199,24 @@ static const struct unicode_nameannot una_01_CE[] = {
 /* 1CEDD */ { NULL,NULL},
 /* 1CEDE */ { NULL,NULL},
 /* 1CEDF */ { NULL,NULL},
-/* 1CEE0 */ { NULL,NULL},
-/* 1CEE1 */ { NULL,NULL},
-/* 1CEE2 */ { NULL,NULL},
-/* 1CEE3 */ { NULL,NULL},
-/* 1CEE4 */ { NULL,NULL},
-/* 1CEE5 */ { NULL,NULL},
-/* 1CEE6 */ { NULL,NULL},
-/* 1CEE7 */ { NULL,NULL},
-/* 1CEE8 */ { NULL,NULL},
-/* 1CEE9 */ { NULL,NULL},
-/* 1CEEA */ { NULL,NULL},
-/* 1CEEB */ { NULL,NULL},
-/* 1CEEC */ { NULL,NULL},
-/* 1CEED */ { NULL,NULL},
-/* 1CEEE */ { NULL,NULL},
-/* 1CEEF */ { NULL,NULL},
-/* 1CEF0 */ { NULL,NULL},
+/* 1CEE0 */ { "GEOMANTIC FIGURE POPULUS",NULL},
+/* 1CEE1 */ { "GEOMANTIC FIGURE TRISTITIA",NULL},
+/* 1CEE2 */ { "GEOMANTIC FIGURE ALBUS",NULL},
+/* 1CEE3 */ { "GEOMANTIC FIGURE FORTUNA MAJOR",NULL},
+/* 1CEE4 */ { "GEOMANTIC FIGURE RUBEUS",NULL},
+/* 1CEE5 */ { "GEOMANTIC FIGURE ACQUISITIO",NULL},
+/* 1CEE6 */ { "GEOMANTIC FIGURE CONJUNCTIO",NULL},
+/* 1CEE7 */ { "GEOMANTIC FIGURE CAPUT DRACONIS",NULL},
+/* 1CEE8 */ { "GEOMANTIC FIGURE LAETITIA",NULL},
+/* 1CEE9 */ { "GEOMANTIC FIGURE CARCER",NULL},
+/* 1CEEA */ { "GEOMANTIC FIGURE AMISSIO",NULL},
+/* 1CEEB */ { "GEOMANTIC FIGURE PUELLA",NULL},
+/* 1CEEC */ { "GEOMANTIC FIGURE FORTUNA MINOR",NULL},
+/* 1CEED */ { "GEOMANTIC FIGURE PUER",NULL},
+/* 1CEEE */ { "GEOMANTIC FIGURE CAUDA DRACONIS",NULL},
+/* 1CEEF */ { "GEOMANTIC FIGURE VIA",NULL},
+/* 1CEF0 */ { "MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR","	* used in superscripted form to mean standard state (chemistry)\n"
+	"	x (circle with horizontal bar - 29B5)"},
 /* 1CEF1 */ { NULL,NULL},
 /* 1CEF2 */ { NULL,NULL},
 /* 1CEF3 */ { NULL,NULL},
@@ -50617,6 +51018,266 @@ static const struct unicode_nameannot una_01_E5[] = {
 };
 
 UN_DLL_LOCAL
+static const struct unicode_nameannot una_01_E6[] = {
+/* 1E600 */ { NULL,NULL},
+/* 1E601 */ { NULL,NULL},
+/* 1E602 */ { NULL,NULL},
+/* 1E603 */ { NULL,NULL},
+/* 1E604 */ { NULL,NULL},
+/* 1E605 */ { NULL,NULL},
+/* 1E606 */ { NULL,NULL},
+/* 1E607 */ { NULL,NULL},
+/* 1E608 */ { NULL,NULL},
+/* 1E609 */ { NULL,NULL},
+/* 1E60A */ { NULL,NULL},
+/* 1E60B */ { NULL,NULL},
+/* 1E60C */ { NULL,NULL},
+/* 1E60D */ { NULL,NULL},
+/* 1E60E */ { NULL,NULL},
+/* 1E60F */ { NULL,NULL},
+/* 1E610 */ { NULL,NULL},
+/* 1E611 */ { NULL,NULL},
+/* 1E612 */ { NULL,NULL},
+/* 1E613 */ { NULL,NULL},
+/* 1E614 */ { NULL,NULL},
+/* 1E615 */ { NULL,NULL},
+/* 1E616 */ { NULL,NULL},
+/* 1E617 */ { NULL,NULL},
+/* 1E618 */ { NULL,NULL},
+/* 1E619 */ { NULL,NULL},
+/* 1E61A */ { NULL,NULL},
+/* 1E61B */ { NULL,NULL},
+/* 1E61C */ { NULL,NULL},
+/* 1E61D */ { NULL,NULL},
+/* 1E61E */ { NULL,NULL},
+/* 1E61F */ { NULL,NULL},
+/* 1E620 */ { NULL,NULL},
+/* 1E621 */ { NULL,NULL},
+/* 1E622 */ { NULL,NULL},
+/* 1E623 */ { NULL,NULL},
+/* 1E624 */ { NULL,NULL},
+/* 1E625 */ { NULL,NULL},
+/* 1E626 */ { NULL,NULL},
+/* 1E627 */ { NULL,NULL},
+/* 1E628 */ { NULL,NULL},
+/* 1E629 */ { NULL,NULL},
+/* 1E62A */ { NULL,NULL},
+/* 1E62B */ { NULL,NULL},
+/* 1E62C */ { NULL,NULL},
+/* 1E62D */ { NULL,NULL},
+/* 1E62E */ { NULL,NULL},
+/* 1E62F */ { NULL,NULL},
+/* 1E630 */ { NULL,NULL},
+/* 1E631 */ { NULL,NULL},
+/* 1E632 */ { NULL,NULL},
+/* 1E633 */ { NULL,NULL},
+/* 1E634 */ { NULL,NULL},
+/* 1E635 */ { NULL,NULL},
+/* 1E636 */ { NULL,NULL},
+/* 1E637 */ { NULL,NULL},
+/* 1E638 */ { NULL,NULL},
+/* 1E639 */ { NULL,NULL},
+/* 1E63A */ { NULL,NULL},
+/* 1E63B */ { NULL,NULL},
+/* 1E63C */ { NULL,NULL},
+/* 1E63D */ { NULL,NULL},
+/* 1E63E */ { NULL,NULL},
+/* 1E63F */ { NULL,NULL},
+/* 1E640 */ { NULL,NULL},
+/* 1E641 */ { NULL,NULL},
+/* 1E642 */ { NULL,NULL},
+/* 1E643 */ { NULL,NULL},
+/* 1E644 */ { NULL,NULL},
+/* 1E645 */ { NULL,NULL},
+/* 1E646 */ { NULL,NULL},
+/* 1E647 */ { NULL,NULL},
+/* 1E648 */ { NULL,NULL},
+/* 1E649 */ { NULL,NULL},
+/* 1E64A */ { NULL,NULL},
+/* 1E64B */ { NULL,NULL},
+/* 1E64C */ { NULL,NULL},
+/* 1E64D */ { NULL,NULL},
+/* 1E64E */ { NULL,NULL},
+/* 1E64F */ { NULL,NULL},
+/* 1E650 */ { NULL,NULL},
+/* 1E651 */ { NULL,NULL},
+/* 1E652 */ { NULL,NULL},
+/* 1E653 */ { NULL,NULL},
+/* 1E654 */ { NULL,NULL},
+/* 1E655 */ { NULL,NULL},
+/* 1E656 */ { NULL,NULL},
+/* 1E657 */ { NULL,NULL},
+/* 1E658 */ { NULL,NULL},
+/* 1E659 */ { NULL,NULL},
+/* 1E65A */ { NULL,NULL},
+/* 1E65B */ { NULL,NULL},
+/* 1E65C */ { NULL,NULL},
+/* 1E65D */ { NULL,NULL},
+/* 1E65E */ { NULL,NULL},
+/* 1E65F */ { NULL,NULL},
+/* 1E660 */ { NULL,NULL},
+/* 1E661 */ { NULL,NULL},
+/* 1E662 */ { NULL,NULL},
+/* 1E663 */ { NULL,NULL},
+/* 1E664 */ { NULL,NULL},
+/* 1E665 */ { NULL,NULL},
+/* 1E666 */ { NULL,NULL},
+/* 1E667 */ { NULL,NULL},
+/* 1E668 */ { NULL,NULL},
+/* 1E669 */ { NULL,NULL},
+/* 1E66A */ { NULL,NULL},
+/* 1E66B */ { NULL,NULL},
+/* 1E66C */ { NULL,NULL},
+/* 1E66D */ { NULL,NULL},
+/* 1E66E */ { NULL,NULL},
+/* 1E66F */ { NULL,NULL},
+/* 1E670 */ { NULL,NULL},
+/* 1E671 */ { NULL,NULL},
+/* 1E672 */ { NULL,NULL},
+/* 1E673 */ { NULL,NULL},
+/* 1E674 */ { NULL,NULL},
+/* 1E675 */ { NULL,NULL},
+/* 1E676 */ { NULL,NULL},
+/* 1E677 */ { NULL,NULL},
+/* 1E678 */ { NULL,NULL},
+/* 1E679 */ { NULL,NULL},
+/* 1E67A */ { NULL,NULL},
+/* 1E67B */ { NULL,NULL},
+/* 1E67C */ { NULL,NULL},
+/* 1E67D */ { NULL,NULL},
+/* 1E67E */ { NULL,NULL},
+/* 1E67F */ { NULL,NULL},
+/* 1E680 */ { NULL,NULL},
+/* 1E681 */ { NULL,NULL},
+/* 1E682 */ { NULL,NULL},
+/* 1E683 */ { NULL,NULL},
+/* 1E684 */ { NULL,NULL},
+/* 1E685 */ { NULL,NULL},
+/* 1E686 */ { NULL,NULL},
+/* 1E687 */ { NULL,NULL},
+/* 1E688 */ { NULL,NULL},
+/* 1E689 */ { NULL,NULL},
+/* 1E68A */ { NULL,NULL},
+/* 1E68B */ { NULL,NULL},
+/* 1E68C */ { NULL,NULL},
+/* 1E68D */ { NULL,NULL},
+/* 1E68E */ { NULL,NULL},
+/* 1E68F */ { NULL,NULL},
+/* 1E690 */ { NULL,NULL},
+/* 1E691 */ { NULL,NULL},
+/* 1E692 */ { NULL,NULL},
+/* 1E693 */ { NULL,NULL},
+/* 1E694 */ { NULL,NULL},
+/* 1E695 */ { NULL,NULL},
+/* 1E696 */ { NULL,NULL},
+/* 1E697 */ { NULL,NULL},
+/* 1E698 */ { NULL,NULL},
+/* 1E699 */ { NULL,NULL},
+/* 1E69A */ { NULL,NULL},
+/* 1E69B */ { NULL,NULL},
+/* 1E69C */ { NULL,NULL},
+/* 1E69D */ { NULL,NULL},
+/* 1E69E */ { NULL,NULL},
+/* 1E69F */ { NULL,NULL},
+/* 1E6A0 */ { NULL,NULL},
+/* 1E6A1 */ { NULL,NULL},
+/* 1E6A2 */ { NULL,NULL},
+/* 1E6A3 */ { NULL,NULL},
+/* 1E6A4 */ { NULL,NULL},
+/* 1E6A5 */ { NULL,NULL},
+/* 1E6A6 */ { NULL,NULL},
+/* 1E6A7 */ { NULL,NULL},
+/* 1E6A8 */ { NULL,NULL},
+/* 1E6A9 */ { NULL,NULL},
+/* 1E6AA */ { NULL,NULL},
+/* 1E6AB */ { NULL,NULL},
+/* 1E6AC */ { NULL,NULL},
+/* 1E6AD */ { NULL,NULL},
+/* 1E6AE */ { NULL,NULL},
+/* 1E6AF */ { NULL,NULL},
+/* 1E6B0 */ { NULL,NULL},
+/* 1E6B1 */ { NULL,NULL},
+/* 1E6B2 */ { NULL,NULL},
+/* 1E6B3 */ { NULL,NULL},
+/* 1E6B4 */ { NULL,NULL},
+/* 1E6B5 */ { NULL,NULL},
+/* 1E6B6 */ { NULL,NULL},
+/* 1E6B7 */ { NULL,NULL},
+/* 1E6B8 */ { NULL,NULL},
+/* 1E6B9 */ { NULL,NULL},
+/* 1E6BA */ { NULL,NULL},
+/* 1E6BB */ { NULL,NULL},
+/* 1E6BC */ { NULL,NULL},
+/* 1E6BD */ { NULL,NULL},
+/* 1E6BE */ { NULL,NULL},
+/* 1E6BF */ { NULL,NULL},
+/* 1E6C0 */ { "TAI YO LETTER LOW KO",NULL},
+/* 1E6C1 */ { "TAI YO LETTER HIGH KO",NULL},
+/* 1E6C2 */ { "TAI YO LETTER LOW KHO",NULL},
+/* 1E6C3 */ { "TAI YO LETTER HIGH KHO",NULL},
+/* 1E6C4 */ { "TAI YO LETTER GO",NULL},
+/* 1E6C5 */ { "TAI YO LETTER NGO",NULL},
+/* 1E6C6 */ { "TAI YO LETTER CO",NULL},
+/* 1E6C7 */ { "TAI YO LETTER LOW XO",NULL},
+/* 1E6C8 */ { "TAI YO LETTER HIGH XO",NULL},
+/* 1E6C9 */ { "TAI YO LETTER LOW NYO",NULL},
+/* 1E6CA */ { "TAI YO LETTER HIGH NYO",NULL},
+/* 1E6CB */ { "TAI YO LETTER DO",NULL},
+/* 1E6CC */ { "TAI YO LETTER LOW TO",NULL},
+/* 1E6CD */ { "TAI YO LETTER HIGH TO",NULL},
+/* 1E6CE */ { "TAI YO LETTER THO",NULL},
+/* 1E6CF */ { "TAI YO LETTER NO",NULL},
+/* 1E6D0 */ { "TAI YO LETTER BO",NULL},
+/* 1E6D1 */ { "TAI YO LETTER LOW PO",NULL},
+/* 1E6D2 */ { "TAI YO LETTER HIGH PO",NULL},
+/* 1E6D3 */ { "TAI YO LETTER PHO",NULL},
+/* 1E6D4 */ { "TAI YO LETTER LOW FO",NULL},
+/* 1E6D5 */ { "TAI YO LETTER HIGH FO",NULL},
+/* 1E6D6 */ { "TAI YO LETTER MO",NULL},
+/* 1E6D7 */ { "TAI YO LETTER YO",NULL},
+/* 1E6D8 */ { "TAI YO LETTER LO",NULL},
+/* 1E6D9 */ { "TAI YO LETTER VO",NULL},
+/* 1E6DA */ { "TAI YO LETTER LOW HO",NULL},
+/* 1E6DB */ { "TAI YO LETTER HIGH HO",NULL},
+/* 1E6DC */ { "TAI YO LETTER QO",NULL},
+/* 1E6DD */ { "TAI YO LETTER LOW KVO",NULL},
+/* 1E6DE */ { "TAI YO LETTER HIGH KVO",NULL},
+/* 1E6DF */ { NULL,NULL},
+/* 1E6E0 */ { "TAI YO LETTER AA",NULL},
+/* 1E6E1 */ { "TAI YO LETTER I",NULL},
+/* 1E6E2 */ { "TAI YO LETTER UE",NULL},
+/* 1E6E3 */ { "TAI YO SIGN UE",NULL},
+/* 1E6E4 */ { "TAI YO LETTER U",NULL},
+/* 1E6E5 */ { "TAI YO LETTER AE",NULL},
+/* 1E6E6 */ { "TAI YO SIGN AU",NULL},
+/* 1E6E7 */ { "TAI YO LETTER O",NULL},
+/* 1E6E8 */ { "TAI YO LETTER E",NULL},
+/* 1E6E9 */ { "TAI YO LETTER IA",NULL},
+/* 1E6EA */ { "TAI YO LETTER UEA",NULL},
+/* 1E6EB */ { "TAI YO LETTER UA",NULL},
+/* 1E6EC */ { "TAI YO LETTER OO",NULL},
+/* 1E6ED */ { "TAI YO LETTER AUE",NULL},
+/* 1E6EE */ { "TAI YO SIGN AY",NULL},
+/* 1E6EF */ { "TAI YO SIGN ANG",NULL},
+/* 1E6F0 */ { "TAI YO LETTER AN",NULL},
+/* 1E6F1 */ { "TAI YO LETTER AM",NULL},
+/* 1E6F2 */ { "TAI YO LETTER AK",NULL},
+/* 1E6F3 */ { "TAI YO LETTER AT",NULL},
+/* 1E6F4 */ { "TAI YO LETTER AP",NULL},
+/* 1E6F5 */ { "TAI YO SIGN OM",NULL},
+/* 1E6F6 */ { NULL,NULL},
+/* 1E6F7 */ { NULL,NULL},
+/* 1E6F8 */ { NULL,NULL},
+/* 1E6F9 */ { NULL,NULL},
+/* 1E6FA */ { NULL,NULL},
+/* 1E6FB */ { NULL,NULL},
+/* 1E6FC */ { NULL,NULL},
+/* 1E6FD */ { NULL,NULL},
+/* 1E6FE */ { "TAI YO SYMBOL MUEANG",NULL},
+/* 1E6FF */ { "TAI YO XAM LAI",NULL}
+};
+
+UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E7[] = {
 /* 1E700 */ { NULL,NULL},
 /* 1E701 */ { NULL,NULL},
@@ -51139,39 +51800,39 @@ static const struct unicode_nameannot una_01_E8[] = {
 
 UN_DLL_LOCAL
 static const struct unicode_nameannot una_01_E9[] = {
-/* 1E900 */ { "ADLAM CAPITAL LETTER ALIF",NULL},
-/* 1E901 */ { "ADLAM CAPITAL LETTER DAALI",NULL},
-/* 1E902 */ { "ADLAM CAPITAL LETTER LAAM",NULL},
-/* 1E903 */ { "ADLAM CAPITAL LETTER MIIM",NULL},
+/* 1E900 */ { "ADLAM CAPITAL LETTER ALIF","	= a"},
+/* 1E901 */ { "ADLAM CAPITAL LETTER DAALI","	= da"},
+/* 1E902 */ { "ADLAM CAPITAL LETTER LAAM","	= la"},
+/* 1E903 */ { "ADLAM CAPITAL LETTER MIIM","	= ma"},
 /* 1E904 */ { "ADLAM CAPITAL LETTER BA",NULL},
-/* 1E905 */ { "ADLAM CAPITAL LETTER SINNYIIYHE",NULL},
-/* 1E906 */ { "ADLAM CAPITAL LETTER PE",NULL},
-/* 1E907 */ { "ADLAM CAPITAL LETTER BHE",NULL},
+/* 1E905 */ { "ADLAM CAPITAL LETTER SINNYIIYHE","	= sa"},
+/* 1E906 */ { "ADLAM CAPITAL LETTER PE","	= pa"},
+/* 1E907 */ { "ADLAM CAPITAL LETTER BHE","	= bha"},
 /* 1E908 */ { "ADLAM CAPITAL LETTER RA",NULL},
 /* 1E909 */ { "ADLAM CAPITAL LETTER E",NULL},
 /* 1E90A */ { "ADLAM CAPITAL LETTER FA",NULL},
 /* 1E90B */ { "ADLAM CAPITAL LETTER I",NULL},
 /* 1E90C */ { "ADLAM CAPITAL LETTER O",NULL},
 /* 1E90D */ { "ADLAM CAPITAL LETTER DHA",NULL},
-/* 1E90E */ { "ADLAM CAPITAL LETTER YHE",NULL},
-/* 1E90F */ { "ADLAM CAPITAL LETTER WAW",NULL},
-/* 1E910 */ { "ADLAM CAPITAL LETTER NUN",NULL},
-/* 1E911 */ { "ADLAM CAPITAL LETTER KAF",NULL},
+/* 1E90E */ { "ADLAM CAPITAL LETTER YHE","	= yha"},
+/* 1E90F */ { "ADLAM CAPITAL LETTER WAW","	= wa"},
+/* 1E910 */ { "ADLAM CAPITAL LETTER NUN","	= na"},
+/* 1E911 */ { "ADLAM CAPITAL LETTER KAF","	= ka"},
 /* 1E912 */ { "ADLAM CAPITAL LETTER YA",NULL},
 /* 1E913 */ { "ADLAM CAPITAL LETTER U",NULL},
-/* 1E914 */ { "ADLAM CAPITAL LETTER JIIM",NULL},
-/* 1E915 */ { "ADLAM CAPITAL LETTER CHI",NULL},
+/* 1E914 */ { "ADLAM CAPITAL LETTER JIIM","	= ja"},
+/* 1E915 */ { "ADLAM CAPITAL LETTER CHI","	= tcha"},
 /* 1E916 */ { "ADLAM CAPITAL LETTER HA",NULL},
-/* 1E917 */ { "ADLAM CAPITAL LETTER QAAF",NULL},
+/* 1E917 */ { "ADLAM CAPITAL LETTER QAAF","	= qa"},
 /* 1E918 */ { "ADLAM CAPITAL LETTER GA",NULL},
 /* 1E919 */ { "ADLAM CAPITAL LETTER NYA",NULL},
-/* 1E91A */ { "ADLAM CAPITAL LETTER TU",NULL},
+/* 1E91A */ { "ADLAM CAPITAL LETTER TU","	= ta"},
 /* 1E91B */ { "ADLAM CAPITAL LETTER NHA",NULL},
 /* 1E91C */ { "ADLAM CAPITAL LETTER VA",NULL},
 /* 1E91D */ { "ADLAM CAPITAL LETTER KHA",NULL},
-/* 1E91E */ { "ADLAM CAPITAL LETTER GBE",NULL},
-/* 1E91F */ { "ADLAM CAPITAL LETTER ZAL",NULL},
-/* 1E920 */ { "ADLAM CAPITAL LETTER KPO",NULL},
+/* 1E91E */ { "ADLAM CAPITAL LETTER GBE","	= gba"},
+/* 1E91F */ { "ADLAM CAPITAL LETTER ZAL","	= za"},
+/* 1E920 */ { "ADLAM CAPITAL LETTER KPO","	= kpa"},
 /* 1E921 */ { "ADLAM CAPITAL LETTER SHA",NULL},
 /* 1E922 */ { "ADLAM SMALL LETTER ALIF",NULL},
 /* 1E923 */ { "ADLAM SMALL LETTER DAALI",NULL},
@@ -51214,7 +51875,7 @@ static const struct unicode_nameannot una_01_E9[] = {
 /* 1E948 */ { "ADLAM CONSONANT MODIFIER",NULL},
 /* 1E949 */ { "ADLAM GEMINATE CONSONANT MODIFIER",NULL},
 /* 1E94A */ { "ADLAM NUKTA","	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character"},
-/* 1E94B */ { "ADLAM NASALIZATION MARK","	* indicates prenasalization of succeeding consonant letter"},
+/* 1E94B */ { "ADLAM NASALIZATION MARK","	* indicates preceding nasal consonant prenasalizes subsequent consonant letter"},
 /* 1E94C */ { NULL,NULL},
 /* 1E94D */ { NULL,NULL},
 /* 1E94E */ { NULL,NULL},
@@ -53204,7 +53865,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F330 */ { "CHESTNUT",NULL},
 /* 1F331 */ { "SEEDLING",NULL},
 /* 1F332 */ { "EVERGREEN TREE","	x (national park - 1F3DE)"},
-/* 1F333 */ { "DECIDUOUS TREE",NULL},
+/* 1F333 */ { "DECIDUOUS TREE","	x (tree symbol - 1CEBC)"},
 /* 1F334 */ { "PALM TREE","	x (desert island - 1F3DD)"},
 /* 1F335 */ { "CACTUS","	x (desert - 1F3DC)"},
 /* 1F336 */ { "HOT PEPPER","	= hot, spicy"},
@@ -53231,12 +53892,12 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F34B */ { "LEMON",NULL},
 /* 1F34C */ { "BANANA",NULL},
 /* 1F34D */ { "PINEAPPLE",NULL},
-/* 1F34E */ { "RED APPLE",NULL},
+/* 1F34E */ { "RED APPLE","	x (apple symbol - 1CEBD)"},
 /* 1F34F */ { "GREEN APPLE",NULL},
 /* 1F350 */ { "PEAR",NULL},
 /* 1F351 */ { "PEACH",NULL},
-/* 1F352 */ { "CHERRIES",NULL},
-/* 1F353 */ { "STRAWBERRY",NULL},
+/* 1F352 */ { "CHERRIES","	x (cherry symbol - 1CEBE)"},
+/* 1F353 */ { "STRAWBERRY","	x (strawberry symbol - 1CEBF)"},
 /* 1F354 */ { "HAMBURGER","	= fast food place"},
 /* 1F355 */ { "SLICE OF PIZZA",NULL},
 /* 1F356 */ { "MEAT ON BONE",NULL},
@@ -53277,7 +53938,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F375 */ { "TEACUP WITHOUT HANDLE","	x (hot beverage - 2615)\n"
 	"	x (cup on black square - 26FE)"},
 /* 1F376 */ { "SAKE BOTTLE AND CUP",NULL},
-/* 1F377 */ { "WINE GLASS",NULL},
+/* 1F377 */ { "WINE GLASS","	x (fragile symbol - 1CEBA)"},
 /* 1F378 */ { "COCKTAIL GLASS","	= lounge\n"
 	"	x (couch and lamp - 1F6CB)\n"
 	"	x (tumbler glass - 1F943)"},
@@ -53293,7 +53954,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F380 */ { "RIBBON",NULL},
 /* 1F381 */ { "WRAPPED PRESENT","	x (package - 1F4E6)"},
 /* 1F382 */ { "BIRTHDAY CAKE",NULL},
-/* 1F383 */ { "JACK-O-LANTERN","	= Hallowe'en"},
+/* 1F383 */ { "JACK-O-LANTERN","	= Halloween"},
 /* 1F384 */ { "CHRISTMAS TREE",NULL},
 /* 1F385 */ { "FATHER CHRISTMAS","	= Santa Claus\n"
 	"	x (mother christmas - 1F936)"},
@@ -53420,7 +54081,7 @@ static const struct unicode_nameannot una_01_F3[] = {
 /* 1F3E0 */ { "HOUSE BUILDING",NULL},
 /* 1F3E1 */ { "HOUSE WITH GARDEN","	= home, house with yard\n"
 	"	x (house buildings - 1F3D8)"},
-/* 1F3E2 */ { "OFFICE BUILDING",NULL},
+/* 1F3E2 */ { "OFFICE BUILDING","	x (office building symbol - 1CEBB)"},
 /* 1F3E3 */ { "JAPANESE POST OFFICE","	x (postal mark - 3012)"},
 /* 1F3E4 */ { "EUROPEAN POST OFFICE",NULL},
 /* 1F3E5 */ { "HOSPITAL","	x (black cross on shield - 26E8)"},
@@ -53477,7 +54138,8 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F40A */ { "CROCODILE","	* fifth of the signs of the Asian zodiac, used in Persia"},
 /* 1F40B */ { "WHALE","	* fifth of the signs of the Asian zodiac, used in Persia"},
 /* 1F40C */ { "SNAIL","	* fifth of the signs of the Asian zodiac, used in Kazakhstan"},
-/* 1F40D */ { "SNAKE","	* sixth of the signs of the Asian zodiac"},
+/* 1F40D */ { "SNAKE","	* sixth of the signs of the Asian zodiac\n"
+	"	x (snake symbol - 1CCFA)"},
 /* 1F40E */ { "HORSE","	= equestrian sports\n"
 	"	* seventh of the signs of the Asian zodiac"},
 /* 1F40F */ { "RAM","	* eighth of the signs of the Asian zodiac\n"
@@ -53538,7 +54200,7 @@ static const struct unicode_nameannot una_01_F4[] = {
 /* 1F440 */ { "EYES",NULL},
 /* 1F441 */ { "EYE","	= sight"},
 /* 1F442 */ { "EAR",NULL},
-/* 1F443 */ { "NOSE",NULL},
+/* 1F443 */ { "NOSE","	x (nose symbol - 1CCFC)"},
 /* 1F444 */ { "MOUTH",NULL},
 /* 1F445 */ { "TONGUE",NULL},
 /* 1F446 */ { "WHITE UP POINTING BACKHAND INDEX","	x (white up pointing index - 261D)\n"
@@ -53796,8 +54458,10 @@ static const struct unicode_nameannot una_01_F5[] = {
 /* 1F512 */ { "LOCK","	= padlock in locked position"},
 /* 1F513 */ { "OPEN LOCK",NULL},
 /* 1F514 */ { "BELL","	x (tibetan symbol dril bu - 0FC4)\n"
+	"	x (bell symbol - 237E)\n"
 	"	x (symbol for bell - 2407)\n"
-	"	x (ringing bell - 1F56D)"},
+	"	x (ringing bell - 1F56D)\n"
+	"	x (alarm bell symbol - 1FBFA)"},
 /* 1F515 */ { "BELL WITH CANCELLATION STROKE",NULL},
 /* 1F516 */ { "BOOKMARK","	* indicates a bookmark, not a price tag\n"
 	"	x (label - 1F3F7)"},
@@ -54337,7 +55001,7 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6D5 */ { "HINDU TEMPLE",NULL},
 /* 1F6D6 */ { "HUT",NULL},
 /* 1F6D7 */ { "ELEVATOR",NULL},
-/* 1F6D8 */ { NULL,NULL},
+/* 1F6D8 */ { "LANDSLIDE",NULL},
 /* 1F6D9 */ { NULL,NULL},
 /* 1F6DA */ { NULL,NULL},
 /* 1F6DB */ { NULL,NULL},
@@ -54377,6 +55041,7 @@ static const struct unicode_nameannot una_01_F6[] = {
 /* 1F6F6 */ { "CANOE",NULL},
 /* 1F6F7 */ { "SLED","	= sledge, toboggan"},
 /* 1F6F8 */ { "FLYING SAUCER","	= UFO\n"
+	"	x (flying saucer symbol - 1CCFB)\n"
 	"	x (extraterrestrial alien - 1F47D)"},
 /* 1F6F9 */ { "SKATEBOARD",NULL},
 /* 1F6FA */ { "AUTO RICKSHAW","	= tuk-tuk, remorque"},
@@ -54423,7 +55088,8 @@ static const struct unicode_nameannot una_01_F7[] = {
 	"	x (last quarter moon - 263E)"},
 /* 1F71C */ { "ALCHEMICAL SYMBOL FOR IRON ORE","	x (male sign - 2642)"},
 /* 1F71D */ { "ALCHEMICAL SYMBOL FOR IRON ORE-2",NULL},
-/* 1F71E */ { "ALCHEMICAL SYMBOL FOR CROCUS OF IRON","	= crocus martis, red or yellow calcined powder of iron"},
+/* 1F71E */ { "ALCHEMICAL SYMBOL FOR CROCUS OF IRON","	= crocus martis, red or yellow calcined powder of iron\n"
+	"	x (male with stroke sign - 26A6)"},
 /* 1F71F */ { "ALCHEMICAL SYMBOL FOR REGULUS OF IRON","	= regulus martis, scoria from refining stibnite/antimony with iron"},
 /* 1F720 */ { "ALCHEMICAL SYMBOL FOR COPPER ORE","	x (female sign - 2640)"},
 /* 1F721 */ { "ALCHEMICAL SYMBOL FOR IRON-COPPER ORE","	x (male and female sign - 26A5)"},
@@ -54506,21 +55172,23 @@ static const struct unicode_nameannot una_01_F7[] = {
 	"	x (libra - 264E)"},
 /* 1F75F */ { "ALCHEMICAL SYMBOL FOR PRECIPITATE",NULL},
 /* 1F760 */ { "ALCHEMICAL SYMBOL FOR DISTILL","	= sublimate"},
-/* 1F761 */ { "ALCHEMICAL SYMBOL FOR DISSOLVE",NULL},
+/* 1F761 */ { "ALCHEMICAL SYMBOL FOR DISSOLVE","	x (latin small letter f with hook - 0192)\n"
+	"	x (finite part integral - 2A0D)"},
 /* 1F762 */ { "ALCHEMICAL SYMBOL FOR DISSOLVE-2","	= water, aqua"},
 /* 1F763 */ { "ALCHEMICAL SYMBOL FOR PURIFY","	x (descending node - 260B)"},
 /* 1F764 */ { "ALCHEMICAL SYMBOL FOR PUTREFACTION",NULL},
-/* 1F765 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE","	= tigellum\n"
+/* 1F765 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE","	= tigillum\n"
 	"	x (alchemical symbol for vinegar - 1F70A)"},
 /* 1F766 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE-2",NULL},
 /* 1F767 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE-3",NULL},
-/* 1F768 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE-4","	x (down tack - 22A4)"},
+/* 1F768 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE-4","	x (latin capital letter t with stroke - 0166)"},
 /* 1F769 */ { "ALCHEMICAL SYMBOL FOR CRUCIBLE-5",NULL},
 /* 1F76A */ { "ALCHEMICAL SYMBOL FOR ALEMBIC",NULL},
 /* 1F76B */ { "ALCHEMICAL SYMBOL FOR BATH OF MARY","	= balneum mariae"},
 /* 1F76C */ { "ALCHEMICAL SYMBOL FOR BATH OF VAPOURS","	= balneum vaporis"},
 /* 1F76D */ { "ALCHEMICAL SYMBOL FOR RETORT","	x (alembic - 2697)"},
-/* 1F76E */ { "ALCHEMICAL SYMBOL FOR HOUR","	x (hourglass - 231B)"},
+/* 1F76E */ { "ALCHEMICAL SYMBOL FOR HOUR","	x (hourglass - 231B)\n"
+	"	x (white hourglass - 29D6)"},
 /* 1F76F */ { "ALCHEMICAL SYMBOL FOR NIGHT",NULL},
 /* 1F770 */ { "ALCHEMICAL SYMBOL FOR DAY-NIGHT",NULL},
 /* 1F771 */ { "ALCHEMICAL SYMBOL FOR MONTH","	= mensis\n"
@@ -54535,10 +55203,11 @@ static const struct unicode_nameannot una_01_F7[] = {
 	"	x (circled times - 2297)"},
 /* 1F775 */ { "OCCULTATION","	x (conjunction - 260C)"},
 /* 1F776 */ { "LUNAR ECLIPSE","	x (opposition - 260D)"},
-/* 1F777 */ { NULL,NULL},
-/* 1F778 */ { NULL,NULL},
-/* 1F779 */ { NULL,NULL},
-/* 1F77A */ { NULL,NULL},
+/* 1F777 */ { "VESTA FORM TWO","	x (vesta - 26B6)"},
+/* 1F778 */ { "ASTRAEA FORM TWO","	x (astraea - 2BD9)"},
+/* 1F779 */ { "HYGIEA FORM TWO","	x (hygiea - 2BDA)"},
+/* 1F77A */ { "PARTHENOPE FORM TWO","	= Lyra\n"
+	"	x (parthenope - 1CEC4)"},
 /* 1F77B */ { "HAUMEA",NULL},
 /* 1F77C */ { "MAKEMAKE",NULL},
 /* 1F77D */ { "GONGGONG",NULL},
@@ -54892,15 +55561,15 @@ static const struct unicode_nameannot una_01_F8[] = {
 /* 1F8CD */ { NULL,NULL},
 /* 1F8CE */ { NULL,NULL},
 /* 1F8CF */ { NULL,NULL},
-/* 1F8D0 */ { NULL,NULL},
-/* 1F8D1 */ { NULL,NULL},
-/* 1F8D2 */ { NULL,NULL},
-/* 1F8D3 */ { NULL,NULL},
-/* 1F8D4 */ { NULL,NULL},
-/* 1F8D5 */ { NULL,NULL},
-/* 1F8D6 */ { NULL,NULL},
-/* 1F8D7 */ { NULL,NULL},
-/* 1F8D8 */ { NULL,NULL},
+/* 1F8D0 */ { "LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW","	x (rightwards arrow over leftwards arrow - 21C4)"},
+/* 1F8D1 */ { "LONG RIGHTWARDS HARPOON OVER LONG LEFTWARDS HARPOON","	x (rightwards harpoon over leftwards harpoon - 21CC)"},
+/* 1F8D2 */ { "LONG RIGHTWARDS HARPOON ABOVE SHORT LEFTWARDS HARPOON",NULL},
+/* 1F8D3 */ { "SHORT RIGHTWARDS HARPOON ABOVE LONG LEFTWARDS HARPOON",NULL},
+/* 1F8D4 */ { "LONG LEFTWARDS HARPOON ABOVE SHORT RIGHTWARDS HARPOON","	x (leftwards harpoon over rightwards harpoon - 21CB)"},
+/* 1F8D5 */ { "SHORT LEFTWARDS HARPOON ABOVE LONG RIGHTWARDS HARPOON",NULL},
+/* 1F8D6 */ { "LONG RIGHTWARDS ARROW THROUGH X",NULL},
+/* 1F8D7 */ { "LONG RIGHTWARDS ARROW WITH DOUBLE SLASH",NULL},
+/* 1F8D8 */ { "LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE","	* indicates that the two sides have the same arrangement of electron lobes"},
 /* 1F8D9 */ { NULL,NULL},
 /* 1F8DA */ { NULL,NULL},
 /* 1F8DB */ { NULL,NULL},
@@ -55308,10 +55977,10 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FA51 */ { "BLACK CHESS KNIGHT-QUEEN",NULL},
 /* 1FA52 */ { "BLACK CHESS KNIGHT-ROOK",NULL},
 /* 1FA53 */ { "BLACK CHESS KNIGHT-BISHOP",NULL},
-/* 1FA54 */ { NULL,NULL},
-/* 1FA55 */ { NULL,NULL},
-/* 1FA56 */ { NULL,NULL},
-/* 1FA57 */ { NULL,NULL},
+/* 1FA54 */ { "WHITE CHESS FERZ",NULL},
+/* 1FA55 */ { "WHITE CHESS ALFIL","	= white elephant"},
+/* 1FA56 */ { "BLACK CHESS FERZ",NULL},
+/* 1FA57 */ { "BLACK CHESS ALFIL","	= black elephant"},
 /* 1FA58 */ { NULL,NULL},
 /* 1FA59 */ { NULL,NULL},
 /* 1FA5A */ { NULL,NULL},
@@ -55386,11 +56055,11 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FA87 */ { "MARACAS",NULL},
 /* 1FA88 */ { "FLUTE",NULL},
 /* 1FA89 */ { "HARP",NULL},
-/* 1FA8A */ { NULL,NULL},
+/* 1FA8A */ { "TROMBONE",NULL},
 /* 1FA8B */ { NULL,NULL},
 /* 1FA8C */ { NULL,NULL},
 /* 1FA8D */ { NULL,NULL},
-/* 1FA8E */ { NULL,NULL},
+/* 1FA8E */ { "TREASURE CHEST",NULL},
 /* 1FA8F */ { "SHOVEL",NULL},
 /* 1FA90 */ { "RINGED PLANET",NULL},
 /* 1FA91 */ { "CHAIR",NULL},
@@ -55448,12 +56117,12 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FAC5 */ { "PERSON WITH CROWN","	x (princess - 1F478)"},
 /* 1FAC6 */ { "FINGERPRINT",NULL},
 /* 1FAC7 */ { NULL,NULL},
-/* 1FAC8 */ { NULL,NULL},
+/* 1FAC8 */ { "HAIRY CREATURE",NULL},
 /* 1FAC9 */ { NULL,NULL},
 /* 1FACA */ { NULL,NULL},
 /* 1FACB */ { NULL,NULL},
 /* 1FACC */ { NULL,NULL},
-/* 1FACD */ { NULL,NULL},
+/* 1FACD */ { "ORCA",NULL},
 /* 1FACE */ { "MOOSE",NULL},
 /* 1FACF */ { "DONKEY",NULL},
 /* 1FAD0 */ { "BLUEBERRIES",NULL},
@@ -55469,7 +56138,7 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FADA */ { "GINGER ROOT",NULL},
 /* 1FADB */ { "PEA POD",NULL},
 /* 1FADC */ { "ROOT VEGETABLE",NULL},
-/* 1FADD */ { NULL,NULL},
+/* 1FADD */ { "APPLE CORE",NULL},
 /* 1FADE */ { NULL,NULL},
 /* 1FADF */ { "SPLATTER",NULL},
 /* 1FAE0 */ { "MELTING FACE",NULL},
@@ -55482,12 +56151,12 @@ static const struct unicode_nameannot una_01_FA[] = {
 /* 1FAE7 */ { "BUBBLES",NULL},
 /* 1FAE8 */ { "SHAKING FACE",NULL},
 /* 1FAE9 */ { "FACE WITH BAGS UNDER EYES",NULL},
-/* 1FAEA */ { NULL,NULL},
+/* 1FAEA */ { "DISTORTED FACE",NULL},
 /* 1FAEB */ { NULL,NULL},
 /* 1FAEC */ { NULL,NULL},
 /* 1FAED */ { NULL,NULL},
 /* 1FAEE */ { NULL,NULL},
-/* 1FAEF */ { NULL,NULL},
+/* 1FAEF */ { "FIGHT CLOUD",NULL},
 /* 1FAF0 */ { "HAND WITH INDEX FINGER AND THUMB CROSSED","	x (hand with index and middle fingers crossed - 1F91E)"},
 /* 1FAF1 */ { "RIGHTWARDS HAND",NULL},
 /* 1FAF2 */ { "LEFTWARDS HAND",NULL},
@@ -55781,7 +56450,8 @@ static const struct unicode_nameannot una_01_FB[] = {
 /* 1FBF7 */ { "SEGMENTED DIGIT SEVEN","	# <font> 0037 digit seven"},
 /* 1FBF8 */ { "SEGMENTED DIGIT EIGHT","	# <font> 0038 digit eight"},
 /* 1FBF9 */ { "SEGMENTED DIGIT NINE","	# <font> 0039 digit nine"},
-/* 1FBFA */ { NULL,NULL},
+/* 1FBFA */ { "ALARM BELL SYMBOL","	x (bell symbol - 237E)\n"
+	"	x (bell - 1F514)"},
 /* 1FBFB */ { NULL,NULL},
 /* 1FBFC */ { NULL,NULL},
 /* 1FBFD */ { NULL,NULL},
@@ -57516,7 +58186,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	una_01_8A,
 	una_01_8B,
 	una_01_8C,
-	nullarray,
+	una_01_8D,
 	nullarray,
 	nullarray,
 	nullarray,
@@ -57605,7 +58275,7 @@ static const struct unicode_nameannot * const una_01[] = {
 	nullarray,
 	una_01_E4,
 	una_01_E5,
-	nullarray,
+	una_01_E6,
 	una_01_E7,
 	una_01_E8,
 	una_01_E9,

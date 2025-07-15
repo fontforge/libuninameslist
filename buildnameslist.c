@@ -41,26 +41,22 @@ static const char *lgb[2] = { "UNICODE_EN_BLOCK_MAX", "UNICODE_FR_BLOCK_MAX" };
 static const char *lgv[2] = { NL_VERSION, NFR_VERSION };
 
 static int printcopyright2credits(FILE *out) {
-    fprintf( out, "; Liste des noms des caractères (version en langue française)\n\n");
+    fprintf( out, "; Date : 2025-01-24, 15:49:39 TUC\n;\n");
+    fprintf( out, "; Standard Unicode 16.0.0\n");
+    fprintf( out, "; Liste des noms des caractères (version en langue française)\n;\n");
     fprintf( out, "; Le Consortium Unicode entretient une collaboration étroite\n");
     fprintf( out, ";\tet une liaison officielle avec le groupe de travail qui élabore\n");
-    fprintf( out, ";\tla norme internationale ISO/CEI 10646. La version %s du standard Unicode\n", NFR_VERSION);
-    fprintf( out, ";\tintègre 627 nouveaux caractères (dont 622 idéogrammes unifiés CJC),\n");
-    fprintf( out, ";\tportant le total à 149.813 caractères.\n\n");
-    fprintf( out, "; LLe présent fichier peut être utilisé librement. Toutefois, aucune\n");
+    fprintf( out, ";\tla norme internationale ISO/CEI 10646. La version 16.0 du standard Unicode\n");
+    fprintf( out, ";\tintègre 5.185 nouveaux caractères (dont 3.995 hiéroglyphes égyptiens),\n");
+    fprintf( out, ";\tportant le total à 154.998 caractères.\n;\n");
+    fprintf( out, "; Le présent fichier peut être utilisé librement. Toutefois, aucune\n");
     fprintf( out, ";\tmodification n’y est autorisée ; toutes les copies doivent être\n");
-    fprintf( out, ";\trigoureusement identiques au fichier original.\n\n");
+    fprintf( out, ";\trigoureusement identiques au fichier original.\n;\n");
     fprintf( out, "; Le Consortium Unicode n’est pas responsable des erreurs ou omissions\n");
-    fprintf( out, ";\tdans ce fichier.\n\n");
-    fprintf( out, "; Les noms en langue française des caractères codés sont utilisés, notamment,\n");
-    fprintf( out, ";\tpour produire les commentaires documentant chacun des caractères\n");
-    fprintf( out, ";\tdont les poids de tri sont déterminés dans la table commune\n");
-    fprintf( out, ";\tde la norme internationale ISO/CEI 14651. Ladite table est normative ;\n");
-    fprintf( out, ";\tla présente liste est informative, jusqu’à ce que la norme\n");
-    fprintf( out, ";\tISO/CEI 10646 ait été remise à niveau en français.\n\n");
+    fprintf( out, ";\tdans ce fichier.\n;\n");
     fprintf( out, "; Version originale (en anglais) de la liste des noms des caractères :\n");
-    fprintf( out, ";\thttps://www.unicode.org/Public/15.1.0/ucd/NamesList.txt\n\n");
-    fprintf( out, "; Contributions à la version en langue française :\n");
+    fprintf( out, ";\thttps://www.unicode.org/Public/16.0.0/ucd/NamesList.txt\n;\n");
+    fprintf( out, "; Contributions à la version en langue française :\n;\n");
     fprintf( out, ";\tJacques André, France\n");
     fprintf( out, ";\tPatrick Andries, Canada (Québec)\n");
     fprintf( out, ";\tBernard Chauvois, France\n");
@@ -74,8 +70,6 @@ static int printcopyright2credits(FILE *out) {
 
 static int printcopyright2(FILE *out) {
     fprintf( out, "\n/*\n");
-    fprintf( out, "; Standard Unicode %s ou\n", NFR_VERSION);
-    fprintf( out, ";	Norme internationale ISO/CEI 10646\n;\n");
     printcopyright2credits(out);
     fprintf( out, "*/\n\n");
     return( 1 );
@@ -181,8 +175,8 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"https://www.unicode.org/Public/UCD/latest/ucd/NamesList.txt",
-	"http://hapax.qc.ca/ListeNoms-15.0.0.txt (charset=UTF-8)"
+	"https://www.unicode.org/Public/draft/ucd/NamesList.txt",
+	"https://hapax.qc.ca/ListeNoms-16.0.0.txt (charset=UTF-8)"
     };
 
     buffer[sizeof(buffer)-1]=0;

@@ -51,10 +51,10 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: MINGW64, toolchain: mingw-w64-x86_64-toolchain },
-          { msystem: MINGW32, toolchain: mingw-w64-i686-toolchain },
-          { msystem: UCRT64, toolchain: mingw-w64-ucrt-x86_64-toolchain },
-          { msystem: CLANG64, toolchain: mingw-w64-clang-x86_64-toolchain },
+          { msystem: MINGW64, tools: mingw-w64-x86_64 },
+          { msystem: MINGW32, tools: mingw-w64-i686 },
+          { msystem: UCRT64, tools: mingw-w64-ucrt-x86_64 },
+          { msystem: CLANG64, tools: mingw-w64-clang-x86_64 },
       ]
     name: ${{ matrix.msystem }}
     defaults:
@@ -66,13 +66,17 @@ jobs:
         with:
           msystem: ${{ matrix.msystem }}
           update: true
-          install: autotools base-devel git ${{ matrix.toolchain }}
+          install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools
       - name: Create configure
         run: |
+          python --version
+          python -m ensurepip --default-pip
+          pip --version
+          pip install setuptools wheel build
           autoreconf -i
           automake
       - name: Choose configure
-        run: ./configure
+        run: ./configure --enable-pylib
       - name: Make library
         run: make
       - name: Test library

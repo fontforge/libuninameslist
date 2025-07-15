@@ -1,3 +1,9 @@
+- 2025-Jul-14
+    * Unicode 17.0_Beta, this is a preview Beta version for anybody who
+      is interested in trying it before an official 17.0 is available.
+      NOTE: This version shows as 16.9b to maintain versions sorting.
+    * Updated French Unicode to 16.0 (libuninameslist-fr = version1.8).
+
 - 2024-Sep-10
     * Introducing Unicode 16.0 (libuninameslist=version1.15) and French
       Unicode 15.1 translation (libuninameslist-fr=version1.7).

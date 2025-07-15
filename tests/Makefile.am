@@ -6,7 +6,7 @@ AM_CFLAGS = -I$(builddir) -I$(top_builddir) -I$(srcdir) -I$(top_srcdir) $(DEP_CF
 #DEPS = $(top_builddir)/libuninameslist.la
 
 EXTRA_DIST = call-test.c
-GENERATED = call-test.h call.test0 call-test1 call-test2 call-test3 call-test4 call-test5 call-test6 call-test7
+GENERATED = call-test.h call-test0 call-test1 call-test2 call-test3 call-test4 call-test5 call-test6 call-test7
 
 call-test.h:
 	echo 'const char NL_VERSION[] = "Nameslist-Version: $(NL_VERSION)";' > call-test.h
@@ -62,5 +62,6 @@ TESTS = $(noinst_PROGRAMS)
 
 clean-local:
 	rm -rf $(GENERATED)
+
 
 -include $(top_srcdir)/git.mk
