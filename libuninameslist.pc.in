@@ -6,9 +6,10 @@ datarootdir=@datarootdir@
 mandir=@mandir@
 
 Name: libuninameslist
-Description: Unicode Names and Annotations List Library (NamesList.txt=@NL_VERSION@)
+Description: Unicode Names and Annotations List Library
 URL: https://github.com/fontforge/libuninameslist/releases
 Version: @VERSION@
 Libs: -L${libdir} @LIBUNINAMESLIST_PKGCONFIG_LIBS@
+Libs.private: @LIBUNINAMESLIST_PKGCONFIG_LIBS_PRIVATE@
 Cflags: -I${includedir}
 

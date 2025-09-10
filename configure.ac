@@ -4,13 +4,13 @@ AC_PREREQ([2.69])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20250714]) dnl yyyymmdd
-m4_define([uninameslist_major_version], [16]) dnl Nameslist.txt
-m4_define([uninameslist_minor_version], [9])
+m4_define([uninameslist_package_stamp], [20250909]) dnl yyyymmdd
+m4_define([uninameslist_major_version], [17]) dnl Nameslist.txt
+m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
 # Libraries have a "libtool" version of the form current:revision:age.
 m4_define([uninameslist_current], [1])
-m4_define([uninameslist_revision],[15])
+m4_define([uninameslist_revision],[16])
 m4_define([uninameslist_age],     [0])
 m4_define([uninameslist_libver],
           [uninameslist_current:uninameslist_revision:uninameslist_age])
@@ -77,6 +77,8 @@ AC_PROG_LN_S
 AC_PROG_MKDIR_P
 AC_PROG_MAKE_SET
 AC_PROG_SED
+AC_CHECK_TOOL([PYTHON2],[python2],[:])
+AC_CHECK_TOOL([PYTHON3],[python3],[:])
 AC_CHECK_TOOL([WGET],[wget],[:])
 AC_CHECK_TOOL([STRIP],[strip],[:])
 AC_CHECK_TOOL([TOUCH],[touch],[:])
@@ -117,25 +119,31 @@ fi
 
 #-------------------------------------------
 # Python lib building - as installable wheel
+# default is Python3 (otherwise try Python2)
 AC_ARG_ENABLE([pylib],
         [AS_HELP_STRING([--enable-pylib],
                 [Build the python module as an installable wheel.])],
         [enable_pylib=yes], [enable_pylib=no])
+PYTHONx="no python"
 if test x$enable_pylib = xyes ; then
-    AC_ARG_VAR([PYTHON],[Python to use to build the python wheel.])
-    if test x"${PYTHON}" = x; then
-        PYTHON=python3
+  # AC_ARG_VAR([PYTHON],[Python to use to build the python wheel.])
+  PYTHONx=python3
+  if test x"${PYTHON3}" = "x:"; then
+    PYTHONx=python2
+    if test x"${PYTHON2}" = "x:"; then
+      PYTHONx=
     fi
-    AC_CHECK_PROG([PYTHONFOUND],[${PYTHON}],[yes])
-    if test x"${PYTHONFOUND}" != xyes; then
-        AC_MSG_ERROR([${PYTHON} was not found])
-    fi
+  fi
+  AC_CHECK_PROG([PYTHONFOUND],[${PYTHONx}],[yes])
+  if test x"${PYTHONFOUND}" != xyes; then
+    AC_MSG_ERROR([Python was not found. Please install Python3 (or Python2)])
+  fi
 
-    PKGS=$(${PYTHON} -c 'import wheel; import pip' 2>/dev/null)
-    if test $? != 0; then
-        AC_MSG_ERROR([${PYTHON} does not have 'pip', 'setuptools' and 'wheel' installed])
-    fi
-    AC_SUBST(PYTHON, "${PYTHON}")
+  PKGS=$(${PYTHONx} -c 'import wheel; import pip' 2>/dev/null)
+  if test $? != 0; then
+    AC_MSG_ERROR([${PYTHONx} does not have 'pip', 'setuptools' and 'wheel' installed])
+  fi
+  AC_SUBST(PYTHONx, "${PYTHONx}")
 fi
 AM_CONDITIONAL([ENABLE_PYLIB],[test x"${enable_pylib}" = xyes])
 
@@ -201,11 +209,15 @@ AC_DEFINE([LFR_VERSION_MN],[uninameslist_fr_revision])
 
 #-------------------------------------------
 # Pass variables to build libuninameslist.pc
+rm -f libuninameslist.pc
 uninameslist_libs="-luninameslist"
-dnl if test x"${frenchlib}" = xtrue; then
-dnl   uninameslist_libs="${uninameslist_libs} -luninameslist-fr"
-dnl fi
+uninameslist_libs_private=
+if test x"${frenchlib}" = xyes; then
+  uninameslist_libs="-luninameslist -luninameslist-fr"
+  uninameslist_libs_private="-luninameslist-fr"
+fi
 AC_SUBST([LIBUNINAMESLIST_PKGCONFIG_LIBS],["${uninameslist_libs}"])
+AC_SUBST([LIBUNINAMESLIST_PKGCONFIG_LIBS_PRIVATE],["${uninameslist_libs_private}"])
 
 #-------------------------------------------
 # Pass variables to MAKEFILE.AM
@@ -256,5 +268,5 @@ Configuration:
 Optional:
   Include French C lib	${frenchlib}
   Build Python wheels	${enable_pylib}
-
+    Build wheels using	${PYTHONx}
 ])

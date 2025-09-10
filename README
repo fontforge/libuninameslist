@@ -60,7 +60,7 @@ Building and Installing LibUniNamesList
 Read INSTALL for details on building LibUniNamesList using this package.
 This package contains 2 libraries, but only 1 is built by default:
 	1) libuninameslist - holds NamesList.txt data from www.unicode.org
-	2) libuninameslist-fr - currently holds French 13.0 NamesList.txt
+	2) libuninameslist-fr - holds French ListeNoms.txt (NamesList.txt)
 If you need the libuninameslist-fr library then you will also need to enable
 building it since the current default is not to build it. This will also be
 recognized in functions 16..26 listed above as lang=1 (English=default=0).
@@ -81,8 +81,13 @@ Building and Installing LibUniNamesList and LibUniNamesList-fr
 The French library was built with the intention of maintaining backwards
 compatibility with older programs (like FontForge 20120731), so it is a
 separate library, but in this case, it is also linked to the base library.
+This allows modern programs to link to libuninameslist which then also
+links to libuninameslist-fr, and you can query information through the
+main libuninameslist.
 If you ran 'configure' and 'make' earlier, you need to run 'make clean'
 to remove the earlier libuninameslist (which won't link to this library).
+NOTE: libuninameslist is built differently here so that it also links to
+libuninameslist-fr
 
 NOTE: You may need to run 'make clean' if you ran "./configure; make" earlier.
 	$ ./configure --enable-frenchlib
@@ -309,4 +314,4 @@ Please report any bugs, patches and/or improvements to:
 	fontforge-devel@lists.sourceforge.net
 
 This file was last updated:
-	2021-Jun-26, by Joe Da Silva
+	2025-Sep-09, by Joe Da Silva

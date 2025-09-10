@@ -48,11 +48,12 @@ jobs:
         run: make check
   windows:
     runs-on: windows-latest
+    env:
+      PYTHON: python3
     strategy:
       matrix:
         include: [
           { msystem: MINGW64, tools: mingw-w64-x86_64 },
-          { msystem: MINGW32, tools: mingw-w64-i686 },
           { msystem: UCRT64, tools: mingw-w64-ucrt-x86_64 },
           { msystem: CLANG64, tools: mingw-w64-clang-x86_64 },
       ]
@@ -61,18 +62,15 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
           update: true
-          install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools
+          install: autotools base-devel git ${{matrix.tools}}-toolchain ${{matrix.tools}}-python-setuptools ${{matrix.tools}}-python-pip-tools ${{matrix.tools}}-python-wheel
       - name: Create configure
         run: |
           python --version
-          python -m ensurepip --default-pip
-          pip --version
-          pip install setuptools wheel build
           autoreconf -i
           automake
       - name: Choose configure

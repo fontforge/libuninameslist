@@ -175,7 +175,7 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"https://www.unicode.org/Public/draft/ucd/NamesList.txt",
+	"https://www.unicode.org/Public/17.0.0/ucd/NamesList.txt",
 	"https://hapax.qc.ca/ListeNoms-16.0.0.txt (charset=UTF-8)"
     };
 

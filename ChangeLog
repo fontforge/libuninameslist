@@ -1,13 +1,22 @@
+- 2025-Sep-09
+    * libuninameslist updated to Unicode.org NamesList.txt version 17.0
+      as libuninameslist-1.16 and French Unicode ListeDesNoms.txt is at
+      version 16.0 as libuninameslist-fr-1.8.
+    * Lintian tag: shared-library-lacks-prerequisite libuninameslist-fr
+    * workflows/main.yml update and edite due to churn from 2024...2025
+
 - 2025-Jul-14
     * Unicode 17.0_Beta, this is a preview Beta version for anybody who
       is interested in trying it before an official 17.0 is available.
       NOTE: This version shows as 16.9b to maintain versions sorting.
     * Updated French Unicode to 16.0 (libuninameslist-fr = version1.8).
+    * fix debian bug 989173: runs okay with CFLAGS="-g -O0" ./configure
 
 - 2024-Sep-10
     * Introducing Unicode 16.0 (libuninameslist=version1.15) and French
       Unicode 15.1 translation (libuninameslist-fr=version1.7).
-    * Upgraded configure.ac from 2.64 to 2.69.
+    * Upgraded configure.ac from 2.64 to 2.69 to avoid problems with
+      newer autoconf having problems with the older 2.64 configure.ac
 
 - 2024-May-24
     * Version 1.14, Unicode 15.1 and French version 1.7 now is at 15.1.

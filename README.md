@@ -12,7 +12,7 @@ libuninameslist – A Library of Unicode names and annotation data
 Description
 -----------
 
-This library is updated for Nameslist.txt ver17.0_Beta and ListeDesNoms.txt ver16.0
+This library is updated for Nameslist.txt ver17.0 and ListeDesNoms.txt ver16.0
 and includes python wrapper 'uninameslist.py'
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
@@ -30,7 +30,8 @@ quickly and easily.
 ListeDesNoms.txt
 Is a seperate file which is translated from Nameslist.txt and was outdated for
 a period of time but was recently updated by a group of developers who have
-updated it up to version 14. Contributors to that file are listed in that file.
+updated it up to version 16. This requires a large amount of work by them and
+the Contributors to that file are listed in that file.
 
 These libraries contain very large (sparse) arrays with one entry for each
 unicode code point (U+0000–U+10FFFF). Each entry contains two strings, a name
@@ -127,8 +128,8 @@ This library will also be linked to the main libuninameslist so that it can
 be used through the main library (as lang=1) for functions 16 to 26.
 
 NOTE: If you ran 'make' after running './configure' earlier, you may need to
-run 'make clean' to clear-out the earlier libuninameslist library, which is
-built without knowledge of the additional library.
+run 'make clean' to clear-out the earlier 'libuninameslist' library, which is
+built differently without knowledge of the additional library.
 ```c
 $ make clean
 $ make
