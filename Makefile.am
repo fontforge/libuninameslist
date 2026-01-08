@@ -25,7 +25,7 @@ LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
 EXTRA_DIST = LICENSE README.md m4/ax_check_compile_flag.m4 tests/call-test.c \
 	py/setup.py py/uninameslist.py libuninameslist.3 libuninameslist-fr.3 \
-	build.sh
+	build.sh libs.gif
 
 noinst_PROGRAMS = buildnameslist
 buildnameslist_SOURCES = buildnameslist.c buildnameslist.h
@@ -76,7 +76,7 @@ NamesList.txt:
 	$(WGET) "https://www.unicode.org/Public/17.0.0/ucd/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
-	$(WGET) "https://hapax.qc.ca/ListeNoms-16.0.0.txt" -O ListeDesNoms.txt
+	$(WGET) "https://hapax.qc.ca/ListeNoms.txt-17.0.0.txt" -O ListeDesNoms.txt
 
 # test: run all tests in cwd and subdirs
 test:	$(TEST_PROGS)

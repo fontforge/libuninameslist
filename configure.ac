@@ -4,7 +4,7 @@ AC_PREREQ([2.69])
 #-------------------------------------------
 # PackageTimestamp, major version, minor version, and Nameslist.txt version
 # Libraries have a "package" version of the form major.minor.micro.
-m4_define([uninameslist_package_stamp], [20250909]) dnl yyyymmdd
+m4_define([uninameslist_package_stamp], [20260107]) dnl yyyymmdd
 m4_define([uninameslist_major_version], [17]) dnl Nameslist.txt
 m4_define([uninameslist_minor_version], [0])
 m4_define([uninameslist_nameslist_ver], [uninameslist_major_version.uninameslist_minor_version])
@@ -17,11 +17,11 @@ m4_define([uninameslist_libver],
 
 # These values below are kept for backwards compatibility with older programs
 # that are using the French namesList. This increments with ListeDesNoms.txt.
-m4_define([fr_major_version], [16]) dnl latest ListeDesNoms.txt = ver16.0
+m4_define([fr_major_version], [17]) dnl latest ListeDesNoms.txt = ver16.0
 m4_define([fr_minor_version], [0])
 m4_define([uninameslist_fr_nameslist_ver], [fr_major_version.fr_minor_version])
 m4_define([uninameslist_fr_current], [1])
-m4_define([uninameslist_fr_revision],[8])
+m4_define([uninameslist_fr_revision],[9])
 m4_define([uninameslist_fr_age],     [0])
 m4_define([uninameslist_fr_libver],
           [uninameslist_fr_current:uninameslist_fr_revision:uninameslist_fr_age])

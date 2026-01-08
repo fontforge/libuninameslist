@@ -41,21 +41,21 @@ static const char *lgb[2] = { "UNICODE_EN_BLOCK_MAX", "UNICODE_FR_BLOCK_MAX" };
 static const char *lgv[2] = { NL_VERSION, NFR_VERSION };
 
 static int printcopyright2credits(FILE *out) {
-    fprintf( out, "; Date : 2025-01-24, 15:49:39 TUC\n;\n");
-    fprintf( out, "; Standard Unicode 16.0.0\n");
+    fprintf( out, "; Date : 2025-10-04, 11:41:38 UTC\n;\n");
+    fprintf( out, "; Standard Unicode 17.0.0\n");
     fprintf( out, "; Liste des noms des caractères (version en langue française)\n;\n");
     fprintf( out, "; Le Consortium Unicode entretient une collaboration étroite\n");
     fprintf( out, ";\tet une liaison officielle avec le groupe de travail qui élabore\n");
-    fprintf( out, ";\tla norme internationale ISO/CEI 10646. La version 16.0 du standard Unicode\n");
-    fprintf( out, ";\tintègre 5.185 nouveaux caractères (dont 3.995 hiéroglyphes égyptiens),\n");
-    fprintf( out, ";\tportant le total à 154.998 caractères.\n;\n");
+    fprintf( out, ";\tla norme internationale ISO/CEI 10646. La version 17.0 du standard Unicode\n");
+    fprintf( out, ";\tintègre 4.803 nouveaux caractères (dont 4.316 idéogrammes CJC),\n");
+    fprintf( out, ";\tportant le total à 159.801 caractères.\n;\n");
     fprintf( out, "; Le présent fichier peut être utilisé librement. Toutefois, aucune\n");
     fprintf( out, ";\tmodification n’y est autorisée ; toutes les copies doivent être\n");
     fprintf( out, ";\trigoureusement identiques au fichier original.\n;\n");
     fprintf( out, "; Le Consortium Unicode n’est pas responsable des erreurs ou omissions\n");
     fprintf( out, ";\tdans ce fichier.\n;\n");
     fprintf( out, "; Version originale (en anglais) de la liste des noms des caractères :\n");
-    fprintf( out, ";\thttps://www.unicode.org/Public/16.0.0/ucd/NamesList.txt\n;\n");
+    fprintf( out, ";\thttps://www.unicode.org/Public/17.0.0/ucd/NamesList.txt\n;\n");
     fprintf( out, "; Contributions à la version en langue française :\n;\n");
     fprintf( out, ";\tJacques André, France\n");
     fprintf( out, ";\tPatrick Andries, Canada (Québec)\n");

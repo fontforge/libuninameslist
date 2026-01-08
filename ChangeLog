@@ -1,9 +1,14 @@
+- 2026-Jan-07
+    * French library libuninameslist-fr updated now to Unicode 17.0 and
+      libuninameslist remains at Unicode 17.0.
+    * Update README.md.
+
 - 2025-Sep-09
     * libuninameslist updated to Unicode.org NamesList.txt version 17.0
       as libuninameslist-1.16 and French Unicode ListeDesNoms.txt is at
       version 16.0 as libuninameslist-fr-1.8.
     * Lintian tag: shared-library-lacks-prerequisite libuninameslist-fr
-    * workflows/main.yml update and edite due to churn from 2024...2025
+    * workflows/main.yml update and edits due to churn from 2024...2025
 
 - 2025-Jul-14
     * Unicode 17.0_Beta, this is a preview Beta version for anybody who
