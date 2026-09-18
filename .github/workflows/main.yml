@@ -10,7 +10,7 @@ jobs:
       matrix:
         choiceL: [--disable-silent-rules, --enable-frenchlib, --enable-pylib]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Create configure
         run: |
           sudo apt-get update -y
@@ -34,7 +34,7 @@ jobs:
       matrix:
         choiceM: [--disable-silent-rules, --enable-frenchlib, --enable-pylib]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Create configure
         run: |
           brew install autoconf automake libtool gcc python-setuptools
@@ -62,7 +62,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}

@@ -1,3 +1,8 @@
+- 2026-Sep-18
+    * Introducing Unicode 18.0 (libuninameslist=lib_ver1.18) and French
+      Unicode 17.0 translation (libuninameslist-fr=lib_ver1.16).
+    * Added 'make strip' (warning seen in Open SuSE RPM Lint repo_16.0)
+
 - 2026-Jan-07
     * French library libuninameslist-fr updated now to Unicode 17.0 and
       libuninameslist remains at Unicode 17.0.

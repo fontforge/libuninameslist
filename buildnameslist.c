@@ -76,19 +76,19 @@ static int printcopyright2(FILE *out) {
 }
 
 static int printcopyright1(FILE *out, int is_fr) {
-    /* Copyright notice for unicode NamesList.txt - 2024 */
+    /* Copyright notice for unicode NamesList.txt - 2026 */
     fprintf( out, "\n/*\n");
     fprintf( out, "The data contained in these arrays were derived from data contained in\n");
     fprintf( out, "NamesList.txt which came from www.unicode.org. Below is the copyright\n");
     fprintf( out, "notice for the information given:\n\n");
     fprintf( out, "UNICODE LICENSE V3\n\n");
     fprintf( out, "COPYRIGHT AND PERMISSION NOTICE\n\n");
-    fprintf( out, "Copyright © 1991-2024 Unicode, Inc.\n\n");
+    fprintf( out, "Copyright © 1991-2026 Unicode, Inc.\n\n");
     fprintf( out, "NOTICE TO USER: Carefully read the following legal agreement. BY\n");
     fprintf( out, "DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING DATA FILES, AND/OR\n");
     fprintf( out, "SOFTWARE, YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE\n");
     fprintf( out, "TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT\n");
-    fprintf( out, "DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.\n");
+    fprintf( out, "DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.\n\n");
     fprintf( out, "Permission is hereby granted, free of charge, to any person obtaining a\n");
     fprintf( out, "copy of data files and any associated documentation (the \"Data Files\") or\n");
     fprintf( out, "software and any associated documentation (the \"Software\") to deal in the\n");
@@ -175,8 +175,8 @@ static int ReadNamesList(void) {
     int i, j;
     static char *nameslistfiles[] = { "NamesList.txt", "ListeDesNoms.txt", NULL };
     static char *nameslistlocs[] = {
-	"https://www.unicode.org/Public/17.0.0/ucd/NamesList.txt",
-	"https://hapax.qc.ca/ListeNoms-16.0.0.txt (charset=UTF-8)"
+	"https://www.unicode.org/Public/18.0.0/ucd/NamesList.txt",
+	"https://hapax.qc.ca/ListeNoms-17.0.0.txt (charset=UTF-8)"
     };
 
     buffer[sizeof(buffer)-1]=0;

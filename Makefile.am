@@ -73,10 +73,17 @@ libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
 NamesList.txt:
-	$(WGET) "https://www.unicode.org/Public/17.0.0/ucd/NamesList.txt" -O NamesList.txt
+	$(WGET) "https://www.unicode.org/Public/18.0.0/ucd/NamesList.txt" -O NamesList.txt
 
 ListeDesNoms.txt:
-	$(WGET) "https://hapax.qc.ca/ListeNoms.txt-17.0.0.txt" -O ListeDesNoms.txt
+	$(WGET) "https://hapax.qc.ca/ListeNoms-17.0.0.txt" -O ListeDesNoms.txt
+
+
+strip:
+	$(STRIP) $(builddir)/.libs/libuninameslist.so*
+if WANTLIBOFR
+	$(STRIP) $(builddir)/.libs/libuninameslist-fr.so*
+endif
 
 # test: run all tests in cwd and subdirs
 test:	$(TEST_PROGS)

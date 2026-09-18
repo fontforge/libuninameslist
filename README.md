@@ -1,6 +1,6 @@
 # libuninameslist – A Library of Unicode names and annotation data
 
-[![Build status](https://ci.appveyor.com/api/projects/status/qseac73evm9leu0g?svg=true)](https://ci.appveyor.com/project/fontforge/libuninameslist) [![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/793/badge.svg?flat=1)](https://scan.coverity.com/projects/793)
 
 - [Description](#description)
 - [Installation and Build Instructions](#installation-and-build-instructions)
@@ -11,7 +11,7 @@
 
 ## Description
 
-This library is updated for Nameslist.txt ver17.0, and ListeNoms.txt ver17.0,
+This library is updated for Nameslist.txt ver18.0, and ListeNoms.txt ver17.0,
 and includes python wrapper 'uninameslist.py'
 
 For latest release, see: https://github.com/fontforge/libuninameslist/releases
@@ -142,13 +142,14 @@ $ sudo make install-strip
 
 For a more visual view of what is described above, it looks more like this:
 ![](libs.gif)
-So, if built with `./configure`, then only libuninameslist is built, there is
+
+So, if you built with `./configure`, then only libuninameslist is built, there is
 no libuninameslist-fr, and any function calls to other libraries return nothing.
 
-If built with `./configure --enable-frenchlib`, then both libraries are built.
+If you built with `./configure --enable-frenchlib`, then both libraries are built.
 - Older programs(1,2,3) like FontForge (up to 20120713) or UMap can access
 libuninameslist or libuninameslist-fr using older access, or newer function calls.
-- Newer programs(4) can access all libraries through libuninameslist
+- Newer programs(4) can access all libraries using libuninameslist function calls.
 
 Last, but not least, do not mix and match. If you build libuninameslist with
 `./configure --enable-frenchlib`, you also need to install libuninameslist-fr
@@ -160,10 +161,10 @@ but cannot access libuninameslist-fr through libuninameslist).
 
 ## Installation and Build Instructions
 
-Download a tagged release version from https://github.com/fontforge/libuninameslist/releases
+Download a tagged release version from https://github.com/fontforge/libuninameslist/releases, example:
 ```bash
-$ wget https://github.com/fontforge/libuninameslist/archive/20210626.tar.gz
-$ tar -xzf 20210626.tar.gz
+$ wget https://github.com/fontforge/libuninameslist/archive/20260918.tar.gz
+$ tar -xzf 20260918.tar.gz
 $ cd libuninameslist
 ```
 
@@ -192,6 +193,10 @@ $ su -
 # exit
 $
 ```
+
+NOTE: `./configure` default is usually '/usr/local'. Some older Distros and
+Operating Systems might not search '/usr/local', so you may need to use
+`./configure --prefix=/usr` so that the library isn't installed in 'local'.
 
 NOTE: Users who do not have autoconf and automake available will want to
 download the '-dist-' version found in the releases directory.
